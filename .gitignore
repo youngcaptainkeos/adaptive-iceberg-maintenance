@@ -1,0 +1,11 @@
+test_venv/
+software/spark-3.3.4/
+smoke_test/warehouse/
+smoke_test/telemetry.db
+datasets/tpch/sf1/*.tbl
+*.tgz
+*.jar
+*.db
+*.o
+dbgen
+qgen

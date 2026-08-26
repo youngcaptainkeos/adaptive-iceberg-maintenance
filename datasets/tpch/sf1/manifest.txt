@@ -1,0 +1,25 @@
+Dataset Name: TPC-H
+Scale Factor: SF1
+Generation Date/Time: 2026-08-26T20:51:00+05:30
+TPC-H Tool Version: V3.0.1
+Generator Version: 3.0.0 build 0
+Generator Build Command: make
+Generator Execution Command: ./dbgen -vf -s 1
+Hostname: shashlaptop
+Operating System: Linux shashlaptop 7.0.0-30-generic #30~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug  7 13:27:52 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+
+Tables Metadata:
+-----------------------------------------------------------------------------------------------------
+Table Name   | Row Count | File Size (Bytes) | SHA256 Checksum
+-----------------------------------------------------------------------------------------------------
+customer.tbl | 150000    | 24346144          | 4483680548a965833877c911ed43e795f4d3543c7a3f7d1dba9ccb24ea5989d6
+lineitem.tbl | 6001215   | 759863287         | 96d555e07a1ae8cf5196387d9edd9427f9af70c56fa5f4b18affee5555ddb184
+nation.tbl   | 25        | 2224              | 66f96949939fa8fdf1c4ffed1e5f6c2842fe11a14b51fdc6ed1e17460031e8c5
+orders.tbl   | 1500000   | 171952161         | 8709061d7bbc81932356fdfc664f8d582252747c2d7e204ae6d3cde624586357
+part.tbl     | 200000    | 24135125          | f0e4ccdfb5f6d19428ce54f9c84b17037d20f00ac8d2b2272c8d43b18a0b4880
+partsupp.tbl | 800000    | 118984616         | 43c37f99918f06d4de6b99b05c0a28d5c46f71d66424cffcc595cb059a499254
+region.tbl   | 5         | 389               | 6022658d673924389b54dcb70fa8c3d6da1b0d7afa3c1c017bab62a019df404f
+supplier.tbl | 10000     | 1409184           | 9b99cf155974e6db8773970b40746bfccfa64fa078169574165f3e19e2158391
+-----------------------------------------------------------------------------------------------------
+Total Dataset Size: 1,100,683,330 Bytes (~1.1 GB)
+All tables generated cleanly with standard TPC-H SF1 cardinalities.

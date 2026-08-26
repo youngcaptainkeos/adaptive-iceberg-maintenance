@@ -1,0 +1,11 @@
+version: 1
+task_templates:
+- id: setup_db
+  files:
+  - /home/shashank/Link to PDocuments/Capstone/implementation/smoke_test/scripts/setup.sql
+- id: write_data
+  files:
+  - /home/shashank/Link to PDocuments/Capstone/implementation/smoke_test/scripts/write.sql
+- id: read_data
+  files:
+  - /home/shashank/Link to PDocuments/Capstone/implementation/smoke_test/scripts/read.sql

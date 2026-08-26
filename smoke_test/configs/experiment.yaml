@@ -1,0 +1,9 @@
+version: 1
+id: smoke_experiment
+repetitions: 1
+metadata:
+  system: spark
+  table_format: iceberg
+parameter_values:
+  catalog: local
+  database: smoke_db

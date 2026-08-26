@@ -1,0 +1,10 @@
+version: 1
+connections:
+- id: spark_0
+  type: spark
+  url: local[*]
+  config:
+    spark.sql.extensions: org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions
+    spark.sql.catalog.local: org.apache.iceberg.spark.SparkCatalog
+    spark.sql.catalog.local.type: hadoop
+    spark.sql.catalog.local.warehouse: /home/shashank/Link to PDocuments/Capstone/implementation/smoke_test/warehouse

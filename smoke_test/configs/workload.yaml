@@ -1,0 +1,9 @@
+version: 1
+id: smoke_workload
+phases:
+- id: run_smoke
+  sessions:
+  - tasks:
+    - template_id: setup_db
+    - template_id: write_data
+    - template_id: read_data
