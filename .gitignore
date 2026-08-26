@@ -9,3 +9,6 @@ datasets/tpch/sf1/*.tbl
 *.o
 dbgen
 qgen
+warehouse/
+datasets/alibaba-trace-2017.tar.gz
+*.tar.gz
