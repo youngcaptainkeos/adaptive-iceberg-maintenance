@@ -12,3 +12,5 @@ qgen
 warehouse/
 datasets/alibaba-trace-2017.tar.gz
 *.tar.gz
+derby.log
+metastore_db/

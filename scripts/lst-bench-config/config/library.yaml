@@ -1,0 +1,5 @@
+version: 1
+task_templates:
+- id: smoke_query_task
+  files:
+  - ../scripts/lst-bench-config/sql/smoke_query.sql

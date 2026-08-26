@@ -1,0 +1,7 @@
+version: 1
+id: tpch_smoke_workload
+phases:
+- id: smoke_phase
+  sessions:
+  - tasks:
+    - template_id: smoke_query_task
