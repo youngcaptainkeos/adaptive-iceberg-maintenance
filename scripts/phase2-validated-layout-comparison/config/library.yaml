@@ -1,0 +1,56 @@
+version: 1
+task_templates:
+- id: query1_control_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query1_control.sql
+- id: query1_fragmented_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query1_fragmented.sql
+- id: query1_compacted_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query1_compacted.sql
+- id: query3_control_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query3_control.sql
+- id: query3_fragmented_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query3_fragmented.sql
+- id: query3_compacted_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query3_compacted.sql
+- id: query6_control_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query6_control.sql
+- id: query6_fragmented_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query6_fragmented.sql
+- id: query6_compacted_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query6_compacted.sql
+- id: query12_control_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query12_control.sql
+- id: query12_fragmented_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query12_fragmented.sql
+- id: query12_compacted_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query12_compacted.sql
+- id: query14_control_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query14_control.sql
+- id: query14_fragmented_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query14_fragmented.sql
+- id: query14_compacted_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query14_compacted.sql
+- id: query18_control_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query18_control.sql
+- id: query18_fragmented_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query18_fragmented.sql
+- id: query18_compacted_task
+  files:
+  - ../scripts/phase2-validated-layout-comparison/sql/query18_compacted.sql

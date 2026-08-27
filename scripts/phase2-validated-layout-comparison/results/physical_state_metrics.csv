@@ -1,0 +1,4 @@
+table_name,row_count,file_count,total_size_bytes,total_size_mb,avg_file_size_bytes,avg_file_size_mb,min_file_size_bytes,max_file_size_bytes,snapshot_count,current_snapshot_id
+local.tpch.lineitem,6001215,16,152325814,145.27,9520363.38,9.08,8702086,9672602,0,-1
+local.experiment.lineitem_validated_fragmented,6001215,200,172510465,164.52,862552.32,0.82,860805,863955,0,-1
+local.experiment.lineitem_validated_compacted,6001215,4,164030025,156.43,41007506.25,39.11,1683180,54125934,0,-1

@@ -1,0 +1,597 @@
+version: 1
+id: tpch_validated_comparison_workload
+phases:
+- id: rep0_pos0_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep0_pos1_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep0_pos2_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep1_pos0_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep1_pos1_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep1_pos2_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep2_pos0_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep2_pos1_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep2_pos2_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep3_pos0_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep3_pos1_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep3_pos2_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep4_pos0_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep4_pos1_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep4_pos2_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep5_pos0_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep5_pos1_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep5_pos2_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep6_pos0_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep6_pos1_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep6_pos2_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep7_pos0_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep7_pos1_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep7_pos2_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep8_pos0_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep8_pos1_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep8_pos2_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep9_pos0_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep9_pos1_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep9_pos2_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep10_pos0_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep10_pos1_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep10_pos2_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep11_pos0_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep11_pos1_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep11_pos2_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep12_pos0_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep12_pos1_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep12_pos2_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep13_pos0_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep13_pos1_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep13_pos2_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep14_pos0_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep14_pos1_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep14_pos2_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep15_pos0_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep15_pos1_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep15_pos2_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep16_pos0_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep16_pos1_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep16_pos2_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep17_pos0_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep17_pos1_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep17_pos2_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep18_pos0_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep18_pos1_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep18_pos2_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep19_pos0_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep19_pos1_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep19_pos2_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep20_pos0_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep20_pos1_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task
+- id: rep20_pos2_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep21_pos0_fragmented
+  sessions:
+  - tasks:
+    - template_id: query1_fragmented_task
+    - template_id: query3_fragmented_task
+    - template_id: query6_fragmented_task
+    - template_id: query12_fragmented_task
+    - template_id: query14_fragmented_task
+    - template_id: query18_fragmented_task
+- id: rep21_pos1_compacted
+  sessions:
+  - tasks:
+    - template_id: query1_compacted_task
+    - template_id: query3_compacted_task
+    - template_id: query6_compacted_task
+    - template_id: query12_compacted_task
+    - template_id: query14_compacted_task
+    - template_id: query18_compacted_task
+- id: rep21_pos2_control
+  sessions:
+  - tasks:
+    - template_id: query1_control_task
+    - template_id: query3_control_task
+    - template_id: query6_control_task
+    - template_id: query12_control_task
+    - template_id: query14_control_task
+    - template_id: query18_control_task

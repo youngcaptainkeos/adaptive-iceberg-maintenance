@@ -1,0 +1,26 @@
+{
+    "timestamp": "2026-08-27T20:45:39.232926",
+    "hostname": "sandbox",
+    "os_name": "Linux",
+    "os_release": "7.0.0-30-generic",
+    "os_version": "#30~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug  7 13:27:52 UTC 2",
+    "cpu_model": "AMD Ryzen 7 5800H with Radeon Graphics",
+    "logical_cpu_cores": 16,
+    "physical_cpu_cores": 8,
+    "total_physical_memory": "14.96 GB",
+    "workstation_idle_status": "Active/Shared workstation (1-min load avg: 5.73, CPU usage: 16.1%)",
+    "spark_version": "3.3.4",
+    "java_version": "openjdk 11.0.24",
+    "iceberg_version": "1.4.3",
+    "scale_factor": "1",
+    "repetitions": 22,
+    "warmup_policy": "2 warmups (repetitions 0, 1), 20 measured (repetitions 2 to 21)",
+    "spark_home": "/home/shashank/Link to PDocuments/Capstone/implementation/software/spark-3.3.4",
+    "java_home": "/usr/lib/jvm/java-11-openjdk-amd64",
+    "spark_conf": {
+        "spark.sql.extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",
+        "spark.sql.catalog.local": "org.apache.iceberg.spark.SparkCatalog",
+        "spark.sql.catalog.local.type": "hadoop",
+        "spark.sql.catalog.local.warehouse": "file:///home/shashank/Link to PDocuments/Capstone/implementation/warehouse"
+    }
+}

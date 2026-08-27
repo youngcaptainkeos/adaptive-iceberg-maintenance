@@ -1,0 +1,7 @@
+version: 1
+connections:
+  - id: spark_thrift_conn
+    driver: org.apache.hive.jdbc.HiveDriver
+    url: jdbc:hive2://127.0.0.1:10000/default
+    username: shashank
+    password: ""

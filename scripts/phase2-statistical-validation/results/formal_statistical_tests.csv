@@ -1,0 +1,22 @@
+Category,Comparison,T_Statistic,T_P_Raw,T_P_Adj,T_Decision,Wilcoxon_Statistic,Wilcoxon_P_Raw,Wilcoxon_P_Adj,Wilcoxon_Decision,Cohen_dz,Rank_Biserial
+Q1,Fragmented - Control,-133.827503,0.000000e+00,0.000000e+00,Significant,0.0,9.569173e-05,2.009526e-03,Significant,-29.924739,-1.000000
+Q1,Compacted - Control,-46.574356,0.000000e+00,0.000000e+00,Significant,0.0,9.569173e-05,2.009526e-03,Significant,-10.414343,-1.000000
+Q1,Fragmented - Compacted,-57.760833,0.000000e+00,0.000000e+00,Significant,0.0,9.569173e-05,2.009526e-03,Significant,-12.915715,-1.000000
+Q12,Fragmented - Control,0.638425,5.308178e-01,9.393929e-01,Not Significant,98.0,8.082670e-01,8.082670e-01,Not Significant,0.142756,0.066667
+Q12,Compacted - Control,-19.159487,6.938894e-14,5.735412e-13,Significant,0.0,9.569173e-05,2.009526e-03,Significant,-4.284192,-1.000000
+Q12,Fragmented - Compacted,7.783131,2.514667e-07,1.005867e-06,Significant,0.0,9.569173e-05,2.009526e-03,Significant,1.740361,1.000000
+Q14,Fragmented - Control,-8.585080,5.783698e-08,2.891849e-07,Significant,1.0,1.115766e-04,2.009526e-03,Significant,-1.919682,-0.990476
+Q14,Compacted - Control,-10.119391,4.345678e-09,2.607407e-08,Significant,0.0,9.569173e-05,2.009526e-03,Significant,-2.262765,-1.000000
+Q14,Fragmented - Compacted,-0.737723,4.696965e-01,9.393929e-01,Not Significant,76.0,2.873373e-01,5.746745e-01,Not Significant,-0.164960,-0.276190
+Q18,Fragmented - Control,19.249599,6.372680e-14,5.735412e-13,Significant,0.0,9.569173e-05,2.009526e-03,Significant,4.304341,1.000000
+Q18,Compacted - Control,67.365050,0.000000e+00,0.000000e+00,Significant,0.0,9.569173e-05,2.009526e-03,Significant,15.063283,1.000000
+Q18,Fragmented - Compacted,-26.800984,1.110223e-16,1.443290e-15,Significant,0.0,9.569173e-05,2.009526e-03,Significant,-5.992882,-1.000000
+Q3,Fragmented - Control,-36.668626,0.000000e+00,0.000000e+00,Significant,0.0,9.569173e-05,2.009526e-03,Significant,-8.199354,-1.000000
+Q3,Compacted - Control,-12.658198,1.045974e-10,7.321821e-10,Significant,0.0,9.569173e-05,2.009526e-03,Significant,-2.830459,-1.000000
+Q3,Fragmented - Compacted,-20.885484,1.443290e-14,1.443290e-13,Significant,0.0,9.569173e-05,2.009526e-03,Significant,-4.670136,-1.000000
+Q6,Fragmented - Control,-24.767206,5.551115e-16,6.661338e-15,Significant,0.0,9.569173e-05,2.009526e-03,Significant,-5.538116,-1.000000
+Q6,Compacted - Control,-38.821340,0.000000e+00,0.000000e+00,Significant,0.0,9.569173e-05,2.009526e-03,Significant,-8.680715,-1.000000
+Q6,Fragmented - Compacted,-3.111611,5.744462e-03,1.723339e-02,Significant,37.0,1.173698e-02,3.521093e-02,Significant,-0.695777,-0.647619
+Workload,Fragmented - Control,-96.189023,0.000000e+00,0.000000e+00,Significant,0.0,9.569173e-05,2.009526e-03,Significant,-21.508519,-1.000000
+Workload,Compacted - Control,-22.850366,2.664535e-15,2.930989e-14,Significant,0.0,9.569173e-05,2.009526e-03,Significant,-5.109497,-1.000000
+Workload,Fragmented - Compacted,-57.974823,0.000000e+00,0.000000e+00,Significant,0.0,9.569173e-05,2.009526e-03,Significant,-12.963564,-1.000000

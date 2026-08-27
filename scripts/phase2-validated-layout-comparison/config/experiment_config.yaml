@@ -1,0 +1,13 @@
+version: 1
+id: "validated_layout_comparison"
+repetitions: 1
+metadata:
+  system: spark
+  system_version: 3.3.4
+  table_format: iceberg
+  table_format_version: 1.4.3
+  benchmark: tpch
+  scale_factor: "1"
+parameter_values:
+  catalog: local
+  database: tpch
