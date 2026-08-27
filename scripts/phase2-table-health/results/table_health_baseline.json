@@ -1,0 +1,15 @@
+{
+  "catalog": "local",
+  "database": "tpch",
+  "table_name": "lineitem",
+  "full_identifier": "local.tpch.lineitem",
+  "row_count": 6001215,
+  "num_data_files": 16,
+  "total_data_size_bytes": 152325814,
+  "avg_data_file_size_bytes": 9520363.375,
+  "median_data_file_size_bytes": 9559501.0,
+  "min_data_file_size_bytes": 8702086,
+  "max_data_file_size_bytes": 9672602,
+  "num_snapshots": 1,
+  "current_snapshot_id": 8128630582928284438
+}

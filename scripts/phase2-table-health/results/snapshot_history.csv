@@ -1,0 +1,2 @@
+snapshot_id,parent_id,committed_at,operation,summary
+8128630582928284438,,2026-08-27 00:11:48.070000,append,"{'spark.app.id': 'local-1787769690093', 'changed-partition-count': '1', 'added-data-files': '16', 'total-equality-deletes': '0', 'added-records': '6001215', 'total-position-deletes': '0', 'added-files-size': '152325814', 'total-delete-files': '0', 'total-files-size': '152325814', 'total-records': '6001215', 'total-data-files': '16'}"

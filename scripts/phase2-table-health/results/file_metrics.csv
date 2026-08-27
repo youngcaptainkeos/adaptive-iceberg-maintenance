@@ -1,0 +1,17 @@
+file_path,file_format,record_count,file_size_in_bytes
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/tpch/lineitem/data/00000-22-0c25e7d5-a731-4374-913e-88dfd73170a0-00001.parquet,PARQUET,380414,9672602
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/tpch/lineitem/data/00001-23-0c25e7d5-a731-4374-913e-88dfd73170a0-00001.parquet,PARQUET,379576,9635365
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/tpch/lineitem/data/00002-24-0c25e7d5-a731-4374-913e-88dfd73170a0-00001.parquet,PARQUET,378504,9613896
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/tpch/lineitem/data/00003-25-0c25e7d5-a731-4374-913e-88dfd73170a0-00001.parquet,PARQUET,376624,9554552
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/tpch/lineitem/data/00004-26-0c25e7d5-a731-4374-913e-88dfd73170a0-00001.parquet,PARQUET,376569,9556622
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/tpch/lineitem/data/00005-27-0c25e7d5-a731-4374-913e-88dfd73170a0-00001.parquet,PARQUET,376664,9561325
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/tpch/lineitem/data/00006-28-0c25e7d5-a731-4374-913e-88dfd73170a0-00001.parquet,PARQUET,376495,9555061
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/tpch/lineitem/data/00007-29-0c25e7d5-a731-4374-913e-88dfd73170a0-00001.parquet,PARQUET,376535,9556585
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/tpch/lineitem/data/00008-30-0c25e7d5-a731-4374-913e-88dfd73170a0-00001.parquet,PARQUET,376585,9554642
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/tpch/lineitem/data/00009-31-0c25e7d5-a731-4374-913e-88dfd73170a0-00001.parquet,PARQUET,376650,9556318
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/tpch/lineitem/data/00010-32-0c25e7d5-a731-4374-913e-88dfd73170a0-00001.parquet,PARQUET,376566,9559620
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/tpch/lineitem/data/00011-33-0c25e7d5-a731-4374-913e-88dfd73170a0-00001.parquet,PARQUET,376625,9561391
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/tpch/lineitem/data/00012-34-0c25e7d5-a731-4374-913e-88dfd73170a0-00001.parquet,PARQUET,376724,9561311
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/tpch/lineitem/data/00013-35-0c25e7d5-a731-4374-913e-88dfd73170a0-00001.parquet,PARQUET,376568,9565056
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/tpch/lineitem/data/00014-36-0c25e7d5-a731-4374-913e-88dfd73170a0-00001.parquet,PARQUET,376573,9559382
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/tpch/lineitem/data/00015-37-0c25e7d5-a731-4374-913e-88dfd73170a0-00001.parquet,PARQUET,343543,8702086
