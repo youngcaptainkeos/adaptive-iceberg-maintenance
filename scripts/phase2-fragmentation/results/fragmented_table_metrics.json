@@ -1,0 +1,15 @@
+{
+  "catalog": "local",
+  "database": "experiment",
+  "table_name": "lineitem_fragmented",
+  "full_identifier": "local.experiment.lineitem_fragmented",
+  "row_count": 6001215,
+  "num_data_files": 200,
+  "total_data_size_bytes": 172510465,
+  "avg_data_file_size_bytes": 862552.325,
+  "median_data_file_size_bytes": 862513.5,
+  "min_data_file_size_bytes": 860805,
+  "max_data_file_size_bytes": 863955,
+  "num_snapshots": 1,
+  "current_snapshot_id": 6340323109717333721
+}
