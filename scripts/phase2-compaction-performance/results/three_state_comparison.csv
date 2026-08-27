@@ -1,0 +1,7 @@
+query,control_mean_seconds,fragmented_mean_seconds,compacted_mean_seconds,fragmented_vs_control_percent,compacted_vs_fragmented_percent,compacted_vs_control_percent
+Q1,8.111400,3.240136,8.691601,-60.05,168.25,7.15
+Q3,1.300100,0.838097,1.649346,-35.54,96.80,26.86
+Q6,0.406100,0.499182,0.486955,22.92,-2.45,19.91
+Q12,0.738100,0.777930,0.962831,5.40,23.77,30.45
+Q14,0.556700,0.499811,0.672827,-10.22,34.62,20.86
+Q18,2.699000,3.137088,4.420971,16.23,40.93,63.80

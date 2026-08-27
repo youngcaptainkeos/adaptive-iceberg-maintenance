@@ -1,0 +1,18 @@
+{
+  "catalog": "local",
+  "database": "experiment",
+  "table_name": "lineitem_fragmented",
+  "full_identifier": "local.experiment.lineitem_fragmented",
+  "row_count": 6001215,
+  "sum_qty": 153078795.0,
+  "sum_price": 229577310901.2,
+  "sum_disc": 300057.33,
+  "num_data_files": 1,
+  "total_data_size_bytes": 163937780,
+  "avg_data_file_size_bytes": 163937780.0,
+  "median_data_file_size_bytes": 163937780,
+  "min_data_file_size_bytes": 163937780,
+  "max_data_file_size_bytes": 163937780,
+  "num_snapshots": 2,
+  "current_snapshot_id": 8782426708470012666
+}

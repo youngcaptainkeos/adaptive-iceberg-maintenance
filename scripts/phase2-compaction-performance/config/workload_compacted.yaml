@@ -1,0 +1,12 @@
+version: 1
+id: tpch_compacted_performance_workload
+phases:
+  - id: compacted_performance_phase
+    sessions:
+      - tasks:
+          - template_id: Q1_compacted
+          - template_id: Q3_compacted
+          - template_id: Q6_compacted
+          - template_id: Q12_compacted
+          - template_id: Q14_compacted
+          - template_id: Q18_compacted

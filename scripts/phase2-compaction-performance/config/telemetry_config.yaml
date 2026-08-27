@@ -1,0 +1,10 @@
+version: 1
+connection:
+  id: duckdb_telemetry
+  driver: org.duckdb.DuckDBDriver
+  url: jdbc:duckdb:../scripts/phase2-compaction-performance/telemetry/telemetry_compacted.db
+execute_ddl: true
+ddl_file: 'core/src/main/resources/scripts/logging/duckdb/ddl.sql'
+insert_file: 'core/src/main/resources/scripts/logging/duckdb/insert.sql'
+parameter_values:
+  data_path: ''

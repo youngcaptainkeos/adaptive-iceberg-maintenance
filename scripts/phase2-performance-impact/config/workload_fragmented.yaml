@@ -1,0 +1,12 @@
+version: 1
+id: tpch_fragmented_performance_workload
+phases:
+  - id: fragmented_performance_phase
+    sessions:
+      - tasks:
+          - template_id: Q1_frag
+          - template_id: Q3_frag
+          - template_id: Q6_frag
+          - template_id: Q12_frag
+          - template_id: Q14_frag
+          - template_id: Q18_frag

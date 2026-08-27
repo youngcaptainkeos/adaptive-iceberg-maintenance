@@ -1,0 +1,20 @@
+version: 1
+task_templates:
+  - id: Q1_frag
+    files:
+      - ../scripts/phase2-performance-impact/sql/query1_fragmented.sql
+  - id: Q3_frag
+    files:
+      - ../scripts/phase2-performance-impact/sql/query3_fragmented.sql
+  - id: Q6_frag
+    files:
+      - ../scripts/phase2-performance-impact/sql/query6_fragmented.sql
+  - id: Q12_frag
+    files:
+      - ../scripts/phase2-performance-impact/sql/query12_fragmented.sql
+  - id: Q14_frag
+    files:
+      - ../scripts/phase2-performance-impact/sql/query14_fragmented.sql
+  - id: Q18_frag
+    files:
+      - ../scripts/phase2-performance-impact/sql/query18_fragmented.sql

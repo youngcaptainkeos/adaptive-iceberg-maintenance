@@ -1,0 +1,20 @@
+version: 1
+task_templates:
+  - id: Q1_compacted
+    files:
+      - ../scripts/phase2-compaction-performance/sql/query1_compacted.sql
+  - id: Q3_compacted
+    files:
+      - ../scripts/phase2-compaction-performance/sql/query3_compacted.sql
+  - id: Q6_compacted
+    files:
+      - ../scripts/phase2-compaction-performance/sql/query6_compacted.sql
+  - id: Q12_compacted
+    files:
+      - ../scripts/phase2-compaction-performance/sql/query12_compacted.sql
+  - id: Q14_compacted
+    files:
+      - ../scripts/phase2-compaction-performance/sql/query14_compacted.sql
+  - id: Q18_compacted
+    files:
+      - ../scripts/phase2-compaction-performance/sql/query18_compacted.sql

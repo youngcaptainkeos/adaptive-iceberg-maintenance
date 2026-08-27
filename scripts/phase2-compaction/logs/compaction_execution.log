@@ -1,0 +1,6 @@
+Start Time: 2026-08-27T11:46:56.873068
+End Time: 2026-08-27T11:47:18.701940
+Duration Seconds: 21.829
+Query executed: CALL local.system.rewrite_data_files(table => 'experiment.lineitem_fragmented')
+Metrics: {'rewritten_data_files_count': 200, 'added_data_files_count': 1, 'rewritten_bytes_count': 172510465}
+Status: SUCCESS

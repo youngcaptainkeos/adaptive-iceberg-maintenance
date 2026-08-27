@@ -1,0 +1,2 @@
+file_path,file_format,record_count,file_size_in_bytes
+file:/home/shashank/Link to PDocuments/Capstone/implementation/warehouse/experiment/lineitem_fragmented/data/00000-0-dacc1e88-e7a3-4215-82ff-9b98cce14634-00001.parquet,PARQUET,6001215,163937780
