@@ -1,0 +1,12 @@
+version: 1
+id: tpch_baseline_comprehensive_workload
+phases:
+- id: baseline_comprehensive_phase
+  sessions:
+  - tasks:
+    - template_id: baseline_query1
+    - template_id: baseline_query3
+    - template_id: baseline_query6
+    - template_id: baseline_query12
+    - template_id: baseline_query14
+    - template_id: baseline_query18

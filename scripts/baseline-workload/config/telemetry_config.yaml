@@ -2,7 +2,7 @@ version: 1
 connection:
   id: duckdb_telemetry
   driver: org.duckdb.DuckDBDriver
-  url: jdbc:duckdb:../scripts/baseline-workload/telemetry_baseline_pilot.db
+  url: jdbc:duckdb:../scripts/baseline-workload/telemetry/telemetry_baseline_comprehensive.db
 execute_ddl: true
 ddl_file: 'core/src/main/resources/scripts/logging/duckdb/ddl.sql'
 insert_file: 'core/src/main/resources/scripts/logging/duckdb/insert.sql'

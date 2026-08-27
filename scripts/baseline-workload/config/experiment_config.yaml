@@ -1,6 +1,6 @@
 version: 1
-id: "baseline_pilot"
-repetitions: 1
+id: "baseline_comprehensive"
+repetitions: 3
 metadata:
   system: spark
   system_version: 3.3.4

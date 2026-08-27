@@ -3,9 +3,18 @@ task_templates:
 - id: baseline_query1
   files:
   - ../scripts/baseline-workload/sql/query1.sql
+- id: baseline_query3
+  files:
+  - ../scripts/baseline-workload/sql/query3.sql
 - id: baseline_query6
   files:
   - ../scripts/baseline-workload/sql/query6.sql
 - id: baseline_query12
   files:
   - ../scripts/baseline-workload/sql/query12.sql
+- id: baseline_query14
+  files:
+  - ../scripts/baseline-workload/sql/query14.sql
+- id: baseline_query18
+  files:
+  - ../scripts/baseline-workload/sql/query18.sql
