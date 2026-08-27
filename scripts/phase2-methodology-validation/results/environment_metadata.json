@@ -1,0 +1,21 @@
+{
+    "timestamp": "2026-08-27T14:45:44.636185",
+    "hostname": "shashlaptop",
+    "os_name": "Linux",
+    "os_release": "7.0.0-30-generic",
+    "os_version": "#30~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug  7 13:27:52 UTC 2",
+    "cpu_model": "AMD Ryzen 7 5800H with Radeon Graphics",
+    "logical_cpu_cores": 16,
+    "total_physical_memory": "14.96 GB",
+    "spark_version": "3.3.4",
+    "java_version": "openjdk version \"11.0.32\" 2026-07-21",
+    "iceberg_version": "1.4.3 (from POM)",
+    "warehouse_location": "file:///home/shashank/Link to PDocuments/Capstone/implementation/warehouse",
+    "catalog_name": "local",
+    "catalog_type": "hadoop",
+    "control_table": "local.tpch.lineitem",
+    "control_table_rows": 6001215,
+    "control_table_files": 16,
+    "control_table_snapshot_id": "8128630582928284438",
+    "control_table_snapshot_count": 1
+}

@@ -1,0 +1,2 @@
+metric,mean_seconds,median_seconds,min_seconds,max_seconds,range_seconds,stddev_seconds,variance_seconds,cv_percent
+Total Workload,12.612035,12.463646,12.036149,13.359732,1.323583,0.409745,0.167891,3.25

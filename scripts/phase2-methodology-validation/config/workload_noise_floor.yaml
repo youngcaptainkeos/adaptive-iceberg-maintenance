@@ -1,0 +1,12 @@
+version: 1
+id: tpch_noise_floor_workload
+phases:
+  - id: noise_floor_phase
+    sessions:
+      - tasks:
+          - template_id: Q1_noise
+          - template_id: Q3_noise
+          - template_id: Q6_noise
+          - template_id: Q12_noise
+          - template_id: Q14_noise
+          - template_id: Q18_noise

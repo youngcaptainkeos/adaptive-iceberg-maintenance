@@ -1,0 +1,20 @@
+version: 1
+task_templates:
+  - id: Q1_noise
+    files:
+      - ../scripts/phase2-methodology-validation/sql/query1.sql
+  - id: Q3_noise
+    files:
+      - ../scripts/phase2-methodology-validation/sql/query3.sql
+  - id: Q6_noise
+    files:
+      - ../scripts/phase2-methodology-validation/sql/query6.sql
+  - id: Q12_noise
+    files:
+      - ../scripts/phase2-methodology-validation/sql/query12.sql
+  - id: Q14_noise
+    files:
+      - ../scripts/phase2-methodology-validation/sql/query14.sql
+  - id: Q18_noise
+    files:
+      - ../scripts/phase2-methodology-validation/sql/query18.sql
