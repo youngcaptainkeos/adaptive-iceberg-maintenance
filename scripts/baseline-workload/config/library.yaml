@@ -1,0 +1,11 @@
+version: 1
+task_templates:
+- id: baseline_query1
+  files:
+  - ../scripts/baseline-workload/sql/query1.sql
+- id: baseline_query6
+  files:
+  - ../scripts/baseline-workload/sql/query6.sql
+- id: baseline_query12
+  files:
+  - ../scripts/baseline-workload/sql/query12.sql
