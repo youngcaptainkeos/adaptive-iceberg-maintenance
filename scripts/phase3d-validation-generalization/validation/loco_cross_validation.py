@@ -1,9 +1,23 @@
 #!/usr/bin/env python3
+"""
+loco_cross_validation.py
+------------------------
+Phase 3D — Leave-One-Configuration-Out Cross Validation (LOCO-CV).
+
+Evaluates 4 candidate regression models (Ridge, Lasso, Random Forest, Quantile q=0.95)
+across all 12 experimental configurations in the Phase 3B dataset using strict LOCO-CV.
+
+Anti-Leakage Guarantees:
+- Held-out configuration (config_id) is completely excluded from training.
+- Preprocessing (means, stds) is fit strictly on the 11 training configurations per fold.
+"""
+
 import os
 import sys
 import csv
 import math
 import random
+from typing import Dict, Any, List
 
 WORKSPACE_DIR = "/home/shashank/Link to PDocuments/Capstone/implementation"
 PHASE3B_DIR = os.path.join(WORKSPACE_DIR, "scripts/phase3b-predictive-signals")
@@ -111,12 +125,11 @@ def run_loco_cv():
         sys.exit(1)
 
     dataset = []
-    with open(dataset_csv, "r") as f:
+    with open(dataset_csv, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for r in reader:
             dataset.append(r)
 
-    # Dynamic Discovery of configurations
     config_ids = sorted(list(set(r["config_id"] for r in dataset)))
     workload_types = sorted(list(set(r["workload_type"] for r in dataset)))
     scheduler_modes = sorted(list(set(r["scheduler_mode"] for r in dataset)))
@@ -144,7 +157,6 @@ def run_loco_cv():
         workload = sample_test["workload_type"]
         sched = sample_test["scheduler_mode"]
 
-        # Build feature matrices
         def extract_features(row_list):
             X = []
             y = []
@@ -160,7 +172,6 @@ def run_loco_cv():
         X_train_raw, y_train = extract_features(train_rows)
         X_test_raw, y_test = extract_features(test_rows)
 
-        # Scale strictly using training fold mean and std
         n_tr = len(X_train_raw)
         n_feats = len(X_train_raw[0])
         tr_means = [sum(X_train_raw[i][j] for i in range(n_tr)) / n_tr for j in range(n_feats)]
@@ -170,7 +181,7 @@ def run_loco_cv():
         X_train = []
         for row in X_train_raw:
             s_row = [(row[j] - tr_means[j]) / tr_stds[j] if j < len(num_cols) else row[j] for j in range(n_feats)]
-            s_row.append(1.0) # bias term
+            s_row.append(1.0)
             X_train.append(s_row)
 
         X_test = []
@@ -179,7 +190,7 @@ def run_loco_cv():
             s_row.append(1.0)
             X_test.append(s_row)
 
-        # 1. Ridge Regression (L2)
+        # 1. Ridge Regression
         Xt = transpose(X_train)
         XtX = matmul(Xt, X_train)
         for d in range(len(XtX)):
@@ -189,7 +200,7 @@ def run_loco_cv():
         ridge_w = mat_vec_mul(inv_XtX, Xty)
         ridge_preds = [sum(w*x for w, x in zip(ridge_w, row)) for row in X_test]
 
-        # 2. Lasso Regression (L1)
+        # 2. Lasso Regression
         dim = len(X_train[0])
         lasso_w = [0.0] * dim
         l1_alpha = 0.5
@@ -220,7 +231,7 @@ def run_loco_cv():
 
         rf_preds = [sum(st.predict_one(root, row) for root in trees) / len(trees) for row in X_test]
 
-        # 4. Quantile Regressor (95th Percentile Upper Bound)
+        # 4. Quantile Regressor (q=0.95)
         dim = len(X_train[0])
         q95_w = [0.0] * dim
         q95_w[-1] = 10.0
@@ -243,10 +254,13 @@ def run_loco_cv():
             ("Quantile Regressor (q=0.95)", q95_preds)
         ]
 
+        mean_act_qir = sum(y_test) / len(y_test)
+
         for m_name, preds in models_eval:
             mae = mean_absolute_error(y_test, preds)
             rmse = root_mean_squared_error(y_test, preds)
             r2 = r2_score(y_test, preds)
+            mean_pred_qir = sum(preds) / len(preds)
             mean_err = sum(t - p for t, p in zip(y_test, preds)) / len(y_test)
             worst_abs_err = max(abs(t - p) for t, p in zip(y_test, preds))
 
@@ -258,6 +272,8 @@ def run_loco_cv():
                 "model": m_name,
                 "train_sample_count": n_tr,
                 "test_sample_count": len(y_test),
+                "mean_actual_qir": f"{mean_act_qir:.4f}",
+                "mean_predicted_qir": f"{mean_pred_qir:.4f}",
                 "mae": f"{mae:.4f}",
                 "rmse": f"{rmse:.4f}",
                 "r2": f"{r2:.4f}",
@@ -280,20 +296,22 @@ def run_loco_cv():
 
     # Write loco_regression_results.csv
     loco_csv = os.path.join(RESULTS_DIR, "loco_regression_results.csv")
-    with open(loco_csv, "w", newline="") as f:
+    with open(loco_csv, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=list(fold_results[0].keys()))
         writer.writeheader()
         writer.writerows(fold_results)
 
     # Write loco_fold_predictions.csv
     preds_csv = os.path.join(RESULTS_DIR, "loco_fold_predictions.csv")
-    with open(preds_csv, "w", newline="") as f:
+    with open(preds_csv, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=list(fold_predictions[0].keys()))
         writer.writeheader()
         writer.writerows(fold_predictions)
 
-    # Summary Statistics Across Folds per Model
+    # Summary Statistics Across Folds per Model -> loco_regression_summary.csv
     models = sorted(list(set(r["model"] for r in fold_results)))
+    summary_rows = []
+
     print("\n=========================================")
     print("LOCO-CV Evaluation Summary Across 12 Held-Out Folds")
     print("=========================================")
@@ -302,10 +320,39 @@ def run_loco_cv():
         m_folds = [r for r in fold_results if r["model"] == m]
         maes = [float(r["mae"]) for r in m_folds]
         rmses = [float(r["rmse"]) for r in m_folds]
+        r2s = [float(r["r2"]) for r in m_folds]
+
         mean_mae = sum(maes) / len(maes)
         sorted_maes = sorted(maes)
         med_mae = sorted_maes[len(sorted_maes)//2]
         std_mae = math.sqrt(sum((x - mean_mae)**2 for x in maes) / len(maes))
+        best_mae = sorted_maes[0]
+        worst_mae = sorted_maes[-1]
+
+        mean_rmse = sum(rmses) / len(rmses)
+        sorted_rmses = sorted(rmses)
+        med_rmse = sorted_rmses[len(sorted_rmses)//2]
+        std_rmse = math.sqrt(sum((x - mean_rmse)**2 for x in rmses) / len(rmses))
+        worst_rmse = sorted_rmses[-1]
+
+        mean_r2 = sum(r2s) / len(r2s)
+        sorted_r2s = sorted(r2s)
+        med_r2 = sorted_r2s[len(sorted_r2s)//2]
+
+        summary_rows.append({
+            "model": m,
+            "mean_MAE": f"{mean_mae:.4f}",
+            "median_MAE": f"{med_mae:.4f}",
+            "std_MAE": f"{std_mae:.4f}",
+            "worst_case_MAE": f"{worst_mae:.4f}",
+            "best_case_MAE": f"{best_mae:.4f}",
+            "mean_RMSE": f"{mean_rmse:.4f}",
+            "median_RMSE": f"{med_rmse:.4f}",
+            "std_RMSE": f"{std_rmse:.4f}",
+            "worst_case_RMSE": f"{worst_rmse:.4f}",
+            "mean_R2": f"{mean_r2:.4f}",
+            "median_R2": f"{med_r2:.4f}"
+        })
 
         best_fold = min(m_folds, key=lambda x: float(x["mae"]))
         worst_fold = max(m_folds, key=lambda x: float(x["mae"]))
@@ -315,8 +362,15 @@ def run_loco_cv():
         print(f"  Best Config:  {best_fold['held_out_config_id']} (MAE={best_fold['mae']}%)")
         print(f"  Worst Config: {worst_fold['held_out_config_id']} (MAE={worst_fold['mae']}%, Worst Single Err={worst_fold['worst_abs_prediction_error']}%)")
 
+    # Write loco_regression_summary.csv
+    summary_csv = os.path.join(RESULTS_DIR, "loco_regression_summary.csv")
+    with open(summary_csv, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=list(summary_rows[0].keys()))
+        writer.writeheader()
+        writer.writerows(summary_rows)
+
     print(f"\nLOCO-CV results written to {loco_csv}")
-    print(f"LOCO fold predictions written to {preds_csv}")
+    print(f"LOCO summary statistics written to {summary_csv}")
 
 if __name__ == "__main__":
     run_loco_cv()

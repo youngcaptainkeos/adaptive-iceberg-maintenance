@@ -1,0 +1,51 @@
+dataset_scope,policy_name,max_deferrals_bound,total_observations,maintenance_completion_rate_pct,forced_runs_pct,maintenance_deferral_rate_pct,mean_qir_pct,median_qir_pct,p95_qir_pct,max_qir_pct,sla_violation_rate_pct,sla_protection_rate_pct,max_consecutive_deferrals,mean_deferral_streak,number_of_starvation_events
+In-Distribution,Policy B: Always Defer,0,168,0.0,0.0,100.0,0.0,0.0,0.0,0.0,0.0,100.0,168,168.0,1
+In-Distribution,Policy B: Always Defer,1,168,50.0,50.0,50.0,1.53,0.0,11.67,19.31,7.14,92.86,1,1.0,0
+In-Distribution,Policy B: Always Defer,2,168,33.33,33.33,66.67,0.8,0.0,7.38,13.71,2.38,97.62,2,2.0,0
+In-Distribution,Policy B: Always Defer,3,168,25.0,25.0,75.0,0.86,0.0,8.78,19.31,4.17,95.83,3,3.0,42
+In-Distribution,Policy B: Always Defer,5,168,16.67,16.67,83.33,0.3,0.0,4.12,13.71,1.79,98.21,5,5.0,28
+In-Distribution,Policy C: Resource Heuristic,0,168,66.67,0.0,33.33,2.05,0.0,11.67,24.27,5.95,94.05,12,5.09,7
+In-Distribution,Policy C: Resource Heuristic,1,168,81.55,14.88,18.45,2.67,1.17,13.5,24.27,9.52,90.48,1,1.0,0
+In-Distribution,Policy C: Resource Heuristic,2,168,76.19,9.52,23.81,2.46,0.68,13.28,33.4,7.74,92.26,2,1.82,0
+In-Distribution,Policy C: Resource Heuristic,3,168,72.02,5.36,27.98,2.18,0.13,13.01,24.27,7.74,92.26,3,2.47,12
+In-Distribution,Policy C: Resource Heuristic,5,168,70.83,4.17,29.17,2.09,0.13,11.67,24.27,5.95,94.05,5,3.27,9
+In-Distribution,Policy D: Point Prediction Policy,0,168,91.67,0.0,8.33,3.05,1.81,15.04,35.05,10.71,89.29,12,7.0,1
+In-Distribution,Policy D: Point Prediction Policy,1,168,95.83,4.17,4.17,3.27,2.26,15.21,35.05,12.5,87.5,1,1.0,0
+In-Distribution,Policy D: Point Prediction Policy,2,168,94.05,2.38,5.95,3.2,1.94,15.21,35.05,11.31,88.69,2,2.0,0
+In-Distribution,Policy D: Point Prediction Policy,3,168,93.45,1.79,6.55,3.06,1.94,15.04,35.05,11.31,88.69,3,2.75,3
+In-Distribution,Policy D: Point Prediction Policy,5,168,92.86,1.19,7.14,3.02,1.81,15.04,35.05,10.71,89.29,5,4.0,2
+In-Distribution,Policy E: Raw Quantile Policy,0,168,30.95,0.0,69.05,0.52,0.0,5.75,14.53,1.19,98.81,27,3.05,12
+In-Distribution,Policy E: Raw Quantile Policy,1,168,58.93,27.98,41.07,1.61,0.0,12.59,19.31,7.74,92.26,1,1.0,0
+In-Distribution,Policy E: Raw Quantile Policy,2,168,45.24,14.29,54.76,1.3,0.0,11.35,33.4,5.36,94.64,2,1.61,0
+In-Distribution,Policy E: Raw Quantile Policy,3,168,39.88,8.93,60.12,0.99,0.0,7.81,19.31,3.57,96.43,3,2.1,21
+In-Distribution,Policy E: Raw Quantile Policy,5,168,35.12,4.17,64.88,0.59,0.0,6.33,14.53,1.79,98.21,5,2.48,17
+In-Distribution,Policy F: Adaptive Conformal Risk Policy,0,168,10.12,0.0,89.88,0.54,0.0,4.37,19.31,1.79,98.21,56,25.17,4
+In-Distribution,Policy F: Adaptive Conformal Risk Policy,1,168,54.17,44.05,45.83,2.21,0.0,13.71,24.27,9.52,90.48,1,1.0,0
+In-Distribution,Policy F: Adaptive Conformal Risk Policy,2,168,38.69,28.57,61.31,1.36,0.0,9.44,19.31,4.76,95.24,2,1.94,0
+In-Distribution,Policy F: Adaptive Conformal Risk Policy,3,168,30.95,20.83,69.05,1.45,0.0,13.01,19.31,5.95,94.05,3,2.9,37
+In-Distribution,Policy F: Adaptive Conformal Risk Policy,5,168,23.81,13.69,76.19,1.07,0.0,8.97,19.31,4.17,95.83,5,4.41,25
+Out-Of-Distribution,Policy B: Always Defer,0,80,0.0,0.0,100.0,0.0,0.0,0.0,0.0,0.0,100.0,80,80.0,1
+Out-Of-Distribution,Policy B: Always Defer,1,80,50.0,50.0,50.0,2.61,0.0,16.04,31.81,15.0,85.0,1,1.0,0
+Out-Of-Distribution,Policy B: Always Defer,2,80,32.5,32.5,67.5,2.39,0.0,16.14,31.81,12.5,87.5,2,2.0,0
+Out-Of-Distribution,Policy B: Always Defer,3,80,25.0,25.0,75.0,1.55,0.0,11.17,31.81,6.25,93.75,3,3.0,20
+Out-Of-Distribution,Policy B: Always Defer,5,80,16.25,16.25,83.75,1.24,0.0,13.22,31.81,6.25,93.75,5,4.79,13
+Out-Of-Distribution,Policy C: Resource Heuristic,0,80,100.0,0.0,0.0,5.38,5.91,19.9,31.81,33.75,66.25,0,0.0,0
+Out-Of-Distribution,Policy C: Resource Heuristic,1,80,100.0,0.0,0.0,5.38,5.91,19.9,31.81,33.75,66.25,0,0.0,0
+Out-Of-Distribution,Policy C: Resource Heuristic,2,80,100.0,0.0,0.0,5.38,5.91,19.9,31.81,33.75,66.25,0,0.0,0
+Out-Of-Distribution,Policy C: Resource Heuristic,3,80,100.0,0.0,0.0,5.38,5.91,19.9,31.81,33.75,66.25,0,0.0,0
+Out-Of-Distribution,Policy C: Resource Heuristic,5,80,100.0,0.0,0.0,5.38,5.91,19.9,31.81,33.75,66.25,0,0.0,0
+Out-Of-Distribution,Policy D: Point Prediction Policy,0,80,97.5,0.0,2.5,5.4,5.74,19.9,31.81,32.5,67.5,1,1.0,0
+Out-Of-Distribution,Policy D: Point Prediction Policy,1,80,97.5,0.0,2.5,5.4,5.74,19.9,31.81,32.5,67.5,1,1.0,0
+Out-Of-Distribution,Policy D: Point Prediction Policy,2,80,97.5,0.0,2.5,5.4,5.74,19.9,31.81,32.5,67.5,1,1.0,0
+Out-Of-Distribution,Policy D: Point Prediction Policy,3,80,97.5,0.0,2.5,5.4,5.74,19.9,31.81,32.5,67.5,1,1.0,0
+Out-Of-Distribution,Policy D: Point Prediction Policy,5,80,97.5,0.0,2.5,5.4,5.74,19.9,31.81,32.5,67.5,1,1.0,0
+Out-Of-Distribution,Policy E: Raw Quantile Policy,0,80,57.5,0.0,42.5,1.27,0.0,18.07,31.81,12.5,87.5,9,2.0,2
+Out-Of-Distribution,Policy E: Raw Quantile Policy,1,80,70.0,12.5,30.0,2.17,0.0,19.9,31.81,16.25,83.75,1,1.0,0
+Out-Of-Distribution,Policy E: Raw Quantile Policy,2,80,63.75,6.25,36.25,2.04,0.0,18.07,31.81,17.5,82.5,2,1.38,0
+Out-Of-Distribution,Policy E: Raw Quantile Policy,3,80,62.5,5.0,37.5,1.84,0.0,19.9,31.81,15.0,85.0,3,1.5,4
+Out-Of-Distribution,Policy E: Raw Quantile Policy,5,80,60.0,2.5,40.0,1.54,0.0,18.07,31.81,13.75,86.25,5,1.68,3
+Out-Of-Distribution,Policy F: Adaptive Conformal Risk Policy,0,80,17.5,0.0,82.5,-0.77,0.0,3.29,11.17,1.25,98.75,10,4.4,11
+Out-Of-Distribution,Policy F: Adaptive Conformal Risk Policy,1,80,53.75,36.25,46.25,1.13,0.0,13.22,17.91,11.25,88.75,1,1.0,0
+Out-Of-Distribution,Policy F: Adaptive Conformal Risk Policy,2,80,37.5,20.0,62.5,0.54,0.0,11.34,17.87,6.25,93.75,2,1.72,0
+Out-Of-Distribution,Policy F: Adaptive Conformal Risk Policy,3,80,31.25,13.75,68.75,0.19,0.0,11.17,17.91,6.25,93.75,3,2.5,15
+Out-Of-Distribution,Policy F: Adaptive Conformal Risk Policy,5,80,22.5,5.0,77.5,-0.46,0.0,6.53,17.87,2.5,97.5,5,3.26,12

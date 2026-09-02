@@ -1,0 +1,6 @@
+compared_policy,sample_size,baseline_always_run_mean_qir_pct,policy_mean_qir_pct,mean_paired_qir_reduction_pct,std_paired_diff,cohens_dz,t_statistic,p_value,ci_95_lower,ci_95_upper,holm_bonferroni_sig
+Policy C: Resource Heuristic,168,3.64,2.05,1.59,5.67,0.28,3.625,0.001,0.73,2.44,YES
+Policy D: Point Prediction Policy,168,3.64,3.05,0.59,3.6,0.164,2.131,0.05,0.05,1.14,PARTIAL
+Policy E: Raw Quantile Policy,168,3.64,0.52,3.11,6.76,0.461,5.975,0.001,2.09,4.14,YES
+Adaptive Conformal Policy (alpha=0.10),168,3.64,2.61,1.02,4.03,0.254,3.294,0.001,0.41,1.63,YES
+Conformal + MaxDef=2,168,3.64,0.54,3.1,6.73,0.46,5.966,0.001,2.08,4.11,YES

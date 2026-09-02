@@ -1,49 +1,49 @@
-held_out_config_id,fragmentation_level,workload_type,scheduler_mode,model,train_sample_count,test_sample_count,mae,rmse,r2,mean_prediction_error,worst_abs_prediction_error
-frag200_multi_stream_FAIR,200.0,multi_stream,FAIR,Ridge Regression,144,24,3.5517,4.9403,0.0495,-1.4069,12.9477
-frag200_multi_stream_FAIR,200.0,multi_stream,FAIR,Lasso Regression,144,24,3.3300,4.6947,0.1416,-1.4489,11.7743
-frag200_multi_stream_FAIR,200.0,multi_stream,FAIR,Random Forest Regressor,144,24,4.2703,5.4198,-0.1440,-2.6672,15.0467
-frag200_multi_stream_FAIR,200.0,multi_stream,FAIR,Quantile Regressor (q=0.95),144,24,11.4276,12.5743,-5.1578,-11.4276,23.3653
-frag200_multi_stream_FIFO,200.0,multi_stream,FIFO,Ridge Regression,144,24,3.7887,4.5908,0.2902,-1.7827,8.8246
-frag200_multi_stream_FIFO,200.0,multi_stream,FIFO,Lasso Regression,144,24,3.7481,4.4265,0.3401,-1.4381,8.4488
-frag200_multi_stream_FIFO,200.0,multi_stream,FIFO,Random Forest Regressor,144,24,4.3280,5.3430,0.0386,0.9196,12.4793
-frag200_multi_stream_FIFO,200.0,multi_stream,FIFO,Quantile Regressor (q=0.95),144,24,7.4591,9.2059,-1.8541,-7.3046,16.3645
-frag200_single_stream_FAIR,200.0,single_stream,FAIR,Ridge Regression,164,4,11.6145,12.6145,-0.6697,7.9441,16.9649
-frag200_single_stream_FAIR,200.0,single_stream,FAIR,Lasso Regression,164,4,11.0279,11.9637,-0.5019,7.3144,16.0640
-frag200_single_stream_FAIR,200.0,single_stream,FAIR,Random Forest Regressor,164,4,12.1154,13.5451,-0.9252,9.3900,18.6577
-frag200_single_stream_FAIR,200.0,single_stream,FAIR,Quantile Regressor (q=0.95),164,4,9.0563,10.3116,-0.1157,-2.7383,17.4504
-frag200_single_stream_FIFO,200.0,single_stream,FIFO,Ridge Regression,164,4,5.9782,6.6419,-0.3638,0.8526,10.7232
-frag200_single_stream_FIFO,200.0,single_stream,FIFO,Lasso Regression,164,4,6.6319,7.2276,-0.6149,-0.4243,10.2040
-frag200_single_stream_FIFO,200.0,single_stream,FIFO,Random Forest Regressor,164,4,3.9959,4.4860,0.3779,3.3654,6.2386
-frag200_single_stream_FIFO,200.0,single_stream,FIFO,Quantile Regressor (q=0.95),164,4,6.9719,8.0420,-0.9994,-6.9719,13.4151
-frag500_multi_stream_FAIR,500.0,multi_stream,FAIR,Ridge Regression,144,24,5.7005,6.6655,-1.3003,5.5180,14.1022
-frag500_multi_stream_FAIR,500.0,multi_stream,FAIR,Lasso Regression,144,24,6.3048,7.2324,-1.7082,6.2752,14.9984
-frag500_multi_stream_FAIR,500.0,multi_stream,FAIR,Random Forest Regressor,144,24,4.8165,5.6420,-0.6481,0.6689,10.2568
-frag500_multi_stream_FAIR,500.0,multi_stream,FAIR,Quantile Regressor (q=0.95),144,24,6.5208,7.9335,-2.2588,-5.8140,14.3051
-frag500_multi_stream_FIFO,500.0,multi_stream,FIFO,Ridge Regression,144,24,2.9160,3.7943,-0.2429,-0.6998,9.7216
-frag500_multi_stream_FIFO,500.0,multi_stream,FIFO,Lasso Regression,144,24,3.1192,4.0997,-0.4511,-1.6223,9.6421
-frag500_multi_stream_FIFO,500.0,multi_stream,FIFO,Random Forest Regressor,144,24,2.7943,3.4847,-0.0484,-1.1347,8.7871
-frag500_multi_stream_FIFO,500.0,multi_stream,FIFO,Quantile Regressor (q=0.95),144,24,8.4933,9.5255,-6.8335,-8.4327,17.7353
-frag500_single_stream_FAIR,500.0,single_stream,FAIR,Ridge Regression,164,4,13.7215,15.6169,-2.9908,-13.7215,20.9208
-frag500_single_stream_FAIR,500.0,single_stream,FAIR,Lasso Regression,164,4,13.4958,15.2265,-2.7937,-13.4958,20.0980
-frag500_single_stream_FAIR,500.0,single_stream,FAIR,Random Forest Regressor,164,4,10.3210,11.8793,-1.3091,-8.9445,16.6788
-frag500_single_stream_FAIR,500.0,single_stream,FAIR,Quantile Regressor (q=0.95),164,4,24.2415,25.3972,-9.5545,-24.2415,32.2049
-frag500_single_stream_FIFO,500.0,single_stream,FIFO,Ridge Regression,164,4,8.1930,8.4437,-0.2971,4.1799,10.2146
-frag500_single_stream_FIFO,500.0,single_stream,FIFO,Lasso Regression,164,4,8.2208,8.5748,-0.3377,4.5256,10.8539
-frag500_single_stream_FIFO,500.0,single_stream,FIFO,Random Forest Regressor,164,4,8.9860,9.2461,-0.5553,4.5429,12.4621
-frag500_single_stream_FIFO,500.0,single_stream,FIFO,Quantile Regressor (q=0.95),164,4,5.4323,8.1793,-0.2171,-4.2067,15.8720
-frag50_multi_stream_FAIR,50.0,multi_stream,FAIR,Ridge Regression,144,24,6.2206,8.5577,-0.6534,1.4860,21.3641
-frag50_multi_stream_FAIR,50.0,multi_stream,FAIR,Lasso Regression,144,24,6.9970,9.1877,-0.9058,1.1681,20.7395
-frag50_multi_stream_FAIR,50.0,multi_stream,FAIR,Random Forest Regressor,144,24,4.5458,6.5434,0.0333,0.5404,19.8065
-frag50_multi_stream_FAIR,50.0,multi_stream,FAIR,Quantile Regressor (q=0.95),144,24,10.3145,11.5250,-1.9988,-8.9900,23.0264
-frag50_multi_stream_FIFO,50.0,multi_stream,FIFO,Ridge Regression,144,24,11.7383,14.8562,-2.4593,-9.8438,31.1000
-frag50_multi_stream_FIFO,50.0,multi_stream,FIFO,Lasso Regression,144,24,11.4892,14.5977,-2.3400,-9.5836,30.7008
-frag50_multi_stream_FIFO,50.0,multi_stream,FIFO,Random Forest Regressor,144,24,6.6618,9.0282,-0.2776,-2.8893,21.7048
-frag50_multi_stream_FIFO,50.0,multi_stream,FIFO,Quantile Regressor (q=0.95),144,24,11.0498,12.4644,-1.4351,-9.8087,21.7818
-frag50_single_stream_FAIR,50.0,single_stream,FAIR,Ridge Regression,164,4,5.3210,6.3622,-1.9508,-5.3210,10.7585
-frag50_single_stream_FAIR,50.0,single_stream,FAIR,Lasso Regression,164,4,5.8272,6.6828,-2.2556,-5.8272,10.9897
-frag50_single_stream_FAIR,50.0,single_stream,FAIR,Random Forest Regressor,164,4,3.2587,4.5070,-0.4808,-0.8778,8.2730
-frag50_single_stream_FAIR,50.0,single_stream,FAIR,Quantile Regressor (q=0.95),164,4,17.4459,17.7534,-10.0000,-17.4459,20.8296
-frag50_single_stream_FIFO,50.0,single_stream,FIFO,Ridge Regression,164,4,11.7901,14.2052,0.0457,6.3839,23.7121
-frag50_single_stream_FIFO,50.0,single_stream,FIFO,Lasso Regression,164,4,11.6809,14.2141,0.0445,6.3807,23.9950
-frag50_single_stream_FIFO,50.0,single_stream,FIFO,Random Forest Regressor,164,4,12.4857,16.4261,-0.2760,8.6929,29.8451
-frag50_single_stream_FIFO,50.0,single_stream,FIFO,Quantile Regressor (q=0.95),164,4,11.3523,12.9869,0.2024,-8.4208,21.5920
+held_out_config_id,fragmentation_level,workload_type,scheduler_mode,model,train_sample_count,test_sample_count,mean_actual_qir,mean_predicted_qir,mae,rmse,r2,mean_prediction_error,worst_abs_prediction_error
+frag200_multi_stream_FAIR,200.0,multi_stream,FAIR,Ridge Regression,144,24,0.6613,2.0682,3.5517,4.9403,0.0495,-1.4069,12.9477
+frag200_multi_stream_FAIR,200.0,multi_stream,FAIR,Lasso Regression,144,24,0.6613,2.1102,3.3300,4.6947,0.1416,-1.4489,11.7743
+frag200_multi_stream_FAIR,200.0,multi_stream,FAIR,Random Forest Regressor,144,24,0.6613,3.3285,4.2703,5.4198,-0.1440,-2.6672,15.0467
+frag200_multi_stream_FAIR,200.0,multi_stream,FAIR,Quantile Regressor (q=0.95),144,24,0.6613,12.0889,11.4276,12.5743,-5.1578,-11.4276,23.3653
+frag200_multi_stream_FIFO,200.0,multi_stream,FIFO,Ridge Regression,144,24,4.3887,6.1714,3.7887,4.5908,0.2902,-1.7827,8.8246
+frag200_multi_stream_FIFO,200.0,multi_stream,FIFO,Lasso Regression,144,24,4.3887,5.8267,3.7481,4.4265,0.3401,-1.4381,8.4488
+frag200_multi_stream_FIFO,200.0,multi_stream,FIFO,Random Forest Regressor,144,24,4.3887,3.4690,4.3280,5.3430,0.0386,0.9196,12.4793
+frag200_multi_stream_FIFO,200.0,multi_stream,FIFO,Quantile Regressor (q=0.95),144,24,4.3887,11.6932,7.4591,9.2059,-1.8541,-7.3046,16.3645
+frag200_single_stream_FAIR,200.0,single_stream,FAIR,Ridge Regression,164,4,10.0445,2.1004,11.6145,12.6145,-0.6697,7.9441,16.9649
+frag200_single_stream_FAIR,200.0,single_stream,FAIR,Lasso Regression,164,4,10.0445,2.7301,11.0279,11.9637,-0.5019,7.3144,16.0640
+frag200_single_stream_FAIR,200.0,single_stream,FAIR,Random Forest Regressor,164,4,10.0445,0.6545,12.1154,13.5451,-0.9252,9.3900,18.6577
+frag200_single_stream_FAIR,200.0,single_stream,FAIR,Quantile Regressor (q=0.95),164,4,10.0445,12.7828,9.0563,10.3116,-0.1157,-2.7383,17.4504
+frag200_single_stream_FIFO,200.0,single_stream,FIFO,Ridge Regression,164,4,12.1136,11.2610,5.9782,6.6419,-0.3638,0.8526,10.7232
+frag200_single_stream_FIFO,200.0,single_stream,FIFO,Lasso Regression,164,4,12.1136,12.5379,6.6319,7.2276,-0.6149,-0.4243,10.2040
+frag200_single_stream_FIFO,200.0,single_stream,FIFO,Random Forest Regressor,164,4,12.1136,8.7482,3.9959,4.4860,0.3779,3.3654,6.2386
+frag200_single_stream_FIFO,200.0,single_stream,FIFO,Quantile Regressor (q=0.95),164,4,12.1136,19.0855,6.9719,8.0420,-0.9994,-6.9719,13.4151
+frag500_multi_stream_FAIR,500.0,multi_stream,FAIR,Ridge Regression,144,24,2.7122,-2.8058,5.7005,6.6655,-1.3003,5.5180,14.1022
+frag500_multi_stream_FAIR,500.0,multi_stream,FAIR,Lasso Regression,144,24,2.7122,-3.5630,6.3048,7.2324,-1.7082,6.2752,14.9984
+frag500_multi_stream_FAIR,500.0,multi_stream,FAIR,Random Forest Regressor,144,24,2.7122,2.0433,4.8165,5.6420,-0.6481,0.6689,10.2568
+frag500_multi_stream_FAIR,500.0,multi_stream,FAIR,Quantile Regressor (q=0.95),144,24,2.7122,8.5262,6.5208,7.9335,-2.2588,-5.8140,14.3051
+frag500_multi_stream_FIFO,500.0,multi_stream,FIFO,Ridge Regression,144,24,2.6619,3.3617,2.9160,3.7943,-0.2429,-0.6998,9.7216
+frag500_multi_stream_FIFO,500.0,multi_stream,FIFO,Lasso Regression,144,24,2.6619,4.2843,3.1192,4.0997,-0.4511,-1.6223,9.6421
+frag500_multi_stream_FIFO,500.0,multi_stream,FIFO,Random Forest Regressor,144,24,2.6619,3.7966,2.7943,3.4847,-0.0484,-1.1347,8.7871
+frag500_multi_stream_FIFO,500.0,multi_stream,FIFO,Quantile Regressor (q=0.95),144,24,2.6619,11.0946,8.4933,9.5255,-6.8335,-8.4327,17.7353
+frag500_single_stream_FAIR,500.0,single_stream,FAIR,Ridge Regression,164,4,-6.8263,6.8952,13.7215,15.6169,-2.9908,-13.7215,20.9208
+frag500_single_stream_FAIR,500.0,single_stream,FAIR,Lasso Regression,164,4,-6.8263,6.6695,13.4958,15.2265,-2.7937,-13.4958,20.0980
+frag500_single_stream_FAIR,500.0,single_stream,FAIR,Random Forest Regressor,164,4,-6.8263,2.1183,10.3210,11.8793,-1.3091,-8.9445,16.6788
+frag500_single_stream_FAIR,500.0,single_stream,FAIR,Quantile Regressor (q=0.95),164,4,-6.8263,17.4152,24.2415,25.3972,-9.5545,-24.2415,32.2049
+frag500_single_stream_FIFO,500.0,single_stream,FIFO,Ridge Regression,164,4,6.7047,2.5249,8.1930,8.4437,-0.2971,4.1799,10.2146
+frag500_single_stream_FIFO,500.0,single_stream,FIFO,Lasso Regression,164,4,6.7047,2.1791,8.2208,8.5748,-0.3377,4.5256,10.8539
+frag500_single_stream_FIFO,500.0,single_stream,FIFO,Random Forest Regressor,164,4,6.7047,2.1618,8.9860,9.2461,-0.5553,4.5429,12.4621
+frag500_single_stream_FIFO,500.0,single_stream,FIFO,Quantile Regressor (q=0.95),164,4,6.7047,10.9114,5.4323,8.1793,-0.2171,-4.2067,15.8720
+frag50_multi_stream_FAIR,50.0,multi_stream,FAIR,Ridge Regression,144,24,4.2882,2.8022,6.2206,8.5577,-0.6534,1.4860,21.3641
+frag50_multi_stream_FAIR,50.0,multi_stream,FAIR,Lasso Regression,144,24,4.2882,3.1201,6.9970,9.1877,-0.9058,1.1681,20.7395
+frag50_multi_stream_FAIR,50.0,multi_stream,FAIR,Random Forest Regressor,144,24,4.2882,3.7477,4.5458,6.5434,0.0333,0.5404,19.8065
+frag50_multi_stream_FAIR,50.0,multi_stream,FAIR,Quantile Regressor (q=0.95),144,24,4.2882,13.2782,10.3145,11.5250,-1.9988,-8.9900,23.0264
+frag50_multi_stream_FIFO,50.0,multi_stream,FIFO,Ridge Regression,144,24,4.7788,14.6226,11.7383,14.8562,-2.4593,-9.8438,31.1000
+frag50_multi_stream_FIFO,50.0,multi_stream,FIFO,Lasso Regression,144,24,4.7788,14.3624,11.4892,14.5977,-2.3400,-9.5836,30.7008
+frag50_multi_stream_FIFO,50.0,multi_stream,FIFO,Random Forest Regressor,144,24,4.7788,7.6681,6.6618,9.0282,-0.2776,-2.8893,21.7048
+frag50_multi_stream_FIFO,50.0,multi_stream,FIFO,Quantile Regressor (q=0.95),144,24,4.7788,14.5875,11.0498,12.4644,-1.4351,-9.8087,21.7818
+frag50_single_stream_FAIR,50.0,single_stream,FAIR,Ridge Regression,164,4,0.4865,5.8075,5.3210,6.3622,-1.9508,-5.3210,10.7585
+frag50_single_stream_FAIR,50.0,single_stream,FAIR,Lasso Regression,164,4,0.4865,6.3136,5.8272,6.6828,-2.2556,-5.8272,10.9897
+frag50_single_stream_FAIR,50.0,single_stream,FAIR,Random Forest Regressor,164,4,0.4865,1.3643,3.2587,4.5070,-0.4808,-0.8778,8.2730
+frag50_single_stream_FAIR,50.0,single_stream,FAIR,Quantile Regressor (q=0.95),164,4,0.4865,17.9323,17.4459,17.7534,-10.0000,-17.4459,20.8296
+frag50_single_stream_FIFO,50.0,single_stream,FIFO,Ridge Regression,164,4,13.3166,6.9326,11.7901,14.2052,0.0457,6.3839,23.7121
+frag50_single_stream_FIFO,50.0,single_stream,FIFO,Lasso Regression,164,4,13.3166,6.9359,11.6809,14.2141,0.0445,6.3807,23.9950
+frag50_single_stream_FIFO,50.0,single_stream,FIFO,Random Forest Regressor,164,4,13.3166,4.6237,12.4857,16.4261,-0.2760,8.6929,29.8451
+frag50_single_stream_FIFO,50.0,single_stream,FIFO,Quantile Regressor (q=0.95),164,4,13.3166,21.7374,11.3523,12.9869,0.2024,-8.4208,21.5920

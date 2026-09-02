@@ -1,0 +1,8 @@
+policy_name,total_observations,maintenance_completion_rate_pct,maintenance_deferral_rate_pct,mean_qir_pct,median_qir_pct,p95_qir_pct,max_qir_pct,sla_violation_rate_pct,sla_protection_rate_pct,number_of_violations,maximum_consecutive_deferrals,mean_deferral_streak,number_of_starvation_events,is_pareto_optimal
+Policy 1: Always Run,80,100.0,0.0,5.38,5.91,19.9,31.81,33.75,66.25,27,0,0.0,0,True
+Policy 2: Always Defer,80,0.0,100.0,0.0,0.0,0.0,0.0,0.0,100.0,0,80,80.0,1,False
+Policy 3: Explicit Resource Heuristic,80,100.0,0.0,5.38,5.91,19.9,31.81,33.75,66.25,27,0,0.0,0,True
+Policy 4: Predictive Mean-QIR Policy,80,97.5,2.5,5.4,5.74,19.9,31.81,32.5,67.5,26,1,1.0,0,True
+Policy 5: Raw Quantile Conservative Policy,80,46.25,53.75,-1.19,0.0,3.9,4.53,0.0,100.0,0,6,1.79,4,True
+Policy 6: Split-Conformal Upper Bound Policy,80,0.0,100.0,0.0,0.0,0.0,0.0,0.0,100.0,0,80,80.0,1,False
+Policy 7: Random Policy (P=0.5),80,56.25,43.75,2.48,0.0,17.87,22.58,15.0,85.0,12,4,1.75,5,True

@@ -1,0 +1,3 @@
+config_id,fragmentation_level,actual_file_count,record_count,table_size_bytes,average_file_size_bytes,creation_timestamp
+ood_table_frag100,100,100,6001215,168323076,1683230,2026-09-02T10:55:07.780378
+ood_table_frag350,350,350,6001215,177374479,506784,2026-09-02T10:55:34.748498

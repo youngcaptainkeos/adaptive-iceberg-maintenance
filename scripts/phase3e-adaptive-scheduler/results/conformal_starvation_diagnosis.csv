@@ -1,0 +1,8 @@
+dataset_scope,sample_count,min,P25,median,mean,P75,P90,P95,max,pct_exceeding_10pct_sla
+In-Distribution Actual QIR,168,-14.561,-0.467,2.576,3.638,6.63,12.121,15.399,35.048,13.69
+In-Distribution RF Point Pred,168,-4.737,2.095,2.878,3.905,5.248,8.442,11.695,14.966,8.33
+In-Distribution Raw q=0.95 Pred,168,2.532,9.272,12.398,12.559,15.786,18.035,19.772,29.185,69.05
+In-Distribution Conformal Upper Bound,168,3.763,10.595,11.378,12.405,13.748,16.942,20.195,23.466,89.88
+OOD Actual QIR,80,-16.77,0.291,5.823,5.381,11.27,16.048,18.163,31.809,33.75
+OOD RF Point Pred,80,-1.497,1.953,4.738,4.0,6.26,6.26,6.26,16.794,2.5
+OOD Conformal Upper Bound,80,16.503,19.952,22.737,21.999,24.259,24.259,24.259,34.793,100.0
