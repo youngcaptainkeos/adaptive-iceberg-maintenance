@@ -1,0 +1,26 @@
+== Parsed Logical Plan ==
+'Project ['sum(('l_extendedprice * 'l_discount)) AS revenue#659]
++- 'Filter ((('l_shipdate >= 1994-01-01) AND ('l_shipdate < (1994-01-01 + INTERVAL '1' YEAR))) AND ((('l_discount >= (0.06 - 0.01)) AND ('l_discount <= (0.06 + 0.01))) AND ('l_quantity < 24)))
+   +- 'UnresolvedRelation [local, tpch, lineitem], [], false
+
+== Analyzed Logical Plan ==
+revenue: decimal(38,4)
+Aggregate [sum(CheckOverflow((promote_precision(cast(l_extendedprice#665 as decimal(15,2))) * promote_precision(cast(l_discount#666 as decimal(15,2)))), DecimalType(31,4))) AS revenue#659]
++- Filter (((l_shipdate#670 >= 1994-01-01) AND (l_shipdate#670 < 1994-01-01 + INTERVAL '1' YEAR)) AND (((l_discount#666 >= cast(CheckOverflow((promote_precision(cast(0.06 as decimal(3,2))) - promote_precision(cast(0.01 as decimal(3,2)))), DecimalType(3,2)) as decimal(15,2))) AND (l_discount#666 <= cast(CheckOverflow((promote_precision(cast(0.06 as decimal(3,2))) + promote_precision(cast(0.01 as decimal(3,2)))), DecimalType(3,2)) as decimal(15,2)))) AND (l_quantity#664 < cast(cast(24 as decimal(2,0)) as decimal(15,2)))))
+   +- SubqueryAlias local.tpch.lineitem
+      +- RelationV2[L_ORDERKEY#660L, L_PARTKEY#661, L_SUPPKEY#662, L_LINENUMBER#663, L_QUANTITY#664, L_EXTENDEDPRICE#665, L_DISCOUNT#666, L_TAX#667, L_RETURNFLAG#668, L_LINESTATUS#669, L_SHIPDATE#670, L_COMMITDATE#671, L_RECEIPTDATE#672, L_SHIPINSTRUCT#673, L_SHIPMODE#674, L_COMMENT#675] local.tpch.lineitem
+
+== Optimized Logical Plan ==
+Aggregate [sum(CheckOverflow((promote_precision(l_extendedprice#665) * promote_precision(l_discount#666)), DecimalType(31,4))) AS revenue#659]
++- Project [L_EXTENDEDPRICE#665, L_DISCOUNT#666]
+   +- Filter (((((((isnotnull(L_SHIPDATE#670) AND isnotnull(L_DISCOUNT#666)) AND isnotnull(L_QUANTITY#664)) AND (L_SHIPDATE#670 >= 1994-01-01)) AND (L_SHIPDATE#670 < 1995-01-01)) AND (L_DISCOUNT#666 >= 0.05)) AND (L_DISCOUNT#666 <= 0.07)) AND (L_QUANTITY#664 < 24.00))
+      +- RelationV2[L_QUANTITY#664, L_EXTENDEDPRICE#665, L_DISCOUNT#666, L_SHIPDATE#670] local.tpch.lineitem
+
+== Physical Plan ==
+AdaptiveSparkPlan isFinalPlan=false
++- HashAggregate(keys=[], functions=[sum(CheckOverflow((promote_precision(l_extendedprice#665) * promote_precision(l_discount#666)), DecimalType(31,4)))], output=[revenue#659])
+   +- Exchange SinglePartition, ENSURE_REQUIREMENTS, [plan_id=1266]
+      +- HashAggregate(keys=[], functions=[partial_sum(CheckOverflow((promote_precision(l_extendedprice#665) * promote_precision(l_discount#666)), DecimalType(31,4)))], output=[sum#689, isEmpty#690])
+         +- Project [L_EXTENDEDPRICE#665, L_DISCOUNT#666]
+            +- Filter (((((((isnotnull(L_SHIPDATE#670) AND isnotnull(L_DISCOUNT#666)) AND isnotnull(L_QUANTITY#664)) AND (L_SHIPDATE#670 >= 1994-01-01)) AND (L_SHIPDATE#670 < 1995-01-01)) AND (L_DISCOUNT#666 >= 0.05)) AND (L_DISCOUNT#666 <= 0.07)) AND (L_QUANTITY#664 < 24.00))
+               +- BatchScan[L_QUANTITY#664, L_EXTENDEDPRICE#665, L_DISCOUNT#666, L_SHIPDATE#670] local.tpch.lineitem (branch=null) [filters=L_SHIPDATE IS NOT NULL, L_DISCOUNT IS NOT NULL, L_QUANTITY IS NOT NULL, L_SHIPDATE >= 8766, L_SHIPDATE < 9131, L_DISCOUNT >= 0.05, L_DISCOUNT <= 0.07, L_QUANTITY < 24.00, groupedBy=] RuntimeFilters: []

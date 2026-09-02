@@ -1,0 +1,6 @@
+Model,Type,MAE (% QIR),RMSE (% QIR),Metric
+Ridge Regression (L2),Regression,6.91%,8.86%,MAE / RMSE
+Lasso Regression (L1),Regression,7.35%,9.19%,MAE / RMSE
+Random Forest Regressor,Regression (Continuous QIR),5.38%,7.34%,MAE / RMSE
+Quantile Regressor (95th %ile),Quantile Upper Bound,Pinball: 0.89,N/A,Pinball Loss (q=0.95)
+Random Forest Classifier,SLA Violation (10%) Diagnostic,"Acc: 76.8%, F1: 0.170","ROC-AUC: 0.522, PR-AUC: 0.131","TP=4, FP=20, TN=125, FN=19"

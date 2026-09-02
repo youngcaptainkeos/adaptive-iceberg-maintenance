@@ -1,0 +1,186 @@
+Spark Command: /usr/lib/jvm/java-11-openjdk-amd64/bin/java -cp /home/shashank/Link to PDocuments/Capstone/implementation/software/spark-3.3.4/conf/:/home/shashank/Link to PDocuments/Capstone/implementation/software/spark-3.3.4/jars/* -Xmx4g -XX:+IgnoreUnrecognizedVMOptions --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/jdk.internal.ref=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/sun.nio.cs=ALL-UNNAMED --add-opens=java.base/sun.security.action=ALL-UNNAMED --add-opens=java.base/sun.util.calendar=ALL-UNNAMED --add-opens=java.security.jgss/sun.security.krb5=ALL-UNNAMED org.apache.spark.deploy.SparkSubmit --conf spark.driver.memory=4g --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions --conf spark.scheduler.allocation.file=scripts/phase3-concurrent-interference/config/fairscheduler.xml --conf spark.sql.catalog.local=org.apache.iceberg.spark.SparkCatalog --conf spark.scheduler.mode=FAIR --conf spark.eventLog.enabled=true --conf spark.eventLog.dir=file:///tmp/spark-events --conf spark.driver.bindAddress=127.0.0.1 --conf spark.sql.catalog.local.warehouse=file:///home/shashank/Link to PDocuments/Capstone/implementation/warehouse --conf spark.driver.host=127.0.0.1 --conf spark.sql.catalog.local.type=hadoop --class org.apache.spark.sql.hive.thriftserver.HiveThriftServer2 --name Thrift JDBC/ODBC Server spark-internal --hiveconf hive.server2.thrift.port=10000 --hiveconf hive.server2.thrift.bind.host=127.0.0.1
+========================================
+ERROR StatusLogger Could not determine local host name
+ java.net.UnknownHostException: sandbox: sandbox: Temporary failure in name resolution
+	at java.base/java.net.InetAddress.getLocalHost(InetAddress.java:1670)
+	at org.apache.logging.log4j.core.util.NetUtils.getLocalHostname(NetUtils.java:54)
+	at org.apache.logging.log4j.core.LoggerContext.lambda$setConfiguration$0(LoggerContext.java:615)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1705)
+	at org.apache.logging.log4j.core.LoggerContext.setConfiguration(LoggerContext.java:615)
+	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:694)
+	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:711)
+	at org.apache.logging.log4j.core.LoggerContext.start(LoggerContext.java:253)
+	at org.apache.logging.log4j.core.impl.Log4jContextFactory.getContext(Log4jContextFactory.java:245)
+	at org.apache.logging.log4j.core.impl.Log4jContextFactory.getContext(Log4jContextFactory.java:47)
+	at org.apache.logging.log4j.LogManager.getContext(LogManager.java:176)
+	at org.apache.logging.log4j.LogManager.getLogger(LogManager.java:666)
+	at org.apache.logging.log4j.LogManager.getRootLogger(LogManager.java:700)
+	at org.apache.spark.internal.Logging.initializeLogging(Logging.scala:130)
+	at org.apache.spark.internal.Logging.initializeLogIfNecessary(Logging.scala:115)
+	at org.apache.spark.internal.Logging.initializeLogIfNecessary$(Logging.scala:109)
+	at org.apache.spark.deploy.SparkSubmit.initializeLogIfNecessary(SparkSubmit.scala:75)
+	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:83)
+	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1072)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1081)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Caused by: java.net.UnknownHostException: sandbox: Temporary failure in name resolution
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:930)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1543)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:848)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1533)
+	at java.base/java.net.InetAddress.getLocalHost(InetAddress.java:1665)
+	... 20 more
+2026-08-31 12:29:29,307 main ERROR Could not determine local host name java.net.UnknownHostException: sandbox: sandbox: Temporary failure in name resolution
+	at java.base/java.net.InetAddress.getLocalHost(InetAddress.java:1670)
+	at org.apache.logging.log4j.core.util.NetUtils.getLocalHostname(NetUtils.java:54)
+	at org.apache.logging.log4j.core.LoggerContext.lambda$setConfiguration$0(LoggerContext.java:615)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1705)
+	at org.apache.logging.log4j.core.LoggerContext.setConfiguration(LoggerContext.java:615)
+	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:694)
+	at org.apache.logging.log4j.core.LoggerContext.setConfigLocation(LoggerContext.java:679)
+	at org.apache.spark.internal.Logging.initializeLogging(Logging.scala:140)
+	at org.apache.spark.internal.Logging.initializeLogIfNecessary(Logging.scala:115)
+	at org.apache.spark.internal.Logging.initializeLogIfNecessary$(Logging.scala:109)
+	at org.apache.spark.deploy.SparkSubmit.initializeLogIfNecessary(SparkSubmit.scala:75)
+	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:83)
+	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1072)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1081)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Caused by: java.net.UnknownHostException: sandbox: Temporary failure in name resolution
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:930)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1543)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:848)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1533)
+	at java.base/java.net.InetAddress.getLocalHost(InetAddress.java:1665)
+	... 14 more
+
+2026-08-31 12:29:29,831 main ERROR Could not determine local host name java.net.UnknownHostException: sandbox: sandbox: Temporary failure in name resolution
+	at java.base/java.net.InetAddress.getLocalHost(InetAddress.java:1670)
+	at org.apache.logging.log4j.core.util.NetUtils.getLocalHostname(NetUtils.java:54)
+	at org.apache.logging.log4j.core.LoggerContext.lambda$setConfiguration$0(LoggerContext.java:615)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1705)
+	at org.apache.logging.log4j.core.LoggerContext.setConfiguration(LoggerContext.java:615)
+	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:694)
+	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:711)
+	at org.apache.spark.internal.Logging$.uninitialize(Logging.scala:218)
+	at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:926)
+	at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:191)
+	at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:214)
+	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:90)
+	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1072)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1081)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Caused by: java.net.UnknownHostException: sandbox: Temporary failure in name resolution
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:930)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1543)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:848)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1533)
+	at java.base/java.net.InetAddress.getLocalHost(InetAddress.java:1665)
+	... 14 more
+
+26/08/31 12:29:29 INFO HiveThriftServer2: Started daemon with process name: 12@localhost
+26/08/31 12:29:29 INFO SignalUtils: Registering signal handler for TERM
+26/08/31 12:29:29 INFO SignalUtils: Registering signal handler for HUP
+26/08/31 12:29:29 INFO SignalUtils: Registering signal handler for INT
+26/08/31 12:29:29 INFO HiveThriftServer2: Starting SparkContext
+26/08/31 12:29:29 INFO HiveConf: Found configuration file null
+26/08/31 12:29:30 INFO SparkContext: Running Spark version 3.3.4
+26/08/31 12:29:30 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/08/31 12:29:30 INFO ResourceUtils: ==============================================================
+26/08/31 12:29:30 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/08/31 12:29:30 INFO ResourceUtils: ==============================================================
+26/08/31 12:29:30 INFO SparkContext: Submitted application: Thrift JDBC/ODBC Server
+26/08/31 12:29:30 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/08/31 12:29:30 INFO ResourceProfile: Limiting resource is cpu
+26/08/31 12:29:30 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/08/31 12:29:30 INFO SecurityManager: Changing view acls to: shashank
+26/08/31 12:29:30 INFO SecurityManager: Changing modify acls to: shashank
+26/08/31 12:29:30 INFO SecurityManager: Changing view acls groups to: 
+26/08/31 12:29:30 INFO SecurityManager: Changing modify acls groups to: 
+26/08/31 12:29:30 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(shashank); groups with view permissions: Set(); users  with modify permissions: Set(shashank); groups with modify permissions: Set()
+26/08/31 12:29:30 WARN MacAddressUtil: Failed to find a usable hardware address from the network interfaces; using random bytes: 99:93:58:bd:cc:d2:de:b8
+26/08/31 12:29:30 INFO Utils: Successfully started service 'sparkDriver' on port 41741.
+26/08/31 12:29:30 INFO SparkEnv: Registering MapOutputTracker
+26/08/31 12:29:30 INFO SparkEnv: Registering BlockManagerMaster
+26/08/31 12:29:30 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/08/31 12:29:30 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/08/31 12:29:30 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/08/31 12:29:30 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-6d15a038-cd6a-41e2-bf38-c8dc21f30e53
+26/08/31 12:29:30 INFO MemoryStore: MemoryStore started with capacity 2.2 GiB
+26/08/31 12:29:30 INFO SparkEnv: Registering OutputCommitCoordinator
+26/08/31 12:29:30 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/08/31 12:29:31 INFO FairSchedulableBuilder: Creating Fair Scheduler pools from scripts/phase3-concurrent-interference/config/fairscheduler.xml
+26/08/31 12:29:31 INFO FairSchedulableBuilder: Created pool: foreground, schedulingMode: FIFO, minShare: 12, weight: 3
+26/08/31 12:29:31 INFO FairSchedulableBuilder: Created pool: background, schedulingMode: FIFO, minShare: 4, weight: 1
+26/08/31 12:29:31 INFO FairSchedulableBuilder: Created default pool: default, schedulingMode: FIFO, minShare: 0, weight: 1
+26/08/31 12:29:31 INFO Executor: Starting executor ID driver on host localhost
+26/08/31 12:29:31 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/08/31 12:29:31 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 46413.
+26/08/31 12:29:31 INFO NettyBlockTransferService: Server created on 127.0.0.1:46413
+26/08/31 12:29:31 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/08/31 12:29:31 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 127.0.0.1, 46413, None)
+26/08/31 12:29:31 INFO BlockManagerMasterEndpoint: Registering block manager 127.0.0.1:46413 with 2.2 GiB RAM, BlockManagerId(driver, 127.0.0.1, 46413, None)
+26/08/31 12:29:31 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 127.0.0.1, 46413, None)
+26/08/31 12:29:31 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 127.0.0.1, 46413, None)
+26/08/31 12:29:31 ERROR SparkContext: Error initializing SparkContext.
+java.lang.IllegalArgumentException: Log directory file:///tmp/spark-events is not a directory.
+	at org.apache.spark.deploy.history.EventLogFileWriter.requireLogBaseDirAsDirectory(EventLogFileWriters.scala:78)
+	at org.apache.spark.deploy.history.SingleEventLogFileWriter.start(EventLogFileWriters.scala:221)
+	at org.apache.spark.scheduler.EventLoggingListener.start(EventLoggingListener.scala:83)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:622)
+	at org.apache.spark.SparkContext$.getOrCreate(SparkContext.scala:2714)
+	at org.apache.spark.sql.SparkSession$Builder.$anonfun$getOrCreate$2(SparkSession.scala:953)
+	at scala.Option.getOrElse(Option.scala:189)
+	at org.apache.spark.sql.SparkSession$Builder.getOrCreate(SparkSession.scala:947)
+	at org.apache.spark.sql.hive.thriftserver.SparkSQLEnv$.init(SparkSQLEnv.scala:54)
+	at org.apache.spark.sql.hive.thriftserver.HiveThriftServer2$.main(HiveThriftServer2.scala:96)
+	at org.apache.spark.sql.hive.thriftserver.HiveThriftServer2.main(HiveThriftServer2.scala)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)
+	at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:984)
+	at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:191)
+	at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:214)
+	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:90)
+	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1072)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1081)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+26/08/31 12:29:31 INFO SparkUI: Stopped Spark web UI at http://127.0.0.1:4040
+26/08/31 12:29:31 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+26/08/31 12:29:31 INFO MemoryStore: MemoryStore cleared
+26/08/31 12:29:31 INFO BlockManager: BlockManager stopped
+26/08/31 12:29:31 INFO BlockManagerMaster: BlockManagerMaster stopped
+26/08/31 12:29:31 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+26/08/31 12:29:31 INFO SparkContext: Successfully stopped SparkContext
+Exception in thread "main" java.lang.IllegalArgumentException: Log directory file:///tmp/spark-events is not a directory.
+	at org.apache.spark.deploy.history.EventLogFileWriter.requireLogBaseDirAsDirectory(EventLogFileWriters.scala:78)
+	at org.apache.spark.deploy.history.SingleEventLogFileWriter.start(EventLogFileWriters.scala:221)
+	at org.apache.spark.scheduler.EventLoggingListener.start(EventLoggingListener.scala:83)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:622)
+	at org.apache.spark.SparkContext$.getOrCreate(SparkContext.scala:2714)
+	at org.apache.spark.sql.SparkSession$Builder.$anonfun$getOrCreate$2(SparkSession.scala:953)
+	at scala.Option.getOrElse(Option.scala:189)
+	at org.apache.spark.sql.SparkSession$Builder.getOrCreate(SparkSession.scala:947)
+	at org.apache.spark.sql.hive.thriftserver.SparkSQLEnv$.init(SparkSQLEnv.scala:54)
+	at org.apache.spark.sql.hive.thriftserver.HiveThriftServer2$.main(HiveThriftServer2.scala:96)
+	at org.apache.spark.sql.hive.thriftserver.HiveThriftServer2.main(HiveThriftServer2.scala)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)
+	at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:984)
+	at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:191)
+	at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:214)
+	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:90)
+	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1072)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1081)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+26/08/31 12:29:31 INFO ShutdownHookManager: Shutdown hook called
+26/08/31 12:29:31 INFO ShutdownHookManager: Deleting directory /tmp/spark-81393a8d-e87a-4189-ba73-77139fa6944e
+26/08/31 12:29:31 INFO ShutdownHookManager: Deleting directory /tmp/spark-a3ee35f3-605e-4500-a951-08696f32ae57

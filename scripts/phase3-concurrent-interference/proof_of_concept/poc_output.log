@@ -1,0 +1,30 @@
+Starting beeline query for pool: foreground...
+Starting beeline query for pool: background...
+Successfully completed query for pool foreground in 10.33s.
+Successfully completed query for pool background in 10.33s.
+All files in /tmp/spark-events: ['local-1788159668028.inprogress']
+Parsing event log: /tmp/spark-events/local-1788159668028.inprogress
+
+--- Spark Job Pool Assignments Found ---
+Job ID: 0
+  Job Group ID: 4575d25c-b4a6-425e-a7dd-66d99e101cdb
+  spark.scheduler.pool: background
+  spark.sql.thriftserver.pool: None
+Job ID: 1
+  Job Group ID: fdd3e283-502f-4771-89b7-aa53edc54e58
+  spark.scheduler.pool: foreground
+  spark.sql.thriftserver.pool: None
+Job ID: 2
+  Job Group ID: fdd3e283-502f-4771-89b7-aa53edc54e58
+  spark.scheduler.pool: foreground
+  spark.sql.thriftserver.pool: None
+Job ID: 3
+  Job Group ID: 4575d25c-b4a6-425e-a7dd-66d99e101cdb
+  spark.scheduler.pool: background
+  spark.sql.thriftserver.pool: None
+
+Verification Summary:
+  Foreground Pool Propagated: PASSED
+  Background Pool Propagated: PASSED
+
+SUCCESS: FAIR Scheduler pool propagation is validated!

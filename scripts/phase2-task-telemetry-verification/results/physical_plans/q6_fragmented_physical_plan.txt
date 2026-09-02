@@ -1,0 +1,26 @@
+== Parsed Logical Plan ==
+'Project ['sum(('l_extendedprice * 'l_discount)) AS revenue#695]
++- 'Filter ((('l_shipdate >= 1994-01-01) AND ('l_shipdate < (1994-01-01 + INTERVAL '1' YEAR))) AND ((('l_discount >= (0.06 - 0.01)) AND ('l_discount <= (0.06 + 0.01))) AND ('l_quantity < 24)))
+   +- 'UnresolvedRelation [local, experiment, lineitem_validated_fragmented], [], false
+
+== Analyzed Logical Plan ==
+revenue: decimal(38,4)
+Aggregate [sum(CheckOverflow((promote_precision(cast(l_extendedprice#701 as decimal(15,2))) * promote_precision(cast(l_discount#702 as decimal(15,2)))), DecimalType(31,4))) AS revenue#695]
++- Filter (((l_shipdate#706 >= 1994-01-01) AND (l_shipdate#706 < 1994-01-01 + INTERVAL '1' YEAR)) AND (((l_discount#702 >= cast(CheckOverflow((promote_precision(cast(0.06 as decimal(3,2))) - promote_precision(cast(0.01 as decimal(3,2)))), DecimalType(3,2)) as decimal(15,2))) AND (l_discount#702 <= cast(CheckOverflow((promote_precision(cast(0.06 as decimal(3,2))) + promote_precision(cast(0.01 as decimal(3,2)))), DecimalType(3,2)) as decimal(15,2)))) AND (l_quantity#700 < cast(cast(24 as decimal(2,0)) as decimal(15,2)))))
+   +- SubqueryAlias local.experiment.lineitem_validated_fragmented
+      +- RelationV2[L_ORDERKEY#696L, L_PARTKEY#697, L_SUPPKEY#698, L_LINENUMBER#699, L_QUANTITY#700, L_EXTENDEDPRICE#701, L_DISCOUNT#702, L_TAX#703, L_RETURNFLAG#704, L_LINESTATUS#705, L_SHIPDATE#706, L_COMMITDATE#707, L_RECEIPTDATE#708, L_SHIPINSTRUCT#709, L_SHIPMODE#710, L_COMMENT#711] local.experiment.lineitem_validated_fragmented
+
+== Optimized Logical Plan ==
+Aggregate [sum(CheckOverflow((promote_precision(l_extendedprice#701) * promote_precision(l_discount#702)), DecimalType(31,4))) AS revenue#695]
++- Project [L_EXTENDEDPRICE#701, L_DISCOUNT#702]
+   +- Filter (((((((isnotnull(L_SHIPDATE#706) AND isnotnull(L_DISCOUNT#702)) AND isnotnull(L_QUANTITY#700)) AND (L_SHIPDATE#706 >= 1994-01-01)) AND (L_SHIPDATE#706 < 1995-01-01)) AND (L_DISCOUNT#702 >= 0.05)) AND (L_DISCOUNT#702 <= 0.07)) AND (L_QUANTITY#700 < 24.00))
+      +- RelationV2[L_QUANTITY#700, L_EXTENDEDPRICE#701, L_DISCOUNT#702, L_SHIPDATE#706] local.experiment.lineitem_validated_fragmented
+
+== Physical Plan ==
+AdaptiveSparkPlan isFinalPlan=false
++- HashAggregate(keys=[], functions=[sum(CheckOverflow((promote_precision(l_extendedprice#701) * promote_precision(l_discount#702)), DecimalType(31,4)))], output=[revenue#695])
+   +- Exchange SinglePartition, ENSURE_REQUIREMENTS, [plan_id=1317]
+      +- HashAggregate(keys=[], functions=[partial_sum(CheckOverflow((promote_precision(l_extendedprice#701) * promote_precision(l_discount#702)), DecimalType(31,4)))], output=[sum#725, isEmpty#726])
+         +- Project [L_EXTENDEDPRICE#701, L_DISCOUNT#702]
+            +- Filter (((((((isnotnull(L_SHIPDATE#706) AND isnotnull(L_DISCOUNT#702)) AND isnotnull(L_QUANTITY#700)) AND (L_SHIPDATE#706 >= 1994-01-01)) AND (L_SHIPDATE#706 < 1995-01-01)) AND (L_DISCOUNT#702 >= 0.05)) AND (L_DISCOUNT#702 <= 0.07)) AND (L_QUANTITY#700 < 24.00))
+               +- BatchScan[L_QUANTITY#700, L_EXTENDEDPRICE#701, L_DISCOUNT#702, L_SHIPDATE#706] local.experiment.lineitem_validated_fragmented (branch=null) [filters=L_SHIPDATE IS NOT NULL, L_DISCOUNT IS NOT NULL, L_QUANTITY IS NOT NULL, L_SHIPDATE >= 8766, L_SHIPDATE < 9131, L_DISCOUNT >= 0.05, L_DISCOUNT <= 0.07, L_QUANTITY < 24.00, groupedBy=] RuntimeFilters: []

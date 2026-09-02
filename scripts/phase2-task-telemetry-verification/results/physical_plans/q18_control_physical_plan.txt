@@ -1,0 +1,98 @@
+== Parsed Logical Plan ==
+'GlobalLimit 100
++- 'LocalLimit 100
+   +- 'Sort ['o_totalprice DESC NULLS LAST, 'o_orderdate ASC NULLS FIRST], true
+      +- 'Aggregate ['c_name, 'c_custkey, 'o_orderkey, 'o_orderdate, 'o_totalprice], ['c_name, 'c_custkey, 'o_orderkey, 'o_orderdate, 'o_totalprice, unresolvedalias('sum('l_quantity), None)]
+         +- 'Filter (('o_orderkey IN (list#1171 []) AND ('c_custkey = 'o_custkey)) AND ('o_orderkey = 'l_orderkey))
+            :  +- 'UnresolvedHaving ('sum('l_quantity) > 300)
+            :     +- 'Aggregate ['l_orderkey], ['l_orderkey]
+            :        +- 'UnresolvedRelation [local, tpch, lineitem], [], false
+            +- 'Join Inner
+               :- 'Join Inner
+               :  :- 'UnresolvedRelation [local, tpch, customer], [], false
+               :  +- 'UnresolvedRelation [local, tpch, orders], [], false
+               +- 'UnresolvedRelation [local, tpch, lineitem], [], false
+
+== Analyzed Logical Plan ==
+c_name: string, c_custkey: int, o_orderkey: bigint, o_orderdate: date, o_totalprice: decimal(15,2), sum(l_quantity): decimal(25,2)
+GlobalLimit 100
++- LocalLimit 100
+   +- Sort [o_totalprice#1183 DESC NULLS LAST, o_orderdate#1184 ASC NULLS FIRST], true
+      +- Aggregate [c_name#1173, c_custkey#1172, o_orderkey#1180L, o_orderdate#1184, o_totalprice#1183], [c_name#1173, c_custkey#1172, o_orderkey#1180L, o_orderdate#1184, o_totalprice#1183, sum(l_quantity#1193) AS sum(l_quantity)#1244]
+         +- Filter ((o_orderkey#1180L IN (list#1171 []) AND (c_custkey#1172 = o_custkey#1181)) AND (o_orderkey#1180L = l_orderkey#1189L))
+            :  +- Project [l_orderkey#1205L]
+            :     +- Filter (sum(l_quantity#1209)#1227 > cast(cast(300 as decimal(3,0)) as decimal(25,2)))
+            :        +- Aggregate [l_orderkey#1205L], [l_orderkey#1205L, sum(l_quantity#1209) AS sum(l_quantity#1209)#1227]
+            :           +- SubqueryAlias local.tpch.lineitem
+            :              +- RelationV2[L_ORDERKEY#1205L, L_PARTKEY#1206, L_SUPPKEY#1207, L_LINENUMBER#1208, L_QUANTITY#1209, L_EXTENDEDPRICE#1210, L_DISCOUNT#1211, L_TAX#1212, L_RETURNFLAG#1213, L_LINESTATUS#1214, L_SHIPDATE#1215, L_COMMITDATE#1216, L_RECEIPTDATE#1217, L_SHIPINSTRUCT#1218, L_SHIPMODE#1219, L_COMMENT#1220] local.tpch.lineitem
+            +- Join Inner
+               :- Join Inner
+               :  :- SubqueryAlias local.tpch.customer
+               :  :  +- RelationV2[C_CUSTKEY#1172, C_NAME#1173, C_ADDRESS#1174, C_NATIONKEY#1175, C_PHONE#1176, C_ACCTBAL#1177, C_MKTSEGMENT#1178, C_COMMENT#1179] local.tpch.customer
+               :  +- SubqueryAlias local.tpch.orders
+               :     +- RelationV2[O_ORDERKEY#1180L, O_CUSTKEY#1181, O_ORDERSTATUS#1182, O_TOTALPRICE#1183, O_ORDERDATE#1184, O_ORDERPRIORITY#1185, O_CLERK#1186, O_SHIPPRIORITY#1187, O_COMMENT#1188] local.tpch.orders
+               +- SubqueryAlias local.tpch.lineitem
+                  +- RelationV2[L_ORDERKEY#1189L, L_PARTKEY#1190, L_SUPPKEY#1191, L_LINENUMBER#1192, L_QUANTITY#1193, L_EXTENDEDPRICE#1194, L_DISCOUNT#1195, L_TAX#1196, L_RETURNFLAG#1197, L_LINESTATUS#1198, L_SHIPDATE#1199, L_COMMITDATE#1200, L_RECEIPTDATE#1201, L_SHIPINSTRUCT#1202, L_SHIPMODE#1203, L_COMMENT#1204] local.tpch.lineitem
+
+== Optimized Logical Plan ==
+GlobalLimit 100
++- LocalLimit 100
+   +- Sort [o_totalprice#1183 DESC NULLS LAST, o_orderdate#1184 ASC NULLS FIRST], true
+      +- Aggregate [c_name#1173, c_custkey#1172, o_orderkey#1180L, o_orderdate#1184, o_totalprice#1183], [c_name#1173, c_custkey#1172, o_orderkey#1180L, o_orderdate#1184, o_totalprice#1183, sum(l_quantity#1193) AS sum(l_quantity)#1244]
+         +- Project [C_CUSTKEY#1172, C_NAME#1173, O_ORDERKEY#1180L, O_TOTALPRICE#1183, O_ORDERDATE#1184, L_QUANTITY#1193]
+            +- Join Inner, (o_orderkey#1180L = l_orderkey#1189L)
+               :- Project [C_CUSTKEY#1172, C_NAME#1173, O_ORDERKEY#1180L, O_TOTALPRICE#1183, O_ORDERDATE#1184]
+               :  +- Join Inner, (c_custkey#1172 = o_custkey#1181)
+               :     :- Filter isnotnull(C_CUSTKEY#1172)
+               :     :  +- RelationV2[C_CUSTKEY#1172, C_NAME#1173] local.tpch.customer
+               :     +- Join LeftSemi, (O_ORDERKEY#1180L = l_orderkey#1205L)
+               :        :- Filter (isnotnull(O_CUSTKEY#1181) AND isnotnull(O_ORDERKEY#1180L))
+               :        :  +- RelationV2[O_ORDERKEY#1180L, O_CUSTKEY#1181, O_TOTALPRICE#1183, O_ORDERDATE#1184] local.tpch.orders
+               :        +- Project [l_orderkey#1205L]
+               :           +- Filter (isnotnull(sum(l_quantity#1209)#1227) AND (sum(l_quantity#1209)#1227 > 300.00))
+               :              +- Aggregate [l_orderkey#1205L], [l_orderkey#1205L, sum(l_quantity#1209) AS sum(l_quantity#1209)#1227]
+               :                 +- RelationV2[L_ORDERKEY#1205L, L_QUANTITY#1209] local.tpch.lineitem
+               +- Join LeftSemi, (L_ORDERKEY#1189L = l_orderkey#1205L)
+                  :- Filter isnotnull(L_ORDERKEY#1189L)
+                  :  +- RelationV2[L_ORDERKEY#1189L, L_QUANTITY#1193] local.tpch.lineitem
+                  +- Project [l_orderkey#1205L]
+                     +- Filter (isnotnull(sum(l_quantity#1209)#1227) AND (sum(l_quantity#1209)#1227 > 300.00))
+                        +- Aggregate [l_orderkey#1205L], [l_orderkey#1205L, sum(l_quantity#1209) AS sum(l_quantity#1209)#1227]
+                           +- RelationV2[L_ORDERKEY#1205L, L_QUANTITY#1209] local.tpch.lineitem
+
+== Physical Plan ==
+AdaptiveSparkPlan isFinalPlan=false
++- TakeOrderedAndProject(limit=100, orderBy=[o_totalprice#1183 DESC NULLS LAST,o_orderdate#1184 ASC NULLS FIRST], output=[c_name#1173,c_custkey#1172,o_orderkey#1180L,o_orderdate#1184,o_totalprice#1183,sum(l_quantity)#1244])
+   +- HashAggregate(keys=[c_name#1173, c_custkey#1172, o_orderkey#1180L, o_orderdate#1184, o_totalprice#1183], functions=[sum(l_quantity#1193)], output=[c_name#1173, c_custkey#1172, o_orderkey#1180L, o_orderdate#1184, o_totalprice#1183, sum(l_quantity)#1244])
+      +- HashAggregate(keys=[c_name#1173, c_custkey#1172, o_orderkey#1180L, o_orderdate#1184, o_totalprice#1183], functions=[partial_sum(l_quantity#1193)], output=[c_name#1173, c_custkey#1172, o_orderkey#1180L, o_orderdate#1184, o_totalprice#1183, sum#1263, isEmpty#1264])
+         +- Project [C_CUSTKEY#1172, C_NAME#1173, O_ORDERKEY#1180L, O_TOTALPRICE#1183, O_ORDERDATE#1184, L_QUANTITY#1193]
+            +- SortMergeJoin [o_orderkey#1180L], [l_orderkey#1189L], Inner
+               :- Project [C_CUSTKEY#1172, C_NAME#1173, O_ORDERKEY#1180L, O_TOTALPRICE#1183, O_ORDERDATE#1184]
+               :  +- BroadcastHashJoin [c_custkey#1172], [o_custkey#1181], Inner, BuildLeft, false
+               :     :- BroadcastExchange HashedRelationBroadcastMode(List(cast(input[0, int, false] as bigint)),false), [plan_id=2854]
+               :     :  +- Filter isnotnull(C_CUSTKEY#1172)
+               :     :     +- BatchScan[C_CUSTKEY#1172, C_NAME#1173] local.tpch.customer (branch=null) [filters=C_CUSTKEY IS NOT NULL, groupedBy=] RuntimeFilters: []
+               :     +- SortMergeJoin [O_ORDERKEY#1180L], [l_orderkey#1205L], LeftSemi
+               :        :- Sort [O_ORDERKEY#1180L ASC NULLS FIRST], false, 0
+               :        :  +- Exchange hashpartitioning(O_ORDERKEY#1180L, 200), ENSURE_REQUIREMENTS, [plan_id=2849]
+               :        :     +- Filter (isnotnull(O_CUSTKEY#1181) AND isnotnull(O_ORDERKEY#1180L))
+               :        :        +- BatchScan[O_ORDERKEY#1180L, O_CUSTKEY#1181, O_TOTALPRICE#1183, O_ORDERDATE#1184] local.tpch.orders (branch=null) [filters=O_CUSTKEY IS NOT NULL, O_ORDERKEY IS NOT NULL, groupedBy=] RuntimeFilters: []
+               :        +- Sort [l_orderkey#1205L ASC NULLS FIRST], false, 0
+               :           +- Project [l_orderkey#1205L]
+               :              +- Filter (isnotnull(sum(l_quantity#1209)#1227) AND (sum(l_quantity#1209)#1227 > 300.00))
+               :                 +- HashAggregate(keys=[l_orderkey#1205L], functions=[sum(l_quantity#1209)], output=[l_orderkey#1205L, sum(l_quantity#1209)#1227])
+               :                    +- Exchange hashpartitioning(l_orderkey#1205L, 200), ENSURE_REQUIREMENTS, [plan_id=2843]
+               :                       +- HashAggregate(keys=[l_orderkey#1205L], functions=[partial_sum(l_quantity#1209)], output=[l_orderkey#1205L, sum#1267, isEmpty#1268])
+               :                          +- BatchScan[L_ORDERKEY#1205L, L_QUANTITY#1209] local.tpch.lineitem (branch=null) [filters=, groupedBy=] RuntimeFilters: []
+               +- SortMergeJoin [L_ORDERKEY#1189L], [l_orderkey#1205L], LeftSemi
+                  :- Sort [L_ORDERKEY#1189L ASC NULLS FIRST], false, 0
+                  :  +- Exchange hashpartitioning(L_ORDERKEY#1189L, 200), ENSURE_REQUIREMENTS, [plan_id=2863]
+                  :     +- Filter isnotnull(L_ORDERKEY#1189L)
+                  :        +- BatchScan[L_ORDERKEY#1189L, L_QUANTITY#1193] local.tpch.lineitem (branch=null) [filters=L_ORDERKEY IS NOT NULL, groupedBy=] RuntimeFilters: []
+                  +- Sort [l_orderkey#1205L ASC NULLS FIRST], false, 0
+                     +- Project [l_orderkey#1205L]
+                        +- Filter (isnotnull(sum(l_quantity#1209)#1227) AND (sum(l_quantity#1209)#1227 > 300.00))
+                           +- HashAggregate(keys=[l_orderkey#1205L], functions=[sum(l_quantity#1209)], output=[l_orderkey#1205L, sum(l_quantity#1209)#1227])
+                              +- Exchange hashpartitioning(l_orderkey#1205L, 200), ENSURE_REQUIREMENTS, [plan_id=2857]
+                                 +- HashAggregate(keys=[l_orderkey#1205L], functions=[partial_sum(l_quantity#1209)], output=[l_orderkey#1205L, sum#1267, isEmpty#1268])
+                                    +- BatchScan[L_ORDERKEY#1205L, L_QUANTITY#1209] local.tpch.lineitem (branch=null) [filters=, groupedBy=] RuntimeFilters: []

@@ -1,0 +1,48 @@
+== Parsed Logical Plan ==
+'Sort ['l_shipmode ASC NULLS FIRST], true
++- 'Aggregate ['l_shipmode], ['l_shipmode, 'sum(CASE WHEN (('o_orderpriority = 1-URGENT) OR ('o_orderpriority = 2-HIGH)) THEN 1 ELSE 0 END) AS high_line_count#767, 'sum(CASE WHEN (NOT ('o_orderpriority = 1-URGENT) AND NOT ('o_orderpriority = 2-HIGH)) THEN 1 ELSE 0 END) AS low_line_count#768]
+   +- 'Filter (((('o_orderkey = 'l_orderkey) AND 'l_shipmode IN (MAIL,SHIP)) AND ('l_commitdate < 'l_receiptdate)) AND ((('l_shipdate < 'l_commitdate) AND ('l_receiptdate >= 1994-01-01)) AND ('l_receiptdate < (1994-01-01 + INTERVAL '1' YEAR))))
+      +- 'Join Inner
+         :- 'UnresolvedRelation [local, tpch, orders], [], false
+         +- 'UnresolvedRelation [local, tpch, lineitem], [], false
+
+== Analyzed Logical Plan ==
+l_shipmode: string, high_line_count: bigint, low_line_count: bigint
+Sort [l_shipmode#792 ASC NULLS FIRST], true
++- Aggregate [l_shipmode#792], [l_shipmode#792, sum(CASE WHEN ((o_orderpriority#774 = 1-URGENT) OR (o_orderpriority#774 = 2-HIGH)) THEN 1 ELSE 0 END) AS high_line_count#767L, sum(CASE WHEN (NOT (o_orderpriority#774 = 1-URGENT) AND NOT (o_orderpriority#774 = 2-HIGH)) THEN 1 ELSE 0 END) AS low_line_count#768L]
+   +- Filter ((((o_orderkey#769L = l_orderkey#778L) AND l_shipmode#792 IN (MAIL,SHIP)) AND (l_commitdate#789 < l_receiptdate#790)) AND (((l_shipdate#788 < l_commitdate#789) AND (l_receiptdate#790 >= 1994-01-01)) AND (l_receiptdate#790 < 1994-01-01 + INTERVAL '1' YEAR)))
+      +- Join Inner
+         :- SubqueryAlias local.tpch.orders
+         :  +- RelationV2[O_ORDERKEY#769L, O_CUSTKEY#770, O_ORDERSTATUS#771, O_TOTALPRICE#772, O_ORDERDATE#773, O_ORDERPRIORITY#774, O_CLERK#775, O_SHIPPRIORITY#776, O_COMMENT#777] local.tpch.orders
+         +- SubqueryAlias local.tpch.lineitem
+            +- RelationV2[L_ORDERKEY#778L, L_PARTKEY#779, L_SUPPKEY#780, L_LINENUMBER#781, L_QUANTITY#782, L_EXTENDEDPRICE#783, L_DISCOUNT#784, L_TAX#785, L_RETURNFLAG#786, L_LINESTATUS#787, L_SHIPDATE#788, L_COMMITDATE#789, L_RECEIPTDATE#790, L_SHIPINSTRUCT#791, L_SHIPMODE#792, L_COMMENT#793] local.tpch.lineitem
+
+== Optimized Logical Plan ==
+Sort [l_shipmode#792 ASC NULLS FIRST], true
++- Aggregate [l_shipmode#792], [l_shipmode#792, sum(CASE WHEN ((o_orderpriority#774 = 1-URGENT) OR (o_orderpriority#774 = 2-HIGH)) THEN 1 ELSE 0 END) AS high_line_count#767L, sum(CASE WHEN (NOT (o_orderpriority#774 = 1-URGENT) AND NOT (o_orderpriority#774 = 2-HIGH)) THEN 1 ELSE 0 END) AS low_line_count#768L]
+   +- Project [O_ORDERPRIORITY#774, L_SHIPMODE#792]
+      +- Join Inner, (o_orderkey#769L = l_orderkey#778L)
+         :- Filter isnotnull(O_ORDERKEY#769L)
+         :  +- RelationV2[O_ORDERKEY#769L, O_ORDERPRIORITY#774] local.tpch.orders
+         +- Project [L_ORDERKEY#778L, L_SHIPMODE#792]
+            +- Filter (((((((((L_COMMITDATE#789 < L_RECEIPTDATE#790) AND (L_SHIPDATE#788 < L_COMMITDATE#789)) AND isnotnull(L_COMMITDATE#789)) AND isnotnull(L_RECEIPTDATE#790)) AND isnotnull(L_SHIPDATE#788)) AND L_SHIPMODE#792 IN (MAIL,SHIP)) AND (L_RECEIPTDATE#790 >= 1994-01-01)) AND (L_RECEIPTDATE#790 < 1995-01-01)) AND isnotnull(L_ORDERKEY#778L))
+               +- RelationV2[L_ORDERKEY#778L, L_SHIPDATE#788, L_COMMITDATE#789, L_RECEIPTDATE#790, L_SHIPMODE#792] local.tpch.lineitem
+
+== Physical Plan ==
+AdaptiveSparkPlan isFinalPlan=false
++- Sort [l_shipmode#792 ASC NULLS FIRST], true, 0
+   +- Exchange rangepartitioning(l_shipmode#792 ASC NULLS FIRST, 200), ENSURE_REQUIREMENTS, [plan_id=1456]
+      +- HashAggregate(keys=[l_shipmode#792], functions=[sum(CASE WHEN ((o_orderpriority#774 = 1-URGENT) OR (o_orderpriority#774 = 2-HIGH)) THEN 1 ELSE 0 END), sum(CASE WHEN (NOT (o_orderpriority#774 = 1-URGENT) AND NOT (o_orderpriority#774 = 2-HIGH)) THEN 1 ELSE 0 END)], output=[l_shipmode#792, high_line_count#767L, low_line_count#768L])
+         +- Exchange hashpartitioning(l_shipmode#792, 200), ENSURE_REQUIREMENTS, [plan_id=1453]
+            +- HashAggregate(keys=[l_shipmode#792], functions=[partial_sum(CASE WHEN ((o_orderpriority#774 = 1-URGENT) OR (o_orderpriority#774 = 2-HIGH)) THEN 1 ELSE 0 END), partial_sum(CASE WHEN (NOT (o_orderpriority#774 = 1-URGENT) AND NOT (o_orderpriority#774 = 2-HIGH)) THEN 1 ELSE 0 END)], output=[l_shipmode#792, sum#818L, sum#819L])
+               +- Project [O_ORDERPRIORITY#774, L_SHIPMODE#792]
+                  +- SortMergeJoin [o_orderkey#769L], [l_orderkey#778L], Inner
+                     :- Sort [o_orderkey#769L ASC NULLS FIRST], false, 0
+                     :  +- Exchange hashpartitioning(o_orderkey#769L, 200), ENSURE_REQUIREMENTS, [plan_id=1446]
+                     :     +- Filter isnotnull(O_ORDERKEY#769L)
+                     :        +- BatchScan[O_ORDERKEY#769L, O_ORDERPRIORITY#774] local.tpch.orders (branch=null) [filters=O_ORDERKEY IS NOT NULL, groupedBy=] RuntimeFilters: []
+                     +- Sort [l_orderkey#778L ASC NULLS FIRST], false, 0
+                        +- Exchange hashpartitioning(l_orderkey#778L, 200), ENSURE_REQUIREMENTS, [plan_id=1445]
+                           +- Project [L_ORDERKEY#778L, L_SHIPMODE#792]
+                              +- Filter (((((((((L_COMMITDATE#789 < L_RECEIPTDATE#790) AND (L_SHIPDATE#788 < L_COMMITDATE#789)) AND isnotnull(L_COMMITDATE#789)) AND isnotnull(L_RECEIPTDATE#790)) AND isnotnull(L_SHIPDATE#788)) AND L_SHIPMODE#792 IN (MAIL,SHIP)) AND (L_RECEIPTDATE#790 >= 1994-01-01)) AND (L_RECEIPTDATE#790 < 1995-01-01)) AND isnotnull(L_ORDERKEY#778L))
+                                 +- BatchScan[L_ORDERKEY#778L, L_SHIPDATE#788, L_COMMITDATE#789, L_RECEIPTDATE#790, L_SHIPMODE#792] local.tpch.lineitem (branch=null) [filters=L_COMMITDATE IS NOT NULL, L_RECEIPTDATE IS NOT NULL, L_SHIPDATE IS NOT NULL, L_SHIPMODE IN ('MAIL', 'SHIP'), L_RECEIPTDATE >= 8766, L_RECEIPTDATE < 9131, L_ORDERKEY IS NOT NULL, groupedBy=] RuntimeFilters: []

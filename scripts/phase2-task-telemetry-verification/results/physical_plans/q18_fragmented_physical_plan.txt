@@ -1,0 +1,98 @@
+== Parsed Logical Plan ==
+'GlobalLimit 100
++- 'LocalLimit 100
+   +- 'Sort ['o_totalprice DESC NULLS LAST, 'o_orderdate ASC NULLS FIRST], true
+      +- 'Aggregate ['c_name, 'c_custkey, 'o_orderkey, 'o_orderdate, 'o_totalprice], ['c_name, 'c_custkey, 'o_orderkey, 'o_orderdate, 'o_totalprice, unresolvedalias('sum('l_quantity), None)]
+         +- 'Filter (('o_orderkey IN (list#1277 []) AND ('c_custkey = 'o_custkey)) AND ('o_orderkey = 'l_orderkey))
+            :  +- 'UnresolvedHaving ('sum('l_quantity) > 300)
+            :     +- 'Aggregate ['l_orderkey], ['l_orderkey]
+            :        +- 'UnresolvedRelation [local, experiment, lineitem_validated_fragmented], [], false
+            +- 'Join Inner
+               :- 'Join Inner
+               :  :- 'UnresolvedRelation [local, tpch, customer], [], false
+               :  +- 'UnresolvedRelation [local, tpch, orders], [], false
+               +- 'UnresolvedRelation [local, experiment, lineitem_validated_fragmented], [], false
+
+== Analyzed Logical Plan ==
+c_name: string, c_custkey: int, o_orderkey: bigint, o_orderdate: date, o_totalprice: decimal(15,2), sum(l_quantity): decimal(25,2)
+GlobalLimit 100
++- LocalLimit 100
+   +- Sort [o_totalprice#1289 DESC NULLS LAST, o_orderdate#1290 ASC NULLS FIRST], true
+      +- Aggregate [c_name#1279, c_custkey#1278, o_orderkey#1286L, o_orderdate#1290, o_totalprice#1289], [c_name#1279, c_custkey#1278, o_orderkey#1286L, o_orderdate#1290, o_totalprice#1289, sum(l_quantity#1299) AS sum(l_quantity)#1350]
+         +- Filter ((o_orderkey#1286L IN (list#1277 []) AND (c_custkey#1278 = o_custkey#1287)) AND (o_orderkey#1286L = l_orderkey#1295L))
+            :  +- Project [l_orderkey#1311L]
+            :     +- Filter (sum(l_quantity#1315)#1333 > cast(cast(300 as decimal(3,0)) as decimal(25,2)))
+            :        +- Aggregate [l_orderkey#1311L], [l_orderkey#1311L, sum(l_quantity#1315) AS sum(l_quantity#1315)#1333]
+            :           +- SubqueryAlias local.experiment.lineitem_validated_fragmented
+            :              +- RelationV2[L_ORDERKEY#1311L, L_PARTKEY#1312, L_SUPPKEY#1313, L_LINENUMBER#1314, L_QUANTITY#1315, L_EXTENDEDPRICE#1316, L_DISCOUNT#1317, L_TAX#1318, L_RETURNFLAG#1319, L_LINESTATUS#1320, L_SHIPDATE#1321, L_COMMITDATE#1322, L_RECEIPTDATE#1323, L_SHIPINSTRUCT#1324, L_SHIPMODE#1325, L_COMMENT#1326] local.experiment.lineitem_validated_fragmented
+            +- Join Inner
+               :- Join Inner
+               :  :- SubqueryAlias local.tpch.customer
+               :  :  +- RelationV2[C_CUSTKEY#1278, C_NAME#1279, C_ADDRESS#1280, C_NATIONKEY#1281, C_PHONE#1282, C_ACCTBAL#1283, C_MKTSEGMENT#1284, C_COMMENT#1285] local.tpch.customer
+               :  +- SubqueryAlias local.tpch.orders
+               :     +- RelationV2[O_ORDERKEY#1286L, O_CUSTKEY#1287, O_ORDERSTATUS#1288, O_TOTALPRICE#1289, O_ORDERDATE#1290, O_ORDERPRIORITY#1291, O_CLERK#1292, O_SHIPPRIORITY#1293, O_COMMENT#1294] local.tpch.orders
+               +- SubqueryAlias local.experiment.lineitem_validated_fragmented
+                  +- RelationV2[L_ORDERKEY#1295L, L_PARTKEY#1296, L_SUPPKEY#1297, L_LINENUMBER#1298, L_QUANTITY#1299, L_EXTENDEDPRICE#1300, L_DISCOUNT#1301, L_TAX#1302, L_RETURNFLAG#1303, L_LINESTATUS#1304, L_SHIPDATE#1305, L_COMMITDATE#1306, L_RECEIPTDATE#1307, L_SHIPINSTRUCT#1308, L_SHIPMODE#1309, L_COMMENT#1310] local.experiment.lineitem_validated_fragmented
+
+== Optimized Logical Plan ==
+GlobalLimit 100
++- LocalLimit 100
+   +- Sort [o_totalprice#1289 DESC NULLS LAST, o_orderdate#1290 ASC NULLS FIRST], true
+      +- Aggregate [c_name#1279, c_custkey#1278, o_orderkey#1286L, o_orderdate#1290, o_totalprice#1289], [c_name#1279, c_custkey#1278, o_orderkey#1286L, o_orderdate#1290, o_totalprice#1289, sum(l_quantity#1299) AS sum(l_quantity)#1350]
+         +- Project [C_CUSTKEY#1278, C_NAME#1279, O_ORDERKEY#1286L, O_TOTALPRICE#1289, O_ORDERDATE#1290, L_QUANTITY#1299]
+            +- Join Inner, (o_orderkey#1286L = l_orderkey#1295L)
+               :- Project [C_CUSTKEY#1278, C_NAME#1279, O_ORDERKEY#1286L, O_TOTALPRICE#1289, O_ORDERDATE#1290]
+               :  +- Join Inner, (c_custkey#1278 = o_custkey#1287)
+               :     :- Filter isnotnull(C_CUSTKEY#1278)
+               :     :  +- RelationV2[C_CUSTKEY#1278, C_NAME#1279] local.tpch.customer
+               :     +- Join LeftSemi, (O_ORDERKEY#1286L = l_orderkey#1311L)
+               :        :- Filter (isnotnull(O_CUSTKEY#1287) AND isnotnull(O_ORDERKEY#1286L))
+               :        :  +- RelationV2[O_ORDERKEY#1286L, O_CUSTKEY#1287, O_TOTALPRICE#1289, O_ORDERDATE#1290] local.tpch.orders
+               :        +- Project [l_orderkey#1311L]
+               :           +- Filter (isnotnull(sum(l_quantity#1315)#1333) AND (sum(l_quantity#1315)#1333 > 300.00))
+               :              +- Aggregate [l_orderkey#1311L], [l_orderkey#1311L, sum(l_quantity#1315) AS sum(l_quantity#1315)#1333]
+               :                 +- RelationV2[L_ORDERKEY#1311L, L_QUANTITY#1315] local.experiment.lineitem_validated_fragmented
+               +- Join LeftSemi, (L_ORDERKEY#1295L = l_orderkey#1311L)
+                  :- Filter isnotnull(L_ORDERKEY#1295L)
+                  :  +- RelationV2[L_ORDERKEY#1295L, L_QUANTITY#1299] local.experiment.lineitem_validated_fragmented
+                  +- Project [l_orderkey#1311L]
+                     +- Filter (isnotnull(sum(l_quantity#1315)#1333) AND (sum(l_quantity#1315)#1333 > 300.00))
+                        +- Aggregate [l_orderkey#1311L], [l_orderkey#1311L, sum(l_quantity#1315) AS sum(l_quantity#1315)#1333]
+                           +- RelationV2[L_ORDERKEY#1311L, L_QUANTITY#1315] local.experiment.lineitem_validated_fragmented
+
+== Physical Plan ==
+AdaptiveSparkPlan isFinalPlan=false
++- TakeOrderedAndProject(limit=100, orderBy=[o_totalprice#1289 DESC NULLS LAST,o_orderdate#1290 ASC NULLS FIRST], output=[c_name#1279,c_custkey#1278,o_orderkey#1286L,o_orderdate#1290,o_totalprice#1289,sum(l_quantity)#1350])
+   +- HashAggregate(keys=[c_name#1279, c_custkey#1278, o_orderkey#1286L, o_orderdate#1290, o_totalprice#1289], functions=[sum(l_quantity#1299)], output=[c_name#1279, c_custkey#1278, o_orderkey#1286L, o_orderdate#1290, o_totalprice#1289, sum(l_quantity)#1350])
+      +- HashAggregate(keys=[c_name#1279, c_custkey#1278, o_orderkey#1286L, o_orderdate#1290, o_totalprice#1289], functions=[partial_sum(l_quantity#1299)], output=[c_name#1279, c_custkey#1278, o_orderkey#1286L, o_orderdate#1290, o_totalprice#1289, sum#1369, isEmpty#1370])
+         +- Project [C_CUSTKEY#1278, C_NAME#1279, O_ORDERKEY#1286L, O_TOTALPRICE#1289, O_ORDERDATE#1290, L_QUANTITY#1299]
+            +- SortMergeJoin [o_orderkey#1286L], [l_orderkey#1295L], Inner
+               :- Project [C_CUSTKEY#1278, C_NAME#1279, O_ORDERKEY#1286L, O_TOTALPRICE#1289, O_ORDERDATE#1290]
+               :  +- BroadcastHashJoin [c_custkey#1278], [o_custkey#1287], Inner, BuildLeft, false
+               :     :- BroadcastExchange HashedRelationBroadcastMode(List(cast(input[0, int, false] as bigint)),false), [plan_id=3411]
+               :     :  +- Filter isnotnull(C_CUSTKEY#1278)
+               :     :     +- BatchScan[C_CUSTKEY#1278, C_NAME#1279] local.tpch.customer (branch=null) [filters=C_CUSTKEY IS NOT NULL, groupedBy=] RuntimeFilters: []
+               :     +- SortMergeJoin [O_ORDERKEY#1286L], [l_orderkey#1311L], LeftSemi
+               :        :- Sort [O_ORDERKEY#1286L ASC NULLS FIRST], false, 0
+               :        :  +- Exchange hashpartitioning(O_ORDERKEY#1286L, 200), ENSURE_REQUIREMENTS, [plan_id=3406]
+               :        :     +- Filter (isnotnull(O_CUSTKEY#1287) AND isnotnull(O_ORDERKEY#1286L))
+               :        :        +- BatchScan[O_ORDERKEY#1286L, O_CUSTKEY#1287, O_TOTALPRICE#1289, O_ORDERDATE#1290] local.tpch.orders (branch=null) [filters=O_CUSTKEY IS NOT NULL, O_ORDERKEY IS NOT NULL, groupedBy=] RuntimeFilters: []
+               :        +- Sort [l_orderkey#1311L ASC NULLS FIRST], false, 0
+               :           +- Project [l_orderkey#1311L]
+               :              +- Filter (isnotnull(sum(l_quantity#1315)#1333) AND (sum(l_quantity#1315)#1333 > 300.00))
+               :                 +- HashAggregate(keys=[l_orderkey#1311L], functions=[sum(l_quantity#1315)], output=[l_orderkey#1311L, sum(l_quantity#1315)#1333])
+               :                    +- Exchange hashpartitioning(l_orderkey#1311L, 200), ENSURE_REQUIREMENTS, [plan_id=3400]
+               :                       +- HashAggregate(keys=[l_orderkey#1311L], functions=[partial_sum(l_quantity#1315)], output=[l_orderkey#1311L, sum#1373, isEmpty#1374])
+               :                          +- BatchScan[L_ORDERKEY#1311L, L_QUANTITY#1315] local.experiment.lineitem_validated_fragmented (branch=null) [filters=, groupedBy=] RuntimeFilters: []
+               +- SortMergeJoin [L_ORDERKEY#1295L], [l_orderkey#1311L], LeftSemi
+                  :- Sort [L_ORDERKEY#1295L ASC NULLS FIRST], false, 0
+                  :  +- Exchange hashpartitioning(L_ORDERKEY#1295L, 200), ENSURE_REQUIREMENTS, [plan_id=3420]
+                  :     +- Filter isnotnull(L_ORDERKEY#1295L)
+                  :        +- BatchScan[L_ORDERKEY#1295L, L_QUANTITY#1299] local.experiment.lineitem_validated_fragmented (branch=null) [filters=L_ORDERKEY IS NOT NULL, groupedBy=] RuntimeFilters: []
+                  +- Sort [l_orderkey#1311L ASC NULLS FIRST], false, 0
+                     +- Project [l_orderkey#1311L]
+                        +- Filter (isnotnull(sum(l_quantity#1315)#1333) AND (sum(l_quantity#1315)#1333 > 300.00))
+                           +- HashAggregate(keys=[l_orderkey#1311L], functions=[sum(l_quantity#1315)], output=[l_orderkey#1311L, sum(l_quantity#1315)#1333])
+                              +- Exchange hashpartitioning(l_orderkey#1311L, 200), ENSURE_REQUIREMENTS, [plan_id=3414]
+                                 +- HashAggregate(keys=[l_orderkey#1311L], functions=[partial_sum(l_quantity#1315)], output=[l_orderkey#1311L, sum#1373, isEmpty#1374])
+                                    +- BatchScan[L_ORDERKEY#1311L, L_QUANTITY#1315] local.experiment.lineitem_validated_fragmented (branch=null) [filters=, groupedBy=] RuntimeFilters: []

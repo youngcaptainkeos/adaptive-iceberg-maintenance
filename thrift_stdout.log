@@ -1,0 +1,164 @@
+ERROR StatusLogger Could not determine local host name
+ java.net.UnknownHostException: sandbox: sandbox: Temporary failure in name resolution
+	at java.base/java.net.InetAddress.getLocalHost(InetAddress.java:1670)
+	at org.apache.logging.log4j.core.util.NetUtils.getLocalHostname(NetUtils.java:54)
+	at org.apache.logging.log4j.core.LoggerContext.lambda$setConfiguration$0(LoggerContext.java:615)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1705)
+	at org.apache.logging.log4j.core.LoggerContext.setConfiguration(LoggerContext.java:615)
+	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:694)
+	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:711)
+	at org.apache.logging.log4j.core.LoggerContext.start(LoggerContext.java:253)
+	at org.apache.logging.log4j.core.impl.Log4jContextFactory.getContext(Log4jContextFactory.java:245)
+	at org.apache.logging.log4j.core.impl.Log4jContextFactory.getContext(Log4jContextFactory.java:47)
+	at org.apache.logging.log4j.LogManager.getContext(LogManager.java:176)
+	at org.apache.logging.log4j.LogManager.getLogger(LogManager.java:666)
+	at org.apache.logging.log4j.LogManager.getRootLogger(LogManager.java:700)
+	at org.apache.spark.internal.Logging.initializeLogging(Logging.scala:130)
+	at org.apache.spark.internal.Logging.initializeLogIfNecessary(Logging.scala:115)
+	at org.apache.spark.internal.Logging.initializeLogIfNecessary$(Logging.scala:109)
+	at org.apache.spark.deploy.SparkSubmit.initializeLogIfNecessary(SparkSubmit.scala:75)
+	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:83)
+	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1072)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1081)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Caused by: java.net.UnknownHostException: sandbox: Temporary failure in name resolution
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:930)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1543)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:848)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1533)
+	at java.base/java.net.InetAddress.getLocalHost(InetAddress.java:1665)
+	... 20 more
+2026-08-31 12:28:39,028 main ERROR Could not determine local host name java.net.UnknownHostException: sandbox: sandbox: Temporary failure in name resolution
+	at java.base/java.net.InetAddress.getLocalHost(InetAddress.java:1670)
+	at org.apache.logging.log4j.core.util.NetUtils.getLocalHostname(NetUtils.java:54)
+	at org.apache.logging.log4j.core.LoggerContext.lambda$setConfiguration$0(LoggerContext.java:615)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1705)
+	at org.apache.logging.log4j.core.LoggerContext.setConfiguration(LoggerContext.java:615)
+	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:694)
+	at org.apache.logging.log4j.core.LoggerContext.setConfigLocation(LoggerContext.java:679)
+	at org.apache.spark.internal.Logging.initializeLogging(Logging.scala:140)
+	at org.apache.spark.internal.Logging.initializeLogIfNecessary(Logging.scala:115)
+	at org.apache.spark.internal.Logging.initializeLogIfNecessary$(Logging.scala:109)
+	at org.apache.spark.deploy.SparkSubmit.initializeLogIfNecessary(SparkSubmit.scala:75)
+	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:83)
+	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1072)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1081)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Caused by: java.net.UnknownHostException: sandbox: Temporary failure in name resolution
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:930)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1543)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:848)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1533)
+	at java.base/java.net.InetAddress.getLocalHost(InetAddress.java:1665)
+	... 14 more
+
+2026-08-31 12:28:39,883 main ERROR Could not determine local host name java.net.UnknownHostException: sandbox: sandbox: Temporary failure in name resolution
+	at java.base/java.net.InetAddress.getLocalHost(InetAddress.java:1670)
+	at org.apache.logging.log4j.core.util.NetUtils.getLocalHostname(NetUtils.java:54)
+	at org.apache.logging.log4j.core.LoggerContext.lambda$setConfiguration$0(LoggerContext.java:615)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1705)
+	at org.apache.logging.log4j.core.LoggerContext.setConfiguration(LoggerContext.java:615)
+	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:694)
+	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:711)
+	at org.apache.spark.internal.Logging$.uninitialize(Logging.scala:218)
+	at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:926)
+	at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:191)
+	at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:214)
+	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:90)
+	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1072)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1081)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Caused by: java.net.UnknownHostException: sandbox: Temporary failure in name resolution
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:930)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1543)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:848)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1533)
+	at java.base/java.net.InetAddress.getLocalHost(InetAddress.java:1665)
+	... 14 more
+
+26/08/31 12:28:39 INFO HiveThriftServer2: Started daemon with process name: 6@localhost
+26/08/31 12:28:39 INFO SignalUtils: Registering signal handler for TERM
+26/08/31 12:28:39 INFO SignalUtils: Registering signal handler for HUP
+26/08/31 12:28:39 INFO SignalUtils: Registering signal handler for INT
+26/08/31 12:28:39 INFO HiveThriftServer2: Starting SparkContext
+26/08/31 12:28:40 INFO HiveConf: Found configuration file null
+26/08/31 12:28:40 INFO SparkContext: Running Spark version 3.3.4
+26/08/31 12:28:40 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/08/31 12:28:40 INFO ResourceUtils: ==============================================================
+26/08/31 12:28:40 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/08/31 12:28:40 INFO ResourceUtils: ==============================================================
+26/08/31 12:28:40 INFO SparkContext: Submitted application: SparkSQL::localhost
+26/08/31 12:28:40 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/08/31 12:28:40 INFO ResourceProfile: Limiting resource is cpu
+26/08/31 12:28:40 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/08/31 12:28:40 INFO SecurityManager: Changing view acls to: shashank
+26/08/31 12:28:40 INFO SecurityManager: Changing modify acls to: shashank
+26/08/31 12:28:40 INFO SecurityManager: Changing view acls groups to: 
+26/08/31 12:28:40 INFO SecurityManager: Changing modify acls groups to: 
+26/08/31 12:28:40 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(shashank); groups with view permissions: Set(); users  with modify permissions: Set(shashank); groups with modify permissions: Set()
+26/08/31 12:28:41 WARN MacAddressUtil: Failed to find a usable hardware address from the network interfaces; using random bytes: 78:58:12:9a:27:ac:1d:fd
+26/08/31 12:28:41 INFO Utils: Successfully started service 'sparkDriver' on port 45747.
+26/08/31 12:28:41 INFO SparkEnv: Registering MapOutputTracker
+26/08/31 12:28:41 INFO SparkEnv: Registering BlockManagerMaster
+26/08/31 12:28:41 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/08/31 12:28:41 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/08/31 12:28:41 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/08/31 12:28:41 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-72478c9e-934a-4174-b50e-fa9d638a8d59
+26/08/31 12:28:41 INFO MemoryStore: MemoryStore started with capacity 2.2 GiB
+26/08/31 12:28:41 INFO SparkEnv: Registering OutputCommitCoordinator
+26/08/31 12:28:41 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/08/31 12:28:42 INFO FairSchedulableBuilder: Creating Fair Scheduler pools from scripts/phase3-concurrent-interference/config/fairscheduler.xml
+26/08/31 12:28:42 INFO FairSchedulableBuilder: Created pool: foreground, schedulingMode: FIFO, minShare: 12, weight: 3
+26/08/31 12:28:42 INFO FairSchedulableBuilder: Created pool: background, schedulingMode: FIFO, minShare: 4, weight: 1
+26/08/31 12:28:42 INFO FairSchedulableBuilder: Created default pool: default, schedulingMode: FIFO, minShare: 0, weight: 1
+26/08/31 12:28:42 INFO Executor: Starting executor ID driver on host localhost
+26/08/31 12:28:42 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/08/31 12:28:42 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 34151.
+26/08/31 12:28:42 INFO NettyBlockTransferService: Server created on 127.0.0.1:34151
+26/08/31 12:28:42 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/08/31 12:28:42 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 127.0.0.1, 34151, None)
+26/08/31 12:28:42 INFO BlockManagerMasterEndpoint: Registering block manager 127.0.0.1:34151 with 2.2 GiB RAM, BlockManagerId(driver, 127.0.0.1, 34151, None)
+26/08/31 12:28:42 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 127.0.0.1, 34151, None)
+26/08/31 12:28:42 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 127.0.0.1, 34151, None)
+26/08/31 12:28:42 INFO SingleEventLogFileWriter: Logging events to file:/tmp/spark-events/local-1788159521902.inprogress
+26/08/31 12:28:42 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+26/08/31 12:28:42 INFO SharedState: Warehouse path is 'file:/home/shashank/Link%20to%20PDocuments/Capstone/implementation/spark-warehouse'.
+26/08/31 12:28:43 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+26/08/31 12:28:44 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/home/shashank/Link%20to%20PDocuments/Capstone/implementation/spark-warehouse
+26/08/31 12:28:44 WARN HiveConf: HiveConf of name hive.stats.jdbc.timeout does not exist
+26/08/31 12:28:44 WARN HiveConf: HiveConf of name hive.stats.retries.wait does not exist
+26/08/31 12:28:44 INFO HiveMetaStore: 0: Opening raw store with implementation class:org.apache.hadoop.hive.metastore.ObjectStore
+26/08/31 12:28:44 INFO ObjectStore: ObjectStore, initialize called
+26/08/31 12:28:44 INFO Persistence: Property hive.metastore.integral.jdo.pushdown unknown - will be ignored
+26/08/31 12:28:44 INFO Persistence: Property datanucleus.cache.level2 unknown - will be ignored
+26/08/31 12:28:45 INFO ObjectStore: Setting MetaStore object pin classes with hive.metastore.cache.pinobjtypes="Table,StorageDescriptor,SerDeInfo,Partition,Database,Type,FieldSchema,Order"
+26/08/31 12:28:46 INFO MetaStoreDirectSql: Using direct SQL, underlying DB is DERBY
+26/08/31 12:28:46 INFO ObjectStore: Initialized ObjectStore
+26/08/31 12:28:46 WARN ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 2.3.0
+26/08/31 12:28:46 WARN ObjectStore: setMetaStoreSchemaVersion called but recording version is disabled: version = 2.3.0, comment = Set by MetaStore shashank@UNKNOWN
+26/08/31 12:28:46 INFO HiveMetaStore: Added admin role in metastore
+26/08/31 12:28:46 INFO HiveMetaStore: Added public role in metastore
+26/08/31 12:28:46 INFO HiveMetaStore: No user is added in admin role, since config is empty
+26/08/31 12:28:46 INFO HiveMetaStore: 0: get_database: default
+26/08/31 12:28:46 INFO audit: ugi=shashank	ip=unknown-ip-addr	cmd=get_database: default	
+26/08/31 12:28:46 INFO HiveUtils: Initializing execution hive, version 2.3.9
+26/08/31 12:28:46 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/home/shashank/Link%20to%20PDocuments/Capstone/implementation/spark-warehouse
+26/08/31 12:28:46 INFO SessionManager: Operation log root directory is created: /tmp/shashank/operation_logs
+26/08/31 12:28:46 INFO SessionManager: HiveServer2: Background operation thread pool size: 100
+26/08/31 12:28:46 INFO SessionManager: HiveServer2: Background operation thread wait queue size: 100
+26/08/31 12:28:46 INFO SessionManager: HiveServer2: Background operation thread keepalive time: 10 seconds
+26/08/31 12:28:46 INFO AbstractService: Service:OperationManager is inited.
+26/08/31 12:28:46 INFO AbstractService: Service:SessionManager is inited.
+26/08/31 12:28:46 INFO AbstractService: Service: CLIService is inited.
+26/08/31 12:28:46 INFO AbstractService: Service:ThriftBinaryCLIService is inited.
+26/08/31 12:28:46 INFO AbstractService: Service: HiveServer2 is inited.
+26/08/31 12:28:46 INFO AbstractService: Service:OperationManager is started.
+26/08/31 12:28:46 INFO AbstractService: Service:SessionManager is started.
+26/08/31 12:28:46 INFO AbstractService: Service: CLIService is started.
+26/08/31 12:28:46 INFO AbstractService: Service:ThriftBinaryCLIService is started.
+26/08/31 12:28:46 INFO ThriftCLIService: Starting ThriftBinaryCLIService on port 10000 with 5...500 worker threads
+26/08/31 12:28:46 INFO AbstractService: Service:HiveServer2 is started.
+26/08/31 12:28:46 INFO HiveThriftServer2: HiveThriftServer2 started

@@ -1,0 +1,68 @@
+== Parsed Logical Plan ==
+'GlobalLimit 10
++- 'LocalLimit 10
+   +- 'Sort ['revenue DESC NULLS LAST, 'o_orderdate ASC NULLS FIRST], true
+      +- 'Aggregate ['l_orderkey, 'o_orderdate, 'o_shippriority], ['l_orderkey, 'sum(('l_extendedprice * (1 - 'l_discount))) AS revenue#523, 'o_orderdate, 'o_shippriority]
+         +- 'Filter (((('c_mktsegment = BUILDING) AND ('c_custkey = 'o_custkey)) AND ('l_orderkey = 'o_orderkey)) AND (('o_orderdate < 1995-03-15) AND ('l_shipdate > 1995-03-15)))
+            +- 'Join Inner
+               :- 'Join Inner
+               :  :- 'UnresolvedRelation [local, tpch, customer], [], false
+               :  +- 'UnresolvedRelation [local, tpch, orders], [], false
+               +- 'UnresolvedRelation [local, experiment, lineitem_validated_fragmented], [], false
+
+== Analyzed Logical Plan ==
+l_orderkey: bigint, revenue: decimal(38,4), o_orderdate: date, o_shippriority: int
+GlobalLimit 10
++- LocalLimit 10
+   +- Sort [revenue#523 DESC NULLS LAST, o_orderdate#536 ASC NULLS FIRST], true
+      +- Aggregate [l_orderkey#541L, o_orderdate#536, o_shippriority#539], [l_orderkey#541L, sum(CheckOverflow((promote_precision(cast(l_extendedprice#546 as decimal(16,2))) * promote_precision(cast(CheckOverflow((promote_precision(cast(cast(1 as decimal(1,0)) as decimal(16,2))) - promote_precision(cast(l_discount#547 as decimal(16,2)))), DecimalType(16,2)) as decimal(16,2)))), DecimalType(32,4))) AS revenue#523, o_orderdate#536, o_shippriority#539]
+         +- Filter ((((c_mktsegment#530 = BUILDING) AND (c_custkey#524 = o_custkey#533)) AND (l_orderkey#541L = o_orderkey#532L)) AND ((o_orderdate#536 < 1995-03-15) AND (l_shipdate#551 > 1995-03-15)))
+            +- Join Inner
+               :- Join Inner
+               :  :- SubqueryAlias local.tpch.customer
+               :  :  +- RelationV2[C_CUSTKEY#524, C_NAME#525, C_ADDRESS#526, C_NATIONKEY#527, C_PHONE#528, C_ACCTBAL#529, C_MKTSEGMENT#530, C_COMMENT#531] local.tpch.customer
+               :  +- SubqueryAlias local.tpch.orders
+               :     +- RelationV2[O_ORDERKEY#532L, O_CUSTKEY#533, O_ORDERSTATUS#534, O_TOTALPRICE#535, O_ORDERDATE#536, O_ORDERPRIORITY#537, O_CLERK#538, O_SHIPPRIORITY#539, O_COMMENT#540] local.tpch.orders
+               +- SubqueryAlias local.experiment.lineitem_validated_fragmented
+                  +- RelationV2[L_ORDERKEY#541L, L_PARTKEY#542, L_SUPPKEY#543, L_LINENUMBER#544, L_QUANTITY#545, L_EXTENDEDPRICE#546, L_DISCOUNT#547, L_TAX#548, L_RETURNFLAG#549, L_LINESTATUS#550, L_SHIPDATE#551, L_COMMITDATE#552, L_RECEIPTDATE#553, L_SHIPINSTRUCT#554, L_SHIPMODE#555, L_COMMENT#556] local.experiment.lineitem_validated_fragmented
+
+== Optimized Logical Plan ==
+GlobalLimit 10
++- LocalLimit 10
+   +- Sort [revenue#523 DESC NULLS LAST, o_orderdate#536 ASC NULLS FIRST], true
+      +- Aggregate [l_orderkey#541L, o_orderdate#536, o_shippriority#539], [l_orderkey#541L, sum(CheckOverflow((promote_precision(cast(l_extendedprice#546 as decimal(16,2))) * promote_precision(CheckOverflow((1.00 - promote_precision(cast(l_discount#547 as decimal(16,2)))), DecimalType(16,2)))), DecimalType(32,4))) AS revenue#523, o_orderdate#536, o_shippriority#539]
+         +- Project [O_ORDERDATE#536, O_SHIPPRIORITY#539, L_ORDERKEY#541L, L_EXTENDEDPRICE#546, L_DISCOUNT#547]
+            +- Join Inner, (l_orderkey#541L = o_orderkey#532L)
+               :- Project [O_ORDERKEY#532L, O_ORDERDATE#536, O_SHIPPRIORITY#539]
+               :  +- Join Inner, (c_custkey#524 = o_custkey#533)
+               :     :- Project [C_CUSTKEY#524]
+               :     :  +- Filter ((isnotnull(C_MKTSEGMENT#530) AND (C_MKTSEGMENT#530 = BUILDING)) AND isnotnull(C_CUSTKEY#524))
+               :     :     +- RelationV2[C_CUSTKEY#524, C_MKTSEGMENT#530] local.tpch.customer
+               :     +- Filter (((isnotnull(O_ORDERDATE#536) AND (O_ORDERDATE#536 < 1995-03-15)) AND isnotnull(O_CUSTKEY#533)) AND isnotnull(O_ORDERKEY#532L))
+               :        +- RelationV2[O_ORDERKEY#532L, O_CUSTKEY#533, O_ORDERDATE#536, O_SHIPPRIORITY#539] local.tpch.orders
+               +- Project [L_ORDERKEY#541L, L_EXTENDEDPRICE#546, L_DISCOUNT#547]
+                  +- Filter ((isnotnull(L_SHIPDATE#551) AND (L_SHIPDATE#551 > 1995-03-15)) AND isnotnull(L_ORDERKEY#541L))
+                     +- RelationV2[L_ORDERKEY#541L, L_EXTENDEDPRICE#546, L_DISCOUNT#547, L_SHIPDATE#551] local.experiment.lineitem_validated_fragmented
+
+== Physical Plan ==
+AdaptiveSparkPlan isFinalPlan=false
++- TakeOrderedAndProject(limit=10, orderBy=[revenue#523 DESC NULLS LAST,o_orderdate#536 ASC NULLS FIRST], output=[l_orderkey#541L,revenue#523,o_orderdate#536,o_shippriority#539])
+   +- HashAggregate(keys=[l_orderkey#541L, o_orderdate#536, o_shippriority#539], functions=[sum(CheckOverflow((promote_precision(cast(l_extendedprice#546 as decimal(16,2))) * promote_precision(CheckOverflow((1.00 - promote_precision(cast(l_discount#547 as decimal(16,2)))), DecimalType(16,2)))), DecimalType(32,4)))], output=[l_orderkey#541L, revenue#523, o_orderdate#536, o_shippriority#539])
+      +- HashAggregate(keys=[l_orderkey#541L, o_orderdate#536, o_shippriority#539], functions=[partial_sum(CheckOverflow((promote_precision(cast(l_extendedprice#546 as decimal(16,2))) * promote_precision(CheckOverflow((1.00 - promote_precision(cast(l_discount#547 as decimal(16,2)))), DecimalType(16,2)))), DecimalType(32,4)))], output=[l_orderkey#541L, o_orderdate#536, o_shippriority#539, sum#589, isEmpty#590])
+         +- Project [O_ORDERDATE#536, O_SHIPPRIORITY#539, L_ORDERKEY#541L, L_EXTENDEDPRICE#546, L_DISCOUNT#547]
+            +- SortMergeJoin [o_orderkey#532L], [l_orderkey#541L], Inner
+               :- Sort [o_orderkey#532L ASC NULLS FIRST], false, 0
+               :  +- Exchange hashpartitioning(o_orderkey#532L, 200), ENSURE_REQUIREMENTS, [plan_id=708]
+               :     +- Project [O_ORDERKEY#532L, O_ORDERDATE#536, O_SHIPPRIORITY#539]
+               :        +- BroadcastHashJoin [c_custkey#524], [o_custkey#533], Inner, BuildLeft, false
+               :           :- BroadcastExchange HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [plan_id=702]
+               :           :  +- Project [C_CUSTKEY#524]
+               :           :     +- Filter ((isnotnull(C_MKTSEGMENT#530) AND (C_MKTSEGMENT#530 = BUILDING)) AND isnotnull(C_CUSTKEY#524))
+               :           :        +- BatchScan[C_CUSTKEY#524, C_MKTSEGMENT#530] local.tpch.customer (branch=null) [filters=C_MKTSEGMENT IS NOT NULL, C_MKTSEGMENT = 'BUILDING', C_CUSTKEY IS NOT NULL, groupedBy=] RuntimeFilters: []
+               :           +- Filter (((isnotnull(O_ORDERDATE#536) AND (O_ORDERDATE#536 < 1995-03-15)) AND isnotnull(O_CUSTKEY#533)) AND isnotnull(O_ORDERKEY#532L))
+               :              +- BatchScan[O_ORDERKEY#532L, O_CUSTKEY#533, O_ORDERDATE#536, O_SHIPPRIORITY#539] local.tpch.orders (branch=null) [filters=O_ORDERDATE IS NOT NULL, O_ORDERDATE < 9204, O_CUSTKEY IS NOT NULL, O_ORDERKEY IS NOT NULL, groupedBy=] RuntimeFilters: []
+               +- Sort [l_orderkey#541L ASC NULLS FIRST], false, 0
+                  +- Exchange hashpartitioning(l_orderkey#541L, 200), ENSURE_REQUIREMENTS, [plan_id=707]
+                     +- Project [L_ORDERKEY#541L, L_EXTENDEDPRICE#546, L_DISCOUNT#547]
+                        +- Filter ((isnotnull(L_SHIPDATE#551) AND (L_SHIPDATE#551 > 1995-03-15)) AND isnotnull(L_ORDERKEY#541L))
+                           +- BatchScan[L_ORDERKEY#541L, L_EXTENDEDPRICE#546, L_DISCOUNT#547, L_SHIPDATE#551] local.experiment.lineitem_validated_fragmented (branch=null) [filters=L_SHIPDATE IS NOT NULL, L_SHIPDATE > 9204, L_ORDERKEY IS NOT NULL, groupedBy=] RuntimeFilters: []

@@ -1,0 +1,6 @@
+Policy Name,Maintenance Allowed (%),Maintenance Postponed (%),Mean QIR (%),P95 QIR (%),SLA Violation Rate (%),Maintenance Starvation Events,Operational Tradeoff Characterization
+Always Run (Baseline),100.0%,0.0%,3.64%,15.50%,13.7%,0,"Maximum maintenance throughput, high SLA risk"
+Always Defer,0.0%,100.0%,0.00%,0.00%,0.0%,168,"Zero interference, total maintenance starvation"
+Simple Resource Heuristic,79.2%,20.8%,2.45%,13.28%,8.3%,35,"Balanced heuristic, moderate SLA protection"
+Predictive QIR Policy (RF),91.7%,8.3%,3.21%,15.21%,11.9%,14,"High maintenance throughput (91.7%), minor SLA risk reduction"
+Conservative Quantile Policy (q=0.95),31.0%,69.0%,0.57%,6.33%,1.8%,116,"Strict SLA protection (1.8% violations), high deferral rate"

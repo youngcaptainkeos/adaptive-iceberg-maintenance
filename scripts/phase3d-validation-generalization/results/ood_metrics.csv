@@ -1,0 +1,5 @@
+model,mae,rmse,r2,n_test_samples
+Ridge Regression,22.4634,31.9495,-0.4929,80
+Lasso Regression,28.1889,36.6516,-0.9647,80
+Random Forest Regressor,25.3976,36.7678,-0.9772,80
+Quantile Regressor (q=0.95),29.7622,39.7745,-1.3138,80

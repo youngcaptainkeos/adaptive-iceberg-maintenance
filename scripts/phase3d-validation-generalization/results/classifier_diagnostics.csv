@@ -1,0 +1,4 @@
+classifier_variant,total_samples,tp,fp,tn,fn,accuracy_pct,balanced_accuracy_pct,precision,recall,f1_score,roc_auc,pr_auc
+"Original RF (Unweighted, Tau=0.5)",168,4,13,132,19,80.95%,54.21%,0.2353,0.1739,0.2000,0.7205,0.2488
+RF with Train-Tuned Threshold,168,6,20,125,17,77.98%,56.15%,0.2308,0.2609,0.2449,0.7205,0.2488
+Class-Weighted RF,168,11,33,112,12,73.21%,62.53%,0.2500,0.4783,0.3284,0.6843,0.2475

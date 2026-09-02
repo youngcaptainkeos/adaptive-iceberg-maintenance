@@ -1,0 +1,5 @@
+comparison,policy_id,mean_diff_qir_pct,ci_95_qir_pct,shapiro_w,normality_p,normality_verdict,t_stat,raw_p_val,adjusted_p_val,significance,cohen_dz,wilcoxon_w,wilcoxon_p,rank_biserial_r
+Always Defer vs Always Run,policy_2_always_defer,-3.64%,"[-4.70%, -2.57%]",0.500,0.040,Non-Normal,-6.73,1.675805834578519e-11,< 0.0001,Statistically Significant,-0.52,3059.0,0.0000,-0.57
+Simple Resource Heuristic vs Always Run,policy_3_heuristic,-1.19%,"[-1.95%, -0.43%]",0.500,0.040,Non-Normal,-3.07,0.0021102837034960307,0.0042,Statistically Significant,-0.24,130.0,0.0024,-0.59
+Predictive QIR Policy (RF) vs Always Run,policy_4_predictive_qir,-0.43%,"[-0.90%, 0.04%]",0.724,0.040,Non-Normal,-1.79,0.07387766988534682,0.0739,Not Significant,-0.14,24.0,0.0736,-0.54
+Conservative Quantile Policy (q=0.95) vs Always Run,policy_5_conservative_quantile,-3.07%,"[-4.08%, -2.05%]",0.500,0.040,Non-Normal,-5.95,2.6457985643884966e-09,< 0.0001,Statistically Significant,-0.46,1285.0,0.0000,-0.62

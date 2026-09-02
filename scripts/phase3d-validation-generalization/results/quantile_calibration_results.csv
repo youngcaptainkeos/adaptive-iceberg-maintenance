@@ -1,0 +1,13 @@
+config_id,fold,sample_count,covered_count,undercovered_count,raw_quantile_coverage_pct,mean_upper_bound,target_coverage_pct
+frag200_multi_stream_FAIR,1,24,24,0,100.00,12.0889,95.00
+frag200_multi_stream_FIFO,2,24,22,2,91.67,11.6932,95.00
+frag200_single_stream_FAIR,3,4,2,2,50.00,12.7828,95.00
+frag200_single_stream_FIFO,4,4,4,0,100.00,19.0855,95.00
+frag500_multi_stream_FAIR,5,24,20,4,83.33,8.5262,95.00
+frag500_multi_stream_FIFO,6,24,23,1,95.83,11.0946,95.00
+frag500_single_stream_FAIR,7,4,4,0,100.00,17.4152,95.00
+frag500_single_stream_FIFO,8,4,3,1,75.00,10.9114,95.00
+frag50_multi_stream_FAIR,9,24,21,3,87.50,13.2782,95.00
+frag50_multi_stream_FIFO,10,24,23,1,95.83,14.5875,95.00
+frag50_single_stream_FAIR,11,4,4,0,100.00,17.9323,95.00
+frag50_single_stream_FIFO,12,4,3,1,75.00,21.7374,95.00

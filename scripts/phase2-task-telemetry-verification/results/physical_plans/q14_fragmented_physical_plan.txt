@@ -1,0 +1,40 @@
+== Parsed Logical Plan ==
+'Project [((100.00 * 'sum(CASE WHEN 'p_type LIKE PROMO% THEN ('l_extendedprice * (1 - 'l_discount)) ELSE 0 END)) / 'sum(('l_extendedprice * (1 - 'l_discount)))) AS promo_revenue#1041]
++- 'Filter ((('l_partkey = 'p_partkey) AND ('l_shipdate >= 1995-09-01)) AND ('l_shipdate < (1995-09-01 + INTERVAL '1' MONTH)))
+   +- 'Join Inner
+      :- 'UnresolvedRelation [local, experiment, lineitem_validated_fragmented], [], false
+      +- 'UnresolvedRelation [local, tpch, part], [], false
+
+== Analyzed Logical Plan ==
+promo_revenue: decimal(38,6)
+Aggregate [CheckOverflow((promote_precision(cast(CheckOverflow((promote_precision(cast(100.00 as decimal(38,4))) * promote_precision(cast(sum(CASE WHEN p_type#1062 LIKE PROMO% THEN CheckOverflow((promote_precision(cast(l_extendedprice#1047 as decimal(16,2))) * promote_precision(cast(CheckOverflow((promote_precision(cast(cast(1 as decimal(1,0)) as decimal(16,2))) - promote_precision(cast(l_discount#1048 as decimal(16,2)))), DecimalType(16,2)) as decimal(16,2)))), DecimalType(32,4)) ELSE cast(0 as decimal(32,4)) END) as decimal(38,4)))), DecimalType(38,6)) as decimal(38,6))) / promote_precision(cast(sum(CheckOverflow((promote_precision(cast(l_extendedprice#1047 as decimal(16,2))) * promote_precision(cast(CheckOverflow((promote_precision(cast(cast(1 as decimal(1,0)) as decimal(16,2))) - promote_precision(cast(l_discount#1048 as decimal(16,2)))), DecimalType(16,2)) as decimal(16,2)))), DecimalType(32,4))) as decimal(38,6)))), DecimalType(38,6)) AS promo_revenue#1041]
++- Filter (((l_partkey#1043 = p_partkey#1058) AND (l_shipdate#1052 >= 1995-09-01)) AND (l_shipdate#1052 < 1995-09-01 + INTERVAL '1' MONTH))
+   +- Join Inner
+      :- SubqueryAlias local.experiment.lineitem_validated_fragmented
+      :  +- RelationV2[L_ORDERKEY#1042L, L_PARTKEY#1043, L_SUPPKEY#1044, L_LINENUMBER#1045, L_QUANTITY#1046, L_EXTENDEDPRICE#1047, L_DISCOUNT#1048, L_TAX#1049, L_RETURNFLAG#1050, L_LINESTATUS#1051, L_SHIPDATE#1052, L_COMMITDATE#1053, L_RECEIPTDATE#1054, L_SHIPINSTRUCT#1055, L_SHIPMODE#1056, L_COMMENT#1057] local.experiment.lineitem_validated_fragmented
+      +- SubqueryAlias local.tpch.part
+         +- RelationV2[P_PARTKEY#1058, P_NAME#1059, P_MFGR#1060, P_BRAND#1061, P_TYPE#1062, P_SIZE#1063, P_CONTAINER#1064, P_RETAILPRICE#1065, P_COMMENT#1066] local.tpch.part
+
+== Optimized Logical Plan ==
+Aggregate [CheckOverflow((promote_precision(CheckOverflow((100.0000 * promote_precision(sum(CASE WHEN StartsWith(p_type#1062, PROMO) THEN CheckOverflow((promote_precision(cast(l_extendedprice#1047 as decimal(16,2))) * promote_precision(CheckOverflow((1.00 - promote_precision(cast(l_discount#1048 as decimal(16,2)))), DecimalType(16,2)))), DecimalType(32,4)) ELSE 0.0000 END))), DecimalType(38,6))) / promote_precision(cast(sum(CheckOverflow((promote_precision(cast(l_extendedprice#1047 as decimal(16,2))) * promote_precision(CheckOverflow((1.00 - promote_precision(cast(l_discount#1048 as decimal(16,2)))), DecimalType(16,2)))), DecimalType(32,4))) as decimal(38,6)))), DecimalType(38,6)) AS promo_revenue#1041]
++- Project [L_EXTENDEDPRICE#1047, L_DISCOUNT#1048, P_TYPE#1062]
+   +- Join Inner, (l_partkey#1043 = p_partkey#1058)
+      :- Project [L_PARTKEY#1043, L_EXTENDEDPRICE#1047, L_DISCOUNT#1048]
+      :  +- Filter (((isnotnull(L_SHIPDATE#1052) AND (L_SHIPDATE#1052 >= 1995-09-01)) AND (L_SHIPDATE#1052 < 1995-10-01)) AND isnotnull(L_PARTKEY#1043))
+      :     +- RelationV2[L_PARTKEY#1043, L_EXTENDEDPRICE#1047, L_DISCOUNT#1048, L_SHIPDATE#1052] local.experiment.lineitem_validated_fragmented
+      +- Filter isnotnull(P_PARTKEY#1058)
+         +- RelationV2[P_PARTKEY#1058, P_TYPE#1062] local.tpch.part
+
+== Physical Plan ==
+AdaptiveSparkPlan isFinalPlan=false
++- HashAggregate(keys=[], functions=[sum(CASE WHEN StartsWith(p_type#1062, PROMO) THEN CheckOverflow((promote_precision(cast(l_extendedprice#1047 as decimal(16,2))) * promote_precision(CheckOverflow((1.00 - promote_precision(cast(l_discount#1048 as decimal(16,2)))), DecimalType(16,2)))), DecimalType(32,4)) ELSE 0.0000 END), sum(CheckOverflow((promote_precision(cast(l_extendedprice#1047 as decimal(16,2))) * promote_precision(CheckOverflow((1.00 - promote_precision(cast(l_discount#1048 as decimal(16,2)))), DecimalType(16,2)))), DecimalType(32,4)))], output=[promo_revenue#1041])
+   +- Exchange SinglePartition, ENSURE_REQUIREMENTS, [plan_id=2502]
+      +- HashAggregate(keys=[], functions=[partial_sum(CASE WHEN StartsWith(p_type#1062, PROMO) THEN CheckOverflow((promote_precision(cast(l_extendedprice#1047 as decimal(16,2))) * promote_precision(CheckOverflow((1.00 - promote_precision(cast(l_discount#1048 as decimal(16,2)))), DecimalType(16,2)))), DecimalType(32,4)) ELSE 0.0000 END), partial_sum(CheckOverflow((promote_precision(cast(l_extendedprice#1047 as decimal(16,2))) * promote_precision(CheckOverflow((1.00 - promote_precision(cast(l_discount#1048 as decimal(16,2)))), DecimalType(16,2)))), DecimalType(32,4)))], output=[sum#1090, isEmpty#1091, sum#1092, isEmpty#1093])
+         +- Project [L_EXTENDEDPRICE#1047, L_DISCOUNT#1048, P_TYPE#1062]
+            +- BroadcastHashJoin [l_partkey#1043], [p_partkey#1058], Inner, BuildRight, false
+               :- Project [L_PARTKEY#1043, L_EXTENDEDPRICE#1047, L_DISCOUNT#1048]
+               :  +- Filter (((isnotnull(L_SHIPDATE#1052) AND (L_SHIPDATE#1052 >= 1995-09-01)) AND (L_SHIPDATE#1052 < 1995-10-01)) AND isnotnull(L_PARTKEY#1043))
+               :     +- BatchScan[L_PARTKEY#1043, L_EXTENDEDPRICE#1047, L_DISCOUNT#1048, L_SHIPDATE#1052] local.experiment.lineitem_validated_fragmented (branch=null) [filters=L_SHIPDATE IS NOT NULL, L_SHIPDATE >= 9374, L_SHIPDATE < 9404, L_PARTKEY IS NOT NULL, groupedBy=] RuntimeFilters: []
+               +- BroadcastExchange HashedRelationBroadcastMode(List(cast(input[0, int, false] as bigint)),false), [plan_id=2497]
+                  +- Filter isnotnull(P_PARTKEY#1058)
+                     +- BatchScan[P_PARTKEY#1058, P_TYPE#1062] local.tpch.part (branch=null) [filters=P_PARTKEY IS NOT NULL, groupedBy=] RuntimeFilters: []

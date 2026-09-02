@@ -1,0 +1,8 @@
+model_or_baseline,mean_loco_mae_pct,mean_loco_rmse_pct,strongest_trivial_mae_pct,pct_improvement_over_strongest_trivial,beats_strongest_trivial
+Baseline A (Training Mean),6.8279,8.3789,6.8279,0.00%,NO
+Baseline B (Zero Interference),7.4957,9.1695,6.8279,-9.78%,NO
+Baseline C (Training Median),6.8964,8.4355,6.8279,-1.00%,NO
+Lasso Regression,7.6561,9.0107,6.8279,-12.13%,NO
+Quantile Regressor (q=0.95),10.8138,12.1583,6.8279,-58.38%,NO
+Random Forest Regressor,6.5483,7.9626,6.8279,4.09%,YES
+Ridge Regression,7.5445,8.9408,6.8279,-10.50%,NO
