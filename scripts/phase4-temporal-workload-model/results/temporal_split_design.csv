@@ -1,0 +1,6 @@
+Protocol,Leakage_Risk,Temporal_Realism,Verdict
+A. Random Window Split,Extreme,None,Rejected (Lookback overlaps)
+B. Chronological Split (e.g. 70/15/15),None,High,SELECTED (Strict timeline preservation)
+C. Blocked Temporal Split (k-fold time series),Moderate,Moderate,Rejected (Requires discarding gap buffers)
+D. Episode-Level Split,None,Very High,Secondary/Optional (Depends on distinct episodes)
+E. Future-Distribution Shift Test,None,Extreme,Recommended for Final Holdout

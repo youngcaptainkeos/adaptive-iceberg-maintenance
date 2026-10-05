@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="210">
+<style>
+.yes { fill: #4CAF50; }
+.no { fill: #F44336; }
+.text { font-family: Arial; font-size: 12px; fill: #333; }
+.title { font-family: Arial; font-size: 16px; font-weight: bold; }
+</style>
+<text x="20" y="30" class="title">Existing Temporal Data Audit - Valid Features</text>
+<text x="20" y="75" class="text">scripts/phase3-concurrent-interference/r...</text>
+<rect x="300" y="60" width="25" height="20" class="yes" rx="3"/>
+<rect x="330" y="60" width="25" height="20" class="yes" rx="3"/>
+<rect x="360" y="60" width="25" height="20" class="no" rx="3"/>
+<rect x="390" y="60" width="25" height="20" class="no" rx="3"/>
+<rect x="420" y="60" width="25" height="20" class="no" rx="3"/>
+<rect x="450" y="60" width="25" height="20" class="no" rx="3"/>
+<rect x="480" y="60" width="25" height="20" class="no" rx="3"/>
+<rect x="510" y="60" width="25" height="20" class="no" rx="3"/>
+<rect x="540" y="60" width="25" height="20" class="no" rx="3"/>
+<rect x="570" y="60" width="25" height="20" class="no" rx="3"/>
+<rect x="600" y="60" width="25" height="20" class="no" rx="3"/>
+<rect x="630" y="60" width="25" height="20" class="no" rx="3"/>
+<rect x="660" y="60" width="25" height="20" class="no" rx="3"/>
+<rect x="690" y="60" width="25" height="20" class="no" rx="3"/>
+<rect x="720" y="60" width="25" height="20" class="no" rx="3"/>
+<rect x="750" y="60" width="25" height="20" class="no" rx="3"/>
+<text x="790" y="75" class="text">2/16 valid</text>
+<text x="20" y="115" class="text">scripts/phase3b-predictive-signals/resul...</text>
+<rect x="300" y="100" width="25" height="20" class="yes" rx="3"/>
+<rect x="330" y="100" width="25" height="20" class="yes" rx="3"/>
+<rect x="360" y="100" width="25" height="20" class="no" rx="3"/>
+<rect x="390" y="100" width="25" height="20" class="no" rx="3"/>
+<rect x="420" y="100" width="25" height="20" class="no" rx="3"/>
+<rect x="450" y="100" width="25" height="20" class="no" rx="3"/>
+<rect x="480" y="100" width="25" height="20" class="no" rx="3"/>
+<rect x="510" y="100" width="25" height="20" class="no" rx="3"/>
+<rect x="540" y="100" width="25" height="20" class="no" rx="3"/>
+<rect x="570" y="100" width="25" height="20" class="no" rx="3"/>
+<rect x="600" y="100" width="25" height="20" class="no" rx="3"/>
+<rect x="630" y="100" width="25" height="20" class="no" rx="3"/>
+<rect x="660" y="100" width="25" height="20" class="no" rx="3"/>
+<rect x="690" y="100" width="25" height="20" class="no" rx="3"/>
+<rect x="720" y="100" width="25" height="20" class="no" rx="3"/>
+<rect x="750" y="100" width="25" height="20" class="no" rx="3"/>
+<text x="790" y="115" class="text">2/16 valid</text>
+<text x="20" y="155" class="text">scripts/phase3-concurrent-interference/r...</text>
+<rect x="300" y="140" width="25" height="20" class="yes" rx="3"/>
+<rect x="330" y="140" width="25" height="20" class="yes" rx="3"/>
+<rect x="360" y="140" width="25" height="20" class="yes" rx="3"/>
+<rect x="390" y="140" width="25" height="20" class="no" rx="3"/>
+<rect x="420" y="140" width="25" height="20" class="no" rx="3"/>
+<rect x="450" y="140" width="25" height="20" class="no" rx="3"/>
+<rect x="480" y="140" width="25" height="20" class="no" rx="3"/>
+<rect x="510" y="140" width="25" height="20" class="no" rx="3"/>
+<rect x="540" y="140" width="25" height="20" class="no" rx="3"/>
+<rect x="570" y="140" width="25" height="20" class="no" rx="3"/>
+<rect x="600" y="140" width="25" height="20" class="no" rx="3"/>
+<rect x="630" y="140" width="25" height="20" class="no" rx="3"/>
+<rect x="660" y="140" width="25" height="20" class="no" rx="3"/>
+<rect x="690" y="140" width="25" height="20" class="no" rx="3"/>
+<rect x="720" y="140" width="25" height="20" class="no" rx="3"/>
+<rect x="750" y="140" width="25" height="20" class="no" rx="3"/>
+<text x="790" y="155" class="text">3/16 valid</text>
+<text x="20" y="195" class="text">scripts/phase3c-uncertainty-aware-schedu...</text>
+<rect x="300" y="180" width="25" height="20" class="yes" rx="3"/>
+<rect x="330" y="180" width="25" height="20" class="yes" rx="3"/>
+<rect x="360" y="180" width="25" height="20" class="yes" rx="3"/>
+<rect x="390" y="180" width="25" height="20" class="no" rx="3"/>
+<rect x="420" y="180" width="25" height="20" class="no" rx="3"/>
+<rect x="450" y="180" width="25" height="20" class="no" rx="3"/>
+<rect x="480" y="180" width="25" height="20" class="no" rx="3"/>
+<rect x="510" y="180" width="25" height="20" class="no" rx="3"/>
+<rect x="540" y="180" width="25" height="20" class="no" rx="3"/>
+<rect x="570" y="180" width="25" height="20" class="no" rx="3"/>
+<rect x="600" y="180" width="25" height="20" class="no" rx="3"/>
+<rect x="630" y="180" width="25" height="20" class="no" rx="3"/>
+<rect x="660" y="180" width="25" height="20" class="no" rx="3"/>
+<rect x="690" y="180" width="25" height="20" class="no" rx="3"/>
+<rect x="720" y="180" width="25" height="20" class="no" rx="3"/>
+<rect x="750" y="180" width="25" height="20" class="no" rx="3"/>
+<text x="790" y="195" class="text">3/16 valid</text>
+</svg>

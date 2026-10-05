@@ -1,0 +1,9 @@
+feature,source,timestamp_semantics,earliest_avail,avail_at_t,future_leakage,rolling_leakage
+num_files,Iceberg Meta,Epoch t,t,Yes,No,No
+fragmentation_level,Iceberg Meta,Epoch t,t,Yes,No,No
+query_arrival_rate_hz,Python NHPP / Trace,Epoch t,t,Yes,No,No
+active_queries,Spark REST,Epoch t,t,Yes,No,No
+cpu_utilization_pct,OS psutil,Epoch t,t,Yes,No,No
+compaction_active,Maintenance Daemon,Epoch t,t,Yes,No,No
+rolling_cpu_5m,"Derived [t-k, t]",Window end t,t,Yes,No,No
+target_future_interference_h5,"Derived [t, t+h]",Window end t+h,t+h,NO,YES (TARGET),N/A

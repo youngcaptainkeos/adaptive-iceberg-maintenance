@@ -1,0 +1,5 @@
+correlation_pair,pearson_r,spearman_rho,empirical_outcome
+Absolute Error vs Split-Conformal Uncertainty,0.0000,0.3060,Outcome 2 (Global Marginal)
+Novelty Distance vs Split-Conformal Uncertainty,0.0000,0.7490,Outcome 2 (Global Marginal)
+Novelty Distance vs Prediction Absolute Error,0.2888,0.0601,Error Expands Under Novelty
+Novelty Distance vs Local Adaptive Variance,0.7576,0.5703,Outcome 1 Target for Temporal Model

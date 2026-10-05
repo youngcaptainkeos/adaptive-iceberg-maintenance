@@ -1,0 +1,5 @@
+domain_regime,total_observations,covered_observations,undercovered_observations,nominal_target_coverage_pct,empirical_coverage_pct,mean_point_mae_qir_pct,mean_conformal_upper_bound_qir_pct,conformal_calibration_offset_qir_pct,exchangeability_assumptions_met,mathematical_failure_explanation
+"In-Distribution (50, 200, 500 files)",168,168,0,95.00%,100.00,3.59,10.37,+8.5%,TRUE,Exchangeability holds; coverage satisfied.
+"Interpolation Domain (100, 350 files)",80,80,0,95.00%,100.00,5.48,12.13,+8.5%,TRUE,Exchangeability holds; coverage satisfied.
+20-File Extrapolation,40,40,0,95.00%,100.00,3.64,12.09,+8.5%,FALSE,Exchangeability holds; coverage satisfied.
+750-File Extrapolation,40,16,24,95.00%,40.00,35.87,26.91,+8.5%,FALSE,Covariate/concept shift expands error beyond static calibration offset (+8.5% QIR).

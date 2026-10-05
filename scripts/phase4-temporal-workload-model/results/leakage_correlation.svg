@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="210">
+<style>
+.bar { fill: #3498db; }
+.safe { fill: #2ecc71; }
+.danger { fill: #e74c3c; }
+.text { font-family: Arial; font-size: 12px; fill: #333; }
+.title { font-family: Arial; font-size: 16px; font-weight: bold; }
+</style>
+<text x="20" y="30" class="title">Feature-Target Leakage Correlation Analysis</text>
+<text x="20" y="75" class="text">rolling_cpu_5m</text>
+<rect x="250" y="60" width="60.15689994789862" height="20" class="safe"/>
+<text x="315.15689994789864" y="75" class="text">0.301</text>
+<text x="20" y="115" class="text">rolling_query_rate_5m</text>
+<rect x="250" y="100" width="31.68458752921512" height="20" class="safe"/>
+<text x="286.6845875292151" y="115" class="text">-0.158</text>
+<text x="20" y="155" class="text">current_cpu</text>
+<rect x="250" y="140" width="76.64067780379577" height="20" class="safe"/>
+<text x="331.64067780379577" y="155" class="text">0.383</text>
+<text x="20" y="195" class="text">compaction_active</text>
+<rect x="250" y="180" width="99.19729013392296" height="20" class="safe"/>
+<text x="354.19729013392293" y="195" class="text">0.496</text>
+</svg>

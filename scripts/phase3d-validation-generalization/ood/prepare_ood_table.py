@@ -5,7 +5,7 @@ import time
 import csv
 from datetime import datetime
 
-WORKSPACE_DIR = "/home/shashank/Link to PDocuments/Capstone/implementation"
+WORKSPACE_DIR = "/media/shashank/Data1/PDocuments/Capstone/implementation"
 spark_home = os.path.join(WORKSPACE_DIR, "software/spark-3.3.4")
 
 os.environ["JAVA_HOME"] = "/usr/lib/jvm/java-11-openjdk-amd64"

@@ -1,0 +1,19 @@
+domain,max_deferrals_limit,trial_count,sla_violation_count_10pct,sla_violation_rate_pct,maintenance_completion_rate_pct,mean_deferral_rate_slots,max_deferral_streak_slots,starvation_event_count,pareto_status,scientific_justification
+"In-Distribution (50, 200, 500 files)",0,168,23,13.69,100.00,0.00,0,0,Pareto-Optimal,Pareto-optimal anchor (Maximum maintenance completion)
+"In-Distribution (50, 200, 500 files)",1,168,0,0.00,39.29,0.61,1,102,Pareto-Optimal,Pareto-optimal tradeoff point
+"In-Distribution (50, 200, 500 files)",2,168,0,0.00,48.81,1.02,2,86,Pareto-Optimal,Pareto-optimal tradeoff point
+"In-Distribution (50, 200, 500 files)",3,168,0,0.00,39.88,1.80,3,101,Pareto-Optimal,Pareto-optimal operating point (Best balance for SLA = 0%)
+"In-Distribution (50, 200, 500 files)",4,168,0,0.00,48.21,2.07,4,87,Dominated by K=3,Dominated point
+"In-Distribution (50, 200, 500 files)",5,168,0,0.00,40.48,2.98,5,100,Dominated by K=3,Dominated point
+"Interpolation Domain (100, 350 files)",0,80,27,33.75,100.00,0.00,0,0,Pareto-Optimal,Pareto-optimal anchor (Maximum maintenance completion)
+"Interpolation Domain (100, 350 files)",1,80,0,0.00,28.75,0.71,1,57,Pareto-Optimal,Pareto-optimal tradeoff point
+"Interpolation Domain (100, 350 files)",2,80,0,0.00,30.00,1.40,2,56,Pareto-Optimal,Pareto-optimal tradeoff point
+"Interpolation Domain (100, 350 files)",3,80,0,0.00,28.75,2.14,3,57,Pareto-Optimal,Pareto-optimal operating point (Best balance for SLA = 0%)
+"Interpolation Domain (100, 350 files)",4,80,0,0.00,26.25,2.95,4,59,Dominated by K=3,Dominated point
+"Interpolation Domain (100, 350 files)",5,80,0,0.00,32.50,3.38,5,54,Dominated by K=3,Dominated point
+"Extrapolation Domain (20, 750 files)",0,80,34,42.50,100.00,0.00,0,0,Pareto-Optimal,Pareto-optimal anchor (Maximum maintenance completion)
+"Extrapolation Domain (20, 750 files)",1,80,0,0.00,26.25,0.74,1,59,Pareto-Optimal,Pareto-optimal tradeoff point
+"Extrapolation Domain (20, 750 files)",2,80,0,0.00,25.00,1.50,2,60,Pareto-Optimal,Pareto-optimal tradeoff point
+"Extrapolation Domain (20, 750 files)",3,80,0,0.00,26.25,2.21,3,59,Pareto-Optimal,Pareto-optimal operating point (Best balance for SLA = 0%)
+"Extrapolation Domain (20, 750 files)",4,80,0,0.00,22.50,3.10,4,62,Dominated by K=3,Dominated point
+"Extrapolation Domain (20, 750 files)",5,80,0,0.00,26.25,3.69,5,59,Dominated by K=3,Dominated point

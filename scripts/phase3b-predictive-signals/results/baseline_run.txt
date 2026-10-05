@@ -1,0 +1,19 @@
+Class Distribution: Total=168, Class 0 (<=10% QIR)=145 (86.3%), Class 1 (>10% QIR)=23 (13.7%)
+
+--- Detailed SLA Classifier Diagnostics ---
+Confusion Matrix: TP=4, FP=20, TN=125, FN=19
+Accuracy: 76.8% (Majority Class Baseline: 86.3%)
+Balanced Accuracy: 51.8%
+Precision: 0.167, Recall: 0.174, F1-Score: 0.170
+ROC-AUC: 0.522, PR-AUC: 0.131
+
+=========================================
+Phase 3B Model Evaluation Summary (GroupKFold Cross-Validation)
+=========================================
+Ridge Regression (L2) (Regression): MAE / RMSE -> 6.91% | 8.86%
+Lasso Regression (L1) (Regression): MAE / RMSE -> 7.35% | 9.19%
+Random Forest Regressor (Regression (Continuous QIR)): MAE / RMSE -> 5.38% | 7.34%
+Quantile Regressor (95th %ile) (Quantile Upper Bound): Pinball Loss (q=0.95) -> Pinball: 0.89 | N/A
+Random Forest Classifier (SLA Violation (10%) Diagnostic): TP=4, FP=20, TN=125, FN=19 -> Acc: 76.8%, F1: 0.170 | ROC-AUC: 0.522, PR-AUC: 0.131
+
+Report written to: /media/shashank/Data1/PDocuments/Capstone/implementation/scripts/phase3b-predictive-signals/analysis/phase3b_predictive_signals_report.md

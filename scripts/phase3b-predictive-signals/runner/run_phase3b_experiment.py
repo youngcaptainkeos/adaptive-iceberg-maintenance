@@ -8,7 +8,7 @@ import urllib.request
 import argparse
 import csv
 
-WORKSPACE_DIR = "/home/shashank/Link to PDocuments/Capstone/implementation"
+WORKSPACE_DIR = "/media/shashank/Data1/PDocuments/Capstone/implementation"
 PHASE3B_DIR = os.path.join(WORKSPACE_DIR, "scripts/phase3b-predictive-signals")
 RESULTS_DIR = os.path.join(PHASE3B_DIR, "results")
 CONFIG_DIR = os.path.join(PHASE3B_DIR, "config")
@@ -72,7 +72,7 @@ def start_thrift_server(mode):
     elif mode == "FAIR":
         cmd.extend([
             "--conf", "spark.scheduler.mode=FAIR",
-            "--conf", f"spark.scheduler.allocation.file={CONFIG_DIR}/fairscheduler.xml"
+            "--conf", f"spark.scheduler.allocation.file=file://{CONFIG_DIR}/fairscheduler.xml"
         ])
         
     subprocess.run(cmd, env=env, cwd=WORKSPACE_DIR, check=True)

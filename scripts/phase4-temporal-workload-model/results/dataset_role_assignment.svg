@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="350">
+<style>
+.text { font-family: Arial; font-size: 13px; fill: #333; }
+.title { font-family: Arial; font-size: 18px; font-weight: bold; }
+.role { font-family: Arial; font-size: 12px; font-weight: bold; fill: #fff; }
+.Calibration { fill: #36A2EB; }
+.Feature { fill: #4BC0C0; }
+.Unusable { fill: #FF6384; }
+.Validation { fill: #9966FF; }
+</style>
+<text x="20" y="30" class="title">Dataset Role Assignment for Phase 4</text>
+<text x="20" y="75" class="text">Phase 2 Validation Layout Comparison (paired_state_differences.csv)</text>
+<rect x="400" y="60" width="150" height="22" rx="10" class="Calibration"/>
+<text x="410" y="75" class="role">Calibration</text>
+<text x="20" y="125" class="text">Phase 3B Predictive Signals (phase3b_system_metrics.csv)</text>
+<rect x="400" y="110" width="150" height="22" rx="10" class="Feature"/>
+<text x="410" y="125" class="role">Feature Engineering Validation</text>
+<text x="20" y="175" class="text">Phase 3C Uncertainty Aware Scheduler (policy_decisions.csv)</text>
+<rect x="400" y="160" width="150" height="22" rx="10" class="Unusable"/>
+<text x="410" y="175" class="role">Unusable</text>
+<text x="20" y="225" class="text">Phase 3D Validation Generalization (ood_system_metrics.csv)</text>
+<rect x="400" y="210" width="150" height="22" rx="10" class="Validation"/>
+<text x="410" y="225" class="role">Validation (Independent)</text>
+<text x="20" y="275" class="text">Phase 3-Concurrent Interference (task_telemetry.csv)</text>
+<rect x="400" y="260" width="150" height="22" rx="10" class="Feature"/>
+<text x="410" y="275" class="role">Feature Engineering Validation</text>
+</svg>

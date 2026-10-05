@@ -1,0 +1,5 @@
+source_name,valid_features_count,timestamp_semantics,clock_origin,resolution,continuous,experiment_duration,table_persistent,observations,workload_arrival,joinable
+scripts/phase3-concurrent-interference/results/task_telemetry.csv,2,Epoch ms,Spark Driver JVM,Variable (task level),No,Phase duration (minutes),No (Reset per query),Independent runs,No,Only within exact query run_id
+scripts/phase3b-predictive-signals/results/phase3b_system_metrics.csv,2,Epoch sec (float),OS System Clock,1 second,Yes (within phase),30-60 minutes,Yes (during phase),Sequential,No,Yes (by timestamp)
+scripts/phase3-concurrent-interference/results/query_runs.csv,3,Epoch sec (float),Python Driver,Query level,No,Batch runs,No,Independent,Batch starts,Only within batch
+scripts/phase3c-uncertainty-aware-scheduler/results/policy_decisions.csv,3,Window ID (discrete),Logical Window,Decision window,Yes (logical),N windows,Yes,Sequential,No,No (lacks physical timestamp)

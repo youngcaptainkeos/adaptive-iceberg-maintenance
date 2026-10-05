@@ -1,0 +1,11 @@
+# Project Decisions
+- **Target Venue:** PVLDB February 2027
+- **Environment:** Spark 3.3.4, Iceberg 1.4.3
+- **Evaluation Scale:** TPC-H SF1 for Phase 3C rigorous validation; SF10 for final generalization/scalability validation.
+- **Model Fallback Protocol:** 
+  - Director: Opus -> Sonnet -> Gemini Pro
+  - Designer/Reviewer: Sonnet -> Gemini Pro -> Flash
+  - Engineer/Analyst: Gemini Pro -> Flash
+  - Auditor: GPT-OSS -> Gemini Pro
+- **Verification Protocol:** Independent verification by Reviewer and Auditor. They must not see each other's reports before submitting.
+- **Human Approval Gates:** Human must approve major methodological changes, changes to the research question, dataset deletion, and final claims.

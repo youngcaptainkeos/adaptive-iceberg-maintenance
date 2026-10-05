@@ -1,0 +1,3 @@
+config_id,fragmentation_level,actual_file_count,record_count,table_size_bytes,average_file_size_bytes,creation_duration_seconds,creation_timestamp
+extrapolation_table_frag20,20,20,6001215,164751497,8237574,20.2,2026-09-02T20:03:16.595244
+extrapolation_table_frag750,750,750,6001215,182076337,242768,22.72,2026-09-02T20:03:39.875966

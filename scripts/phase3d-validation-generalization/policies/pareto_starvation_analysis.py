@@ -28,7 +28,7 @@ import math
 import random
 from typing import Dict, Any, List, Tuple
 
-WORKSPACE_DIR = "/home/shashank/Link to PDocuments/Capstone/implementation"
+WORKSPACE_DIR = "/media/shashank/Data1/PDocuments/Capstone/implementation"
 PHASE3B_DIR = os.path.join(WORKSPACE_DIR, "scripts/phase3b-predictive-signals")
 PHASE3D_DIR = os.path.join(WORKSPACE_DIR, "scripts/phase3d-validation-generalization")
 RESULTS_DIR = os.path.join(PHASE3D_DIR, "results")

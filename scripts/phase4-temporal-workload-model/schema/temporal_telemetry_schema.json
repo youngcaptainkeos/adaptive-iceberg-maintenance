@@ -1,0 +1,21 @@
+{
+    "sampling_frequency_hz": 1,
+    "columns": [
+        {"name": "timestamp", "type": "float", "description": "Unix epoch seconds"},
+        {"name": "cpu_utilization_pct", "type": "float"},
+        {"name": "memory_used_pct", "type": "float"},
+        {"name": "disk_read_bytes_sec", "type": "float"},
+        {"name": "disk_write_bytes_sec", "type": "float"},
+        {"name": "disk_read_iops", "type": "float"},
+        {"name": "disk_write_iops", "type": "float"},
+        {"name": "active_spark_jobs", "type": "int"},
+        {"name": "active_spark_tasks", "type": "int"},
+        {"name": "queued_queries", "type": "int"},
+        {"name": "running_queries", "type": "int"},
+        {"name": "compaction_active", "type": "bool"},
+        {"name": "frag_file_count", "type": "int"},
+        {"name": "table_size_mb", "type": "float"},
+        {"name": "last_query_duration_ms", "type": "float"},
+        {"name": "last_compaction_duration_ms", "type": "float"}
+    ]
+}

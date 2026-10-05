@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300">
+<style>
+.text { font-family: Arial; font-size: 14px; fill: #333; }
+.title { font-family: Arial; font-size: 18px; font-weight: bold; }
+</style>
+<text x="20" y="30" class="title">Schema Feature Categories</text>
+<rect x="20" y="60" width="20" height="25" fill="#FF6384"/>
+<text x="50" y="77" class="text">CLOCK (1 features)</text>
+<rect x="20" y="100" width="140" height="25" fill="#36A2EB"/>
+<text x="170" y="117" class="text">TABLE STATE (7 features)</text>
+<rect x="20" y="140" width="160" height="25" fill="#FFCE56"/>
+<text x="190" y="157" class="text">WORKLOAD STATE (8 features)</text>
+<rect x="20" y="180" width="80" height="25" fill="#4BC0C0"/>
+<text x="110" y="197" class="text">SYSTEM STATE (4 features)</text>
+<rect x="20" y="220" width="60" height="25" fill="#9966FF"/>
+<text x="90" y="237" class="text">MAINTENANCE STATE (3 features)</text>
+<rect x="20" y="260" width="60" height="25" fill="#FF9F40"/>
+<text x="90" y="277" class="text">TEMPORAL FEATURES (3 features)</text>
+<rect x="20" y="300" width="40" height="25" fill="#FF6384"/>
+<text x="70" y="317" class="text">TARGETS (2 features)</text>
+</svg>

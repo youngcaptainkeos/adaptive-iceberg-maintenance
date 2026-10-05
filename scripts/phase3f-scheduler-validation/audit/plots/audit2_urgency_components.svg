@@ -1,0 +1,74 @@
+<svg width="700" height="420" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="350" y="30" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#1a1a1a">Audit 2: Storage Health Urgency Component Contribution Across Table States</text>
+  
+  <!-- Grid Lines -->
+  <line x1="80" y1="320" x2="650" y2="320" stroke="#cccccc" stroke-width="1"/>
+  <line x1="80" y1="250" x2="650" y2="250" stroke="#eeeeee" stroke-width="1"/>
+  <line x1="80" y1="180" x2="650" y2="180" stroke="#eeeeee" stroke-width="1"/>
+  <line x1="80" y1="110" x2="650" y2="110" stroke="#eeeeee" stroke-width="1"/>
+  <line x1="80" y1="40" x2="650" y2="40" stroke="#eeeeee" stroke-width="1"/>
+
+  <!-- Y-Axis Labels -->
+  <text x="70" y="325" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" text-anchor="end" fill="#666666">0</text>
+  <text x="70" y="255" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" text-anchor="end" fill="#666666">25</text>
+  <text x="70" y="185" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" text-anchor="end" fill="#666666">50</text>
+  <text x="70" y="115" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" text-anchor="end" fill="#666666">75</text>
+  <text x="70" y="45" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" text-anchor="end" fill="#666666">100</text>
+
+  <!-- Legend -->
+  <rect x="120" y="355" width="14" height="14" fill="#2b5c8f"/>
+  <text x="140" y="367" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" fill="#333333">Frag Ratio (w1=0.40)</text>
+
+  <rect x="270" y="355" width="14" height="14" fill="#4daf4a"/>
+  <text x="290" y="367" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" fill="#333333">Table Size (w2=0.20)</text>
+
+  <rect x="420" y="355" width="14" height="14" fill="#984ea3"/>
+  <text x="440" y="367" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" fill="#333333">Inv File Size (w3=0.20)</text>
+
+  <rect x="560" y="355" width="14" height="14" fill="#ff7f00"/>
+  <text x="580" y="367" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" fill="#333333">Deferral Ratio (w4=0.20)</text>
+  <rect x="90" y="317.0133333333333" width="40" height="2.9866666666666672" fill="#2b5c8f"/>
+  <rect x="90" y="273.0533333333333" width="40" height="43.96000000000001" fill="#4daf4a"/>
+  <rect x="90" y="269.57117937238314" width="40" height="3.4821539609501304" fill="#984ea3"/>
+  <rect x="90" y="269.57117937238314" width="40" height="0.0" fill="#ff7f00"/>
+  <text x="110" y="263.57117937238314" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a1a1a">18.0</text>
+  <text x="110" y="338" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333333">20 files</text>
+  <rect x="165" y="312.53333333333336" width="40" height="7.466666666666667" fill="#2b5c8f"/>
+  <rect x="165" y="267.73333333333335" width="40" height="44.800000000000004" fill="#4daf4a"/>
+  <rect x="165" y="258.9860668541081" width="40" height="8.74726647922524" fill="#984ea3"/>
+  <rect x="165" y="258.9860668541081" width="40" height="0.0" fill="#ff7f00"/>
+  <text x="185" y="252.98606685410812" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a1a1a">21.8</text>
+  <text x="185" y="338" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333333">50 files</text>
+  <rect x="240" y="305.06666666666666" width="40" height="14.933333333333334" fill="#2b5c8f"/>
+  <rect x="240" y="258.8666666666667" width="40" height="46.199999999999996" fill="#4daf4a"/>
+  <rect x="240" y="241.90724813244498" width="40" height="16.959418534221683" fill="#984ea3"/>
+  <rect x="240" y="230.707248132445" width="40" height="11.200000000000001" fill="#ff7f00"/>
+  <text x="260" y="224.707248132445" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a1a1a">31.9</text>
+  <text x="260" y="338" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333333">100 files</text>
+  <rect x="315" y="290.1333333333333" width="40" height="29.866666666666667" fill="#2b5c8f"/>
+  <rect x="315" y="242.53333333333333" width="40" height="47.599999999999994" fill="#4daf4a"/>
+  <rect x="315" y="209.63086564825696" width="40" height="32.90246768507638" fill="#984ea3"/>
+  <rect x="315" y="198.43086564825697" width="40" height="11.200000000000001" fill="#ff7f00"/>
+  <text x="335" y="192.43086564825697" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a1a1a">43.4</text>
+  <text x="335" y="338" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333333">200 files</text>
+  <rect x="390" y="267.73333333333335" width="40" height="52.266666666666666" fill="#2b5c8f"/>
+  <rect x="390" y="219.85333333333335" width="40" height="47.88" fill="#4daf4a"/>
+  <rect x="390" y="163.85333333333335" width="40" height="56.0" fill="#984ea3"/>
+  <rect x="390" y="141.45333333333335" width="40" height="22.400000000000002" fill="#ff7f00"/>
+  <text x="410" y="135.45333333333335" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a1a1a">63.8</text>
+  <text x="410" y="338" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333333">350 files</text>
+  <rect x="465" y="245.33333333333331" width="40" height="74.66666666666667" fill="#2b5c8f"/>
+  <rect x="465" y="197.17333333333332" width="40" height="48.160000000000004" fill="#4daf4a"/>
+  <rect x="465" y="141.17333333333332" width="40" height="56.0" fill="#984ea3"/>
+  <rect x="465" y="118.77333333333331" width="40" height="22.400000000000002" fill="#ff7f00"/>
+  <text x="485" y="112.77333333333331" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a1a1a">71.9</text>
+  <text x="485" y="338" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333333">500 files</text>
+  <rect x="540" y="208.0" width="40" height="112.0" fill="#2b5c8f"/>
+  <rect x="540" y="159.56" width="40" height="48.44" fill="#4daf4a"/>
+  <rect x="540" y="103.56" width="40" height="56.0" fill="#984ea3"/>
+  <rect x="540" y="69.96000000000001" width="40" height="33.599999999999994" fill="#ff7f00"/>
+  <text x="560" y="63.96000000000001" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a1a1a">89.3</text>
+  <text x="560" y="338" font-family="DejaVu Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333333">750 files</text>
+  <line x1="80" y1="320" x2="80" y2="40" stroke="#cccccc" stroke-width="1"/>
+</svg>

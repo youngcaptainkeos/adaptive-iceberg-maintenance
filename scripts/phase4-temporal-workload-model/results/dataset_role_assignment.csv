@@ -1,0 +1,6 @@
+phase,file,role,justification
+Phase 2 Validation Layout Comparison,paired_state_differences.csv,Calibration,Provides ground-truth baseline un-interfered query latencies needed to compute QIR for new physical runs. Unusable for temporal training due to discrete non-chronological execution.
+Phase 3B Predictive Signals,phase3b_system_metrics.csv,Feature Engineering Validation,"Useful to test parsing and aggregation logic for OS system metrics (CPU/Mem), but unusable for temporal model training because the timeline is interrupted and lacks continuous workload variations."
+Phase 3C Uncertainty Aware Scheduler,policy_decisions.csv,Unusable,"Decisions were made using a static lookback that inherently leaked future targets (simulated execution). Timestamps are logical windows, not physical clock ticks."
+Phase 3D Validation Generalization,ood_system_metrics.csv,Validation (Independent),"Can be used as a static out-of-distribution (OOD) test set to verify if the Phase 4 temporal model generalizes to the static 750-file state, but cannot be used for sequence training."
+Phase 3-Concurrent Interference,task_telemetry.csv,Feature Engineering Validation,Used strictly to validate that the new Unified Logger is calculating executor_cpu_time_ms correctly. Cannot be concatenated for temporal ML training.

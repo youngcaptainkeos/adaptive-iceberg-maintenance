@@ -1,0 +1,6 @@
+Metric,Value,Interpretation
+Total Rows (N),600,Raw window count
+Autocorrelation Lag 1 (5s),0.646,High short-term dependence
+Autocorrelation Lag 12 (1m),0.481,Moderate medium-term dependence
+Autocorrelation Lag 60 (5m),-0.128,Low long-term dependence
+Effective Sample Size (ESS),128.9,True independent episode count

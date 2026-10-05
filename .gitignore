@@ -14,3 +14,7 @@ datasets/alibaba-trace-2017.tar.gz
 *.tar.gz
 derby.log
 metastore_db/
+datasets/tpch/sf100/
+spark-events/
+*.inprogress
+

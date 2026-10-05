@@ -1,0 +1,8 @@
+Component,Provenance,Pilot_Status,Physical_Status,Validation_Target
+Query Arrival Timings,Simulated (NHPP),Simulated,Simulated (Trace-driven),Temporal Pipeline Logic
+Query Execution Engine,Mock (Pilot),Simulated,Physical (Spark SQL),Temporal Pipeline Logic
+Table Fragmentation State,Mock (Pilot),Simulated,Physical (Iceberg Metadata),Temporal Pipeline Logic
+System CPU Metrics,Mock (Pilot),Simulated,Physical (psutil),Temporal Pipeline Logic
+Compaction Action,Mock (Pilot),Simulated,Physical (Spark Action),Temporal Pipeline Logic
+Global Telemetry Daemon,Physical (Python Thread),Physical,Physical,Synchronization Integrity
+Window Construction,Physical (Algorithm),Physical,Physical,Dataset Extraction Logic

@@ -1,0 +1,4 @@
+q_hat: 2.9048995341661925
+overall_coverage: 24.6031746031746
+interpolation_coverage: 29.761904761904763
+extrapolation_coverage: 14.285714285714285

@@ -1,0 +1,4 @@
+domain_subset,sample_count,mae_qir_pct,rmse_qir_pct,r2_score,conformal_target_coverage_pct,empirical_conformal_coverage_pct,actual_sla_violations_10pct,predicted_sla_violations_10pct,prevented_sla_violations,prevention_rate_pct
+Overall Extrapolation Domain (20 & 750 files),80,22.9724,32.7279,-0.2200,95.00,67.50,34,80,34,100.00
+Lower Extrapolation Domain (20 files),40,10.0755,11.6939,-1.1248,95.00,95.00,9,40,9,100.00
+Upper Extrapolation Domain (750 files),40,35.8693,44.7826,-1.1561,95.00,40.00,25,40,25,100.00

@@ -1,0 +1,7 @@
+Check,Value
+Total Windows,528
+Missing Timestamps,0
+Duplicate Timestamps,0
+Negative Durations,0
+Constant Features Found,current_active_queries
+Temporal Gaps (>5.1s),0
