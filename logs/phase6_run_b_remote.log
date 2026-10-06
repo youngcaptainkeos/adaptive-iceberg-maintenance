@@ -1,0 +1,84 @@
+=== Starting Phase 6C Live Agent Evaluation ===
+  Policy:           CostBenefitPolicy
+  Target Table:     local.tpch_sf100.lineitem
+  Duration:         1.5 hours
+  Output File:      results/phase6_run_b_remote.csv
+Loading models from scripts/phase6-live-evaluation/models...
+[2026-10-07 03:19:05] [LOW 0.11] CostBenefitPolicy -> DEFER | Files: 594 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:20:06] [LOW 0.14] CostBenefitPolicy -> DEFER | Files: 594 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:21:08] [LOW 0.16] CostBenefitPolicy -> DEFER | Files: 595 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:22:32] [LOW 0.20] CostBenefitPolicy -> DEFER | Files: 596 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:23:55] [LOW 0.25] CostBenefitPolicy -> DEFER | Files: 597 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:25:17] [LOW 0.28] CostBenefitPolicy -> DEFER | Files: 598 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:26:37] [MODERATE 0.32] CostBenefitPolicy -> DEFER | Files: 599 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:27:56] [MODERATE 0.35] CostBenefitPolicy -> DEFER | Files: 600 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:29:14] [MODERATE 0.38] CostBenefitPolicy -> DEFER | Files: 601 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:30:32] [MODERATE 0.41] CostBenefitPolicy -> DEFER | Files: 602 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:31:48] [MODERATE 0.43] CostBenefitPolicy -> DEFER | Files: 603 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:33:04] [MODERATE 0.44] CostBenefitPolicy -> DEFER | Files: 604 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:34:19] [MODERATE 0.46] CostBenefitPolicy -> DEFER | Files: 605 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:35:34] [MODERATE 0.47] CostBenefitPolicy -> DEFER | Files: 606 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:36:48] [MODERATE 0.47] CostBenefitPolicy -> DEFER | Files: 607 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:38:02] [MODERATE 0.48] CostBenefitPolicy -> DEFER | Files: 608 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:39:16] [MODERATE 0.48] CostBenefitPolicy -> DEFER | Files: 609 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:40:29] [MODERATE 0.48] CostBenefitPolicy -> DEFER | Files: 610 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:41:43] [MODERATE 0.48] CostBenefitPolicy -> DEFER | Files: 611 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:42:56] [MODERATE 0.48] CostBenefitPolicy -> DEFER | Files: 612 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:44:09] [MODERATE 0.48] CostBenefitPolicy -> DEFER | Files: 613 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:45:23] [MODERATE 0.48] CostBenefitPolicy -> DEFER | Files: 614 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:46:36] [MODERATE 0.49] CostBenefitPolicy -> DEFER | Files: 615 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:47:50] [MODERATE 0.49] CostBenefitPolicy -> DEFER | Files: 616 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:49:02] [MODERATE 0.50] CostBenefitPolicy -> DEFER | Files: 617 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:50:15] [MODERATE 0.52] CostBenefitPolicy -> DEFER | Files: 618 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:51:28] [MODERATE 0.53] CostBenefitPolicy -> DEFER | Files: 619 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:52:40] [MODERATE 0.55] CostBenefitPolicy -> DEFER | Files: 620 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:53:51] [MODERATE 0.58] CostBenefitPolicy -> DEFER | Files: 621 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:55:02] [MODERATE 0.62] CostBenefitPolicy -> DEFER | Files: 622 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:56:12] [MODERATE 0.66] CostBenefitPolicy -> DEFER | Files: 623 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:57:21] [HIGH 0.72] CostBenefitPolicy -> DEFER | Files: 624 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:58:28] [HIGH 0.79] CostBenefitPolicy -> DEFER | Files: 625 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:59:34] [HIGH 0.86] CostBenefitPolicy -> DEFER | Files: 626 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:00:38] [BURST 0.92] CostBenefitPolicy -> DEFER | Files: 627 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:01:39] [BURST 0.96] CostBenefitPolicy -> DEFER | Files: 629 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:02:39] [BURST 0.99] CostBenefitPolicy -> DEFER | Files: 630 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:03:43] [BURST 1.00] CostBenefitPolicy -> DEFER | Files: 631 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:04:45] [BURST 0.99] CostBenefitPolicy -> DEFER | Files: 632 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:05:48] [BURST 0.98] CostBenefitPolicy -> DEFER | Files: 633 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:07:32] [BURST 0.97] CostBenefitPolicy -> DEFER | Files: 635 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:08:32] [BURST 0.96] CostBenefitPolicy -> DEFER | Files: 636 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:09:36] [BURST 0.96] CostBenefitPolicy -> DEFER | Files: 637 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:10:38] [BURST 0.96] CostBenefitPolicy -> DEFER | Files: 638 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:11:39] [BURST 0.96] CostBenefitPolicy -> DEFER | Files: 639 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:12:41] [BURST 0.96] CostBenefitPolicy -> DEFER | Files: 640 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:14:25] [BURST 0.94] CostBenefitPolicy -> DEFER | Files: 642 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:15:25] [BURST 0.92] CostBenefitPolicy -> DEFER | Files: 643 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:16:25] [BURST 0.91] CostBenefitPolicy -> DEFER | Files: 644 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:17:25] [HIGH 0.88] CostBenefitPolicy -> DEFER | Files: 645 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:18:29] [HIGH 0.87] CostBenefitPolicy -> DEFER | Files: 646 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:19:30] [HIGH 0.86] CostBenefitPolicy -> DEFER | Files: 647 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:20:31] [HIGH 0.88] CostBenefitPolicy -> DEFER | Files: 648 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:21:32] [BURST 0.91] CostBenefitPolicy -> DEFER | Files: 649 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:22:32] [BURST 0.93] CostBenefitPolicy -> DEFER | Files: 650 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:23:33] [BURST 0.91] CostBenefitPolicy -> DEFER | Files: 651 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:24:36] [HIGH 0.83] CostBenefitPolicy -> DEFER | Files: 652 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:25:37] [HIGH 0.72] CostBenefitPolicy -> DEFER | Files: 653 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:26:37] [MODERATE 0.59] CostBenefitPolicy -> DEFER | Files: 654 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:27:37] [MODERATE 0.49] CostBenefitPolicy -> DEFER | Files: 654 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:28:46] [MODERATE 0.39] CostBenefitPolicy -> DEFER | Files: 655 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:30:00] [MODERATE 0.32] CostBenefitPolicy -> DEFER | Files: 656 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:31:18] [LOW 0.25] CostBenefitPolicy -> DEFER | Files: 657 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:32:37] [LOW 0.19] CostBenefitPolicy -> DEFER | Files: 658 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:33:59] [LOW 0.14] CostBenefitPolicy -> DEFER | Files: 659 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:35:23] [LOW 0.09] CostBenefitPolicy -> DEFER | Files: 660 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:36:48] [LOW 0.06] CostBenefitPolicy -> DEFER | Files: 661 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:38:15] [LOW 0.03] CostBenefitPolicy -> DEFER | Files: 662 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:39:43] [LOW 0.01] CostBenefitPolicy -> DEFER | Files: 663 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:41:11] [LOW 0.00] CostBenefitPolicy -> DEFER | Files: 664 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:42:40] [LOW 0.00] CostBenefitPolicy -> DEFER | Files: 665 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:44:09] [LOW 0.01] CostBenefitPolicy -> DEFER | Files: 666 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:45:39] [LOW 0.03] CostBenefitPolicy -> DEFER | Files: 667 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:47:07] [LOW 0.06] CostBenefitPolicy -> DEFER | Files: 668 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 04:48:35] [LOW 0.10] CostBenefitPolicy -> DEFER | Files: 669 | C_compact: 0.0 | C_defer: 0.0
+
+Completed target duration of 1.5 hours. Stopping.
+=== Finished Phase 6C Evaluation (results/phase6_run_b_remote.csv) ===

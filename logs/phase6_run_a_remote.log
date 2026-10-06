@@ -1,0 +1,83 @@
+=== Starting Phase 6C Live Agent Evaluation ===
+  Policy:           SOTAThresholdPolicy
+  Target Table:     local.tpch_sf100.lineitem
+  Duration:         1.5 hours
+  Output File:      results/phase6_run_a_remote.csv
+[2026-10-07 01:47:32] [LOW 0.11] SOTAThresholdPolicy -> RUN | Files: 593 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 01:47:32] >>> EXECUTING COMPACTION ON local.tpch_sf100.lineitem <<<
+[2026-10-07 01:47:32] Compaction completed in 172.56s
+[2026-10-07 01:51:25] [LOW 0.22] SOTAThresholdPolicy -> DEFER | Files: 34 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 01:52:39] [LOW 0.25] SOTAThresholdPolicy -> DEFER | Files: 35 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 01:53:41] [LOW 0.28] SOTAThresholdPolicy -> DEFER | Files: 36 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 01:55:02] [MODERATE 0.32] SOTAThresholdPolicy -> DEFER | Files: 37 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 01:56:21] [MODERATE 0.35] SOTAThresholdPolicy -> DEFER | Files: 38 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 01:57:40] [MODERATE 0.38] SOTAThresholdPolicy -> DEFER | Files: 39 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 01:58:58] [MODERATE 0.41] SOTAThresholdPolicy -> DEFER | Files: 40 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:00:14] [MODERATE 0.43] SOTAThresholdPolicy -> DEFER | Files: 41 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:01:30] [MODERATE 0.44] SOTAThresholdPolicy -> DEFER | Files: 42 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:02:46] [MODERATE 0.46] SOTAThresholdPolicy -> DEFER | Files: 43 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:04:01] [MODERATE 0.47] SOTAThresholdPolicy -> DEFER | Files: 44 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:05:14] [MODERATE 0.47] SOTAThresholdPolicy -> DEFER | Files: 45 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:06:29] [MODERATE 0.48] SOTAThresholdPolicy -> DEFER | Files: 46 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:07:42] [MODERATE 0.48] SOTAThresholdPolicy -> DEFER | Files: 47 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:08:56] [MODERATE 0.48] SOTAThresholdPolicy -> DEFER | Files: 48 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:10:10] [MODERATE 0.48] SOTAThresholdPolicy -> DEFER | Files: 49 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:11:24] [MODERATE 0.48] SOTAThresholdPolicy -> DEFER | Files: 50 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:12:37] [MODERATE 0.48] SOTAThresholdPolicy -> DEFER | Files: 51 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:13:51] [MODERATE 0.48] SOTAThresholdPolicy -> DEFER | Files: 52 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:15:05] [MODERATE 0.49] SOTAThresholdPolicy -> DEFER | Files: 53 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:16:20] [MODERATE 0.49] SOTAThresholdPolicy -> DEFER | Files: 54 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:17:33] [MODERATE 0.50] SOTAThresholdPolicy -> DEFER | Files: 55 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:18:45] [MODERATE 0.52] SOTAThresholdPolicy -> DEFER | Files: 56 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:19:58] [MODERATE 0.53] SOTAThresholdPolicy -> DEFER | Files: 57 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:21:10] [MODERATE 0.56] SOTAThresholdPolicy -> DEFER | Files: 58 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:22:21] [MODERATE 0.58] SOTAThresholdPolicy -> DEFER | Files: 59 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:23:32] [MODERATE 0.62] SOTAThresholdPolicy -> DEFER | Files: 60 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:24:42] [MODERATE 0.67] SOTAThresholdPolicy -> DEFER | Files: 61 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:25:51] [HIGH 0.72] SOTAThresholdPolicy -> DEFER | Files: 62 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:26:58] [HIGH 0.79] SOTAThresholdPolicy -> DEFER | Files: 63 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:28:04] [HIGH 0.86] SOTAThresholdPolicy -> DEFER | Files: 64 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:29:06] [BURST 0.92] SOTAThresholdPolicy -> DEFER | Files: 65 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:30:08] [BURST 0.97] SOTAThresholdPolicy -> DEFER | Files: 66 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:31:08] [BURST 0.99] SOTAThresholdPolicy -> DEFER | Files: 68 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:32:09] [BURST 1.00] SOTAThresholdPolicy -> DEFER | Files: 69 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:33:09] [BURST 1.00] SOTAThresholdPolicy -> DEFER | Files: 70 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:34:12] [BURST 0.98] SOTAThresholdPolicy -> DEFER | Files: 71 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:35:15] [BURST 0.97] SOTAThresholdPolicy -> DEFER | Files: 72 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:36:18] [BURST 0.96] SOTAThresholdPolicy -> DEFER | Files: 73 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:37:18] [BURST 0.96] SOTAThresholdPolicy -> DEFER | Files: 74 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:39:00] [BURST 0.96] SOTAThresholdPolicy -> DEFER | Files: 75 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:40:01] [BURST 0.96] SOTAThresholdPolicy -> DEFER | Files: 77 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:41:01] [BURST 0.96] SOTAThresholdPolicy -> DEFER | Files: 78 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:42:03] [BURST 0.95] SOTAThresholdPolicy -> DEFER | Files: 79 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:43:06] [BURST 0.94] SOTAThresholdPolicy -> DEFER | Files: 80 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:44:09] [BURST 0.92] SOTAThresholdPolicy -> DEFER | Files: 81 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:45:09] [HIGH 0.90] SOTAThresholdPolicy -> DEFER | Files: 82 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:46:10] [HIGH 0.88] SOTAThresholdPolicy -> DEFER | Files: 83 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:47:10] [HIGH 0.87] SOTAThresholdPolicy -> DEFER | Files: 84 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:48:11] [HIGH 0.87] SOTAThresholdPolicy -> DEFER | Files: 85 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:49:12] [HIGH 0.89] SOTAThresholdPolicy -> DEFER | Files: 86 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:50:13] [BURST 0.92] SOTAThresholdPolicy -> DEFER | Files: 87 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:51:13] [BURST 0.93] SOTAThresholdPolicy -> DEFER | Files: 88 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:52:55] [HIGH 0.84] SOTAThresholdPolicy -> DEFER | Files: 89 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:53:56] [HIGH 0.73] SOTAThresholdPolicy -> DEFER | Files: 90 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:54:59] [MODERATE 0.60] SOTAThresholdPolicy -> DEFER | Files: 91 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:56:05] [MODERATE 0.48] SOTAThresholdPolicy -> DEFER | Files: 92 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:57:16] [MODERATE 0.39] SOTAThresholdPolicy -> DEFER | Files: 93 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:58:31] [MODERATE 0.31] SOTAThresholdPolicy -> DEFER | Files: 94 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 02:59:49] [LOW 0.25] SOTAThresholdPolicy -> DEFER | Files: 95 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:01:10] [LOW 0.19] SOTAThresholdPolicy -> DEFER | Files: 96 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:02:32] [LOW 0.14] SOTAThresholdPolicy -> DEFER | Files: 97 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:03:58] [LOW 0.09] SOTAThresholdPolicy -> DEFER | Files: 98 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:05:23] [LOW 0.05] SOTAThresholdPolicy -> DEFER | Files: 99 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:06:49] [LOW 0.03] SOTAThresholdPolicy -> DEFER | Files: 100 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:08:18] [LOW 0.01] SOTAThresholdPolicy -> DEFER | Files: 101 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:09:47] [LOW 0.00] SOTAThresholdPolicy -> DEFER | Files: 102 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:11:17] [LOW 0.00] SOTAThresholdPolicy -> DEFER | Files: 103 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:12:47] [LOW 0.02] SOTAThresholdPolicy -> DEFER | Files: 104 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:14:15] [LOW 0.04] SOTAThresholdPolicy -> DEFER | Files: 105 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:15:43] [LOW 0.07] SOTAThresholdPolicy -> DEFER | Files: 106 | C_compact: 0.0 | C_defer: 0.0
+[2026-10-07 03:17:10] [LOW 0.10] SOTAThresholdPolicy -> DEFER | Files: 107 | C_compact: 0.0 | C_defer: 0.0
+
+Completed target duration of 1.5 hours. Stopping.
+=== Finished Phase 6C Evaluation (results/phase6_run_a_remote.csv) ===

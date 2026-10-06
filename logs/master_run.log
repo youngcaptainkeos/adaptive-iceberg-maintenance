@@ -1,0 +1,35 @@
+Stopping existing thrift server...
+stopping org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
+starting org.apache.spark.sql.hive.thriftserver.HiveThriftServer2, logging to /mnt/nfs-storage/student-group-shashanksteam-workspace-group-65-pvc-a7f5bdf1-d041-4da0-b944-bb68f22df1d9/implementation/software/spark-3.3.4/logs/spark-ccbd-org.apache.spark.sql.hive.thriftserver.HiveThriftServer2-1-worker3.out
+Waiting 30s for Spark Thrift Server to bind...
+=== PHASE 6A: Data Collection ===
+=== PHASE 6B: Model Training ===
+=== PHASE 6C: Run A (SOTA) ===
+=== Resetting Table Layout for local.tpch_sf100.lineitem ===
+Found initial snapshot ID: 6121060271004864880 (committed at 2026-10-01 21:01:23.997000)
+Executing: CALL local.system.set_current_snapshot(table => 'local.tpch_sf100.lineitem', snapshot_id => 6121060271004864880)
+Reset result: [(8491284720925121057, 6121060271004864880)]
+Successfully reset local.tpch_sf100.lineitem! Active data file count: 593
+=== PHASE 6C: Run B (Conformal) ===
+=== Resetting Table Layout for local.tpch_sf100.lineitem ===
+Found initial snapshot ID: 6121060271004864880 (committed at 2026-10-01 21:01:23.997000)
+Executing: CALL local.system.set_current_snapshot(table => 'local.tpch_sf100.lineitem', snapshot_id => 6121060271004864880)
+Reset result: [(1625215546309908247, 6121060271004864880)]
+Successfully reset local.tpch_sf100.lineitem! Active data file count: 593
+=== EVALUATION PLOTTING ===
+=== SYNC TO GITHUB ===
+[main 2b79cfd] Phase 6 Remote Execution on SF100
+ 11 files changed, 2356 insertions(+), 62 deletions(-)
+ create mode 100644 logs/master_run.log
+ create mode 100644 logs/phase6_analyze_remote.log
+ create mode 100644 logs/phase6_run_a_remote.log
+ create mode 100644 logs/phase6_run_b_remote.log
+ create mode 100644 logs/phase6a_remote.log
+ create mode 100644 logs/phase6b_remote.log
+ create mode 100644 results/phase6_run_a_remote.csv
+ rewrite results/phase6_run_a_sota.csv (94%)
+ rewrite results/phase6_run_b_conformal.csv (94%)
+ create mode 100644 results/phase6_run_b_remote.csv
+ create mode 100644 results/phase6a_training_data_remote.csv
+fatal: could not read Username for 'https://github.com': No such device or address
+=== DONE ===

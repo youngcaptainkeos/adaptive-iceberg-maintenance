@@ -1,0 +1,13 @@
+Loading results/phase6a_training_data.csv...
+
+--- Training Model A (Compaction Regime) ---
+Samples: 154
+Metrics: MAE=0.0ms, R2=0.000
+Conformal Bound (q_hat): 0.0ms, Coverage: 100.0%
+
+--- Training Model B (Baseline Regime) ---
+Samples: 14093
+Metrics: MAE=0.0ms, R2=0.000
+Conformal Bound (q_hat): 0.0ms, Coverage: 100.0%
+
+Models and metadata successfully saved to scripts/phase6-live-evaluation/models/
