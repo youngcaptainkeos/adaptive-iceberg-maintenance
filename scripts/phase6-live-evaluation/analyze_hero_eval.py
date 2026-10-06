@@ -45,8 +45,8 @@ def analyze_results(df_sota, df_conformal):
         forced_overrides = len(df[df['decision'] == 'FORCED_OVERRIDE'])
         forced_rate = (forced_overrides / max(total_compactions, 1)) * 100.0 if total_compactions > 0 else 0.0
         
-        avg_lat = df['avg_query_latency_ms'].mean()
-        sla_viol_rate = df['sla_violation_rate'].mean()
+        avg_lat = df['p95_query_latency_ms'].mean()
+        sla_viol_rate = df['rolling_sla_violation_rate'].mean()
         total_comp_time = df['compaction_duration_s'].sum()
         total_time_s = df['elapsed_s'].max() if 'elapsed_s' in df.columns else len(df) * 60.0
 
@@ -76,8 +76,8 @@ def plot_hero_evaluation(df_sota, df_conformal, output_path="figures/phase6_hero
     colors = ['#d95f02', '#2b8cbe']
 
     # 1. Cumulative / Avg Query Latency
-    sota_lat = df_sota['avg_query_latency_ms'].mean() if df_sota is not None else 385.0
-    conf_lat = df_conformal['avg_query_latency_ms'].mean() if df_conformal is not None else 192.0
+    sota_lat = df_sota['p95_query_latency_ms'].mean() if df_sota is not None else 385.0
+    conf_lat = df_conformal['p95_query_latency_ms'].mean() if df_conformal is not None else 192.0
     
     ax = axes[0, 0]
     bars = ax.bar(policies, [sota_lat, conf_lat], color=colors, width=0.5, edgecolor='black', linewidth=1.2)
@@ -90,8 +90,8 @@ def plot_hero_evaluation(df_sota, df_conformal, output_path="figures/phase6_hero
                     xytext=(0, 5), textcoords="offset points", ha='center', va='bottom', fontweight='bold')
 
     # 2. SLA Violation Rate
-    sota_sla = df_sota['sla_violation_rate'].mean() if df_sota is not None else 14.8
-    conf_sla = df_conformal['sla_violation_rate'].mean() if df_conformal is not None else 0.0
+    sota_sla = df_sota['rolling_sla_violation_rate'].mean() if df_sota is not None else 14.8
+    conf_sla = df_conformal['rolling_sla_violation_rate'].mean() if df_conformal is not None else 0.0
     
     ax = axes[0, 1]
     bars = ax.bar(policies, [sota_sla, conf_sla], color=colors, width=0.5, edgecolor='black', linewidth=1.2)
@@ -143,16 +143,16 @@ def plot_latency_timeline(df_sota, df_conformal, output_path="figures/phase6_lat
     fig, ax = plt.subplots(figsize=(14, 6))
 
     if df_sota is not None and 'elapsed_s' in df_sota.columns:
-        ax.plot(df_sota['elapsed_s'] / 3600.0, df_sota['avg_query_latency_ms'], label='SOTA Threshold (Databricks)', color='#d95f02', linewidth=2.0, alpha=0.85)
+        ax.plot(df_sota['elapsed_s'] / 3600.0, df_sota['p95_query_latency_ms'], label='SOTA Threshold (Databricks)', color='#d95f02', linewidth=2.0, alpha=0.85)
         # Highlight compactions
         sota_runs = df_sota[df_sota['decision'].isin(['RUN', 'FORCED_OVERRIDE'])]
-        ax.scatter(sota_runs['elapsed_s'] / 3600.0, sota_runs['avg_query_latency_ms'], color='#d95f02', s=80, marker='X', zorder=5, label='SOTA Compaction Event')
+        ax.scatter(sota_runs['elapsed_s'] / 3600.0, sota_runs['p95_query_latency_ms'], color='#d95f02', s=80, marker='X', zorder=5, label='SOTA Compaction Event')
 
     if df_conformal is not None and 'elapsed_s' in df_conformal.columns:
-        ax.plot(df_conformal['elapsed_s'] / 3600.0, df_conformal['avg_query_latency_ms'], label='Temporal Conformal Agent (Ours)', color='#2b8cbe', linewidth=2.2)
+        ax.plot(df_conformal['elapsed_s'] / 3600.0, df_conformal['p95_query_latency_ms'], label='Temporal Conformal Agent (Ours)', color='#2b8cbe', linewidth=2.2)
         # Highlight compactions
         conf_runs = df_conformal[df_conformal['decision'].isin(['RUN', 'FORCED_OVERRIDE'])]
-        ax.scatter(conf_runs['elapsed_s'] / 3600.0, conf_runs['avg_query_latency_ms'], color='#2b8cbe', s=90, marker='o', zorder=6, label='Conformal Compaction Event')
+        ax.scatter(conf_runs['elapsed_s'] / 3600.0, conf_runs['p95_query_latency_ms'], color='#2b8cbe', s=90, marker='o', zorder=6, label='Conformal Compaction Event')
 
     ax.axhline(492.0, color='crimson', linestyle='--', linewidth=1.8, label='Target SLA Threshold (492ms)')
     

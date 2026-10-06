@@ -1,0 +1,2 @@
+Could not connect to any of [('127.0.0.1', 10000)]
+ERROR: Cannot connect to Spark Thrift Server at 127.0.0.1:10000. Could not connect to any of [('127.0.0.1', 10000)]

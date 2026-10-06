@@ -267,9 +267,9 @@ def main():
             lat_compaction = lat_ms if compaction_active else np.nan
             lat_normal = np.nan if compaction_active else lat_ms
 
-            # --- Trigger Compaction (Every 20 mins) ---
-            # 20 mins = 1200 seconds
-            if elapsed_s - last_compaction_time >= 1200.0 and elapsed_s > 60.0:
+            # --- Trigger Compaction (Every 5 mins) ---
+            # 5 mins = 300 seconds
+            if elapsed_s - last_compaction_time >= 300.0 and elapsed_s > 60.0:
                 if not compaction_active:
                     compaction_active = True
                     last_compaction_time = elapsed_s

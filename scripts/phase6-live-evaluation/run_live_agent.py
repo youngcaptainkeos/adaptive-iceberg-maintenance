@@ -235,7 +235,7 @@ def main():
                 else:
                     decision = policy.decide(system_state, point_pred, conformal_ub, tracker)
 
-            print(f"[{t_now}] [{regime} {intensity:.2f}] {policy_name} -> {decision} | Files: {system_state['frag_file_count']} | Latency: {stats['avg_query_latency_ms']:.1f}ms | Conformal UB: {conformal_ub:.1f}ms")
+            print(f"[{t_now}] [{regime} {intensity:.2f}] {policy_name} -> {decision} | Files: {system_state['frag_file_count']} | Latency: {stats['avg_query_latency_ms']:.1f}ms | Conformal UB: {conformal_ub:.1f}ms", flush=True)
 
             compaction_duration = 0.0
             if decision in ["RUN", "FORCED_OVERRIDE"]:

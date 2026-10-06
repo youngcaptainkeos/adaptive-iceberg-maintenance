@@ -1,0 +1,22 @@
+{
+    "features": [
+        "cpu_util_avg_1min",
+        "cpu_util_avg_5min",
+        "cpu_trend",
+        "mem_used_pct",
+        "frag_file_count",
+        "table_size_mb",
+        "avg_file_size_kb",
+        "intensity"
+    ],
+    "model_a": {
+        "q_hat": 0.0,
+        "test_mae": 0.0,
+        "test_coverage": 100.0
+    },
+    "model_b": {
+        "q_hat": 0.0,
+        "test_mae": 0.0,
+        "test_coverage": 100.0
+    }
+}
