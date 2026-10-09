@@ -1,7 +1,0 @@
-policy_name,total_trials_evaluated,mean_qir_pct,p95_qir_pct,max_qir_pct,sla_violation_count_10pct,sla_violation_rate_pct,mean_deferral_count,max_deferral_count,mean_query_delay_ms
-Immediate (Greedy),328,8.6656,63.5921,76.0842,84,25.61,0.00,0,134.28
-No Maintenance,328,0.0000,0.0000,0.0000,0,0.00,0.00,0,0.00
-Static Rule Heuristic,328,2.5089,14.5731,33.4000,40,12.20,0.43,1,63.25
-Point-Estimate (RF),328,1.0357,8.7953,13.2833,9,2.74,0.26,1,43.81
-Split-Conformal (3D),328,-0.9527,1.8953,6.3335,0,0.00,0.67,1,-7.80
-Adaptive Risk-Urgency (3E),328,-0.7196,3.5014,8.2145,0,0.00,0.59,1,-0.42

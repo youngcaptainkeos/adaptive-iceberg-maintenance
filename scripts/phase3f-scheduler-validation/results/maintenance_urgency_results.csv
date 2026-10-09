@@ -1,8 +1,0 @@
-fragmentation_level,sample_count,mean_urgency_score,min_urgency_score,max_urgency_score,urgency_classification
-20,40,18.29,18.29,18.29,LOW
-50,56,20.53,20.53,20.53,LOW
-100,40,26.56,26.56,26.56,LOW
-200,56,38.62,38.62,38.62,MODERATE
-350,40,53.17,53.17,53.17,HIGH
-500,56,61.17,61.17,61.17,HIGH
-750,40,76.00,76.00,76.00,CRITICAL

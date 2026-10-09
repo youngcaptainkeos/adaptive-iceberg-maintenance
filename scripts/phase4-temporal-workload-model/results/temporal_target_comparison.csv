@@ -1,6 +1,0 @@
-Target,Representativeness,Noise_Susceptibility,Actionability,Verdict
-1. Point QIR at t+h,Low,High,Low,Rejected (Ignores interval cost)
-"2. Mean QIR over [t, t+h]",High,Low,High,SELECTED (Captures total degradation)
-"3. Max QIR over [t, t+h]",Moderate,High,Moderate,Rejected (Over-penalizes brief anomalies)
-4. 95th Percentile QIR,Moderate,Moderate,Moderate,Rejected (Too conservative for proactive thresholding)
-5. SLA Violation Indicator,Low,Low,Moderate,Rejected (Binary loss destroys magnitude gradients)

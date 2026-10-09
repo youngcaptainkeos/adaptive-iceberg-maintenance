@@ -1,4 +1,0 @@
-sla_threshold_percentile: 90
-risk_budget_alpha: 0.05
-max_consecutive_deferrals: 3
-compaction_cooldown_seconds: 60
