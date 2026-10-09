@@ -5,7 +5,8 @@ import csv
 import math
 import random
 
-WORKSPACE_DIR = "/media/shashank/Data1/PDocuments/Capstone/implementation"
+import os
+WORKSPACE_DIR = os.environ.get("REPO_DIR", "/media/shashank/Data1/PDocuments/Capstone/implementation")
 PHASE3B_DIR = os.path.join(WORKSPACE_DIR, "scripts/phase3b-predictive-signals")
 RESULTS_DIR = os.path.join(PHASE3B_DIR, "results")
 REPORT_PATH = os.path.join(PHASE3B_DIR, "analysis/phase3b_predictive_signals_report.md")

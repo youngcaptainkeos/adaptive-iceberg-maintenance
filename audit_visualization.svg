@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="640">
+<style>
+.bar { fill: #3498db; }
+.text { font-family: Arial, sans-serif; font-size: 12px; fill: #333; }
+.title { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; fill: #111; }
+</style>
+<text x="20" y="25" class="title">Top 15 Largest Telemetry Sources by Row Count</text>
+<text x="20" y="65" class="text">all.csv</text>
+<rect x="250" y="50" width="400.0" height="20" class="bar"/>
+<text x="660.0" y="65" class="text">7516</text>
+<text x="20" y="105" class="text">all.csv</text>
+<rect x="250" y="90" width="400.0" height="20" class="bar"/>
+<text x="660.0" y="105" class="text">7516</text>
+<text x="20" y="145" class="text">all.csv</text>
+<rect x="250" y="130" width="293.1346460883449" height="20" class="bar"/>
+<text x="553.1346460883449" y="145" class="text">5508</text>
+<text x="20" y="185" class="text">all.csv</text>
+<rect x="250" y="170" width="293.1346460883449" height="20" class="bar"/>
+<text x="553.1346460883449" y="185" class="text">5508</text>
+<text x="20" y="225" class="text">all.csv</text>
+<rect x="250" y="210" width="293.1346460883449" height="20" class="bar"/>
+<text x="553.1346460883449" y="225" class="text">5508</text>
+<text x="20" y="265" class="text">all.csv</text>
+<rect x="250" y="250" width="293.1346460883449" height="20" class="bar"/>
+<text x="553.1346460883449" y="265" class="text">5508</text>
+<text x="20" y="305" class="text">task_telemetry.csv</text>
+<rect x="250" y="290" width="265.7796700372538" height="20" class="bar"/>
+<text x="525.7796700372538" y="305" class="text">4994</text>
+<text x="20" y="345" class="text">phase3b_task_telemetry.csv</text>
+<rect x="250" y="330" width="195.31665779670038" height="20" class="bar"/>
+<text x="455.3166577967004" y="345" class="text">3670</text>
+<text x="20" y="385" class="text">phase3b_system_metrics.csv</text>
+<rect x="250" y="370" width="185.89675359233635" height="20" class="bar"/>
+<text x="445.8967535923364" y="385" class="text">3493</text>
+<text x="20" y="425" class="text">stage_telemetry.csv</text>
+<rect x="250" y="410" width="62.054284193720065" height="20" class="bar"/>
+<text x="322.05428419372004" y="425" class="text">1166</text>
+<text x="20" y="465" class="text">telemetry_extracted.csv</text>
+<rect x="250" y="450" width="62.054284193720065" height="20" class="bar"/>
+<text x="322.05428419372004" y="465" class="text">1166</text>
+<text x="20" y="505" class="text">policy_decisions.csv</text>
+<rect x="250" y="490" width="44.70463012240554" height="20" class="bar"/>
+<text x="304.70463012240555" y="505" class="text">840</text>
+<text x="20" y="545" class="text">loco_fold_predictions.csv</text>
+<rect x="250" y="530" width="35.763704097924425" height="20" class="bar"/>
+<text x="295.7637040979244" y="545" class="text">672</text>
+<text x="20" y="585" class="text">query_runs.csv</text>
+<rect x="250" y="570" width="28.100053219797765" height="20" class="bar"/>
+<text x="288.10005321979776" y="585" class="text">528</text>
+<text x="20" y="625" class="text">phase3b_query_runs.csv</text>
+<rect x="250" y="610" width="22.35231506120277" height="20" class="bar"/>
+<text x="282.3523150612028" y="625" class="text">420</text>
+</svg>

@@ -6,7 +6,8 @@ import math
 import random
 from PIL import Image, ImageDraw
 
-WORKSPACE_DIR = "/media/shashank/Data1/PDocuments/Capstone/implementation"
+import os
+WORKSPACE_DIR = os.environ.get("REPO_DIR", "/media/shashank/Data1/PDocuments/Capstone/implementation")
 PHASE3C_DIR = os.path.join(WORKSPACE_DIR, "scripts/phase3c-uncertainty-aware-scheduler")
 RESULTS_DIR = os.path.join(PHASE3C_DIR, "results")
 PLOTS_DIR = os.path.join(PHASE3C_DIR, "analysis/plots")

@@ -23,7 +23,8 @@ import csv
 import math
 from typing import Dict, Any, List
 
-WORKSPACE_DIR = "/media/shashank/Data1/PDocuments/Capstone/implementation"
+import os
+WORKSPACE_DIR = os.environ.get("REPO_DIR", "/media/shashank/Data1/PDocuments/Capstone/implementation")
 PHASE3B_DIR = os.path.join(WORKSPACE_DIR, "scripts/phase3b-predictive-signals")
 PHASE3D_DIR = os.path.join(WORKSPACE_DIR, "scripts/phase3d-validation-generalization")
 PHASE3E_DIR = os.path.join(WORKSPACE_DIR, "scripts/phase3e-adaptive-scheduler")

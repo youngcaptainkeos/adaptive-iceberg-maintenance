@@ -5,7 +5,8 @@ import json
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import os
 
-WORKSPACE_DIR = "/media/shashank/Data1/PDocuments/Capstone/implementation"
+import os
+WORKSPACE_DIR = os.environ.get("REPO_DIR", "/media/shashank/Data1/PDocuments/Capstone/implementation")
 PHASE3B_DIR = os.path.join(WORKSPACE_DIR, "scripts/phase3b-predictive-signals")
 RESULTS_DIR = os.path.join(PHASE3B_DIR, "results")
 

@@ -13,7 +13,8 @@ from policy.heuristic_policy import HeuristicPolicy
 from policy.predictive_qir_policy import PredictiveQIRPolicy
 from policy.conservative_quantile_policy import ConservativeQuantilePolicy
 
-WORKSPACE_DIR = "/media/shashank/Data1/PDocuments/Capstone/implementation"
+import os
+WORKSPACE_DIR = os.environ.get("REPO_DIR", "/media/shashank/Data1/PDocuments/Capstone/implementation")
 PHASE3B_DIR = os.path.join(WORKSPACE_DIR, "scripts/phase3b-predictive-signals")
 PHASE3C_DIR = os.path.join(WORKSPACE_DIR, "scripts/phase3c-uncertainty-aware-scheduler")
 RESULTS_DIR = os.path.join(PHASE3C_DIR, "results")

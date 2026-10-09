@@ -8,7 +8,8 @@ import seaborn as sns
 from sklearn.linear_model import RidgeCV
 from sklearn.preprocessing import StandardScaler
 
-WORKSPACE_DIR = "/media/shashank/Data1/PDocuments/Capstone/implementation"
+import os
+WORKSPACE_DIR = os.environ.get("REPO_DIR", "/media/shashank/Data1/PDocuments/Capstone/implementation")
 PHASE5_DIR = os.path.join(WORKSPACE_DIR, "scripts/phase5-adaptive-scheduling-agent")
 sys.path.append(PHASE5_DIR)
 

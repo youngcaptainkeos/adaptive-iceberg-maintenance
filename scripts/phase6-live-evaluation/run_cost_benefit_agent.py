@@ -38,6 +38,13 @@ class CostBenefitPolicy:
         self.q_a = self.metadata["model_a"]["q_hat"]
         self.q_b = self.metadata["model_b"]["q_hat"]
         
+        print(f"Model A q_hat: {self.q_a:.1f}ms | Model B q_hat: {self.q_b:.1f}ms")
+        if self.q_a <= 0.0 or self.q_b <= 0.0:
+            print("\n[CRITICAL ERROR] The loaded models have a safety bound of 0.0ms. This means they were trained on corrupted/fake data.")
+            print("Refusing to run the 8-hour experiment with a broken brain. Fix the data and retrain.")
+            sys.exit(1)
+            
+        
     def decide(self, telemetry: dict):
         df = pd.DataFrame([telemetry])
         

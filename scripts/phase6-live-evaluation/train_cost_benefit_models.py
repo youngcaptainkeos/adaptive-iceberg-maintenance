@@ -58,8 +58,16 @@ def evaluate_model(pipeline, q_hat, X_test, y_test):
     
     return {"mae": mae, "r2": r2, "coverage": coverage}
 
+import argparse
+
 def main():
-    data_path = "results/phase6a_training_data.csv"
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input', type=str, required=True, help='Path to training data CSV')
+    parser.add_argument('--model-dir', type=str, default='models/')
+    parser.add_argument('--plot-dir', type=str, default='figures/')
+    args = parser.parse_args()
+    
+    data_path = args.input
     if not os.path.exists(data_path):
         print(f"ERROR: Training data {data_path} not found.")
         sys.exit(1)
@@ -67,6 +75,18 @@ def main():
     print(f"Loading {data_path}...")
     df = pd.read_csv(data_path)
     
+    max_lat = df['query_latency_ms'].max() if 'query_latency_ms' in df.columns else 0.0
+    comp_events = len(df[df['compaction_active'] == True])
+    print(f"[VALIDATION] Max latency: {max_lat:.1f}ms | Compaction events: {comp_events}")
+    
+    if max_lat <= 0.0:
+        print("\n[CRITICAL ERROR] The dataset is entirely filled with 0.0ms latencies or missing them. You cannot train on fake data.")
+        sys.exit(1)
+        
+    if comp_events < 5:
+        print(f"\n[CRITICAL ERROR] Only {comp_events} compaction events found. The dataset is invalid. You must run Phase 6A properly.")
+        sys.exit(1)
+        
     # Forward fill NaNs for telemetry, drop NaNs in targets
     df['frag_file_count'] = df['frag_file_count'].ffill()
     df['table_size_mb'] = df['table_size_mb'].ffill()
@@ -135,7 +155,11 @@ def main():
         sys.exit(1)
 
     # --- Save Models ---
-    out_dir = "scripts/phase6-live-evaluation/models"
+    if q_hat_a <= 0.0 or q_hat_b <= 0.0:
+        print("\n[CRITICAL ERROR] q_hat evaluated to 0.0. The models learned nothing. Refusing to save broken models.")
+        sys.exit(1)
+        
+    out_dir = args.model_dir
     os.makedirs(out_dir, exist_ok=True)
     
     joblib.dump(model_a, f"{out_dir}/model_a_compaction.joblib")

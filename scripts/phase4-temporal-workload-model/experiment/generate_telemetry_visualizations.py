@@ -5,7 +5,8 @@ import seaborn as sns
 import os
 import matplotlib.patches as patches
 
-WORKSPACE_DIR = "/media/shashank/Data1/PDocuments/Capstone/implementation"
+import os
+WORKSPACE_DIR = os.environ.get("REPO_DIR", "/media/shashank/Data1/PDocuments/Capstone/implementation")
 PHASE4_DIR = os.path.join(WORKSPACE_DIR, "scripts/phase4-temporal-workload-model")
 RESULTS_DIR = os.path.join(PHASE4_DIR, "results")
 

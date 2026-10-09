@@ -7,7 +7,8 @@ import subprocess
 import argparse
 import random
 
-WORKSPACE_DIR = "/media/shashank/Data1/PDocuments/Capstone/implementation"
+import os
+WORKSPACE_DIR = os.environ.get("REPO_DIR", "/media/shashank/Data1/PDocuments/Capstone/implementation")
 PHASE3B_RUNNER_DIR = os.path.join(WORKSPACE_DIR, "scripts/phase3b-predictive-signals/runner")
 sys.path.append(PHASE3B_RUNNER_DIR)
 
