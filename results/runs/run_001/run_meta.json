@@ -1,0 +1,24 @@
+{
+    "run_id": "run_001",
+    "run_number": 1,
+    "type": "mini_validation",
+    "description": "45-Minute Mini Validation Dry Run (Passed at 19:34 IST)",
+    "status": "completed",
+    "created_at": "2026-10-12 19:48:21",
+    "completed_at": "2026-10-12 19:48:21",
+    "git_commit": "9b76260",
+    "paths": {
+        "root": "results/runs/run_001",
+        "data": "results/runs/run_001/data",
+        "models": "results/runs/run_001/models",
+        "eval": "results/runs/run_001/eval",
+        "training_data": "results/runs/run_001/data/training_data.csv",
+        "run_a_baseline": "results/runs/run_001/eval/run_a_baseline.csv",
+        "run_b_costbenefit": "results/runs/run_001/eval/run_b_costbenefit.csv"
+    },
+    "metrics": {
+        "p95_latency_costbenefit_ms": 4139.0,
+        "p95_latency_baseline_ms": 23504.0,
+        "active_files": 33
+    }
+}

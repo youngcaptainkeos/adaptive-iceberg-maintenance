@@ -70,6 +70,7 @@ def parse_args():
     parser.add_argument("--host", type=str, default="127.0.0.1", help="Spark Thrift Server host")
     parser.add_argument("--port", type=int, default=10000, help="Spark Thrift Server port")
     parser.add_argument("--duration-hours", type=float, default=8.0, help="Total test duration in hours")
+    parser.add_argument("--model-dir", type=str, default="scripts/phase6-live-evaluation/models", help="Directory containing trained models")
     parser.add_argument("--output", type=str, required=True, help="Output CSV path")
     return parser.parse_args()
 
@@ -86,12 +87,13 @@ def main():
     print(f"  Policy:           {args.policy}")
     print(f"  Target Table:     {args.table}")
     print(f"  Duration:         {args.duration_hours} hours")
+    print(f"  Model Directory:  {args.model_dir}")
     print(f"  Output File:      {args.output}")
 
     if args.policy == "SOTAThresholdPolicy":
         policy = SOTAThresholdPolicy(frag_file_threshold=200, min_file_size_mb=16.0)
     else:
-        policy = CostBenefitPolicy()
+        policy = CostBenefitPolicy(model_dir=args.model_dir)
 
     trace_mapper = GoogleTraceMapper(test_duration_hours=args.duration_hours)
     read_driver = WorkloadDriver(host=args.host, port=args.port, table=args.table, trace_mapper=trace_mapper)

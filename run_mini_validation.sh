@@ -37,21 +37,25 @@ else
     echo "Spark Thrift Server is already running on port 10000."
 fi
 
-mkdir -p results
-mkdir -p scripts/phase6-live-evaluation/models
+# Initialize isolated run directory
+eval $(python3 scripts/run_manager.py init --type "mini_validation" --desc "45-Minute Mini Validation Dry Run" --bash)
+echo "-----------------------------------------------------"
+echo "  Executing Run:       $RUN_ID"
+echo "  Artifact Directory:  $RUN_DIR"
+echo "-----------------------------------------------------"
 
 echo ""
 echo "--- STEP 1: MINI DATA COLLECTION (15 MINS) ---"
 # 0.25 hours = 15 minutes
 python3 scripts/phase6-live-evaluation/collect_training_data.py \
     --duration-hours 0.25 \
-    --output results/phase6a_mini_training_data.csv
+    --output "$TRAINING_DATA"
 
 echo ""
 echo "--- STEP 2: TRAIN MINI MODELS ---"
 python3 scripts/phase6-live-evaluation/train_cost_benefit_models.py \
-    --input results/phase6a_mini_training_data.csv \
-    --output-dir scripts/phase6-live-evaluation/models
+    --input "$TRAINING_DATA" \
+    --output-dir "$MODELS_DIR"
 
 echo ""
 echo "--- STEP 3: MINI A/B EVALUATION ---"
@@ -59,18 +63,27 @@ echo "Starting 15-min Baseline evaluation..."
 python3 scripts/phase6-live-evaluation/reset_table_state.py
 python3 scripts/phase6-live-evaluation/run_cost_benefit_agent.py \
     --policy SOTAThresholdPolicy \
+    --model-dir "$MODELS_DIR" \
     --duration-hours 0.25 \
-    --output results/phase6c_mini_run_a_baseline.csv
+    --output "$RUN_A_CSV"
 
 echo "Starting 15-min Cost-Benefit Optimizer evaluation..."
 python3 scripts/phase6-live-evaluation/reset_table_state.py
 python3 scripts/phase6-live-evaluation/run_cost_benefit_agent.py \
     --policy CostBenefitPolicy \
+    --model-dir "$MODELS_DIR" \
     --duration-hours 0.25 \
-    --output results/phase6c_mini_run_b_costbenefit.csv
+    --output "$RUN_B_CSV"
+
+# Also update legacy/root pointers for backward compatibility
+cp "$TRAINING_DATA" results/phase6a_mini_training_data.csv 2>/dev/null || true
+cp "$RUN_A_CSV" results/phase6c_mini_run_a_baseline.csv 2>/dev/null || true
+cp "$RUN_B_CSV" results/phase6c_mini_run_b_costbenefit.csv 2>/dev/null || true
+cp "$MODELS_DIR"/* scripts/phase6-live-evaluation/models/ 2>/dev/null || true
+
+python3 scripts/run_manager.py complete "$RUN_ID" --status "completed"
 
 echo ""
 echo "====================================================="
-echo "   MINI VALIDATION COMPLETE! IF THIS DID NOT CRASH, "
-echo "   THE 20-HOUR RUN IS SAFE TO EXECUTE."
+echo "   MINI VALIDATION COMPLETE! RUN SAVED TO $RUN_DIR"
 echo "====================================================="

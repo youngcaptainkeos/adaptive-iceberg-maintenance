@@ -17,4 +17,5 @@ metastore_db/
 datasets/tpch/sf100/
 spark-events/
 *.inprogress
-
+__pycache__/
+*.pyc

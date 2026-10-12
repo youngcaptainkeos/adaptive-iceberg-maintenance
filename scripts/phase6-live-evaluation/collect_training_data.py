@@ -195,6 +195,9 @@ def main():
     write_driver = WriteDriver(host=args.host, port=args.port, table=args.table, trace_mapper=trace_mapper)
 
     # Write CSV Header
+    out_dir = os.path.dirname(args.output)
+    if out_dir:
+        os.makedirs(out_dir, exist_ok=True)
     header = ("timestamp,elapsed_s,cpu_util_pct,cpu_util_avg_1min,cpu_util_avg_5min,cpu_trend,"
               "mem_used_pct,disk_io_read_bytes,disk_io_write_bytes,frag_file_count,table_size_mb,"
               "avg_file_size_kb,intensity,compaction_active,query_latency_ms,query_latency_during_compaction_ms\n")
