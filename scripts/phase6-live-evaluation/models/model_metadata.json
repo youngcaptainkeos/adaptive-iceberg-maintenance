@@ -10,13 +10,13 @@
         "intensity"
     ],
     "model_a": {
-        "q_hat": 0.0,
-        "test_mae": 0.0,
+        "q_hat": 0.7280877856028383,
+        "test_mae": 0.5813897107789672,
         "test_coverage": 100.0
     },
     "model_b": {
-        "q_hat": 0.0,
-        "test_mae": 0.0,
-        "test_coverage": 100.0
+        "q_hat": 31138.6084972276,
+        "test_mae": 25648.38930736917,
+        "test_coverage": 71.42857142857143
     }
 }
