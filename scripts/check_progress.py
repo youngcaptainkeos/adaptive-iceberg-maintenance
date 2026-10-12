@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-Live Progress Monitor for Phase 6 20-Hour Live Evaluation.
-Can be run on the remote server or invoked via SSH.
+Zero-Dependency Live Progress Monitor for Phase 6 20-Hour Live Evaluation.
+Uses only standard library (csv, os, sys, subprocess) - requires NO pandas or numpy.
 """
 
 import os
 import sys
+import csv
 import subprocess
 from datetime import datetime
 
@@ -29,29 +30,44 @@ def inspect_data_collection():
     if not os.path.exists(csv_path):
         return None
     try:
-        import pandas as pd
-        df = pd.read_csv(csv_path)
-        rows = len(df)
-        if rows == 0:
-            return None
-        elapsed_m = df["elapsed_s"].iloc[-1] / 60.0
-        pct = min((elapsed_m / 240.0) * 100.0, 100.0)
-        queries = df["query_latency_ms"].dropna().count()
-        comp_ticks = df["compaction_active"].sum()
-        current_files = df["frag_file_count"].iloc[-1]
-        cpu = df["cpu_util_pct"].iloc[-1]
-        mem = df["mem_used_pct"].iloc[-1]
-        return {
-            "elapsed_m": elapsed_m,
-            "target_m": 240.0,
-            "pct": pct,
-            "rows": rows,
-            "queries": queries,
-            "comp_ticks": comp_ticks,
-            "current_files": current_files,
-            "cpu": cpu,
-            "mem": mem
-        }
+        with open(csv_path, "r", encoding="utf-8", errors="ignore") as f:
+            reader = csv.DictReader(f)
+            rows = 0
+            queries = 0
+            comp_ticks = 0
+            last_row = None
+            for r in reader:
+                rows += 1
+                last_row = r
+                q_lat = r.get("query_latency_ms")
+                if q_lat and q_lat != "nan" and q_lat != "":
+                    try:
+                        if float(q_lat) > 0:
+                            queries += 1
+                    except ValueError:
+                        pass
+                if r.get("compaction_active") == "True":
+                    comp_ticks += 1
+                    
+            if rows == 0 or last_row is None:
+                return None
+                
+            elapsed_m = float(last_row.get("elapsed_s", 0)) / 60.0
+            pct = min((elapsed_m / 240.0) * 100.0, 100.0)
+            current_files = last_row.get("frag_file_count", "N/A")
+            cpu = float(last_row.get("cpu_util_pct", 0))
+            mem = float(last_row.get("mem_used_pct", 0))
+            return {
+                "elapsed_m": elapsed_m,
+                "target_m": 240.0,
+                "pct": pct,
+                "rows": rows,
+                "queries": queries,
+                "comp_ticks": comp_ticks,
+                "current_files": current_files,
+                "cpu": cpu,
+                "mem": mem
+            }
     except Exception as e:
         return {"error": str(e)}
 
@@ -60,24 +76,30 @@ def inspect_eval_progress(filename, target_hours=8.0):
     if not os.path.exists(csv_path):
         return None
     try:
-        import pandas as pd
-        df = pd.read_csv(csv_path)
-        rows = len(df)
-        if rows == 0:
-            return None
-        elapsed_m = df["elapsed_s"].iloc[-1] / 60.0
-        target_m = target_hours * 60.0
-        pct = min((elapsed_m / target_m) * 100.0, 100.0)
-        last_p95 = df["p95_query_latency_ms"].iloc[-1]
-        compactions = (df["decision"] == "RUN").sum()
-        return {
-            "elapsed_m": elapsed_m,
-            "target_m": target_m,
-            "pct": pct,
-            "steps": rows,
-            "last_p95": last_p95,
-            "compactions": compactions
-        }
+        with open(csv_path, "r", encoding="utf-8", errors="ignore") as f:
+            reader = csv.DictReader(f)
+            rows = 0
+            compactions = 0
+            last_row = None
+            for r in reader:
+                rows += 1
+                last_row = r
+                if r.get("decision") == "RUN":
+                    compactions += 1
+            if rows == 0 or last_row is None:
+                return None
+            elapsed_m = float(last_row.get("elapsed_s", 0)) / 60.0
+            target_m = target_hours * 60.0
+            pct = min((elapsed_m / target_m) * 100.0, 100.0)
+            last_p95 = float(last_row.get("p95_query_latency_ms", 0))
+            return {
+                "elapsed_m": elapsed_m,
+                "target_m": target_m,
+                "pct": pct,
+                "steps": rows,
+                "last_p95": last_p95,
+                "compactions": compactions
+            }
     except Exception as e:
         return {"error": str(e)}
 
