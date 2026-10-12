@@ -4,12 +4,38 @@
 
 set -e # Exit immediately if a command exits with a non-zero status.
 
-export REPO_DIR="/media/ccbd/ab97a8fa-c92f-4b3f-b770-711e278ce987/CAPSTONE_PRAFULATHA_SHASHANKS_DONT_DELETE/implementation"
-cd $REPO_DIR
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$REPO_DIR"
 
 echo "====================================================="
 echo "   PHASE 6 MASTER PIPELINE EXECUTION (NO HACKS)"
 echo "====================================================="
+
+# Ensure Spark Thrift Server is running
+echo "Checking Spark Thrift Server status on port 10000..."
+if ! python3 -c 'import socket; s=socket.socket(); s.settimeout(1); s.connect(("127.0.0.1", 10000)); s.close()' 2>/dev/null; then
+    echo "Spark Thrift Server is not running. Starting Spark Thrift Server..."
+    export SPARK_LOCAL_IP=127.0.0.1
+    "$REPO_DIR/software/spark-3.3.4/sbin/start-thriftserver.sh" \
+        --master "local[16]" \
+        --driver-memory 16g \
+        --conf spark.sql.catalog.local=org.apache.iceberg.spark.SparkCatalog \
+        --conf spark.sql.catalog.local.type=hadoop \
+        --conf "spark.sql.catalog.local.warehouse=$REPO_DIR/warehouse" \
+        --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions \
+        --conf spark.eventLog.enabled=false
+
+    echo "Waiting for Spark Thrift Server to bind to port 10000..."
+    for i in {1..30}; do
+        if python3 -c 'import socket; s=socket.socket(); s.settimeout(1); s.connect(("127.0.0.1", 10000)); s.close()' 2>/dev/null; then
+            echo "Spark Thrift Server is successfully running and accepting connections on port 10000."
+            break
+        fi
+        sleep 2
+    done
+else
+    echo "Spark Thrift Server is already running on port 10000."
+fi
 
 echo ""
 echo "--- STEP 1: PREPARE WORKSPACE ---"

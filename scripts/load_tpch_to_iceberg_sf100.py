@@ -21,7 +21,8 @@ EXPECTED_ROW_COUNTS = {
 }
 
 def main():
-    project_root = "/media/shashank/Data1/PDocuments/Capstone/implementation"
+    import os
+    project_root = os.environ.get("REPO_DIR", "/media/shashank/Data1/PDocuments/Capstone/implementation")
     warehouse_path = os.path.join(project_root, "warehouse")
     warehouse_uri = "file://" + os.path.abspath(warehouse_path)
     
