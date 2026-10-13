@@ -1,0 +1,43 @@
+{
+  "purpose": "physical_correctness_only",
+  "source": {
+    "path": "../../datasets/tpch/sf1/lineitem.tbl",
+    "sha256": "96d555e07a1ae8cf5196387d9edd9427f9af70c56fa5f4b18affee5555ddb184"
+  },
+  "generator_provenance": {
+    "path": "../../datasets/tpch/sf1/manifest.txt",
+    "sha256": "d2d80966fe1fa8790c35ea3ed6242b4d9ef2740cad888c84bd986348e9c39a32"
+  },
+  "engine": {
+    "host": "127.0.0.1",
+    "port": 10000,
+    "username": "ccbd",
+    "expected_version": "3.3.4"
+  },
+  "spark_rest_url": "http://127.0.0.1:4040",
+  "spark_app_id": "local-1791896695889",
+  "rest_timeout_seconds": 5,
+  "schema_version": "physical_correctness_pilot_v1",
+  "experiment_id": "sf1_correctness_pilot_20261014_0054",
+  "configuration_rationale": "One preregistered physical measurement integrity pilot on verified SF1; four existing query templates run as controls, simultaneous diagnostic clients with one real binpack rewrite, then post-rewrite. This offered-load pattern tests instrumentation, not a traced workload. Default Iceberg binpack eligibility; atomic commit only. Require at least one verified overlap to demonstrate the physical path; non-overlapping queries must not be treatment labels. No model/benefit claim. Preserve the measured source file count by explicit repartitioning in the diagnostic clone; ordinary CTAS may coalesce scan tasks and fail to provide meaningful multi-file rewrite eligibility. This layout intervention is recorded and does not represent naturally observed fragmentation. Registered second pilot after explicit post-commit session-refresh repair; acceptance gates unchanged from first pilot, retained separately as failed evidence.",
+  "preparation_result": {
+    "path": "../../results/sf1_source_integrity_20261014_0024/result.json",
+    "sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57"
+  },
+  "destination_table": "local.experiment.integrity_pilot_20261014_0054",
+  "output_directory": "../../results/sf1_correctness_pilot_20261014_0054",
+  "rewrite_options": {
+    "partial-progress.enabled": "false"
+  },
+  "minimum_overlap_queries": 1,
+  "telemetry": {
+    "interval_seconds": 1,
+    "window_seconds": 60,
+    "warmup_seconds": 65,
+    "max_interval_seconds": 2,
+    "max_age_seconds": 2,
+    "minimum_coverage_fraction": 0.95,
+    "rationale": "One-second host counter sampling independent of queries, 60-second historical window, five-second warmup margin; tolerate at most two-second gap/freshness and require 95% measured coverage. These are explicit observer-integrity tolerances, not policy/model accuracy thresholds. 300-second windows remain separately unvalidated."
+  },
+  "layout": "repartition_to_verified_source_file_count"
+}
