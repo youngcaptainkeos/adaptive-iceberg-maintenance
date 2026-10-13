@@ -818,3 +818,12 @@ submission freshness. Next Q0 protocol requires this gate. Preserved Q1 has no s
 context and remains diagnostic-only; no inferred/backfilled windows. Export keeps
 pre-action decision records separate from query-submission measurements. Common-
 horizon cost methodology and statistical acceptance are still unimplemented.
+
+Q1 measured export copied to worker3, all four files SHA256 matched; manifest
+`matched_observation_export_mirror_2026-10-14.json`. Q0/action-boundary repair commit
+`38f0514` pushed, worker3 fast-forwarded, HEAD and all seven unit hashes matched.
+No active own pilot/collector or Spark jobs at next launch. Q0 **PID404461**, full
+execution `38f0514da328a9cea58d7e9e8aef0da881c7ec41`, artifacts
+`results/sf1_matched_q0_20261014/`, matching launch log/JSON receipt. Launched at
+approximately 05:19 IST, before the physical cutoff; result pending. Require actual
+pre-action binding and exposure; preserve any failure/new table, never cancel work.

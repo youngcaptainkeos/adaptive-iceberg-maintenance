@@ -47,7 +47,7 @@ correctness; 03:30–05:45 next ready validation/collection; 05:45–06:15 audit
 Legacy collector/evaluator/reset/launchers remain blocked until explicitly repaired.
 No publication-readiness or forecasting claim follows from a correctness pilot.
 
-## Current queue state (05:04 IST)
+## Current queue state (05:21 IST)
 
 - Completed bounded event/telemetry primitives and real 60-second pre-query windows.
 - Completed isolated verified SF1 source preparation and repaired query/rewrite pilot.
@@ -92,10 +92,13 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
 - Completed first past-only learned-count vs persistence/day/week diagnostic.
   Learned count MAE lower on this one held-out warehouse; prediction/metric audit
   passed, no forecast uncertainty/scheduling/Model C acceptance claim.
-- Running first isolated matched measurement-integrity pilot, worker3 PID399708,
-  execution208f6a1; `results/sf1_matched_measurement_20261014/` and matching
-  launch log/receipt. Original-snapshot before/during/after, separate compacted probe,
-  exact windows/metadata binding. Audit success/failure before another physical run.
+- Q1 original-snapshot matched pilot passed, original16→compacted1 file, exact
+  6,001,215 rows preserved, 2.63s treatment task overlap and all windows bound.
+  Four measured query records exported/mirrored; missing pre-action decision
+  features remain absent and Q1 is not controller-training data.
+- Running Q0 matched pilot with explicit pre-action maintenance UUID/windows,
+  worker3 PID404461, execution38f0514; `results/sf1_matched_q0_20261014/` and
+  matching launch log/receipt. Audit raw decision/query/snapshot/task gates first.
 - Next after this gate: broaden independent matched episodes/queries/layouts and
   training export schema; one matched point is not a variance/training corpus. Do not train cost
   models on this correctness pilot or silently use partial/cluster data as SQL demand.

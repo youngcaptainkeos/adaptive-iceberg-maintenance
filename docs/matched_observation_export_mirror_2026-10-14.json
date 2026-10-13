@@ -1,0 +1,12 @@
+{
+  "schema_version": "matched_diagnostic_export_mirror_v1",
+  "all_file_sha256_match": true,
+  "files": {
+    "export_code.py": "7296b431d6e168787e57b176cd6eade8348f228f01c09235876f4f68f6db06cc",
+    "export_record.json": "b2f0435584012d06e0d3eb16eaa3db2f0bdd8929520fa7cae81ec22d6cc46ebe",
+    "query_observations.csv": "b71dc498833c4d9cff170e8b54a024b7fcee1b93290da05ca58c3dbf6bdf6480",
+    "source_config.json": "bf168ee6c330811b3908b0764dc5c8634aa1d5fdb0f37fe9e300aa15e61380c0",
+    "source_result.json": "d1a0850f9a36778e751d6050092e3ad7d2f4ce847272177a5b5f3ef400f80c39"
+  },
+  "scope": "Four actual Q1 query observations only; missing pre-action decision context remains absent and no training acceptance."
+}
