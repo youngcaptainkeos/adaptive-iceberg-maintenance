@@ -1,0 +1,88 @@
+{
+  "profile": {
+    "schema_version": "reported_task_creation_profile_v1",
+    "checked_at": "2026-10-13T19:43:48.423740+00:00",
+    "archive_sha256": "b7efe9dc9caa75352de41b9ac34b329602cde3414fd7cab87c1d21a9a9871d66",
+    "member_sha256": "50f3c50ab4a917ad06c1cee6ec601e1356708774d7962503e8eafdd720b2286d",
+    "strict_audit_sha256": "9819dfda937e0865a0913fa363d7f09f07ccab70e6b9de0d588a939dda08c83d",
+    "transformation_code_sha256": "6c076d5fdd8be490c340f7d7bfd772562164c9af218249a2329ac3f185d564a6",
+    "event_csv_sha256": "00b6428ec470cd3d9d786b91e555f03c790ddca8173864333faf351fa7379001",
+    "source_rows": 80553,
+    "positive_creation_events": 80386,
+    "excluded_censored_events": {
+      "negative_pretrace": 167
+    },
+    "first_positive_timestamp_s": 5,
+    "last_positive_timestamp_s": 60181,
+    "distinct_event_seconds": 12051,
+    "maximum_reported_events_in_one_second": 155,
+    "largest_between_event_gaps": [
+      {
+        "seconds": 383,
+        "previous_event_s": 59798,
+        "next_event_s": 60181
+      },
+      {
+        "seconds": 147,
+        "previous_event_s": 21317,
+        "next_event_s": 21464
+      },
+      {
+        "seconds": 130,
+        "previous_event_s": 21061,
+        "next_event_s": 21191
+      },
+      {
+        "seconds": 112,
+        "previous_event_s": 7856,
+        "next_event_s": 7968
+      },
+      {
+        "seconds": 103,
+        "previous_event_s": 3931,
+        "next_event_s": 4034
+      },
+      {
+        "seconds": 90,
+        "previous_event_s": 18412,
+        "next_event_s": 18502
+      },
+      {
+        "seconds": 88,
+        "previous_event_s": 32336,
+        "next_event_s": 32424
+      },
+      {
+        "seconds": 85,
+        "previous_event_s": 19311,
+        "next_event_s": 19396
+      },
+      {
+        "seconds": 81,
+        "previous_event_s": 15982,
+        "next_event_s": 16063
+      },
+      {
+        "seconds": 78,
+        "previous_event_s": 59656,
+        "next_event_s": 59734
+      }
+    ],
+    "time_mapping": "Original relative timestamps retained; sorted only, no compression, repetition, interpolation or padding",
+    "scope": "Reported cluster-task creations only; candidate for reviewed mapping, not SQL arrivals or executable trace manifest",
+    "limitations": [
+      "Creation times are reported in a final task table, not a complete database submission log",
+      "No claim of observation coverage after last event or inside event-free gaps",
+      "CPU/memory plans and final task status omitted; missing resources not imputed and future outcome not used",
+      "No SQL text/query mix/ingestion demand or single-server scaling established",
+      "No inferred arrivals at time zero for negative/censored timestamps"
+    ]
+  },
+  "candidate_directory": "results/alibaba_task_arrival_candidate_20261014",
+  "artifact_checks": [
+    "All 80386 positive source records retained with unique job/task identities",
+    "Original positive timestamps sorted without remapping",
+    "CSV and frozen transformation hashes verified"
+  ],
+  "profile_sha256": "6a477704caeb3acbde47c152caffafe2c25e84183188d2269214dbf138d16f50"
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": "sf100_cross_machine_source_review_v1",
+  "all_eight_tables_match": true,
+  "total_bytes": 114641618862,
+  "tables": [
+    {
+      "table": "customer",
+      "rows": 15000000,
+      "bytes": 2463490271,
+      "sha256": "874a0706b4bbcc83acbbf9bad94fa2d4cb7207febc0d39f45b982575893efb4c"
+    },
+    {
+      "table": "lineitem",
+      "rows": 600037902,
+      "bytes": 79579694556,
+      "sha256": "a2c8297c696219df20db5429a79e9fa790ce146d8334b8e4b014bdf2102adb0b"
+    },
+    {
+      "table": "nation",
+      "rows": 25,
+      "bytes": 2224,
+      "sha256": "66f96949939fa8fdf1c4ffed1e5f6c2842fe11a14b51fdc6ed1e17460031e8c5"
+    },
+    {
+      "table": "orders",
+      "rows": 150000000,
+      "bytes": 17793116301,
+      "sha256": "34a4eec283e92c247286e411f4ac40954b5d6e71b6020cc7e0526fbe5b96a048"
+    },
+    {
+      "table": "part",
+      "rows": 20000000,
+      "bytes": 2453234158,
+      "sha256": "f99c3ed834b1cf40d18d364e25d53cc7d0b4e9eed84e865b69b07faafecd66d5"
+    },
+    {
+      "table": "partsupp",
+      "rows": 80000000,
+      "bytes": 12209211160,
+      "sha256": "849c70e15f30d8462461184d6dd9e8187b2ec753361a0108e5de9eb3a10945d7"
+    },
+    {
+      "table": "region",
+      "rows": 5,
+      "bytes": 389,
+      "sha256": "6022658d673924389b54dcb70fa8c3d6da1b0d7afa3c1c017bab62a019df404f"
+    },
+    {
+      "table": "supplier",
+      "rows": 1000000,
+      "bytes": 142869803,
+      "sha256": "40a0a3d997e46fd5f8b64f368c6e9603696ef6db5416d8efb5d441c6fa62f4cf"
+    }
+  ],
+  "local_elapsed_seconds": 186.10105459899933,
+  "remote_elapsed_seconds": 647.8092684749281,
+  "scope": "Actual full-byte hashes and newline counts on both machines; no typed parsing, generator authenticity or Iceberg snapshot-equivalence claim",
+  "remaining": [
+    "Generator/build provenance absent",
+    "Typed field and relational integrity checks pending",
+    "Existing SF100 table has later appended snapshots; immutable control source still needed"
+  ]
+}

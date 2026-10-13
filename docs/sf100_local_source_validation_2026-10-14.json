@@ -1,0 +1,87 @@
+{
+  "schema_version": "tpch_source_inventory_v1",
+  "host": "shashlaptop",
+  "started_at": "2026-10-13T19:40:28.261765+00:00",
+  "scale_factor_declared": 100,
+  "rationale": "Fresh full-byte source hashes and actual row counts to close dataset-readiness gap; no latency pilot while these I/O scans are active. SF100 generation manifest is absent, so this cannot certify generator provenance.",
+  "scope": "Fresh full-byte hashes and newline row counts; not typed parsing or generator authenticity",
+  "tool_sha256": "444d46eb0820fc89b19d38b8941ed6a4a6d82cbe7dbc6726943bf31e220a1d21",
+  "code_revision": "70d38633c7840b9cfa5084b8fb527f2d02361ef1",
+  "generator_manifest_present": false,
+  "tables": [
+    {
+      "table": "customer",
+      "path": "/media/shashank/Data1/PDocuments/Capstone/implementation/datasets/tpch/sf100/customer.tbl",
+      "bytes": 2463490271,
+      "rows": 15000000,
+      "sha256": "874a0706b4bbcc83acbbf9bad94fa2d4cb7207febc0d39f45b982575893efb4c",
+      "mtime_ns": 1790867169839776300,
+      "elapsed_seconds": 3.9062327800056664
+    },
+    {
+      "table": "lineitem",
+      "path": "/media/shashank/Data1/PDocuments/Capstone/implementation/datasets/tpch/sf100/lineitem.tbl",
+      "bytes": 79579694556,
+      "rows": 600037902,
+      "sha256": "a2c8297c696219df20db5429a79e9fa790ce146d8334b8e4b014bdf2102adb0b",
+      "mtime_ns": 1790867169839350300,
+      "elapsed_seconds": 129.2790294610022
+    },
+    {
+      "table": "nation",
+      "path": "/media/shashank/Data1/PDocuments/Capstone/implementation/datasets/tpch/sf100/nation.tbl",
+      "bytes": 2224,
+      "rows": 25,
+      "sha256": "66f96949939fa8fdf1c4ffed1e5f6c2842fe11a14b51fdc6ed1e17460031e8c5",
+      "mtime_ns": 1790867169838963300,
+      "elapsed_seconds": 0.0005016419891035184
+    },
+    {
+      "table": "orders",
+      "path": "/media/shashank/Data1/PDocuments/Capstone/implementation/datasets/tpch/sf100/orders.tbl",
+      "bytes": 17793116301,
+      "rows": 150000000,
+      "sha256": "34a4eec283e92c247286e411f4ac40954b5d6e71b6020cc7e0526fbe5b96a048",
+      "mtime_ns": 1790867169839407800,
+      "elapsed_seconds": 28.848173516002134
+    },
+    {
+      "table": "part",
+      "path": "/media/shashank/Data1/PDocuments/Capstone/implementation/datasets/tpch/sf100/part.tbl",
+      "bytes": 2453234158,
+      "rows": 20000000,
+      "sha256": "f99c3ed834b1cf40d18d364e25d53cc7d0b4e9eed84e865b69b07faafecd66d5",
+      "mtime_ns": 1790867169839095200,
+      "elapsed_seconds": 3.9923903699964285
+    },
+    {
+      "table": "partsupp",
+      "path": "/media/shashank/Data1/PDocuments/Capstone/implementation/datasets/tpch/sf100/partsupp.tbl",
+      "bytes": 12209211160,
+      "rows": 80000000,
+      "sha256": "849c70e15f30d8462461184d6dd9e8187b2ec753361a0108e5de9eb3a10945d7",
+      "mtime_ns": 1790867169839019100,
+      "elapsed_seconds": 19.79146615100035
+    },
+    {
+      "table": "region",
+      "path": "/media/shashank/Data1/PDocuments/Capstone/implementation/datasets/tpch/sf100/region.tbl",
+      "bytes": 389,
+      "rows": 5,
+      "sha256": "6022658d673924389b54dcb70fa8c3d6da1b0d7afa3c1c017bab62a019df404f",
+      "mtime_ns": 1790867169838907900,
+      "elapsed_seconds": 0.001871989996288903
+    },
+    {
+      "table": "supplier",
+      "path": "/media/shashank/Data1/PDocuments/Capstone/implementation/datasets/tpch/sf100/supplier.tbl",
+      "bytes": 142869803,
+      "rows": 1000000,
+      "sha256": "40a0a3d997e46fd5f8b64f368c6e9603696ef6db5416d8efb5d441c6fa62f4cf",
+      "mtime_ns": 1790867169839834000,
+      "elapsed_seconds": 0.27758404200722
+    }
+  ],
+  "ended_at": "2026-10-13T19:43:34.366658+00:00",
+  "elapsed_seconds": 186.10105459899933
+}

@@ -46,3 +46,18 @@ correctness; 03:30–05:45 next ready validation/collection; 05:45–06:15 audit
 
 Legacy collector/evaluator/reset/launchers remain blocked until explicitly repaired.
 No publication-readiness or forecasting claim follows from a correctness pilot.
+
+## Current queue state (01:22 IST)
+
+- Completed bounded event/telemetry primitives and real 60-second pre-query windows.
+- Completed isolated verified SF1 source preparation and repaired query/rewrite pilot.
+  Exact row multiset and query results preserved; all four queries had task overlap.
+- Completed strict full Alibaba member audit and explicit container serialization review.
+- Preserved positive reported task creations as a candidate only; no SQL workload mapping.
+- Completed: full SF100 source hash/count agreement across both machines; actual
+  60/300-second windows pass declared coverage/gap/freshness tolerances. Both source
+  scans ended naturally. Fixed observer deadline drift found in the audit.
+- Pending: revalidate observer target cadence after repair; review real database-arrival trace resources
+  and identifiable matched collection protocol. Do not train models on this pilot.
+- Still blocked: publication replay/collector/evaluator, accepted independent training
+  data, forecast-aware scheduling. Remaining legacy code has not been re-enabled.

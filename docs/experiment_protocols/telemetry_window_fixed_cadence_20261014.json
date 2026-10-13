@@ -1,0 +1,15 @@
+{
+  "schema_version": "physical_telemetry_window_check_v1",
+  "experiment_id": "host_telemetry_60_300s_fixed_cadence_20261014",
+  "rationale": "Revalidate actual 60/300-second host windows after correcting observer deadline drift: logging duration must not be added to each target sampling period. Original time-weighted windows remain valid within their declared two-second gap/freshness and 95% coverage tolerances. SF100 source scans completed; this observes actual host conditions without generating an artificial workload. Observer parameters and acceptance gates unchanged.",
+  "interval_seconds": 1,
+  "window_seconds": [
+    60,
+    300
+  ],
+  "warmup_seconds": 305,
+  "max_interval_seconds": 2,
+  "max_age_seconds": 2,
+  "minimum_coverage_fraction": 0.95,
+  "output_directory": "../../results/telemetry_window_fixed_cadence_20261014"
+}

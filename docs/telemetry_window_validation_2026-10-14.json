@@ -1,0 +1,45 @@
+{
+  "schema_version": "telemetry_window_integrity_review_v1",
+  "result": {
+    "status": "accepted_physical_window_check",
+    "windows": [
+      {
+        "feature_timestamp": "2026-10-13T19:48:53.050876+00:00",
+        "measured_at": {
+          "utc": "2026-10-13T19:48:53.354402+00:00",
+          "monotonic_ns": 860544659372561
+        },
+        "window_seconds": 60,
+        "covered_seconds": 59.696860217000015,
+        "freshness_seconds": 0.303139783,
+        "cpu_busy_fraction": 0.039046921041316025,
+        "read_bytes_per_second": 155235285.1922037,
+        "write_bytes_per_second": 55781.97830707954
+      },
+      {
+        "feature_timestamp": "2026-10-13T19:48:53.050876+00:00",
+        "measured_at": {
+          "utc": "2026-10-13T19:48:53.443559+00:00",
+          "monotonic_ns": 860544748523310
+        },
+        "window_seconds": 300,
+        "covered_seconds": 299.608033097,
+        "freshness_seconds": 0.391966903,
+        "cpu_busy_fraction": 0.03959750007228726,
+        "read_bytes_per_second": 166688434.01527473,
+        "write_bytes_per_second": 60799.35670784985
+      }
+    ],
+    "scope": "Observer integrity under recorded host conditions; no model or workload performance claim"
+  },
+  "raw_event_sha256": "6075647be0917fe4546dd2051b66591720324dd0382d82721527cf669ad6d6e8",
+  "raw_event_path": "results/telemetry_window_integrity_20261014/events.jsonl",
+  "interval_count": 281,
+  "maximum_interval_seconds": 1.233857666,
+  "independent_checks": [
+    "Recomputed weighted coverage and CPU/read/write means from actual recorded monotonic intervals",
+    "Both declared windows satisfy coverage and freshness",
+    "No failed samples; all intervals within declared gap tolerance"
+  ],
+  "scope": "Actual observer integrity during SF100 source I/O; not latency/model evidence"
+}

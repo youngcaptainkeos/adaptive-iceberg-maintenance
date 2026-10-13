@@ -200,3 +200,64 @@ as a clearly labelled candidate (no mapping/zero-padding/compression/query mix),
 validate actual 60/300-second host telemetry windows during the real source I/O scan.
 Batch-task last reported create time is 60181 seconds; do not invent a quiet tail
 out to the publisher's nominal 24-hour period or claim complete event-free coverage.
+
+### 01:14–01:17 IST: observed event candidate and local SF100 inventory
+
+Preserved all 80,386 positive reported task-create events with unique job/task IDs
+and source-row numbers, sorted at original timestamps 5 through 60181 seconds.
+167 negative pre-trace events explicitly excluded; no padding/compression/looping,
+query assignment, resource imputation or final-status prediction features.
+Largest reported inter-event gap is 383 seconds; peak 155 reported events/second.
+Neither an event-free gap nor the interval after the last event establishes a
+verified idle SQL-server window. See `alibaba_task_arrival_profile_2026-10-14.json`.
+Candidate directory mirrored locally/worker3 with all three artifact hashes matched:
+`results/alibaba_task_arrival_candidate_20261014/` (CSV, profile, frozen transform).
+
+Local SF100 full-source inventory completed in 186.1 seconds: all eight `.tbl`
+files, total 114,641,618,862 bytes. Actual lineitem newline row count 600,037,902,
+orders 150,000,000, customer 15,000,000, part 20,000,000, partsupp 80,000,000,
+supplier 1,000,000, nation 25, region 5. This is actual source-file counting,
+not just old Iceberg metadata. It does not validate typed fields/generator provenance.
+Remote inventory is still running; full cross-machine agreement remains pending.
+
+Actual host telemetry check started on worker3 with preregistered 60/300-second
+windows, one-second cadence and 305-second warmup during real SF100 source I/O.
+Pending output: `results/telemetry_window_integrity_20261014/`, session 80735.
+Own observer ends naturally after validation; it does not stop services or data jobs.
+
+Mirroring the four newly generated observer/source/failed/successful pilot evidence
+directories locally for fallback; historical handover archive and absolute-path
+Iceberg warehouse metadata remain untouched. Verify mirrored raw artifact hashes
+after transfer; do not register worker3 catalog metadata as a local executable table.
+
+### 01:19–01:22 IST: source agreement, window validation and cadence audit
+
+**SF100 completed on both machines:** every one of the eight table files agrees by
+fresh SHA256, bytes and actual newline row count, total 114,641,618,862 bytes.
+Local scan 186.1s, worker3 647.8s. No process killed or data changed. See local/remote
+source validation JSONs and `sf100_cross_machine_validation_2026-10-14.json`.
+Generator/build manifest, typed parsing and relational integrity remain unverified;
+these checks cannot certify source authenticity or equivalence to later Iceberg appends.
+
+**Actual 60/300-second window checks passed:** 59.697/299.608 seconds of measured
+coverage, freshness 0.303/0.392 seconds. Independently recomputed CPU/read/write
+weighted means and covered time from retained actual monotonic interval records.
+281 measured intervals; maximum gap 1.234s, below the preregistered 2s limit.
+See `telemetry_window_validation_2026-10-14.json`; this is real host observation
+during source I/O, not database latency or model evidence.
+
+Audit found a separate target-cadence defect: the observer used max(next deadline,
+now+interval) even when not late, adding synchronous log-write duration to every
+period. Actual weighted windows remain valid under declared tolerances, but this
+explains fewer samples than the nominal one-second target. Corrected to retain the
+periodic deadline unless already missed; never emit catch-up pseudo-samples.
+Registered a separate unchanged-gate 60/300-second revalidation after the repair,
+observing actual current host conditions without generated stress. Pending directory:
+`results/telemetry_window_fixed_cadence_20261014/`. Do not claim repaired cadence
+validated until that new physical observation completes.
+
+Raw newly generated observer/source/failed/successful pilot evidence is mirrored
+on both computers: 29 files, all hashes match, recorded in
+`physical_evidence_mirror_2026-10-14.json`. Only hash manifests/reviews go to GitHub;
+raw REST logs remain local/worker3. Iceberg data/metadata remain on worker3 and
+must not be copied into a local active catalog with wrong absolute paths.

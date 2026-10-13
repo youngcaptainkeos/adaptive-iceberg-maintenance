@@ -1,0 +1,158 @@
+{
+  "schema_version": "physical_evidence_mirror_v1",
+  "scope": "Only newly generated observer/source/failed/successful pilot evidence; historical archive and warehouse metadata untouched",
+  "source_host": "worker3",
+  "mirror_host": "local",
+  "files": [
+    {
+      "path": "results/measurement_integrity_20261014/catalog_events.jsonl",
+      "bytes": 615970,
+      "sha256": "85942c632070c3f9d05276648532fa44d9af70ca6d3b01f572421b49e320c963"
+    },
+    {
+      "path": "results/measurement_integrity_20261014/observer_events.jsonl",
+      "bytes": 4346070,
+      "sha256": "df255f0cc2406e9badad754bc393f2d640f328de92390473c7f8452658f6f0c7"
+    },
+    {
+      "path": "results/measurement_integrity_20261014/source_metadata_events.jsonl",
+      "bytes": 15213,
+      "sha256": "bb99b29842613be43f0245866f10569707f8d403ac6ba14e8320b2117e437dcc"
+    },
+    {
+      "path": "results/sf1_source_integrity_20261014_0024/code/experiment_validation.py",
+      "bytes": 8397,
+      "sha256": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4"
+    },
+    {
+      "path": "results/sf1_source_integrity_20261014_0024/code/physical_measurements.py",
+      "bytes": 9590,
+      "sha256": "ad5180bef4f6adcd666edd53d72c3da73d34bcf721480c9b81c69e758d8704b9"
+    },
+    {
+      "path": "results/sf1_source_integrity_20261014_0024/code/prepare_correctness_table.py",
+      "bytes": 7796,
+      "sha256": "c7a385942281b59677ccda771db829c52c3424ad95d6bd5ea00663c105043b12"
+    },
+    {
+      "path": "results/sf1_source_integrity_20261014_0024/events.jsonl",
+      "bytes": 10582932,
+      "sha256": "971508975b9eb20bb35dc65b42b3052facd1a87a521a8b0427ec3fd82e6b4180"
+    },
+    {
+      "path": "results/sf1_source_integrity_20261014_0024/preparation_config.json",
+      "bytes": 1167,
+      "sha256": "e8ca69e1008352ba446be9e23ccb7c85c34a33ba3cca4ac2c9b77096ed7b0bf5"
+    },
+    {
+      "path": "results/sf1_source_integrity_20261014_0024/result.json",
+      "bytes": 722,
+      "sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57"
+    },
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0039/code/engine_overlap.py",
+      "bytes": 3572,
+      "sha256": "be54bd944a624980ba4b692f137a2070754038f7b0938f6a4a5d9fad480c4d9a"
+    },
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0039/code/experiment_validation.py",
+      "bytes": 8397,
+      "sha256": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4"
+    },
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0039/code/physical_measurements.py",
+      "bytes": 10212,
+      "sha256": "cfa7b3163ab013e147cc4c48e6a1ddc7c5692f0922b869d815daed3038e221c6"
+    },
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0039/code/run_correctness_pilot.py",
+      "bytes": 11989,
+      "sha256": "a1c0a87b92a53eba5424272dfcbd1a48ce0f8e7eaf1c0c4a4779a25140fb95ba"
+    },
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0039/events.jsonl",
+      "bytes": 723581,
+      "sha256": "1d6a719e12ec28ff621f6387e3f6f4a9215f41e09db35dea9f0cab41e7c9ceaf"
+    },
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0039/pilot_config.json",
+      "bytes": 2544,
+      "sha256": "a125989611ff9fcd5bf4f6a0c4a84b2e613ae320b2ade0e38400ee3c88fa560b"
+    },
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0039/post_failure_audit.jsonl",
+      "bytes": 4101760,
+      "sha256": "ad38ab40a9d6210ee35ff9ce162c65ad8e61d7dab29507f88ddf2e4d1ef77b20"
+    },
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0054/code/engine_overlap.py",
+      "bytes": 3572,
+      "sha256": "be54bd944a624980ba4b692f137a2070754038f7b0938f6a4a5d9fad480c4d9a"
+    },
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0054/code/experiment_validation.py",
+      "bytes": 8397,
+      "sha256": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4"
+    },
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0054/code/physical_measurements.py",
+      "bytes": 10212,
+      "sha256": "cfa7b3163ab013e147cc4c48e6a1ddc7c5692f0922b869d815daed3038e221c6"
+    },
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0054/code/run_correctness_pilot.py",
+      "bytes": 12225,
+      "sha256": "de622efc4df5f4955440a81d8bc2c2b0d2a898d1ae740549f35a5901e23e74c7"
+    },
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0054/events.jsonl",
+      "bytes": 5082741,
+      "sha256": "2f9cc294903c45ff1ed387f693a0b87cdbea8341e5f6dd8c4d4511efecfccab7"
+    },
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0054/pilot_config.json",
+      "bytes": 2704,
+      "sha256": "e6447d13e96d0f7640fda7bddc76e82416916794cd896d4cf324ff98f2711a43"
+    },
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0054/result.json",
+      "bytes": 4376,
+      "sha256": "b1ec353e3f31fca52d6d77f5c471722f8ea34cb5c3458ef04acd131bac45d9d0"
+    },
+    {
+      "path": "results/telemetry_window_integrity_20261014/config.json",
+      "bytes": 822,
+      "sha256": "fc9b75a31d8b11904fe5fa435fa411faca7aad8ae69a4e843bd40a60755d4aa9"
+    },
+    {
+      "path": "results/telemetry_window_integrity_20261014/events.jsonl",
+      "bytes": 242433,
+      "sha256": "6075647be0917fe4546dd2051b66591720324dd0382d82721527cf669ad6d6e8"
+    },
+    {
+      "path": "results/telemetry_window_integrity_20261014/experiment_validation.py",
+      "bytes": 8397,
+      "sha256": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4"
+    },
+    {
+      "path": "results/telemetry_window_integrity_20261014/physical_measurements.py",
+      "bytes": 10212,
+      "sha256": "cfa7b3163ab013e147cc4c48e6a1ddc7c5692f0922b869d815daed3038e221c6"
+    },
+    {
+      "path": "results/telemetry_window_integrity_20261014/result.json",
+      "bytes": 1090,
+      "sha256": "eee77033dc31f2914d568d203ec4b7b6ec8ffd22c728872b24c00ec44b57270c"
+    },
+    {
+      "path": "results/telemetry_window_integrity_20261014/validate_telemetry_windows.py",
+      "bytes": 2603,
+      "sha256": "2992b5f24b56baf2d592319e4046c0c0a7bc68aeebe637f74ef22bd9bfd2066d"
+    }
+  ],
+  "total_bytes": 25839696,
+  "all_hashes_match": true,
+  "limitations": [
+    "Physical Iceberg data/metadata remain on worker3; this is raw-event/config/code fallback, not catalog relocation"
+  ]
+}

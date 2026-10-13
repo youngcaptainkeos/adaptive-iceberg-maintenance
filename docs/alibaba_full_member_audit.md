@@ -36,3 +36,18 @@ SQL text, query mix, ingestion demand, or original database arrivals.
 Next gate: review serialization and timestamp completeness/gaps/duplicate handling
 for any selected member, preregister the exact transformation and justified workload
 mapping, and preserve original elapsed time. No replay is authorized by this audit.
+
+## Subsequent explicit serialization review
+
+`alibaba_serialization_validation_2026-10-14.json` confirms every container-event row
+has exactly one extra empty trailing field, with full member bytes/SHA matching the
+strict audit. Removing only that serialization terminator leaves eight documented
+fields with no missing required values or numeric violations. All 11,102 events are
+Create; 10,909 are pre-trace time zero and only 193 are positive-time events. The
+strict audit remains unchanged. No semantic values were padded, dropped or imputed.
+
+`alibaba_task_arrival_profile_2026-10-14.json` records the separately preserved
+80,386 positive task creations at original times 5–60181 seconds, excluding only
+167 explicit negative pre-trace records. It is an event candidate, not an executable
+replay manifest. No claim of complete SQL-server idle coverage follows from its
+largest inter-event gap or its unobserved tail.

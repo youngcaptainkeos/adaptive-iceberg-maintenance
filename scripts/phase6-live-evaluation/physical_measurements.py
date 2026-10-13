@@ -165,7 +165,8 @@ class TelemetrySampler:
                 previous = current
                 deadline += self.interval
                 # Do not emit catch-up pseudo-samples after scheduler delay.
-                deadline = max(deadline, time.monotonic() + self.interval)
+                if deadline <= time.monotonic():
+                    deadline = time.monotonic() + self.interval
         except Exception as exc:
             self.failure = exc
             self.log.emit('telemetry_failed', error_type=type(exc).__name__, error=str(exc))

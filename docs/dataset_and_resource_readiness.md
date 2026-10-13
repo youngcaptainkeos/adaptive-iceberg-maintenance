@@ -1,6 +1,7 @@
 # Dataset and resource readiness
 
-Updated: 2026-10-13. Evidence: `dataset_resource_inventory_2026-10-13.json`.
+Updated: 2026-10-14. Initial evidence: `dataset_resource_inventory_2026-10-13.json`;
+subsequent evidence: `overnight_review_2026-10-14.md` and linked validation artifacts.
 
 ## Verdict
 
@@ -14,12 +15,12 @@ was launched in this inventory step.
 | Asset | Evidence | Readiness |
 | --- | --- | --- |
 | TPC-H SF1 | All eight source tables on both machines; freshly counted rows and SHA256 agree with existing manifest and each other | Verified bytes/cardinality; generator/build provenance recorded in existing manifest |
-| TPC-H SF100 | All eight source files on both machines; initial Iceberg metadata contains expected large-scale cardinalities | Available; complete source checksum/row-count manifest still needed |
+| TPC-H SF100 | All eight files match across both machines by fresh full-byte SHA256, bytes and newline row counts: 114641618862 bytes, lineitem 600037902 actual rows | Bytes/cardinality verified; typed parsing, relational checks and generator/build provenance still needed |
 | Large Iceberg lineitem | Initial metadata reports 600037902 records; inspected later snapshot reports 600039613 after writes | About 600 million, not the 60 million repeatedly claimed in drafts; metadata observation, not a newly executed COUNT query |
-| Alibaba 2017 archive | Same SHA256 locally/remotely; gzip/tar checks pass; subsequent HTTPS publisher check matches size and CRC64 | Matches current publisher-served object; original acquisition history unknown; full usage/schema validation pending |
+| Alibaba 2017 archive | Same SHA256 locally/remotely; publisher size/CRC64 match; all six members fully audited against publisher schema | Missing resource/identity fields recorded; container trailing-empty-field serialization explicitly validated; SQL workload mapping still absent |
 | Verified workload replay | Historical Google CSV absent; no approved observed replay manifest exists | Missing; synthetic fallback removed by the fail-closed step |
 | Publication training data | Historical runs exist, with known leakage/label/schema and sample-size problems | Not ready for the new model/forecast claims |
-| Long independent workload traces | Alibaba server_usage covers 39600–82500 seconds across 1310 server IDs and is not time-sorted | Useful candidate after provenance/schema validation; does not establish multi-day periodicity |
+| Long independent workload traces | Alibaba server_usage covers 39600–82500 seconds; 80386 positive task creations preserved at times 5–60181 | Cluster-event candidates only; no verified SQL arrivals, quiet-tail extension or multi-day periodicity |
 
 Alibaba archive SHA256 is
 `b7efe9dc9caa75352de41b9ac34b329602cde3414fd7cab87c1d21a9a9871d66`.
