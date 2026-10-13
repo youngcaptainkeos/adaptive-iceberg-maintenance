@@ -86,6 +86,18 @@ class SparkEvidence:
 
     def capture(self, resource):
         require(resource in ('jobs', 'stages', 'environment'), 'Unsupported REST resource')
+        return self._capture(resource)
+
+    def capture_tasks(self, stage_id, attempt_id, task_count):
+        require(all(isinstance(v, int) and not isinstance(v, bool) and v >= 0
+                    for v in (stage_id, attempt_id, task_count)) and task_count > 0,
+                'Declare valid stage attempt and positive task count')
+        payload = self._capture(f'stages/{stage_id}/{attempt_id}/taskList?length={task_count}')
+        require(isinstance(payload, list) and len(payload) == task_count,
+                'Incomplete task-attempt REST evidence')
+        return payload
+
+    def _capture(self, resource):
         started = stamp()
         try:
             with urllib.request.urlopen(self.url + '/' + resource, timeout=self.timeout) as response:
