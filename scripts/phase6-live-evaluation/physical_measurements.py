@@ -2,6 +2,7 @@
 import json
 import math
 import os
+import re
 from pathlib import Path
 import threading
 import time
@@ -53,8 +54,11 @@ class StatementRecorder:
     def __init__(self, log):
         self.log = log
 
-    def execute(self, cursor, sql, *, role, query_id=None):
-        measurement_id = uuid.uuid4().hex
+    def execute(self, cursor, sql, *, role, query_id=None, measurement_id=None):
+        if measurement_id is None:
+            measurement_id = uuid.uuid4().hex
+        require(isinstance(measurement_id, str) and re.fullmatch(r'[0-9a-f]{32}', measurement_id),
+                'Explicit query observation ID must be a real UUID hex identity')
         marker = 'capstone_event_' + measurement_id
         request_start = stamp()
         self.log.emit('statement_requested', measurement_id=measurement_id,
@@ -97,6 +101,7 @@ class SparkEvidence:
                 'Use local REST or HTTPS')
         require('/' not in app_id and bool(app_id), 'Invalid app ID')
         require(math.isfinite(timeout_seconds) and timeout_seconds > 0, 'Positive REST timeout required')
+        self.app_id = app_id
         self.url = base_url.rstrip('/') + '/api/v1/applications/' + app_id
         self.timeout = timeout_seconds
         self.log = log
@@ -119,7 +124,7 @@ class SparkEvidence:
         try:
             with urllib.request.urlopen(self.url + '/' + resource, timeout=self.timeout) as response:
                 payload = json.load(response)
-            self.log.emit('spark_rest', resource=resource, request_start=started,
+            self.log.emit('spark_rest', resource=resource, app_id=self.app_id, endpoint=self.url, request_start=started,
                           response_end=stamp(), payload=payload)
             return payload
         except Exception as exc:

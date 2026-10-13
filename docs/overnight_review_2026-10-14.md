@@ -737,3 +737,34 @@ Entire finished diagnostic artifact package copied to worker3; all nine file
 SHA256 values matched, recorded in `arrival_forecast_artifact_mirror_2026-10-14.json`.
 This provides fallback evidence, not cross-version model/runtime acceptance; fitting
 used local sklearn1.9.1 and no remote artifact was deserialized or activated.
+
+### 04:54 IST onward: isolated snapshot/feature binding pilot prepared
+
+Previous forecast diagnostic and its artifacts/audits remain diagnostic-only.
+Read-only worker3 check: current Spark app `local-1791896695889`, zero running jobs,
+no own acquisition/validation/extraction/telemetry operations active. Active-stage
+REST filtering was verified against the real endpoint.
+
+Prepared one new SF1 matched measurement-integrity pilot for Q1 (existing grouped
+query), selected from prior real longer query duration to test overlap feasibility.
+One foreground probe per rewrite, before/during/after SQL pinned to original
+snapshot; compacted snapshot benefit separate. Table clone repartitions to measured
+source file count, retains all snapshots/files and requires exact row multiset,
+result equality, file conservation and actual useful rewrite-task exposure. Missing
+exposure remains failed evidence; no fake timing or forced slowdown. This is one
+matched path proof, not variance estimation, independent repetitions or training.
+
+Added preallocated actual query UUID support to the recorder. Observation IDs bind
+exact 60/300-second raw-counter windows, original metadata statement IDs and physical
+file counts/bytes to the actual snapshot-pinned query. Auditor checks available
+sample frontier, cutoff/metadata chronology, freshness at actual submission, original
+file inventory and recorded Spark app scope. No intensity, small-file threshold,
+eligibility rule or forecast feature is invented. Host process CPU/RSS snapshots
+exclude command lines; counter/instrumentation/cache/background limitations remain.
+
+Ten-Hz small active-stage polling/60-second observation ceiling are declared
+operational settings; maintenance always finishes naturally, never force-cancelled.
+Only completed successful client sessions are explicitly closed. Every new physical
+statement checks the authorized 06:15 IST cutoff. Legacy replay/evaluation/model
+promotion remains blocked. Syntax/diff/source audit completed; real execution
+pending preregistered code/config publication and local/worker3 hash verification.
