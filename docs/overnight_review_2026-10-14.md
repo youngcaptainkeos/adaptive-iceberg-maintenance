@@ -368,3 +368,9 @@ Checked primary AutoComp paper and corrected historical VLDB-2024 attribution to
 SIGMOD-Companion 2025. The legacy ratio/count policy is not a verified reproduction
 of its full candidate-estimation/ranking/scheduling framework. See
 `autocomp_baseline_verification.md`; faithful baseline selection remains a gate.
+
+Removed the baseline module's remaining unsupported peer-reviewed/industry-standard
+claims and default tuning values. `AutoCompPolicy` now explicitly refuses the false
+reproduction name; separately named prototypes require declared parameters and actual
+metadata, with no missing-field fallback. Syntax/source review performed, no fake
+metadata tests or baseline run. Evaluator remains blocked.

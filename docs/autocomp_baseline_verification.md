@@ -17,3 +17,10 @@ and match useful maintenance progress. Keep a separate honestly named threshold
 baseline. Forecast-aware timing remains a candidate contribution, not established
 novelty: compare against strong resource-aware scheduling and contemporary work,
 then demonstrate added value using held-out physical schedules.
+
+The baseline module now refuses construction through the misleading `AutoCompPolicy`
+name. Its separately named threshold/periodic prototypes require explicit parameters
+and measured counts; removed default ratio/count/period values and missing-metadata
+zero fallbacks. They remain unvalidated prototypes, not publication baselines.
+No evaluator is enabled by this interface cleanup. A proposed candidate action
+still requires actual rewrite eligibility/results from the physical executor.

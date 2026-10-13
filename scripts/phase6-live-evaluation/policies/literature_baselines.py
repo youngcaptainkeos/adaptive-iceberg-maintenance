@@ -1,91 +1,77 @@
-"""
-Literature Baselines for Lakehouse Table Maintenance (Phase 6.1A)
-Methodology v2.1
+"""Unvalidated configurable baseline prototypes; no faithful AutoComp reproduction.
 
-This module implements peer-reviewed and industry-standard competitor baselines:
-1. AutoCompPolicy: Storage-metadata-driven heuristic based on small file ratio & accumulation
-   (Gruenheid et al., VLDB 2024 / Microsoft & LinkedIn).
-2. PeriodicCronPolicy: Fixed-interval scheduled maintenance (AWS EMR / Databricks Operational Standard).
-3. TunedThresholdPolicy: Active auto-optimize threshold (40 small files, replacing inert 200 barrier).
+No evaluator currently invokes these helpers. Parameters must come from a declared
+paper scenario or training-only protocol. Missing measurements never become zeros.
+Historical defaults/citation claims are retained in Git history, not active code.
 """
-
+import math
+from numbers import Integral
 from typing import Dict, Any
 
 
+def measured_counts(metadata):
+    small,total=metadata['candidate_small_files'],metadata['frag_file_count']
+    if any(not isinstance(x,Integral) or isinstance(x,bool) for x in (small,total)) or not 0<=small<=total:
+        raise ValueError('Require measured nonnegative integer small/total file counts')
+    return int(small),int(total)
+
+
+def positive_parameter(value,name):
+    if not isinstance(value,(int,float)) or isinstance(value,bool) or not math.isfinite(value) or value<=0:
+        raise ValueError('Declare positive finite '+name)
+    return float(value)
+
+
 class BaselinePolicyInterface:
-    """Standard interface for lakehouse maintenance baseline policies."""
-
-    def decide(self, table_metadata: Dict[str, Any], elapsed_s: float = 0.0) -> str:
-        """
-        Decides whether to trigger table compaction or defer.
-
-        Args:
-            table_metadata: Dictionary containing storage metadata
-                            (e.g., 'candidate_small_files', 'frag_file_count', 'table_size_mb').
-            elapsed_s: Elapsed simulation / evaluation time in seconds.
-
-        Returns:
-            'RUN' to execute compaction, 'DEFER' to wait.
-        """
+    def decide(self, table_metadata: Dict[str, Any], *, elapsed_s: float) -> str:
         raise NotImplementedError
 
 
 class AutoCompPolicy(BaselinePolicyInterface):
-    """
-    AutoComp Policy (Gruenheid et al., VLDB 2024 / Microsoft & LinkedIn).
+    """Retired misattribution; use a separately named threshold prototype."""
+    def __init__(self, **kwargs):
+        raise ValueError('Faithful AutoComp is not implemented. Historical ratio/count heuristic must not be presented as its reproduction.')
 
-    AutoComp evaluates table storage traits to trigger compaction proactively
-    based on the uncompacted small-file reduction ratio:
-        Delta F_c = N_small_files / N_total_files
-    AutoComp decides purely on storage metadata and is blind to concurrent query traffic and CPU load.
-    """
 
-    def __init__(self, small_file_ratio_threshold: float = 0.20, min_candidate_files: int = 30):
-        self.small_file_ratio_threshold = float(small_file_ratio_threshold)
-        self.min_candidate_files = int(min_candidate_files)
+class SmallFileThresholdPolicy(BaselinePolicyInterface):
+    """Configured ratio/count candidate-action heuristic, not estimated file reduction."""
+    def __init__(self, *, small_file_ratio_threshold, min_candidate_files):
+        self.ratio=positive_parameter(small_file_ratio_threshold,'small-file ratio')
+        if self.ratio>1 or not isinstance(min_candidate_files,Integral) or isinstance(min_candidate_files,bool) or min_candidate_files<=0:
+            raise ValueError('Declare ratio in (0,1] and positive measured-count threshold')
+        self.minimum=int(min_candidate_files)
 
-    def decide(self, table_metadata: Dict[str, Any], elapsed_s: float = 0.0) -> str:
-        small_files = table_metadata.get('candidate_small_files', 0)
-        total_files = table_metadata.get('frag_file_count', max(small_files, 1))
-        ratio = small_files / max(total_files, 1)
-
-        if small_files >= self.min_candidate_files or ratio >= self.small_file_ratio_threshold:
-            return 'RUN'
-        return 'DEFER'
+    def decide(self, table_metadata, *, elapsed_s):
+        small,total=measured_counts(table_metadata)
+        if total==0: return 'DEFER'
+        return 'RUN' if small>=self.minimum or small/total>=self.ratio else 'DEFER'
 
 
 class PeriodicCronPolicy(BaselinePolicyInterface):
-    """
-    Periodic Cron Policy (AWS EMR / Databricks Recommended Operational Baseline).
+    """Configured periodic candidate action; executor separately verifies real work."""
+    def __init__(self, *, interval_minutes):
+        self.interval_seconds=positive_parameter(interval_minutes,'period')*60  # Unit conversion.
+        self.last_run_seconds=0.0  # Elapsed experiment origin, not an invented observation.
+        self.last_seen_seconds=0.0
 
-    Industry production standard: schedules maintenance on a fixed deterministic timer,
-    regardless of query load or table state.
-    """
-
-    def __init__(self, interval_minutes: float = 60.0):
-        self.interval_minutes = float(interval_minutes)
-        self.interval_s = self.interval_minutes * 60.0
-        self.last_run_s = 0.0
-
-    def decide(self, table_metadata: Dict[str, Any], elapsed_s: float = 0.0) -> str:
-        if (elapsed_s - self.last_run_s) >= self.interval_s:
-            self.last_run_s = elapsed_s
+    def decide(self, table_metadata, *, elapsed_s):
+        measured_counts(table_metadata)
+        if not isinstance(elapsed_s,(int,float)) or isinstance(elapsed_s,bool) or not math.isfinite(elapsed_s) or elapsed_s<self.last_seen_seconds:
+            raise ValueError('Use actual finite nondecreasing elapsed experiment time')
+        self.last_seen_seconds=elapsed_s
+        if elapsed_s-self.last_run_seconds>=self.interval_seconds:
+            self.last_run_seconds=elapsed_s
             return 'RUN'
         return 'DEFER'
 
 
 class TunedThresholdPolicy(BaselinePolicyInterface):
-    """
-    Tuned Threshold Policy (Active Auto-Optimize Baseline).
+    """Explicit small-file count threshold; tuned status requires external evidence."""
+    def __init__(self, *, frag_threshold):
+        if not isinstance(frag_threshold,Integral) or isinstance(frag_threshold,bool) or frag_threshold<=0:
+            raise ValueError('Declare positive count threshold from protocol')
+        self.threshold=int(frag_threshold)
 
-    A properly-tuned auto-optimize threshold (replacing the inert 200-file barrier).
-    """
-
-    def __init__(self, frag_threshold: int = 40):
-        self.frag_threshold = int(frag_threshold)
-
-    def decide(self, table_metadata: Dict[str, Any], elapsed_s: float = 0.0) -> str:
-        small_files = table_metadata.get('candidate_small_files', table_metadata.get('frag_file_count', 0))
-        if small_files >= self.frag_threshold:
-            return 'RUN'
-        return 'DEFER'
+    def decide(self, table_metadata, *, elapsed_s):
+        small,_=measured_counts(table_metadata)
+        return 'RUN' if small>=self.threshold else 'DEFER'
