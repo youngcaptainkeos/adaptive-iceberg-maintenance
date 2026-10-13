@@ -47,7 +47,7 @@ correctness; 03:30–05:45 next ready validation/collection; 05:45–06:15 audit
 Legacy collector/evaluator/reset/launchers remain blocked until explicitly repaired.
 No publication-readiness or forecasting claim follows from a correctness pilot.
 
-## Current queue state (03:42 IST)
+## Current queue state (03:59 IST)
 
 - Completed bounded event/telemetry primitives and real 60-second pre-query windows.
 - Completed isolated verified SF1 source preparation and repaired query/rewrite pilot.
@@ -58,19 +58,25 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
   60/300-second windows pass declared coverage/gap/freshness tolerances. Both source
   scans ended naturally. Fixed observer deadline drift found in the audit.
 - Completed repaired observer cadence and actual client timing-boundary validation.
-- Running: audited Snowset recovery on worker3 after range-transfer failure at
-  approximately 3.13GB. Retained parts have an explicit missing-original-receipt
-  limitation; new ranges have durable receipts/adaptive transport splitting.
-  No accepted arrival dataset until full archive/schema validation.
+- Completed Snowset bytes recovery naturally: 7,823 ranges / 8,202,394,513 bytes.
+  Retained parts keep the missing-original-receipt limitation. No accepted source yet.
+- Running full-object/gzip/tar/Parquet/arrival inventory, worker3 PID 380748,
+  `datasets/snowset/validated_source_20261014/`, launch log
+  `datasets/snowset/source_validation_20261014_launch.log`. Inspect existing work
+  before any replacement; preserve failures and repair gates, never duplicate.
 - Completed raw statement/monotonic training timing binding; historical pilot
   timings remain rejected. Completed independent raw Spark task/rewrite label
   binding. Next repair: measured feature/layout and engine-session/confounder
   export binding before any training.
-- Running exact-cutoff/raw-counter 60/300-second observer on worker3, PID 376224;
-  inspect `results/telemetry_exact_bounds_20261014/result.json` and launch log
+- Failed exact-cutoff observer preserved and mirrored; independent audit found
+  counter-measurement versus history-publication ambiguity. Explicit available
+  sample frontier added without changing coverage/gap/freshness gates.
+- Running replacement observer PID 379895; inspect
+  `results/telemetry_available_frontier_20261014/result.json` and launch log
   before any new observer. Repair failure before dependent feature binding.
-- Prepared full-object/gzip/tar/Parquet/arrival validator; launch only after recovery
-  completes with its final record SHA256 pinned. No partial source analysis.
+- Next feature/layout binding contract: `physical_feature_export_contract.md`.
+- Full-source validator launched with final acquisition-record SHA256 pinned.
+  No partial source analysis, replay or forecasting; verify completion first.
 - Next: identifiable matched collection protocol/offered-load repair; then real
   arrival inspection/forecasting when source integrity gates pass. Do not train cost
   models on this correctness pilot or silently use partial/cluster data as SQL demand.

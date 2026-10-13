@@ -1,0 +1,17 @@
+{
+  "schema_version": "failed_exact_cutoff_window_review_v1",
+  "status": "failed_preserved_evidence",
+  "failure": "Feature UTC differs from last available sample",
+  "real_interval_count": 305,
+  "file_sha256": {
+    "results/telemetry_exact_bounds_20261014/config.json": "e95fd84f90fdbec2846e5a36f736ed9e2ee04ba757f3e33beafbb88c9129aacc",
+    "results/telemetry_exact_bounds_20261014/events.jsonl": "5a3a423d9b727e46bc17ce4b1815dcde01ae8e94237522774023e4ee7de05a3e",
+    "results/telemetry_exact_bounds_20261014/experiment_validation.py": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4",
+    "results/telemetry_exact_bounds_20261014/physical_measurements.py": "4b2972a3356a90981631f9f15ae473031ffcec18f9317ee946cfabc02c450f3b",
+    "results/telemetry_exact_bounds_20261014/telemetry_binding.py": "969c5ae3b6c1f2b1fd671f688e319b28fbb251292169fcb3f2dc6a041f21e64d",
+    "results/telemetry_exact_bounds_20261014/validate_telemetry_windows.py": "5a282a1f634ce54e190a745948883ed297fabbccddd63a1755fe8707c823ded3",
+    "results/telemetry_exact_bounds_20261014_launch.log": "a770cf1d1d3cb5d8ef20c464964d61fbd59f4bae5d82504645868975167dd7e1"
+  },
+  "mirrored_local_and_worker3": true,
+  "scope": "No accepted windows or inferred missing sample frontier. Original log/code/config/traceback preserved; repeat uses separately declared output."
+}

@@ -531,3 +531,33 @@ and uses the recorded available prefix. Original coverage, gap and freshness gat
 remain. No inferred frontier is added to failed old records. Register a new exclusive
 305-second observer directory for physical revalidation. Source recovery is still
 active, 7,662 ranges / 8,034,189,312 bytes at first audit; no duplicate acquisition.
+
+Repair commit `174b674` pushed; worker3 fast-forwarded; HEAD and changed-file
+hashes matched. Replacement observer **PID379895**, artifacts
+`results/telemetry_available_frontier_20261014/`, launch log with matching prefix;
+no existing observer was active at launch. Original failed observer package/log
+mirrored locally, all hashes equal; 305 actual intervals retained. Evidence summary
+`telemetry_exact_bounds_failure_2026-10-14.json`. Added explicit next-export contract
+`physical_feature_export_contract.md`: query measurement IDs must bind windows and
+metadata statements, snapshot-pinned SQL and physical inventory, actual demand and
+engine/background context. Current correctness pilots cannot supply those missing
+provenance fields through invented defaults.
+
+At 03:57:19 IST assembled Snowset partial had the expected 8,202,394,513 bytes, but
+recovery status was still in_progress. Expected size alone does not authorize dataset
+access; wait for natural final hash/status record before full archive validation.
+
+Source recovery ended naturally with status `downloaded_bytes_only`: **7,823 ranges,
+8,202,394,513 bytes**. Assembled object SHA256
+`f9edef48da1eb940d80a9111c80e27613c767734728539d019cc50ec89c5f10e`;
+final recovery-record SHA256
+`1b1936d4e491f2753a1b337fa027e84f4ca3fe8fe3446bc10e0e3eb7a6fe5725`.
+These self-measured hashes do not remove the prior recovered-range receipt limitation
+or establish independent publisher cryptographic authenticity.
+
+Full Snowset validator launched only after completed status/hash record, with no
+existing validator/output, at execution revision `174b674`. Worker3 **PID380748**,
+log `datasets/snowset/source_validation_20261014_launch.log`, launch receipt JSON
+with matching prefix, output `datasets/snowset/validated_source_20261014/`. Full
+archive/Parquet/identity/arrival checks pending. Dataset remains unaccepted; no SQL
+mapping, arrival forecasting, cost fitting or new Spark workload was launched.
