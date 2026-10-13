@@ -374,3 +374,35 @@ claims and default tuning values. `AutoCompPolicy` now explicitly refuses the fa
 reproduction name; separately named prototypes require declared parameters and actual
 metadata, with no missing-field fallback. Syntax/source review performed, no fake
 metadata tests or baseline run. Evaluator remains blocked.
+
+### 03:57–04:07 IST: full Snowset source validation prepared
+
+Recovery remains active; no second acquisition or Spark workload launched. At 03:57
+IST it had 3,853 complete main ranges / 4,040,163,328 bytes. Dataset remains unaccepted.
+
+Added `scripts/validate_snowset_source.py` and a separate registered configuration.
+It refuses an incomplete recovery record before reading/extracting data and requires
+the final record's explicit SHA256, producer-source hash, full object length/hash,
+and stable source custody. Exclusive manual extraction rejects links/special files,
+path traversal/absolute paths, duplicate members and truncation; complete gzip drain
+forces CRC/length verification. Failed artifacts stay in place. No blanket tar
+extraction, overwrite, removal, imputation or partial-corpus forecasting.
+
+DuckDB inventory requires consistent actual member schemas and native BIGINT query/
+warehouse IDs plus native timestamp arrivals. It reads every column value across the
+full corpus using an aggregate value hash, records all null counts, verifies globally
+unique non-null query IDs and complete timestamp coverage, and writes an observed
+warehouse inventory. No warehouse/window selection or SQL mapping happens here.
+This checks arrival-critical schema fields; it does not certify every published
+resource-column unit/type. Recorded value hash is a decoding diagnostic, not a
+publisher authenticity checksum. Publisher cryptographic authenticity and the
+recovered original-range receipt gap remain explicit limitations.
+
+Remote DuckDB 1.5.6 was verified using an actual retained SF1 Parquet member: 376,585
+rows decoded, real schema inspected, aggregate hash worked; parameterized COPY was
+planned without execution. Corrected view creation to DuckDB's relation API, avoiding
+unsupported prepared parameters in CREATE VIEW. Syntax/diff checks pass. These are
+API/real-source checks, not a Snowset validation result. Full source validation has
+not launched and is gated on acquisition completion. Registered offline limits:
+4GB working memory, two CPU threads, disk spill, 1GiB reserve beyond each member's
+size; these are operational settings, not scientific acceptance thresholds.
