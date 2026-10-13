@@ -768,3 +768,14 @@ Only completed successful client sessions are explicitly closed. Every new physi
 statement checks the authorized 06:15 IST cutoff. Legacy replay/evaluation/model
 promotion remains blocked. Syntax/diff/source audit completed; real execution
 pending preregistered code/config publication and local/worker3 hash verification.
+
+Matched pilot code/config/review commit `208f6a1` published; worker3 fast-forwarded
+and HEAD plus all five changed-file hashes matched before launch. No existing own
+physical collector/pilot and no running Spark jobs found at launch. Worker3
+**PID399708**, full execution revision
+`208f6a146c1cc470d34cde8a1f5e419583770c1d`; artifacts
+`results/sf1_matched_measurement_20261014/`, matching launch log and valid JSON
+receipt. At 05:04 IST it was active without a launch traceback, still gathering
+required history. Result pending; no treatment/cost/feature acceptance claimed.
+Audit raw events/result and row/snapshot/feature/task postconditions before any
+further physical episode. Preserve the new table even if the gate fails.
