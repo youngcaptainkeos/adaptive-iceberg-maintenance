@@ -233,3 +233,16 @@ A rigorous audit of raw CSV logs and models revealed five critical design defect
 7. **Multi-Trial Counterbalanced Protocol:**
    - Execute 3 repetitions of 4-hour evaluation cycles per condition with interleaved ordering (Baseline $\rightarrow$ Agent, Agent $\rightarrow$ Baseline, Baseline $\rightarrow$ Agent).
    - Restore the Phase 2H/2I statistical verification pipeline: Shapiro-Wilk normality testing, paired Wilcoxon signed-rank tests across matching workload intervals, matched-pairs rank-biserial effect sizes, and Holm-Bonferroni correction.
+
+### 7.4 Phased Implementation Roadmap (Decomposed Workflow)
+
+To prevent implementation overload and guarantee airtight validation at every step, the v2.1 refactoring is divided into six distinct, testable phases:
+
+| Phase | Milestone Name | Primary Deliverables | Acceptance / Exit Criteria |
+| :---: | :--- | :--- | :--- |
+| **Phase 6.1A** | **Literature Baseline Suite** | Implement `AutoCompPolicy`, `PeriodicCronPolicy`, and `TunedThresholdPolicy` in `policies/literature_baselines.py`. | Standalone unit test passes; policies react to mock and real metadata with correct `RUN`/`DEFER` decisions. |
+| **Phase 6.1B** | **Telemetry & Data Collection Refactor** | Update `WorkloadDriver` to track `query_id`; decouple writes and compactions to sweep $[33, 150]$ files. | 15-minute dry run produces CSV with non-null `query_id` and file count growth. |
+| **Phase 6.1C** | **Query-Aware Conformal Training Refactor** | Update `train_cost_benefit_models.py` with one-hot encoded `query_id` features and held-out calibration. | Model test MAE drops below 1,500ms; Model B predicts higher latency for higher file counts. |
+| **Phase 6.1D** | **Agent Horizon & Action Space Refactor** | Update `run_cost_benefit_agent.py` to evaluate candidate small files, filter 0-file no-ops, and support all baselines. | Agent executes with all 4 policy flags; 0-file no-ops are recorded as `NO_OP`. |
+| **Phase 6.1E** | **90-Minute Mini-Validation Pilot** | Run an end-to-end 90-minute live test on `worker3` comparing `CostBenefitPolicy` vs `AutoCompPolicy`. | Agent defers during BURST; AutoComp compacts during BURST (demonstrating the thesis); rewrites take $>5$s. |
+| **Phase 6.1F** | **Multi-Trial Production Evaluation** | Execute 3 counterbalanced 4-hour evaluation cycles per condition; run Phase 2H/2I statistical tests. | Wilcoxon p-values, rank-biserial effect sizes, and Holm-Bonferroni corrections calculated for publication report. |
