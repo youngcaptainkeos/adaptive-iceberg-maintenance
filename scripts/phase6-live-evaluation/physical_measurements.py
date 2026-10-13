@@ -201,6 +201,7 @@ class TelemetrySampler:
         require(covered > 0, 'No covered telemetry time')
         return dict(window_contract='completed_counter_window_v1',
                     window_start_monotonic_ns=cutoff, window_end_monotonic_ns=now,
+                    last_available_sample_end_monotonic_ns=samples[-1]['end']['monotonic_ns'],
                     feature_timestamp=samples[-1]['end']['utc'], measured_at=stamp(),
                     window_seconds=seconds, covered_seconds=covered, freshness_seconds=age,
                     cpu_busy_fraction=sum(w*s['cpu_busy_fraction'] for w,s in zip(weights,samples))/covered,

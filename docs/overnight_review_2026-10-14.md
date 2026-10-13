@@ -512,3 +512,22 @@ clocks (IST = UTC +05:30). Latest clock 2026-10-13 22:11:57 UTC corresponds to
 re-timed here; raw event UTC/process/acquisition records are authoritative. Deadline
 remains 2026-10-14 07:00 IST = 01:30 UTC, and physical-operation cutoff 06:15 IST
 = 00:45 UTC. No execution evidence or measured duration was altered.
+
+### 03:54 IST: independent window audit rejected publication-lag ambiguity
+
+The exact-bound observer PID376224 ended naturally with a failed reconstruction,
+not an accepted result: `Feature UTC differs from last available sample`. Raw log
+and launch traceback retained at `results/telemetry_exact_bounds_20261014/` and
+its launch log. A counter interval can finish before the feature cutoff but still
+be awaiting durable logging/publication into the sampler's history. The final raw
+ledger later contains that interval; cutoff alone cannot reconstruct the history
+that the feature actually saw. This is an availability-frontier ambiguity, not a
+reason to weaken freshness/coverage or silently alter the historical window.
+
+Repair: record `last_available_sample_end_monotonic_ns`, taken directly from the
+actual selected sampler history, alongside exact window bounds. Independent raw
+reconstruction requires that explicit frontier to exist and lie before/equal cutoff,
+and uses the recorded available prefix. Original coverage, gap and freshness gates
+remain. No inferred frontier is added to failed old records. Register a new exclusive
+305-second observer directory for physical revalidation. Source recovery is still
+active, 7,662 ranges / 8,034,189,312 bytes at first audit; no duplicate acquisition.

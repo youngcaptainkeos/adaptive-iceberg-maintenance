@@ -1,0 +1,15 @@
+{
+  "schema_version": "physical_telemetry_window_check_v1",
+  "experiment_id": "host_telemetry_available_frontier_20261014",
+  "rationale": "Repeat real host observation after independent audit rejected a sample-availability race. Exact cutoff alone does not identify the sampler history published by that moment: a raw counter interval may have ended but still be awaiting durable logging/history publication. Record the actual last available history sample explicitly; reconstruct only that observed prefix. Preserve one-second cadence, 305-second warmup, 60/300-second windows, two-second gap/freshness and 95% coverage gates. Preserve failed original log; no inferred historical frontier or manufactured workload.",
+  "interval_seconds": 1,
+  "window_seconds": [
+    60,
+    300
+  ],
+  "warmup_seconds": 305,
+  "max_interval_seconds": 2,
+  "max_age_seconds": 2,
+  "minimum_coverage_fraction": 0.95,
+  "output_directory": "../../results/telemetry_available_frontier_20261014"
+}

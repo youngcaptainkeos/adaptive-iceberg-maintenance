@@ -10,6 +10,9 @@ def verify_window(rows, window, *, max_interval_seconds, max_age_seconds, minimu
     low, high = (window['window_start_monotonic_ns'], window['window_end_monotonic_ns'])
     require(all(isinstance(v, int) and not isinstance(v, bool) for v in (low, high))
             and 0 <= low < high and high-low == int(window['window_seconds']*1e9), 'Invalid exact window bounds')
+    frontier = window['last_available_sample_end_monotonic_ns']
+    require(isinstance(frontier, int) and not isinstance(frontier, bool) and low < frontier <= high,
+            'Invalid explicitly recorded available-sample frontier')
     origins = [r for r in rows if r['kind'] == 'telemetry_origin']
     require(len(origins) == 1, 'Exactly one actual counter origin required per observer ledger')
     previous = origins[0]['counters']
@@ -34,10 +37,11 @@ def verify_window(rows, window, *, max_interval_seconds, max_age_seconds, minimu
                 and row['total_memory_bytes'] == current['total_memory_bytes']
                 and 0 <= current['available_memory_bytes'] <= current['total_memory_bytes']
                 and current['total_memory_bytes'] > 0, 'Invalid observed memory counters')
-        if low < row['end']['monotonic_ns'] <= high:
+        if low < row['end']['monotonic_ns'] <= frontier:
             intervals.append(row)
         previous = current
-    require(intervals and intervals[0]['start']['monotonic_ns'] <= low, 'Insufficient raw history')
+    require(intervals and intervals[0]['start']['monotonic_ns'] <= low
+            and intervals[-1]['end']['monotonic_ns'] == frontier, 'Insufficient raw history/frontier missing')
     require(all(r['elapsed_seconds'] <= max_interval_seconds for r in intervals), 'Raw sampling gap')
     freshness = (high-intervals[-1]['end']['monotonic_ns'])/1e9
     require(0 <= freshness <= max_age_seconds, 'Raw window is stale or uses future samples')
