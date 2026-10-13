@@ -1,0 +1,75 @@
+{
+  "schema_version": "alibaba_serialization_review_v1",
+  "checked_at": "2026-10-13T19:40:20.926703+00:00",
+  "tool_sha256": "8c6aaff6a936b865bf6e3dae324b7484d8f2e2bc005ee8b2b25b55fe02dbc22b",
+  "archive_sha256": "b7efe9dc9caa75352de41b9ac34b329602cde3414fd7cab87c1d21a9a9871d66",
+  "strict_audit_sha256": "9819dfda937e0865a0913fa363d7f09f07ccab70e6b9de0d588a939dda08c83d",
+  "schema_sha256": "4b60a8a90b57e3f3afbb67c4aadaf4906470b86e3dc8bc939e0f0992474ea77f",
+  "member": "alibaba-trace-2017/container_event.csv",
+  "member_sha256": "8e2c2776983fb0867f5088352849773186eab22de9d878e10978b5018c68aeda",
+  "rows": 11102,
+  "raw_csv_fields": 9,
+  "semantic_fields": 8,
+  "rule": "Every actual row has exactly one extra empty trailing field; remove only this serialization terminator, never pad/drop semantic values",
+  "columns": [
+    {
+      "name": "timestamp",
+      "missing": 0,
+      "invalid_numeric": 0,
+      "mandatory": true
+    },
+    {
+      "name": "event type",
+      "missing": 0,
+      "invalid_numeric": 0,
+      "mandatory": true
+    },
+    {
+      "name": "instance id",
+      "missing": 0,
+      "invalid_numeric": 0,
+      "mandatory": true
+    },
+    {
+      "name": "machine id",
+      "missing": 0,
+      "invalid_numeric": 0,
+      "mandatory": true
+    },
+    {
+      "name": "number of cpu requested",
+      "missing": 0,
+      "invalid_numeric": 0,
+      "mandatory": true
+    },
+    {
+      "name": "normalized memory requested",
+      "missing": 0,
+      "invalid_numeric": 0,
+      "mandatory": true
+    },
+    {
+      "name": "normalized disk space requested",
+      "missing": 0,
+      "invalid_numeric": 0,
+      "mandatory": true
+    },
+    {
+      "name": "cpu id of allocated cpus",
+      "missing": 0,
+      "invalid_numeric": 0,
+      "mandatory": true
+    }
+  ],
+  "timestamp_min": 0,
+  "timestamp_max": 79080,
+  "negative_timestamps": 0,
+  "zero_timestamps": 10909,
+  "positive_timestamps": 193,
+  "event_types": {
+    "Create": 11102
+  },
+  "semantic_field_violations": 0,
+  "status": "accepted_serialization_only",
+  "scope": "Supplement to strict raw audit. Does not approve replay, SQL-arrival mapping or resource imputation."
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "physical_telemetry_window_check_v1",
+  "experiment_id": "host_telemetry_60_300s_20261014",
+  "rationale": "Validate one-second measured counter cadence and prior 60/300-second windows while worker3 reads real SF100 source files for integrity audit. This is genuine host activity, not a generated workload; CPU/I/O values are not database interference results. Five-second warmup margin, two-second gap/freshness limits, and 95% coverage are explicit observer integrity tolerances. No services are restarted or benchmark clients launched.",
+  "interval_seconds": 1,
+  "window_seconds": [
+    60,
+    300
+  ],
+  "warmup_seconds": 305,
+  "max_interval_seconds": 2,
+  "max_age_seconds": 2,
+  "minimum_coverage_fraction": 0.95,
+  "output_directory": "../../results/telemetry_window_integrity_20261014"
+}

@@ -172,3 +172,31 @@ preserves the width failure and does not pretend those rows have validated seman
 Next unit must verify the ninth field is empty for every row before explicitly
 normalizing this serialization detail. Positive task creations remain a candidate
 for honestly labelled cluster-task-driven benchmark demand, never observed SQL arrivals.
+
+### 01:09–01:15 IST: serialization resolved; long integrity checks started
+
+Container-event serialization review verified every one of the 11,102 rows has
+exactly one ninth, empty field. Explicitly removing only this CSV terminator yields
+eight documented semantic fields with no required omissions or numeric violations.
+10909 records are time-zero pre-trace creations; only 193 have positive timestamps;
+all events are Create. The strict raw width-failure audit remains unchanged.
+See `alibaba_serialization_validation_2026-10-14.json`; raw member hash agrees with
+the strict audit. This does not create a replay or fill any data.
+
+Full SF100 byte-hash/newline-count inventories started separately on local and
+worker3 using committed tool 70d3863. No SF100 generator manifest is present.
+Customer source already matches: 15,000,000 rows, 2,463,490,271 bytes and SHA256
+874a0706b4bbcc83acbbf9bad94fa2d4cb7207febc0d39f45b982575893efb4c.
+Remaining tables are still being scanned; do not mark full verification complete.
+No latency pilot while these I/O scans run. Processes are observation-only and
+must never be killed at cutoff. Pending outputs:
+`docs/sf100_local_source_validation_2026-10-14.json` (local),
+`results/sf100_remote_source_validation_2026-10-14.json` (worker3).
+Tool sessions at launch: local 63555, remote 38441; inspect process/output state
+before starting replacements if resuming in a new turn.
+
+Next independent tasks: preserve exact positive task-create timestamps and identities
+as a clearly labelled candidate (no mapping/zero-padding/compression/query mix), and
+validate actual 60/300-second host telemetry windows during the real source I/O scan.
+Batch-task last reported create time is 60181 seconds; do not invent a quiet tail
+out to the publisher's nominal 24-hour period or claim complete event-free coverage.
