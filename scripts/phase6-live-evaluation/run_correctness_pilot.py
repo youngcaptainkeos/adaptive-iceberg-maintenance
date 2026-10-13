@@ -114,6 +114,9 @@ def run(config_path,expected_revision):
             rewrite_result=dict(zip(rewritten['columns'],rewritten['rows'][0]))
             require(rewrite_result.get('rewritten_data_files_count',0)>0,'No useful physical rewrite; refuse treatment labels')
             require(all(canonical(a['rows'])==canonical(b['rows']) for a,b in zip(controls,concurrent)),'Concurrent query result mismatch')
+            # Another Thrift connection committed the rewrite. Invalidate this
+            # connection's cached relation before reading post-commit metadata.
+            execute(f'REFRESH TABLE {target}','post_commit_session_refresh')
             after=execute(f'SELECT sum(record_count),count(*),sum(file_size_in_bytes) FROM {target}.files')['rows'][0]
             require(after[0]==before[0] and after[1]==before[1]-rewrite_result['rewritten_data_files_count']+rewrite_result['added_data_files_count'],'Rewrite metadata conservation failed')
             physical=execute(f'SELECT count(*) FROM {target}','post_rewrite_physical_count')['rows'][0][0]

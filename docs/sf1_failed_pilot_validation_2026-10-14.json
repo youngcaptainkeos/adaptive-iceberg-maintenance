@@ -1,0 +1,39 @@
+{
+  "schema_version": "failed_physical_pilot_review_v1",
+  "status": "failed_post_commit_metadata_check",
+  "code_revision": "04de0a1667804dab1f3a792f6cfe87f17c30cc6a",
+  "table": "local.experiment.integrity_pilot_20261014_0039",
+  "raw_evidence": [
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0039/events.jsonl",
+      "sha256": "1d6a719e12ec28ff621f6387e3f6f4a9215f41e09db35dea9f0cab41e7c9ceaf"
+    },
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0039/post_failure_audit.jsonl",
+      "sha256": "ad38ab40a9d6210ee35ff9ce162c65ad8e61d7dab29507f88ddf2e4d1ef77b20"
+    }
+  ],
+  "maintenance_result": [
+    [
+      16,
+      1,
+      164550027
+    ]
+  ],
+  "telemetry_intervals": 80,
+  "failure": "Rewrite metadata conservation failed",
+  "independent_fresh_connection_metadata": [
+    6001215,
+    1,
+    163892210
+  ],
+  "new_snapshot": 3129288059524244264,
+  "root_cause": "Main control session cached the pre-rewrite relation; fresh connection reads committed 16-to-1 rewrite",
+  "repair": "Explicit REFRESH TABLE in control session after other-connection commit; verify all original postconditions in new separately registered pilot",
+  "limitations": [
+    "Original pilot remains failed; post-rewrite multiset and task overlap checks were not reached",
+    "No model training or benefit claim",
+    "Raw evidence and rewritten table retained"
+  ],
+  "launch_refusal": "Abbreviated revision was refused before effects; rerun used full pinned HEAD. Future commands must use tool-observed full revision."
+}

@@ -78,6 +78,38 @@ general immutable run-packaging interface for future long experiments.
 
 ## Outstanding resources/gates
 
+### 00:39–00:47 IST: first query/rewrite pilot and repair
+
+Committed/synced pilot and task-level overlap analyzer as 04de0a1; all five changed
+file hashes matched. Protocol preserves measured source file count with explicit
+repartition, runs four control/concurrent/post query identities, checks an exact
+bidirectional full-row multiset, and requires actual task overlap. Query controls
+use 60-second prior telemetry, not future samples. No legacy guard enabled.
+
+First pilot retained at `results/sf1_correctness_pilot_20261014_0039/` on worker3.
+An abbreviated revision launch was refused before effects; correct full revision
+used for the physical run. This repeated command mistake is recorded; future launch
+commands must use the full tool-observed HEAD, not a manually shortened value.
+
+**Failed gate:** after successful physical rewrite output `[16,1,164550027]`,
+control-session metadata still reported the original 16-file state. The pilot
+refused acceptance and preserved all artifacts/table. Four concurrent query
+results matched controls before that failure; 80 actual telemetry intervals logged.
+Task overlap/full-multiset/post-query checks were not reached, so no treatment
+labels or correctness acceptance follow.
+
+Fresh-connection read-only audit found the committed new snapshot
+3129288059524244264, one file, 6,001,215 records, 163,892,210 bytes. Explicit
+REFRESH TABLE in that fresh session preserved those readings. Actual rewrite job
+2063 was attributed by unique table description and group REWRITE-DATA-FILES-6.
+Evidence indicates stale control-session relation caching after another Thrift
+connection commits. Added a post-commit REFRESH TABLE before postconditions.
+This invalidates session metadata; it does not rewrite/reset/drop data.
+
+See `sf1_failed_pilot_validation_2026-10-14.json`. Next: separately preregister a new
+destination/output and rerun all unchanged acceptance checks with the cache repair.
+Do not relabel the failed pilot accepted or relax overlap/result/row gates.
+
 No accepted SQL-arrival replay manifest or clean event-linked training dataset.
 SF100 complete source verification and Alibaba member/mapping review are pending.
 Publication claims and sufficient independent experiments remain future work.
