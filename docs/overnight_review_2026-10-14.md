@@ -406,3 +406,9 @@ API/real-source checks, not a Snowset validation result. Full source validation 
 not launched and is gated on acquisition completion. Registered offline limits:
 4GB working memory, two CPU threads, disk spill, 1GiB reserve beyond each member's
 size; these are operational settings, not scientific acceptance thresholds.
+
+Post-sync guard audit on worker3: actual in-progress recovery record rejected with
+exit 1 and explicit complete-acquisition error. Validation output directory was
+not created. Evidence: `snowset_validation_guard_check_2026-10-14.json`. Commit
+`1a251b8` pushed; worker3 fast-forwarded; HEAD and all four intended file hashes
+matched. Recovery continues naturally; no services/processes interrupted.

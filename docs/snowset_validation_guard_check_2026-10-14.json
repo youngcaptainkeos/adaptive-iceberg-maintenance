@@ -1,0 +1,12 @@
+{
+  "schema_version": "source_validation_guard_check_v1",
+  "execution_revision": "1a251b8a5ffb00d407ad7b495c9db969552497cd",
+  "machine": "worker3",
+  "actual_input": "datasets/snowset/recovery_20261014/recovery_record.json",
+  "observed_status": "in_progress",
+  "exit_code": 1,
+  "error": "Complete acquisition required before any dataset access",
+  "output_directory_created": false,
+  "scope": "Actual incomplete acquisition record rejected before extraction; not a complete Snowset content validation. Real SF1 Parquet API check covered 376585 rows.",
+  "synchronization": "Local/worker3 HEAD and SHA256 of four intended changed files matched at revision 1a251b8a5ffb00d407ad7b495c9db969552497cd."
+}
