@@ -1,0 +1,79 @@
+{
+  "schema_version": "pre_action_matched_measurement_review_v1",
+  "status": "accepted_matched_measurement_integrity_only",
+  "table": "local.experiment.integrity_matched_q0_20261014",
+  "original": {
+    "table": "local.experiment.integrity_matched_q0_20261014",
+    "snapshot_id": 799017226987882325,
+    "snapshot_measurement_id": "c5b70fc8ffa8403d91ae90cf5ed50de0",
+    "file_inventory_measurement_id": "5213b465184343dcbb79e61d26d7210a",
+    "file_state": {
+      "file_count": 16,
+      "record_count": 6001215,
+      "total_bytes": 164550027
+    }
+  },
+  "compacted": {
+    "table": "local.experiment.integrity_matched_q0_20261014",
+    "snapshot_id": 2979545464624785164,
+    "snapshot_measurement_id": "54f2ab06fdac4eeda91d61950608acaa",
+    "file_inventory_measurement_id": "c7f50900e3554eb9b4e0f64a045956e1",
+    "file_state": {
+      "file_count": 1,
+      "record_count": 6001215,
+      "total_bytes": 163892210
+    }
+  },
+  "decision_checks": [
+    {
+      "measurement_id": "3374184d2cc6456e9092d8631aa6ce18",
+      "role": "maintenance",
+      "snapshot_id": 799017226987882325,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    }
+  ],
+  "positive_task_overlap_seconds": [
+    0.3040001392364502
+  ],
+  "multiset_difference_count": 0,
+  "export": {
+    "pre_action_observation_count": 1,
+    "schema_version": "diagnostic_physical_query_observations_v1",
+    "status": "exported_bound_measurements_only",
+    "origin": "physical_spark_iceberg_verified_sf1",
+    "row_count": 4,
+    "source_result_sha256": "2e7e7abd1baf8c7abbee535f6e26459dc74b04e7da1bd0eeab9c2f18c3748ebf",
+    "source_events_sha256": "5529f2a83ffc6fdb6afdfd2a348f037c0919195d599de2da433fd6dab4c5ea40",
+    "export_code_sha256": "9695b5a786db25a3a2d1c91e8a2058681878ae02cc1caeea81be3584f260b592",
+    "observations_sha256": "112594a1ec993c7fa797ce4c01fd9284871af8786d8a44520ad476e34b918a81",
+    "code_revision_of_physical_run": "38f0514da328a9cea58d7e9e8aef0da881c7ec41",
+    "scope": "Four actual probe observations from one matched episode. Fractions/bytes/monotonic durations preserved; no imputed intensity/small-file eligibility, split labels, future state, counterfactual cost or training approval. Old trainer schema intentionally incompatible.",
+    "limitations": [
+      "One query/one physical rewrite, not variance or statistical/cost/model approval",
+      "Controlled benchmark layout, not natural fragmentation or trace replay",
+      "Host background/cache/time trends recorded only through counters; matched snapshots alone are not a causal guarantee",
+      "REST/logging observation overhead differs during maintenance; no idle-host or pure CPU-execution claim",
+      "No intensity/small-file eligibility/forecast feature invented or training export"
+    ]
+  },
+  "all_raw_package_file_hashes_match_worker3": true,
+  "file_sha256": {
+    "config.json": "c97758536f4c01d7fdc67a8a8499a987ebfe843302fb7fe4c67b703cb1a23ba0",
+    "events.jsonl": "5529f2a83ffc6fdb6afdfd2a348f037c0919195d599de2da433fd6dab4c5ea40",
+    "result.json": "2e7e7abd1baf8c7abbee535f6e26459dc74b04e7da1bd0eeab9c2f18c3748ebf",
+    "code/engine_overlap.py": "ce2d8d9ccb0c1cf486e7ff86b39d2a737450747ebdee9b70297a07d8cd475109",
+    "code/experiment_validation.py": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4",
+    "code/physical_measurements.py": "2c9f811ad095d6c386b50216c3f0428018f68f6a734fafb8514e2078f6112da1",
+    "code/query_observation_binding.py": "19b0b4db24599901f8ec1d6f926c5891d3df55d745fc977f07e3a8621c119a22",
+    "code/run_correctness_pilot.py": "de622efc4df5f4955440a81d8bc2c2b0d2a898d1ae740549f35a5901e23e74c7",
+    "code/run_matched_measurement_pilot.py": "569818ae5e6dbfce921fb520387fd5469b937839b22de21b303970546b764f08",
+    "code/statement_timing.py": "b30ea58ab27518bf3fe8494015c47dea40ea5cc4e2c88774b4489f0af5efadab",
+    "code/telemetry_binding.py": "81b943944f021f0d50dd9d0b1274d1c9f9851e7760160f7b7e025aeb4d73dfea"
+  },
+  "scope": "One Q0 episode with real pre-action windows; original inventory is immutable experimental-state evidence from before warmup, not fresh current-state proof for ingestion. No causal/statistical/training/model/scheduling acceptance."
+}

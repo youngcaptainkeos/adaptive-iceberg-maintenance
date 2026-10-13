@@ -20,7 +20,7 @@ def run(config_path,expected_revision):
     require(subprocess.run(['git','diff','--exit-code','HEAD','--','scripts/phase6-live-evaluation/*.py'],cwd=repo,capture_output=True).returncode==0,'Dirty experiment Python code')
     deadline=datetime.fromisoformat(cfg['no_new_operation_after_utc'])
     def before_operation():require(datetime.now(timezone.utc)<deadline,'Physical-operation cutoff; preserve state')
-    require(cfg.get('decision_feature_contract')=='pre_action_windows_v1','Pre-action decision context required for new episodes')
+    require(cfg.get('decision_feature_contract')=='pre_action_windows_v1' and cfg.get('decision_state_contract')=='fresh_current_original_snapshot_v1','Fresh pre-action context required for new episodes')
     before_operation();source=json.loads(verified_file(cfg['preparation_result'],base).read_text());verified_file(cfg['source'],base);verified_file(cfg['generator_provenance'],base)
     require(source['status']=='accepted_correctness_source' and re.fullmatch(r'local\.experiment\.integrity_sf1_[a-z0-9_]+',source['table']),'Unaccepted benchmark source')
     table=cfg['destination_table'];require(re.fullmatch(r'local\.experiment\.integrity_matched_[a-z0-9_]+',table),'Dedicated new table required')
@@ -72,10 +72,14 @@ def run(config_path,expected_revision):
             return rec.execute(cursors[0],sql,role=role,query_id=cfg['query_id'],measurement_id=identity)
         before=probe('control_before',original);during=None
         maintenance_id=uuid.uuid4().hex
+        refreshed=execute(f'REFRESH TABLE {table}','decision_state_session_refresh')
+        decision_state=inventory()
+        require(decision_state['snapshot_id']==original['snapshot_id'] and decision_state['file_state']==original['file_state'],'Original action state changed; refuse maintenance')
+        decision_state['decision_refresh_measurement_id']=refreshed['measurement_id']
         decision_windows=[sampler.window(seconds=w,max_interval_seconds=t['max_interval_seconds'],max_age_seconds=t['max_age_seconds']) for w in t['window_seconds']]
         require(all(w['covered_seconds']/w['window_seconds']>=t['minimum_coverage_fraction'] for w in decision_windows),'Pre-action coverage below unchanged gate')
         process_snapshot(maintenance_id)
-        log.emit('maintenance_decision_observation',measurement_id=maintenance_id,query_id=None,role='maintenance',windows=decision_windows,**original)
+        log.emit('maintenance_decision_observation',measurement_id=maintenance_id,query_id=None,role='maintenance',windows=decision_windows,**decision_state)
         with ThreadPoolExecutor(max_workers=1) as pool:
             before_operation()
             maintenance=pool.submit(rec.execute,cursors[1],f"CALL local.system.rewrite_data_files(table => '{table.removeprefix('local.')}', strategy => 'binpack', options => map('partial-progress.enabled','false'))",role='maintenance',measurement_id=maintenance_id)

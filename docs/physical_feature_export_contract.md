@@ -75,3 +75,11 @@ request. Query-time and action-time observations remain separate. The first matc
 Q1 episode has no such record and remains diagnostic-only; no nearest-window join or
 backfilled decision context can repair it. A common-horizon cost/export/training
 protocol is still required before fitting controller counterfactual/action costs.
+
+Fresh-action state adds `decision_state_contract: fresh_current_original_snapshot_v1`.
+Record an actual client `REFRESH TABLE`, then current snapshot and file inventory
+immediately before action, require the matched original state unchanged, and bind
+the refresh/metadata statement IDs in the pre-action observation. Metadata age at
+actual maintenance submission has an explicit registered gate. The earlier Q0
+pilot has pre-action windows but uses immutable warmup-time inventory; preserve
+that distinction, and do not silently claim its state freshness for ingestion cases.

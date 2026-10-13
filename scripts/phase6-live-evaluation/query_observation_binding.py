@@ -35,6 +35,12 @@ def verify_observations(rows, cfg, kind="query_observation"):
         # Later old-snapshot probes intentionally reference this immutable evidence.
         require(completed[snapshot_id]['fetch_end']['monotonic_ns']<=requests[inventory_id]['request_start']['monotonic_ns']
                 and completed[inventory_id]['fetch_end']['monotonic_ns']<=observation['recorded']['monotonic_ns']<=request['request_start']['monotonic_ns'],'Metadata/feature chronology differs')
+        if kind=='maintenance_decision_observation' and cfg.get('decision_state_contract')=='fresh_current_original_snapshot_v1':
+            refresh_id=observation['decision_refresh_measurement_id']
+            require(refresh_id in completed and requests[refresh_id]['sql']==f'REFRESH TABLE {table}'
+                    and completed[refresh_id]['fetch_end']['monotonic_ns']<=requests[snapshot_id]['request_start']['monotonic_ns'],'Missing chronological current-state refresh')
+            age=(result['client_execute_start']['monotonic_ns']-completed[inventory_id]['fetch_end']['monotonic_ns'])/1e9
+            require(0<=age<=cfg['metadata_max_age_seconds'],'Action uses stale/future metadata')
         windows=observation['windows'];require([w['window_seconds'] for w in windows]==telemetry['window_seconds'],'Missing declared history windows')
         for window in windows:
             verify_window(rows,window,max_interval_seconds=telemetry['max_interval_seconds'],max_age_seconds=telemetry['max_age_seconds'],minimum_coverage_fraction=telemetry['minimum_coverage_fraction'])

@@ -827,3 +827,25 @@ execution `38f0514da328a9cea58d7e9e8aef0da881c7ec41`, artifacts
 `results/sf1_matched_q0_20261014/`, matching launch log/JSON receipt. Launched at
 approximately 05:19 IST, before the physical cutoff; result pending. Require actual
 pre-action binding and exposure; preserve any failure/new table, never cancel work.
+
+### 05:24 IST onward: pre-action Q0 passed; fresh state gate strengthened
+
+Q0 pilot ended naturally: real pre-action maintenance UUID3374184d2cc6456e9092d8631aa6ce18
+bound to original snapshot799017226987882325 and both raw history windows, before
+actual maintenance submission. Query treatment had **0.304000139s** task-lifetime
+exposure, controls/layout had none; 16→1 files and exact 6,001,215 rows preserved.
+Raw package mirrored, all file hashes equal worker3. Local full raw timing/window/
+metadata/task replay verification and separate decision-record export passed; four
+query rows plus one actual decision observation, no invented intensity/eligibility/
+splits/targets. Evidence `matched_q0_validation_2026-10-14.json`; export
+`results/matched_q0_observation_export_20261014/`. No accepted cost training.
+
+Next-state audit: original inventory is immutable evidence for this isolated fixed
+benchmark, but was captured before warmup and cannot prove current action state
+under ingestion. New episode now refreshes actual client table state, reads fresh
+current snapshot/inventory immediately before action, requires original state
+unchanged and binds refresh/metadata IDs. Declared metadata age at actual RPC is
+at most two seconds; pre-action feature gates remain unchanged. Earlier Q0 evidence
+retains its distinction, no stale inventory relabelled as fresh. Register Q2 on a
+new proper SF1 table with these strengthened gates, same query SQL/layout/action
+settings and physical cutoff. Short-query missed exposure remains refused evidence.
