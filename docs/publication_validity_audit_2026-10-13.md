@@ -56,6 +56,27 @@ RUN_001/RUN_002 local training artifacts lack query identity and event intervals
 Default model metadata remains the older eight-feature version, with test MAEs
 about 22–26 seconds; query-aware code does not prove query-aware deployed artifacts.
 
+### Subsequent RUN_003 training log observation
+
+After the source inventory, the existing pipeline completed training and moved to
+the baseline evaluation/reset stage. Its physical-run training log reported:
+
+| Model | Total target samples | Test MAE | Test coverage |
+| --- | --- | --- | --- |
+| A, compaction | 10 | 158672.7 ms | 0.0% (two test records) |
+| B, no compaction | 70 | 2445.4 ms | 72.7% |
+
+Model A test R2 was -19381.348 and its calibrated offset 116427.7 ms. The split
+contained only one calibration record. Neither model is accepted for publication
+evaluation on this evidence. Coverage estimates from these tiny test sets are
+diagnostics, not precise population estimates or guarantees.
+
+Despite the results, training saved the artifacts and the shell pipeline advanced.
+This directly demonstrates the need for minimum independent calibration/event
+coverage, declared model acceptance criteria, and a fail-closed training gate.
+The audit did not interrupt or relaunch the pre-existing pilot. Preserve its outputs
+as failed validation evidence rather than presenting them as successful models.
+
 ## Blocking mechanisms in the code
 
 1. Missing Google trace selects an invented diurnal curve locally and remotely.
