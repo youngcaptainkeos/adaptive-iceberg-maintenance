@@ -375,9 +375,9 @@ reproduction name; separately named prototypes require declared parameters and a
 metadata, with no missing-field fallback. Syntax/source review performed, no fake
 metadata tests or baseline run. Evaluator remains blocked.
 
-### 03:57–04:00 IST: full Snowset source validation prepared
+### 02:57–03:00 IST: full Snowset source validation prepared
 
-Recovery remains active; no second acquisition or Spark workload launched. At 03:57
+Recovery remains active; no second acquisition or Spark workload launched. At 02:57
 IST it had 3,853 complete main ranges / 4,040,163,328 bytes. Dataset remains unaccepted.
 
 Added `scripts/validate_snowset_source.py` and a separate registered configuration.
@@ -413,7 +413,7 @@ not created. Evidence: `snowset_validation_guard_check_2026-10-14.json`. Commit
 `1a251b8` pushed; worker3 fast-forwarded; HEAD and all four intended file hashes
 matched. Recovery continues naturally; no services/processes interrupted.
 
-### 04:09–04:12 IST: bind training service time to actual raw clocks
+### 03:09–03:12 IST: bind training service time to actual raw clocks
 
 Audit found the trainer compared target duration with UTC timestamp subtraction at
 nanosecond precision. Recorded UTC has microsecond precision; the authoritative
@@ -443,7 +443,7 @@ publication collection/training. The old client-overlap check cannot certify tha
 methodology. Recovery continues; no physical Spark workload was launched while
 source transfers were active.
 
-### 04:24–04:27 IST: reconstruct physical exposure before training
+### 03:24–03:27 IST: reconstruct physical exposure before training
 
 Recovery remains in progress (5,705 complete ranges / 5,982,126,080 bytes at first
 check). No new workload or duplicate download launched.
@@ -475,7 +475,7 @@ and background work. Statistical protocol/common support and trace mapping remai
 necessary. Task lifetimes still do not establish simultaneous CPU instructions;
 absence of source-audit findings cannot certify the entire pipeline.
 
-### 04:39 IST onward: exact telemetry cutoff repair
+### 03:39 IST onward: exact telemetry cutoff repair
 
 Audit of the window routine found a possible post-cutoff sample race: cutoff was
 captured before taking the sample lock, so a newly appended sample could end after
@@ -499,8 +499,16 @@ Implementation commit `c77954a` pushed and fast-forwarded on worker3; HEAD and a
 five changed file SHA256 values matched. Checked for an existing window observer
 before launch. Own bounded observer PID **376224**, log
 `results/telemetry_exact_bounds_20261014_launch.log`, artifacts
-`results/telemetry_exact_bounds_20261014/`. At 04:41:57 IST its raw ledger had
+`results/telemetry_exact_bounds_20261014/`. At 03:41:57 IST its raw ledger had
 26 real events and no reported launch error; result pending. Source recovery
 remains active with 6,935 main ranges / 7,271,874,560 bytes. No Spark workload
 launched and no service, table or existing process altered. Next heartbeat must
 audit observer completion and source recovery before launching dependent work.
+
+Clock audit: corrected a one-hour conversion error in recent source-validator,
+raw-timing, engine-label and exact-window ledger entries against observed UTC tool
+clocks (IST = UTC +05:30). Latest clock 2026-10-13 22:11:57 UTC corresponds to
+2026-10-14 03:41:57 IST. Earlier inherited ledger headings are not independently
+re-timed here; raw event UTC/process/acquisition records are authoritative. Deadline
+remains 2026-10-14 07:00 IST = 01:30 UTC, and physical-operation cutoff 06:15 IST
+= 00:45 UTC. No execution evidence or measured duration was altered.
