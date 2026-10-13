@@ -47,7 +47,7 @@ correctness; 03:30–05:45 next ready validation/collection; 05:45–06:15 audit
 Legacy collector/evaluator/reset/launchers remain blocked until explicitly repaired.
 No publication-readiness or forecasting claim follows from a correctness pilot.
 
-## Current queue state (01:45 IST)
+## Current queue state (03:47 IST)
 
 - Completed bounded event/telemetry primitives and real 60-second pre-query windows.
 - Completed isolated verified SF1 source preparation and repaired query/rewrite pilot.
@@ -58,10 +58,14 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
   60/300-second windows pass declared coverage/gap/freshness tolerances. Both source
   scans ended naturally. Fixed observer deadline drift found in the audit.
 - Completed repaired observer cadence and actual client timing-boundary validation.
-- Running: provenance-checked Snowset range acquisition on worker3 after monolithic
-  transfer failure. No accepted arrival dataset until full archive/schema validation.
+- Running: audited Snowset recovery on worker3 after range-transfer failure at
+  approximately 3.13GB. Retained parts have an explicit missing-original-receipt
+  limitation; new ranges have durable receipts/adaptive transport splitting.
+  No accepted arrival dataset until full archive/schema validation.
 - Next: identifiable matched collection protocol/offered-load repair; then real
   arrival inspection/forecasting when source integrity gates pass. Do not train cost
   models on this correctness pilot or silently use partial/cluster data as SQL demand.
+- Completed collector/evaluator dead-code retirement and matched physical design.
+  AutoComp attribution/reproduction claim corrected; faithful baseline still pending.
 - Still blocked: publication replay/collector/evaluator, accepted independent training
   data, forecast-aware scheduling. Remaining legacy code has not been re-enabled.

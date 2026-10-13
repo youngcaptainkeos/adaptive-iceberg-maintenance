@@ -358,3 +358,13 @@ control-before/during/control-after interference comparisons; compacted-layout
 benefit separated; one query per rewrite initially; actual task exposure and logger
 timing; independent episodes and training-only selection; exact open-loop arrivals;
 no invented ingestion. The earlier four-client pilot is not identified cost data.
+
+Recovery started with 2,991 retained complete ranges copied and rehashed, and resumed
+new verified transfers. New progress passed 3,037 ranges/3,184,525,312 bytes. Source
+recovery session 55252; inspect `datasets/snowset/recovery_20261014/recovery_record.json`
+before any replacement. The old failure/evidence is preserved. No accepted corpus yet.
+
+Checked primary AutoComp paper and corrected historical VLDB-2024 attribution to
+SIGMOD-Companion 2025. The legacy ratio/count policy is not a verified reproduction
+of its full candidate-estimation/ranking/scheduling framework. See
+`autocomp_baseline_verification.md`; faithful baseline selection remains a gate.
