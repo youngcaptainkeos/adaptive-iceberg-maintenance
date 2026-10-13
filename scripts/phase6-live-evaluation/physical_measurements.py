@@ -144,10 +144,11 @@ class TelemetrySampler:
         total = sum(value for name, value in cpu._asdict().items() if name not in ('guest', 'guest_nice'))
         idle = cpu.idle + getattr(cpu, 'iowait', 0)
         io = psutil.disk_io_counters()
+        memory = psutil.virtual_memory()
         require(io is not None, 'Disk I/O counters unavailable')
         return dict(timestamp=timestamp, cpu_total_s=total, cpu_idle_s=idle,
                     read_bytes=io.read_bytes, write_bytes=io.write_bytes,
-                    available_memory_bytes=psutil.virtual_memory().available)
+                    available_memory_bytes=memory.available, total_memory_bytes=memory.total)
 
     def _run(self):
         try:
@@ -166,7 +167,8 @@ class TelemetrySampler:
                 sample = dict(start=previous['timestamp'], end=current['timestamp'],
                               elapsed_seconds=elapsed, cpu_busy_fraction=(total-idle)/total,
                               read_bytes_per_second=read/elapsed, write_bytes_per_second=write/elapsed,
-                              available_memory_bytes=current['available_memory_bytes'], counters=current)
+                              available_memory_bytes=current['available_memory_bytes'],
+                              total_memory_bytes=current['total_memory_bytes'], counters=current)
                 self.log.emit('telemetry_interval', **sample)
                 with self.lock:
                     self.samples.append(sample)
@@ -187,21 +189,25 @@ class TelemetrySampler:
         now = time.monotonic_ns()
         cutoff = now - int(seconds * 1e9)
         with self.lock:
-            samples = [s for s in self.samples if s['end']['monotonic_ns'] > cutoff]
+            samples = [s for s in self.samples if cutoff < s['end']['monotonic_ns'] <= now]
         require(bool(samples), 'Telemetry warmup: no completed intervals')
         require(samples[0]['start']['monotonic_ns'] <= cutoff, 'Telemetry warmup: incomplete window')
         age = (now - samples[-1]['end']['monotonic_ns']) / 1e9
-        require(age <= max_age_seconds, 'Stale telemetry')
+        require(0 <= age <= max_age_seconds, 'Stale or future telemetry')
         require(all(s['elapsed_seconds'] <= max_interval_seconds for s in samples), 'Telemetry sampling gap')
         weights = [max(0, (min(now, s['end']['monotonic_ns']) - max(cutoff, s['start']['monotonic_ns'])) / 1e9)
                    for s in samples]
         covered = sum(weights)
         require(covered > 0, 'No covered telemetry time')
-        return dict(feature_timestamp=samples[-1]['end']['utc'], measured_at=stamp(),
+        return dict(window_contract='completed_counter_window_v1',
+                    window_start_monotonic_ns=cutoff, window_end_monotonic_ns=now,
+                    feature_timestamp=samples[-1]['end']['utc'], measured_at=stamp(),
                     window_seconds=seconds, covered_seconds=covered, freshness_seconds=age,
                     cpu_busy_fraction=sum(w*s['cpu_busy_fraction'] for w,s in zip(weights,samples))/covered,
                     read_bytes_per_second=sum(w*s['read_bytes_per_second'] for w,s in zip(weights,samples))/covered,
-                    write_bytes_per_second=sum(w*s['write_bytes_per_second'] for w,s in zip(weights,samples))/covered)
+                    write_bytes_per_second=sum(w*s['write_bytes_per_second'] for w,s in zip(weights,samples))/covered,
+                    memory_used_fraction=sum(w*(s['total_memory_bytes']-s['available_memory_bytes'])/s['total_memory_bytes']
+                                             for w,s in zip(weights,samples))/covered)
 
     def stop(self):
         # Stops only our observer thread, never a database operation/service.

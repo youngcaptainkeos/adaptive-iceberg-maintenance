@@ -1,0 +1,15 @@
+{
+  "schema_version": "physical_telemetry_window_check_v1",
+  "experiment_id": "host_telemetry_exact_bounds_20261014",
+  "rationale": "Observe real host conditions during active source recovery after closing completed-sample cutoff race. Record exact monotonic feature bounds and actual total/available memory counters. Independently reconstruct all interval rates and 60/300-second windows before acceptance. Preserve original one-second cadence, 305-second warmup, two-second gap/freshness and 95% coverage gates; no generated workload or dataset labels.",
+  "interval_seconds": 1,
+  "window_seconds": [
+    60,
+    300
+  ],
+  "warmup_seconds": 305,
+  "max_interval_seconds": 2,
+  "max_age_seconds": 2,
+  "minimum_coverage_fraction": 0.95,
+  "output_directory": "../../results/telemetry_exact_bounds_20261014"
+}

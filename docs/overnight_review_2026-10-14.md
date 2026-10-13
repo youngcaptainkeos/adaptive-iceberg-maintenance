@@ -474,3 +474,23 @@ binding, actual engine-session scope and exclusion/measurement of other foregrou
 and background work. Statistical protocol/common support and trace mapping remain
 necessary. Task lifetimes still do not establish simultaneous CPU instructions;
 absence of source-audit findings cannot certify the entire pipeline.
+
+### 04:39 IST onward: exact telemetry cutoff repair
+
+Audit of the window routine found a possible post-cutoff sample race: cutoff was
+captured before taking the sample lock, so a newly appended sample could end after
+that cutoff and produce negative freshness. Window selection now includes only
+completed samples ending at/before its captured cutoff; negative age is refused.
+Exact monotonic start/end bounds are recorded, with a new explicit window contract.
+Added actual total/available host-memory counters and weighted used-memory fraction
+(total minus available, divided by total), not RSS or a fabricated measurement.
+
+Added independent raw-counter/window reconstruction. It verifies origin/interval
+chain, actual CPU and byte counter deltas, elapsed time/rates, memory counters, exact
+cutoff, weighting, coverage and freshness against the reported window. Original
+coverage/gap/freshness gates remain. Historical windows without exact bounds cannot
+be silently relabelled; their earlier diagnostic reviews remain preserved.
+A separately registered 305-second observer will check real host conditions with
+60/300-second windows, without generating database work. Observation ends normally
+before immutable-ledger verification; no database service/process is stopped.
+No physical acceptance is claimed until that check ends and reconstruction passes.
