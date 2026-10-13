@@ -779,3 +779,31 @@ receipt. At 05:04 IST it was active without a launch traceback, still gathering
 required history. Result pending; no treatment/cost/feature acceptance claimed.
 Audit raw events/result and row/snapshot/feature/task postconditions before any
 further physical episode. Preserve the new table even if the gate fails.
+
+### 05:09 IST onward: original-file matched pilot passed and narrow export
+
+Q1 matched pilot ended naturally and passed measurement integrity: original
+snapshot6712048167918585153, compacted5696072815703846747, 16→1 physical files,
+6,001,215 rows unchanged, exact bidirectional multiset difference0. Before/during/
+after probes pinned the same original snapshot; separate compacted-layout probe
+returned identical results. Treatment task-lifetime overlap **2.630000114s**; controls
+and compacted probe had zero verified rewrite exposure. All eight 60/300 windows
+bound to actual query UUIDs, raw counters, available frontier and snapshot/file
+metadata; actual-submission freshness and app scope passed.
+
+Raw package mirrored locally, every file hash equal worker3. Local exporter replayed
+complete statement timing, observation windows/file/snapshot binding and actual
+Spark rewrite/task exposure from raw logs, comparing reported result. Exported four
+rows only with actual fractions, file/byte counts, UTC/monotonic timing and verified
+exposure. No intensity, small-file eligibility, counterfactual label, split identity
+or future state filled in. Schema `diagnostic_physical_query_observations_v1` is
+intentionally incompatible with the legacy training schema; no cost models trained.
+Evidence `matched_measurement_validation_2026-10-14.json`; raw
+`results/sf1_matched_measurement_20261014/`, export
+`results/matched_observation_export_20261014/`. One episode is not variance, causal
+benefit or publication acceptance; host/cache/REST overhead limitations remain.
+
+Register next unchanged Q0 query on a new source-verified table, retaining identical
+snapshot, feature, conservation and task gates. Its shorter service time may miss
+actual exposure; preserve that outcome rather than weakening labels or slowing SQL.
+This broadens query coverage only, not repetitions/load/fragmentation diversity.

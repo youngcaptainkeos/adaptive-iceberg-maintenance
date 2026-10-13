@@ -1,0 +1,49 @@
+{
+  "purpose": "physical_matching_and_feature_integrity_only",
+  "source": {
+    "path": "../../datasets/tpch/sf1/lineitem.tbl",
+    "sha256": "96d555e07a1ae8cf5196387d9edd9427f9af70c56fa5f4b18affee5555ddb184"
+  },
+  "generator_provenance": {
+    "path": "../../datasets/tpch/sf1/manifest.txt",
+    "sha256": "d2d80966fe1fa8790c35ea3ed6242b4d9ef2740cad888c84bd986348e9c39a32"
+  },
+  "engine": {
+    "host": "127.0.0.1",
+    "port": 10000,
+    "username": "ccbd",
+    "expected_version": "3.3.4"
+  },
+  "spark_rest_url": "http://127.0.0.1:4040",
+  "spark_app_id": "local-1791896695889",
+  "rest_timeout_seconds": 5,
+  "schema_version": "matched_snapshot_measurement_pilot_v1",
+  "experiment_id": "sf1_matched_q0_20261014",
+  "configuration_rationale": "Extend the passed Q1 matched measurement path to the unchanged existing Q0 benchmark query on a new verified SF1 clone with the same measured-file-count intervention and original-snapshot matching. Q0 previously had shorter actual service time, so missed overlap is a real risk and remains failed evidence; no artificial query slowdown, delay, data growth or weakened task gate. Retain original observation/row/metadata/result gates and 06:15 IST physical cutoff. One Q0 episode broadens query coverage but is not independent variance estimation, common-support/load diversity or cost-model training. Atomic binpack action and operational polling settings remain unchanged; no policy/forecast/model decision.",
+  "preparation_result": {
+    "path": "../../results/sf1_source_integrity_20261014_0024/result.json",
+    "sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57"
+  },
+  "destination_table": "local.experiment.integrity_matched_q0_20261014",
+  "output_directory": "../../results/sf1_matched_q0_20261014",
+  "rewrite_options": {
+    "partial-progress.enabled": "false"
+  },
+  "telemetry": {
+    "interval_seconds": 1,
+    "window_seconds": [
+      60,
+      300
+    ],
+    "warmup_seconds": 305,
+    "max_interval_seconds": 2,
+    "max_age_seconds": 2,
+    "minimum_coverage_fraction": 0.95,
+    "rationale": "One-second real host counter cadence, five-minute warmup plus five-second margin; retain existing 95% coverage and two-second gap/freshness gates. Exact bounds/available frontier and actual submission freshness are independently checked. No normalized demand assumed."
+  },
+  "layout": "repartition_to_verified_source_file_count",
+  "query_id": 0,
+  "no_new_operation_after_utc": "2026-10-14T00:45:00+00:00",
+  "poll_interval_seconds": 0.1,
+  "engine_start_observation_seconds": 60
+}

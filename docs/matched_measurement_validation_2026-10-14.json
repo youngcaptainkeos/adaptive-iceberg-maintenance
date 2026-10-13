@@ -1,0 +1,101 @@
+{
+  "schema_version": "matched_measurement_integrity_review_v1",
+  "status": "accepted_matched_measurement_integrity_only",
+  "table": "local.experiment.integrity_matched_20261014",
+  "original_snapshot": 6712048167918585153,
+  "compacted_snapshot": 5696072815703846747,
+  "original_state": {
+    "file_count": 16,
+    "record_count": 6001215,
+    "total_bytes": 164550027
+  },
+  "compacted_state": {
+    "file_count": 1,
+    "record_count": 6001215,
+    "total_bytes": 163892210
+  },
+  "multiset_difference_count": 0,
+  "query_observation_checks": [
+    {
+      "measurement_id": "b85ec3d4fed14373a6f99c1a935a3949",
+      "role": "control_before",
+      "snapshot_id": 6712048167918585153,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    },
+    {
+      "measurement_id": "6e400773f4474a069c4a0a72810a94a0",
+      "role": "during_rewrite",
+      "snapshot_id": 6712048167918585153,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    },
+    {
+      "measurement_id": "e2d6a104d9f044d7b3da327913a146cd",
+      "role": "control_after_original_snapshot",
+      "snapshot_id": 6712048167918585153,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    },
+    {
+      "measurement_id": "caac87a9be604eb1bc50c26855f407ec",
+      "role": "compacted_layout",
+      "snapshot_id": 5696072815703846747,
+      "file_state": {
+        "file_count": 1,
+        "record_count": 6001215,
+        "total_bytes": 163892210
+      },
+      "windows_verified": 2
+    }
+  ],
+  "positive_task_overlap_seconds": [
+    2.630000114440918
+  ],
+  "export": {
+    "schema_version": "diagnostic_physical_query_observations_v1",
+    "status": "exported_bound_measurements_only",
+    "origin": "physical_spark_iceberg_verified_sf1",
+    "row_count": 4,
+    "source_result_sha256": "d1a0850f9a36778e751d6050092e3ad7d2f4ce847272177a5b5f3ef400f80c39",
+    "source_events_sha256": "ebcaaaaa752e56c4752cba9f7f49c3c4cef06427dcb78ab26253ba3cdf217510",
+    "export_code_sha256": "7296b431d6e168787e57b176cd6eade8348f228f01c09235876f4f68f6db06cc",
+    "observations_sha256": "b71dc498833c4d9cff170e8b54a024b7fcee1b93290da05ca58c3dbf6bdf6480",
+    "code_revision_of_physical_run": "208f6a146c1cc470d34cde8a1f5e419583770c1d",
+    "scope": "Four actual probe observations from one matched episode. Fractions/bytes/monotonic durations preserved; no imputed intensity/small-file eligibility, split labels, future state, counterfactual cost or training approval. Old trainer schema intentionally incompatible.",
+    "limitations": [
+      "One query/one physical rewrite, not variance or statistical/cost/model approval",
+      "Controlled benchmark layout, not natural fragmentation or trace replay",
+      "Host background/cache/time trends recorded only through counters; matched snapshots alone are not a causal guarantee",
+      "REST/logging observation overhead differs during maintenance; no idle-host or pure CPU-execution claim",
+      "No intensity/small-file eligibility/forecast feature invented or training export"
+    ]
+  },
+  "local_worker3_raw_package_hashes_equal": true,
+  "raw_file_sha256": {
+    "config.json": "bf168ee6c330811b3908b0764dc5c8634aa1d5fdb0f37fe9e300aa15e61380c0",
+    "events.jsonl": "ebcaaaaa752e56c4752cba9f7f49c3c4cef06427dcb78ab26253ba3cdf217510",
+    "result.json": "d1a0850f9a36778e751d6050092e3ad7d2f4ce847272177a5b5f3ef400f80c39",
+    "code/engine_overlap.py": "ce2d8d9ccb0c1cf486e7ff86b39d2a737450747ebdee9b70297a07d8cd475109",
+    "code/experiment_validation.py": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4",
+    "code/physical_measurements.py": "2c9f811ad095d6c386b50216c3f0428018f68f6a734fafb8514e2078f6112da1",
+    "code/query_observation_binding.py": "b4c106ca229e326971d8a49b3d22a1d566097f2c38ab311c12cd0ab0f7418f5e",
+    "code/run_correctness_pilot.py": "de622efc4df5f4955440a81d8bc2c2b0d2a898d1ae740549f35a5901e23e74c7",
+    "code/run_matched_measurement_pilot.py": "5cbb04745bd4c7932cf0c4edfff4a39064b8918c4a8f590e197e1107ffd746a7",
+    "code/statement_timing.py": "b30ea58ab27518bf3fe8494015c47dea40ea5cc4e2c88774b4489f0af5efadab",
+    "code/telemetry_binding.py": "81b943944f021f0d50dd9d0b1274d1c9f9851e7760160f7b7e025aeb4d73dfea"
+  },
+  "scope": "One matched original-file interference episode and separate compacted-layout query. Raw timings/windows/files/tasks independently replay-checked locally; not independent repetitions, causal/statistical cost claim, traced workload, training or policy acceptance."
+}
