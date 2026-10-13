@@ -1,0 +1,40 @@
+{
+  "schema_version": "observer_integrity_review_v1",
+  "purpose": "Physical host and REST observation, no workload/model experiment",
+  "code_revision": "26959b5f3dfd3188ea8920ce3bfb93a498fc0420",
+  "remote_evidence": "results/measurement_integrity_20261014/observer_events.jsonl",
+  "evidence_sha256": "df255f0cc2406e9badad754bc393f2d640f328de92390473c7f8452658f6f0c7",
+  "records": 13,
+  "intervals": 7,
+  "window": {
+    "feature_timestamp": "2026-10-13T18:40:43.414247+00:00",
+    "measured_at": {
+      "utc": "2026-10-13T18:40:44.137080+00:00",
+      "monotonic_ns": 856455442059774
+    },
+    "window_seconds": 5,
+    "covered_seconds": 4.277282713,
+    "freshness_seconds": 0.722717287,
+    "cpu_busy_fraction": 0.004095642287560973,
+    "read_bytes_per_second": 0.0,
+    "write_bytes_per_second": 29256.107758966817,
+    "schema_version": "physical_event_v1",
+    "experiment_id": "observer_integrity_20261014",
+    "kind": "window_check",
+    "recorded": {
+      "utc": "2026-10-13T18:40:44.137144+00:00",
+      "monotonic_ns": 856455442093415
+    }
+  },
+  "checks": [
+    "valid persisted JSON records",
+    "positive monotonic intervals and CPU fractions in [0,1]",
+    "actual Spark environment/jobs/stages REST responses"
+  ],
+  "limitations": [
+    "No SQL execution/result/rewrite validation yet",
+    "No engine overlap correlation yet",
+    "Short window tests observer plumbing, not 60/300-second model features",
+    "Disk counters describe host devices, not per-query or NFS attribution"
+  ]
+}
