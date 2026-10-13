@@ -1,0 +1,82 @@
+{
+  "schema_version": "snowset_failed_acquisition_review_v1",
+  "acquisition": {
+    "schema_version": "https_dataset_acquisition_record_v1",
+    "source_url": "https://www.cs.cornell.edu/~midhul/snowset/snowset-main.parquet.tar.gz",
+    "started_at": "2026-10-13T20:00:11.801169+00:00",
+    "configuration": {
+      "schema_version": "https_dataset_acquisition_v1",
+      "source_url": "https://www.cs.cornell.edu/~midhul/snowset/snowset-main.parquet.tar.gz",
+      "publisher_download_reference": "https://github.com/resource-disaggregation/snowset/blob/master/download.md",
+      "publisher_schema_reference": "https://github.com/resource-disaggregation/snowset/blob/master/schema.md",
+      "expected_bytes": 8202394513,
+      "expected_last_modified": "Sun, 23 Feb 2020 19:00:06 GMT",
+      "filename": "snowset-main.parquet.tar.gz",
+      "output_directory": "../../datasets/snowset/acquisition_20261014",
+      "socket_timeout_seconds": 60,
+      "progress_interval_seconds": 20,
+      "rationale": "Close missing real database-arrival resource gate using public research dataset accompanying NSDI 2020 Snowflake paper. Publisher describes approximately 70 million queries over 14 days and createdTime as UTC system arrival. Parquet supports projecting timestamps/warehouse IDs without parsing all query metrics. Exact size/modification from live HTTPS HEAD; sufficient local disk verified. Timeouts/log cadence are operational settings, not research thresholds. Download does not authorize replay/training or establish SQL text/query mix. Preserve partial bytes on failure, no silent substitute/retry."
+    },
+    "code_revision": "5ca5961f5a8baec760e196822ae43ebd64caab8a",
+    "tool_sha256": "a6ab66cbce8ea9b2a08fcee07542f6d96efa3f7d1264a79cfb0de9cb428e8e5d",
+    "status": "failed_preserved_partial",
+    "downloaded_bytes": 1568768,
+    "head_headers": {
+      "Server": "nginx/1.20.1",
+      "Date": "Tue, 13 Oct 2026 20:00:12 GMT",
+      "Content-Type": "application/x-gzip",
+      "Content-Length": "8202394513",
+      "Connection": "close",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "Content-Security-Policy": "upgrade-insecure-requests",
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "SAMEORIGIN",
+      "X-XSS-Protection": "1; mode=block",
+      "Last-Modified": "Sun, 23 Feb 2020 19:00:06 GMT",
+      "Accept-Ranges": "bytes"
+    },
+    "resolved_url": "https://www.cs.cornell.edu/~midhul/snowset/snowset-main.parquet.tar.gz",
+    "get_headers": {
+      "Server": "nginx/1.20.1",
+      "Date": "Tue, 13 Oct 2026 20:00:14 GMT",
+      "Content-Type": "application/x-gzip",
+      "Content-Length": "8202394513",
+      "Connection": "close",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "Content-Security-Policy": "upgrade-insecure-requests",
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "SAMEORIGIN",
+      "X-XSS-Protection": "1; mode=block",
+      "Last-Modified": "Sun, 23 Feb 2020 19:00:06 GMT",
+      "Accept-Ranges": "bytes"
+    },
+    "error_type": "ValueError",
+    "error": "Incomplete source object"
+  },
+  "partial_sha256": "ca314929133e0cc9ca057b4fe5dcc9b2406c36e35df232e27513b3291ff7c246",
+  "partial_path": "datasets/snowset/acquisition_20261014/snowset-main.parquet.tar.gz.partial",
+  "scope": "Partial source object preserved and rejected; no archive extraction, forecasting, replay or dataset availability claim",
+  "range_probes": {
+    "local_and_worker3": [
+      {
+        "range": "bytes 0-1023/8202394513",
+        "status": 206,
+        "received": 1024
+      },
+      {
+        "range": "bytes 8202394497-8202394512/8202394513",
+        "status": 206,
+        "received": 16
+      }
+    ],
+    "last_modified": "Sun, 23 Feb 2020 19:00:06 GMT",
+    "interpretation": "Both endpoints serve verified head/tail ranges of advertised object; larger-range throughput still being checked before alternate method"
+  },
+  "one_mib_probes": {
+    "range": "bytes 0-1048575/8202394513",
+    "received_bytes_each": 1048576,
+    "sha256_each": "29d668b9f62e8ffe7362e9ad24ee63184b37ff4b4533d3e913b299b85f0d9bfd",
+    "local_elapsed_seconds": 5.877299404004589,
+    "worker3_elapsed_seconds": 2.682987785898149
+  }
+}

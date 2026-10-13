@@ -1,0 +1,51 @@
+{
+  "schema_version": "fixed_cadence_observer_review_v1",
+  "result": {
+    "status": "accepted_physical_window_check",
+    "windows": [
+      {
+        "feature_timestamp": "2026-10-13T19:58:55.118172+00:00",
+        "measured_at": {
+          "utc": "2026-10-13T19:58:55.157959+00:00",
+          "monotonic_ns": 861146462922413
+        },
+        "window_seconds": 60,
+        "covered_seconds": 59.960544858999974,
+        "freshness_seconds": 0.039455141,
+        "cpu_busy_fraction": 0.004039323496124808,
+        "read_bytes_per_second": 0.0,
+        "write_bytes_per_second": 39951.49083785318
+      },
+      {
+        "feature_timestamp": "2026-10-13T19:58:55.118172+00:00",
+        "measured_at": {
+          "utc": "2026-10-13T19:58:55.191477+00:00",
+          "monotonic_ns": 861146496441853
+        },
+        "window_seconds": 300,
+        "covered_seconds": 299.9274293539999,
+        "freshness_seconds": 0.072570646,
+        "cpu_busy_fraction": 0.004365188278856868,
+        "read_bytes_per_second": 0.0,
+        "write_bytes_per_second": 45183.863633655
+      }
+    ],
+    "scope": "Observer integrity under recorded host conditions; no model or workload performance claim"
+  },
+  "raw_event_path": "results/telemetry_window_fixed_cadence_20261014/events.jsonl",
+  "raw_event_sha256": "b3c0242d1977d5eeedea3b469611dcb6dd047607e247d41ef90423cc82e40798",
+  "interval_count": 305,
+  "minimum_interval_seconds": 0.999820191,
+  "median_interval_seconds": 0.999999981,
+  "maximum_interval_seconds": 1.026345843,
+  "checks": [
+    "Both weighted windows independently recomputed from real monotonic intervals",
+    "All gap/freshness/coverage tolerances passed",
+    "Actual target cadence recorded after deadline repair"
+  ],
+  "limitations": [
+    "Current host is idle after SF100 scans; not a controlled performance comparison with previous loaded check",
+    "No database latency, forecast or model validation"
+  ],
+  "mirrored_locally": true
+}

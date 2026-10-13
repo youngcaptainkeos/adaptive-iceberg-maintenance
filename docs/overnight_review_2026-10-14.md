@@ -277,3 +277,31 @@ config. Large bytes stay outside GitHub; preserve partials on failure and do not
 claim dataset available before the exact-byte download completes. Next gates and
 future-information risks recorded in `snowset_acquisition_and_scope.md`.
 Repaired telemetry-cadence observer is still running naturally; no duplicate launched.
+
+### 01:29–01:38 IST: cadence passed; acquisition failure audited
+
+Repaired observer completed naturally: 305 real intervals, median 0.999999981s,
+maximum 1.026s. Actual 60/300-second windows have 59.961/299.927 seconds covered
+and 0.039/0.073 seconds freshness. Independently recomputed all weighted CPU/read/
+write metrics from raw monotonic records; unchanged gap/coverage gates pass. This
+host was idle after SF100 scanning, so it is not a controlled performance comparison
+with the earlier loaded observation. Evidence mirrored; see
+`telemetry_fixed_cadence_validation_2026-10-14.json`.
+
+**Snowset acquisition failed safely:** advertised 8,202,394,513-byte monolithic GET
+ended after 1,568,768 bytes. Partial/source config/code/progress retained; no dataset
+availability, extraction, forecast or replay claim. Review records partial hash and
+actual failed request metadata in `snowset_failed_acquisition_2026-10-14.json`.
+Both local/worker3 served exact first/tail HTTP206 ranges with unchanged modification
+time. One-MiB range fully received on each, identical SHA256; 5.88s locally vs 2.68s
+worker3. Registering an explicit bounded range acquisition on worker3, with per-range
+size/version/offset/hash checks and exact-order final assembly; original failure
+preserved. Operational range/retry/concurrency settings are justified by these probes,
+not scientific outcome tuning. No model/replay acceptance gate is relaxed.
+
+Audit also identified intent logging inside the original client elapsed-time target.
+Added actual execute-call start and separate request lifetime/instrumentation cost,
+with explicit `client_submission_v1` timing contract. Old correctness evidence
+still proves results/rows/task overlap, but cannot supply clean service-time targets.
+See `client_statement_timing_contract.md`. New timing boundary requires a real
+read-only verified SF1 query check before any collection/export uses it.

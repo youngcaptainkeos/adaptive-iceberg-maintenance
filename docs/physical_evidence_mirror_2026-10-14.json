@@ -148,9 +148,39 @@
       "path": "results/telemetry_window_integrity_20261014/validate_telemetry_windows.py",
       "bytes": 2603,
       "sha256": "2992b5f24b56baf2d592319e4046c0c0a7bc68aeebe637f74ef22bd9bfd2066d"
+    },
+    {
+      "path": "results/telemetry_window_fixed_cadence_20261014/config.json",
+      "bytes": 845,
+      "sha256": "27788b3560493774d8cc2a9f887e9e9eca1108ff27619851e8e191b36306cb79"
+    },
+    {
+      "path": "results/telemetry_window_fixed_cadence_20261014/events.jsonl",
+      "bytes": 262969,
+      "sha256": "b3c0242d1977d5eeedea3b469611dcb6dd047607e247d41ef90423cc82e40798"
+    },
+    {
+      "path": "results/telemetry_window_fixed_cadence_20261014/experiment_validation.py",
+      "bytes": 8397,
+      "sha256": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4"
+    },
+    {
+      "path": "results/telemetry_window_fixed_cadence_20261014/physical_measurements.py",
+      "bytes": 10250,
+      "sha256": "25e1d81d235c58fc3b98684abb4b188adca4deb02a5d4c127069e159252395a0"
+    },
+    {
+      "path": "results/telemetry_window_fixed_cadence_20261014/result.json",
+      "bytes": 1064,
+      "sha256": "73e103f3ac052b06734bcbf546024c2ac49f4485d7dfb788067688101ca277b1"
+    },
+    {
+      "path": "results/telemetry_window_fixed_cadence_20261014/validate_telemetry_windows.py",
+      "bytes": 2603,
+      "sha256": "2992b5f24b56baf2d592319e4046c0c0a7bc68aeebe637f74ef22bd9bfd2066d"
     }
   ],
-  "total_bytes": 25839696,
+  "total_bytes": 26125824,
   "all_hashes_match": true,
   "limitations": [
     "Physical Iceberg data/metadata remain on worker3; this is raw-event/config/code fallback, not catalog relocation"

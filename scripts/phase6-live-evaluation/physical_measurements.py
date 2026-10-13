@@ -50,7 +50,10 @@ class StatementRecorder:
         request_start = stamp()
         self.log.emit('statement_requested', measurement_id=measurement_id,
                       marker=marker, role=role, query_id=query_id, sql=sql,
-                      request_start=request_start)
+                      request_start=request_start, timing_contract='client_submission_v1')
+        # Durable intent logging precedes the RPC. Exclude its I/O from the
+        # measured client service interval, while retaining total request lifetime.
+        execute_start = stamp()
         try:
             cursor.execute(f'/* {marker} */\n{sql}')
             execute_return = stamp()
@@ -60,15 +63,20 @@ class StatementRecorder:
             self.log.emit('statement_completed', measurement_id=measurement_id,
                           marker=marker, role=role, query_id=query_id,
                           request_start=request_start, execute_return=execute_return,
+                          client_execute_start=execute_start, timing_contract='client_submission_v1',
                           fetch_end=fetch_end, columns=columns, rows=rows,
-                          client_elapsed_ns=fetch_end['monotonic_ns'] - request_start['monotonic_ns'])
+                          client_elapsed_ns=fetch_end['monotonic_ns'] - execute_start['monotonic_ns'],
+                          request_to_result_ns=fetch_end['monotonic_ns'] - request_start['monotonic_ns'],
+                          instrumentation_before_execute_ns=execute_start['monotonic_ns'] - request_start['monotonic_ns'])
             return {'measurement_id': measurement_id, 'marker': marker,
                     'columns': columns, 'rows': rows, 'request_start': request_start,
+                    'client_execute_start': execute_start,
                     'execute_return': execute_return, 'fetch_end': fetch_end}
         except Exception as exc:
             self.log.emit('statement_failed', measurement_id=measurement_id,
                           marker=marker, role=role, query_id=query_id,
                           request_start=request_start, failure_time=stamp(),
+                          client_execute_start=execute_start, timing_contract='client_submission_v1',
                           error_type=type(exc).__name__, error=str(exc))
             raise
 

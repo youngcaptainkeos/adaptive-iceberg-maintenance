@@ -16,7 +16,7 @@ def task_intervals(jobs, stages, rest, *, marker=None, rewrite_table=None, reque
         return (description or '').startswith('Rewriting ') and (description or '').endswith(' in '+rewrite_table)
     selected=[j for j in jobs if matches(j.get('description'))]
     if rewrite_table:
-        start=datetime.fromisoformat(request['request_start']['utc']).timestamp()
+        start=datetime.fromisoformat(request.get('client_execute_start',request['request_start'])['utc']).timestamp()
         end=datetime.fromisoformat(request['fetch_end']['utc']).timestamp()
         selected=[j for j in selected if start <= engine_time(j['submissionTime'])
                   and engine_time(j['completionTime']) <= end

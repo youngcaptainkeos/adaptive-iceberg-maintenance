@@ -1,0 +1,16 @@
+{
+  "source_url": "https://www.cs.cornell.edu/~midhul/snowset/snowset-main.parquet.tar.gz",
+  "publisher_download_reference": "https://github.com/resource-disaggregation/snowset/blob/master/download.md",
+  "publisher_schema_reference": "https://github.com/resource-disaggregation/snowset/blob/master/schema.md",
+  "expected_bytes": 8202394513,
+  "expected_last_modified": "Sun, 23 Feb 2020 19:00:06 GMT",
+  "filename": "snowset-main.parquet.tar.gz",
+  "socket_timeout_seconds": 60,
+  "progress_interval_seconds": 20,
+  "schema_version": "https_range_acquisition_v1",
+  "output_directory": "../../datasets/snowset/range_acquisition_20261014",
+  "range_bytes": 1048576,
+  "concurrency": 4,
+  "max_attempts_per_range": 3,
+  "rationale": "Audited repair after monolithic GET ended at 1568768 bytes and was rejected. Both machines served exact first/tail HTTP206 ranges with stable Last-Modified; one-MiB range hashes matched, taking 5.88s locally and 2.68s on worker3. Choose worker3 and the measured successful one-MiB range size, four bounded network workers, and at most three explicit transient-transfer attempts per range. Source/version/offset mismatches remain fatal. Preserve all failed partials; concatenate only complete independently hashed ranges in exact byte order, validate full size, then require archive/schema inspection. These are operational reliability parameters, not scientific or policy thresholds. No dummy dataset or fallback trace."
+}
