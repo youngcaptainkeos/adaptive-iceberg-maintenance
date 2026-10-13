@@ -1,0 +1,72 @@
+{
+  "schema_version": "offline_engine_label_binding_review_v1",
+  "raw_input": "results/sf1_correctness_pilot_20261014_0054/events.jsonl",
+  "raw_sha256": "2f9cc294903c45ff1ed387f693a0b87cdbea8341e5f6dd8c4d4511efecfccab7",
+  "rewrite_measurement_id": "24e14c67d0c34def96fe66413036161a",
+  "rewrite_result": {
+    "rewritten_data_files_count": 16,
+    "added_data_files_count": 1,
+    "rewritten_bytes_count": 164550027
+  },
+  "attributable_rewrite_tasks": 1,
+  "queries": [
+    {
+      "measurement_id": "8ce7d309a9be4fb9a0441ace3273412b",
+      "query_id": 0,
+      "role": "control",
+      "overlap_seconds": 0,
+      "verified_task_lifetime_overlap": false
+    },
+    {
+      "measurement_id": "e2a1e18823eb463f98c845434eb2a08d",
+      "query_id": 1,
+      "role": "control",
+      "overlap_seconds": 0,
+      "verified_task_lifetime_overlap": false
+    },
+    {
+      "measurement_id": "2cfcc55572c34977a0697995feb856df",
+      "query_id": 2,
+      "role": "control",
+      "overlap_seconds": 0,
+      "verified_task_lifetime_overlap": false
+    },
+    {
+      "measurement_id": "a6fc22fdbcb644f28c7dd5e679add6d5",
+      "query_id": 3,
+      "role": "control",
+      "overlap_seconds": 0,
+      "verified_task_lifetime_overlap": false
+    },
+    {
+      "measurement_id": "368cee66a3844337b8445fc1810904ca",
+      "query_id": 3,
+      "role": "concurrent",
+      "overlap_seconds": 0.2369999885559082,
+      "verified_task_lifetime_overlap": true
+    },
+    {
+      "measurement_id": "35a9f4778abc4be9842e399f55af060f",
+      "query_id": 0,
+      "role": "concurrent",
+      "overlap_seconds": 0.38300013542175293,
+      "verified_task_lifetime_overlap": true
+    },
+    {
+      "measurement_id": "b40d4bcff0ee49afaccebb05f8a04c98",
+      "query_id": 2,
+      "role": "concurrent",
+      "overlap_seconds": 0.43600010871887207,
+      "verified_task_lifetime_overlap": true
+    },
+    {
+      "measurement_id": "752a4fa85805475c962517dcd7cdfd94",
+      "query_id": 1,
+      "role": "concurrent",
+      "overlap_seconds": 2.6130001544952393,
+      "verified_task_lifetime_overlap": true
+    }
+  ],
+  "exact_raw_projection_binding_passed": true,
+  "scope": "Reconstructed original correctness evidence only. Historical timing remains refused by training; four-client confounding remains. No accepted features/snapshots, training CSV or models."
+}

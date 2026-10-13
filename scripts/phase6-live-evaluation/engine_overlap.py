@@ -27,6 +27,11 @@ def task_intervals(jobs, stages, rest, *, marker=None, rewrite_table=None, reque
     stage_ids={s for job in selected for s in job['stageIds']}
     selected_stages=[s for s in stages if s['stageId'] in stage_ids and matches(s.get('description'))]
     require(bool(selected_stages), 'No attributable executed stages')
+    for job in selected:
+        matched = {s['stageId'] for s in selected_stages if s['stageId'] in job['stageIds']}
+        require(isinstance(job.get('numCompletedStages'), int)
+                and len(matched) == job['numCompletedStages'],
+                'Incomplete attributable completed-stage coverage')
     intervals=[]
     for stage in selected_stages:
         require(stage['status']=='COMPLETE' and stage['numFailedTasks']==0 and stage['numKilledTasks']==0,

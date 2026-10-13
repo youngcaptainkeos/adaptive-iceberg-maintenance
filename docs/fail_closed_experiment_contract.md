@@ -142,3 +142,28 @@ a useful engine-overlap target.
 This is a refusal/provenance foundation, not a validated forecasting scheduler.
 Coverage thresholds alone do not establish coverage precision, independence or
 safety under shift. Record run-level uncertainty and decision quality later.
+
+### Independent engine-label binding (overnight repair)
+
+Training declarations now also require `physical_tables`: a map from experiment ID
+to its explicit local catalog table. Raw statement ledgers must include final Spark
+jobs/stages snapshots and complete task-attempt responses for every included query
+and useful rewrite. The trainer reconstructs exposure offline from these responses;
+it does not accept a CSV Boolean or previously written overlap summary as proof.
+
+Compaction CSV event IDs are the actual maintenance measurement IDs. Every recorded
+maintenance attempt, including no-ops, must appear exactly once; failed/incomplete
+maintenance or hidden rewrite SQL under another role refuses label certification.
+SQL table binding, actual request/result UTC interval, physical rewritten-file count
+and status must agree. Useful treatments require positive rewritten bytes and exactly
+one matching task-overlap event. Controls must have no useful rewrite-task overlap;
+the existing conservative client-interval/no-op contamination check also remains.
+Completed-stage coverage and complete successful task responses are mandatory.
+
+Verified by recomputing eight actual correctness-pilot query exposures from preserved
+raw responses: four zero-exposure controls and four positive-exposure probes. This
+checks label reconstruction, not confounder control or training approval. Missing
+REST history fails instead of substituting request overlap. Task lifetimes do not
+prove simultaneous CPU instructions. Telemetry, snapshot/layout, engine-session
+scope, other foreground/background interference and matched-cohort methodology still
+need independently reviewed export/protocol gates before publication training.

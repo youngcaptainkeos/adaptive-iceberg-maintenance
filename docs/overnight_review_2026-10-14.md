@@ -442,3 +442,35 @@ An approved exporter and engine-label cross-reference gate are required before a
 publication collection/training. The old client-overlap check cannot certify that
 methodology. Recovery continues; no physical Spark workload was launched while
 source transfers were active.
+
+### 04:24–04:27 IST: reconstruct physical exposure before training
+
+Recovery remains in progress (5,705 complete ranges / 5,982,126,080 bytes at first
+check). No new workload or duplicate download launched.
+
+Added offline `engine_label_binding.py` and integrated it before model fitting.
+The trainer reconstructs query/rewrite tasks from preserved jobs, stages and full
+taskList responses using the existing SQL-marker/exclusive-table attribution.
+Compaction event IDs, SQL/table, physical result counts and request/result intervals
+must match actual maintenance statements; every attempt/no-op must be represented,
+failed/incomplete or hidden maintenance refuses certification. Positive treatment
+requires a matching positive-byte useful rewrite and actual task-lifetime overlap.
+Baseline queries cannot have useful rewrite exposure, and prior conservative
+request-interval/no-op gates remain. Added completed-stage coverage verification to
+prevent partial stage sets from certifying overlap. No RPC or physical query was
+issued by this verifier.
+
+Read-only reconstruction on the actual retained correctness log reproduced four
+controls with zero exposure and four concurrent exposures of approximately 0.383,
+2.613, 0.436 and 0.237 seconds. Physical rewrite result bound to its actual statement:
+16 rewritten files, one added file, 164,550,027 rewritten bytes; one attributable
+rewrite task. Exact projection of these measured labels/events passed binding.
+Evidence: `offline_engine_label_binding_validation_2026-10-14.json`. No fake task
+records, fabricated training features, new CSV, model fitting or publication result.
+Historical pilot still fails new timing contract and has four-client confounding.
+
+Remaining export gates: measured CPU/I/O feature reconstruction, snapshot/layout
+binding, actual engine-session scope and exclusion/measurement of other foreground
+and background work. Statistical protocol/common support and trace mapping remain
+necessary. Task lifetimes still do not establish simultaneous CPU instructions;
+absence of source-audit findings cannot certify the entire pipeline.

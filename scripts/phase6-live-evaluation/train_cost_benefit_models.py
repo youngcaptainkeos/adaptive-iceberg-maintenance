@@ -27,6 +27,7 @@ from experiment_validation import (ValidationError, require, load_json, verified
                                    finite_number, sha256)
 
 from statement_timing import TIMING_FIELDS, DURATION_FIELDS, bind_training_rows
+from engine_label_binding import bind_engine_labels
 
 FEATURE_LIST = [
     'cpu_util_avg_1min', 'cpu_util_avg_5min', 'cpu_trend', 'mem_used_pct',
@@ -197,6 +198,8 @@ def train_and_save_models(df, model_dir, *, protocol, compaction_events, provena
     raw_paths = [path for name, path in provenance.items() if name.startswith('raw_statement_events_')]
     require(bool(raw_paths), 'Raw statement event ledgers are required before any model fitting.')
     bind_training_rows(prepared, raw_paths)
+    declaration, _ = load_json(provenance['data_manifest'])
+    bind_engine_labels(prepared, compaction_events, raw_paths, declaration.get('physical_tables'))
     validate_splits_and_events(prepared, compaction_events, protocol)
     require(all(sha256(path) == original_hashes[name] for name, path in provenance.items()),
             'Registered inputs changed during validation; refuse fitting.')
