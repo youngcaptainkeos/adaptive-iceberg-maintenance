@@ -75,6 +75,8 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
   `results/telemetry_available_frontier_20261014/result.json` and launch log
   before any new observer. Repair failure before dependent feature binding.
 - Next feature/layout binding contract: `physical_feature_export_contract.md`.
+- Local completed-source fallback mirror active: `datasets/snowset/source_mirror_20261014/mirror_record.json`;
+  verify expected bytes/SHA256 before accepting copy. Do not duplicate/resume over artifacts.
 - Full-source validator launched with final acquisition-record SHA256 pinned.
   No partial source analysis, replay or forecasting; verify completion first.
 - Next: identifiable matched collection protocol/offered-load repair; then real

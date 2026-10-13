@@ -561,3 +561,13 @@ log `datasets/snowset/source_validation_20261014_launch.log`, launch receipt JSO
 with matching prefix, output `datasets/snowset/validated_source_20261014/`. Full
 archive/Parquet/identity/arrival checks pending. Dataset remains unaccepted; no SQL
 mapping, arrival forecasting, cost fitting or new Spark workload was launched.
+
+A separate byte-preserving local fallback mirror of the completed source object
+started at `datasets/snowset/source_mirror_20261014/` (execution session81938).
+Partial copy uses `.copying`; final name appears only after complete expected-size
+and SHA256 comparison with the pinned completed recovery record. Status is in
+`mirror_record.json`. This copy is not a second acquisition or source acceptance;
+full validation is separate. No archive/data bytes are staged for GitHub. Completed
+recovery metadata/launch receipt also copied locally under
+`datasets/snowset/completed_recovery_metadata_20261014/`. Inspect existing copy and
+validator before starting any duplicate operation.
