@@ -1,0 +1,26 @@
+{
+  "schema_version": "sf1_correctness_preparation_v1",
+  "purpose": "physical_correctness_only",
+  "experiment_id": "sf1_source_integrity_20261014_0024",
+  "configuration_rationale": "Dedicated immutable source table for physical measurement validation; SF1 bounded ingestion replaces unusable migrated metadata without modifying old tables. Schema matches TPC-H lineitem and existing source loader. No replay, scheduling or model claim.",
+  "source": {
+    "path": "../../datasets/tpch/sf1/lineitem.tbl",
+    "sha256": "96d555e07a1ae8cf5196387d9edd9427f9af70c56fa5f4b18affee5555ddb184"
+  },
+  "generator_provenance": {
+    "path": "../../datasets/tpch/sf1/manifest.txt",
+    "sha256": "d2d80966fe1fa8790c35ea3ed6242b4d9ef2740cad888c84bd986348e9c39a32"
+  },
+  "expected_rows": 6001215,
+  "destination_table": "local.experiment.integrity_sf1_20261014_0024",
+  "output_directory": "../../results/sf1_source_integrity_20261014_0024",
+  "engine": {
+    "host": "127.0.0.1",
+    "port": 10000,
+    "username": "ccbd",
+    "expected_version": "3.3.4"
+  },
+  "spark_rest_url": "http://127.0.0.1:4040",
+  "spark_app_id": "local-1791896695889",
+  "rest_timeout_seconds": 5
+}
