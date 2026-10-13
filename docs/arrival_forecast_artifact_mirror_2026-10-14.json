@@ -1,0 +1,16 @@
+{
+  "schema_version": "forecast_diagnostic_artifact_mirror_v1",
+  "all_file_sha256_match": true,
+  "files": {
+    "cohort_record.json": "ca64577fcf057210b7ef390be204ea6746068e024f27a412ede6fa0ee47266d2",
+    "count_forecaster_h1.joblib": "67c77387b903b010fee179f0d1eea1b7d55e4f9c35510ac617dc2752a4f40a5b",
+    "count_forecaster_h10.joblib": "feea729bd0dc53c3ac6836ac8e956bb436a605c775f81aba61f2974a42a3f12b",
+    "count_forecaster_h5.joblib": "00170cc1ff7e1cdcfd2eb6a40f69ce9bb8feeb1a2a24f265a639f071a5def3a5",
+    "forecast_code.py": "7fd3b8dd49cf76c7109f22b4966f451b11097e55d7c75ba97aa5ad95f18a840c",
+    "forecast_config.json": "1cc7066b4afe268a304109bb92fff0bce999f8c433f3b728f6a706108f6a9410",
+    "independent_cohort_audit.json": "3818e478dbfeac6f9f176f72964d039c9bc459cf9000e26e5c3526df80666237",
+    "predictions.csv": "5472cd2798be4c3f666c3b65ef4cd3370858bbf7c7498fb441cea1d5c300c3e2",
+    "result.json": "2a16fa39e636c22d3768942b9efdd6dac9b7f42398b7a1edf3eb3e37a7bebb71"
+  },
+  "scope": "Byte-identical diagnostic artifacts, not worker3 deserialization/runtime validation or accepted models. Fitting environment was local sklearn1.9.1; no remote model loading."
+}

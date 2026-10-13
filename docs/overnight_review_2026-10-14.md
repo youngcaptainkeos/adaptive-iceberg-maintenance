@@ -707,3 +707,33 @@ policy decision, cost fitting or accepted Model C promotion. Calendar sin/cos va
 encode known time, not generated workload. Overlapping horizons and only three
 reserved calibration days cannot support publication-grade independence or finite
 90% daily-block conformal calibration. No results claimed until actual fitting ends.
+
+Diagnostic code/protocol/audits commit `ee3d45b` published before fitting; worker3
+fast-forward and six intended-file hashes matched. Ran locally with Python3.12,
+sklearn1.9.1, two bounded CPU threads. Result `completed_diagnostic_only`; artifacts
+`results/arrival_forecast_diagnostic_20261014/` include frozen inputs/code/protocol,
+three fitted diagnostic artifacts, prediction CSV and metrics. Existing cost-model
+bundles and policy services were untouched; no Model C deployment or promotion.
+
+Held-out count MAE (learned vs best baseline, which was daily seasonal here):
+1 minute **7.0119 vs 8.5248**, 5 minutes **18.1835 vs 24.3774**, 10 minutes
+**30.5504 vs 40.4357**. Other baselines also evaluated; no post-test tuning was done.
+These are real observed future query-count targets, not query latency or CPU-load
+measurements. They suggest useful temporal signal in this one warehouse, not a
+publication-grade scheduling benefit. Limited time/warehouse diversity, overlapping
+horizons, only one weekly training cycle and three reserved calibration days remain.
+
+Independent saved-prediction audit reconstructed 109,468 targets/rows using integer
+prefix counts, verified all past-only persistence/daily/weekly baseline histories,
+complete cutoff coverage and split boundaries, exact reported CSV metrics, code/model
+hashes and training sample/horizon counts. No model deserialization or fake test data.
+Evidence: `arrival_forecast_prediction_audit_2026-10-14.json` and
+`arrival_forecast_diagnostic_review_2026-10-14.json`. Source-code review confirms
+learned features receive only the observed prefix and known clock, with labels
+entirely inside training. Snapshot/telemetry/engine-context export gates and isolated
+matched cost collection remain the next physical dependencies.
+
+Entire finished diagnostic artifact package copied to worker3; all nine file
+SHA256 values matched, recorded in `arrival_forecast_artifact_mirror_2026-10-14.json`.
+This provides fallback evidence, not cross-version model/runtime acceptance; fitting
+used local sklearn1.9.1 and no remote artifact was deserialized or activated.

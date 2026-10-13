@@ -1,0 +1,113 @@
+{
+  "schema_version": "real_arrival_forecast_diagnostic_review_v1",
+  "status": "completed_diagnostic_only",
+  "execution_revision": "ee3d45b29e1d448c5dc333d8796df39bf6ed10f3",
+  "execution_machine": "local",
+  "result_sha256": "2a16fa39e636c22d3768942b9efdd6dac9b7f42398b7a1edf3eb3e37a7bebb71",
+  "prediction_audit": "arrival_forecast_prediction_audit_2026-10-14.json",
+  "test_results": {
+    "1": {
+      "test": {
+        "learned_poisson": {
+          "n": 4811,
+          "mae_count": 7.011861845787168,
+          "rmse_count": 9.229947202663233,
+          "mean_observed_count": 157.2172105591353,
+          "mean_prediction_count": 155.92422958667007
+        },
+        "persistence": {
+          "n": 4811,
+          "mae_count": 12.301600498856786,
+          "rmse_count": 15.229656056935578,
+          "mean_observed_count": 157.2172105591353,
+          "mean_prediction_count": 157.22157555601746
+        },
+        "seasonal_day": {
+          "n": 4811,
+          "mae_count": 8.524838910829349,
+          "rmse_count": 11.056430150930025,
+          "mean_observed_count": 157.2172105591353,
+          "mean_prediction_count": 155.82061941384327
+        },
+        "seasonal_week": {
+          "n": 4811,
+          "mae_count": 9.397214716275203,
+          "rmse_count": 11.847169934646976,
+          "mean_observed_count": 157.2172105591353,
+          "mean_prediction_count": 152.56453959675744
+        }
+      },
+      "best_baseline": "seasonal_day",
+      "relative_mae_reduction_vs_best_baseline": 0.177478669200447
+    },
+    "5": {
+      "test": {
+        "learned_poisson": {
+          "n": 4807,
+          "mae_count": 18.183501115834385,
+          "rmse_count": 24.80015908800957,
+          "mean_observed_count": 786.1048470979821,
+          "mean_prediction_count": 775.5210353667542
+        },
+        "persistence": {
+          "n": 4807,
+          "mae_count": 42.05783232785521,
+          "rmse_count": 55.76945172198964,
+          "mean_observed_count": 786.1048470979821,
+          "mean_prediction_count": 786.1368837112544
+        },
+        "seasonal_day": {
+          "n": 4807,
+          "mae_count": 24.377366340753067,
+          "rmse_count": 32.33471194920321,
+          "mean_observed_count": 786.1048470979821,
+          "mean_prediction_count": 779.0871645516954
+        },
+        "seasonal_week": {
+          "n": 4807,
+          "mae_count": 28.725608487622218,
+          "rmse_count": 35.58693285308168,
+          "mean_observed_count": 786.1048470979821,
+          "mean_prediction_count": 762.8433534428958
+        }
+      },
+      "best_baseline": "seasonal_day",
+      "relative_mae_reduction_vs_best_baseline": 0.25408262477329374
+    },
+    "10": {
+      "test": {
+        "learned_poisson": {
+          "n": 4802,
+          "mae_count": 30.550432850843297,
+          "rmse_count": 39.70238576355404,
+          "mean_observed_count": 1572.2698875468554,
+          "mean_prediction_count": 1549.339166448085
+        },
+        "persistence": {
+          "n": 4802,
+          "mae_count": 76.11453561016243,
+          "rmse_count": 102.63238725561207,
+          "mean_observed_count": 1572.2698875468554,
+          "mean_prediction_count": 1572.3427738442315
+        },
+        "seasonal_day": {
+          "n": 4802,
+          "mae_count": 40.4356518117451,
+          "rmse_count": 54.2851350283657,
+          "mean_observed_count": 1572.2698875468554,
+          "mean_prediction_count": 1558.1178675551853
+        },
+        "seasonal_week": {
+          "n": 4802,
+          "mae_count": 51.1274468971262,
+          "rmse_count": 61.87900824841636,
+          "mean_observed_count": 1572.2698875468554,
+          "mean_prediction_count": 1525.7176176593086
+        }
+      },
+      "best_baseline": "seasonal_day",
+      "relative_mae_reduction_vs_best_baseline": 0.2444679019129971
+    }
+  },
+  "scope": "One training-selected observed warehouse, chronological point forecasts only. Overlapping horizons are dependent; three reserved days cannot support finite 90% daily-block conformal calibration. No uncertainty claim, policy decision, physical replay/cost model or accepted Model C promotion."
+}

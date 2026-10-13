@@ -1,0 +1,9 @@
+{
+  "schema_version": "saved_arrival_forecast_audit_v1",
+  "status": "passed_saved_prediction_integrity",
+  "result_sha256": "2a16fa39e636c22d3768942b9efdd6dac9b7f42398b7a1edf3eb3e37a7bebb71",
+  "predictions_sha256": "5472cd2798be4c3f666c3b65ef4cd3370858bbf7c7498fb441cea1d5c300c3e2",
+  "audited_prediction_rows": 109468,
+  "audit_code_sha256": "287fe50f803ce6641b50effd51a9dd1dec9e940104ac4cc86431466bc1a79032",
+  "scope": "Independent integer-prefix targets/seasonal histories/cutoff/split coverage and exact CSV metric reconstruction. Hashes verify frozen code/model artifacts; no pickle loading, scheduling, physical costs, confidence interval or publication independence claim."
+}
