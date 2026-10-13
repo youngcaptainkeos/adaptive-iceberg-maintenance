@@ -47,7 +47,7 @@ correctness; 03:30–05:45 next ready validation/collection; 05:45–06:15 audit
 Legacy collector/evaluator/reset/launchers remain blocked until explicitly repaired.
 No publication-readiness or forecasting claim follows from a correctness pilot.
 
-## Current queue state (04:28 IST)
+## Current queue state (04:31 IST)
 
 - Completed bounded event/telemetry primitives and real 60-second pre-query windows.
 - Completed isolated verified SF1 source preparation and repaired query/rewrite pilot.
@@ -64,9 +64,11 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
   2,051 warehouses, 2,000 regular files, gzip/tar/full values and required null gates.
   Original failed duplicate-input reader remains preserved. Accepted arrival source
   only; no SQL mapping/replay/training claim.
-- Running training-only arrival extraction on worker3 PID389249, execution738d055;
-  `datasets/snowset/arrival_cohort_20261014/` and matching launch log. Audit result/
-  failure and conservation before any forecast or new extraction.
+- Original cohort extraction failed DuckDB mixed query/filename COPY binding;
+  partial raw-arrival export preserved and not accepted. Same training-only selection
+  protocol retained. Repaired extraction running worker3 PID390115, execution404dd8b;
+  `datasets/snowset/arrival_cohort_export_repair_20261014/` and matching launch log.
+  Audit conservation/result before any forecast or new extraction.
 - Completed raw statement/monotonic training timing binding; historical pilot
   timings remain rejected. Completed independent raw Spark task/rewrite label
   binding. Next repair: measured feature/layout and engine-session/confounder

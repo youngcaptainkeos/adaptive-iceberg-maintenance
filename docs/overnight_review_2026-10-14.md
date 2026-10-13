@@ -667,3 +667,10 @@ parameter, matching the successful raw-arrival/source-inventory API. New exclusi
 `arrival_cohort_export_repair_20261014` output; source integrity, chronology, selection
 and conservation gates unchanged. Full raw log remains under original launch prefix.
 No forecasting, incomplete-data use or model fitting.
+
+Export repair `404dd8b` pushed and worker3 fast-forwarded, with HEAD and all seven
+unit-file hashes matching before execution. No existing extractor was active.
+Replacement **PID390115**, `datasets/snowset/arrival_cohort_export_repair_20261014/`,
+matching launch log/JSON receipt, same accepted source-record hash. Audit this
+result and count/tail conservation before any forecast. Failed original package
+remains untouched. No new physical database query or model training.
