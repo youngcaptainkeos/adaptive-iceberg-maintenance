@@ -651,3 +651,19 @@ receipt with matching prefix. Full source record explicitly pinned at
 No other source validator/extractor was active. Extraction hashes all source members
 before reading; result/conservation/selection audit pending. Preserve any failed
 package and repair before dependent forecasting. No physical Spark query launched.
+
+### 04:29 IST: arrival-bin export API failure preserved and repaired
+
+First cohort extractor ended naturally with a DuckDB internal parameter-binding
+error at COPY combining bound bin-query values and filename. It had exported the
+actual 187,413,343-byte raw-arrival CSV but did not finish count conservation/hash
+gates, so the package is failed/unaccepted and preserved. Warehouse selected solely
+from training arrivals: 4521920227430629158, 1,329,355 first-week reported arrivals.
+No selection/parameter changes follow from this outcome.
+
+Repair materializes bins through parameterized CREATE TABLE AS SELECT (already
+supported by the real selected/count tables), then COPY with only a filename
+parameter, matching the successful raw-arrival/source-inventory API. New exclusive
+`arrival_cohort_export_repair_20261014` output; source integrity, chronology, selection
+and conservation gates unchanged. Full raw log remains under original launch prefix.
+No forecasting, incomplete-data use or model fitting.

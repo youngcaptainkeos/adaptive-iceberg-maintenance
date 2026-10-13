@@ -1,0 +1,13 @@
+{
+  "schema_version": "snowset_training_only_arrival_cohort_v1",
+  "source_validation_directory": "../../datasets/snowset/validated_source_file_only_20261014",
+  "output_directory": "../../datasets/snowset/arrival_cohort_export_repair_20261014",
+  "selection_rule": "maximum_training_arrivals_then_numeric_warehouse_id",
+  "training_seconds": 604800,
+  "calibration_seconds": 259200,
+  "bin_seconds": 60,
+  "duckdb_memory_limit": "4GB",
+  "duckdb_threads": 2,
+  "rationale": "Diagnostic cohort before inspecting any warehouse-specific held-out arrival curve: first seven observed days provide one weekly cycle for training-only warehouse selection; next three days are reserved calibration context and remaining complete source bins held out. Three calibration days cannot justify a finite 90% daily-block conformal bound; no such claim is made. Select maximum training arrivals with numeric-ID tie break for a non-sparse diagnostic, not proof that its offered rate fits worker3. One-minute counts align with existing one-/five-minute host observation scales; preserve original UTC timestamps and raw IDs, exclude only the incomplete global final bin from count evaluation while retaining all exact arrivals. No time compression, load thinning/scaling, SQL/resource-profile mapping, intensity normalization or model fit. Source-wide boundaries are observed arrival metadata, not selected-warehouse outcome tuning. CPU/memory limits are offline operational limits, not policy parameters. Empty bins mean no reported arrivals in the supplied observation interval, not proof of server idleness or logger completeness. Repeat unchanged cohort selection after DuckDB mixed query/filename-parameter COPY failed while exporting bins. Materialize actual bins with bound query parameters, then COPY with only the filename parameter, as the already successful raw-arrival export does. Preserve original failed package, do not alter timestamps/bins/splits/selection or use its incomplete result.",
+  "purpose": "actual_arrival_integrity_and_training_only_selection_diagnostic"
+}

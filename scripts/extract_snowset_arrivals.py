@@ -99,7 +99,8 @@ def extract(config_path, validation_hash):
         # Empty bins count absence of reported arrivals inside the complete source
         # interval; they are not invented events or a claim that the server was idle.
         c.execute('CREATE TABLE counted AS SELECT ((epoch_us("createdTime") - epoch_us(?::TIMESTAMP)) // (? * 1000000))::BIGINT AS bin_id, count(*) AS arrivals FROM selected WHERE "createdTime" >= ? AND "createdTime" < ? GROUP BY bin_id', [origin.replace(tzinfo=None), cfg['bin_seconds'], origin.replace(tzinfo=None), end.replace(tzinfo=None)])
-        c.execute('COPY (SELECT b.range AS bin_id, b.range * ? AS elapsed_seconds, coalesce(n.arrivals,0) AS observed_arrivals FROM range(?) b LEFT JOIN counted n ON b.range=n.bin_id ORDER BY b.range) TO ? (HEADER, DELIMITER ",")', [cfg['bin_seconds'], complete_bins, str(output / 'observed_bin_counts.csv')])
+        c.execute('CREATE TABLE bins AS SELECT b.range AS bin_id, b.range * ? AS elapsed_seconds, coalesce(n.arrivals,0) AS observed_arrivals FROM range(?) b LEFT JOIN counted n ON b.range=n.bin_id', [cfg['bin_seconds'], complete_bins])
+        c.execute('COPY (SELECT * FROM bins ORDER BY bin_id) TO ? (HEADER, DELIMITER ",")', [str(output / 'observed_bin_counts.csv')])
         binned = c.execute('SELECT coalesce(sum(arrivals),0) FROM counted').fetchone()[0]
         tails = c.execute('SELECT count(*) FROM selected WHERE "createdTime" >= ?', [end.replace(tzinfo=None)]).fetchone()[0]
         if binned + tails != queries or digest(receipt) != validation_hash:
