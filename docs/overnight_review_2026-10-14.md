@@ -113,3 +113,43 @@ Do not relabel the failed pilot accepted or relax overlap/result/row gates.
 No accepted SQL-arrival replay manifest or clean event-linked training dataset.
 SF100 complete source verification and Alibaba member/mapping review are pending.
 Publication claims and sufficient independent experiments remain future work.
+
+### 00:54–01:00 IST: repaired pilot passed
+
+Separately preregistered second pilot as commit 776c86d, with unchanged correctness
+gates. Verified full local/worker3 HEAD, protocol and three physical module hashes;
+worker3 had no active physical driver or running Spark job before launch. Used the
+exact full tool-observed revision. Original failed table/output retained.
+
+**Passed bounded physical correctness:** retained table
+`local.experiment.integrity_pilot_20261014_0054`; snapshots
+4510401085806035540 (before) and 7970187667229592262 (after).
+Actual binpack result: 16 rewritten files, one added file, 164,550,027 rewritten
+bytes; final file 163,892,210 bytes. Physical rows remain 6,001,215. Full bidirectional
+EXCEPT ALL comparison across every column found zero differences, including duplicate
+multiplicities. Four concurrent and four post-rewrite result sets matched controls.
+
+All four queries had attributable successful Spark task-lifetime overlap with the
+useful rewrite: Q0 0.383s, Q1 2.613s, Q2 0.436s, Q3 0.237s (union duration, not inflated
+task-pair totals). Raw tasks/stages/jobs are preserved, not inferred from client
+timestamps. This establishes overlapping task lifetimes, not simultaneous CPU
+instruction execution or causal latency effects.
+
+Independent recorded-artifact audit verified every overlap pair lies inside both
+actual SUCCESS task lifetimes; every request completed without failed events; all
+four control/concurrent/post results match. Eight pre-query 60-second windows met
+declared coverage/freshness and preceded query submission. Minimum measured coverage
+98.40%, maximum feature age 0.959s; 107 actual telemetry intervals, 26 completed
+statements, 192 event records. See `sf1_correctness_validation_2026-10-14.json`.
+Worker3 raw/frozen code/config/results: `results/sf1_correctness_pilot_20261014_0054/`.
+
+This clears the bounded measurement-path pilot gate only. It does not supply enough
+independent training blocks, a traced offered-load generator, 300-second window
+validation, forecasting or a performance benefit claim. Legacy guards remain blocked.
+The diagnostic simultaneous four-client pattern is not a causal single-query
+compaction experiment. No failed evidence has been promoted.
+
+Next ready independent unit: full Alibaba member schema/type/missing-value/timestamp
+audit against the fetched publisher schema. It is running locally, using the actual
+verified archive; no extraction/replay/mapping or fabricated input. Initial output
+already flags batch-task schema issues, which must be reviewed before arrival mapping.

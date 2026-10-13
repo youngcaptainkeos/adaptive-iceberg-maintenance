@@ -1,0 +1,165 @@
+{
+  "schema_version": "accepted_correctness_pilot_review_v1",
+  "result": {
+    "status": "accepted_physical_correctness_pilot",
+    "table": "local.experiment.integrity_pilot_20261014_0054",
+    "before_snapshot": 4510401085806035540,
+    "after_snapshot": 7970187667229592262,
+    "before_metadata": [
+      6001215,
+      16,
+      164550027
+    ],
+    "after_metadata": [
+      6001215,
+      1,
+      163892210
+    ],
+    "rewrite_result": {
+      "rewritten_data_files_count": 16,
+      "added_data_files_count": 1,
+      "rewritten_bytes_count": 164550027
+    },
+    "physical_row_count": 6001215,
+    "multiset_difference_count": 0,
+    "overlaps": [
+      {
+        "query_id": 0,
+        "measurement_id": "35a9f4778abc4be9842e399f55af060f",
+        "verified_task_lifetime_overlap": true,
+        "overlap_seconds": 0.38300013542175293,
+        "task_pairs": [
+          {
+            "query_task_id": 39493,
+            "rewrite_task_id": 39483,
+            "start_epoch_seconds": 1791919554.382,
+            "end_epoch_seconds": 1791919554.384
+          },
+          {
+            "query_task_id": 39484,
+            "rewrite_task_id": 39483,
+            "start_epoch_seconds": 1791919553.982,
+            "end_epoch_seconds": 1791919554.3630002
+          },
+          {
+            "query_task_id": 39485,
+            "rewrite_task_id": 39483,
+            "start_epoch_seconds": 1791919553.983,
+            "end_epoch_seconds": 1791919554.0770001
+          }
+        ],
+        "meaning": "Overlapping Spark task lifetimes; not proof of simultaneous CPU execution"
+      },
+      {
+        "query_id": 1,
+        "measurement_id": "752a4fa85805475c962517dcd7cdfd94",
+        "verified_task_lifetime_overlap": true,
+        "overlap_seconds": 2.6130001544952393,
+        "task_pairs": [
+          {
+            "query_task_id": 39495,
+            "rewrite_task_id": 39483,
+            "start_epoch_seconds": 1791919556.635,
+            "end_epoch_seconds": 1791919556.64
+          },
+          {
+            "query_task_id": 39486,
+            "rewrite_task_id": 39483,
+            "start_epoch_seconds": 1791919553.993,
+            "end_epoch_seconds": 1791919556.601
+          },
+          {
+            "query_task_id": 39487,
+            "rewrite_task_id": 39483,
+            "start_epoch_seconds": 1791919553.993,
+            "end_epoch_seconds": 1791919554.664
+          }
+        ],
+        "meaning": "Overlapping Spark task lifetimes; not proof of simultaneous CPU execution"
+      },
+      {
+        "query_id": 2,
+        "measurement_id": "b40d4bcff0ee49afaccebb05f8a04c98",
+        "verified_task_lifetime_overlap": true,
+        "overlap_seconds": 0.43600010871887207,
+        "task_pairs": [
+          {
+            "query_task_id": 39494,
+            "rewrite_task_id": 39483,
+            "start_epoch_seconds": 1791919554.515,
+            "end_epoch_seconds": 1791919554.5170002
+          },
+          {
+            "query_task_id": 39490,
+            "rewrite_task_id": 39483,
+            "start_epoch_seconds": 1791919554.069,
+            "end_epoch_seconds": 1791919554.503
+          },
+          {
+            "query_task_id": 39491,
+            "rewrite_task_id": 39483,
+            "start_epoch_seconds": 1791919554.069,
+            "end_epoch_seconds": 1791919554.186
+          }
+        ],
+        "meaning": "Overlapping Spark task lifetimes; not proof of simultaneous CPU execution"
+      },
+      {
+        "query_id": 3,
+        "measurement_id": "368cee66a3844337b8445fc1810904ca",
+        "verified_task_lifetime_overlap": true,
+        "overlap_seconds": 0.2369999885559082,
+        "task_pairs": [
+          {
+            "query_task_id": 39492,
+            "rewrite_task_id": 39483,
+            "start_epoch_seconds": 1791919554.301,
+            "end_epoch_seconds": 1791919554.3040001
+          },
+          {
+            "query_task_id": 39488,
+            "rewrite_task_id": 39483,
+            "start_epoch_seconds": 1791919554.056,
+            "end_epoch_seconds": 1791919554.29
+          },
+          {
+            "query_task_id": 39489,
+            "rewrite_task_id": 39483,
+            "start_epoch_seconds": 1791919554.056,
+            "end_epoch_seconds": 1791919554.138
+          }
+        ],
+        "meaning": "Overlapping Spark task lifetimes; not proof of simultaneous CPU execution"
+      }
+    ],
+    "code_revision": "776c86dc23907b4bad966be4943413c11b514895",
+    "limitations": [
+      "One SF1 correctness pilot, not performance inference or training data",
+      "Concurrent clients are a diagnostic, not observed trace arrivals",
+      "Task lifetime overlap is not simultaneous CPU-execution proof",
+      "No statistical claim or model approval"
+    ]
+  },
+  "raw_evidence": [
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0054/events.jsonl",
+      "sha256": "2f9cc294903c45ff1ed387f693a0b87cdbea8341e5f6dd8c4d4511efecfccab7"
+    },
+    {
+      "path": "results/sf1_correctness_pilot_20261014_0054/result.json",
+      "sha256": "b1ec353e3f31fca52d6d77f5c471722f8ea34cb5c3458ef04acd131bac45d9d0"
+    }
+  ],
+  "independent_recorded_artifact_checks": [
+    "Every request completed, no failed events",
+    "All four control/concurrent/post result multisets identical",
+    "Every reported overlap pair bounded by actual retained SUCCESS task lifetimes",
+    "Eight prior feature windows satisfy declared coverage/freshness and pre-query timing"
+  ],
+  "records": 192,
+  "completed_statements": 26,
+  "telemetry_intervals": 107,
+  "minimum_feature_coverage_fraction": 0.9840172161333334,
+  "maximum_feature_age_seconds": 0.958967032,
+  "scope": "Accepted bounded physical harness correctness only; not a training dataset, forecasting result or causal performance comparison"
+}
