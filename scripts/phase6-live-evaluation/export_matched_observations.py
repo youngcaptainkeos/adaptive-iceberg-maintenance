@@ -16,6 +16,12 @@ def export(pilot_directory,result_hash,output_directory):
     protocol=[r for r in records if r['kind']=='matched_protocol'];require(len(protocol)==1 and protocol[0]['configuration']==cfg and protocol[0]['code_revision']==result['code_revision'],'Raw protocol/result mismatch')
     for name,digest in protocol[0]['code_sha256'].items():require(sha256(source/'code'/name)==digest,'Frozen physical code changed')
     completed=completed_statements([events]);checks=verify_observations(records,cfg);require(checks==result['query_observation_checks'],'Reported observation checks differ')
+    decisions=[r for r in records if r['kind']=='maintenance_decision_observation']
+    if cfg.get('decision_feature_contract')=='pre_action_windows_v1':
+        decision_checks=verify_observations(records,cfg,kind='maintenance_decision_observation')
+        require(decision_checks==result['decision_observation_checks'] and len(decisions)==1,'Pre-action feature/result binding mismatch')
+    else:
+        require(not decisions,'Unregistered pre-action context')
     ledgers=read_engine_ledgers([events]);raw=ledgers[cfg['experiment_id']]
     maintenance=[key for key,value in raw['requests'].items() if value['role']=='maintenance'];require(len(maintenance)==1,'One complete actual rewrite required')
     maintenance_id=maintenance[0];_,rewrite,tasks=rewrite_evidence(raw,maintenance_id,result['table']);require(rewrite==result['rewrite_result'],'Physical rewrite differs from result')
@@ -36,7 +42,9 @@ def export(pilot_directory,result_hash,output_directory):
     with (output/'query_observations.csv').open('x',newline='') as stream:
         writer=csv.DictWriter(stream,fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)
     require(sha256(receipt)==result_hash and sha256(events)==event_hash,'Physical inputs changed during export')
-    manifest={'schema_version':'diagnostic_physical_query_observations_v1','status':'exported_bound_measurements_only','origin':'physical_spark_iceberg_verified_sf1','row_count':len(rows),'source_result_sha256':result_hash,'source_events_sha256':event_hash,'export_code_sha256':sha256(Path(__file__)),'observations_sha256':sha256(output/'query_observations.csv'),'code_revision_of_physical_run':result['code_revision'],'scope':'Four actual probe observations from one matched episode. Fractions/bytes/monotonic durations preserved; no imputed intensity/small-file eligibility, split labels, future state, counterfactual cost or training approval. Old trainer schema intentionally incompatible.','limitations':result['limitations']}
+    if decisions:
+        (output/'decision_observations.json').write_text(json.dumps(decisions,indent=2)+'\n')
+    manifest={'pre_action_observation_count':len(decisions),'schema_version':'diagnostic_physical_query_observations_v1','status':'exported_bound_measurements_only','origin':'physical_spark_iceberg_verified_sf1','row_count':len(rows),'source_result_sha256':result_hash,'source_events_sha256':event_hash,'export_code_sha256':sha256(Path(__file__)),'observations_sha256':sha256(output/'query_observations.csv'),'code_revision_of_physical_run':result['code_revision'],'scope':'Four actual probe observations from one matched episode. Fractions/bytes/monotonic durations preserved; no imputed intensity/small-file eligibility, split labels, future state, counterfactual cost or training approval. Old trainer schema intentionally incompatible.','limitations':result['limitations']}
     (output/'export_record.json').write_text(json.dumps(manifest,indent=2)+'\n');print(json.dumps(manifest))
 
 

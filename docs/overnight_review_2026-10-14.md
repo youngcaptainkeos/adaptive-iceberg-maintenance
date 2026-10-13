@@ -807,3 +807,14 @@ Register next unchanged Q0 query on a new source-verified table, retaining ident
 snapshot, feature, conservation and task gates. Its shorter service time may miss
 actual exposure; preserve that outcome rather than weakening labels or slowing SQL.
 This broadens query coverage only, not repetitions/load/fragmentation diversity.
+
+Pre-next-run audit found an action-feature boundary problem: during-rewrite CPU/I/O
+windows precede query submission but follow maintenance start. These are legitimate
+interference measurements, not pre-action controller input. Do not train a start-
+compaction counterfactual using post-action resource features. Added a separately
+allocated maintenance UUID/context with exact 60/300 windows captured before actual
+maintenance RPC; bind original snapshot/inventory, raw action request/table and
+submission freshness. Next Q0 protocol requires this gate. Preserved Q1 has no such
+context and remains diagnostic-only; no inferred/backfilled windows. Export keeps
+pre-action decision records separate from query-submission measurements. Common-
+horizon cost methodology and statistical acceptance are still unimplemented.

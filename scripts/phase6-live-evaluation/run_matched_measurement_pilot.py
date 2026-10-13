@@ -20,6 +20,7 @@ def run(config_path,expected_revision):
     require(subprocess.run(['git','diff','--exit-code','HEAD','--','scripts/phase6-live-evaluation/*.py'],cwd=repo,capture_output=True).returncode==0,'Dirty experiment Python code')
     deadline=datetime.fromisoformat(cfg['no_new_operation_after_utc'])
     def before_operation():require(datetime.now(timezone.utc)<deadline,'Physical-operation cutoff; preserve state')
+    require(cfg.get('decision_feature_contract')=='pre_action_windows_v1','Pre-action decision context required for new episodes')
     before_operation();source=json.loads(verified_file(cfg['preparation_result'],base).read_text());verified_file(cfg['source'],base);verified_file(cfg['generator_provenance'],base)
     require(source['status']=='accepted_correctness_source' and re.fullmatch(r'local\.experiment\.integrity_sf1_[a-z0-9_]+',source['table']),'Unaccepted benchmark source')
     table=cfg['destination_table'];require(re.fullmatch(r'local\.experiment\.integrity_matched_[a-z0-9_]+',table),'Dedicated new table required')
@@ -70,9 +71,14 @@ def run(config_path,expected_revision):
             sql=query_templates(table)[cfg['query_id']].replace(f'FROM {table}',f"FROM {table} VERSION AS OF {state['snapshot_id']}")
             return rec.execute(cursors[0],sql,role=role,query_id=cfg['query_id'],measurement_id=identity)
         before=probe('control_before',original);during=None
+        maintenance_id=uuid.uuid4().hex
+        decision_windows=[sampler.window(seconds=w,max_interval_seconds=t['max_interval_seconds'],max_age_seconds=t['max_age_seconds']) for w in t['window_seconds']]
+        require(all(w['covered_seconds']/w['window_seconds']>=t['minimum_coverage_fraction'] for w in decision_windows),'Pre-action coverage below unchanged gate')
+        process_snapshot(maintenance_id)
+        log.emit('maintenance_decision_observation',measurement_id=maintenance_id,query_id=None,role='maintenance',windows=decision_windows,**original)
         with ThreadPoolExecutor(max_workers=1) as pool:
             before_operation()
-            maintenance=pool.submit(rec.execute,cursors[1],f"CALL local.system.rewrite_data_files(table => '{table.removeprefix('local.')}', strategy => 'binpack', options => map('partial-progress.enabled','false'))",role='maintenance')
+            maintenance=pool.submit(rec.execute,cursors[1],f"CALL local.system.rewrite_data_files(table => '{table.removeprefix('local.')}', strategy => 'binpack', options => map('partial-progress.enabled','false'))",role='maintenance',measurement_id=maintenance_id)
             until=time.monotonic()+cfg['engine_start_observation_seconds']
             while time.monotonic()<until and not maintenance.done():
                 stages=rest._capture('stages?status=active')
@@ -95,8 +101,9 @@ def run(config_path,expected_revision):
             if overlaps:require(any(m in str(job.get('description','')) for m in markers) or str(job.get('description','')).endswith(' in '+table),'Unrelated foreground Spark job contaminated probe')
         difference=execute(f"SELECT count(*) FROM ((SELECT * FROM {source['table']} VERSION AS OF {source['snapshot_id']} EXCEPT ALL SELECT * FROM {table}) UNION ALL (SELECT * FROM {table} EXCEPT ALL SELECT * FROM {source['table']} VERSION AS OF {source['snapshot_id']})) AS differences",'full_multiset_validation')['rows'][0][0];require(difference==0,'Exact row multiset changed')
         sampler.stop();completed_statements([output/'events.jsonl']);rows=[json.loads(line) for line in (output/'events.jsonl').open()];checks=verify_observations(rows,cfg)
+        decision_checks=verify_observations(rows,cfg,kind='maintenance_decision_observation');require(len(decision_checks)==1,'One bound pre-action decision observation required')
         require(during is not None and exposures[-1]['verified_task_lifetime_overlap'],'Missed actual task overlap; no positive treatment label')
-        result={'status':'accepted_matched_measurement_integrity_only','table':table,'original':original,'compacted':after_state,'rewrite_result':values,'query_observation_checks':checks,'task_exposures':exposures,'multiset_difference_count':difference,'code_revision':expected_revision,'limitations':['One query/one physical rewrite, not variance or statistical/cost/model approval','Controlled benchmark layout, not natural fragmentation or trace replay','Host background/cache/time trends recorded only through counters; matched snapshots alone are not a causal guarantee','REST/logging observation overhead differs during maintenance; no idle-host or pure CPU-execution claim','No intensity/small-file eligibility/forecast feature invented or training export']}
+        result={'status':'accepted_matched_measurement_integrity_only','table':table,'original':original,'compacted':after_state,'rewrite_result':values,'query_observation_checks':checks,'decision_observation_checks':decision_checks,'task_exposures':exposures,'multiset_difference_count':difference,'code_revision':expected_revision,'limitations':['One query/one physical rewrite, not variance or statistical/cost/model approval','Controlled benchmark layout, not natural fragmentation or trace replay','Host background/cache/time trends recorded only through counters; matched snapshots alone are not a causal guarantee','REST/logging observation overhead differs during maintenance; no idle-host or pure CPU-execution claim','No intensity/small-file eligibility/forecast feature invented or training export']}
         safe_to_close=True
         log.emit('matched_pilot_accepted',**result);(output/'result.json').write_text(json.dumps(result,indent=2,default=str)+'\n');print(json.dumps(result,default=str))
     except Exception as exc:

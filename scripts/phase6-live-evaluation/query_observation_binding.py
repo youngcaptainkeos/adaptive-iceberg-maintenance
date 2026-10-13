@@ -5,10 +5,11 @@ from statement_timing import check_completed_statement
 from experiment_validation import require
 
 
-def verify_observations(rows, cfg):
+def verify_observations(rows, cfg, kind="query_observation"):
+    require(kind in ("query_observation","maintenance_decision_observation"),"Unsupported observation kind")
     requests={r['measurement_id']:r for r in rows if r['kind']=='statement_requested'}
     completed={r['measurement_id']:r for r in rows if r['kind']=='statement_completed'}
-    observations=[r for r in rows if r['kind']=='query_observation']
+    observations=[r for r in rows if r['kind']==kind]
     require(observations,'No bound query observations')
     require(len({r['measurement_id'] for r in observations})==len(observations),'Duplicate query observation')
     telemetry=cfg['telemetry'];checks=[]
@@ -17,7 +18,11 @@ def verify_observations(rows, cfg):
         request=requests[identity];result=check_completed_statement(completed[identity])
         require(request['query_id']==observation['query_id'] and request['role']==observation['role'],'Observation identity mismatch')
         table=observation['table'];snapshot=observation['snapshot_id']
-        require(re.search(r'\bFROM\s+'+re.escape(table)+r'\s+VERSION\s+AS\s+OF\s+'+str(snapshot)+r'\b',request['sql'],re.IGNORECASE),'Actual query SQL does not pin observed snapshot')
+        if kind=='query_observation':
+            require(re.search(r'\bFROM\s+'+re.escape(table)+r'\s+VERSION\s+AS\s+OF\s+'+str(snapshot)+r'\b',request['sql'],re.IGNORECASE),'Actual query SQL does not pin observed snapshot')
+        else:
+            require(request['role']=='maintenance' and re.match(r'\s*CALL\s+local\.system\.rewrite_data_files\s*\(',request['sql'],re.IGNORECASE)
+                    and re.search(r"\btable\s*=>\s*'"+re.escape(table.removeprefix('local.'))+"'",request['sql'],re.IGNORECASE),'Pre-action observation does not bind actual rewrite table')
         inventory_id=observation['file_inventory_measurement_id'];snapshot_id=observation['snapshot_measurement_id']
         require(inventory_id in completed and snapshot_id in completed,'Missing actual metadata statement')
         require(completed[snapshot_id]['rows'][0][0]==snapshot,'Metadata snapshot differs')

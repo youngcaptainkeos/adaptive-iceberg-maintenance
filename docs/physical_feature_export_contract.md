@@ -62,3 +62,16 @@ Training acceptance additionally requires registered independent experiment bloc
 chronological purging, calibration sample sufficiency and held-out accuracy/coverage.
 This contract does not supply arbitrary model hyperparameters, sample counts,
 performance claims or a publication-readiness assertion.
+
+## Action-time feature boundary
+
+Query-submission windows during maintenance are post-action observations. They may
+describe measured interference, but cannot become controller features for predicting
+the effect of starting maintenance earlier. New matched episodes require a separate
+`maintenance_decision_observation`, allocated with the actual maintenance UUID and
+recorded before that statement's client execute start. Exact history bounds/frontier,
+original snapshot/file inventory, table and actual-action freshness must bind to its
+request. Query-time and action-time observations remain separate. The first matched
+Q1 episode has no such record and remains diagnostic-only; no nearest-window join or
+backfilled decision context can repair it. A common-horizon cost/export/training
+protocol is still required before fitting controller counterfactual/action costs.
