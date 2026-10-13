@@ -1,277 +1,275 @@
 #!/usr/bin/env python3
-"""
-Phase 6.1C Query-Aware Conformal Training Routine
-Methodology v2.1
+"""Train only from verified physical query/event data under a declared protocol.
 
-Trains Model A (Compaction Regime) and Model B (Baseline Regime) with one-hot encoded
-query_id features (q_0, q_1, q_2, q_3) and candidate_small_files to resolve the
-bimodal latency distribution and calibrate tight conformal bounds.
+No filename modes, imputation, synthetic augmentation or calibration fallback.
+No bundle is published unless both models pass all configured acceptance gates.
 """
-
-import os
-import sys
-import json
 import argparse
+import json
+import math
+import os
+from pathlib import Path
+import shutil
+import sys
+import tempfile
+import subprocess
+import re
+
 import joblib
-import pandas as pd
 import numpy as np
+import pandas as pd
+from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.ensemble import GradientBoostingRegressor
-from sklearn.metrics import mean_absolute_error, r2_score
+from sklearn.metrics import mean_absolute_error
 
-# Ensure paths
-sys.path.append(os.path.abspath('scripts/phase5-adaptive-scheduling-agent'))
-sys.path.append(os.path.abspath('scripts/phase6-live-evaluation'))
+from experiment_validation import (ValidationError, require, load_json, verified_file,
+                                   finite_number, sha256)
 
 FEATURE_LIST = [
-    'cpu_util_avg_1min', 'cpu_util_avg_5min', 'cpu_trend',
-    'mem_used_pct', 'frag_file_count', 'candidate_small_files',
-    'table_size_mb', 'avg_file_size_kb', 'intensity',
-    'q_0', 'q_1', 'q_2', 'q_3'
+    'cpu_util_avg_1min', 'cpu_util_avg_5min', 'cpu_trend', 'mem_used_pct',
+    'frag_file_count', 'candidate_small_files', 'table_size_mb', 'avg_file_size_kb',
+    'intensity', 'q_0', 'q_1', 'q_2', 'q_3',
 ]
+QUERY_IDS = (0, 1, 2, 3)  # Vocabulary of the four existing workload SQL templates.
+SPLITS = ('train', 'calibration', 'test')
 
 
-def train_conformal_model(X_train, y_train, X_calib, y_calib, alpha=0.10):
-    """Trains a regression pipeline and computes conformal bound q_hat."""
-    pipeline = Pipeline([
-        ('scaler', StandardScaler()),
-        ('model', GradientBoostingRegressor(n_estimators=100, max_depth=5, random_state=42))
-    ])
-
-    # Train
-    pipeline.fit(X_train, y_train)
-
-    # Calibrate conformal bound
-    calib_preds = pipeline.predict(X_calib)
-    residuals = np.abs(y_calib - calib_preds)
-
-    n = len(residuals)
-    if n == 0:
-        q_hat = 50.0
-    else:
-        q_val = np.ceil((n + 1) * (1 - alpha)) / n
-        q_val = min(max(q_val, 0.0), 1.0)  # Clamp between 0 and 1
-        q_hat = float(np.quantile(residuals, q_val, method='higher'))
-
-    if q_hat <= 0.0:
-        q_hat = 50.0
-
-    return pipeline, q_hat
-
-
-def evaluate_model(pipeline, q_hat, X_test, y_test):
-    """Evaluates the model, per-query MAE, and conformal bounds."""
-    if len(y_test) == 0:
-        return {"mae": 0.0, "r2": 0.0, "coverage": 0.0, "per_query_mae": {}}
-
-    preds = pipeline.predict(X_test)
-    mae = float(mean_absolute_error(y_test, preds))
-
-    # R2 requires target variance
-    if len(np.unique(y_test)) > 1:
-        r2 = float(r2_score(y_test, preds))
-    else:
-        r2 = 0.0
-
-    lower = preds - q_hat
-    upper = preds + q_hat
-    coverage = float(np.mean((y_test >= lower) & (y_test <= upper)) * 100.0)
-
-    # Per-query MAE breakdown
-    per_query_mae = {}
-    for q in range(4):
-        col = f'q_{q}'
-        if col in X_test.columns:
-            mask = (X_test[col] == 1.0)
-            if mask.sum() > 0:
-                q_mae = float(mean_absolute_error(y_test[mask], preds[mask]))
-                per_query_mae[col] = q_mae
-                print(f"    Query Q{q} Test MAE: {q_mae:.1f}ms (n={mask.sum()})")
-
-    return {"mae": mae, "r2": r2, "coverage": coverage, "per_query_mae": per_query_mae}
+def validate_protocol(protocol):
+    require(protocol.get('schema_version') == 'physical_training_protocol_v1', 'Unsupported training protocol.')
+    require(isinstance(protocol.get('rationale'), str) and protocol['rationale'].strip(),
+            'Declare protocol/sample-size/acceptance rationale before evaluation.')
+    alpha = finite_number(protocol.get('alpha'), 'alpha')
+    require(0 < alpha < 1, 'alpha must be in (0,1).')
+    for name in ('min_queries_per_split_per_query', 'min_compaction_events_per_split'):
+        value = protocol.get(name)
+        require(isinstance(value, int) and not isinstance(value, bool) and value > 0, f'Declare positive {name}.')
+    window = finite_number(protocol.get('feature_window_seconds'), 'feature_window_seconds', positive=True)
+    purge = finite_number(protocol.get('purge_seconds'), 'purge_seconds')
+    require(purge >= window, 'Purge gap must cover the largest telemetry feature window.')
+    for name in ('minimum_test_coverage', 'minimum_relative_mae_improvement'):
+        value = finite_number(protocol.get(name), name)
+        require(0 <= value <= 1, f'{name} must be a fraction in [0,1].')
+    require(protocol['minimum_test_coverage'] >= 1 - alpha,
+            'Acceptance coverage must not weaken the declared nominal target.')
+    limits = protocol.get('maximum_test_mae_ms_by_query', {})
+    require(set(limits) == {str(q) for q in QUERY_IDS}, 'Declare an MAE limit for every supported query.')
+    for q, value in limits.items():
+        finite_number(value, f'MAE limit for query {q}', positive=True)
+    params = protocol.get('model_parameters', {})
+    require({'n_estimators', 'max_depth', 'learning_rate', 'loss', 'random_state'} <= set(params),
+            'Declare model hyperparameters and reproducibility seed.')
+    require(isinstance(params['random_state'], int) and not isinstance(params['random_state'], bool),
+            'Use an explicit integer model seed.')
 
 
-def prepare_training_dataframe(df_input: pd.DataFrame) -> pd.DataFrame:
-    """Fills telemetry nulls and constructs one-hot query_id columns."""
+def prepare_training_dataframe(df_input):
+    required = set(FEATURE_LIST[:9]) | {
+        'measurement_id', 'experiment_id', 'split', 'query_id', 'compaction_active',
+        'feature_timestamp', 'query_start_time', 'query_end_time', 'compaction_event_id',
+        'query_latency_ms', 'query_latency_during_compaction_ms',
+    }
+    missing = sorted(required - set(df_input))
+    require(not missing, f'Missing physical query/event columns: {missing}')
+    require(len(df_input) > 0, 'No physical query observations.')
     df = df_input.copy()
-
-    # Default missing columns if loading legacy CSVs
-    if 'candidate_small_files' not in df.columns:
-        df['candidate_small_files'] = 0.0
-    if 'query_id' not in df.columns:
-        df['query_id'] = np.nan
-
-    # Forward fill telemetry columns
-    df['frag_file_count'] = df['frag_file_count'].ffill().fillna(33.0)
-    df['candidate_small_files'] = df['candidate_small_files'].ffill().fillna(0.0)
-    df['table_size_mb'] = df['table_size_mb'].ffill().fillna(15000.0)
-    df['avg_file_size_kb'] = df['avg_file_size_kb'].ffill().fillna(450000.0)
-    df['cpu_util_avg_1min'] = df['cpu_util_avg_1min'].ffill().fillna(50.0)
-    df['cpu_util_avg_5min'] = df['cpu_util_avg_5min'].ffill().fillna(50.0)
-    df['cpu_trend'] = df['cpu_trend'].ffill().fillna(0.0)
-    df['mem_used_pct'] = df['mem_used_pct'].ffill().fillna(30.0)
-    df['intensity'] = df['intensity'].ffill().fillna(0.5)
-
-    # One-hot encode query_id (0, 1, 2, 3)
-    for q in range(4):
+    require(df['measurement_id'].notna().all() and df['measurement_id'].is_unique,
+            'Every query observation needs a unique measurement_id.')
+    require(df['experiment_id'].notna().all() and df['split'].isin(SPLITS).all(), 'Invalid experiment/split identity.')
+    require(df['query_id'].isin(QUERY_IDS).all(), 'Unknown or missing query identity.')
+    mapping = {True: True, False: False, 'True': True, 'False': False}
+    require(df['compaction_active'].map(lambda x: isinstance(x, (bool, np.bool_)) or x in ('True', 'False')).all(),
+            'Unknown compaction regime label.')
+    df['compaction_active'] = df['compaction_active'].map(mapping)
+    for col in ('feature_timestamp', 'query_start_time', 'query_end_time'):
+        # New event contract requires ISO timestamps with explicit timezone.
+        require(df[col].map(lambda x: isinstance(x, str) and re.search(r'(?:Z|[+-]\d{2}:\d{2})$', x) is not None).all(),
+                f'{col} must contain timezone-qualified ISO timestamps.')
+        df[col] = pd.to_datetime(df[col], utc=True, errors='raise', format='ISO8601')
+    require((df['query_end_time'] > df['query_start_time']).all(), 'Invalid query intervals.')
+    require((df['feature_timestamp'] <= df['query_start_time']).all(), 'Post-decision feature leakage.')
+    for col in FEATURE_LIST[:9]:
+        df[col] = pd.to_numeric(df[col], errors='raise')
+        require(np.isfinite(df[col]).all(), f'Nonfinite measured feature {col}; imputation is prohibited.')
+    for col in ('cpu_util_avg_1min', 'cpu_util_avg_5min', 'mem_used_pct'):
+        require(df[col].between(0, 100).all(), f'Invalid percentage feature {col}.')
+    require(df['intensity'].between(0, 1).all(), 'Invalid normalized intensity.')
+    for col in ('frag_file_count', 'candidate_small_files'):
+        require(((df[col] >= 0) & (df[col] % 1 == 0)).all(), f'Invalid measured file count {col}.')
+    require((df['candidate_small_files'] <= df['frag_file_count']).all(), 'Small files exceed total files.')
+    require((df[['table_size_mb', 'avg_file_size_kb']] > 0).all().all(), 'Invalid measured table/file size.')
+    for q in QUERY_IDS:
         df[f'q_{q}'] = (df['query_id'] == q).astype(float)
-
+    df['target_ms'] = np.where(df['compaction_active'], df['query_latency_during_compaction_ms'], df['query_latency_ms'])
+    df['target_ms'] = pd.to_numeric(df['target_ms'], errors='raise')
+    require(np.isfinite(df['target_ms']).all() and (df['target_ms'] > 0).all(), 'Invalid physical query target.')
+    # Latency contract is end minus start in milliseconds, not a running aggregate.
+    measured_ns = (df['query_end_time'] - df['query_start_time']).to_numpy(dtype='timedelta64[ns]').astype(np.int64)
+    require(np.array_equal(measured_ns, np.rint(df['target_ms'].to_numpy() * 1_000_000)),
+            'Target latency does not equal the query interval at nanosecond precision.')
     return df
 
 
-def train_and_save_models(df: pd.DataFrame, model_dir: str, alpha: float = 0.10, is_test_run: bool = False):
-    """Executes the dual-model training, conformal calibration, and artifact serialization."""
-    os.makedirs(model_dir, exist_ok=True)
-    df_prepared = prepare_training_dataframe(df)
-
-    features = FEATURE_LIST
-
-    # --- MODEL A (Compaction Regime) ---
-    df_compaction = df_prepared[df_prepared['compaction_active'] == True].copy()
-    df_compaction = df_compaction.dropna(subset=['query_latency_during_compaction_ms', 'query_id'] + features)
-
-    # --- MODEL B (Baseline Regime) ---
-    df_baseline = df_prepared[df_prepared['compaction_active'] == False].copy()
-    df_baseline = df_baseline.dropna(subset=['query_latency_ms', 'query_id'] + features)
-
-    if is_test_run and len(df_compaction) < 2:
-        print("[TEST MODE] Few/no queries completed during compaction in short dry run. Synthesizing test samples from baseline queries.")
-        if len(df_baseline) > 0:
-            df_synth = df_baseline.copy()
-            df_synth['compaction_active'] = True
-            df_synth['query_latency_during_compaction_ms'] = df_synth['query_latency_ms'] * 1.25
-            df_compaction = pd.concat([df_compaction, df_synth], ignore_index=True)
-
-    print(f"\n--- Training Model A (Compaction Regime) ---")
-    print(f"Samples: {len(df_compaction)}")
-
-    min_samples_a = 2 if is_test_run or len(df_compaction) < 100 else 100
-    if len(df_compaction) >= min_samples_a:
-        X_a = df_compaction[features]
-        y_a = df_compaction['query_latency_during_compaction_ms']
-
-        n_a = len(X_a)
-        if n_a < 10:
-            X_train_a, y_train_a = X_a, y_a
-            X_calib_a, y_calib_a = X_a, y_a
-            X_test_a, y_test_a = X_a, y_a
+def validate_splits_and_events(df, events, protocol):
+    required = {'experiment_id', 'compaction_event_id', 'start_time', 'end_time', 'rewritten_data_files_count', 'status'}
+    require(required <= set(events), 'Missing physical compaction-event evidence.')
+    require(events[list(required)].notna().all().all(), 'Incomplete compaction events.')
+    require(not events.duplicated(['experiment_id', 'compaction_event_id']).any(), 'Duplicate compaction events.')
+    events = events.copy()
+    require(events['status'].isin(('success', 'no_op')).all(), 'Failed/unknown rewrite events cannot validate training labels.')
+    for col in ('start_time', 'end_time'):
+        require(events[col].map(lambda x: isinstance(x, str) and re.search(r'(?:Z|[+-]\d{2}:\d{2})$', x) is not None).all(),
+                f'Event {col} requires timezone-qualified ISO timestamps.')
+        events[col] = pd.to_datetime(events[col], utc=True, errors='raise', format='ISO8601')
+    require((events['end_time'] > events['start_time']).all(), 'Invalid rewrite interval.')
+    rewrites = pd.to_numeric(events['rewritten_data_files_count'], errors='raise')
+    require(np.isfinite(rewrites).all() and (rewrites >= 0).all() and (rewrites % 1 == 0).all(),
+            'Invalid rewritten-file counts.')
+    events['rewritten_data_files_count'] = rewrites
+    require(((events['status'] == 'success') == (rewrites > 0)).all(), 'Rewrite status/count inconsistency.')
+    for _, row in df.iterrows():
+        overlap = events[(events['experiment_id'] == row['experiment_id'])
+                         & (events['start_time'] < row['query_end_time'])
+                         & (events['end_time'] > row['query_start_time'])]
+        if row['compaction_active']:
+            require(len(overlap) == 1 and overlap.iloc[0]['status'] == 'success'
+                    and overlap.iloc[0]['compaction_event_id'] == row['compaction_event_id'],
+                    'Compaction label lacks one matching useful rewrite interval.')
         else:
-            t_split1_a = int(0.70 * n_a)
-            t_split2_a = int(0.85 * n_a)
-            X_train_a, y_train_a = X_a.iloc[:t_split1_a], y_a.iloc[:t_split1_a]
-            X_calib_a, y_calib_a = X_a.iloc[t_split1_a:t_split2_a], y_a.iloc[t_split1_a:t_split2_a]
-            X_test_a, y_test_a = X_a.iloc[t_split2_a:], y_a.iloc[t_split2_a:]
+            require(overlap.empty and pd.isna(row['compaction_event_id']),
+                    'Baseline query overlaps rewrite or carries a rewrite event ID.')
+    groups = {split: df[df['split'] == split] for split in SPLITS}
+    require(all(len(g) for g in groups.values()), 'All three disjoint splits must be populated.')
+    for left, right in zip(SPLITS, SPLITS[1:]):
+        require(groups[left]['query_end_time'].max() + pd.Timedelta(seconds=protocol['purge_seconds'])
+                <= groups[right]['feature_timestamp'].min(), 'Chronological split/purge gap violated.')
+    for experiment, group in df.groupby('experiment_id'):
+        require(group['split'].nunique() == 1, f'Experiment {experiment} appears in multiple splits.')
+    # A rewrite event cannot supply labels on both sides of a split.
+    for _, group in df[df['compaction_active']].groupby(['experiment_id', 'compaction_event_id']):
+        require(group['split'].nunique() == 1, 'Compaction event leakage across splits.')
+    for regime in (True, False):
+        for split in SPLITS:
+            part = df[(df['split'] == split) & (df['compaction_active'] == regime)]
+            counts = part.groupby('query_id').size()
+            require(all(counts.get(q, 0) >= protocol['min_queries_per_split_per_query'] for q in QUERY_IDS),
+                    f'Insufficient query coverage for regime={regime}, split={split}.')
+            if regime:
+                require(part[['experiment_id', 'compaction_event_id']].drop_duplicates().shape[0]
+                        >= protocol['min_compaction_events_per_split'], f'Insufficient independent rewrite events in {split}.')
+            if split == 'calibration':
+                blocks = part['experiment_id'].nunique()
+                require(math.ceil((blocks + 1) * (1 - protocol['alpha'])) <= blocks,
+                        'Too few calibration experiment blocks for a finite requested conformal order statistic.')
 
-        model_a, q_hat_a = train_conformal_model(X_train_a, y_train_a, X_calib_a, y_calib_a, alpha=alpha)
-        metrics_a = evaluate_model(model_a, q_hat_a, X_test_a, y_test_a)
 
-        print(f"Metrics: MAE={metrics_a['mae']:.1f}ms, R2={metrics_a['r2']:.3f}")
-        print(f"Conformal Bound (q_hat): {q_hat_a:.1f}ms, Coverage: {metrics_a['coverage']:.1f}%")
-    else:
-        print(f"Not enough data to train Model A ({len(df_compaction)} < {min_samples_a}).")
-        sys.exit(1)
+def train_conformal_model(X_train, y_train, X_calib, y_calib, *, alpha, model_parameters, calibration_groups):
+    require(len(y_train) > 0 and len(y_calib) > 0, 'Empty train/calibration split.')
+    require(len(calibration_groups) == len(y_calib), 'Calibration groups must match measurements.')
+    pipeline = Pipeline([('scaler', StandardScaler()), ('model', GradientBoostingRegressor(**model_parameters))])
+    pipeline.fit(X_train, y_train)
+    residuals = np.abs(np.asarray(y_calib) - pipeline.predict(X_calib))
+    require(np.isfinite(residuals).all(), 'Nonfinite calibration residuals.')
+    scores = pd.Series(residuals).groupby(np.asarray(calibration_groups), sort=False).max().to_numpy()
+    rank = math.ceil((len(scores) + 1) * (1 - alpha))
+    require(rank <= len(scores), 'Requested conformal bound is not finite with these experiment blocks.')
+    return pipeline, float(np.sort(scores)[rank - 1])
 
-    # --- MODEL B (Baseline Regime) ---
-    print(f"\n--- Training Model B (Baseline Regime) ---")
-    print(f"Samples: {len(df_baseline)}")
 
-    min_samples_b = 2 if is_test_run or len(df_baseline) < 100 else 100
-    if len(df_baseline) >= min_samples_b:
-        X_b = df_baseline[features]
-        y_b = df_baseline['query_latency_ms']
-
-        n_b = len(X_b)
-        if n_b < 10:
-            X_train_b, y_train_b = X_b, y_b
-            X_calib_b, y_calib_b = X_b, y_b
-            X_test_b, y_test_b = X_b, y_b
-        else:
-            t_split1_b = int(0.70 * n_b)
-            t_split2_b = int(0.85 * n_b)
-            X_train_b, y_train_b = X_b.iloc[:t_split1_b], y_b.iloc[:t_split1_b]
-            X_calib_b, y_calib_b = X_b.iloc[t_split1_b:t_split2_b], y_b.iloc[t_split1_b:t_split2_b]
-            X_test_b, y_test_b = X_b.iloc[t_split2_b:], y_b.iloc[t_split2_b:]
-
-        model_b, q_hat_b = train_conformal_model(X_train_b, y_train_b, X_calib_b, y_calib_b, alpha=alpha)
-        metrics_b = evaluate_model(model_b, q_hat_b, X_test_b, y_test_b)
-
-        print(f"Metrics: MAE={metrics_b['mae']:.1f}ms, R2={metrics_b['r2']:.3f}")
-        print(f"Conformal Bound (q_hat): {q_hat_b:.1f}ms, Coverage: {metrics_b['coverage']:.1f}%")
-    else:
-        print(f"Not enough data to train Model B ({len(df_baseline)} < {min_samples_b}).")
-        sys.exit(1)
-
-    # --- Save Models and Metadata ---
-    if q_hat_a <= 0.0 or q_hat_b <= 0.0:
-        print("\n[CRITICAL ERROR] q_hat evaluated to <= 0.0. Refusing to save broken models.")
-        sys.exit(1)
-
-    joblib.dump(model_a, os.path.join(model_dir, "model_a_compaction.joblib"))
-    joblib.dump(model_b, os.path.join(model_dir, "model_b_baseline.joblib"))
-
-    metadata = {
-        "features": features,
-        "model_a": {
-            "q_hat": float(q_hat_a),
-            "test_mae": float(metrics_a['mae']),
-            "test_coverage": float(metrics_a['coverage']),
-            "per_query_mae": metrics_a['per_query_mae']
-        },
-        "model_b": {
-            "q_hat": float(q_hat_b),
-            "test_mae": float(metrics_b['mae']),
-            "test_coverage": float(metrics_b['coverage']),
-            "per_query_mae": metrics_b['per_query_mae']
-        }
-    }
-
-    metadata_path = os.path.join(model_dir, "model_metadata.json")
-    with open(metadata_path, "w") as f:
-        json.dump(metadata, f, indent=4)
-
-    print(f"\nModels and metadata successfully saved to {model_dir}/")
-    return model_a, model_b, metadata
+def train_and_save_models(df, model_dir, *, protocol, compaction_events, provenance):
+    original_hashes = {name: sha256(path) for name, path in provenance.items()}
+    validate_protocol(protocol)
+    prepared = prepare_training_dataframe(df)
+    validate_splits_and_events(prepared, compaction_events, protocol)
+    destination = Path(model_dir).resolve()
+    require(not destination.exists(), 'Use a new model directory; never overwrite earlier evidence.')
+    fitted, metadata = {}, {'schema_version': 'validated_cost_models_v1', 'validation_status': 'accepted',
+                            'features': FEATURE_LIST, 'alpha': protocol['alpha'],
+                            'code_revision': subprocess.check_output(['git', 'rev-parse', 'HEAD'],
+                                cwd=Path(__file__).resolve().parents[2], text=True).strip()}
+    for name, regime in [('model_a', True), ('model_b', False)]:
+        parts = {s: prepared[(prepared['split'] == s) & (prepared['compaction_active'] == regime)] for s in SPLITS}
+        train, calib, test = (parts[s] for s in SPLITS)
+        model, bound = train_conformal_model(train[FEATURE_LIST], train['target_ms'], calib[FEATURE_LIST],
+                                            calib['target_ms'], alpha=protocol['alpha'],
+                                            model_parameters=protocol['model_parameters'],
+                                            calibration_groups=calib['experiment_id'])
+        preds = model.predict(test[FEATURE_LIST])
+        require(np.isfinite(preds).all(), f'{name} produced nonfinite predictions.')
+        detail = {}
+        for q in QUERY_IDS:
+            mask = test['query_id'] == q
+            actual, predicted = test.loc[mask, 'target_ms'], preds[mask.to_numpy()]
+            mae = float(mean_absolute_error(actual, predicted))
+            coverage = float(np.mean(np.abs(actual.to_numpy() - predicted) <= bound))
+            median = float(train.loc[train['query_id'] == q, 'target_ms'].median())
+            baseline_mae = float(np.mean(np.abs(actual.to_numpy() - median)))
+            improvement = (baseline_mae - mae) / baseline_mae if baseline_mae > 0 else (0.0 if mae == 0 else -math.inf)
+            detail[str(q)] = {'mae_ms': mae, 'coverage': coverage, 'n': int(mask.sum()), 'median_baseline_mae_ms': baseline_mae}
+            require(mae <= protocol['maximum_test_mae_ms_by_query'][str(q)]
+                    and coverage >= protocol['minimum_test_coverage']
+                    and improvement >= protocol['minimum_relative_mae_improvement'],
+                    f'{name} query {q} failed preregistered acceptance: {detail[str(q)]}')
+        fitted[name] = model
+        metadata[name] = {'q_hat': bound, 'acceptance_passed': True, 'per_query_metrics': detail,
+                          'calibration_unit': 'maximum absolute residual per experiment block',
+                          'split_samples': {s: len(part) for s, part in parts.items()}}
+    # Only publish a complete, accepted, self-contained bundle after every gate.
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=destination.parent, prefix='.training-') as temp:
+        staging = Path(temp) / 'bundle'
+        staging.mkdir()
+        for name, source in provenance.items():
+            require(sha256(source) == original_hashes[name], f'Input changed during training: {source}')
+            target = staging / f'{name}{Path(source).suffix}'
+            shutil.copyfile(source, target)
+            metadata[name] = {'path': target.name, 'sha256': sha256(target)}
+            require(metadata[name]['sha256'] == original_hashes[name], f'Input changed during evidence copy: {source}')
+        metadata['execution_evidence'] = [value for name, value in metadata.items()
+                                          if name.startswith('execution_evidence_')]
+        for name, model in fitted.items():
+            target = staging / ('model_a_compaction.joblib' if name == 'model_a' else 'model_b_baseline.joblib')
+            joblib.dump(model, target)
+            metadata[name]['artifact'] = {'path': target.name, 'sha256': sha256(target)}
+        (staging / 'model_metadata.json').write_text(json.dumps(metadata, indent=2, allow_nan=False))
+        require(not destination.exists(), 'Model directory appeared during training; refusing overwrite.')
+        os.rename(staging, destination)
+    return fitted['model_a'], fitted['model_b'], metadata
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Train Query-Aware Conformal Cost-Benefit Models")
-    parser.add_argument('--input', type=str, required=True, help='Path to training data CSV')
-    parser.add_argument('--model-dir', '--output-dir', dest='model_dir', type=str, default='models/',
-                        help='Output directory for models')
-    parser.add_argument('--plot-dir', type=str, default='figures/')
-    parser.add_argument('--alpha', type=float, default=0.10, help='Conformal error significance (nominal 0.10 for 90% coverage)')
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--input', required=True)
+    parser.add_argument('--data-manifest', required=True)
+    parser.add_argument('--protocol', required=True)
+    parser.add_argument('--model-dir', '--output-dir', dest='model_dir', required=True)
     args = parser.parse_args()
-
-    data_path = args.input
-    if not os.path.exists(data_path):
-        print(f"ERROR: Training data {data_path} not found.")
-        sys.exit(1)
-
-    print(f"Loading {data_path}...")
-    df = pd.read_csv(data_path)
-
-    is_test_run = "test" in data_path.lower() or "mini" in data_path.lower()
-
-    max_lat = 0.0
-    for col in ['query_latency_ms', 'query_latency_during_compaction_ms']:
-        if col in df.columns and df[col].dropna().max() > max_lat:
-            max_lat = df[col].dropna().max()
-
-    comp_events = len(df[df['compaction_active'] == True])
-    print(f"[VALIDATION] Max latency: {max_lat:.1f}ms | Compaction events: {comp_events}")
-
-    if max_lat <= 0.0:
-        print("\n[CRITICAL ERROR] The dataset is entirely filled with 0.0ms latencies or missing them.")
-        sys.exit(1)
-
-    min_required_compactions = 1 if is_test_run else 5
-    if comp_events < min_required_compactions:
-        print(f"\n[CRITICAL ERROR] Only {comp_events} compaction events found (minimum {min_required_compactions} required).")
-        sys.exit(1)
-
-    train_and_save_models(df, args.model_dir, alpha=args.alpha, is_test_run=is_test_run)
+    try:
+        declaration, base = load_json(args.data_manifest)
+        require(declaration.get('schema_version') == 'physical_training_data_v1'
+                and declaration.get('origin') == 'physical_spark_iceberg', 'Only declared physical measurements are allowed.')
+        source = verified_file(declaration.get('training_data'), base)
+        require(source == Path(args.input).resolve(), 'Input differs from registered training dataset.')
+        event_path = verified_file(declaration.get('compaction_events'), base)
+        evidence = declaration.get('execution_evidence')
+        require(isinstance(evidence, list) and evidence, 'Physical execution evidence is required.')
+        evidence_paths = [verified_file(item, base) for item in evidence]
+        protocol, _ = load_json(args.protocol)
+        frame, events = pd.read_csv(source), pd.read_csv(event_path)
+        require(sha256(source) == declaration['training_data']['sha256']
+                and sha256(event_path) == declaration['compaction_events']['sha256'],
+                'Registered measurements changed while being read.')
+        train_and_save_models(frame, args.model_dir, protocol=protocol,
+                              compaction_events=events, provenance={
+                                  'training_data': source, 'compaction_events': event_path,
+                                  'training_protocol': Path(args.protocol), 'data_manifest': Path(args.data_manifest),
+                                  **{f'execution_evidence_{i}': path for i, path in enumerate(evidence_paths)}})
+    except Exception as exc:
+        print(json.dumps({'status': 'BLOCKED', 'reason': str(exc)}), file=sys.stderr)
+        return 2
+    print(json.dumps({'status': 'accepted', 'model_dir': args.model_dir}))
+    return 0
 
 
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    sys.exit(main())

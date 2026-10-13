@@ -31,6 +31,7 @@ sys.path.append(os.path.abspath('scripts/phase5-adaptive-scheduling-agent'))
 sys.path.append(os.path.abspath('scripts/phase6-live-evaluation'))
 
 from google_trace_mapper import GoogleTraceMapper
+from experiment_validation import experiment_manifest, validate_model_bundle, require, ValidationError
 from policies.literature_baselines import AutoCompPolicy, PeriodicCronPolicy, TunedThresholdPolicy
 from collect_training_data import WorkloadDriver, WriteDriver, fetch_table_metadata
 
@@ -44,27 +45,19 @@ except ImportError:
 class CostBenefitPolicy:
     """Conformalized Cost-Benefit Decision Policy with multi-query expected cost."""
 
-    def __init__(self, model_dir="scripts/phase6-live-evaluation/models", model_a=None, model_b=None, metadata=None):
-        if model_a is not None and model_b is not None and metadata is not None:
-            self.model_a = model_a
-            self.model_b = model_b
-            self.metadata = metadata
-        else:
-            print(f"Loading models from {model_dir}...")
-            self.model_a = joblib.load(os.path.join(model_dir, "model_a_compaction.joblib"))
-            self.model_b = joblib.load(os.path.join(model_dir, "model_b_baseline.joblib"))
-            with open(os.path.join(model_dir, "model_metadata.json"), "r") as f:
-                self.metadata = json.load(f)
+    def __init__(self, *, model_dir):
+        # Check provenance, acceptance and artifact hashes before unpickling.
+        self.metadata = validate_model_bundle(model_dir)
+        self.model_a = joblib.load(os.path.join(model_dir, self.metadata['model_a']['artifact']['path']))
+        self.model_b = joblib.load(os.path.join(model_dir, self.metadata['model_b']['artifact']['path']))
 
         self.features = self.metadata["features"]
         self.q_a = float(self.metadata["model_a"]["q_hat"])
         self.q_b = float(self.metadata["model_b"]["q_hat"])
 
         print(f"Model A q_hat: {self.q_a:.1f}ms | Model B q_hat: {self.q_b:.1f}ms")
-        if self.q_a <= 0.0 or self.q_b <= 0.0:
-            print("\n[CRITICAL ERROR] The loaded models have a safety bound of 0.0ms. This means they were trained on corrupted/fake data.")
-            print("Refusing to run the experiment with a broken brain. Fix the data and retrain.")
-            sys.exit(1)
+        for model in (self.model_a, self.model_b):
+            require(list(model.feature_names_in_) == self.features, 'Model feature schema mismatch.')
 
     def decide(self, telemetry: dict):
         """
@@ -107,6 +100,7 @@ class CostBenefitPolicy:
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Phase 6C / 6.1D Cost-Benefit & Literature Baseline Agent Daemon")
+    parser.add_argument('--manifest', required=True, help='Verified physical experiment manifest')
     parser.add_argument("--policy", type=str, required=True,
                         choices=["CostBenefitPolicy", "AutoCompPolicy", "PeriodicCronPolicy", "TunedThresholdPolicy"],
                         help="Policy to execute during live evaluation")
@@ -125,6 +119,10 @@ def parse_args():
 
 def main():
     args = parse_args()
+
+    experiment_manifest(args.manifest, check_live=True,
+                        model_dir=args.model_dir if args.policy == 'CostBenefitPolicy' else None)
+    raise ValidationError('Live evaluation is blocked until the event logger, telemetry windows and fixed-increment decision policy are repaired. Preflight alone is not permission to evaluate.')
 
     if not PYHIVE_AVAILABLE:
         print("ERROR: PyHive is not available. CANNOT run in simulation mode.")

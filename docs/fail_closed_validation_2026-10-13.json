@@ -1,0 +1,161 @@
+{
+  "scope": "Static/refusal checks and existing physical artifacts only; no simulated data, model fit or benchmark. Positive end-to-end preflight/training await approved trace and event data.",
+  "artifact_checks": [
+    {
+      "check": "historical_physical_training_schema",
+      "status": "correctly_blocked",
+      "reason": "Missing physical query/event columns: ['candidate_small_files', 'compaction_event_id', 'experiment_id', 'feature_timestamp', 'measurement_id', 'query_end_time', 'query_id', 'query_start_time', 'split']"
+    },
+    {
+      "check": "old_model_bundle",
+      "status": "correctly_blocked",
+      "reason": "Model bundle has no accepted validation record."
+    },
+    {
+      "check": "resource_inventory_is_not_experiment_protocol",
+      "status": "correctly_blocked",
+      "reason": "Unsupported experiment manifest."
+    },
+    {
+      "check": "resource_inventory_is_not_trace_manifest",
+      "status": "correctly_blocked",
+      "reason": "Unsupported trace manifest schema."
+    }
+  ],
+  "cli_refusal_checks": [
+    {
+      "command": [
+        "bash",
+        "run_everything.sh"
+      ],
+      "exit_code": 2,
+      "output": "BLOCKED: master pipeline is retired pending the physical measurement gate.\nUse scripts/phase6-live-evaluation/preflight_experiment.py for read-only checks."
+    },
+    {
+      "command": [
+        "bash",
+        "run_mini_validation.sh"
+      ],
+      "exit_code": 2,
+      "output": "BLOCKED: legacy pilot is retired pending event logging and validated configuration.\nUse scripts/phase6-live-evaluation/preflight_experiment.py for read-only checks."
+    },
+    {
+      "command": [
+        "bash",
+        "scripts/phase6-live-evaluation/run_ab_test.sh"
+      ],
+      "exit_code": 2,
+      "output": "BLOCKED: legacy A/B launcher is retired; no simulation or unvalidated model evaluation is permitted."
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "scripts/phase6-live-evaluation/preflight_experiment.py",
+        "--manifest",
+        "docs/dataset_resource_inventory_2026-10-13.json"
+      ],
+      "exit_code": 2,
+      "output": "{\"status\": \"BLOCKED\", \"reason\": \"Unsupported experiment manifest.\"}"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "scripts/phase6-live-evaluation/train_cost_benefit_models.py",
+        "--input",
+        "results/runs/run_002/data/training_data.csv",
+        "--data-manifest",
+        "docs/dataset_resource_inventory_2026-10-13.json",
+        "--protocol",
+        "docs/dataset_resource_inventory_2026-10-13.json",
+        "--model-dir",
+        "/tmp/capstone-no-models-should-be-published"
+      ],
+      "exit_code": 2,
+      "output": "{\"status\": \"BLOCKED\", \"reason\": \"Only declared physical measurements are allowed.\"}"
+    }
+  ],
+  "sf1_checksum_check": {
+    "tables": 8,
+    "status": "PASS",
+    "source_manifest": "datasets/tpch/sf1/manifest.txt"
+  },
+  "remaining_gate": [
+    {
+      "severity": "blocker",
+      "code": "FIXED_FRAGMENTATION_PROJECTION",
+      "description": "Projection adds a fixed file increment without measured ingestion dynamics.",
+      "path": "scripts/phase6-live-evaluation/run_cost_benefit_agent.py",
+      "line": 86
+    },
+    {
+      "severity": "blocker",
+      "code": "SAMPLE_BASED_CPU_WINDOW",
+      "description": "Live CPU windows count decision ticks rather than elapsed seconds.",
+      "path": "scripts/phase6-live-evaluation/run_cost_benefit_agent.py",
+      "line": 185
+    },
+    {
+      "severity": "blocker",
+      "code": "QUERY_EVIDENCE_DISCARDED",
+      "description": "Evaluation clears per-query evidence after reporting interval summaries.",
+      "path": "scripts/phase6-live-evaluation/run_cost_benefit_agent.py",
+      "line": 251
+    },
+    {
+      "severity": "blocker",
+      "code": "COMPLETION_TIME_REGIME_LABEL",
+      "description": "Completion collection flag replaces actual query/compaction temporal overlap.",
+      "path": "scripts/phase6-live-evaluation/collect_training_data.py",
+      "line": 311
+    },
+    {
+      "severity": "blocker",
+      "code": "NO_REGISTERED_REPLAY_TRACE",
+      "description": "No observed replay trace manifest is registered; execution must remain blocked.",
+      "path": null,
+      "line": null
+    },
+    {
+      "severity": "blocker",
+      "code": "INCOMPLETE_EVENT_PROVENANCE",
+      "description": "CSV lacks query intervals/maintenance linkage; overlap cannot be verified.",
+      "path": "results/runs/run_001/data/training_data.csv",
+      "line": null
+    },
+    {
+      "severity": "blocker",
+      "code": "LEGACY_QUERY_SCHEMA",
+      "description": "Historical training CSV has no query identity.",
+      "path": "results/runs/run_001/data/training_data.csv",
+      "line": null
+    },
+    {
+      "severity": "blocker",
+      "code": "INCOMPLETE_EVENT_PROVENANCE",
+      "description": "CSV lacks query intervals/maintenance linkage; overlap cannot be verified.",
+      "path": "results/runs/run_002/data/training_data.csv",
+      "line": null
+    },
+    {
+      "severity": "blocker",
+      "code": "LEGACY_QUERY_SCHEMA",
+      "description": "Historical training CSV has no query identity.",
+      "path": "results/runs/run_002/data/training_data.csv",
+      "line": null
+    },
+    {
+      "severity": "blocker",
+      "code": "LEGACY_DEFAULT_MODELS",
+      "description": "Default model artifacts lack query-aware features.",
+      "path": "scripts/phase6-live-evaluation/models/model_metadata.json",
+      "line": null
+    },
+    {
+      "severity": "blocker",
+      "code": "UNACCEPTED_DEFAULT_MODELS",
+      "description": "Default models have no accepted physical validation record.",
+      "path": "scripts/phase6-live-evaluation/models/model_metadata.json",
+      "line": null
+    }
+  ]
+}

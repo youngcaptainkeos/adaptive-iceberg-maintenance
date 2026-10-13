@@ -17,7 +17,7 @@ was launched in this inventory step.
 | TPC-H SF100 | All eight source files on both machines; initial Iceberg metadata contains expected large-scale cardinalities | Available; complete source checksum/row-count manifest still needed |
 | Large Iceberg lineitem | Initial metadata reports 600037902 records; inspected later snapshot reports 600039613 after writes | About 600 million, not the 60 million repeatedly claimed in drafts; metadata observation, not a newly executed COUNT query |
 | Alibaba 2017 archive | Same SHA256 locally/remotely; gzip/tar checks pass; subsequent HTTPS publisher check matches size and CRC64 | Matches current publisher-served object; original acquisition history unknown; full usage/schema validation pending |
-| Google workload CSV | Default mapper input absent on both machines | Missing; synthetic fallback is unacceptable |
+| Verified workload replay | Historical Google CSV absent; no approved observed replay manifest exists | Missing; synthetic fallback removed by the fail-closed step |
 | Publication training data | Historical runs exist, with known leakage/label/schema and sample-size problems | Not ready for the new model/forecast claims |
 | Long independent workload traces | Alibaba server_usage covers 39600–82500 seconds across 1310 server IDs and is not time-sorted | Useful candidate after provenance/schema validation; does not establish multi-day periodicity |
 
@@ -121,3 +121,8 @@ the archive is backed up to GitHub or present in the remote archive path yet.
 Current publication-gate status: **BLOCKED**. Evidence preservation and inventory
 are completed bounded tasks; missing data/provenance and measurement quality must
 be resolved before we train the intended forecasting scheduler.
+
+Subsequent implementation: `docs/fail_closed_experiment_contract.md` records removal
+of the trace/training fallbacks and retirement of unvalidated execution paths.
+The raw Alibaba archive still needs a reviewed transformation and workload mapping;
+its integrity check does not supply a ready-to-run experiment manifest.

@@ -89,10 +89,19 @@ def audit(root, remote):
             if match is not None:
                 blocker(code, description, name, match)
 
-    trace = root / 'datasets/google_binned_events.csv'
-    if not trace.exists():
-        blocker('MISSING_TRACE', 'Configured default workload trace is absent.',
-                str(trace.relative_to(root)))
+    # A raw archive is not a registered, transformed, validated replay input.
+    trace_manifests = []
+    for directory in (root / 'datasets', root / 'config'):
+        if not directory.exists():
+            continue
+        for path in directory.rglob('*.json'):
+            try:
+                if json.loads(path.read_text()).get('schema_version') == 'verified_trace_v1':
+                    trace_manifests.append(str(path.relative_to(root)))
+            except (ValueError, AttributeError, OSError):
+                continue
+    if not trace_manifests:
+        blocker('NO_REGISTERED_REPLAY_TRACE', 'No observed replay trace manifest is registered; execution must remain blocked.')
 
     runs = [training_summary(path, root) for path in sorted(
         (root / 'results/runs').glob('run_*/data/training_data.csv'))]
@@ -109,6 +118,9 @@ def audit(root, remote):
     metadata = json.loads(metadata_path.read_text()) if metadata_path.exists() else None
     if metadata is None or not {'q_0', 'q_1', 'q_2', 'q_3'}.issubset(metadata.get('features', [])):
         blocker('LEGACY_DEFAULT_MODELS', 'Default model artifacts lack query-aware features.',
+                str(metadata_path.relative_to(root)))
+    if metadata is None or metadata.get('validation_status') != 'accepted':
+        blocker('UNACCEPTED_DEFAULT_MODELS', 'Default models have no accepted physical validation record.',
                 str(metadata_path.relative_to(root)))
 
     comparison = None

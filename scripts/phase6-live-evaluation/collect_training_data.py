@@ -26,6 +26,7 @@ sys.path.append(os.path.abspath('scripts/phase5-adaptive-scheduling-agent'))
 sys.path.append(os.path.abspath('scripts/phase6-live-evaluation'))
 
 from google_trace_mapper import GoogleTraceMapper
+from experiment_validation import experiment_manifest, ValidationError
 
 try:
     from pyhive import hive
@@ -162,7 +163,7 @@ def fetch_table_metadata(host, port, table, target_size_bytes=67108864):
     Retrieves total file count, total size, and candidate small files (< target_size_bytes).
     """
     if not PYHIVE_AVAILABLE:
-        return {"frag_file_count": 0, "candidate_small_files": 0, "table_size_mb": 0.0}
+        raise ValidationError('PyHive is required; missing metadata cannot be represented as an empty table.')
 
     try:
         conn = hive.Connection(host=host, port=port, username="ccbd")
@@ -184,12 +185,12 @@ def fetch_table_metadata(host, port, table, target_size_bytes=67108864):
             "table_size_mb": float(size_bytes) / (1024.0 * 1024.0)
         }
     except Exception as e:
-        print(f"[Telemetry] Metadata error: {e}")
-        return {"frag_file_count": 0, "candidate_small_files": 0, "table_size_mb": 0.0}
+        raise ValidationError(f'Physical table metadata retrieval failed: {e}') from e
 
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Phase 6A / 6.1B Data Collection Daemon")
+    parser.add_argument('--manifest', required=True, help='Verified physical experiment manifest')
     parser.add_argument("--table", type=str, default="local.tpch_sf100.lineitem", help="Target Iceberg table")
     parser.add_argument("--host", type=str, default="127.0.0.1", help="Spark Thrift Server host")
     parser.add_argument("--port", type=int, default=10000, help="Spark Thrift Server port")
@@ -202,6 +203,11 @@ def parse_args():
 
 def main():
     args = parse_args()
+
+    # No side effects precede preflight. The legacy collector cannot yet produce
+    # the event-linked data required by the new training protocol.
+    experiment_manifest(args.manifest, check_live=True)
+    raise ValidationError('Collection is blocked until query/compaction event logging and time-aware telemetry are repaired. Use preflight_experiment.py for read-only checks.')
 
     if not PYHIVE_AVAILABLE:
         print("ERROR: PyHive is not available. Phase 6 data collection CANNOT run in simulation mode.")

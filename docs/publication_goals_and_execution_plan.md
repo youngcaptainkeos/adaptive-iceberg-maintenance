@@ -120,16 +120,18 @@ Repeated windows within one run are not independent experimental repetitions.
 Select repetition count and statistical methods from pilot variance and design,
 not a universal magic count. Document workload provenance and baseline parameters.
 
-## Current evidence status
+## Evidence status at handover and subsequent fixes
 
 - Local and remote tracked HEAD initially: `4520276`.
 - Current implemented pipeline: Phase 6.1 dual-model refactor, not future forecasting.
 - RUN_003 was launched by the previous worker and was still collecting at inspection.
   Do not call it valid under this contract without full provenance review.
 - The Google trace CSV is missing locally and remotely at inspection; the current
-  mapper silently uses a synthetic curve. This violates the new run requirements.
-- Training permits filename-triggered mini/test mode, fabricated samples, reused
-  train/calibration/test data for small samples, and fixed fallback bounds.
+  mapper at handover silently used a synthetic curve. The fail-closed step removed
+  this fallback; no approved replay manifest is registered yet.
+- Training at handover permitted filename-triggered mini/test mode, fabricated
+  samples, reused splits and fixed bounds. These paths are removed; old telemetry
+  CSVs and models are now rejected by the physical event/provenance gates.
 - Historical unit tests include mocked models and generated synthetic records.
   Their passing status establishes neither model accuracy nor publication validity.
 - The default model metadata is still from an older eight-feature model.
@@ -149,8 +151,11 @@ not a universal magic count. Document workload provenance and baseline parameter
 - [x] P0 bounded step: preserve remote source variants and verify SF1 on both machines;
   inventory SF100/runtime and the existing trace archive. Full dataset readiness
   remains blocked; see `docs/dataset_and_resource_readiness.md`.
-- [ ] P1: Remove synthetic fallback and filename-triggered training fabrication.
-- [ ] P1: Require an experiment preflight and immutable configuration/run manifest.
+- [x] P1 bounded step: remove active trace/training fabrication and retire legacy
+  simulation/automatic launch paths. See `docs/fail_closed_experiment_contract.md`.
+- [x] P1 bounded step: add read-only provenance/engine/table preflight and disjoint
+  physical-data training gates. Live execution remains blocked; immutable run
+  packaging and positive end-to-end validation await the repaired event logger.
 - [ ] P1: Repair event timing, sampling, errors, resets, and offered-load generation.
 - [ ] P2 onward: Proceed only after the preceding evidence gate is met.
 
