@@ -208,16 +208,28 @@ A rigorous audit of raw CSV logs and models revealed five critical design defect
    - Target variable prediction MAE drops from ~25s to $<1.0$s, allowing calibrated conformal bounds.
 2. **Dynamic Training Ingestion & State Exploration:**
    - In Phase 6A data collection, decouple writes and compactions: allow fragmentation to sweep dynamically across $[33, 150]$ files before initiating compactions.
-3. **Actuation Guardrails & File Count Minimums:**
-   - Impose an actuation threshold: agent evaluates maintenance only if accumulated small files $\ge 10$.
-   - Parse `CALL rewrite_data_files` outputs (`rewritten_data_files_count`) and discard 0-file runs from compaction statistics.
+3. **Principled Action Space & No-Op Prevention (No Magic Numbers):**
+   - Eliminate hardcoded magic numbers like `frag_file_count - 33 >= 10`.
+   - Instead, query Iceberg table metadata to inspect actual candidate small files:
+     `SELECT count(*) FROM table.files WHERE file_size_in_bytes < target_file_size_bytes`
+   - If candidate small files $== 0$, compaction is not an eligible action in the action space (you cannot compact non-existent small files).
+   - In the execution engine, parse the return value of `CALL rewrite_data_files` (`rewritten_data_files_count`). If 0 files were rewritten, log the tick as `NO_OP`, not as an active compaction event.
 4. **Horizon-Based Cost Formulation:**
-   - Replace point-in-time latency comparison with cumulative horizon cost:
-     $$\text{Cost}_{\text{compact}} = \text{Interference during rewrite window}$$
-     $$\text{Cost}_{\text{defer}} = \sum_{t=1}^{H} \Delta \text{Latency}(\text{accumulated small files})$$
-5. **A Priori Grounded SF100 SLA & Competitive Baselines:**
-   - Establish baseline p95 on clean table under read load (~4.5s); calibrate SLA at $1.5 \times \text{clean P95} = 6.75$s.
-   - Benchmark against a competitive Databricks/AutoComp-tuned threshold baseline (compact at 50–75 files) and a periodic baseline (every 60 min).
-6. **Multi-Trial Counterbalanced Protocol:**
-   - Execute 3 repetitions of 4-hour evaluation cycles per condition with interleaved ordering (A-B, B-A, A-B).
-   - Restore the Phase 2H/2I statistical verification pipeline: Shapiro-Wilk normality testing, paired Wilcoxon signed-rank tests, matched-pairs rank-biserial effect sizes, and Holm-Bonferroni correction.
+   - Replace point-in-time single-step latency comparison with cumulative horizon cost:
+     $$\text{Cost}_{\text{compact}} = \text{Transient query latency penalty during rewrite window}$$
+     $$\text{Cost}_{\text{defer}} = \sum_{t=1}^{H} \Delta \text{Latency}(\text{accumulated small files over next } H \text{ ticks})$$
+5. **Rigorous Baselines Against Published Literature (Defeating the Strawman):**
+   - Replace the inert 200-file strawman with two peer-reviewed and industry-standard baselines:
+     * **Baseline 1: AutoComp Policy (Gruenheid et al., VLDB 2024 / Microsoft & LinkedIn):**
+       Evaluates storage traits by computing the uncompacted small-file reduction ratio:
+       $$\Delta F_c = \frac{N_{\text{small\_files}}}{N_{\text{total\_files}}}$$
+       Triggers compaction whenever $\Delta F_c \ge 0.20$ (or candidate small files $\ge 30$). Crucially, AutoComp optimizes purely based on table storage traits and is *completely blind* to concurrent query traffic and dynamic host CPU load.
+     * **Baseline 2: Periodic Cron Baseline (AWS EMR / Databricks default):**
+       Executes compaction on a deterministic 60-minute interval regardless of traffic or system contention.
+     * **Baseline 3: Tuned Auto-Optimize Threshold:**
+       Compacts when small files $\ge 40$, representing an active threshold policy rather than an inert 200-file barrier.
+6. **A Priori Grounded SF100 SLA:**
+   - Establish baseline P95 on a clean table under read load (~4.5s for fast queries, ~49s for heavy query); calibrate SLA at $1.5 \times \text{clean P95} = 6.75$s (for fast queries) and $75.0$s (for heavy query), documented a priori.
+7. **Multi-Trial Counterbalanced Protocol:**
+   - Execute 3 repetitions of 4-hour evaluation cycles per condition with interleaved ordering (Baseline $\rightarrow$ Agent, Agent $\rightarrow$ Baseline, Baseline $\rightarrow$ Agent).
+   - Restore the Phase 2H/2I statistical verification pipeline: Shapiro-Wilk normality testing, paired Wilcoxon signed-rank tests across matching workload intervals, matched-pairs rank-biserial effect sizes, and Holm-Bonferroni correction.
