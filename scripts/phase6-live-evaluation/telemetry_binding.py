@@ -4,6 +4,15 @@ from pathlib import Path
 from experiment_validation import require
 
 
+def ordered_sum(values):
+    # Specify left-to-right IEEE additions across Python versions. Built-in sum
+    # changed its float algorithm in Python 3.12; do not loosen exact evidence gates.
+    result = 0.0
+    for value in values:
+        result += value
+    return result
+
+
 def verify_window(rows, window, *, max_interval_seconds, max_age_seconds, minimum_coverage_fraction):
     require(window.get('window_contract') == 'completed_counter_window_v1',
             'Exact recorded window bounds required; no inferred historical cutoff')
@@ -46,12 +55,12 @@ def verify_window(rows, window, *, max_interval_seconds, max_age_seconds, minimu
     freshness = (high-intervals[-1]['end']['monotonic_ns'])/1e9
     require(0 <= freshness <= max_age_seconds, 'Raw window is stale or uses future samples')
     weights = [(r['end']['monotonic_ns']-max(low,r['start']['monotonic_ns']))/1e9 for r in intervals]
-    coverage = sum(weights)
+    coverage = ordered_sum(weights)
     require(coverage/window['window_seconds'] >= minimum_coverage_fraction, 'Raw coverage below declared gate')
     values = {'covered_seconds':coverage, 'freshness_seconds':freshness}
     for name in ('cpu_busy_fraction', 'read_bytes_per_second', 'write_bytes_per_second'):
-        values[name] = sum(w*r[name] for w,r in zip(weights,intervals))/coverage
-    values['memory_used_fraction'] = sum(w*(r['total_memory_bytes']-r['available_memory_bytes'])/r['total_memory_bytes'] for w,r in zip(weights,intervals))/coverage
+        values[name] = ordered_sum(w*r[name] for w,r in zip(weights,intervals))/coverage
+    values['memory_used_fraction'] = ordered_sum(w*(r['total_memory_bytes']-r['available_memory_bytes'])/r['total_memory_bytes'] for w,r in zip(weights,intervals))/coverage
     require(window['feature_timestamp'] == intervals[-1]['end']['utc'], 'Feature UTC differs from last available sample')
     require(window['measured_at']['monotonic_ns'] >= high, 'Window recorded before its cutoff')
     require(all(window[name] == value for name,value in values.items()), 'Reported feature window differs from raw-counter reconstruction')

@@ -12,6 +12,15 @@ import uuid
 from experiment_validation import ValidationError, require
 
 
+def ordered_sum(values):
+    # Specify left-to-right IEEE additions across Python versions. Built-in sum
+    # changed its float algorithm in Python 3.12; do not loosen exact evidence gates.
+    result = 0.0
+    for value in values:
+        result += value
+    return result
+
+
 def stamp():
     return {'utc': datetime.now(timezone.utc).isoformat(), 'monotonic_ns': time.monotonic_ns()}
 
@@ -197,17 +206,17 @@ class TelemetrySampler:
         require(all(s['elapsed_seconds'] <= max_interval_seconds for s in samples), 'Telemetry sampling gap')
         weights = [max(0, (min(now, s['end']['monotonic_ns']) - max(cutoff, s['start']['monotonic_ns'])) / 1e9)
                    for s in samples]
-        covered = sum(weights)
+        covered = ordered_sum(weights)
         require(covered > 0, 'No covered telemetry time')
         return dict(window_contract='completed_counter_window_v1',
                     window_start_monotonic_ns=cutoff, window_end_monotonic_ns=now,
                     last_available_sample_end_monotonic_ns=samples[-1]['end']['monotonic_ns'],
                     feature_timestamp=samples[-1]['end']['utc'], measured_at=stamp(),
                     window_seconds=seconds, covered_seconds=covered, freshness_seconds=age,
-                    cpu_busy_fraction=sum(w*s['cpu_busy_fraction'] for w,s in zip(weights,samples))/covered,
-                    read_bytes_per_second=sum(w*s['read_bytes_per_second'] for w,s in zip(weights,samples))/covered,
-                    write_bytes_per_second=sum(w*s['write_bytes_per_second'] for w,s in zip(weights,samples))/covered,
-                    memory_used_fraction=sum(w*(s['total_memory_bytes']-s['available_memory_bytes'])/s['total_memory_bytes']
+                    cpu_busy_fraction=ordered_sum(w*s['cpu_busy_fraction'] for w,s in zip(weights,samples))/covered,
+                    read_bytes_per_second=ordered_sum(w*s['read_bytes_per_second'] for w,s in zip(weights,samples))/covered,
+                    write_bytes_per_second=ordered_sum(w*s['write_bytes_per_second'] for w,s in zip(weights,samples))/covered,
+                    memory_used_fraction=ordered_sum(w*(s['total_memory_bytes']-s['available_memory_bytes'])/s['total_memory_bytes']
                                              for w,s in zip(weights,samples))/covered)
 
     def stop(self):

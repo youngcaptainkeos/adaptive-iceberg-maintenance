@@ -1,0 +1,13 @@
+{
+  "schema_version": "snowset_reader_input_failure_review_v1",
+  "failed_record_sha256": "8c32e7c5b2bf30cf8f585bdea01a9a297bd96827b5a438f3d8e74949545fc200",
+  "failed_status": "failed_preserved_artifacts",
+  "gzip_crc_and_tar_read_passed": true,
+  "reader_rows": 138364148,
+  "unique_query_ids": 69182074,
+  "glob_matches": 2001,
+  "regular_parquet_files": 2000,
+  "accidental_directory_match": "snowset-main.parquet",
+  "independent_regular_file_footer_rows": 69182074,
+  "scope": "Observed file inventory diagnosed a directory-plus-files duplicate reader input. No deduplication or accepted source; full repaired validation runs separately."
+}

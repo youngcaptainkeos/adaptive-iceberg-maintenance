@@ -1,0 +1,38 @@
+{
+  "schema_version": "available_frontier_window_review_v1",
+  "status": "accepted_physical_window_check",
+  "checks": [
+    {
+      "intervals": 60,
+      "exact_cutoff_verified": true,
+      "covered_seconds": 59.932998666,
+      "freshness_seconds": 0.067001334,
+      "cpu_busy_fraction": 0.0366214088605386,
+      "read_bytes_per_second": 21869.75504603896,
+      "write_bytes_per_second": 30311128.613019414,
+      "memory_used_fraction": 0.3210997856127685
+    },
+    {
+      "intervals": 300,
+      "exact_cutoff_verified": true,
+      "covered_seconds": 299.8440259729999,
+      "freshness_seconds": 0.155974027,
+      "cpu_busy_fraction": 0.029850480825675242,
+      "read_bytes_per_second": 1427255.9695370956,
+      "write_bytes_per_second": 40887537.26045901,
+      "memory_used_fraction": 0.3209027191329167
+    }
+  ],
+  "mirrored_local_and_worker3": true,
+  "file_sha256": {
+    "results/telemetry_available_frontier_20261014/config.json": "b3b939b43c678992b3014d9b1cf7ca752589139fa270242e1314672cbb3584c6",
+    "results/telemetry_available_frontier_20261014/events.jsonl": "33d7be96c87076c42739fab314068cf2248e5efcc69bb7489c35a66cc35278ab",
+    "results/telemetry_available_frontier_20261014/experiment_validation.py": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4",
+    "results/telemetry_available_frontier_20261014/physical_measurements.py": "e14217cc7fefac1d35b2afe5d5a518b6dfab47c197630ab2afc94fc98b8ef064",
+    "results/telemetry_available_frontier_20261014/result.json": "018279c76bb4b4fa5bb43b6a33a0ed29059305922faab8f75221a7be0bd74fb3",
+    "results/telemetry_available_frontier_20261014/telemetry_binding.py": "3a09ca5637bf8b293f3f2efed11537ecfef23f101f6e2c93b936699f7e4f98b8",
+    "results/telemetry_available_frontier_20261014/validate_telemetry_windows.py": "5a282a1f634ce54e190a745948883ed297fabbccddd63a1755fe8707c823ded3"
+  },
+  "cross_machine_arithmetic": "Exact observed worker3 Python3.10 left-to-right sums independently reproduced locally on Python3.12 with explicit ordered additions. No tolerance gate or historical-number adjustment.",
+  "scope": "Actual host counter-window integrity during source operations, not idle-host/performance/model inference."
+}

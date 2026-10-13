@@ -594,3 +594,22 @@ gates. No invented row-count gate or silent deduplication. Full re-extraction an
 value/identity checks are justified by this source-reader code change; acceptance
 remains pending. Local completed-source mirror remains active; inspect its record
 before any replacement. No Spark query/service/table altered.
+
+Repaired full Snowset validation launched on worker3, **PID384597**, execution
+revision `c9e77a4`, using the same pinned completed acquisition-record hash. New
+output `datasets/snowset/validated_source_file_only_20261014/`; matching launch log
+and JSON receipt under datasets/snowset. Original failed validation record copied
+locally for fallback; diagnosis summary `snowset_reader_input_failure_2026-10-14.json`.
+Repair code/config/review pushed and fast-forwarded; HEAD and changed hashes matched
+before execution. Full source acceptance remains pending.
+
+Cross-machine telemetry audit initially refused exact feature equality locally:
+worker3 Python3.10 sums floats left-to-right, while local Python3.12 changed built-in
+float summation. Observed relative differences were below 9e-16, including the
+299.844025973-second coverage. Specified explicit ordered IEEE additions in producer
+and independent verifier, reproducing observed worker3 arithmetic exactly on both
+Python versions. No tolerance, measurement adjustment or weakened gate introduced.
+Unchanged actual 60/300 windows then passed locally, and all copied package files
+matched worker3 SHA256. Evidence: `telemetry_available_frontier_validation_2026-10-14.json`.
+This verifies host-counter measurement integrity under actual source operations,
+not idle-host comparison, query performance, training features or model readiness.
