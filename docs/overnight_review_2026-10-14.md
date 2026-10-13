@@ -42,6 +42,40 @@ record generator/source hashes and ingestion schema, and validate loaded cardina
 Legacy launch paths remain blocked. No benchmark workload or rewrite has run yet.
 Existing Spark/service/table state preserved; only our observation thread stopped.
 
+### 00:24–00:31 IST: isolated source preparation
+
+Implemented `prepare_correctness_table.py` and preregistered explicit SF1 preparation
+configuration, committed/pushed/synced as 4d38c84. Three changed file hashes matched
+before execution. Source parsing checks every line has the reviewed 16 pipe-separated
+fields plus trailing separator; typed CSV FAILFAST checks all columns for nulls with
+column pruning disabled. Destination-exists checks forbid overwrite, and a host-local
+advisory lock prevents duplicate preparation instances.
+
+One launch used an abbreviated revision by mistake and was correctly refused before
+output/table creation. Relaunched with the exact full pinned HEAD. No gate changed.
+Worker3 had zero running Spark jobs before launch.
+
+**Physical preparation passed:** retained table
+`local.experiment.integrity_sf1_20261014_0024`, snapshot 2963541948322332238,
+6,001,215 rows, 16 files, 152,325,814 bytes. Parsed and loaded null checks both zero;
+physical count and metadata record count agree; source SHA256 unchanged after load.
+Original broken table and source data were preserved. No reset/drop/restart/cancel.
+
+Evidence: `results/sf1_source_integrity_20261014_0024/` on worker3 includes exclusive
+events log, frozen configuration, copied code and result. Audit saved in
+`sf1_preparation_validation_2026-10-14.json`. Eleven statements completed without
+failure. Six statement markers matched actual Spark REST job descriptions, including
+source scan, CTAS and physical loaded scan. Catalog commands need not create jobs.
+Marker-to-job attribution is now observed; actual completed-stage interval overlap
+has not yet been validated. Do not infer treatment labels from client overlap.
+
+Next ready unit: inspect REST stage timestamps/job-stage mapping, then preregister
+and implement bounded control/concurrent-query/rewrite correctness on isolated
+tables at recorded snapshots. Verify rewrite counts, unchanged row/result contents,
+and stage overlap. No performance or scheduling benefit claim follows from this
+source preparation. The copied-code package protects provenance but is not yet a
+general immutable run-packaging interface for future long experiments.
+
 ## Outstanding resources/gates
 
 No accepted SQL-arrival replay manifest or clean event-linked training dataset.

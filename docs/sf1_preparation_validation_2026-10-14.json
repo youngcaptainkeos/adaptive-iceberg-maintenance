@@ -1,0 +1,115 @@
+{
+  "schema_version": "sf1_preparation_review_v1",
+  "result": {
+    "status": "accepted_correctness_source",
+    "table": "local.experiment.integrity_sf1_20261014_0024",
+    "snapshot_id": 2963541948322332238,
+    "record_count": 6001215,
+    "file_count": 16,
+    "data_bytes": 152325814,
+    "table_properties": [
+      [
+        "current-snapshot-id",
+        "2963541948322332238"
+      ],
+      [
+        "format",
+        "iceberg/parquet"
+      ],
+      [
+        "format-version",
+        "2"
+      ],
+      [
+        "write.parquet.compression-codec",
+        "zstd"
+      ]
+    ],
+    "code_revision": "4d38c844b9adce999abdbdd0be9dafa9b2fc4a75",
+    "limitations": [
+      "Preparation only; no matched control/treatment or rewrite yet",
+      "Generator version in existing manifest is recorded, not independently rebuilt"
+    ]
+  },
+  "remote_raw_events": "results/sf1_source_integrity_20261014_0024/events.jsonl",
+  "raw_events_sha256": "971508975b9eb20bb35dc65b42b3052facd1a87a521a8b0427ec3fd82e6b4180",
+  "remote_result": "results/sf1_source_integrity_20261014_0024/result.json",
+  "result_sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57",
+  "successful_statements": 11,
+  "statement_job_matches": [
+    {
+      "sql": "SELECT version()",
+      "marker": "capstone_event_4ddbb12cd30f4655bd79b80521f78e60",
+      "job_ids": [
+        2040
+      ]
+    },
+    {
+      "sql": "SHOW TABLES IN local.experiment",
+      "marker": "capstone_event_13eeeefa0e524fb08e3f0e9dcc1b5cf6",
+      "job_ids": []
+    },
+    {
+      "sql": "SET spark.sql.ansi.enabled=true",
+      "marker": "capstone_event_260c87891a774ac7b91f408bc8ddf4d7",
+      "job_ids": []
+    },
+    {
+      "sql": "SET spark.sql.csv.parser.columnPruning.enabled=false",
+      "marker": "capstone_event_3adeeb2e1c4843f9a745b173f18440c9",
+      "job_ids": []
+    },
+    {
+      "sql": "CREATE TEMPORARY VIEW integrity_source (L_ORDERKEY BIGINT, L_PARTKEY INT, L_SUPPKEY INT, L_LINENUMBER INT, L_QUANTITY DECIMAL(15,2), L_EXTENDEDPRICE DECIMAL(15,2), L_DISCOUNT DECIMAL(15,2), L_TAX DECIMAL(15,2), L_RETURNFLAG STRING, L_LINESTATUS STRING, L_SHIPDATE DATE, L_COMMITDATE DATE, L_RECEIPTDATE DATE, L_SHIPINSTRUCT STRING, L_SHIPMODE STRING, L_COMMENT STRING, _trailing STRING) USING csv OPTIONS (path 'file:///mnt/nfs-storage/shashank_prafullathta/implementation/datasets/tpch/sf1/lineitem.tbl', sep '|', header 'false', quote '', mode 'FAILFAST', dateFormat 'yyyy-MM-dd')",
+      "marker": "capstone_event_0c56827921214f87946fcadedfb6199b",
+      "job_ids": []
+    },
+    {
+      "sql": "SELECT count(*), sum(CASE WHEN L_ORDERKEY IS NULL OR L_PARTKEY IS NULL OR L_SUPPKEY IS NULL OR L_LINENUMBER IS NULL OR L_QUANTITY IS NULL OR L_EXTENDEDPRICE IS NULL OR L_DISCOUNT IS NULL OR L_TAX IS NULL OR L_RETURNFLAG IS NULL OR L_LINESTATUS IS NULL OR L_SHIPDATE IS NULL OR L_COMMITDATE IS NULL OR L_RECEIPTDATE IS NULL OR L_SHIPINSTRUCT IS NULL OR L_SHIPMODE IS NULL OR L_COMMENT IS NULL OR (_trailing IS NOT NULL AND _trailing <> '') THEN 1 ELSE 0 END) FROM integrity_source",
+      "marker": "capstone_event_f0cdb8974ed543ca9828f34a2636534a",
+      "job_ids": [
+        2042,
+        2041
+      ]
+    },
+    {
+      "sql": "CREATE TABLE local.experiment.integrity_sf1_20261014_0024 USING iceberg AS SELECT L_ORDERKEY, L_PARTKEY, L_SUPPKEY, L_LINENUMBER, L_QUANTITY, L_EXTENDEDPRICE, L_DISCOUNT, L_TAX, L_RETURNFLAG, L_LINESTATUS, L_SHIPDATE, L_COMMITDATE, L_RECEIPTDATE, L_SHIPINSTRUCT, L_SHIPMODE, L_COMMENT FROM integrity_source",
+      "marker": "capstone_event_b558c1a1063c4e2385e72c3fc3402ecb",
+      "job_ids": [
+        2043
+      ]
+    },
+    {
+      "sql": "SELECT count(*), sum(CASE WHEN L_ORDERKEY IS NULL OR L_PARTKEY IS NULL OR L_SUPPKEY IS NULL OR L_LINENUMBER IS NULL OR L_QUANTITY IS NULL OR L_EXTENDEDPRICE IS NULL OR L_DISCOUNT IS NULL OR L_TAX IS NULL OR L_RETURNFLAG IS NULL OR L_LINESTATUS IS NULL OR L_SHIPDATE IS NULL OR L_COMMITDATE IS NULL OR L_RECEIPTDATE IS NULL OR L_SHIPINSTRUCT IS NULL OR L_SHIPMODE IS NULL OR L_COMMENT IS NULL THEN 1 ELSE 0 END) FROM local.experiment.integrity_sf1_20261014_0024",
+      "marker": "capstone_event_6bcdf07f526343e4921452d2f2e182d0",
+      "job_ids": [
+        2045,
+        2044
+      ]
+    },
+    {
+      "sql": "SELECT sum(record_count), count(*), sum(file_size_in_bytes) FROM local.experiment.integrity_sf1_20261014_0024.files",
+      "marker": "capstone_event_2b739774bee644f6a2a0b9d52468ecab",
+      "job_ids": [
+        2046
+      ]
+    },
+    {
+      "sql": "SELECT snapshot_id FROM local.experiment.integrity_sf1_20261014_0024.history ORDER BY made_current_at DESC LIMIT 1",
+      "marker": "capstone_event_55c3380f82d14e2585fb95b7f82f9f0a",
+      "job_ids": [
+        2047
+      ]
+    },
+    {
+      "sql": "SHOW TBLPROPERTIES local.experiment.integrity_sf1_20261014_0024",
+      "marker": "capstone_event_aa823afa7f2f4d78a39100053c129465",
+      "job_ids": []
+    }
+  ],
+  "audit_limits": [
+    "Marker presence is only attribution candidate; completed-stage intervals still require analysis",
+    "Preparation does not supply treatment labels, workload trace or model data"
+  ],
+  "launch_refusal": "First launch used abbreviated revision and failed before any table/output creation; corrected to exact full HEAD"
+}
