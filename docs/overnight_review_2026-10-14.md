@@ -613,3 +613,10 @@ Unchanged actual 60/300 windows then passed locally, and all copied package file
 matched worker3 SHA256. Evidence: `telemetry_available_frontier_validation_2026-10-14.json`.
 This verifies host-counter measurement integrity under actual source operations,
 not idle-host comparison, query performance, training features or model readiness.
+
+Completed-source local fallback copy finished naturally: **8,202,394,513 bytes**,
+SHA256 exactly matching the worker3 assembled object. `mirror_record.json` reports
+`verified_bytes_only`; final archive name exists under
+`datasets/snowset/source_mirror_20261014/`. Evidence summary:
+`snowset_byte_mirror_validation_2026-10-14.json`. No second transfer or source
+acceptance claimed; repaired full source validation is still running.

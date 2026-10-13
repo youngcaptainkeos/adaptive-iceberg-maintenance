@@ -1,0 +1,14 @@
+{
+  "status": "verified_bytes_only",
+  "started_at": "2026-10-13T22:29:15.097514+00:00",
+  "source_sha256": "f9edef48da1eb940d80a9111c80e27613c767734728539d019cc50ec89c5f10e",
+  "expected_bytes": 8202394513,
+  "scope": "Byte-preserving fallback mirror only; full source validation remains separate and pending.",
+  "sha256": "f9edef48da1eb940d80a9111c80e27613c767734728539d019cc50ec89c5f10e",
+  "ended_at": "2026-10-13T22:43:00.889688+00:00",
+  "schema_version": "completed_snowset_byte_mirror_review_v1",
+  "mirror_record_sha256": "8ce25a39b07d6333935bbf2e73c0f7ac03f158dae5d165bcbf1da69dde7ac344",
+  "local_directory": "datasets/snowset/source_mirror_20261014",
+  "remote_source": "datasets/snowset/recovery_20261014",
+  "source_validation_status": "Pending repaired full validation; mirrored bytes are not corpus acceptance."
+}

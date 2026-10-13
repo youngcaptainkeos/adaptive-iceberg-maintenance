@@ -78,8 +78,9 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
   Cross-Python sum differences repaired with explicit ordered additions while
   retaining exact equality and unchanged coverage/gap/freshness gates.
 - Next feature/layout binding contract: `physical_feature_export_contract.md`.
-- Local completed-source fallback mirror active: `datasets/snowset/source_mirror_20261014/mirror_record.json`;
-  verify expected bytes/SHA256 before accepting copy. Do not duplicate/resume over artifacts.
+- Local completed-source fallback mirror finished naturally: all 8,202,394,513 bytes
+  and SHA256 matched worker3. Status `verified_bytes_only`; source acceptance still
+  depends on repaired full validation. No second transfer needed.
 - Full-source validator launched with final acquisition-record SHA256 pinned.
   No partial source analysis, replay or forecasting; verify completion first.
 - Next: identifiable matched collection protocol/offered-load repair; then real
