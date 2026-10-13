@@ -168,3 +168,56 @@ This creates a natural, data-driven oscillation with zero hardcoded thresholds.
 - **Original Methodology:** [updated_methodology_working_doc.md](file:///home/shashank/.gemini/antigravity/brain/5e14b653-0a3b-4484-b6b2-f8b697861d3b/updated_methodology_working_doc.md)
 - **Phase 6 Critical Evaluation:** [phase6_critical_evaluation.md](file:///home/shashank/.gemini/antigravity/brain/5e14b653-0a3b-4484-b6b2-f8b697861d3b/phase6_critical_evaluation.md)
 - **Director's Audit (Phase 4):** [phase4_audit_report.md](file:///home/shashank/.gemini/antigravity/brain/5e14b653-0a3b-4484-b6b2-f8b697861d3b/phase4_audit_report.md)
+
+---
+
+## 7. Phase 6 Master Evaluation Audit (RUN_002) & Methodological Upgrade (v2.1)
+
+### 7.1 What Was Achieved (Empirical Baseline)
+On October 13, 2026, the complete 20-hour master evaluation (`RUN_002`) executed end-to-end on cluster node `worker3` (10 cores, 64 GB RAM, high-speed network storage) against Apache Iceberg on TPC-H SF100 (~60M rows, ~13 GB).
+* **Zero system failures:** 20 continuous hours of distributed Spark 3.3.4, PyHive, and Iceberg maintenance without service crash or data corruption.
+* **Empirical micro-compaction scaling:** Confirmed that rewriting 3–4 small files takes ~11s, whereas table-wide compaction of 593 files takes 360–420s.
+
+### 7.2 Forensic Audit Findings (Internal Data Analysis & External Peer Review)
+A rigorous audit of raw CSV logs and models revealed five critical design defects:
+
+1. **Unmodeled Query Heterogeneity Caused Bimodal ML Inversion:**
+   - Workload rotated across 4 queries: Q0, Q2, Q3 took ~3.5–4.2s; Q1 (group-by aggregation) took ~49.0s.
+   - The ML models had no `query_id` feature, yielding a 22–25s MAE and forcing conformal quantiles ($\hat{q}$) to ~40–50s.
+   - Model B predicted baseline queries took 58.5s while Model A predicted compaction queries took 43.3s ($\text{pred}_b > \text{pred}_a$). The ML agent concluded compaction speeds queries up by 15s.
+2. **Compaction Actuation Loop & No-Op Invalidation:**
+   - Because $\text{pred}_b > \text{pred}_a$, the agent fired `RUN` 61.3% of all ticks (and 77.9% in BURST).
+   - 144 out of 225 compactions (64.0%) completed in $\le 0.5$s (median 0.17s) on tables with $\le 35$ files. Iceberg rewrote 0 files because rewrite thresholds were not met.
+3. **Training Data Fragmentation Starvation:**
+   - Phase 6A triggered compactions every 5 minutes, trapping `frag_file_count` strictly within $[32, 40]$ ($\sigma=1.58$).
+   - The models never observed fragmented states (50–200 files), driving feature importance of file count to 0.01% (Model A) and 1.5% (Model B), with zero correlation to deferral decisions.
+4. **Latency Reduction Was an Optical Artifact of Binning:**
+   - The reported 7.95% P95 latency reduction was driven by 54 timing-offset windows where the 49s query was in-flight when the 60s window closed.
+   - Across all quantiles from p50 to p99, the agent was slower than the baseline (+1.9s at p75, +6.2s at p90) due to continuous compaction contention.
+5. **Statistical and Methodological Rigor Gaps:**
+   - Model A conformal test split comprised only 12 rows ($11/12 = 91.7\%$).
+   - Evaluation compared $N=1$ run against $N=1$ run without counterbalancing, p-values, or effect sizes.
+   - Baseline threshold (200 files) was overly conservative (only 3 compactions in 8 hours).
+   - 492ms SLA from SF1 was retained post-hoc instead of setting an SF100-calibrated SLA a priori.
+
+### 7.3 Methodological Upgrades (v2.1 Specifications)
+
+1. **Feature Space & Query Normalization:**
+   - Add one-hot encoded `query_id` (or query category) to the training and inference feature vector:
+     $$\mathbf{x} = [\text{cpu\_1m}, \text{cpu\_5m}, \text{cpu\_trend}, \text{mem\_pct}, \text{frag\_files}, \text{table\_mb}, \text{intensity}, \mathbf{q}_{\text{id}}]$$
+   - Target variable prediction MAE drops from ~25s to $<1.0$s, allowing calibrated conformal bounds.
+2. **Dynamic Training Ingestion & State Exploration:**
+   - In Phase 6A data collection, decouple writes and compactions: allow fragmentation to sweep dynamically across $[33, 150]$ files before initiating compactions.
+3. **Actuation Guardrails & File Count Minimums:**
+   - Impose an actuation threshold: agent evaluates maintenance only if accumulated small files $\ge 10$.
+   - Parse `CALL rewrite_data_files` outputs (`rewritten_data_files_count`) and discard 0-file runs from compaction statistics.
+4. **Horizon-Based Cost Formulation:**
+   - Replace point-in-time latency comparison with cumulative horizon cost:
+     $$\text{Cost}_{\text{compact}} = \text{Interference during rewrite window}$$
+     $$\text{Cost}_{\text{defer}} = \sum_{t=1}^{H} \Delta \text{Latency}(\text{accumulated small files})$$
+5. **A Priori Grounded SF100 SLA & Competitive Baselines:**
+   - Establish baseline p95 on clean table under read load (~4.5s); calibrate SLA at $1.5 \times \text{clean P95} = 6.75$s.
+   - Benchmark against a competitive Databricks/AutoComp-tuned threshold baseline (compact at 50–75 files) and a periodic baseline (every 60 min).
+6. **Multi-Trial Counterbalanced Protocol:**
+   - Execute 3 repetitions of 4-hour evaluation cycles per condition with interleaved ordering (A-B, B-A, A-B).
+   - Restore the Phase 2H/2I statistical verification pipeline: Shapiro-Wilk normality testing, paired Wilcoxon signed-rank tests, matched-pairs rank-biserial effect sizes, and Holm-Bonferroni correction.

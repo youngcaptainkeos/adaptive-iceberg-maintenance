@@ -996,3 +996,17 @@ introducing services not already justified above.
   prerequisites identified (out-of-distribution test, quantile calibration check,
   LOCO-CV with per-fold reporting, two missing baselines, trivial-baseline comparison for
   the regression, and quantified starvation tradeoff), tracked as open items 12–20.
+- **[Phase 6 Master Run Audit (RUN_002) & Pivot to Methodology v2.1]** 20-hour live master
+  evaluation completed on cluster node `worker3` (SF100, 60M rows). Infrastructure proved
+  100% stable with zero crashes. However, comprehensive forensic audit (internal data
+  analysis and external peer review) identified 5 critical validity flaws: (1) unmodeled
+  query heterogeneity (3.5s vs 49s queries) caused a 22–25s MAE and prediction inversion
+  ($\text{pred}_b > \text{pred}_a$), (2) 144 of 225 compactions were 0.15s no-ops on tables
+  with $\le 35$ files, (3) training data lacked fragmentation variation (file count trapped in
+  [32, 40]), (4) P95 latency reduction was an artifact of 60s window binning, and (5) statistical
+  discipline regressed (N=12 conformal test split, N=1 run anecdote, post-hoc SLA shift).
+  Upgraded to Methodology v2.1 (documented in `methodology_v2_cost_benefit.md` Section 7)
+  mandating `query_id` feature encoding, dynamic fragmentation sweeps during training, minimum
+  10-file compaction actuation guardrails, a priori SF100-grounded SLA (6.75s), competitive
+  threshold baselines (50-75 files), and multi-trial counterbalanced evaluation with the
+  Phase 2H/2I statistical testing pipeline.
