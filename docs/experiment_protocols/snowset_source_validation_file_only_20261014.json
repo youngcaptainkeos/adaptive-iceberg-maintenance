@@ -1,0 +1,10 @@
+{
+  "schema_version": "snowset_full_source_validation_v1",
+  "source_directory": "../../datasets/snowset/recovery_20261014",
+  "output_directory": "../../datasets/snowset/validated_source_file_only_20261014",
+  "duckdb_memory_limit": "4GB",
+  "duckdb_threads": 2,
+  "disk_reserve_bytes": 1073741824,
+  "rationale": "Worker3 has DuckDB and approximately 42GB available RAM. Bound this offline inventory to two CPU threads and 4GB working memory with disk spill; preserve 1GiB operational disk reserve in addition to each declared tar member size. Source acquisition must finish naturally and its final record SHA256 be explicitly pinned at launch. Never read a partial corpus, infer missing IDs/timestamps, select evaluation windows from outcomes, or treat this inventory as replay/model acceptance. Operational resource limits are not scientific decision thresholds. Revalidate in a new exclusive directory after the first validator glob accidentally included the dataset directory ending in .parquet alongside its 2000 regular files, doubling reader input. Physical-file footer inventory has 69182074 rows; this is a diagnostic, not an acceptance target hardcoded in the validator. Filter regular files, then repeat full archive/values/nulls/identity checks; preserve the original failed output and gates.",
+  "publisher_schema_reference": "https://github.com/resource-disaggregation/snowset/blob/master/schema.md"
+}

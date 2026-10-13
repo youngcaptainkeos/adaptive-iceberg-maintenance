@@ -571,3 +571,26 @@ full validation is separate. No archive/data bytes are staged for GitHub. Comple
 recovery metadata/launch receipt also copied locally under
 `datasets/snowset/completed_recovery_metadata_20261014/`. Inspect existing copy and
 validator before starting any duplicate operation.
+
+### 04:09–04:11 IST: telemetry passes; Snowset reader-input bug rejected
+
+Replacement observer completed naturally and passed independent raw-counter
+reconstruction: 60/300 actual intervals; coverage 59.932998666/299.844025973 seconds;
+freshness 0.067001334/0.155974027 seconds. CPU/I/O/memory fractions exactly matched
+raw counter reconstruction with recorded cutoff and availability frontier. This is
+measurement integrity under source-transfer conditions, not workload/model accuracy.
+
+Snowset full validation finished with gzip/tar integrity and all-value decoding, but
+correctly refused the unique-ID gate: 138,364,148 reader rows versus 69,182,074 unique
+queries. Cause was my enumeration bug: `rglob('*.parquet')` matched the directory
+`snowset-main.parquet` as well as its 2,000 regular Parquet files. DuckDB read the
+whole directory once and every listed file again. No source duplicate/deduplication
+claim follows. Independent regular-file footer inventory reports 69,182,074 rows.
+The rejected result is preserved in `datasets/snowset/validated_source_20261014/`.
+
+Fixed enumeration to require regular files and record their count. Register a new
+exclusive full-validation output, retaining original uniqueness/null/type/gzip/hash
+gates. No invented row-count gate or silent deduplication. Full re-extraction and
+value/identity checks are justified by this source-reader code change; acceptance
+remains pending. Local completed-source mirror remains active; inspect its record
+before any replacement. No Spark query/service/table altered.

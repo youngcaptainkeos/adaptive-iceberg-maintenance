@@ -132,7 +132,8 @@ def validate(config_path, record_hash):
             raise ValueError('Source custody changed during extraction')
         record['gzip_crc_and_tar_read_passed'] = True
         save('archive_integrity_verified')
-        parquet = sorted(unpacked.rglob('*.parquet'))
+        parquet = sorted(p for p in unpacked.rglob('*.parquet') if p.is_file())
+        record['parquet_regular_file_count'] = len(parquet)
         if not parquet:
             raise ValueError('No Parquet members found; inspect actual archive')
         import duckdb
