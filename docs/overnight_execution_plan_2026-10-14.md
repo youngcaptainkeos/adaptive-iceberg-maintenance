@@ -66,9 +66,11 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
   only; no SQL mapping/replay/training claim.
 - Original cohort extraction failed DuckDB mixed query/filename COPY binding;
   partial raw-arrival export preserved and not accepted. Same training-only selection
-  protocol retained. Repaired extraction running worker3 PID390115, execution404dd8b;
-  `datasets/snowset/arrival_cohort_export_repair_20261014/` and matching launch log.
-  Audit conservation/result before any forecast or new extraction.
+  protocol retained. Repaired extraction completed naturally: 2,760,971 actual
+  arrivals, 2,760,925 complete-bin arrivals plus 46 retained partial-tail arrivals.
+  `datasets/snowset/arrival_cohort_export_repair_20261014/`, execution404dd8b.
+  Next: independently reconstruct counts from raw exported timestamps, verify
+  source/selection/artifact hashes and mirror before any forecast.
 - Completed raw statement/monotonic training timing binding; historical pilot
   timings remain rejected. Completed independent raw Spark task/rewrite label
   binding. Next repair: measured feature/layout and engine-session/confounder

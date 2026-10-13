@@ -674,3 +674,12 @@ Replacement **PID390115**, `datasets/snowset/arrival_cohort_export_repair_202610
 matching launch log/JSON receipt, same accepted source-record hash. Audit this
 result and count/tail conservation before any forecast. Failed original package
 remains untouched. No new physical database query or model training.
+
+Repaired extraction subsequently completed naturally with
+`extracted_arrival_cohort_only`: **2,760,971 exact reported query arrivals**,
+**2,760,925** across complete-minute bins and **46** retained arrivals in the global
+partial final bin. Internal source/identity/count conservation passed and outputs
+are hashed. This is not forecast/model approval. Next audit must independently
+reconstruct bins from the exported original UTC timestamps, check artifact/source/
+training-only selection provenance and mirror the finished package before fitting
+or evaluating forecasts. No process/service shut down, restarted or cancelled.
