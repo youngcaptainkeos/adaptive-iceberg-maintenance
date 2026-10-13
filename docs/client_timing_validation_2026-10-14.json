@@ -1,0 +1,29 @@
+{
+  "schema_version": "client_timing_boundary_review_v1",
+  "result": {
+    "status": "accepted_client_timing_boundary_check",
+    "query_count": 4,
+    "source_snapshot": 2963541948322332238,
+    "instrumentation_before_execute_ns": [
+      33321764,
+      33401220,
+      33237253,
+      33308212
+    ],
+    "client_elapsed_ns": [
+      498700581,
+      2714597627,
+      500685636,
+      309408935
+    ],
+    "raw_evidence_sha256": "f9a7470f2bc6706c80ed78a2f31448f2f21d415402d74d9497f31b0b023ca10c",
+    "scope": "Real query timing-boundary/result validation only; no performance/model or training approval"
+  },
+  "checks": [
+    "Four actual verified SF1 query result sets matched preserved physical controls",
+    "Actual call-start timing excludes measured intent persistence",
+    "Monotonic order and duration decomposition independently verified",
+    "No constant logging offset inferred or subtracted"
+  ],
+  "scope": "Timing-contract correctness only; raw results are not approved training/performance data"
+}

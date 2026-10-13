@@ -305,3 +305,28 @@ with explicit `client_submission_v1` timing contract. Old correctness evidence
 still proves results/rows/task overlap, but cannot supply clean service-time targets.
 See `client_statement_timing_contract.md`. New timing boundary requires a real
 read-only verified SF1 query check before any collection/export uses it.
+
+### 01:40–01:45 IST: corrected timing validated; ranged acquisition active
+
+Actual four-query read-only check against preserved verified SF1 snapshot passed;
+all results matched preserved physical controls. New call-start/service/request
+timings have valid monotonic order and exact duration decomposition. Each actual
+intent-persistence delay was approximately 33ms and is recorded separately, not
+subtracted as a guessed constant. Historical intervals remain unsuitable for clean
+service-time targets. See `client_timing_validation_2026-10-14.json`; raw directory
+`results/client_statement_timing_integrity_20261014/` mirrored locally with hashes.
+This validates the measurement boundary, not performance or model accuracy.
+
+Original rejected Snowset partial and acquisition provenance mirrored for fallback;
+all file hashes matched. New worker3 range acquisition started naturally, bounded
+to four HTTP workers with explicit source-version/offset/length checks and complete
+range hashes. It verified 80 ranges/83,886,080 bytes in its first recorded minute.
+It remains incomplete; do not open it as an accepted dataset or run forecasts.
+Pending directory: `datasets/snowset/range_acquisition_20261014/`; progress and
+acquisition_record JSON report exact completed ranges/status. Session 71017 at launch.
+Do not duplicate, force-cancel or remove partial/range artifacts.
+
+Next ready work while acquisition proceeds: preregister an identifiable matched
+physical collection design and inspect the unsafe offered-load/ingestion paths
+without re-enabling legacy launchers. Once full source bytes arrive, validate gzip/
+tar/schema/timestamp coverage and warehouse identities before arrival forecasting.

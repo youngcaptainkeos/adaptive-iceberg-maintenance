@@ -1,6 +1,6 @@
 {
   "schema_version": "physical_evidence_mirror_v1",
-  "scope": "Only newly generated observer/source/failed/successful pilot evidence; historical archive and warehouse metadata untouched",
+  "scope": "New physical measurement evidence and explicitly rejected initial acquisition partial/provenance, mirrored only for fallback. No historical handover archive or warehouse relocation.",
   "source_host": "worker3",
   "mirror_host": "local",
   "files": [
@@ -178,9 +178,49 @@
       "path": "results/telemetry_window_fixed_cadence_20261014/validate_telemetry_windows.py",
       "bytes": 2603,
       "sha256": "2992b5f24b56baf2d592319e4046c0c0a7bc68aeebe637f74ef22bd9bfd2066d"
+    },
+    {
+      "path": "results/client_statement_timing_integrity_20261014/events.jsonl",
+      "bytes": 1234854,
+      "sha256": "f9a7470f2bc6706c80ed78a2f31448f2f21d415402d74d9497f31b0b023ca10c"
+    },
+    {
+      "path": "results/client_statement_timing_integrity_20261014/physical_measurements.py",
+      "bytes": 10974,
+      "sha256": "5eef45978d6182c93574f952dfe640e2999a9f936f06808a77173823cc13a1fc"
+    },
+    {
+      "path": "results/client_statement_timing_integrity_20261014/result.json",
+      "bytes": 509,
+      "sha256": "9d43caf727d8a3e772e38463012f4cc000130f6f7c6abef60128f254ac2c61ef"
+    },
+    {
+      "path": "datasets/snowset/acquisition_20261014/acquisition_code.py",
+      "bytes": 5231,
+      "sha256": "a6ab66cbce8ea9b2a08fcee07542f6d96efa3f7d1264a79cfb0de9cb428e8e5d"
+    },
+    {
+      "path": "datasets/snowset/acquisition_20261014/acquisition_config.json",
+      "bytes": 1260,
+      "sha256": "6106e73217b4bd3b2be33c71b4597abe324284659a46561b6e11c4d48d9f9ba9"
+    },
+    {
+      "path": "datasets/snowset/acquisition_20261014/acquisition_record.json",
+      "bytes": 2929,
+      "sha256": "4ac182f44412a2dd66bd671d89d21f5e0270e302d3095aa2a9aa614963417272"
+    },
+    {
+      "path": "datasets/snowset/acquisition_20261014/progress.jsonl",
+      "bytes": 287,
+      "sha256": "3b66cd2f9fa597e1aa0dec11c3ce68c5b4f32fcf23173cd003ad85f32abfcfa1"
+    },
+    {
+      "path": "datasets/snowset/acquisition_20261014/snowset-main.parquet.tar.gz.partial",
+      "bytes": 1568768,
+      "sha256": "ca314929133e0cc9ca057b4fe5dcc9b2406c36e35df232e27513b3291ff7c246"
     }
   ],
-  "total_bytes": 26125824,
+  "total_bytes": 28950636,
   "all_hashes_match": true,
   "limitations": [
     "Physical Iceberg data/metadata remain on worker3; this is raw-event/config/code fallback, not catalog relocation"
