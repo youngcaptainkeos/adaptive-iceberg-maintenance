@@ -16,7 +16,7 @@ was launched in this inventory step.
 | TPC-H SF1 | All eight source tables on both machines; freshly counted rows and SHA256 agree with existing manifest and each other | Verified bytes/cardinality; generator/build provenance recorded in existing manifest |
 | TPC-H SF100 | All eight source files on both machines; initial Iceberg metadata contains expected large-scale cardinalities | Available; complete source checksum/row-count manifest still needed |
 | Large Iceberg lineitem | Initial metadata reports 600037902 records; inspected later snapshot reports 600039613 after writes | About 600 million, not the 60 million repeatedly claimed in drafts; metadata observation, not a newly executed COUNT query |
-| Alibaba 2017 archive | Same SHA256 locally/remotely; gzip integrity passes; tar members readable; server_usage member read fully | Real-looking trace artifact, but publisher provenance not yet authenticated |
+| Alibaba 2017 archive | Same SHA256 locally/remotely; gzip/tar checks pass; subsequent HTTPS publisher check matches size and CRC64 | Matches current publisher-served object; original acquisition history unknown; full usage/schema validation pending |
 | Google workload CSV | Default mapper input absent on both machines | Missing; synthetic fallback is unacceptable |
 | Publication training data | Historical runs exist, with known leakage/label/schema and sample-size problems | Not ready for the new model/forecast claims |
 | Long independent workload traces | Alibaba server_usage covers 39600–82500 seconds across 1310 server IDs and is not time-sorted | Useful candidate after provenance/schema validation; does not establish multi-day periodicity |
@@ -25,9 +25,22 @@ Alibaba archive SHA256 is
 `b7efe9dc9caa75352de41b9ac34b329602cde3414fd7cab87c1d21a9a9871d66`.
 The publisher's repository lists a different checksum for `trace_201708.tgz`.
 Our file is named `alibaba-trace-2017.tar.gz`; a mismatch could reflect different
-packaging/version, so it proves neither corruption nor authenticity. Resolve its
-download origin before using it as a verified trace. The CPU/memory time series
-is not itself a SQL arrival or write-ingestion trace.
+packaging/version, so it proves neither corruption nor authenticity. Its original
+download history remains unknown. A subsequent direct check of the archive URL
+linked by the publisher resolved the current-object integrity question: HTTPS
+returned Content-Length 243321159 and x-oss-hash-crc64ecma 2700699146184863613;
+the local file matches both exactly. The ETag is multipart, so it must not be
+compared to the local MD5. See `alibaba_trace_reverification_2026-10-13.json`.
+CRC64 is an integrity check, not an independent cryptographic authenticity proof.
+No dataset was downloaded in this check: only HTTP headers were fetched.
+
+The archive contains batch_task, batch_instance, server_event, server_usage,
+container_event and container_usage CSVs. Its recorded modification time matches
+the publisher object's February 27, 2023 Last-Modified header; that does not prove
+the local download date. Retrieved Antigravity records show transfer to worker3,
+not the original acquisition. The user's unsuccessful download recollection is
+preserved; it cannot be reconciled to an acquisition event from the evidence yet.
+The CPU/memory time series is not itself a SQL arrival or write-ingestion trace.
 
 Publisher references inspected:
 
@@ -60,9 +73,10 @@ not guarantee reproducible isolation or room for every retained snapshot.
 
 ## Missing items and next actions
 
-1. Reconstruct the Alibaba download provenance or acquire a publisher-verified
-   subset. Validate timestamps, units, missing values and sorting for every used
-   trace member. Never relabel a CPU curve as observed SQL demand.
+1. Record the publisher URL and successful current-object size/CRC check; preserve
+   the unknown acquisition history. Validate timestamps, units, missing values and
+   sorting for every used trace member. Never relabel a CPU curve as observed SQL
+   demand. This file's presence does not mean the Google-mapper experiment used it.
 2. Obtain a real database arrival trace for forecast validation and trace-driven
    benchmark replay. A candidate is Snowset, whose published data contains query
    timing/resource records over 14 days. Its schema includes createdTime but no

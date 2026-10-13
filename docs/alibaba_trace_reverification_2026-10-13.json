@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-10-13T17:53:13.022931+00:00",
+  "local_path": "datasets/alibaba-trace-2017.tar.gz",
+  "local_bytes": 243321159,
+  "local_crc64": 2700699146184863613,
+  "official_url": "https://aliopentrace.oss-cn-beijing.aliyuncs.com/v2017Traces/alibaba-trace-2017.tar.gz",
+  "official_content_length": 243321159,
+  "official_crc64ecma": 2700699146184863613,
+  "official_last_modified": "Mon, 27 Feb 2023 09:35:26 GMT",
+  "official_etag": "1BCB355701A63A8F246AC570BF9AD12E-24",
+  "matches_official_size_and_crc64": true,
+  "scope": "HTTPS HEAD metadata from the URL linked by the publisher. CRC64 verifies byte integrity; not an independent cryptographic authenticity proof or a record of original acquisition."
+}

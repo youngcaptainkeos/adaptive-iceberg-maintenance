@@ -540,14 +540,27 @@
       "filename": "trace_201708.tgz",
       "sha256": "02c1fbc412fccc03b748c05ec18fc30fd93c0bc383eea47ac21146c4aa2235df",
       "archive_matches": false,
-      "interpretation": "Different filename/packaging; provenance unresolved. Do not declare corruption or authenticity from this mismatch alone."
+      "interpretation": "Different filename/packaging. Subsequently local size and CRC64 match the object at the archive URL linked by the publisher; see official_object_verification. Original acquisition history remains unknown."
+    },
+    "official_object_verification": {
+      "checked_at": "2026-10-13T17:53:13.022931+00:00",
+      "local_path": "datasets/alibaba-trace-2017.tar.gz",
+      "local_bytes": 243321159,
+      "local_crc64": 2700699146184863613,
+      "official_url": "https://aliopentrace.oss-cn-beijing.aliyuncs.com/v2017Traces/alibaba-trace-2017.tar.gz",
+      "official_content_length": 243321159,
+      "official_crc64ecma": 2700699146184863613,
+      "official_last_modified": "Mon, 27 Feb 2023 09:35:26 GMT",
+      "official_etag": "1BCB355701A63A8F246AC570BF9AD12E-24",
+      "matches_official_size_and_crc64": true,
+      "scope": "HTTPS HEAD metadata from the URL linked by the publisher. CRC64 verifies byte integrity; not an independent cryptographic authenticity proof or a record of original acquisition."
     }
   },
   "trace_local_remote_match": true,
   "google_trace_exists": false,
   "remaining_gates": [
     "SF100 complete source hashes/row counts and generation provenance",
-    "Trace origin/checksum match and schema validation for all used members",
+    "Trace schema validation for all used members and documented acquisition/source identity",
     "Real database arrival trace and ingestion mapping",
     "Clean counterbalanced physical training dataset",
     "Runtime version/configuration lock and dedicated resource allocation",
