@@ -1,6 +1,6 @@
 #!/bin/bash
-# MINI VALIDATION SCRIPT
-# This script runs a hyper-compressed 45-minute version of the pipeline to prove the plumbing works.
+# MINI VALIDATION SCRIPT (Methodology v2.1 — Phase 6.1E)
+# This script runs a 90-minute pilot comparing AutoCompPolicy vs CostBenefitPolicy.
 
 set -e # Exit immediately if a command exits with a non-zero status.
 
@@ -8,7 +8,7 @@ REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$REPO_DIR"
 
 echo "====================================================="
-echo "   MINI VALIDATION: 45-MINUTE PIPELINE TEST"
+echo "   MINI VALIDATION: 90-MINUTE PILOT (PHASE 6.1E)"
 echo "====================================================="
 
 # Ensure Spark Thrift Server is running
@@ -38,41 +38,43 @@ else
 fi
 
 # Initialize isolated run directory
-eval $(python3 scripts/run_manager.py init --type "mini_validation" --desc "45-Minute Mini Validation Dry Run" --bash)
+eval $(python3 scripts/run_manager.py init --type "mini_validation" --desc "90-Minute Phase 6.1E Pilot (AutoComp vs CostBenefit)" --bash)
 echo "-----------------------------------------------------"
 echo "  Executing Run:       $RUN_ID"
 echo "  Artifact Directory:  $RUN_DIR"
 echo "-----------------------------------------------------"
 
 echo ""
-echo "--- STEP 1: MINI DATA COLLECTION (15 MINS) ---"
-# 0.25 hours = 15 minutes
+echo "--- STEP 1: MINI DATA COLLECTION (30 MINS) ---"
+# 0.5 hours = 30 minutes, interval 10 mins for natural fragmentation sweep
 python3 scripts/phase6-live-evaluation/collect_training_data.py \
-    --duration-hours 0.25 \
+    --duration-hours 0.5 \
+    --compaction-interval-minutes 10.0 \
     --output "$TRAINING_DATA"
 
 echo ""
-echo "--- STEP 2: TRAIN MINI MODELS ---"
+echo "--- STEP 2: TRAIN QUERY-AWARE CONFORMAL MINI MODELS ---"
 python3 scripts/phase6-live-evaluation/train_cost_benefit_models.py \
     --input "$TRAINING_DATA" \
     --output-dir "$MODELS_DIR"
 
 echo ""
-echo "--- STEP 3: MINI A/B EVALUATION ---"
-echo "Starting 15-min Baseline evaluation..."
+echo "--- STEP 3: MINI A/B EVALUATION (60 MINS TOTAL) ---"
+echo "Starting 30-min AutoCompPolicy evaluation (Gruenheid et al., VLDB 2024)..."
 python3 scripts/phase6-live-evaluation/reset_table_state.py
 python3 scripts/phase6-live-evaluation/run_cost_benefit_agent.py \
-    --policy SOTAThresholdPolicy \
-    --model-dir "$MODELS_DIR" \
-    --duration-hours 0.25 \
+    --policy AutoCompPolicy \
+    --duration-hours 0.5 \
+    --sla-ms 6750.0 \
     --output "$RUN_A_CSV"
 
-echo "Starting 15-min Cost-Benefit Optimizer evaluation..."
+echo "Starting 30-min Conformal Cost-Benefit Agent evaluation..."
 python3 scripts/phase6-live-evaluation/reset_table_state.py
 python3 scripts/phase6-live-evaluation/run_cost_benefit_agent.py \
     --policy CostBenefitPolicy \
     --model-dir "$MODELS_DIR" \
-    --duration-hours 0.25 \
+    --duration-hours 0.5 \
+    --sla-ms 6750.0 \
     --output "$RUN_B_CSV"
 
 # Also update legacy/root pointers for backward compatibility
