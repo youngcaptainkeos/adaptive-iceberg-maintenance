@@ -261,3 +261,19 @@ on both computers: 29 files, all hashes match, recorded in
 `physical_evidence_mirror_2026-10-14.json`. Only hash manifests/reviews go to GitHub;
 raw REST logs remain local/worker3. Iceberg data/metadata remain on worker3 and
 must not be copied into a local active catalog with wrong absolute paths.
+
+### 01:25–01:29 IST: real database-arrival resource acquisition
+
+Verified primary Snowset README/schema/download pages: reported Snowflake query
+entry timestamps and warehouse identities, approximately 70 million queries across
+14 days. No SQL text. HTTPS endpoints reachable; live Parquet archive HEAD size
+8,202,394,513 bytes and modification time recorded in acquisition protocol. Selected
+Parquet for projected arrival-column analysis; local disk over 1TiB available and
+DuckDB installed. This addresses the resource gap only after full acquisition and
+schema validation, not by pretending Alibaba CPU/task records are SQL arrivals.
+
+Implemented exclusive provenance-preserving acquisition tool and preregistered
+config. Large bytes stay outside GitHub; preserve partials on failure and do not
+claim dataset available before the exact-byte download completes. Next gates and
+future-information risks recorded in `snowset_acquisition_and_scope.md`.
+Repaired telemetry-cadence observer is still running naturally; no duplicate launched.

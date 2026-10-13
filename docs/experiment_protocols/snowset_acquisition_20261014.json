@@ -1,0 +1,13 @@
+{
+  "schema_version": "https_dataset_acquisition_v1",
+  "source_url": "https://www.cs.cornell.edu/~midhul/snowset/snowset-main.parquet.tar.gz",
+  "publisher_download_reference": "https://github.com/resource-disaggregation/snowset/blob/master/download.md",
+  "publisher_schema_reference": "https://github.com/resource-disaggregation/snowset/blob/master/schema.md",
+  "expected_bytes": 8202394513,
+  "expected_last_modified": "Sun, 23 Feb 2020 19:00:06 GMT",
+  "filename": "snowset-main.parquet.tar.gz",
+  "output_directory": "../../datasets/snowset/acquisition_20261014",
+  "socket_timeout_seconds": 60,
+  "progress_interval_seconds": 20,
+  "rationale": "Close missing real database-arrival resource gate using public research dataset accompanying NSDI 2020 Snowflake paper. Publisher describes approximately 70 million queries over 14 days and createdTime as UTC system arrival. Parquet supports projecting timestamps/warehouse IDs without parsing all query metrics. Exact size/modification from live HTTPS HEAD; sufficient local disk verified. Timeouts/log cadence are operational settings, not research thresholds. Download does not authorize replay/training or establish SQL text/query mix. Preserve partial bytes on failure, no silent substitute/retry."
+}
