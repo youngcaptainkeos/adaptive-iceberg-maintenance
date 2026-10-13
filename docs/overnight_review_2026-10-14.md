@@ -114,7 +114,7 @@ No accepted SQL-arrival replay manifest or clean event-linked training dataset.
 SF100 complete source verification and Alibaba member/mapping review are pending.
 Publication claims and sufficient independent experiments remain future work.
 
-### 00:54–01:00 IST: repaired pilot passed
+### 00:54–00:58 IST: repaired pilot passed
 
 Separately preregistered second pilot as commit 776c86d, with unchanged correctness
 gates. Verified full local/worker3 HEAD, protocol and three physical module hashes;
@@ -153,3 +153,22 @@ Next ready independent unit: full Alibaba member schema/type/missing-value/times
 audit against the fetched publisher schema. It is running locally, using the actual
 verified archive; no extraction/replay/mapping or fabricated input. Initial output
 already flags batch-task schema issues, which must be reviewed before arrival mapping.
+
+### 00:58–01:01 IST: full Alibaba audit completed
+
+All six actual CSV members read fully; per-member byte hashes and column/type/
+missing/time counters retained in `alibaba_member_validation_2026-10-14.json`.
+Archive SHA256 rechecked before/after. Publisher schema saved verbatim in
+`datasets/provenance/alibaba2017_schema.csv`; source URL and tool/schema hashes in
+`alibaba_full_member_audit.md`. No member extraction, fabricated data or replay.
+
+Batch task: 80,553 rows, no duplicate job/task keys, 80,386 positive and 167 negative
+create timestamps; 9,017 rows missing CPU plans and 9,017 missing memory plans.
+Batch instances: 16,094,656 trial records, job/task IDs each missing in 3,992,098.
+Resource weighting and joins cannot silently fill these omissions. Usage members
+also have genuine missing fields. Container-event rows all have nine fields against
+the eight-column schema; sampled rows show a trailing empty field. The strict audit
+preserves the width failure and does not pretend those rows have validated semantics.
+Next unit must verify the ninth field is empty for every row before explicitly
+normalizing this serialization detail. Positive task creations remain a candidate
+for honestly labelled cluster-task-driven benchmark demand, never observed SQL arrivals.

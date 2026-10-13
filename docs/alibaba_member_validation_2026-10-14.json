@@ -1,0 +1,693 @@
+{
+  "schema_version": "alibaba_member_audit_v1",
+  "archive_path": "datasets/alibaba-trace-2017.tar.gz",
+  "archive_sha256": "b7efe9dc9caa75352de41b9ac34b329602cde3414fd7cab87c1d21a9a9871d66",
+  "publisher_schema_path": "datasets/provenance/alibaba2017_schema.csv",
+  "publisher_schema_sha256": "4b60a8a90b57e3f3afbb67c4aadaf4906470b86e3dc8bc939e0f0992474ea77f",
+  "members": [
+    {
+      "name": "alibaba-trace-2017/batch_task.csv",
+      "bytes": 4631973,
+      "rows": 80553,
+      "wrong_column_rows": 0,
+      "column_counts": {
+        "8": 80553
+      },
+      "columns": [
+        {
+          "name": "task create time",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": -1078,
+          "maximum": 60181
+        },
+        {
+          "name": "task end time",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": -843,
+          "maximum": 61668
+        },
+        {
+          "name": "job id",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 1,
+          "maximum": 12951
+        },
+        {
+          "name": "task id",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 1,
+          "maximum": 80553
+        },
+        {
+          "name": "number of instances",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 1,
+          "maximum": 64486
+        },
+        {
+          "name": "status",
+          "type": "STRING",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": null,
+          "maximum": null
+        },
+        {
+          "name": "number of cpus requested per instance in the task",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 9017,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 40,
+          "maximum": 800
+        },
+        {
+          "name": "normalized memory requested per instance in the task",
+          "type": "FLOAT",
+          "mandatory": true,
+          "missing": 9017,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.0027541221235731113,
+          "maximum": 0.1273315559236922
+        }
+      ],
+      "first_time_negative": 167,
+      "first_time_zero": 0,
+      "first_time_positive": 80386,
+      "global_time_decreases": 5214,
+      "task_duplicate_keys": 0,
+      "task_identical_duplicate_rows": 0,
+      "status_counts": {
+        "Terminated": 67013,
+        "Waiting": 8847,
+        "Running": 3567,
+        "Failed": 1126
+      },
+      "sha256": "50f3c50ab4a917ad06c1cee6ec601e1356708774d7962503e8eafdd720b2286d",
+      "schema_violations": 18034
+    },
+    {
+      "name": "alibaba-trace-2017/server_event.csv",
+      "bytes": 47615,
+      "rows": 1352,
+      "wrong_column_rows": 0,
+      "column_counts": {
+        "7": 1352
+      },
+      "columns": [
+        {
+          "name": "timestamp",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0,
+          "maximum": 82706
+        },
+        {
+          "name": "machine id",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 1,
+          "maximum": 1313
+        },
+        {
+          "name": "event type",
+          "type": "STRING",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": null,
+          "maximum": null
+        },
+        {
+          "name": "event detail",
+          "type": "STRING",
+          "mandatory": false,
+          "missing": 1313,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": null,
+          "maximum": null
+        },
+        {
+          "name": "number of cpus",
+          "type": "INTEGER",
+          "mandatory": false,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0,
+          "maximum": 64
+        },
+        {
+          "name": "normalized memory",
+          "type": "FLOAT",
+          "mandatory": false,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        {
+          "name": "normalized disk space",
+          "type": "FLOAT",
+          "mandatory": false,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.0,
+          "maximum": 1.0
+        }
+      ],
+      "first_time_negative": 0,
+      "first_time_zero": 1313,
+      "first_time_positive": 39,
+      "global_time_decreases": 7,
+      "task_duplicate_keys": 0,
+      "task_identical_duplicate_rows": 0,
+      "status_counts": {},
+      "sha256": "336f7255add3ae3c08bf5163b15319f542365a3c7814ed3f712699560933968b",
+      "schema_violations": 0
+    },
+    {
+      "name": "alibaba-trace-2017/container_usage.csv",
+      "bytes": 275992839,
+      "rows": 1480906,
+      "wrong_column_rows": 0,
+      "column_counts": {
+        "12": 1480906
+      },
+      "columns": [
+        {
+          "name": "start time of measurement interval",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 39600,
+          "maximum": 82500
+        },
+        {
+          "name": "online instance id",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 1,
+          "maximum": 11275
+        },
+        {
+          "name": "used percent of requested cpus(%)",
+          "type": "FLOAT",
+          "mandatory": true,
+          "missing": 3,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.3000000044700026,
+          "maximum": 98.9199996948184
+        },
+        {
+          "name": "used percent of requested memory(%)",
+          "type": "FLOAT",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.5,
+          "maximum": 78.24999809262772
+        },
+        {
+          "name": "used percent of requested disk space(%)",
+          "type": "FLOAT",
+          "mandatory": false,
+          "missing": 5,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 1.0,
+          "maximum": 100.0
+        },
+        {
+          "name": "linux cpu load average of 1 minute",
+          "type": "FLOAT",
+          "mandatory": true,
+          "missing": 5,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.0,
+          "maximum": 58.14000015257838
+        },
+        {
+          "name": "linux cpu load average of 5 minute",
+          "type": "FLOAT",
+          "mandatory": true,
+          "missing": 5,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.0,
+          "maximum": 56.16000061035861
+        },
+        {
+          "name": "linux cpu load average of 15 minute",
+          "type": "FLOAT",
+          "mandatory": true,
+          "missing": 5,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.0,
+          "maximum": 53.35999984741719
+        },
+        {
+          "name": "averaged cycles per instruction",
+          "type": "FLOAT",
+          "mandatory": false,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.0,
+          "maximum": 0.8795227204762087
+        },
+        {
+          "name": "average last-level cache misses per 1000 instructions",
+          "type": "FLOAT",
+          "mandatory": false,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.0,
+          "maximum": 0.980433237754718
+        },
+        {
+          "name": "maximum cycles per instruction",
+          "type": "FLOAT",
+          "mandatory": false,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.0,
+          "maximum": 10.7555389404
+        },
+        {
+          "name": "maximum last-level cache misses per 1000 instructions",
+          "type": "FLOAT",
+          "mandatory": false,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.0,
+          "maximum": 26.4931354523
+        }
+      ],
+      "first_time_negative": 0,
+      "first_time_zero": 0,
+      "first_time_positive": 1480906,
+      "global_time_decreases": 1345478,
+      "task_duplicate_keys": 0,
+      "task_identical_duplicate_rows": 0,
+      "status_counts": {},
+      "sha256": "9ccb7abafdc492b173eb87b49c9cec3df30cb6e8fbfce09e7023be826de3a10a",
+      "schema_violations": 18
+    },
+    {
+      "name": "alibaba-trace-2017/batch_instance.csv",
+      "bytes": 858546781,
+      "rows": 16094656,
+      "wrong_column_rows": 0,
+      "column_counts": {
+        "12": 16094656
+      },
+      "columns": [
+        {
+          "name": "start_timestamp",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": -1074,
+          "maximum": 86342
+        },
+        {
+          "name": "end_timestamp",
+          "type": "INTEGER",
+          "mandatory": false,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": -845,
+          "maximum": 86342
+        },
+        {
+          "name": "job id",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 3992098,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 1,
+          "maximum": 12951
+        },
+        {
+          "name": "task id",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 3992098,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 1,
+          "maximum": 80553
+        },
+        {
+          "name": "machine id",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 1342871,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 1,
+          "maximum": 1313
+        },
+        {
+          "name": "status",
+          "type": "STRING",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": null,
+          "maximum": null
+        },
+        {
+          "name": "sequence number",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 1,
+          "maximum": 10
+        },
+        {
+          "name": "total sequence number",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 1,
+          "maximum": 10
+        },
+        {
+          "name": "maximum real cpu number",
+          "type": "FLOAT",
+          "mandatory": false,
+          "missing": 2386677,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.0,
+          "maximum": 32.0
+        },
+        {
+          "name": "average real cpu number",
+          "type": "FLOAT",
+          "mandatory": false,
+          "missing": 2386677,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.0,
+          "maximum": 4.44
+        },
+        {
+          "name": "maximum normalized memory usage",
+          "type": "FLOAT",
+          "mandatory": false,
+          "missing": 14167556,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.0,
+          "maximum": 0.9983899774803924
+        },
+        {
+          "name": "average normalized memory usage",
+          "type": "FLOAT",
+          "mandatory": false,
+          "missing": 14166324,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.00024849222167576943,
+          "maximum": 0.16389615095902466
+        }
+      ],
+      "first_time_negative": 73443,
+      "first_time_zero": 1340643,
+      "first_time_positive": 14680570,
+      "global_time_decreases": 3669029,
+      "task_duplicate_keys": 0,
+      "task_identical_duplicate_rows": 0,
+      "status_counts": {
+        "Terminated": 13707867,
+        "Interrupted": 5827,
+        "Waiting": 1268982,
+        "Failed": 209168,
+        "Running": 835194,
+        "Ready": 67618
+      },
+      "sha256": "195f25ef36484a2da9bb92c08e203224ed34a32f48fcbe11c01d94ecf308d817",
+      "schema_violations": 9327067
+    },
+    {
+      "name": "alibaba-trace-2017/server_usage.csv",
+      "bytes": 19030775,
+      "rows": 187963,
+      "wrong_column_rows": 0,
+      "column_counts": {
+        "8": 187963
+      },
+      "columns": [
+        {
+          "name": "timestamp",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 39600,
+          "maximum": 82500
+        },
+        {
+          "name": "machine id",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 1,
+          "maximum": 1313
+        },
+        {
+          "name": "used percent of cpus(%)",
+          "type": "FLOAT",
+          "mandatory": true,
+          "missing": 1,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.5,
+          "maximum": 89.71999969482
+        },
+        {
+          "name": "used percent of memory(%)",
+          "type": "FLOAT",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 2.29999995232,
+          "maximum": 95.42000122072
+        },
+        {
+          "name": "used percent of disk space(%)",
+          "type": "FLOAT",
+          "mandatory": true,
+          "missing": 1,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 27.399999618499997,
+          "maximum": 96.81999969482
+        },
+        {
+          "name": "linux cpu load average of 1 minute",
+          "type": "FLOAT",
+          "mandatory": true,
+          "missing": 1,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.0,
+          "maximum": 132.07999725320002
+        },
+        {
+          "name": "linux cpu load average of 5 minute",
+          "type": "FLOAT",
+          "mandatory": true,
+          "missing": 1,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.0,
+          "maximum": 128.6
+        },
+        {
+          "name": "linux cpu load average of 15 minute",
+          "type": "FLOAT",
+          "mandatory": true,
+          "missing": 1,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": 0.0,
+          "maximum": 122.75999908440001
+        }
+      ],
+      "first_time_negative": 0,
+      "first_time_zero": 0,
+      "first_time_positive": 187963,
+      "global_time_decreases": 83245,
+      "task_duplicate_keys": 0,
+      "task_identical_duplicate_rows": 0,
+      "status_counts": {},
+      "sha256": "032fa4193f4b426941fb1eecef5add3d8b0632aaf7cbd7663b0051ceb8a4637a",
+      "schema_violations": 5
+    },
+    {
+      "name": "alibaba-trace-2017/container_event.csv",
+      "bytes": 875035,
+      "rows": 11102,
+      "wrong_column_rows": 11102,
+      "column_counts": {
+        "9": 11102
+      },
+      "columns": [
+        {
+          "name": "timestamp",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": null,
+          "maximum": null
+        },
+        {
+          "name": "event type",
+          "type": "STRING",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": null,
+          "maximum": null
+        },
+        {
+          "name": "instance id",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": null,
+          "maximum": null
+        },
+        {
+          "name": "machine id",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": null,
+          "maximum": null
+        },
+        {
+          "name": "number of cpu requested",
+          "type": "INTEGER",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": null,
+          "maximum": null
+        },
+        {
+          "name": "normalized memory requested",
+          "type": "FLOAT",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": null,
+          "maximum": null
+        },
+        {
+          "name": "normalized disk space requested",
+          "type": "FLOAT",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": null,
+          "maximum": null
+        },
+        {
+          "name": "cpu id of allocated cpus",
+          "type": "STRING",
+          "mandatory": true,
+          "missing": 0,
+          "invalid_numeric": 0,
+          "nonfinite": 0,
+          "minimum": null,
+          "maximum": null
+        }
+      ],
+      "first_time_negative": 0,
+      "first_time_zero": 0,
+      "first_time_positive": 0,
+      "global_time_decreases": 0,
+      "task_duplicate_keys": 0,
+      "task_identical_duplicate_rows": 0,
+      "status_counts": {},
+      "sha256": "8e2c2776983fb0867f5088352849773186eab22de9d878e10978b5018c68aeda",
+      "schema_violations": 11102
+    }
+  ],
+  "scope": "Full member schema, numeric/missing-value and timestamp audit; does not authorize SQL replay",
+  "interpretation": "Report every issue; known source omissions are not imputed or silently dropped. Timestamp zero/negative are censored pre-trace events per publisher."
+}
