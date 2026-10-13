@@ -1,0 +1,15 @@
+{
+  "schema_version": "cohort_byte_mirror_review_v1",
+  "local_directory": "datasets/snowset/cohort_mirror_20261014/arrival_cohort_export_repair_20261014",
+  "remote_directory": "datasets/snowset/arrival_cohort_export_repair_20261014",
+  "all_file_hashes_match": true,
+  "sha256": {
+    "cohort_code.py": "8d06207b7699569d360aed105dd6d5fcd0e723e354e54a9d27a6ee5428676061",
+    "cohort_config.json": "128b054e0db64a7476fc2a828c909540725876f6dac981366311d27473ec87db",
+    "cohort_record.json": "ca64577fcf057210b7ef390be204ea6746068e024f27a412ede6fa0ee47266d2",
+    "observed_arrivals.csv": "f058f9b99de4989b75941934f185db562cab5e482e700757821e163ddf514d20",
+    "observed_bin_counts.csv": "d75d3c32e3b22a50739052f77bbbe6dd744fd14c8d8803e07e579d19bb6106da",
+    "source_validation_record.json": "7ce2fa0e6693d753938cde5e1d9c3a32fd65e57bea05562bf362e6ae090c6bf0"
+  },
+  "scope": "Whole completed derived cohort package byte mirror, not forecast or physical replay approval."
+}

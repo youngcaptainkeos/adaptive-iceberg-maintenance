@@ -1,0 +1,15 @@
+{
+  "schema_version": "independent_original_arrival_bin_audit_v1",
+  "status": "passed_arrival_export_integrity",
+  "cohort_record_sha256": "ca64577fcf057210b7ef390be204ea6746068e024f27a412ede6fa0ee47266d2",
+  "observed_arrivals_sha256": "f058f9b99de4989b75941934f185db562cab5e482e700757821e163ddf514d20",
+  "observed_bin_counts_sha256": "d75d3c32e3b22a50739052f77bbbe6dd744fd14c8d8803e07e579d19bb6106da",
+  "unique_arrivals": 2760971,
+  "training_arrivals": 1329355,
+  "complete_bins": 19211,
+  "complete_bin_arrivals": 2760925,
+  "partial_tail_arrivals": 46,
+  "zero_reported_arrival_bins": 1351,
+  "scope": "Python CSV/datetime/integer reconstruction independent of DuckDB binning. Exact identities/order/bins/counts/chronology/provenance verified; not proof of server idle/logging completeness, SQL mapping, forecasting or physical scheduling.",
+  "audit_code_sha256": "24874b9eafac7dce21e1e490967f3aeacfe6227bc260ff5d0ab99f63475151b4"
+}

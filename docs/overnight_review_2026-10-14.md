@@ -683,3 +683,27 @@ are hashed. This is not forecast/model approval. Next audit must independently
 reconstruct bins from the exported original UTC timestamps, check artifact/source/
 training-only selection provenance and mirror the finished package before fitting
 or evaluating forecasts. No process/service shut down, restarted or cancelled.
+
+### 04:39 IST onward: independent cohort audit and forecast preregistration
+
+Mirrored the complete cohort package (raw arrivals, bins, frozen code/config/source
+record/cohort record) locally; all six file SHA256 values equal worker3. Independent
+Python CSV/datetime/integer reconstruction verified every original UTC timestamp
+and unique query identity/order, all 19,211 one-minute bins, 1,329,355 training
+arrivals, 2,760,925 complete-bin counts plus 46 retained partial-tail arrivals.
+1,351 bins contain no reported arrivals; these are observed corpus counts, not
+proof of idle time or complete server logging. No DuckDB expression reused by this
+verification. Evidence: `snowset_independent_cohort_audit_2026-10-14.json` and
+`snowset_cohort_mirror_2026-10-14.json`.
+
+Prepared a separately preregistered diagnostic to assess actual temporal signal:
+1/5/10-minute future count windows; persistence, daily and weekly past-count seasonal
+baselines; one small fixed Poisson count regressor per horizon. Features use only
+past count prefixes and known calendar clock encodings. Entire training target
+horizons stay inside first-week training; entire calibration/test windows remain
+inside their assigned segment. No internal random validation, hyperparameter/test
+search, test-derived scaling, synthetic demand, negative-prediction clipping, physical
+policy decision, cost fitting or accepted Model C promotion. Calendar sin/cos values
+encode known time, not generated workload. Overlapping horizons and only three
+reserved calibration days cannot support publication-grade independence or finite
+90% daily-block conformal calibration. No results claimed until actual fitting ends.

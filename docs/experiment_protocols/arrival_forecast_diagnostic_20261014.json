@@ -1,0 +1,47 @@
+{
+  "schema_version": "observed_arrival_forecast_diagnostic_v1",
+  "cohort_record": {
+    "path": "../../datasets/snowset/cohort_mirror_20261014/arrival_cohort_export_repair_20261014/cohort_record.json",
+    "sha256": "ca64577fcf057210b7ef390be204ea6746068e024f27a412ede6fa0ee47266d2"
+  },
+  "independent_audit": {
+    "path": "../../docs/snowset_independent_cohort_audit_2026-10-14.json",
+    "sha256": "3818e478dbfeac6f9f176f72964d039c9bc459cf9000e26e5c3526df80666237"
+  },
+  "output_directory": "../../results/arrival_forecast_diagnostic_20261014",
+  "lag_bins": [
+    1,
+    5,
+    15,
+    60,
+    1440
+  ],
+  "rolling_bins": [
+    5,
+    15,
+    60,
+    1440
+  ],
+  "horizon_bins": [
+    1,
+    5,
+    10
+  ],
+  "seasonal_period_bins": {
+    "seasonal_day": 1440,
+    "seasonal_week": 10080
+  },
+  "cpu_threads": 2,
+  "model_parameters": {
+    "loss": "poisson",
+    "learning_rate": 0.05,
+    "max_iter": 100,
+    "max_leaf_nodes": 8,
+    "max_depth": 3,
+    "min_samples_leaf": 20,
+    "l2_regularization": 1.0,
+    "early_stopping": false,
+    "random_state": 20261014
+  },
+  "rationale": "Bounded preregistered real-arrival predictability diagnostic, one minute bins and 1/5/10-minute forecast horizons before inspecting held-out forecast results. Horizons cover existing 1-/5-minute observation scales and a longer engineering lookahead, not a claimed optimal maintenance horizon. Persistence and daily/weekly seasonal forecasts derive solely from actual past counts; learned Poisson histogram boosting uses past lag/rolling counts and calendar clock features, never completed-query resource profiles or the replay future. Small fixed depth/leaf/iteration settings provide a reproducible low-capacity first diagnostic, with no hyperparameter/test-window search, clipping or acceptance threshold. First-week training and three subsequent reserved days fixed by audited cohort protocol; test windows wholly held out, no horizon crosses a split. Prior evaluated counts become available chronologically as past observations. No random internal validation, conformal coverage claim, scheduler/cost-model fit, normalized intensity or Model C promotion. CPU limit is operational. Limited weekly cycles and overlapping horizons prevent publication-grade independence/uncertainty claims."
+}
