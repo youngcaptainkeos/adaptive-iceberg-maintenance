@@ -1,0 +1,23 @@
+{
+  "status": "validated_arrival_source_only",
+  "archive_sha256": "f9edef48da1eb940d80a9111c80e27613c767734728539d019cc50ec89c5f10e",
+  "acquisition_record_sha256": "1b1936d4e491f2753a1b337fa027e84f4ca3fe8fe3446bc10e0e3eb7a6fe5725",
+  "rows": 69182074,
+  "unique_query_ids": 69182074,
+  "arrival_min_utc": "2018-02-21 20:00:00.286000",
+  "arrival_max_utc": "2018-03-07 04:11:22.719000",
+  "warehouses": 2051,
+  "gzip_crc_and_tar_read_passed": true,
+  "parquet_regular_file_count": 2000,
+  "extracted_files_unchanged": true,
+  "warehouse_inventory_sha256": "20a14ae359d1bdd205e3446cbc3fabca3cf8d0b6f55e35df41dd339ddc5fa0f3",
+  "scope": "Complete archive, full Parquet decoding, arrival/identity inventory. No SQL text or query mapping; no replay/forecast/model/publication acceptance. Publisher cryptographic authenticity is not independently established; recovered original-range receipt limitation retained.",
+  "schema_version": "snowset_complete_arrival_source_review_v1",
+  "source_validation_record_sha256": "7ce2fa0e6693d753938cde5e1d9c3a32fd65e57bea05562bf362e6ae090c6bf0",
+  "required_null_counts": {
+    "queryId": 0,
+    "warehouseId": 0,
+    "createdTime": 0
+  },
+  "validation_code_sha256": "8ae30b845e49325e4cb620ca9f0c8f8e98a54eb36ab30325c81cef4ad9438e37"
+}

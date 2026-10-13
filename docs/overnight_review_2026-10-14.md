@@ -620,3 +620,25 @@ SHA256 exactly matching the worker3 assembled object. `mirror_record.json` repor
 `datasets/snowset/source_mirror_20261014/`. Evidence summary:
 `snowset_byte_mirror_validation_2026-10-14.json`. No second transfer or source
 acceptance claimed; repaired full source validation is still running.
+
+### 04:24 IST onward: complete real arrival source validated
+
+Corrected Snowset validator completed naturally with `validated_arrival_source_only`.
+Full gzip/tar and all-value Parquet decoding passed; 2,000 regular files, 69,182,074
+rows and unique query IDs, 2,051 warehouses, zero missing queryId/warehouseId/createdTime.
+Actual UTC range 2018-02-21 20:00:00.286 to 2018-03-07 04:11:22.719; no invented quiet
+tail or duplicate removal. Extracted file hashes remained unchanged. Source record
+and warehouse inventory copied locally, inventory hash checked. Evidence summary
+`snowset_complete_source_validation_2026-10-14.json`. SQL text is absent; this accepts
+arrival-source integrity only, not benchmark mapping/replay/model/paper readiness.
+
+Prepared exclusive training-only arrival cohort extraction: first seven observed
+days for selecting the highest training-volume warehouse (numeric-ID tie break),
+next three reserved days, remaining complete-minute bins held out. This diagnostic
+preregistration precedes warehouse-specific held-out curve inspection. All raw query
+identities/timestamps retained; only incomplete global final bin excluded from
+count evaluation and separately reported. Empty bins encode no reported arrivals
+in the supplied corpus, not dummy events/proven idle periods. No completed outcomes
+used for selection, no normalization, thinning/time compression, SQL assignment,
+forecast fitting or model promotion. Three calibration days cannot justify a finite
+90% daily-block conformal bound. Source hashes/identity checked before extraction.
