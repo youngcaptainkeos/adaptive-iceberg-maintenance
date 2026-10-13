@@ -494,3 +494,13 @@ A separately registered 305-second observer will check real host conditions with
 60/300-second windows, without generating database work. Observation ends normally
 before immutable-ledger verification; no database service/process is stopped.
 No physical acceptance is claimed until that check ends and reconstruction passes.
+
+Implementation commit `c77954a` pushed and fast-forwarded on worker3; HEAD and all
+five changed file SHA256 values matched. Checked for an existing window observer
+before launch. Own bounded observer PID **376224**, log
+`results/telemetry_exact_bounds_20261014_launch.log`, artifacts
+`results/telemetry_exact_bounds_20261014/`. At 04:41:57 IST its raw ledger had
+26 real events and no reported launch error; result pending. Source recovery
+remains active with 6,935 main ranges / 7,271,874,560 bytes. No Spark workload
+launched and no service, table or existing process altered. Next heartbeat must
+audit observer completion and source recovery before launching dependent work.
