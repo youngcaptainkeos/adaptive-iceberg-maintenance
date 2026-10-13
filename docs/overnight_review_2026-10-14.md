@@ -375,7 +375,7 @@ reproduction name; separately named prototypes require declared parameters and a
 metadata, with no missing-field fallback. Syntax/source review performed, no fake
 metadata tests or baseline run. Evaluator remains blocked.
 
-### 03:57–04:07 IST: full Snowset source validation prepared
+### 03:57–04:00 IST: full Snowset source validation prepared
 
 Recovery remains active; no second acquisition or Spark workload launched. At 03:57
 IST it had 3,853 complete main ranges / 4,040,163,328 bytes. Dataset remains unaccepted.
