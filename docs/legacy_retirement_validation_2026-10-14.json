@@ -1,0 +1,162 @@
+{
+  "schema_version": "legacy_retirement_review_v1",
+  "checks": [
+    {
+      "entry": "collect_training_data",
+      "exit_code": 1,
+      "rejection": "Real correctness review is not an authorized publication experiment manifest"
+    },
+    {
+      "entry": "run_cost_benefit_agent",
+      "exit_code": 1,
+      "rejection": "Real correctness review is not an authorized publication experiment manifest"
+    }
+  ],
+  "read_only_audit": {
+    "observed_at": "2026-10-13T21:12:26.086114+00:00",
+    "scope": "Source patterns, saved CSV schema, model metadata, optional remote source hashes. No live benchmark executed; physical origin and scientific claims are not certified.",
+    "head": "75f93aa581c3d4f66a4bb94adc1c47993090f3cd",
+    "status": "BLOCKED",
+    "findings": [
+      {
+        "severity": "blocker",
+        "code": "NO_REGISTERED_REPLAY_TRACE",
+        "description": "No observed replay trace manifest is registered; execution must remain blocked.",
+        "path": null,
+        "line": null
+      },
+      {
+        "severity": "blocker",
+        "code": "INCOMPLETE_EVENT_PROVENANCE",
+        "description": "CSV lacks query intervals/maintenance linkage; overlap cannot be verified.",
+        "path": "results/runs/run_001/data/training_data.csv",
+        "line": null
+      },
+      {
+        "severity": "blocker",
+        "code": "LEGACY_QUERY_SCHEMA",
+        "description": "Historical training CSV has no query identity.",
+        "path": "results/runs/run_001/data/training_data.csv",
+        "line": null
+      },
+      {
+        "severity": "blocker",
+        "code": "INCOMPLETE_EVENT_PROVENANCE",
+        "description": "CSV lacks query intervals/maintenance linkage; overlap cannot be verified.",
+        "path": "results/runs/run_002/data/training_data.csv",
+        "line": null
+      },
+      {
+        "severity": "blocker",
+        "code": "LEGACY_QUERY_SCHEMA",
+        "description": "Historical training CSV has no query identity.",
+        "path": "results/runs/run_002/data/training_data.csv",
+        "line": null
+      },
+      {
+        "severity": "blocker",
+        "code": "LEGACY_DEFAULT_MODELS",
+        "description": "Default model artifacts lack query-aware features.",
+        "path": "scripts/phase6-live-evaluation/models/model_metadata.json",
+        "line": null
+      },
+      {
+        "severity": "blocker",
+        "code": "UNACCEPTED_DEFAULT_MODELS",
+        "description": "Default models have no accepted physical validation record.",
+        "path": "scripts/phase6-live-evaluation/models/model_metadata.json",
+        "line": null
+      }
+    ],
+    "local_training_artifacts": [
+      {
+        "path": "results/runs/run_001/data/training_data.csv",
+        "sha256": "b9ebbaf32c66f806de9e71cee868723c49771f64b195799bd7bcfd3461bb22d1",
+        "rows": 283,
+        "columns": [
+          "timestamp",
+          "elapsed_s",
+          "cpu_util_pct",
+          "cpu_util_avg_1min",
+          "cpu_util_avg_5min",
+          "cpu_trend",
+          "mem_used_pct",
+          "disk_io_read_bytes",
+          "disk_io_write_bytes",
+          "frag_file_count",
+          "table_size_mb",
+          "avg_file_size_kb",
+          "intensity",
+          "compaction_active",
+          "query_latency_ms",
+          "query_latency_during_compaction_ms"
+        ],
+        "elapsed_s": 899.5,
+        "median_sampling_s": 1.0,
+        "queries_with_id": 0,
+        "compaction_labelled_queries": 0,
+        "missing_event_columns": [
+          "compaction_event_id",
+          "query_end_time",
+          "query_start_time"
+        ]
+      },
+      {
+        "path": "results/runs/run_002/data/training_data.csv",
+        "sha256": "a6e4c3ae20d87be1831bd8179355f91f1f8eae54ac078e196ff3a1de63575889",
+        "rows": 4650,
+        "columns": [
+          "timestamp",
+          "elapsed_s",
+          "cpu_util_pct",
+          "cpu_util_avg_1min",
+          "cpu_util_avg_5min",
+          "cpu_trend",
+          "mem_used_pct",
+          "disk_io_read_bytes",
+          "disk_io_write_bytes",
+          "frag_file_count",
+          "table_size_mb",
+          "avg_file_size_kb",
+          "intensity",
+          "compaction_active",
+          "query_latency_ms",
+          "query_latency_during_compaction_ms"
+        ],
+        "elapsed_s": 14371.2,
+        "median_sampling_s": 1.0,
+        "queries_with_id": 0,
+        "compaction_labelled_queries": 0,
+        "missing_event_columns": [
+          "compaction_event_id",
+          "query_end_time",
+          "query_start_time"
+        ]
+      }
+    ],
+    "default_model_metadata": {
+      "features": [
+        "cpu_util_avg_1min",
+        "cpu_util_avg_5min",
+        "cpu_trend",
+        "mem_used_pct",
+        "frag_file_count",
+        "table_size_mb",
+        "avg_file_size_kb",
+        "intensity"
+      ],
+      "model_a": {
+        "q_hat": 50615.490817627746,
+        "test_mae": 22062.21688573874,
+        "test_coverage": 91.66666666666666
+      },
+      "model_b": {
+        "q_hat": 39388.73222951795,
+        "test_mae": 25673.79339739011,
+        "test_coverage": 91.2621359223301
+      }
+    },
+    "remote_snapshot": null
+  },
+  "scope": "Syntax, real-artifact refusal and source-pattern audit; no benchmark workload or model fitting"
+}

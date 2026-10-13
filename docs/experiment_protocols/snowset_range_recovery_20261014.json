@@ -1,0 +1,13 @@
+{
+  "schema_version": "https_range_recovery_v1",
+  "prior_directory": "../../datasets/snowset/range_acquisition_20261014",
+  "prior_record_sha256": "2488e868b4802d4f759cc7cd808dea442cd48f055ee3e9a50be47cb238e67ddb",
+  "output_directory": "../../datasets/snowset/recovery_20261014",
+  "concurrency": 4,
+  "attempts_per_leaf": 2,
+  "minimum_leaf_bytes": 32768,
+  "socket_timeout_seconds": 60,
+  "progress_interval_seconds": 20,
+  "retry_delay_seconds": 1,
+  "rationale": "Recovery after one main range exhausted three short transfers. A 256-KiB subrange at that exact offset completed on worker3 in 3.68s; local transfer truncated at 32KiB. Preserve every failed partial. New exact HTTPS ranges adapt by halving only transport payload after two rejected short responses, down to an explicit 32KiB operational floor; never pad source bytes. Retain four network workers. Original complete parts are copied from exclusive producer whose source/version/offset/length checks were audited; original per-range receipts were not persisted, so recovered hashes are measured now with that provenance limitation recorded, not fabricated historical receipts. Fresh leaves and main ranges get durable header/hash receipts. Full gzip/tar/schema validation remains mandatory before dataset use."
+}

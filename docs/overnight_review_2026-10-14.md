@@ -330,3 +330,31 @@ Next ready work while acquisition proceeds: preregister an identifiable matched
 physical collection design and inspect the unsafe offered-load/ingestion paths
 without re-enabling legacy launchers. Once full source bytes arrive, validate gzip/
 tar/schema/timestamp coverage and warehouse identities before arrival forecasting.
+
+### 03:32–03:45 IST: source recovery and collector retirement
+
+Range acquisition stopped naturally after three short responses at main range 2984.
+Recorded 2,988 delivered ranges/3,133,145,088 bytes; 2,991 complete part files remained
+because in-flight requests finished before the failure record. No process killed,
+bytes padded or partial dataset used. Per-range hashes/headers were held in memory
+until final manifest creation in that tool; failure exposed a durability gap.
+Original source/config/code/status/partials remain untouched.
+
+At the failed offset a smaller 256KiB range completed on worker3 (local response
+remained short). Registered separate recovery: copy completed parts from the verified
+exclusive producer; hash at recovery and explicitly retain the missing original
+receipt limitation. Do not fabricate past headers/hashes. Fresh source ranges get
+durable receipts and bounded adaptive transport splitting after rejected transfers.
+Full archive/Parquet validation remains required before declaring the dataset usable.
+
+Retired the remaining dead collector/evaluator execution bodies: closed-loop delay
+mapping, randomized self-inserts, completion-flag labels, sample-count CPU windows,
+unexplained SLA/baseline defaults and fixed +2-file projection. Entry guards remain;
+accepted model loading alone cannot authorize decisions. Historical code/results
+remain recoverable in Git and preserved local handover evidence.
+
+Added `matched_physical_collection_design.md`: same original snapshot/files for
+control-before/during/control-after interference comparisons; compacted-layout
+benefit separated; one query per rewrite initially; actual task exposure and logger
+timing; independent episodes and training-only selection; exact open-loop arrivals;
+no invented ingestion. The earlier four-client pilot is not identified cost data.
