@@ -1,0 +1,556 @@
+{
+  "observed_at": "2026-10-13T17:40:24.255928+00:00",
+  "host": "worker3",
+  "scope": "Read-only inventories, physical source-file hashes/counts and Iceberg metadata. No benchmark or model run. SF100 full source checksum/cardinality verification remains pending.",
+  "cpu_summary": {
+    "CPU(s)": "20",
+    "Model name": "Intel(R) Core(TM) i7-6950X CPU @ 3.00GHz",
+    "Thread(s) per core": "2",
+    "Core(s) per socket": "10",
+    "Socket(s)": "1"
+  },
+  "memory": {
+    "exit": 0,
+    "stdout": "total        used        free      shared  buff/cache   available\nMem:     67249111040 21483565056   511815680    13447168 45253730304 45001490432\nSwap:              0           0           0",
+    "stderr": ""
+  },
+  "storage": {
+    "exit": 0,
+    "stdout": "Filesystem        1B-blocks         Used    Available Use% Mounted on\n/dev/sdb       983351140352 389061500928 544262619136  42% /mnt/nfs-storage",
+    "stderr": ""
+  },
+  "java": {
+    "exit": 0,
+    "stdout": "",
+    "stderr": "openjdk version \"1.8.0_504\"\nOpenJDK Runtime Environment (build 1.8.0_504-8u504-ga-1ubuntu1~22.04.3-b01)\nOpenJDK 64-Bit Server VM (build 25.504-b01, mixed mode)"
+  },
+  "python_packages": {
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2",
+    "pyhive": "0.7.0",
+    "psutil": "7.2.2",
+    "pyspark": "3.3.4",
+    "fastavro": "1.12.2"
+  },
+  "spark_release": "Spark 3.3.4 (git revision 18db204995b) built for Hadoop 3.3.2\nBuild flags: -B -Pmesos -Pyarn -Pkubernetes -Psparkr -Pscala-2.12 -Phadoop-3 -Phive -Phive-thriftserver\n",
+  "iceberg_jars": [
+    {
+      "path": "software/spark-3.3.4/jars/iceberg-spark-runtime-3.3_2.12-1.4.3.jar",
+      "bytes": 29160347,
+      "sha256": "00f28bd3e0d06e109ce4e0544d084edfdaed3a102793d4315c56e8876b90bf70"
+    }
+  ],
+  "active_spark_command": "224931 /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -cp /mnt/nfs-storage/shashank_prafullathta/implementation/software/spark-3.3.4/conf/:/mnt/nfs-storage/shashank_prafullathta/implementation/software/spark-3.3.4/jars/* -Xmx16g -XX:+IgnoreUnrecognizedVMOptions --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/jdk.internal.ref=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/sun.nio.cs=ALL-UNNAMED --add-opens=java.base/sun.security.action=ALL-UNNAMED --add-opens=java.base/sun.util.calendar=ALL-UNNAMED --add-opens=java.security.jgss/sun.security.krb5=ALL-UNNAMED org.apache.spark.deploy.SparkSubmit --master local[16] --conf spark.driver.memory=16g --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions --conf spark.sql.catalog.local=org.apache.iceberg.spark.SparkCatalog --conf spark.eventLog.enabled=false --conf spark.sql.catalog.local.warehouse=/mnt/nfs-storage/shashank_prafullathta/implementation/warehouse --conf spark.sql.catalog.local.type=hadoop --class org.apache.spark.sql.hive.thriftserver.HiveThriftServer2 --name Thrift JDBC/ODBC Server spark-internal",
+  "benchmark_files": {
+    "sf1": [
+      {
+        "path": "datasets/tpch/sf1/part.tbl",
+        "bytes": 24135125
+      },
+      {
+        "path": "datasets/tpch/sf1/region.tbl",
+        "bytes": 389
+      },
+      {
+        "path": "datasets/tpch/sf1/lineitem.tbl",
+        "bytes": 759863287
+      },
+      {
+        "path": "datasets/tpch/sf1/nation.tbl",
+        "bytes": 2224
+      },
+      {
+        "path": "datasets/tpch/sf1/supplier.tbl",
+        "bytes": 1409184
+      },
+      {
+        "path": "datasets/tpch/sf1/orders.tbl",
+        "bytes": 171952161
+      },
+      {
+        "path": "datasets/tpch/sf1/partsupp.tbl",
+        "bytes": 118984616
+      },
+      {
+        "path": "datasets/tpch/sf1/customer.tbl",
+        "bytes": 24346144
+      }
+    ],
+    "sf100": [
+      {
+        "path": "datasets/tpch/sf100/part.tbl",
+        "bytes": 2453234158
+      },
+      {
+        "path": "datasets/tpch/sf100/region.tbl",
+        "bytes": 389
+      },
+      {
+        "path": "datasets/tpch/sf100/lineitem.tbl",
+        "bytes": 79579694556
+      },
+      {
+        "path": "datasets/tpch/sf100/nation.tbl",
+        "bytes": 2224
+      },
+      {
+        "path": "datasets/tpch/sf100/supplier.tbl",
+        "bytes": 142869803
+      },
+      {
+        "path": "datasets/tpch/sf100/orders.tbl",
+        "bytes": 17793116301
+      },
+      {
+        "path": "datasets/tpch/sf100/partsupp.tbl",
+        "bytes": 12209211160
+      },
+      {
+        "path": "datasets/tpch/sf100/customer.tbl",
+        "bytes": 2463490271
+      }
+    ]
+  },
+  "sf1_local_verification": [
+    {
+      "path": "datasets/tpch/sf1/customer.tbl",
+      "sha256": "4483680548a965833877c911ed43e795f4d3543c7a3f7d1dba9ccb24ea5989d6",
+      "sha256_matches": true,
+      "rows": 150000,
+      "rows_match": true,
+      "bytes": 24346144,
+      "size_matches": true
+    },
+    {
+      "path": "datasets/tpch/sf1/lineitem.tbl",
+      "sha256": "96d555e07a1ae8cf5196387d9edd9427f9af70c56fa5f4b18affee5555ddb184",
+      "sha256_matches": true,
+      "rows": 6001215,
+      "rows_match": true,
+      "bytes": 759863287,
+      "size_matches": true
+    },
+    {
+      "path": "datasets/tpch/sf1/nation.tbl",
+      "sha256": "66f96949939fa8fdf1c4ffed1e5f6c2842fe11a14b51fdc6ed1e17460031e8c5",
+      "sha256_matches": true,
+      "rows": 25,
+      "rows_match": true,
+      "bytes": 2224,
+      "size_matches": true
+    },
+    {
+      "path": "datasets/tpch/sf1/orders.tbl",
+      "sha256": "8709061d7bbc81932356fdfc664f8d582252747c2d7e204ae6d3cde624586357",
+      "sha256_matches": true,
+      "rows": 1500000,
+      "rows_match": true,
+      "bytes": 171952161,
+      "size_matches": true
+    },
+    {
+      "path": "datasets/tpch/sf1/part.tbl",
+      "sha256": "f0e4ccdfb5f6d19428ce54f9c84b17037d20f00ac8d2b2272c8d43b18a0b4880",
+      "sha256_matches": true,
+      "rows": 200000,
+      "rows_match": true,
+      "bytes": 24135125,
+      "size_matches": true
+    },
+    {
+      "path": "datasets/tpch/sf1/partsupp.tbl",
+      "sha256": "43c37f99918f06d4de6b99b05c0a28d5c46f71d66424cffcc595cb059a499254",
+      "sha256_matches": true,
+      "rows": 800000,
+      "rows_match": true,
+      "bytes": 118984616,
+      "size_matches": true
+    },
+    {
+      "path": "datasets/tpch/sf1/region.tbl",
+      "sha256": "6022658d673924389b54dcb70fa8c3d6da1b0d7afa3c1c017bab62a019df404f",
+      "sha256_matches": true,
+      "rows": 5,
+      "rows_match": true,
+      "bytes": 389,
+      "size_matches": true
+    },
+    {
+      "path": "datasets/tpch/sf1/supplier.tbl",
+      "sha256": "9b99cf155974e6db8773970b40746bfccfa64fa078169574165f3e19e2158391",
+      "sha256_matches": true,
+      "rows": 10000,
+      "rows_match": true,
+      "bytes": 1409184,
+      "size_matches": true
+    }
+  ],
+  "sf1_remote_verification": [
+    {
+      "path": "datasets/tpch/sf1/customer.tbl",
+      "sha256": "4483680548a965833877c911ed43e795f4d3543c7a3f7d1dba9ccb24ea5989d6",
+      "sha256_matches_manifest": true,
+      "rows": 150000,
+      "rows_match_manifest": true,
+      "bytes": 24346144,
+      "size_matches_manifest": true
+    },
+    {
+      "path": "datasets/tpch/sf1/lineitem.tbl",
+      "sha256": "96d555e07a1ae8cf5196387d9edd9427f9af70c56fa5f4b18affee5555ddb184",
+      "sha256_matches_manifest": true,
+      "rows": 6001215,
+      "rows_match_manifest": true,
+      "bytes": 759863287,
+      "size_matches_manifest": true
+    },
+    {
+      "path": "datasets/tpch/sf1/nation.tbl",
+      "sha256": "66f96949939fa8fdf1c4ffed1e5f6c2842fe11a14b51fdc6ed1e17460031e8c5",
+      "sha256_matches_manifest": true,
+      "rows": 25,
+      "rows_match_manifest": true,
+      "bytes": 2224,
+      "size_matches_manifest": true
+    },
+    {
+      "path": "datasets/tpch/sf1/orders.tbl",
+      "sha256": "8709061d7bbc81932356fdfc664f8d582252747c2d7e204ae6d3cde624586357",
+      "sha256_matches_manifest": true,
+      "rows": 1500000,
+      "rows_match_manifest": true,
+      "bytes": 171952161,
+      "size_matches_manifest": true
+    },
+    {
+      "path": "datasets/tpch/sf1/part.tbl",
+      "sha256": "f0e4ccdfb5f6d19428ce54f9c84b17037d20f00ac8d2b2272c8d43b18a0b4880",
+      "sha256_matches_manifest": true,
+      "rows": 200000,
+      "rows_match_manifest": true,
+      "bytes": 24135125,
+      "size_matches_manifest": true
+    },
+    {
+      "path": "datasets/tpch/sf1/partsupp.tbl",
+      "sha256": "43c37f99918f06d4de6b99b05c0a28d5c46f71d66424cffcc595cb059a499254",
+      "sha256_matches_manifest": true,
+      "rows": 800000,
+      "rows_match_manifest": true,
+      "bytes": 118984616,
+      "size_matches_manifest": true
+    },
+    {
+      "path": "datasets/tpch/sf1/region.tbl",
+      "sha256": "6022658d673924389b54dcb70fa8c3d6da1b0d7afa3c1c017bab62a019df404f",
+      "sha256_matches_manifest": true,
+      "rows": 5,
+      "rows_match_manifest": true,
+      "bytes": 389,
+      "size_matches_manifest": true
+    },
+    {
+      "path": "datasets/tpch/sf1/supplier.tbl",
+      "sha256": "9b99cf155974e6db8773970b40746bfccfa64fa078169574165f3e19e2158391",
+      "sha256_matches_manifest": true,
+      "rows": 10000,
+      "rows_match_manifest": true,
+      "bytes": 1409184,
+      "size_matches_manifest": true
+    }
+  ],
+  "sf1_local_remote_match": true,
+  "sf100_initial_metadata": [
+    {
+      "path": "warehouse/tpch_sf100/partsupp/metadata/v1.metadata.json",
+      "sha256": "08985a0ef7aa3695b7db74988ef65d891a977ed33b5185c0d98eba773afa7eb9",
+      "summaries": [
+        {
+          "operation": "append",
+          "spark.app.id": "local-1791805318776",
+          "added-data-files": "91",
+          "added-records": "80000000",
+          "added-files-size": "3124747396",
+          "changed-partition-count": "1",
+          "total-records": "80000000",
+          "total-files-size": "3124747396",
+          "total-data-files": "91",
+          "total-delete-files": "0",
+          "total-position-deletes": "0",
+          "total-equality-deletes": "0"
+        }
+      ]
+    },
+    {
+      "path": "warehouse/tpch_sf100/lineitem/metadata/v1.metadata.json",
+      "sha256": "0402ea1070ff9d29ee0e7fd5894931dd1f06a8a5af45a5af08b99a5b3a436fad",
+      "summaries": [
+        {
+          "operation": "append",
+          "spark.app.id": "local-1791805318776",
+          "added-data-files": "593",
+          "added-records": "600037902",
+          "added-files-size": "16574880989",
+          "changed-partition-count": "1",
+          "total-records": "600037902",
+          "total-files-size": "16574880989",
+          "total-data-files": "593",
+          "total-delete-files": "0",
+          "total-position-deletes": "0",
+          "total-equality-deletes": "0"
+        }
+      ]
+    },
+    {
+      "path": "warehouse/tpch_sf100/part/metadata/v1.metadata.json",
+      "sha256": "ca761d4b6d79eba6ab7b93a48d8aeaf4c04b4df25b6127660530096dd51e38c3",
+      "summaries": [
+        {
+          "operation": "append",
+          "spark.app.id": "local-1791805318776",
+          "added-data-files": "20",
+          "added-records": "20000000",
+          "added-files-size": "460926324",
+          "changed-partition-count": "1",
+          "total-records": "20000000",
+          "total-files-size": "460926324",
+          "total-data-files": "20",
+          "total-delete-files": "0",
+          "total-position-deletes": "0",
+          "total-equality-deletes": "0"
+        }
+      ]
+    },
+    {
+      "path": "warehouse/tpch_sf100/supplier/metadata/v1.metadata.json",
+      "sha256": "2f7d9b7204d9b29a604eed405ab3f29fc85e91deecfd52468c9d837360e8463e",
+      "summaries": [
+        {
+          "operation": "append",
+          "spark.app.id": "local-1791805318776",
+          "added-data-files": "20",
+          "added-records": "1000000",
+          "added-files-size": "52852347",
+          "changed-partition-count": "1",
+          "total-records": "1000000",
+          "total-files-size": "52852347",
+          "total-data-files": "20",
+          "total-delete-files": "0",
+          "total-position-deletes": "0",
+          "total-equality-deletes": "0"
+        }
+      ]
+    },
+    {
+      "path": "warehouse/tpch_sf100/customer/metadata/v1.metadata.json",
+      "sha256": "21d6129b7a2c70217268b6388128d9eee75393cedfbd4dff65ead4ea24423c98",
+      "summaries": [
+        {
+          "operation": "append",
+          "spark.app.id": "local-1791805318776",
+          "added-data-files": "20",
+          "added-records": "15000000",
+          "added-files-size": "827934728",
+          "changed-partition-count": "1",
+          "total-records": "15000000",
+          "total-files-size": "827934728",
+          "total-data-files": "20",
+          "total-delete-files": "0",
+          "total-position-deletes": "0",
+          "total-equality-deletes": "0"
+        }
+      ]
+    },
+    {
+      "path": "warehouse/tpch_sf100/nation/metadata/v1.metadata.json",
+      "sha256": "beab2f98bcc88f4725ffbd948a7017b90765a5a746028b5126530161ab06235d",
+      "summaries": [
+        {
+          "operation": "append",
+          "spark.app.id": "local-1791805318776",
+          "added-data-files": "1",
+          "added-records": "25",
+          "added-files-size": "2458",
+          "changed-partition-count": "1",
+          "total-records": "25",
+          "total-files-size": "2458",
+          "total-data-files": "1",
+          "total-delete-files": "0",
+          "total-position-deletes": "0",
+          "total-equality-deletes": "0"
+        }
+      ]
+    },
+    {
+      "path": "warehouse/tpch_sf100/region/metadata/v1.metadata.json",
+      "sha256": "bb50cc63647b2c2777e58104a290f99facc4ce6b07432b28f7eeea8db8801d9d",
+      "summaries": [
+        {
+          "operation": "append",
+          "spark.app.id": "local-1791805318776",
+          "added-data-files": "1",
+          "added-records": "5",
+          "added-files-size": "1390",
+          "changed-partition-count": "1",
+          "total-records": "5",
+          "total-files-size": "1390",
+          "total-data-files": "1",
+          "total-delete-files": "0",
+          "total-position-deletes": "0",
+          "total-equality-deletes": "0"
+        }
+      ]
+    },
+    {
+      "path": "warehouse/tpch_sf100/orders/metadata/v1.metadata.json",
+      "sha256": "c3fc5ec1285bd7749da8f5e5ffc7d5b5980156ed3814bfa1c5748b9bf6b54f9c",
+      "summaries": [
+        {
+          "operation": "append",
+          "spark.app.id": "local-1791805318776",
+          "added-data-files": "133",
+          "added-records": "150000000",
+          "added-files-size": "4017098133",
+          "changed-partition-count": "1",
+          "total-records": "150000000",
+          "total-files-size": "4017098133",
+          "total-data-files": "133",
+          "total-delete-files": "0",
+          "total-position-deletes": "0",
+          "total-equality-deletes": "0"
+        }
+      ]
+    }
+  ],
+  "trace_archive": {
+    "path": "datasets/alibaba-trace-2017.tar.gz",
+    "bytes": 243321159,
+    "members": [
+      {
+        "name": "alibaba-trace-2017",
+        "bytes": 0
+      },
+      {
+        "name": "alibaba-trace-2017/batch_task.csv",
+        "bytes": 4631973
+      },
+      {
+        "name": "alibaba-trace-2017/server_event.csv",
+        "bytes": 47615
+      },
+      {
+        "name": "alibaba-trace-2017/container_usage.csv",
+        "bytes": 275992839
+      },
+      {
+        "name": "alibaba-trace-2017/batch_instance.csv",
+        "bytes": 858546781
+      },
+      {
+        "name": "alibaba-trace-2017/server_usage.csv",
+        "bytes": 19030775
+      },
+      {
+        "name": "alibaba-trace-2017/container_event.csv",
+        "bytes": 875035
+      }
+    ],
+    "sha256": "b7efe9dc9caa75352de41b9ac34b329602cde3414fd7cab87c1d21a9a9871d66",
+    "server_usage": {
+      "rows": 187963,
+      "column_counts": [
+        8
+      ],
+      "first_rows": [
+        [
+          "41700",
+          "237",
+          "23.3799999237",
+          "30.08000030518",
+          "42.2000007629",
+          "15.820000267020001",
+          "13.860000038159999",
+          "12.64000015258"
+        ],
+        [
+          "39600",
+          "265",
+          "26.3599998474",
+          "29.539999771139996",
+          "57.59999847409999",
+          "17.46000022886",
+          "18.9",
+          "16.70000038146"
+        ],
+        [
+          "42600",
+          "770",
+          "49.14000015258",
+          "60.099999237060004",
+          "41.8600013733",
+          "33.20000000002",
+          "31.2200000763",
+          "30.51999969482"
+        ]
+      ],
+      "last_rows": [
+        [
+          "79200",
+          "105",
+          "10.999999809279998",
+          "32.579998779280004",
+          "41.5999984741",
+          "6.519999885562001",
+          "6.339999961854",
+          "6.5"
+        ],
+        [
+          "81900",
+          "486",
+          "2.3000000476860003",
+          "17.37999954226",
+          "40",
+          "1.319999980928",
+          "2.060000014306",
+          "3.3599999904619997"
+        ],
+        [
+          "80700",
+          "199",
+          "20.539999771139996",
+          "51.28000106812",
+          "39.9000015259",
+          "14.940000152580001",
+          "13.93999996186",
+          "16.00000019072"
+        ]
+      ],
+      "timestamp_range_first_column": [
+        39600.0,
+        82500.0
+      ],
+      "distinct_servers_second_column": 1310,
+      "row_order_monotonic": false
+    },
+    "gzip_integrity": "PASS (gzip -t)",
+    "archive_read": "PASS (all headers readable; server_usage member read fully)",
+    "published_checksum_reference": {
+      "url": "https://raw.githubusercontent.com/alibaba/clusterdata/master/cluster-trace-v2017/SHA256SUM",
+      "filename": "trace_201708.tgz",
+      "sha256": "02c1fbc412fccc03b748c05ec18fc30fd93c0bc383eea47ac21146c4aa2235df",
+      "archive_matches": false,
+      "interpretation": "Different filename/packaging; provenance unresolved. Do not declare corruption or authenticity from this mismatch alone."
+    }
+  },
+  "trace_local_remote_match": true,
+  "google_trace_exists": false,
+  "remaining_gates": [
+    "SF100 complete source hashes/row counts and generation provenance",
+    "Trace origin/checksum match and schema validation for all used members",
+    "Real database arrival trace and ingestion mapping",
+    "Clean counterbalanced physical training dataset",
+    "Runtime version/configuration lock and dedicated resource allocation",
+    "Second environment or scoped generalization study"
+  ]
+}

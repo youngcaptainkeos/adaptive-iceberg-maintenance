@@ -64,6 +64,11 @@ Recent CPU averages describe history; they are not future forecasts. The current
 two-model policy and fixed `+2` file projection do not implement this architecture.
 Forecasting does not imply access to the workload generator's future trace.
 
+Model count is not fixed as a research requirement. See
+`docs/architecture_choice_and_validation.md` for the proposed comparison between
+separate A/B models and a shared action-conditioned cost estimator plus demand
+forecaster. No architecture winner has been validated or implemented yet.
+
 ## Research questions and success criteria
 
 - RQ1: Can maintenance interference and fragmentation penalties be predicted on
@@ -141,6 +146,9 @@ not a universal magic count. Document workload provenance and baseline parameter
   dated 2026-10-13); complete reconciliation and physical provenance remain pending.
 - [ ] P0: Classify historical results and claims using raw evidence and provenance.
 - [ ] P0: Verify dataset cardinality, generator/trace sources, checksums and environment.
+- [x] P0 bounded step: preserve remote source variants and verify SF1 on both machines;
+  inventory SF100/runtime and the existing trace archive. Full dataset readiness
+  remains blocked; see `docs/dataset_and_resource_readiness.md`.
 - [ ] P1: Remove synthetic fallback and filename-triggered training fabrication.
 - [ ] P1: Require an experiment preflight and immutable configuration/run manifest.
 - [ ] P1: Repair event timing, sampling, errors, resets, and offered-load generation.
