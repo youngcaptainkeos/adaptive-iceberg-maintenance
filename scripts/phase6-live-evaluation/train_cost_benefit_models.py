@@ -26,6 +26,8 @@ from sklearn.metrics import mean_absolute_error
 from experiment_validation import (ValidationError, require, load_json, verified_file,
                                    finite_number, sha256)
 
+from statement_timing import TIMING_FIELDS, DURATION_FIELDS, bind_training_rows
+
 FEATURE_LIST = [
     'cpu_util_avg_1min', 'cpu_util_avg_5min', 'cpu_trend', 'mem_used_pct',
     'frag_file_count', 'candidate_small_files', 'table_size_mb', 'avg_file_size_kb',
@@ -69,6 +71,7 @@ def prepare_training_dataframe(df_input):
         'feature_timestamp', 'query_start_time', 'query_end_time', 'compaction_event_id',
         'query_latency_ms', 'query_latency_during_compaction_ms',
     }
+    required |= {'timing_contract'} | {name + '_monotonic_ns' for name in TIMING_FIELDS} | set(DURATION_FIELDS)
     missing = sorted(required - set(df_input))
     require(not missing, f'Missing physical query/event columns: {missing}')
     require(len(df_input) > 0, 'No physical query observations.')
@@ -103,10 +106,21 @@ def prepare_training_dataframe(df_input):
     df['target_ms'] = np.where(df['compaction_active'], df['query_latency_during_compaction_ms'], df['query_latency_ms'])
     df['target_ms'] = pd.to_numeric(df['target_ms'], errors='raise')
     require(np.isfinite(df['target_ms']).all() and (df['target_ms'] > 0).all(), 'Invalid physical query target.')
-    # Latency contract is end minus start in milliseconds, not a running aggregate.
-    measured_ns = (df['query_end_time'] - df['query_start_time']).to_numpy(dtype='timedelta64[ns]').astype(np.int64)
-    require(np.array_equal(measured_ns, np.rint(df['target_ms'].to_numpy() * 1_000_000)),
-            'Target latency does not equal the query interval at nanosecond precision.')
+    require(df['timing_contract'].eq('client_submission_v1').all(),
+            'Actual client-call timing contract required; historical offsets prohibited.')
+    for col in [name + '_monotonic_ns' for name in TIMING_FIELDS] + list(DURATION_FIELDS):
+        require(pd.api.types.is_integer_dtype(df[col].dtype) and not pd.api.types.is_bool_dtype(df[col].dtype)
+                and df[col].notna().all() and (df[col] >= 0).all(),
+                f'{col} must preserve observed integer nanoseconds, not rounded float clocks.')
+    request, start, returned, end = (df[name + '_monotonic_ns'] for name in TIMING_FIELDS)
+    require(((request <= start) & (start <= returned) & (returned <= end) & (end > start)).all(),
+            'Invalid monotonic call/result ordering.')
+    require((df['client_elapsed_ns'] == end - start).all()
+            and (df['request_to_result_ns'] == end - request).all()
+            and (df['instrumentation_before_execute_ns'] == start - request).all(),
+            'Physical timing decomposition mismatch.')
+    require(np.array_equal(df['client_elapsed_ns'].to_numpy(), np.rint(df['target_ms'].to_numpy() * 1_000_000)),
+            'Target latency differs from the actual monotonic call/result interval.')
     return df
 
 
@@ -180,7 +194,12 @@ def train_and_save_models(df, model_dir, *, protocol, compaction_events, provena
     original_hashes = {name: sha256(path) for name, path in provenance.items()}
     validate_protocol(protocol)
     prepared = prepare_training_dataframe(df)
+    raw_paths = [path for name, path in provenance.items() if name.startswith('raw_statement_events_')]
+    require(bool(raw_paths), 'Raw statement event ledgers are required before any model fitting.')
+    bind_training_rows(prepared, raw_paths)
     validate_splits_and_events(prepared, compaction_events, protocol)
+    require(all(sha256(path) == original_hashes[name] for name, path in provenance.items()),
+            'Registered inputs changed during validation; refuse fitting.')
     destination = Path(model_dir).resolve()
     require(not destination.exists(), 'Use a new model directory; never overwrite earlier evidence.')
     fitted, metadata = {}, {'schema_version': 'validated_cost_models_v1', 'validation_status': 'accepted',
@@ -226,7 +245,7 @@ def train_and_save_models(df, model_dir, *, protocol, compaction_events, provena
             metadata[name] = {'path': target.name, 'sha256': sha256(target)}
             require(metadata[name]['sha256'] == original_hashes[name], f'Input changed during evidence copy: {source}')
         metadata['execution_evidence'] = [value for name, value in metadata.items()
-                                          if name.startswith('execution_evidence_')]
+                                          if name.startswith(('execution_evidence_', 'raw_statement_events_'))]
         for name, model in fitted.items():
             target = staging / ('model_a_compaction.joblib' if name == 'model_a' else 'model_b_baseline.joblib')
             joblib.dump(model, target)
@@ -254,6 +273,9 @@ def main():
         evidence = declaration.get('execution_evidence')
         require(isinstance(evidence, list) and evidence, 'Physical execution evidence is required.')
         evidence_paths = [verified_file(item, base) for item in evidence]
+        raw_specs = declaration.get('raw_statement_events')
+        require(isinstance(raw_specs, list) and raw_specs, 'Declare raw statement-event JSONL artifacts.')
+        raw_paths = [verified_file(item, base) for item in raw_specs]
         protocol, _ = load_json(args.protocol)
         frame, events = pd.read_csv(source), pd.read_csv(event_path)
         require(sha256(source) == declaration['training_data']['sha256']
@@ -263,7 +285,8 @@ def main():
                               compaction_events=events, provenance={
                                   'training_data': source, 'compaction_events': event_path,
                                   'training_protocol': Path(args.protocol), 'data_manifest': Path(args.data_manifest),
-                                  **{f'execution_evidence_{i}': path for i, path in enumerate(evidence_paths)}})
+                                  **{f'execution_evidence_{i}': path for i, path in enumerate(evidence_paths)},
+                                  **{f'raw_statement_events_{i}': path for i, path in enumerate(raw_paths)}})
     except Exception as exc:
         print(json.dumps({'status': 'BLOCKED', 'reason': str(exc)}), file=sys.stderr)
         return 2

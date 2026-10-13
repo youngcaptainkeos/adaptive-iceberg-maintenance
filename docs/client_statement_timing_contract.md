@@ -26,3 +26,26 @@ these fields cannot be repaired with an invented logging offset.
 Logger overhead also affects host CPU/I/O and must be measured consistently across
 policies. A service-time interval excluding intent persistence does not remove that
 resource overhead from the physical system.
+
+## Raw binding before model fitting
+
+The trainer now requires `timing_contract: client_submission_v1`, four observed
+integer clock columns named `<request_start|client_execute_start|execute_return|
+fetch_end>_monotonic_ns`, and the three integer duration columns above. Monotonic
+fetch-end minus actual execute-start is the latency target. UTC timestamps identify
+chronology and must equal the raw actual-call/result timestamps; UTC subtraction
+cannot manufacture nanosecond precision or replace monotonic duration.
+
+Training declarations must add `raw_statement_events`, a nonempty list of checked
+JSONL artifact references. Before fitting, each CSV row binds by experiment and
+measurement ID to a completed raw physical statement with the same query identity,
+timing contract, clocks and decomposed durations. The ledger requires one durable
+intent and one completed/failed outcome per request, without conflicting identities
+or unfinished requests. Metadata statements cannot become training queries. Raw
+ledgers remain part of the published bundle's checked execution evidence.
+
+Verified against the six actual statements/four actual query projections from the
+client timing-boundary check; the older correctness pilot was rejected for missing
+actual-call timing. This is timing/identity validation only. Telemetry, snapshot,
+maintenance result and task-overlap label cross-references still require a reviewed
+exporter. No accepted training dataset or model fit follows from these checks.

@@ -82,7 +82,8 @@ substantial I/O; no cached/invented hash is substituted.
 
 Data manifest requires `schema_version: physical_training_data_v1`,
 `origin: physical_spark_iceberg`, `training_data`, `compaction_events`, and a
-nonempty `execution_evidence` list of checked physical artifacts.
+nonempty `execution_evidence` list of checked physical artifacts plus checked
+`raw_statement_events` JSONL references.
 
 Training CSV has one completed physical query per row, not idle telemetry ticks.
 Required measured features are the current nine telemetry/table features. Required
@@ -90,7 +91,9 @@ provenance fields: `measurement_id`, `experiment_id`, `split`, `query_id`,
 `compaction_active`, `feature_timestamp`, `query_start_time`, `query_end_time`,
 `compaction_event_id`, and the appropriate physical latency target column.
 Timestamps must be timezone-qualified ISO strings. Features must be available
-before query start. Target latency must match end minus start at timestamp precision.
+before query start. Target latency must match the observed monotonic call/result interval. See
+`client_statement_timing_contract.md` for mandatory integer clocks, duration
+decomposition and exact raw-ledger binding; UTC timestamps serve chronology.
 
 Compaction-event CSV requires `experiment_id`, `compaction_event_id`, `start_time`,
 `end_time`, `rewritten_data_files_count`, and `status` (`success` or `no_op`).
@@ -131,8 +134,10 @@ mock/synthetic unit tests are preserved but not run or cited as evidence.
 Repair query/maintenance event logging, collection cadence, offered-load generation
 and reset postconditions; then review a real trace transformation and preregister
 the collection protocol. Only after that may execution guards be replaced with the
-repaired implementation. Existing dead legacy collector/decision code retains old
-constants and cannot be treated as an approved runnable policy.
+repaired implementation. Dead legacy collector/decision execution bodies have been retired. Physical
+task-overlap/telemetry/layout export binding and offered-load execution remain
+unimplemented; a matching client rewrite interval alone is insufficient to certify
+a useful engine-overlap target.
 
 This is a refusal/provenance foundation, not a validated forecasting scheduler.
 Coverage thresholds alone do not establish coverage precision, independence or

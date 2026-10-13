@@ -412,3 +412,33 @@ exit 1 and explicit complete-acquisition error. Validation output directory was
 not created. Evidence: `snowset_validation_guard_check_2026-10-14.json`. Commit
 `1a251b8` pushed; worker3 fast-forwarded; HEAD and all four intended file hashes
 matched. Recovery continues naturally; no services/processes interrupted.
+
+### 04:09–04:12 IST: bind training service time to actual raw clocks
+
+Audit found the trainer compared target duration with UTC timestamp subtraction at
+nanosecond precision. Recorded UTC has microsecond precision; the authoritative
+client duration is the actual monotonic execute-start/fetch-end interval. Repaired
+this boundary without subtracting a fixed logger offset or rewriting old evidence.
+
+Added `statement_timing.py`: completed statements require actual-call contract, UTC
+identifiers, integer monotonic ordering and exact duration decomposition. Every
+training row must bind to its raw completed statement by experiment/measurement ID,
+query ID, actual-call UTC interval and clocks/durations. Raw JSONL provenance is
+mandatory, retained in bundle evidence, with input hashes checked before fitting.
+No unfinished ledger or metadata statement can silently provide a query target.
+
+Actual six-statement/four-query timing check passed ledger and exact raw-field
+projection binding. An initial projection included two metadata statements with
+missing query identity; that check refused them. Restricted the verification to
+the four actual query records and added an explicit metadata refusal guard. This
+is a projection of real measured fields, not a fabricated training CSV. Historical
+correctness pilot failed the actual-call timing contract; RUN_002 still failed
+required physical columns before fitting. No models trained. Evidence:
+`raw_statement_timing_binding_validation_2026-10-14.json`.
+
+Remaining blocker: trainer's rewrite interval checks do not independently bind
+Spark task overlap, measured feature windows or snapshot layout to raw evidence.
+An approved exporter and engine-label cross-reference gate are required before any
+publication collection/training. The old client-overlap check cannot certify that
+methodology. Recovery continues; no physical Spark workload was launched while
+source transfers were active.

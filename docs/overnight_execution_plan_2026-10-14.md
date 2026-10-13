@@ -47,7 +47,7 @@ correctness; 03:30–05:45 next ready validation/collection; 05:45–06:15 audit
 Legacy collector/evaluator/reset/launchers remain blocked until explicitly repaired.
 No publication-readiness or forecasting claim follows from a correctness pilot.
 
-## Current queue state (04:00 IST)
+## Current queue state (04:12 IST)
 
 - Completed bounded event/telemetry primitives and real 60-second pre-query windows.
 - Completed isolated verified SF1 source preparation and repaired query/rewrite pilot.
@@ -62,6 +62,9 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
   approximately 3.13GB. Retained parts have an explicit missing-original-receipt
   limitation; new ranges have durable receipts/adaptive transport splitting.
   No accepted arrival dataset until full archive/schema validation.
+- Completed raw statement/monotonic training timing binding; historical pilot
+  timings remain rejected. Next repair: independent engine-label/feature/layout
+  export binding before any training.
 - Prepared full-object/gzip/tar/Parquet/arrival validator; launch only after recovery
   completes with its final record SHA256 pinned. No partial source analysis.
 - Next: identifiable matched collection protocol/offered-load repair; then real

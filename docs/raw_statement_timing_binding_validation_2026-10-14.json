@@ -1,0 +1,11 @@
+{
+  "schema_version": "raw_statement_timing_binding_review_v1",
+  "actual_input": "results/client_statement_timing_integrity_20261014/events.jsonl",
+  "actual_input_sha256": "f9a7470f2bc6706c80ed78a2f31448f2f21d415402d74d9497f31b0b023ca10c",
+  "completed_statements_verified": 6,
+  "actual_query_projections_bound": 4,
+  "raw_field_projection_binding_passed": true,
+  "historical_pilot_input": "results/sf1_correctness_pilot_20261014_0054/events.jsonl",
+  "historical_pilot_rejection": "Actual call-start timing contract required; historical offset repair prohibited",
+  "scope": "Read-only actual statement timing ledger checks and exact projection, no invented features/labels, CSV export, fitting or training acceptance."
+}
