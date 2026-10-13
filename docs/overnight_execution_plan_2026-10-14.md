@@ -47,7 +47,7 @@ correctness; 03:30–05:45 next ready validation/collection; 05:45–06:15 audit
 Legacy collector/evaluator/reset/launchers remain blocked until explicitly repaired.
 No publication-readiness or forecasting claim follows from a correctness pilot.
 
-## Current queue state (04:14 IST)
+## Current queue state (04:28 IST)
 
 - Completed bounded event/telemetry primitives and real 60-second pre-query windows.
 - Completed isolated verified SF1 source preparation and repaired query/rewrite pilot.
@@ -60,12 +60,13 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
 - Completed repaired observer cadence and actual client timing-boundary validation.
 - Completed Snowset bytes recovery naturally: 7,823 ranges / 8,202,394,513 bytes.
   Retained parts keep the missing-original-receipt limitation. No accepted source yet.
-- Original full validator failed uniqueness because glob included dataset directory
-  and its regular files, doubling reader input. Preserved failure; file-only repair
-  is running on worker3 PID 384597 with all original gates, output
-  `datasets/snowset/validated_source_file_only_20261014/`, launch log
-  `datasets/snowset/source_validation_file_only_20261014_launch.log`.
-  Inspect existing work before replacements; do not duplicate.
+- Corrected full Snowset validator passed: 69,182,074 unique query arrivals,
+  2,051 warehouses, 2,000 regular files, gzip/tar/full values and required null gates.
+  Original failed duplicate-input reader remains preserved. Accepted arrival source
+  only; no SQL mapping/replay/training claim.
+- Running training-only arrival extraction on worker3 PID389249, execution738d055;
+  `datasets/snowset/arrival_cohort_20261014/` and matching launch log. Audit result/
+  failure and conservation before any forecast or new extraction.
 - Completed raw statement/monotonic training timing binding; historical pilot
   timings remain rejected. Completed independent raw Spark task/rewrite label
   binding. Next repair: measured feature/layout and engine-session/confounder
@@ -81,8 +82,9 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
 - Local completed-source fallback mirror finished naturally: all 8,202,394,513 bytes
   and SHA256 matched worker3. Status `verified_bytes_only`; source acceptance still
   depends on repaired full validation. No second transfer needed.
-- Full-source validator launched with final acquisition-record SHA256 pinned.
-  No partial source analysis, replay or forecasting; verify completion first.
+- Complete source evidence pinned/mirrored as metadata. Warehouse selection uses
+  only first-week reported arrivals; next three days reserved, remaining full bins
+  held out. No partial source analysis, SQL mapping or forecasting yet.
 - Next: identifiable matched collection protocol/offered-load repair; then real
   arrival inspection/forecasting when source integrity gates pass. Do not train cost
   models on this correctness pilot or silently use partial/cluster data as SQL demand.

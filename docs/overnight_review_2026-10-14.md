@@ -642,3 +642,12 @@ in the supplied corpus, not dummy events/proven idle periods. No completed outco
 used for selection, no normalization, thinning/time compression, SQL assignment,
 forecast fitting or model promotion. Three calibration days cannot justify a finite
 90% daily-block conformal bound. Source hashes/identity checked before extraction.
+
+Cohort extraction launched only after code/config publication and matching local/
+worker3 HEAD + all five changed-file hashes. Worker3 **PID389249**, execution
+`738d055`, artifacts `datasets/snowset/arrival_cohort_20261014/`, launch log and JSON
+receipt with matching prefix. Full source record explicitly pinned at
+`7ce2fa0e6693d753938cde5e1d9c3a32fd65e57bea05562bf362e6ae090c6bf0`.
+No other source validator/extractor was active. Extraction hashes all source members
+before reading; result/conservation/selection audit pending. Preserve any failed
+package and repair before dependent forecasting. No physical Spark query launched.
