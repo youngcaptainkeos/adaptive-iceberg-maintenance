@@ -1,4 +1,16 @@
 #!/usr/bin/env python3
+"""
+Phase 6A / 6.1B Data Collection Daemon
+Methodology v2.1
+
+Features:
+- Telemetry logging for non-stationary Google Cluster Workload trace.
+- Tracks explicit query_id (0, 1, 2, 3) and latency per completed query.
+- Tracks candidate_small_files (<64MB) directly from Iceberg metadata.
+- Configurable compaction interval (--compaction-interval-minutes) to allow
+  natural fragmentation sweeps across [33, 120+] files.
+"""
+
 import os
 import sys
 import time
@@ -21,41 +33,43 @@ try:
 except ImportError:
     PYHIVE_AVAILABLE = False
 
+
 class WriteDriver:
     """Background thread that executes INSERTs to create fragmentation."""
+
     def __init__(self, host="127.0.0.1", port=10000, table="local.tpch_sf100.lineitem", trace_mapper=None):
         self.host = host
         self.port = port
         self.table = table
         self.trace_mapper = trace_mapper
         self.stop_event = threading.Event()
-        
+
     def start(self, start_time: float):
         self.start_time = start_time
         self.thread = threading.Thread(target=self._run, daemon=True)
         self.thread.start()
-        
+
     def stop(self):
         self.stop_event.set()
         if hasattr(self, 'thread'):
             self.thread.join(timeout=2.0)
-            
+
     def _run(self):
         while not self.stop_event.is_set():
             elapsed = time.time() - self.start_time
             intensity = self.trace_mapper.get_intensity(elapsed) if self.trace_mapper else 0.5
-            
+
             # Dynamic inter-write delay (high intensity = more frequent writes)
             # e.g., 30s at peak intensity, 60s at low intensity
             sleep_delay = 30.0 + (1.0 - intensity) * 30.0
             time.sleep(sleep_delay)
-            
+
             if self.stop_event.is_set():
                 break
 
             if not PYHIVE_AVAILABLE:
                 continue
-                
+
             try:
                 # Randomize orderkey to avoid caching and simulate random ingestion
                 random_start = np.random.randint(1, 6000000)
@@ -68,8 +82,10 @@ class WriteDriver:
             except Exception as e:
                 print(f"[WriteDriver] Error inserting data: {e}")
 
+
 class WorkloadDriver:
-    """Background query runner driven by GoogleTraceMapper intensity."""
+    """Background query runner driven by GoogleTraceMapper intensity with query_id tracking."""
+
     def __init__(self, host="127.0.0.1", port=10000, table="local.tpch_sf100.lineitem", trace_mapper=None):
         self.host = host
         self.port = port
@@ -77,7 +93,7 @@ class WorkloadDriver:
         self.trace_mapper = trace_mapper
         self.stop_event = threading.Event()
         self.lock = threading.Lock()
-        
+
         self.completed_queries = deque()
 
         self.queries = [
@@ -102,7 +118,7 @@ class WorkloadDriver:
         while not self.stop_event.is_set():
             elapsed = time.time() - self.start_time
             intensity = self.trace_mapper.get_intensity(elapsed) if self.trace_mapper else 0.5
-            
+
             # Dynamic inter-query delay (high intensity = low delay = heavy workload)
             sleep_delay = max(0.5, (1.0 - intensity) * 8.0)
             time.sleep(sleep_delay)
@@ -113,9 +129,10 @@ class WorkloadDriver:
             if not PYHIVE_AVAILABLE:
                 continue
 
-            sql = self.queries[query_idx % len(self.queries)]
+            curr_qid = query_idx % len(self.queries)
+            sql = self.queries[curr_qid]
             query_idx += 1
-            
+
             t0 = time.time()
             try:
                 conn = hive.Connection(host=self.host, port=self.port, username="ccbd")
@@ -126,51 +143,66 @@ class WorkloadDriver:
                 conn.close()
                 latency_ms = (time.time() - t0) * 1000.0
                 with self.lock:
-                    self.completed_queries.append(latency_ms)
+                    self.completed_queries.append((curr_qid, latency_ms))
             except Exception as e:
                 latency_ms = (time.time() - t0) * 1000.0
-                print(f"[WorkloadDriver] Query error ({latency_ms:.1f}ms): {e}")
+                print(f"[WorkloadDriver] Query {curr_qid} error ({latency_ms:.1f}ms): {e}")
 
     def pop_latency(self):
+        """Pops the oldest completed (query_id, latency_ms). Returns (np.nan, np.nan) if empty."""
         with self.lock:
             if self.completed_queries:
                 return self.completed_queries.popleft()
-            return np.nan
+            return (np.nan, np.nan)
 
-def fetch_table_metadata(host, port, table):
-    """Queries Spark Thrift Server for Iceberg table file metrics."""
+
+def fetch_table_metadata(host, port, table, target_size_bytes=67108864):
+    """
+    Queries Spark Thrift Server for Iceberg table file metrics.
+    Retrieves total file count, total size, and candidate small files (< target_size_bytes).
+    """
     if not PYHIVE_AVAILABLE:
-        return {"frag_file_count": 0, "table_size_mb": 0.0}
+        return {"frag_file_count": 0, "candidate_small_files": 0, "table_size_mb": 0.0}
 
     try:
         conn = hive.Connection(host=host, port=port, username="ccbd")
         cursor = conn.cursor()
         cursor.execute(f"SELECT count(file_path), sum(file_size_in_bytes) FROM {table}.files")
         row = cursor.fetchall()[0]
-        cursor.close()
-        conn.close()
         count = row[0] if row[0] is not None else 0
         size_bytes = row[1] if row[1] is not None else 0
+
+        cursor.execute(f"SELECT count(file_path) FROM {table}.files WHERE file_size_in_bytes < {target_size_bytes}")
+        small_row = cursor.fetchall()[0]
+        small_files = small_row[0] if small_row[0] is not None else 0
+
+        cursor.close()
+        conn.close()
         return {
             "frag_file_count": int(count),
+            "candidate_small_files": int(small_files),
             "table_size_mb": float(size_bytes) / (1024.0 * 1024.0)
         }
     except Exception as e:
         print(f"[Telemetry] Metadata error: {e}")
-        return {"frag_file_count": 0, "table_size_mb": 0.0}
+        return {"frag_file_count": 0, "candidate_small_files": 0, "table_size_mb": 0.0}
+
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Phase 6A Data Collection Daemon")
+    parser = argparse.ArgumentParser(description="Phase 6A / 6.1B Data Collection Daemon")
     parser.add_argument("--table", type=str, default="local.tpch_sf100.lineitem", help="Target Iceberg table")
     parser.add_argument("--host", type=str, default="127.0.0.1", help="Spark Thrift Server host")
     parser.add_argument("--port", type=int, default=10000, help="Spark Thrift Server port")
     parser.add_argument("--duration-hours", type=float, default=4.0, help="Total test duration in hours")
     parser.add_argument("--output", type=str, default="results/phase6a_training_data.csv", help="Output CSV path")
+    parser.add_argument("--compaction-interval-minutes", type=float, default=45.0,
+                        help="Interval in minutes between training compactions to allow natural fragmentation sweep")
     return parser.parse_args()
+
 
 def main():
     args = parse_args()
-    
+
     if not PYHIVE_AVAILABLE:
         print("ERROR: PyHive is not available. Phase 6 data collection CANNOT run in simulation mode.")
         sys.exit(1)
@@ -185,32 +217,34 @@ def main():
 
     os.makedirs(os.path.dirname(args.output), exist_ok=True)
 
-    print(f"=== Starting Phase 6A Data Collection ===")
-    print(f"  Target Table:     {args.table}")
-    print(f"  Duration:         {args.duration_hours} hours")
-    print(f"  Output File:      {args.output}")
+    print(f"=== Starting Phase 6A / 6.1B Data Collection ===")
+    print(f"  Target Table:        {args.table}")
+    print(f"  Duration:            {args.duration_hours} hours")
+    print(f"  Compaction Interval: {args.compaction_interval_minutes} minutes")
+    print(f"  Output File:         {args.output}")
 
     trace_mapper = GoogleTraceMapper(test_duration_hours=args.duration_hours)
     read_driver = WorkloadDriver(host=args.host, port=args.port, table=args.table, trace_mapper=trace_mapper)
     write_driver = WriteDriver(host=args.host, port=args.port, table=args.table, trace_mapper=trace_mapper)
 
-    # Write CSV Header
+    # Write CSV Header (18 columns)
     out_dir = os.path.dirname(args.output)
     if out_dir:
         os.makedirs(out_dir, exist_ok=True)
     header = ("timestamp,elapsed_s,cpu_util_pct,cpu_util_avg_1min,cpu_util_avg_5min,cpu_trend,"
-              "mem_used_pct,disk_io_read_bytes,disk_io_write_bytes,frag_file_count,table_size_mb,"
-              "avg_file_size_kb,intensity,compaction_active,query_latency_ms,query_latency_during_compaction_ms\n")
+              "mem_used_pct,disk_io_read_bytes,disk_io_write_bytes,frag_file_count,candidate_small_files,"
+              "table_size_mb,avg_file_size_kb,intensity,compaction_active,query_id,"
+              "query_latency_ms,query_latency_during_compaction_ms\n")
     with open(args.output, "w") as f:
         f.write(header)
 
     start_time = time.time()
     max_test_seconds = args.duration_hours * 3600.0
-    
+
     read_driver.start(start_time)
     write_driver.start(start_time)
 
-    cpu_history = deque(maxlen=300) # 5 minutes at 1Hz
+    cpu_history = deque(maxlen=300)  # 5 minutes at 1Hz
     disk_io_initial = psutil.disk_io_counters()
 
     compaction_active = False
@@ -247,43 +281,45 @@ def main():
             # --- Telemetry Collection ---
             cpu_pct = psutil.cpu_percent(interval=None)
             cpu_history.append(cpu_pct)
-            
+
             cpu_1min = np.mean(list(cpu_history)[-60:]) if len(cpu_history) > 0 else cpu_pct
             cpu_5min = np.mean(cpu_history) if len(cpu_history) > 0 else cpu_pct
             cpu_trend = cpu_1min - cpu_5min
-            
+
             mem_pct = psutil.virtual_memory().percent
-            
+
             disk_io = psutil.disk_io_counters()
             disk_read = disk_io.read_bytes - disk_io_initial.read_bytes
             disk_write = disk_io.write_bytes - disk_io_initial.write_bytes
 
-            # Fetch table metadata (expensive, but necessary. At 1Hz it might take 100-200ms)
+            # Fetch table metadata (total files, candidate small files, size)
             table_metadata = fetch_table_metadata(args.host, args.port, args.table)
             frag_count = table_metadata["frag_file_count"]
+            small_count = table_metadata.get("candidate_small_files", 0)
             table_size = table_metadata["table_size_mb"]
             avg_file_kb = (table_size * 1024.0 / frag_count) if frag_count > 0 else 0.0
 
-            # Get completed query latency (if any)
-            lat_ms = read_driver.pop_latency()
-            
+            # Get completed query latency and query_id (if any)
+            qid, lat_ms = read_driver.pop_latency()
+
             lat_compaction = lat_ms if compaction_active else np.nan
             lat_normal = np.nan if compaction_active else lat_ms
+            qid_str = f"{int(qid)}" if not np.isnan(qid) else ""
 
-            # --- Trigger Compaction (Every 5 mins) ---
-            # 5 mins = 300 seconds
-            if elapsed_s - last_compaction_time >= 300.0 and elapsed_s > 60.0:
+            # --- Trigger Compaction (Configurable Wide Sweep Interval) ---
+            compaction_interval_s = args.compaction_interval_minutes * 60.0
+            if elapsed_s - last_compaction_time >= compaction_interval_s and elapsed_s > 60.0:
                 if not compaction_active:
                     compaction_active = True
                     last_compaction_time = elapsed_s
                     compaction_thread = threading.Thread(target=run_compaction, daemon=True)
                     compaction_thread.start()
 
-            # --- Logging ---
+            # --- Logging (18 columns matching header) ---
             with open(args.output, "a") as f:
                 f.write(f"{t_now_str},{elapsed_s:.1f},{cpu_pct:.1f},{cpu_1min:.1f},{cpu_5min:.1f},{cpu_trend:.1f},"
-                        f"{mem_pct:.1f},{disk_read},{disk_write},{frag_count},{table_size:.1f},"
-                        f"{avg_file_kb:.1f},{intensity:.3f},{compaction_active},"
+                        f"{mem_pct:.1f},{disk_read},{disk_write},{frag_count},{small_count},{table_size:.1f},"
+                        f"{avg_file_kb:.1f},{intensity:.3f},{compaction_active},{qid_str},"
                         f"{lat_normal:.1f},{lat_compaction:.1f}\n")
 
             # Sleep to maintain ~1Hz tick rate
@@ -296,7 +332,8 @@ def main():
     finally:
         read_driver.stop()
         write_driver.stop()
-        print(f"=== Finished Phase 6A Data Collection ({args.output}) ===")
+        print(f"=== Finished Phase 6A / 6.1B Data Collection ({args.output}) ===")
+
 
 if __name__ == "__main__":
     main()
