@@ -113,3 +113,7 @@ fresh cohort before any restart; no weakened age gate or failed labels.
 
 Recovery3registered after lock-order/pre-dispatch audit; syntax/rawregression gate
 then immutable launch. Same strict2s age/no-padding/task/results/layout gates.
+
+17:25UTC recovery3baselinepassed strictfreshness/physical/raw;compact_now02running.
+Submission repair validated once; maintenance/32file/cohort/model gates still pending.
+Small receipts mirrored; avoid heavy fit/backup while collector active.

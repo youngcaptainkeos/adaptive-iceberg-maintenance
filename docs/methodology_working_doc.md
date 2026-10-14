@@ -1562,3 +1562,21 @@ submission behavior not yet validated. Log
 results/sf1_overnight_recovery3_cohort_20261015_launch.log, matching cohort progress/
 audits and raw arms sf1_overnight_recovery3_20261015_01..18. Firstcheck22:45IST,
 fullestimate03:00–04:00IST if healthy; cutoffs unchanged. No learned-model fit.
+
+## 29. Serialized preparation first live baseline passes
+
+At17:25UTC coordinator1177256active; recovery3baseline01passed physical+independent
+frozen raw audit, strict2s telemetry age unchanged.1478offered,506dispatched and
+ultimately completed,972queued final. Actual boundary observer73.220066ms late:
+505completed/1dispatched/971queued/1offered at that recorded census. These census
+counts are not an exact-time completion count or throughput winner. No request
+thinned; in-flight finished naturally. compact_now02running since17:13:56UTC.
+Live submission serialization now passed once; maintenance/archive/32file paths
+still require their own actual gates. No family-independent model fit/calibration.
+ResultSHA15bda7ede5e00397a650fe35174a1479797d8b248f41afa57e0cf212424b938f;
+eventsSHA2c10774a71162efb9433eb61a98951fcf944cde056b06f116fd68c7cdeafb1b2;
+frozen auditSHA479ded45a36f2cca033ebbf46caf7b9f48b152412501b884bbc88f010aff4e1c.
+Small immutable result/audit receipts mirrored matching hashes; bulk evidence/bytes
+wait until no active query collection. All prior failed counts remain unchanged.
+Next inspect current action-arm raw gate before further export/fit. No heavy fit
+or second collector started concurrently, no service/table stopped or deleted.

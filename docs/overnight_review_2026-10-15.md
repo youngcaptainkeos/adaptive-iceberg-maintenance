@@ -193,3 +193,15 @@ All26unitSHA256 agree; actual recovery01raw regression passed. Log
 results/sf1_overnight_recovery3_cohort_20261015_launch.log; firstcheck22:45IST,
 fullestimate03:00–04:00IST subject strict gates. No new arm/model accepted yet.
 Nextwake activeinspection/rawaudit first; no concurrent physical run/heavyfit.
+
+## Recovery3 first live submission contract success
+
+17:25UTC PID1177256alive, baseline01passed physical/frozen raw including strict2s
+freshness.1478offered/506finalcompleted/972queued; actual73.220066ms-late boundary
+census505completed/1dispatched/971queued/1offered, not exact-horizon count claim.
+compact_now02active since17:13:56UTC. ResultSHA
+15bda7ede5e00397a650fe35174a1479797d8b248f41afa57e0cf212424b938f;
+eventsSHA2c10774a71162efb9433eb61a98951fcf944cde056b06f116fd68c7cdeafb1b2;
+auditSHA479ded45a36f2cca033ebbf46caf7b9f48b152412501b884bbc88f010aff4e1c.
+Result/audit mirrored matching hashes; full raw/byte transfer deferred until
+physical collection inactive. All failed prior attempts unchanged; no model fit.
