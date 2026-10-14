@@ -47,7 +47,7 @@ correctness; 03:30–05:45 next ready validation/collection; 05:45–06:15 audit
 Legacy collector/evaluator/reset/launchers remain blocked until explicitly repaired.
 No publication-readiness or forecasting claim follows from a correctness pilot.
 
-## Current queue state (05:34 IST)
+## Current queue state (05:45 IST)
 
 - Completed bounded event/telemetry primitives and real 60-second pre-query windows.
 - Completed isolated verified SF1 source preparation and repaired query/rewrite pilot.
@@ -99,10 +99,12 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
 - Q0 passed real pre-action window binding and 0.304s task exposure; physical
   rows/results preserved and raw/export packages mirrored. Older immutable inventory
   stays distinct from fresh current-state proof.
-- Running strengthened Q2 pilot, worker3 PID408414, execution7b69a6b;
-  `results/sf1_matched_q2_20261014/` and matching launch log/receipt. Requires
-  actual refresh/current snapshot/file inventory immediately before action and
-  metadata freshness, alongside prior window/task/conservation gates. Audit first.
+- Q2 strengthened fresh pre-action pilot passed: refreshed current snapshot/file
+  inventory, actual RPC metadata freshness, raw 60/300 windows, verified task
+  overlap and exact row/result conservation. Raw/export mirrored, all hashes equal.
+  Four measured query rows plus one decision context; still diagnostic-only.
+- Preregister unchanged Q3 aggregation with identical strengthened gates/new table.
+  Launch only after audit/code sync and no active own work/Spark jobs.
 - Next after this gate: broaden independent matched episodes/queries/layouts and
   training export schema; one matched point is not a variance/training corpus. Do not train cost
   models on this correctness pilot or silently use partial/cluster data as SQL demand.

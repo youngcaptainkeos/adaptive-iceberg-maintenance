@@ -1,0 +1,90 @@
+{
+  "schema_version": "fresh_pre_action_matched_measurement_review_v1",
+  "status": "accepted_matched_measurement_integrity_only",
+  "table": "local.experiment.integrity_matched_q2_20261014",
+  "original": {
+    "table": "local.experiment.integrity_matched_q2_20261014",
+    "snapshot_id": 5642900526762201413,
+    "snapshot_measurement_id": "1bb85c8fe0b1492890fdbf3aabd85ebe",
+    "file_inventory_measurement_id": "4ba30e4f65994f308f929e89b7bc58e4",
+    "file_state": {
+      "file_count": 16,
+      "record_count": 6001215,
+      "total_bytes": 164550027
+    }
+  },
+  "compacted": {
+    "table": "local.experiment.integrity_matched_q2_20261014",
+    "snapshot_id": 7801199047025445571,
+    "snapshot_measurement_id": "d670f2b2b46d4538a66260ec4f923244",
+    "file_inventory_measurement_id": "0a0535f1f0d84324acc229ff903b9522",
+    "file_state": {
+      "file_count": 1,
+      "record_count": 6001215,
+      "total_bytes": 163892210
+    }
+  },
+  "decision_checks": [
+    {
+      "measurement_id": "c56d9da03c924569b113e1f7806f3239",
+      "role": "maintenance",
+      "snapshot_id": 5642900526762201413,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    }
+  ],
+  "metadata_age_at_actual_rpc_seconds": 0.223563061,
+  "positive_task_overlap_seconds": [
+    0.4940001964569092
+  ],
+  "multiset_difference_count": 0,
+  "all_raw_and_export_file_hashes_match_worker3": true,
+  "file_sha256": {
+    "results/sf1_matched_q2_20261014": {
+      "code/engine_overlap.py": "ce2d8d9ccb0c1cf486e7ff86b39d2a737450747ebdee9b70297a07d8cd475109",
+      "code/experiment_validation.py": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4",
+      "code/physical_measurements.py": "2c9f811ad095d6c386b50216c3f0428018f68f6a734fafb8514e2078f6112da1",
+      "code/query_observation_binding.py": "eedd836f4d5b2ff5b5c1a60270c102e247da61f11697190438ec3dc197ad109d",
+      "code/run_correctness_pilot.py": "de622efc4df5f4955440a81d8bc2c2b0d2a898d1ae740549f35a5901e23e74c7",
+      "code/run_matched_measurement_pilot.py": "6030e260350fa6d47d1d1fa017d34c95c2f7aee386a359a77a74186b634c86e0",
+      "code/statement_timing.py": "b30ea58ab27518bf3fe8494015c47dea40ea5cc4e2c88774b4489f0af5efadab",
+      "code/telemetry_binding.py": "81b943944f021f0d50dd9d0b1274d1c9f9851e7760160f7b7e025aeb4d73dfea",
+      "config.json": "de6fcd58bbbcee70b8056bfb6b36921dfa1901cce13930f1d5e10a7236287c74",
+      "events.jsonl": "fcba244ac5901557bb17395b0b841f241e8ed05a2c881e4188aa7e54a867594f",
+      "result.json": "6c8027af982f0cf00c39f4e51a6c3181f27d7c69686485ca4371c01483d6b2c0"
+    },
+    "results/matched_q2_observation_export_20261014": {
+      "decision_observations.json": "7110cdcdcf70c16cf6808b8fda2c87758e6746d057666e05eb52f1975d3f1efe",
+      "export_code.py": "9695b5a786db25a3a2d1c91e8a2058681878ae02cc1caeea81be3584f260b592",
+      "export_record.json": "a8bbe028026beae7210987889c9568173b0d3b4752ff8f5fd34c85d257c3e723",
+      "query_observations.csv": "6e359ce8ebb860023f808f024decb61bb17af161626352a68cedfb1a5003acbe",
+      "source_config.json": "de6fcd58bbbcee70b8056bfb6b36921dfa1901cce13930f1d5e10a7236287c74",
+      "source_result.json": "6c8027af982f0cf00c39f4e51a6c3181f27d7c69686485ca4371c01483d6b2c0"
+    }
+  },
+  "export": {
+    "pre_action_observation_count": 1,
+    "schema_version": "diagnostic_physical_query_observations_v1",
+    "status": "exported_bound_measurements_only",
+    "origin": "physical_spark_iceberg_verified_sf1",
+    "row_count": 4,
+    "source_result_sha256": "6c8027af982f0cf00c39f4e51a6c3181f27d7c69686485ca4371c01483d6b2c0",
+    "source_events_sha256": "fcba244ac5901557bb17395b0b841f241e8ed05a2c881e4188aa7e54a867594f",
+    "export_code_sha256": "9695b5a786db25a3a2d1c91e8a2058681878ae02cc1caeea81be3584f260b592",
+    "observations_sha256": "6e359ce8ebb860023f808f024decb61bb17af161626352a68cedfb1a5003acbe",
+    "code_revision_of_physical_run": "7b69a6be0bdd00e7ecc81104582f679883fba762",
+    "scope": "Four actual probe observations from one matched episode. Fractions/bytes/monotonic durations preserved; no imputed intensity/small-file eligibility, split labels, future state, counterfactual cost or training approval. Old trainer schema intentionally incompatible.",
+    "limitations": [
+      "One query/one physical rewrite, not variance or statistical/cost/model approval",
+      "Controlled benchmark layout, not natural fragmentation or trace replay",
+      "Host background/cache/time trends recorded only through counters; matched snapshots alone are not a causal guarantee",
+      "REST/logging observation overhead differs during maintenance; no idle-host or pure CPU-execution claim",
+      "No intensity/small-file eligibility/forecast feature invented or training export"
+    ]
+  },
+  "scope": "One Q2 episode with real fresh pre-action snapshot/inventory and windows. No causal/statistical/training/model/scheduling acceptance."
+}

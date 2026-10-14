@@ -861,3 +861,21 @@ Actual filesystem inspection: warehouse path `/mnt/nfs-storage` is **ext4 on
 /dev/sdb** on this worker, despite its directory name. Do not assume network NFS
 semantics from the path. Host aggregate block-device counters still are not query-
 specific I/O; raw Spark task/file evidence remains separate.
+
+### 05:45 IST onward: Q2 fresh-state gate passed, Q3 preregistered
+
+Q2 ended naturally; the local exporter independently reconstructed raw statement
+timing, actual telemetry windows/frontiers, snapshot/file metadata and rewrite/task
+evidence. Fresh inventory age at actual maintenance RPC was
+**0.223563s**, within declared two-second gate.
+16→1 files, exact 6,001,215 rows and query results preserved, zero multiset difference.
+Treatment task-lifetime overlap **0.494000196s**;
+controls and compacted probe had none. Four query records and one separate real
+pre-action context exported. Raw/export packages mirrored with every file hash
+matching worker3; evidence `matched_q2_validation_2026-10-14.json`.
+
+Preregister Q3 existing aggregation unchanged, new isolated table/output, all
+fresh-state/window/exposure/conservation gates retained. No extra generated load,
+slowed SQL or invented intensity. This covers the fourth query type only, not
+independent repetitions or workload/layout diversity. No cost training authorized
+by these diagnostics. Audit its raw result before proceeding; preserve failures.

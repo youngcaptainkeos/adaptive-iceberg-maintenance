@@ -1,0 +1,52 @@
+{
+  "purpose": "physical_matching_and_feature_integrity_only",
+  "source": {
+    "path": "../../datasets/tpch/sf1/lineitem.tbl",
+    "sha256": "96d555e07a1ae8cf5196387d9edd9427f9af70c56fa5f4b18affee5555ddb184"
+  },
+  "generator_provenance": {
+    "path": "../../datasets/tpch/sf1/manifest.txt",
+    "sha256": "d2d80966fe1fa8790c35ea3ed6242b4d9ef2740cad888c84bd986348e9c39a32"
+  },
+  "engine": {
+    "host": "127.0.0.1",
+    "port": 10000,
+    "username": "ccbd",
+    "expected_version": "3.3.4"
+  },
+  "spark_rest_url": "http://127.0.0.1:4040",
+  "spark_app_id": "local-1791896695889",
+  "rest_timeout_seconds": 5,
+  "schema_version": "matched_snapshot_measurement_pilot_v1",
+  "experiment_id": "sf1_matched_q3_20261014",
+  "configuration_rationale": "Extend matched coverage to unchanged existing Q3 aggregation query on a new verified SF1 clone. Preserve all feature/snapshot/result/row/task gates; no slowed SQL, load generation, inferred intensity, file growth or fake measurements. First refresh the actual client catalog state and record new current snapshot/file-inventory statements just before maintenance, require original state unchanged, bind them and the explicit pre-action windows to the actual maintenance UUID. Metadata age at actual RPC must be at most the declared two seconds, same operational freshness scale as the observer; no stale warmup-time inventory substituted for action state. Short query may miss exposure; preserve/refuse that result. One episode, not variance, causal benefit, trained costs or scheduling acceptance. Atomic binpack/polling/06:15 IST cutoff unchanged.",
+  "preparation_result": {
+    "path": "../../results/sf1_source_integrity_20261014_0024/result.json",
+    "sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57"
+  },
+  "destination_table": "local.experiment.integrity_matched_q3_20261014",
+  "output_directory": "../../results/sf1_matched_q3_20261014",
+  "rewrite_options": {
+    "partial-progress.enabled": "false"
+  },
+  "telemetry": {
+    "interval_seconds": 1,
+    "window_seconds": [
+      60,
+      300
+    ],
+    "warmup_seconds": 305,
+    "max_interval_seconds": 2,
+    "max_age_seconds": 2,
+    "minimum_coverage_fraction": 0.95,
+    "rationale": "One-second real host counter cadence, five-minute warmup plus five-second margin; retain existing 95% coverage and two-second gap/freshness gates. Exact bounds/available frontier and actual submission freshness are independently checked. No normalized demand assumed."
+  },
+  "layout": "repartition_to_verified_source_file_count",
+  "query_id": 3,
+  "no_new_operation_after_utc": "2026-10-14T00:45:00+00:00",
+  "poll_interval_seconds": 0.1,
+  "engine_start_observation_seconds": 60,
+  "decision_feature_contract": "pre_action_windows_v1",
+  "decision_state_contract": "fresh_current_original_snapshot_v1",
+  "metadata_max_age_seconds": 2
+}
