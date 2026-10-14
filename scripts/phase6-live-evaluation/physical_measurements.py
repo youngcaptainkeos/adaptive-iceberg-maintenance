@@ -229,6 +229,31 @@ class TelemetrySampler:
                     memory_used_fraction=ordered_sum(w*(s['total_memory_bytes']-s['available_memory_bytes'])/s['total_memory_bytes']
                                              for w,s in zip(weights,samples))/covered)
 
+    def wait_for_available_sample(self, *, deadline_ns, max_age_seconds, measurement_id):
+        """Wait for a real durable fresh sample; preserve elapsed wait and debt.
+
+        No synthetic sample, history repair, SQL retry, or relaxed gap gate.
+        Caller must not hold the log lock: sampler publishes only after fsync.
+        """
+        started=stamp();waited=False;initial_end=None
+        while time.monotonic_ns()<deadline_ns:
+            if self.failure:raise ValidationError(f'Telemetry failed: {self.failure}')
+            with self.lock:last=self.samples[-1]['end']['monotonic_ns'] if self.samples else None
+            if initial_end is None:initial_end=last
+            now=time.monotonic_ns()
+            if last is not None and 0<=(now-last)/1e9<=max_age_seconds:
+                if waited:self.log.emit('query_telemetry_availability_wait',measurement_id=measurement_id,
+                                        started=started,ended=stamp(),initial_available_sample_end_ns=initial_end,
+                                        actual_available_sample_end_ns=last,deadline_monotonic_ns=deadline_ns,
+                                        outcome='actual_fresh_durable_sample_available')
+                return True
+            waited=True
+            self.stop_event.wait(min(self.interval,max(0,(deadline_ns-now)/1e9)))
+        self.log.emit('query_telemetry_availability_wait',measurement_id=measurement_id,
+                      started=started,ended=stamp(),initial_available_sample_end_ns=initial_end,
+                      deadline_monotonic_ns=deadline_ns,outcome='horizon_reached_request_retained_queued')
+        return False
+
     def stop(self):
         # Stops only our observer thread, never a database operation/service.
         self.stop_event.set()

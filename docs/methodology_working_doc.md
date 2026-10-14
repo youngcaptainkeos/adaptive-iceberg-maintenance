@@ -1637,3 +1637,27 @@ Candidate export launched worker3nohupPID1261960 at18:19UTC; log
 results/physical_cost_candidates_recovery3_20261015_launch.log. Estimated check
 within5minutes/nextheartbeat.63f025bHEAD/5intendedSHA matched hosts. No physical
 collector active; no accepted export result yet, independent roundtrip next.
+
+## 33. Verified fuller-history candidates and real-sample availability contract
+
+Worker3 independent roundtrip passed:1524query/2rewrite/3episode rows,772queries
+with actual complete300s offered history. All failures/unattempted retained; one
+connected sourcefamily still blocks independent fit/calibration. Export package
+results/physical_cost_candidates_recovery3_20261015; independent_verification.json
+and verifierlog results/physical_cost_candidates_recovery3_verification_20261015.log.
+VerifiernohupPID1269964completed. Full package mirror still pending.
+
+Opt-in wait_for_real_durable_sample_v1: wait outside log lock at existing sampler
+cadence for actual fsync-published sample before window preparation/after realSQL
+refresh; stop at original horizon, leave requestqueued, save start/end/sample/wait
+outcome. No fakewarmup, featureimputation, timeline compression, relaxed2s gap/age
+or retry of physical query. Windows still pass full strict verification; delayed
+samples causing actualgap failure remain failure. Historical failure occurred
+17:53:01 beforemidpoint archive17:57, so archive alone is not established cause.
+
+Registered12fresh recovery4episodes: remaining two disjointsourcefamilies ×16/32
+layouts ×three arms, original order from remaining matrix. Retain completedsource0
+matchedgroup rather than repeat identical pilots. Enables planned chronological
+three-family candidate comparison if collection passes; source0/32cell remains
+missing. No model/power/calibration claim. Fresh immutablelaunch after worker3
+syntax/rawregression/registrationSHA; all prior failures unchanged.

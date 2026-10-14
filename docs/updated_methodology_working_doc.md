@@ -340,3 +340,7 @@ Successful3arm export registered with all failure inventories; no32file acceptan
 or independent fit/calibration claim. Sampler diagnosis/availability repair next.
 
 Real3arm candidate export nohupPID1261960 launched; nextcheck5min/rawroundtrip.
+
+Section33 new1524query/2rewrite candidates independently verified,772full300s
+historyrows/onefamily. Real-durable-sample wait implemented; fresh12episode remaining
+source1/2matrixregistered, retaining passedsource0group. No fit/calibration yet.

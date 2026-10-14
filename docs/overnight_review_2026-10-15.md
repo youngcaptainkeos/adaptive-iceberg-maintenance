@@ -237,3 +237,9 @@ export/rawroundtrip and sampler availability diagnosis before physical restart.
 ExportPID1261960nohup launched18:19UTC; log
 results/physical_cost_candidates_recovery3_20261015_launch.log. Checkwithin5min or
 nextwake, then independent rawroundtrip.63f025bHEAD/5intendedSHA matched hosts.
+
+Candidate roundtrippassed1524queries/2rewrites/3episodes,772full300shistoryrows,
+onefamily. VerifierPID1269964completed. Availabilitywait real durable samples/no
+horizonextension/noSQLretry/unchangedgap-agegates implemented. Recovery4registered
+12fresh remaining source1/2×16/32×threearms, retainpassedsource0/16group, source0/32
+missing. Next server syntax/rawregression and immutablelaunch; fit still pending.

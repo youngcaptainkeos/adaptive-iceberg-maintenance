@@ -128,3 +128,8 @@ registered diverse collection; independent sourcefamily fit gates pending.
 18:15UTC recovery3stopped3/1/14 onfreshsampleavailability. Register/export verified
 three-arm group, retainallfailedinventories; independentfit still blocked. Diagnose
 availability/wait contract before fresh physical unit; no blind identicalretry.
+
+Recovery4remaining12episodes registered forsource1/2layouts16/32; retain already
+passedsource0group. Real-sample availabilitywait (not gap/age relaxation) needs
+syntax/rawregression then livevalidation. Newexportroundtrippassed772full300shistory
+rows butonefamilystillblocksfit. Mirrorpackage onceinactive before fit.

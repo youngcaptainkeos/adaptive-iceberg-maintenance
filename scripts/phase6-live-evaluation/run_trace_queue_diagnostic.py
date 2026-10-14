@@ -217,10 +217,14 @@ def run(config,revision):
             except queue.Empty:break
             if time.monotonic_ns()>=hi:break
             guard();identity=r['source_query_id'];mid=identities[identity];qid=int(r['query_id']);t=cfg['telemetry']
+            if cfg.get('telemetry_availability_contract')=='wait_for_real_durable_sample_v1':
+                if not sampler.wait_for_available_sample(deadline_ns=hi,max_age_seconds=t['max_age_seconds'],measurement_id=mid):break
             windows=[sampler.window(seconds=w,max_interval_seconds=t['max_interval_seconds'],max_age_seconds=t['max_age_seconds']) for w in t['window_seconds']]
             with state_lock:query_state=state
             if arm and query_snapshot!=query_state['snapshot_id']:
                 guard();rec.execute(query,f'REFRESH TABLE {table}',role='query_session_state_refresh');query_snapshot=query_state['snapshot_id']
+                if cfg.get('telemetry_availability_contract')=='wait_for_real_durable_sample_v1':
+                    if not sampler.wait_for_available_sample(deadline_ns=hi,max_age_seconds=t['max_age_seconds'],measurement_id=mid):break
                 windows=[sampler.window(seconds=w,max_interval_seconds=t['max_interval_seconds'],max_age_seconds=t['max_age_seconds']) for w in t['window_seconds']]
             if time.monotonic_ns()>=hi:break
             sql=query_templates(table)[qid].replace(f'FROM {table}',f"FROM {table} VERSION AS OF {query_state['snapshot_id']}")
