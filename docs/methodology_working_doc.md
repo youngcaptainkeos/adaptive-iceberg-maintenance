@@ -1867,3 +1867,11 @@ Sourceoverlapscurrenttestfamily2 so notnewindependenttest/calibration; crossvers
 16vs32comparisonconfounded. Negativefit preserved. Episodecutoff04:45IST/SQL05:15
 unchanged; reserveaftercompletionforrawaudit/mirror and morningreview. Next immutable
 worker3launchafterregistration/headSHAchecks; actualbranchmustbeobservedtoclaimvalid.
+
+32filegroupnohup launched21:57UTC/03:27IST, PID1486932confirmed alive. Frozen
+/tmp/capstone_layout32_runtime_20261015 at
+1fa3d3da9649e157dc2155ec5180f34103340133;8registrationfileSHA/HEADagreehosts.
+Log results/sf1_layout32_validation_cohort_20261015_launch.log; matchingprogress/
+audits andarms sf1_layout32_validation_20261015_01..03. Firstcheck03:50IST, group
+estimated04:20–04:30ISTsubjectrawgates. Noacceptednewlayout/deferralbranchatlaunch.
+No heavycopy/fitting concurrent; finishinflightnaturally/cutoffs unchanged.

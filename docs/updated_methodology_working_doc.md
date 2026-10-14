@@ -391,3 +391,6 @@ realwait opt-in; raw chronology/sourcebinding added, gatesunchanged. Livepathpen
 
 Section43 fresh32filethree-armdiagnosticregistered forlive layout/submissionpath,
 allgates/cutoffsunchanged. Source2overlap notindependentfuturetest; no modelrefit.
+
+32filematchedgroupnohupPID1486932alive, immutable1fa3d3d/8SHAagree. Firstcheck03:50,
+fullestimate04:20–04:30ISTsubjectgates; no modeltuningor acceptedlivebranchyet.

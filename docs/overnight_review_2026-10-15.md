@@ -329,3 +329,9 @@ Freshsf1_layout32_validation3armgroupregistered21:55UTC afterpassedhistoricalraw
 regression/idleSpark. Source2realwindow32files, baseline/now/later, freshtableIDs,
 newsubmissiondeferralcontract/allstrictgates. Notnewindependenttest/calibration;
 currentfitnegativeunchanged. NextSHAimmutablelaunch, expected~50minruntime.
+
+32filegrouplaunched21:57UTC/03:27ISTnohupPID1486932confirmed, frozen
+/tmp/capstone_layout32_runtime_20261015 at1fa3d3da9649e157dc2155ec5180f34103340133;
+8unitSHAagree. Log results/sf1_layout32_validation_cohort_20261015_launch.log;
+firstcheck03:50IST, fullestimate04:20–04:30IST. Allgates/cutoffsunchanged, no
+acceptedlayout/newdeferralbranchatlaunch; negativefitpreserved/noheavyfitconcurrent.
