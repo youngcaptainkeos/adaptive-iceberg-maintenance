@@ -1,6 +1,7 @@
 # Trace-driven benchmark queue implementation
 
-Status: pending server validation. No trace replay has run.
+Status: server compilation and real source mapping audit passed; the first
+physical diagnostic is running under nohup, with queue audit/results pending.
 
 `prepare_trace_benchmark_mapping.py` verifies the audited cohort receipt and
 source byte hashes, scans real arrivals, selects the first nonempty complete

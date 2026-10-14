@@ -265,3 +265,24 @@ and audit, original SF1 source receipt, four real query correctness ledgers,
 one FIFO client, unchanged telemetry gates and14:00 IST operational cutoff.
 All113 arrivals retained; any overload becomes measured residual queue. No
 maintenance, ingestion, accepted cost labels, fitted model or scheduler claim.
+
+### Actual queue diagnostic launch
+
+Final mapping-audit binding compiled on worker3 under nohup; no compile error and
+new bytecode confirmed. Registration/actual-source review published as
+b900c6beb7b18edbfeb1bafabf518168f2d6c77b, worker3 fast-forwarded; all four intended
+file hashes matched. Mapping package file hashes also matched locally/remotely.
+Prelaunch Spark jobs empty. Real one-client query diagnostic launched under nohup,
+PID527052 confirmed alive at06:21:36 UTC (11:51:36 IST), no startup error.
+Output `results/sf1_snowset_queue_diagnostic_20261014/`; corresponding launch log.
+Estimated check-in12:00–12:05 IST (305-second warmup,60-second original arrival
+window, natural active completion and raw task/audit overhead), not a guarantee.
+No completed replay/queue/cost claim yet. All113 offered arrivals remain in scope;
+remaining queued work is retained rather than drained after the fixed boundary.
+
+Next check: read final result/failure and PID, run frozen post-run raw audit under
+nohup after natural completion, mirror all files and verify hashes. Report offered,
+dispatched, completed-within/outside-boundary, queued/failed IDs, intake lateness,
+queue delays and actual service without claiming original SQL workload. Register
+common-horizon control/action collection only after this gate. No maintenance,
+model training/promotion, process shutdown or dataset deletion occurred.
