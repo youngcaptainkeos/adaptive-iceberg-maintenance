@@ -358,3 +358,7 @@ source1rawregressionpassed, liveindependentsamplingneedsaudit. Firstcheck01:20IS
 Section36 third disjointsourcefamily/liveindependentsamplingpassed.01source2later
 1501offered/528finalcompleted/973queued; baseline02running. Threefamilies enable
 possibleexploratorysplit afterexport, not calibrated/acceptedmodels. Receiptsmirrored.
+
+Section37 recovery5stopped2/1/8 onlock-acquisition telemetry freshness; allfailures
+preserved. Sixsuccessfulthree-family exportregistered;16fileonly/versionconfounding
+explicit. Prioritize independentroundtrip/exploratoryfit, no modelpromotion.

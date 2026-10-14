@@ -1,0 +1,70 @@
+{
+  "schema_version": "physical_cost_candidate_export_v1",
+  "successful_arm_results": [
+    {
+      "path": "../../results/sf1_overnight_recovery3_20261015_01/result.json",
+      "sha256": "15bda7ede5e00397a650fe35174a1479797d8b248f41afa57e0cf212424b938f"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery3_20261015_02/result.json",
+      "sha256": "661de18684bdd69aefb8c6539b34fab8ffa376c75fb20c2f108c879f2f959846"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery3_20261015_03/result.json",
+      "sha256": "b6e2acc4d03368e1788e3df7140e5203ba219a30159a89fe1a2995517414626d"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery4_20261015_01/result.json",
+      "sha256": "4ff9745e993a1fef90cdc02be05fe0959c522d5e437a6c873a7f5f117b2852e1"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery5_20261015_01/result.json",
+      "sha256": "72440a6724b661694ffc73dd8272a432f6ccf2859bcbafc4332ac529ae1c5293"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery5_20261015_02/result.json",
+      "sha256": "9346148b3470ef94d31fb79285bc996f8e24c4065712dc552ef6a9f64f8b2058"
+    }
+  ],
+  "attempt_inventories": [
+    {
+      "path": "../../results/sf1_common_horizon_cohort_20261014/result.json",
+      "sha256": "0440032e0ddcc0ed54bc4c9c47a80c2642a3a7ef007f32e20a58db92301aadb3"
+    },
+    {
+      "path": "../../results/sf1_long_common_horizon_cohort_20261014/result.json",
+      "sha256": "2012f59f1b2f0d2bf386d653d9afb20b02908218af7386f8550318ca100a2351"
+    },
+    {
+      "path": "../../results/sf1_overnight_cost_cohort_20261015/result.json",
+      "sha256": "22febe94069f18a1e00c7ad77cf942df9c2f8c7aeb576502e47e1ed1c7b7d7db"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery_cohort_20261015/result.json",
+      "sha256": "be778c35974fb836892c599f29dba6feb1ab89bba927c6dd7f563f44468ee613"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery2_cohort_20261015/result.json",
+      "sha256": "df200ec8ff7c02dc760c23eb213c22e4be2c3a6a9af9cb0c8b4272d847c84508"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery3_cohort_20261015/result.json",
+      "sha256": "73cb1b166f5d9fac08f0be2525c886f8bb06f1469bb2f2b55e2b898f2b12fd75"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery4_cohort_20261015/result.json",
+      "sha256": "18dc83169d9790563f88fa6bb4e4af001c47bf19d7e49bbb84e6dfd838851c67"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery5_cohort_20261015/result.json",
+      "sha256": "3af70b3f3afb95329ea281ce0ed7123f85282b7efa8242cb6c35983de2ade25a"
+    }
+  ],
+  "output_directory": "../../results/physical_cost_candidates_three_family_20261015",
+  "limitations": [
+    "Six successful whole ten-minute episodes, three source families, only16file original layout. No32file accepted and incomplete matched groups forsource1/2.",
+    "Actual telemetry persistence/preparation differs across sourcefamilies; instrument-version/time confounding limits generalization.",
+    "Registered exploratory trainfamilies0/1,testfamily2; no independent calibration or scheduler authorization.",
+    "Allfailed/unattempted inventories retained, no failedlabels, earlydemand missing."
+  ]
+}

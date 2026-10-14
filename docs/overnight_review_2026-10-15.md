@@ -273,3 +273,9 @@ export, calibrationblocked. ResultSHA72440a6724b661694ffc73dd8272a432f6ccf2859bc
 eventsSHA89f8df6e2d40c2572b7c2b42629860902e60d172d30afc6b1111b774a5e3afc7;
 auditSHA2f7368ecabf1ccb817b3e78e867da4af0022a870c3f0531301fea1c1a3fa01d2.
 Smallreceiptsmirrored;fullraw/export/fitafterinactivecollector. Priorfailuresunchanged.
+
+Recovery5stopped20:16:46UTC2passed/1failed/8unattempted, stale window underacquired
+preparationlock, nofailedquerylabel. Sixpassedepisodes now span3families/16fileonly.
+Threefamilyexportregistered SHA-bound/eightinventories, independentroundtrip then
+actualhashfitregistration. Version/timeconfounding/incompletematchedgroups explicit;
+no32file/modelcalibration/schedulerclaim. No activeSpark20:25UTC.

@@ -145,3 +145,7 @@ Passedsource0group/source1now retained, allfailuresunchanged. Regressionthenlaun
 19:55UTC source2firstarmpassed/liveindependentsamplingvalidatedonce. Threefamilies
 nowavailableinprinciple; aftercollectorstops exportallacceptedepisodes plusallfailed
 inventories, rawroundtrip thenpreregisteractualhashes/familysplit andexploratoryfit.
+
+20:25UTC recovery5stopped2/1/8 onlockedfreshness. Prioritize threefamily sixepisode
+export+independentroundtrip+registeredexploratoryfit now; no blindretry.16fileonly/
+incompletegroups/instrumentversionconfounding explicit. Physicalrepair remainsgate.

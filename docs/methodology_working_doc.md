@@ -1727,3 +1727,22 @@ auditSHA2f7368ecabf1ccb817b3e78e867da4af0022a870c3f0531301fea1c1a3fa01d2.
 Smallimmutable result/audit receipts mirrored; fullraw/exportroundtrip/fit wait for
 inactivecollector. Remaining32file/layout/sourcearms stillpending; all prior
 failed/unattempted counts unchanged. Next physical gates before dependentmodeljob.
+
+## 37. Recovery5 lock-acquisition freshness failure; three-family export milestone
+
+20:25UTC noactiveSpark/collector. Recovery5stopped20:16:46UTC2passed/1failed/
+8unattempted:03stale actualtelemetry inserializedprepare afterlockacquisition,
+noSQL submitted forfailedpreparation. Countergap/freshnessgates unchanged. Two
+passedsource2arms later/base each1501offered/528finalcompleted/973queued; baseline
+90.044346mslatecensus527completed/1dispatched/973queued. Failure/statuses retained.
+
+Prioritize complete export/verification/registered exploratoryfit of actualsuccessful
+sixepisodes acrosssource0/1/2 ratherthanblind physicalretry. Registered
+physical_cost_candidate_export_three_family_20261015.json SHA-binds sixresults and
+eighthistoricalattemptinventories, output matchingresults directory. Onlyoriginal
+16filelayout, incomplete source1/2matchedgroups, persistence/preparation version
+confoundedwithfamily/time: exploratoryevaluation only, no generalization/calibration/
+policyclaim. Source0/1train source2test andalpha1 preregistration unchanged. Primary
+latencyfit excludesincomplete demand histories, rewritefeaturesmeasuredonly.
+Next nohup export+independentroundtrip, actualhashfitregistration, failedfits saved.
+Telemetrylockavailability repair remains a futurephysicaldependency, not relaxed.
