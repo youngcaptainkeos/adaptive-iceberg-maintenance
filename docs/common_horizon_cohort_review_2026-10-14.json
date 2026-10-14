@@ -1,0 +1,434 @@
+{
+  "status": "audited_common_horizon_diagnostic_review",
+  "planned": 6,
+  "audited": 6,
+  "failures_preserved": [],
+  "unattempted": 0,
+  "episodes": [
+    {
+      "index": 1,
+      "experiment_id": "sf1_horizon_20261014_01",
+      "arm": "no_maintenance",
+      "comparison_group": "single_window",
+      "offered": 113,
+      "horizon_counts": {
+        "completed": 41,
+        "dispatched": 1,
+        "queued": 71
+      },
+      "final_counts": {
+        "completed": 42,
+        "queued": 71
+      },
+      "initial_file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "final_file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "maintenance": null,
+      "overlapped_query_count": 0,
+      "per_query_descriptive_metrics": {
+        "0": {
+          "observed_queries": 11,
+          "mean_actual_service_ms": 380.1984621818182,
+          "mean_queue_to_dispatch_ms": 11823.68340509091
+        },
+        "1": {
+          "observed_queries": 11,
+          "mean_actual_service_ms": 2465.6610125454545,
+          "mean_queue_to_dispatch_ms": 12211.256868909091
+        },
+        "2": {
+          "observed_queries": 10,
+          "mean_actual_service_ms": 455.9148413,
+          "mean_queue_to_dispatch_ms": 13338.9479937
+        },
+        "3": {
+          "observed_queries": 10,
+          "mean_actual_service_ms": 275.8518525,
+          "mean_queue_to_dispatch_ms": 13326.8198305
+        }
+      },
+      "boundary_observation_lateness_ms": 60.223925,
+      "events_sha256": "0dbcb9909d53db6bd13bdf18ef4daf03da9545701a2fd42c0910ef552eae4998"
+    },
+    {
+      "index": 2,
+      "experiment_id": "sf1_horizon_20261014_02",
+      "arm": "compact_now",
+      "comparison_group": "single_window",
+      "offered": 113,
+      "horizon_counts": {
+        "completed": 41,
+        "dispatched": 1,
+        "queued": 71
+      },
+      "final_counts": {
+        "completed": 42,
+        "queued": 71
+      },
+      "initial_file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "final_file_state": {
+        "file_count": 1,
+        "record_count": 6001215,
+        "total_bytes": 163892210
+      },
+      "maintenance": {
+        "measurement_id": "baa5f80dff9148d88f5339463ee128eb",
+        "registered_offset_ns": 0,
+        "actual_start_offset_ms": 430.872979,
+        "client_elapsed_ms": 13628.814834,
+        "completed_within_horizon": true,
+        "rewrite_result": {
+          "rewritten_data_files_count": 16,
+          "added_data_files_count": 1,
+          "rewritten_bytes_count": 164550027
+        },
+        "decision_observation_checks": [
+          {
+            "measurement_id": "baa5f80dff9148d88f5339463ee128eb",
+            "role": "maintenance",
+            "snapshot_id": 6181816332708075693,
+            "file_state": {
+              "file_count": 16,
+              "record_count": 6001215,
+              "total_bytes": 164550027
+            },
+            "windows_verified": 2
+          }
+        ]
+      },
+      "overlapped_query_count": 0,
+      "per_query_descriptive_metrics": {
+        "0": {
+          "observed_queries": 11,
+          "mean_actual_service_ms": 371.951906,
+          "mean_queue_to_dispatch_ms": 11657.741919636364
+        },
+        "1": {
+          "observed_queries": 11,
+          "mean_actual_service_ms": 2427.1068999090908,
+          "mean_queue_to_dispatch_ms": 11982.374388272727
+        },
+        "2": {
+          "observed_queries": 10,
+          "mean_actual_service_ms": 445.5820075,
+          "mean_queue_to_dispatch_ms": 13129.7449964
+        },
+        "3": {
+          "observed_queries": 10,
+          "mean_actual_service_ms": 270.5969631,
+          "mean_queue_to_dispatch_ms": 13113.4173011
+        }
+      },
+      "boundary_observation_lateness_ms": 61.478617,
+      "events_sha256": "38d05e8a243ffa0803e18267e4df5f3f20c69bd1ff944cd24c265b06a1b1c11b"
+    },
+    {
+      "index": 3,
+      "experiment_id": "sf1_horizon_20261014_03",
+      "arm": "compact_later",
+      "comparison_group": "single_window",
+      "offered": 113,
+      "horizon_counts": {
+        "completed": 41,
+        "dispatched": 1,
+        "queued": 71
+      },
+      "final_counts": {
+        "completed": 42,
+        "queued": 71
+      },
+      "initial_file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "final_file_state": {
+        "file_count": 1,
+        "record_count": 6001215,
+        "total_bytes": 163892210
+      },
+      "maintenance": {
+        "measurement_id": "fc0c6f66c1ae456e92396b7a96db4a2e",
+        "registered_offset_ns": 30000000000,
+        "actual_start_offset_ms": 30432.156665,
+        "client_elapsed_ms": 14891.93439,
+        "completed_within_horizon": true,
+        "rewrite_result": {
+          "rewritten_data_files_count": 16,
+          "added_data_files_count": 1,
+          "rewritten_bytes_count": 164550027
+        },
+        "decision_observation_checks": [
+          {
+            "measurement_id": "fc0c6f66c1ae456e92396b7a96db4a2e",
+            "role": "maintenance",
+            "snapshot_id": 1410639871762338255,
+            "file_state": {
+              "file_count": 16,
+              "record_count": 6001215,
+              "total_bytes": 164550027
+            },
+            "windows_verified": 2
+          }
+        ]
+      },
+      "overlapped_query_count": 14,
+      "per_query_descriptive_metrics": {
+        "0": {
+          "observed_queries": 11,
+          "mean_actual_service_ms": 382.758602,
+          "mean_queue_to_dispatch_ms": 12473.910622090909
+        },
+        "1": {
+          "observed_queries": 11,
+          "mean_actual_service_ms": 2529.567177,
+          "mean_queue_to_dispatch_ms": 12865.394222363637
+        },
+        "2": {
+          "observed_queries": 10,
+          "mean_actual_service_ms": 469.3152214,
+          "mean_queue_to_dispatch_ms": 13975.7008651
+        },
+        "3": {
+          "observed_queries": 10,
+          "mean_actual_service_ms": 278.0048306,
+          "mean_queue_to_dispatch_ms": 13966.9360997
+        }
+      },
+      "boundary_observation_lateness_ms": 1.113094,
+      "events_sha256": "48e829d6205bef35908966549cccdb61fab9cb3621a3d80179945e2da3912911"
+    },
+    {
+      "index": 4,
+      "experiment_id": "sf1_horizon_20261014_04",
+      "arm": "compact_later",
+      "comparison_group": "single_window",
+      "offered": 113,
+      "horizon_counts": {
+        "completed": 39,
+        "queued": 74
+      },
+      "final_counts": {
+        "completed": 39,
+        "queued": 74
+      },
+      "initial_file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "final_file_state": {
+        "file_count": 1,
+        "record_count": 6001215,
+        "total_bytes": 163892210
+      },
+      "maintenance": {
+        "measurement_id": "364b1ea9f6ba4c71a252dbd01b729ddc",
+        "registered_offset_ns": 30000000000,
+        "actual_start_offset_ms": 30366.665903,
+        "client_elapsed_ms": 14567.748699,
+        "completed_within_horizon": true,
+        "rewrite_result": {
+          "rewritten_data_files_count": 16,
+          "added_data_files_count": 1,
+          "rewritten_bytes_count": 164550027
+        },
+        "decision_observation_checks": [
+          {
+            "measurement_id": "364b1ea9f6ba4c71a252dbd01b729ddc",
+            "role": "maintenance",
+            "snapshot_id": 993989349039412743,
+            "file_state": {
+              "file_count": 16,
+              "record_count": 6001215,
+              "total_bytes": 164550027
+            },
+            "windows_verified": 2
+          }
+        ]
+      },
+      "overlapped_query_count": 13,
+      "per_query_descriptive_metrics": {
+        "0": {
+          "observed_queries": 10,
+          "mean_actual_service_ms": 403.6010644,
+          "mean_queue_to_dispatch_ms": 11640.7616488
+        },
+        "1": {
+          "observed_queries": 10,
+          "mean_actual_service_ms": 2534.5986422,
+          "mean_queue_to_dispatch_ms": 12065.3548525
+        },
+        "2": {
+          "observed_queries": 10,
+          "mean_actual_service_ms": 460.7622548,
+          "mean_queue_to_dispatch_ms": 14446.00045
+        },
+        "3": {
+          "observed_queries": 9,
+          "mean_actual_service_ms": 281.6937888888889,
+          "mean_queue_to_dispatch_ms": 13079.107230777778
+        }
+      },
+      "boundary_observation_lateness_ms": 60.22715,
+      "events_sha256": "eca45740c0b2fb2dbaa3a9b2392eb5f5176d0d4e42f3a8e32593b3237f3213b2"
+    },
+    {
+      "index": 5,
+      "experiment_id": "sf1_horizon_20261014_05",
+      "arm": "compact_now",
+      "comparison_group": "single_window",
+      "offered": 113,
+      "horizon_counts": {
+        "completed": 37,
+        "dispatched": 1,
+        "queued": 75
+      },
+      "final_counts": {
+        "completed": 38,
+        "queued": 75
+      },
+      "initial_file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "final_file_state": {
+        "file_count": 1,
+        "record_count": 6001215,
+        "total_bytes": 163892210
+      },
+      "maintenance": {
+        "measurement_id": "af05288a1ea74c21bd9be18277bf39b0",
+        "registered_offset_ns": 0,
+        "actual_start_offset_ms": 627.759181,
+        "client_elapsed_ms": 13531.064446,
+        "completed_within_horizon": true,
+        "rewrite_result": {
+          "rewritten_data_files_count": 16,
+          "added_data_files_count": 1,
+          "rewritten_bytes_count": 164550027
+        },
+        "decision_observation_checks": [
+          {
+            "measurement_id": "af05288a1ea74c21bd9be18277bf39b0",
+            "role": "maintenance",
+            "snapshot_id": 2986499457193374597,
+            "file_state": {
+              "file_count": 16,
+              "record_count": 6001215,
+              "total_bytes": 164550027
+            },
+            "windows_verified": 2
+          }
+        ]
+      },
+      "overlapped_query_count": 0,
+      "per_query_descriptive_metrics": {
+        "0": {
+          "observed_queries": 10,
+          "mean_actual_service_ms": 367.472004,
+          "mean_queue_to_dispatch_ms": 13205.8747184
+        },
+        "1": {
+          "observed_queries": 10,
+          "mean_actual_service_ms": 2447.9470851,
+          "mean_queue_to_dispatch_ms": 13568.8411365
+        },
+        "2": {
+          "observed_queries": 9,
+          "mean_actual_service_ms": 456.0707423333333,
+          "mean_queue_to_dispatch_ms": 14563.946852333334
+        },
+        "3": {
+          "observed_queries": 9,
+          "mean_actual_service_ms": 279.66251266666666,
+          "mean_queue_to_dispatch_ms": 14694.003961333334
+        }
+      },
+      "boundary_observation_lateness_ms": 59.283695,
+      "events_sha256": "1ee4c3c72cbca1440ce20a15be2a008924f82df266dee0dd838332f51607ea40"
+    },
+    {
+      "index": 6,
+      "experiment_id": "sf1_horizon_20261014_06",
+      "arm": "no_maintenance",
+      "comparison_group": "single_window",
+      "offered": 113,
+      "horizon_counts": {
+        "completed": 39,
+        "dispatched": 1,
+        "queued": 73
+      },
+      "final_counts": {
+        "completed": 40,
+        "queued": 73
+      },
+      "initial_file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "final_file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "maintenance": null,
+      "overlapped_query_count": 0,
+      "per_query_descriptive_metrics": {
+        "0": {
+          "observed_queries": 10,
+          "mean_actual_service_ms": 372.3335742,
+          "mean_queue_to_dispatch_ms": 11581.7338791
+        },
+        "1": {
+          "observed_queries": 10,
+          "mean_actual_service_ms": 2423.2920257,
+          "mean_queue_to_dispatch_ms": 11965.2407174
+        },
+        "2": {
+          "observed_queries": 10,
+          "mean_actual_service_ms": 449.4505939,
+          "mean_queue_to_dispatch_ms": 14294.7514467
+        },
+        "3": {
+          "observed_queries": 10,
+          "mean_actual_service_ms": 277.2502551,
+          "mean_queue_to_dispatch_ms": 14361.8391761
+        }
+      },
+      "boundary_observation_lateness_ms": 60.202864,
+      "events_sha256": "54c449dce6c56698c0d687bf9f8c42de6801c0fa9a95421febb40c5e2a9a7878"
+    }
+  ],
+  "common_completed_prefix_counts_by_window": {
+    "single_window": 37
+  },
+  "cost_training_accepted": false,
+  "automatic_winner_selected": false,
+  "cohort_result_sha256": "0440032e0ddcc0ed54bc4c9c47a80c2642a3a7ef007f32e20a58db92301aadb3",
+  "review_code_sha256": "467ccfc74ea13f981da7b447b7ba4a4900aad412f8b9c710a4f257fb4531f488",
+  "limitations": [
+    "Two episodes/arm is engineering completeness/variance screening, not statistical power, independent conformal calibration or accepted cost training.",
+    "One warehouse/minute, imposed benchmark mix and controlled SF1 fragmentation; no production SQL, ingestion or scale claim.",
+    "Reverse order reduces simple order imbalance but does not eliminate cache/time trends or shared-host dependence.",
+    "Equal logical content and file row/byte signature do not establish identical cache state or all physical locality.",
+    "Actual metadata/refresh/state-publication overhead and generator jitter measured; controller snapshot may lag commit.",
+    "Common-horizon residual queue and maintenance completion recorded separately; no arbitrary scalar weight or invented SLA.",
+    "No adaptive forecaster, trained cost model, oracle input, optimized deferral or scheduling benefit claim.",
+    "Service/queue summaries condition on dispatched work; unfinished arrivals retained separately, not omitted from offered denominator.",
+    "Completed-prefix matching is descriptive; shared time/cache and changing layouts do not identify individual counterfactual costs."
+  ]
+}

@@ -13,7 +13,11 @@ def run(config,revision):
     paths=[verified_file(spec,base) for spec in cfg['episodes']];settings=[json.loads(p.read_text()) for p in paths]
     require([c['action_arm'] for c in settings]==cfg['registered_order'] and len({c['experiment_id'] for c in settings})==len(settings) and len({c['destination_table'] for c in settings})==len(settings),'Order/unique episode registration differs')
     common=('mapping_record','mapping_audit','preparation_result','expected_query_ledgers','engine','spark_app_id','spark_rest_url','telemetry','client_count','boundary_rule','metadata_checkpoint_offsets_ns','no_new_operation_after_utc','decision_state_contract','metadata_max_age_seconds')
-    require(all(all(c[k]==settings[0][k] for k in common) for c in settings),'Different non-action conditions')
+    global_fields=tuple(k for k in common if k not in ('mapping_record','mapping_audit'))
+    require(all(all(c[k]==settings[0][k] for k in global_fields) for c in settings),'Different non-action global conditions')
+    groups={}
+    for c in settings:groups.setdefault(c.get('comparison_group','single_window'),[]).append(c)
+    for members in groups.values():require(all(all(c[k]==members[0][k] for k in common) for c in members),'Different offered work within matched window group')
     lock=(repo/'results'/'.common_horizon_cohort.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     out=(base/cfg['output_directory']).resolve();out.mkdir(parents=True,exist_ok=False);shutil.copy2(config,out/'config.json');code=out/'code';code.mkdir()
     dependencies=('run_common_horizon_cohort.py','run_trace_queue_diagnostic.py','common_horizon_binding.py','offered_queue_ledger.py','prepare_trace_benchmark_mapping.py','physical_measurements.py','experiment_validation.py','statement_timing.py','query_observation_binding.py','telemetry_binding.py','run_correctness_pilot.py','engine_overlap.py')
@@ -30,7 +34,7 @@ def run(config,revision):
             # Documentation-only commits are permitted; code/protocol changes are not.
             require(subprocess.run(['git','diff','--exit-code',revision,'HEAD','--','scripts/phase6-live-evaluation/*.py','docs/experiment_protocols/*.json'],cwd=repo,capture_output=True).returncode==0,'Code/protocol revision changed')
             head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip()
-            attempt={'index':index,'experiment_id':c['experiment_id'],'action_arm':c['action_arm'],'status':'running','protocol_sha256':sha256(path),'execution_head':head,'started_utc':datetime.now(timezone.utc).isoformat()};report['attempts'].append(attempt);checkpoint()
+            attempt={'index':index,'experiment_id':c['experiment_id'],'action_arm':c['action_arm'],'comparison_group':c.get('comparison_group','single_window'),'status':'running','protocol_sha256':sha256(path),'execution_head':head,'started_utc':datetime.now(timezone.utc).isoformat()};report['attempts'].append(attempt);checkpoint()
             raw=(base/c['output_directory']).resolve()
             with (out/f'episode_{index:02d}.log').open('x') as log:
                 result=subprocess.run([sys.executable,str(module/'run_trace_queue_diagnostic.py'),'--config',str(path),'--expected-revision',head],cwd=repo,stdout=log,stderr=subprocess.STDOUT)
@@ -47,7 +51,7 @@ def run(config,revision):
             attempt.update(status='passed_physical_and_raw_audit_only',ended_utc=datetime.now(timezone.utc).isoformat(),raw_result_sha256=sha256(raw/'result.json'),audit_sha256=sha256(audit_path),events_sha256=audited['events_sha256'],outcomes={k:audited[k] for k in ('offered','dispatched','horizon_actual_transition_counts','final_states','boundary_observation_lateness_ms')},physical_arm=audited['common_horizon_arm'])
             checkpoint();print(json.dumps({'index':index,'arm':c['action_arm'],'status':attempt['status'],'outcomes':attempt['outcomes']}),flush=True)
         report['status']='completed_common_horizon_diagnostic_only'
-        report['descriptive_arm_outcomes']={arm:[a['outcomes'] for a in report['attempts'] if a['action_arm']==arm] for arm in cfg['registered_order']}
+        report['descriptive_arm_outcomes']={group:{arm:[a['outcomes'] for a in report['attempts'] if a['comparison_group']==group and a['action_arm']==arm] for arm in cfg['registered_order']} for group in groups}
         report['automatic_winner_selection']=False
     except Exception as e:
         report.update(status='stopped_failed_gate_preserve_all',error_type=type(e).__name__,error=str(e))

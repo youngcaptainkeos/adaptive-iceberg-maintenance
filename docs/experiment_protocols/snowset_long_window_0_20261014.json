@@ -1,0 +1,36 @@
+{
+  "schema_version": "trace_benchmark_mapping_v1",
+  "selection": "first_nonempty_complete_window_in_registered_training_day",
+  "sql_mapping": "arrival_order_round_robin_registered_templates",
+  "query_ids": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "cohort_record": {
+    "path": "../../datasets/snowset/arrival_cohort_export_repair_20261014/cohort_record.json",
+    "sha256": "ca64577fcf057210b7ef390be204ea6746068e024f27a412ede6fa0ee47266d2"
+  },
+  "arrivals": {
+    "path": "../../datasets/snowset/arrival_cohort_export_repair_20261014/observed_arrivals.csv",
+    "sha256": "f058f9b99de4989b75941934f185db562cab5e482e700757821e163ddf514d20"
+  },
+  "bins": {
+    "path": "../../datasets/snowset/arrival_cohort_export_repair_20261014/observed_bin_counts.csv",
+    "sha256": "d75d3c32e3b22a50739052f77bbbe6dd744fd14c8d8803e07e579d19bb6106da"
+  },
+  "output_directory": "../../results/snowset_long_window_0_20261014",
+  "rationale": "First nonempty complete five-bin window in registered training source-day index 0, anchored to original audited observation origin. Three source-days chosen in chronological order without outcome or held-out selection. Five minutes equals the longest existing measured history scale and allows observed ~14-second rewrite effects and resulting layouts to persist over substantially more arrivals than the prior one-minute screen. Preserve every arrival, original spacing and declared template mix. This remains a controlled overloaded regime if the measured one-client service cannot keep up; no thinning/compression or resource-profile SQL inference. Three windows expand demand identities; they do not guarantee independent host/cache outcomes or model power.",
+  "limitations": [
+    "One training warehouse/minute and imposed benchmark SQL mix cannot establish original Snowflake workload reproduction.",
+    "This export is a schedule, not observed offered/dispatch/completion evidence.",
+    "A single-client baseline queue diagnostic is not a cost-training or common-horizon action comparison."
+  ],
+  "sql_template_code": {
+    "path": "../../scripts/phase6-live-evaluation/run_correctness_pilot.py",
+    "sha256": "de622efc4df5f4955440a81d8bc2c2b0d2a898d1ae740549f35a5901e23e74c7"
+  },
+  "training_day_index": 0,
+  "window_bin_count": 5
+}

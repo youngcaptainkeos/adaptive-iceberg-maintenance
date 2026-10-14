@@ -372,3 +372,37 @@ Next check: final/progress/log first; investigate failure before changing runnin
 code or retrying. On complete cohort, mirror/verify all packages, review each arm's
 throughput/queue/latency/action/layout and actual exposure with n2 limits, then
 register larger independent collection/splits before model fitting.
+
+## Six-arm cohort completed; review and next collection
+
+All6episodes completed naturally and passed physical/frozen raw audits; no failed
+or unattempted episode. Review_common_horizon_cohort.py re-audited every actual
+package and matched its recorded audit exactly.37 source-arrival completions form
+a common prefix across all arms. No automatic winner or accepted training corpus.
+Horizon completed counts: no-maintenance41/39, now41/37, later41/39; queued71–75
+and some natural post-boundary completions retained. Now rewrites13.63/13.53s
+completed before the first queries, zero exposed queries. Later rewrites14.89/
+14.57s overlapped14/13 queries. All active arms rewrote16files to1, preserved
+6,001,215rows and initial/final full multisets/query results. Six initial row/byte
+file signatures matched. Final layout bytes163,892,210 vs initial164,550,027.
+
+Review `common_horizon_cohort_review_2026-10-14.json`; all six raw packages and
+cohort logs/frozen code/audits mirrored locally, their complete sorted file/SHA256
+manifest matched worker3. Spark had no active jobs at inspection. This outcome
+establishes instrumentation and real action effects, not a favorable strategy:
+throughput changes across repeats and compaction did not robustly improve it.
+A tiny SF1 table, imposed four-template mix and one minute may hide accumulated
+layout effects or reveal that this regime has little benefit. Do not train a
+policy by declaring either arm a winner from these six diagnostic episodes.
+
+Larger next unit registers three distinct training-source-day windows, each first
+nonempty complete five-minute window, before inspecting their action outcomes.
+Five minutes matches the longest existing history scale and tests accumulated
+post-rewrite effects (~14s measured duration). Every arrival preserved at source
+spacing, balanced three-arm order within each window,9new physical episodes.
+This changes duration and demand identities, not SQL mix, client count or data
+scale. It is still a pilot with no independent calibration/model promotion.
+Mapper/source-auditor support multi-bin training-day selection; cohort permits
+separate mapping groups but requires identical offered work within each group.
+Compile checks passed on worker3; prior six-arm actual review passed. All further
+validation/physical runs remain on worker3 detached under nohup.

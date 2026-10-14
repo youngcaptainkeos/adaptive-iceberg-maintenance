@@ -81,3 +81,15 @@ engineering readiness, not calibrated cost-model training or publication power.
 Protocol: `experiment_protocols/sf1_common_horizon_cohort_20261014.json`.
 Operational cutoff16:00 IST; never cancel an in-flight operation. Estimated serial
 work40–50 minutes including required histories and auditing, not a guarantee.
+
+## Next larger unit: five-minute, three-window action collection
+
+Previous6episodes/raw audits passed, with no robust throughput winner. Register
+first nonempty complete5-minute windows in training source-days0/1/2. Preserve
+all arrivals; audit exact source coverage before physical configs. Compare all
+three arms in each window with rotated order (none/now/later; now/later/none;
+later/none/now),9episodes total. Same initial logical/file row-byte state, client,
+SQL mix and horizon within each window. Current tiny scale/imposed SQL remain
+limitations; no model fitting or post-hoc winner labels. Stop on gates. New unit's
+operational cutoff18:30 IST; active work finishes naturally. Expect roughly100–120
+minutes including histories, real5-minute horizons and raw checks, not a guarantee.
