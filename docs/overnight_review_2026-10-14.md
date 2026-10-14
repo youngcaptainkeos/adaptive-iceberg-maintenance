@@ -972,3 +972,17 @@ tables first, lineitem last; no new scan after 06:15 IST, no cancellation of an
 active scan. If the cutoff prevents completion, retain partial status; no all-table
 acceptance. Generator and relational PK/FK integrity remain separate unresolved
 gates. Code/protocol will be published and synchronized before actual execution.
+
+### 05:58 IST: full-source typed audit running on real SF100 files
+
+Unit82466a5 pushed/synced, full HEAD and four intended file SHA256s matched.
+Before launch no active own physical/source auditor and no running Spark jobs.
+Worker3 PID416658, execution`82466a50440d18e39118ff4132ee7bf290edcb9e`, launched
+00:27:42 UTC (05:57:42 IST). Artifacts
+`results/sf100_typed_source_audit_20261014/` and corresponding launch log/JSON.
+At 05:58 IST region5, nation25, supplier1,000,000 and customer15,000,000
+actual rows passed every registered field/terminator/cardinality/stable-file gate.
+Part scan active; remaining outcomes pending. These are full real source reads,
+not samples or invented outcomes. No all-eight-table or generator acceptance yet.
+Preserve active scan at cutoff; no second auditor or competing physical pilot.
+Next heartbeat audits its result/raw per-table outcomes before dependent work.
