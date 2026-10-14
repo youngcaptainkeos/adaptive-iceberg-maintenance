@@ -187,3 +187,30 @@ confirmed alive at05:22:45 UTC (10:52:45 IST), no startup error. Output
 Estimated next check11:10–11:15 IST (three warmups plus real operation/audit
 cost); completion not yet established. Original failed run is not overwritten or
 reclassified. At handover no claim about the remaining controls or cost models.
+
+## Completed null-control recovery and post-run audit
+
+PID492996 ended naturally; final result records all three recovery blocks passed.
+The progress.json still says running with3/3 completed; this is a stale checkpoint,
+not live process state. Final result and process state determine completion.
+Frozen-code post-run auditor launched separately under nohup as PID500565;
+its output confirms all three blocks passed raw timings/windows, unchanged exact
+snapshots/files, query equality, bidirectional multiset and Spark-task/no-foreign-
+job checks. Spark reported zero active jobs. Full recovery package, including
+post-run audit and frozen code/reference logs, mirrored locally and every file
+SHA256 matched worker3. Review copied to
+`no_maintenance_recovery_review_2026-10-14.json`.
+
+Together with the preserved original first block, all four planned physical null
+controls now have raw audits. Their signed middle-minus-bracketing-mean contrasts
+are−67.1049805,−73.4717355,−68.0029750,−31.2698010ms. The middle query can therefore
+look faster without any rewrite. These descriptive values do not identify a
+cache mechanism or permit causal subtraction from historical treatment runs;
+null/treatment instrumentation and execution times differ. No CI, sample-size
+adequacy, accepted cost corpus, trained cost model or scheduler is established.
+Original first-run failure remains recorded and unchanged.
+
+Next research gate: register transparent offered-arrival/queue and benchmark SQL
+mapping, then common-horizon counterbalanced action/control collection accounting
+for query order/cache drift. Avoid treating one bracketed query contrast as a
+causal compaction label. No new physical experiment started during this check.

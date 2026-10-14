@@ -1,0 +1,173 @@
+{
+  "status": "audited_null_diagnostic_only",
+  "planned_blocks": 3,
+  "audited_blocks": 3,
+  "unattempted_blocks": 0,
+  "failures_preserved": [],
+  "audit_code_sha256": "ad90775a2c07a9f645f7fc2315ff4ab79f5d67e3d2f6e849d273cfb5ab281294",
+  "blocks": [
+    {
+      "table": "local.experiment.integrity_null_20261014_02",
+      "latencies_ms": {
+        "control_before": 2504.820381,
+        "placebo_middle": 2443.076324,
+        "control_after": 2528.275738
+      },
+      "signed_placebo_contrast_ms": -73.4717354999998,
+      "after_minus_before_ms": 23.45535699999982,
+      "registered_reference_gaps_seconds": [
+        0.591082813,
+        12.599220833
+      ],
+      "actual_gaps_seconds": [
+        0.687986157,
+        12.687871641
+      ]
+    },
+    {
+      "table": "local.experiment.integrity_null_20261014_03",
+      "latencies_ms": {
+        "control_before": 2527.737632,
+        "placebo_middle": 2442.17657,
+        "control_after": 2492.621458
+      },
+      "signed_placebo_contrast_ms": -68.00297499999988,
+      "after_minus_before_ms": -35.11617399999977,
+      "registered_reference_gaps_seconds": [
+        0.557166038,
+        12.715071664
+      ],
+      "actual_gaps_seconds": [
+        0.640760648,
+        12.814795311
+      ]
+    },
+    {
+      "table": "local.experiment.integrity_null_20261014_04",
+      "latencies_ms": {
+        "control_before": 2528.076503,
+        "placebo_middle": 2495.280741,
+        "control_after": 2525.024581
+      },
+      "signed_placebo_contrast_ms": -31.269800999999916,
+      "after_minus_before_ms": -3.0519219999996494,
+      "registered_reference_gaps_seconds": [
+        8.018002224,
+        4.622654346
+      ],
+      "actual_gaps_seconds": [
+        8.135139874,
+        4.69960323
+      ]
+    }
+  ],
+  "observation_checks": [
+    {
+      "measurement_id": "5c4b626739ad41228cfe433ddacb6f71",
+      "role": "control_before",
+      "snapshot_id": 6102060401647823826,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    },
+    {
+      "measurement_id": "300b91f219934d5da646a4aa63482d2f",
+      "role": "placebo_middle",
+      "snapshot_id": 6102060401647823826,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    },
+    {
+      "measurement_id": "d09115b6267147d88c3fd6945f54a936",
+      "role": "control_after",
+      "snapshot_id": 6102060401647823826,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    },
+    {
+      "measurement_id": "41a05984bb4f4e7089030b743a2c9d00",
+      "role": "control_before",
+      "snapshot_id": 5884038512931045673,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    },
+    {
+      "measurement_id": "775854eda96342e4b2f49810f268a116",
+      "role": "placebo_middle",
+      "snapshot_id": 5884038512931045673,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    },
+    {
+      "measurement_id": "de6f2cd2b18d44b694ed53c13eff103e",
+      "role": "control_after",
+      "snapshot_id": 5884038512931045673,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    },
+    {
+      "measurement_id": "256d2207354640c8b3a65ccf132d33bf",
+      "role": "control_before",
+      "snapshot_id": 5534636825255912798,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    },
+    {
+      "measurement_id": "3e0ce814c03a43cd92d832aef86f1557",
+      "role": "placebo_middle",
+      "snapshot_id": 5534636825255912798,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    },
+    {
+      "measurement_id": "7d7c052573d9458a9dd01218eba17e14",
+      "role": "control_after",
+      "snapshot_id": 5534636825255912798,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    }
+  ],
+  "events_sha256": "03a1428dce8e7becc0f38a5cb398dfa01aaf0d531ac66c30c990156f9b5cbeaa",
+  "cost_training_accepted": false,
+  "limitations": [
+    "Four serial fresh-table blocks do not establish final sample size or independent host/cache conditions.",
+    "Observed prior query gaps matched, but maintenance REST/process sampling overhead is not reproduced; null and treated arms have unequal instrumentation.",
+    "No causal subtraction of historical treatment and current controls; time/cache trends and one SQL/layout remain limitations.",
+    "No confidence interval, training approval, original Snowflake SQL replay, scheduler or SLA claim."
+  ]
+}
