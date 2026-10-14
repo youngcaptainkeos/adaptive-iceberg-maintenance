@@ -1613,3 +1613,22 @@ auditSHA 8734712789818bd57e73f553d4f6112f783c47bceee2b3cf30d5cea97c8eb846.
 Result/audit receipts mirrored hash-identical; full raw/bytes/export/fitting wait
 until inactive collection. Next validate32file real layout and remaining disjoint
 sourcefamilies before chronological candidate fit. All prior failures preserved.
+
+## 32. Recovery3 stops on missing fresh telemetry; candidate export registered
+
+Recovery3exit18:02:37UTC:3passed/1failed/14unattempted.32file04failed beforequery
+submission at sampler.window with Stale or future telemetry; no activeSpark18:15UTC.
+No gate relaxed/failed labels reused. Sampler diagnostic
+results/recovery3_sampler_diagnosis_20261015.json shows maximum sample-end to
+recordstamp0.003870043s; this does not prove logging was causal. Need inspect actual
+sample availability at failed preparation; future collector should wait for actual
+fresh durable sample without newSQL/retiming/padding and retain wait/debt, while
+sampling-gap2s/freshness2s gates remain unchanged. Do not blind retry same unit.
+
+Registered SHA-bound candidate export of successful recovery3arms01/02/03 only,
+with six historical/overnight attempt inventories. New package
+results/physical_cost_candidates_recovery3_20261015, protocol same name inexperiment
+protocols. This is real end-to-end candidate export progress, not independent
+train/test evidence: one sourcefamily,16file original layout, no32file accepted.
+Detached worker3 export/rawaudit next; independent roundtrip before any model use.
+Original failures/tablebytes kept; fitting/calibration remains blocked by diversity.

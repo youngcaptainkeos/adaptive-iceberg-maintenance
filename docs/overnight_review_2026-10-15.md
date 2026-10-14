@@ -227,3 +227,9 @@ signature.03later1478offered/509finalcompleted/969queued,101.703039mslate census
 eventsSHA df2eec2216993c1d2cb111b893b18edf6648f5aa2daafd4932ba42f390fdf9d2;
 auditSHA 8734712789818bd57e73f553d4f6112f783c47bceee2b3cf30d5cea97c8eb846.
 Small receipts mirrored, bulk/exportraw/fitting deferred toinactive collector.
+
+Recovery3stopped18:02:37UTC:3passed/1failed/14unattempted;32file04stale sampler
+window beforequerycall, failedpackage excluded. No activeSpark18:15UTC. Registered
+physical_cost_candidate_export_recovery3_20261015.json for01/02/03only, sixattempt
+inventories SHA-bound. Onefamily/16file layout only; independentfit blocked. Next
+export/rawroundtrip and sampler availability diagnosis before physical restart.

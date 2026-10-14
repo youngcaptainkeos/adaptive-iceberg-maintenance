@@ -124,3 +124,7 @@ deferred03running. Onefamily/layout not independent modeldata yet. No heavyfit.
 17:55UTC first matched16filegroup3passed,32file04active. Near-equalfinalcounts are
 negative evidence for claiming a winner, not precision/power proof. Continue
 registered diverse collection; independent sourcefamily fit gates pending.
+
+18:15UTC recovery3stopped3/1/14 onfreshsampleavailability. Register/export verified
+three-arm group, retainallfailedinventories; independentfit still blocked. Diagnose
+availability/wait contract before fresh physical unit; no blind identicalretry.

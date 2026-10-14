@@ -334,3 +334,7 @@ model approval from small count contrast; one family/layout remains limited.
 Section31 first matched source_day_0/files16three-arm group passed; finalcompleted
 506/509/509, no winner/causal claim.32file collection started, remaining sourcefamily
 and fitting gates pending.03result/audit receipts mirrored with matchingSHA.
+
+Section32 recovery3stopped3passed/1failed/14unattempted on missingfreshtelemetry.
+Successful3arm export registered with all failure inventories; no32file acceptance
+or independent fit/calibration claim. Sampler diagnosis/availability repair next.
