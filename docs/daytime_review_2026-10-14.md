@@ -451,3 +451,41 @@ separate pending task; raw/code/result packages of previous completed cohort are
 fully mirrored, not a claim that every newly created warehouse file is local.
 Proceed to more varied physical layouts/workloads and legitimate independent
 training/calibration/test registration only when audited outcomes justify it.
+
+## Longer cohort stopped at a boundary bookkeeping failure
+
+Status check after18:30IST found coordinator733088 ended naturally. First baseline
+passed physical/raw audit:718offered,245completed within horizon,1in-flight and
+472queued; final246completed/472queued. Episode2compact-now failed because durable
+query-observation logging crossed the300-second horizon before dispatch. Seven
+remaining episodes were unattempted. Spark reported no active jobs. This is an
+instrumentation/control-boundary error, not evidence of a bad compaction outcome
+or a data-integrity failure. Original failure/log/table remain preserved.
+
+Patched an explicitly preregisterable boundary preparation contract:
+`boundary_preparation_contract: retain_queued_unsubmitted_observation_v1`.
+If observation logging reaches the horizon before dispatch, record actual
+checked clock/reason/UUID/source identity and leave the request queued without
+SQL request or dispatch. Raw auditor permits only one such terminal case, and
+only under that registered contract, with actual boundary clocks, a matching
+prepared observation, no statement request and queued identity. Executed-query
+binding/timing/window/FIFO/engine/snapshot/multiset gates remain unchanged.
+Original configs/logs are not silently upgraded, and the failed arm is not
+reclassified as accepted. New contract needs registration and real validation
+before resuming; no dummy scenario/measurements used to call it successful.
+
+Server compilation and actual first-arm raw regression passed (final log under
+`/tmp/capstone-null-controls-20261014/long_boundary_final_validation.log`).
+Separate full partial review re-audited1passed/1failed/7unattempted, preserving
+failure status, at `long_common_horizon_partial_review_2026-10-14.json`.
+Both attempted raw packages and stopped cohort/frozen-code/logs/audits mirrored
+locally; complete sorted file/SHA256 manifests matched worker3.
+
+Current status: paused by end of this registered physical unit, not a resumed
+scheduler/automation. No new physical operation/restart after its18:30cutoff;
+services remain running and no table/data/process deleted/cancelled. Next unit
+must explicitly register repaired boundary handling, new cutoff and fresh
+recovery table identities while retaining the failed attempt and valid baseline;
+re-audit matching/time-cache limitations before any comparison or model fitting.
+Later request/service boundary crossings remain strict failures rather than
+allowing actual post-horizon SQL calls. No cost model trained or promoted.

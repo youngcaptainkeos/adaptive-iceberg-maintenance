@@ -1,0 +1,91 @@
+{
+  "status": "audited_common_horizon_diagnostic_review",
+  "planned": 9,
+  "audited": 1,
+  "failures_preserved": [
+    {
+      "index": 2,
+      "experiment_id": "sf1_long_horizon_20261014_02",
+      "action_arm": "compact_now",
+      "comparison_group": "training_source_day_0",
+      "status": "failed_preserved",
+      "protocol_sha256": "9316ec735a73b9a9409efadb99158868a43eeda4052808ae3d81921be28c77f6",
+      "execution_head": "25eb64a1c826f553cd27206acf369c50604c14df",
+      "started_utc": "2026-10-14T09:50:41.575583+00:00",
+      "returncode": 1
+    }
+  ],
+  "unattempted": 7,
+  "episodes": [
+    {
+      "index": 1,
+      "experiment_id": "sf1_long_horizon_20261014_01",
+      "arm": "no_maintenance",
+      "comparison_group": "training_source_day_0",
+      "offered": 718,
+      "horizon_counts": {
+        "completed": 245,
+        "dispatched": 1,
+        "queued": 472
+      },
+      "final_counts": {
+        "completed": 246,
+        "queued": 472
+      },
+      "initial_file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "final_file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "maintenance": null,
+      "overlapped_query_count": 0,
+      "per_query_descriptive_metrics": {
+        "0": {
+          "observed_queries": 62,
+          "mean_actual_service_ms": 364.81867277419354,
+          "mean_queue_to_dispatch_ms": 95132.75822962903
+        },
+        "1": {
+          "observed_queries": 62,
+          "mean_actual_service_ms": 2431.8978602580646,
+          "mean_queue_to_dispatch_ms": 95463.73764704839
+        },
+        "2": {
+          "observed_queries": 61,
+          "mean_actual_service_ms": 446.72790667213116,
+          "mean_queue_to_dispatch_ms": 96299.0393412623
+        },
+        "3": {
+          "observed_queries": 61,
+          "mean_actual_service_ms": 272.64472040983605,
+          "mean_queue_to_dispatch_ms": 96639.29251708197
+        }
+      },
+      "boundary_observation_lateness_ms": 100.447243,
+      "events_sha256": "c9a14df352aaa6688269020cd1010018e8b1516959c889ad26647581bae61f07"
+    }
+  ],
+  "common_completed_prefix_counts_by_window": {
+    "training_source_day_0": 245
+  },
+  "cost_training_accepted": false,
+  "automatic_winner_selected": false,
+  "cohort_result_sha256": "2012f59f1b2f0d2bf386d653d9afb20b02908218af7386f8550318ca100a2351",
+  "review_code_sha256": "467ccfc74ea13f981da7b447b7ba4a4900aad412f8b9c710a4f257fb4531f488",
+  "limitations": [
+    "One episode/arm/window across three source windows is engineering completeness and demand variation screening, not statistical power, independent conformal calibration or accepted cost training.",
+    "One warehouse with three five-minute training windows, imposed benchmark mix and controlled SF1 fragmentation; no production SQL, ingestion or scale claim.",
+    "Rotated order balances arm positions but does not eliminate cache/time trends or shared-host dependence.",
+    "Equal logical content and file row/byte signature do not establish identical cache state or all physical locality.",
+    "Actual metadata/refresh/state-publication overhead and generator jitter measured; controller snapshot may lag commit.",
+    "Common-horizon residual queue and maintenance completion recorded separately; no arbitrary scalar weight or invented SLA.",
+    "No adaptive forecaster, trained cost model, oracle input, optimized deferral or scheduling benefit claim.",
+    "Service/queue summaries condition on dispatched work; unfinished arrivals retained separately, not omitted from offered denominator.",
+    "Completed-prefix matching is descriptive; shared time/cache and changing layouts do not identify individual counterfactual costs."
+  ]
+}

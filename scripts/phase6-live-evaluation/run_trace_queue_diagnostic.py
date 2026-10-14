@@ -45,8 +45,19 @@ def audit(directory):
     dispatched=[r['source']['source_query_id'] for r in transitions if r['state']=='dispatched']
     require(offered==[r['source_query_id'] for r in mapped] and dispatched==offered[:len(dispatched)],'FIFO order differs')
     measured=completed_statements([directory/'events.jsonl']);requests={r['measurement_id']:r for r in rows if r['kind']=='statement_requested'}
-    observed=[r for r in rows if r['kind']=='query_observation'];require(len(observed)==len(dispatched)>0,'Missing actual query evidence')
-    verify_observations(rows,cfg)
+    abandoned=[r for r in rows if r['kind']=='query_observation_not_dispatched']
+    abandoned_ids={r['measurement_id'] for r in abandoned}
+    if abandoned:
+        require(cfg.get('boundary_preparation_contract')=='retain_queued_unsubmitted_observation_v1' and len(abandoned)==len(abandoned_ids)==1,'Unregistered/duplicate boundary abandonment')
+        for abandon in abandoned:
+            mid=abandon['measurement_id'];identity=abandon['source_query_id']
+            observations=[r for r in rows if r['kind']=='query_observation' and r['measurement_id']==mid]
+            require(identity in expected and identities[identity]==mid and states[identity]=='queued' and mid not in requests,'Abandoned query was unknown/dispatched/submitted')
+            require(len(observations)==1 and observations[0]['query_id']==int(expected[identity]['query_id']),'Abandoned observation identity differs')
+            require(abandon['horizon_end_monotonic_ns']==hi and abandon['reason']=='horizon_reached_before_dispatch' and hi<=abandon['checked_at']['monotonic_ns']<=abandon['recorded']['monotonic_ns'] and observations[0]['recorded']['monotonic_ns']<=abandon['checked_at']['monotonic_ns'],'Abandonment not bound to actual boundary crossing')
+    bound_rows=[r for r in rows if not(r['kind']=='query_observation' and r['measurement_id'] in abandoned_ids)]
+    observed=[r for r in bound_rows if r['kind']=='query_observation'];require(len(observed)==len(dispatched)>0,'Missing actual query evidence')
+    verify_observations(bound_rows,cfg)
     source=json.loads((directory/'preparation_result.json').read_text());require(sha256(directory/'preparation_result.json')==cfg['preparation_result']['sha256'],'Source receipt changed')
     refs=json.loads((directory/'expected_query_results.json').read_text()); rebuilt_refs={}
     for i,spec in enumerate(cfg['expected_query_ledgers']):
@@ -80,7 +91,7 @@ def audit(directory):
     require(boundary['observed_counts']==dict(Counter(at.values())),'Boundary counts differ')
     arm_evidence=None
     if arm:
-        arm_evidence=audit_arm(rows,cfg,measured,requests,jobs,stages,RecordedREST(),lo,hi,source)
+        arm_evidence=audit_arm(bound_rows,cfg,measured,requests,jobs,stages,RecordedREST(),lo,hi,source)
     else:
         inventories=[r for r in measured.values() if requests[r['measurement_id']]['sql']==f"SELECT file_path, record_count, file_size_in_bytes FROM {source['table']}.files"]
         snapshots=[r for r in measured.values() if requests[r['measurement_id']]['sql']==f"SELECT snapshot_id FROM {source['table']}.history ORDER BY made_current_at DESC LIMIT 1"]
@@ -90,7 +101,10 @@ def audit(directory):
     for r in transitions:
         if r['actual_transition']['monotonic_ns']<=hi:horizon_states[r['source']['source_query_id']]=r['state']
     require(sha256(directory/'code'/'run_correctness_pilot.py')==mapping['source_sha256']['sql_template_code'], 'Executed SQL vocabulary differs from mapped template source')
-    return {'common_horizon_arm':arm_evidence,'horizon_actual_transition_counts':dict(Counter(horizon_states.values())), 'horizon_not_yet_offered_ids':[k for k in expected if k not in horizon_states], 'status':'audited_real_arrival_queue_diagnostic_only','offered':len(mapped),'dispatched':len(dispatched),'final_states':dict(Counter(states.values())),'unfinished_queued_ids':[k for k,v in states.items() if v=='queued'],'boundary_observed_counts':boundary['observed_counts'],'boundary_observation_lateness_ms':(boundary['recorded']['monotonic_ns']-hi)/1e6,'queries':latencies,'events_sha256':sha256(directory/'events.jsonl'),'cost_training_accepted':False,'limitations':cfg['limitations']}
+    summary={'common_horizon_arm':arm_evidence,'horizon_actual_transition_counts':dict(Counter(horizon_states.values())), 'horizon_not_yet_offered_ids':[k for k in expected if k not in horizon_states], 'status':'audited_real_arrival_queue_diagnostic_only','offered':len(mapped),'dispatched':len(dispatched),'final_states':dict(Counter(states.values())),'unfinished_queued_ids':[k for k,v in states.items() if v=='queued'],'boundary_observed_counts':boundary['observed_counts'],'boundary_observation_lateness_ms':(boundary['recorded']['monotonic_ns']-hi)/1e6,'queries':latencies,'events_sha256':sha256(directory/'events.jsonl'),'cost_training_accepted':False,'limitations':cfg['limitations']}
+
+    if cfg.get('boundary_preparation_contract')=='retain_queued_unsubmitted_observation_v1':summary['prepared_but_not_dispatched_measurement_ids']=sorted(abandoned_ids)
+    return summary
 
 
 def run(config,revision):
@@ -197,7 +211,12 @@ def run(config,revision):
                 windows=[sampler.window(seconds=w,max_interval_seconds=t['max_interval_seconds'],max_age_seconds=t['max_age_seconds']) for w in t['window_seconds']]
             if time.monotonic_ns()>=hi:break
             log.emit('query_observation',measurement_id=mid,query_id=qid,role='trace_query',windows=windows,**query_state)
-            require(time.monotonic_ns()<hi,'Observation logging crossed horizon; retain failed attempt')
+            checked=stamp()
+            if checked['monotonic_ns']>=hi:
+                require(cfg.get('boundary_preparation_contract')=='retain_queued_unsubmitted_observation_v1','Observation logging crossed horizon; retain failed attempt')
+                log.emit('query_observation_not_dispatched',source_query_id=identity,measurement_id=mid,horizon_end_monotonic_ns=hi,checked_at=checked,reason='horizon_reached_before_dispatch')
+                break  # Actual state remains queued; no SQL request or dispatch.
+
             ledger.transition(identity,'dispatched',measurement_id=mid,session_id='query_0');guard()
             sql=query_templates(table)[qid].replace(f'FROM {table}',f"FROM {table} VERSION AS OF {query_state['snapshot_id']}")
             try:
