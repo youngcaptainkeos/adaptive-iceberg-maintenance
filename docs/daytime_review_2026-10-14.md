@@ -17,7 +17,7 @@ repeatability review. Four Q1/SF1 episodes in preregistered ABBA order, two per
 order, no final scientific sample-count inference. Every real episode must pass
 raw export before the next. Stop on a failed gate, preserve evidence; no dummy
 runs, manufactured exposure, interval/metadata freshness relaxation or cost fitting.
-Results pending; code/config must publish and hash-match before execution.
+Code/config were published and hash-matched before execution.
 
 ## Pre-execution audit
 
@@ -40,3 +40,66 @@ Cohort controller pins each registered config before and after execution, freeze
 runner/export dependencies, runs serially, and independently exports/audits each
 real episode before another. A failed gate records the attempted episode and stops
 the remaining schedule; active operations finish naturally. No cost model fit.
+
+## Actual launch
+
+Implementation/protocol unitc7eeaf6 pushed and worker3 fast-forwarded; full HEAD
+`c7eeaf69c45b3ef7f7e69bf834c54d82b89a110d` and all12 intended file hashes matched.
+Before launch no own physical/source cohort and no active Spark jobs. Worker3
+reported45,582,340,096 available RAM bytes and493,505,921,024 free disk bytes.
+Coordinator PID459764, launched03:18:22 UTC (08:48:22 IST), output
+`results/sf1_order_repeatability_20261014/` and matching launch log/JSON receipt.
+Four distinct preregistered episodes passed their independent raw export gates and
+completed naturally. No new operation was launched after the registered
+04:44:59 UTC (10:14:59 IST) cutoff. This was a bounded daytime unit, not a resumed
+overnight automation.
+
+## Completed cohort audit
+
+All four SF1 episodes passed: two query-first and two rewrite-first. Each cloned
+the verified 6,001,215-row table, rewrote 16 files to one, preserved exact row
+multisets and query results, and recorded actual Spark task overlap. The complete
+raw and exported packages for all four episodes were mirrored to the local
+workspace and SHA256-checked against worker3; see
+`action_order_artifact_mirror_2026-10-14.json` and
+`results/sf1_order_repeat_20261014_01` through `_04`.
+
+The signed exploratory contrast (during latency minus the mean of the before and
+after original-layout controls) was +93.94 and +97.48 ms for query-first, and
+-46.43 and +168.08 ms for rewrite-first. With only two episodes per order, these
+are descriptive values, not stable variances, confidence intervals, causal
+effects, or cost-training labels. More concerning, the before-to-after control
+drift was -64.57/-142.51 ms in query-first and +86.67/+92.69 ms in rewrite-first,
+which is on the same scale as the during-rewrite contrasts. This is direct evidence
+that time/cache drift can explain the apparent signal. The separate compacted
+versus original-layout comparison is also cache/time-confounded.
+
+The audit artifact is `action_order_repeatability_review_2026-10-14.json`.
+No forecast, cost model, conformal interval, or scheduler was trained or accepted.
+One local review invocation was started before the artifact mirror finished and
+failed because its input files were not present yet. It did not touch the physical
+cohort; after the copy and SHA256 verification completed, the review was rerun and
+passed. This was an avoidable orchestration error, not a cohort failure.
+
+## Dataset decision and next gate
+
+TPC-H SF1 is the controlled Iceberg data being acted on; it is not an observed
+arrival trace. The verified Snowset cohort is the strongest available source for
+real database query arrival times, but it has no SQL text. The one-warehouse
+forecast is diagnostic only, with roughly 13.34 observed days and no adequate
+independent calibration blocks for the proposed 90% conformal claim. Alibaba
+2017 provides cluster-task events and resource usage, not database SQL arrivals;
+it must not be presented as the query workload for this experiment. The former
+Google-named mapper's silent mathematical fallback is retired: the current mapper
+requires an explicit verified trace manifest and refuses an absent or inadequate
+trace.
+
+Before any cost fitting or arrival replay, register and run no-maintenance
+bracketing controls to measure the query's own time/cache drift, with the same
+actual query, snapshot, logging and cadence as the treatment. Then specify and
+audit a transparent Snowset-arrival-to-benchmark-query mapping and an offered /
+queued / dispatched / completed ledger. That replay would preserve real arrival
+times while using declared benchmark SQL; it would not reproduce Snowflake's
+original SQL workload. Check replay capacity before physical execution. Collect
+independent common-horizon action blocks only after those controls and queue gates
+pass. Do not derive counterfactual cost labels from the four pilot episodes.

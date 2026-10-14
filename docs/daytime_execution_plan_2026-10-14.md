@@ -31,15 +31,24 @@ restart, drop, reset or deletion; no synthetic workload/data or invented labels.
 1. If order/freshness/task evidence fails, diagnose raw records before continuing.
    If genuine SF1 query duration prevents exposure, preserve that finding rather
    than slowing SQL, relaxing gates or retrying until a positive label appears.
-2. After repeatability review, register the variance/common-horizon collection
-   design using explicit precision goals and the observed noise. No automatic
-   cost fitting from four points; real before/after differences are not truth for
-   an unobserved alternative action.
+   This gate passed for the four registered episodes.
+2. Register and collect no-maintenance bracketing controls. The completed order
+   pilot shows before/after query drift of roughly 65–143 ms in magnitude, similar
+   to during-rewrite contrasts, so the treatment signal is not yet identifiable.
+   Set repetition/precision requirements from an explicit design and pilot
+   variability; do not fit a cost model from four pilot points.
 3. Implement offered-arrival/queue accounting and register an honest Snowset-to-
-   benchmark SQL mapping before physical trace replay. The trace has no SQL text.
-4. Resolve SF100 generator/relational provenance and legitimate ingestion sources
+   benchmark SQL mapping before physical trace replay. The trace has no SQL text;
+   preserve its actual arrival timestamps and identify the SQL workload as the
+   mapped benchmark workload. Check whether that offered rate fits the measured
+   worker capacity without thinning or time compression.
+4. After the null-control and queue gates, register common-horizon physical action
+   blocks with independent initial states, real query submissions, measured
+   maintenance outcomes, and held-out splits. Before/after differences are not
+   ground truth for an unobserved alternative schedule.
+5. Resolve SF100 generator/relational provenance and legitimate ingestion sources
    before scale/growth claims. SF1 work does not require inventing SF100 history.
-5. Fit shared-action versus separate A/B candidates only on accepted independently
+6. Fit shared-action versus separate A/B candidates only on accepted independently
    split physical data. Evaluate scheduling benefit and uncertainty over a common
    horizon; model count is an empirical choice, not the contribution.
 
