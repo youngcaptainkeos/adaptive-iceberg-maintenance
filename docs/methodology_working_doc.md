@@ -1746,3 +1746,8 @@ policyclaim. Source0/1train source2test andalpha1 preregistration unchanged. Pri
 latencyfit excludesincomplete demand histories, rewritefeaturesmeasuredonly.
 Next nohup export+independentroundtrip, actualhashfitregistration, failedfits saved.
 Telemetrylockavailability repair remains a futurephysicaldependency, not relaxed.
+
+ThreefamilyexportnohupPID1396241 launched20:28UTC; log
+results/physical_cost_candidates_three_family_20261015_launch.log. Checkwithin5min/
+nextwake; independentroundtrip before fit.8cfa5f7HEAD/5intendedSHA agreehosts.
+Nophysicalcollector running, no acceptedfit/exportresultatlaunch.

@@ -279,3 +279,7 @@ preparationlock, nofailedquerylabel. Sixpassedepisodes now span3families/16fileo
 Threefamilyexportregistered SHA-bound/eightinventories, independentroundtrip then
 actualhashfitregistration. Version/timeconfounding/incompletematchedgroups explicit;
 no32file/modelcalibration/schedulerclaim. No activeSpark20:25UTC.
+
+ThreefamilyexportnohupPID1396241launched20:28UTC, log
+results/physical_cost_candidates_three_family_20261015_launch.log; check5min/nextwake,
+rawroundtripnext.8cfa5f7HEAD/5unitSHA agree; nofit/exportrawapprovalatlaunch.

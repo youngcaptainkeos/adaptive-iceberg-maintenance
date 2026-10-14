@@ -362,3 +362,5 @@ possibleexploratorysplit afterexport, not calibrated/acceptedmodels. Receiptsmir
 Section37 recovery5stopped2/1/8 onlock-acquisition telemetry freshness; allfailures
 preserved. Sixsuccessfulthree-family exportregistered;16fileonly/versionconfounding
 explicit. Prioritize independentroundtrip/exploratoryfit, no modelpromotion.
+
+ThreefamilyexportPID1396241nohup launched; nextcheck5min/independentroundtrip.
