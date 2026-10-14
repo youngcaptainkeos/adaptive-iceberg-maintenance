@@ -1059,3 +1059,20 @@ The physical cutoff bars new engine/dataset-validation experiments. This work is
 artifact preservation and integrity synchronization of already completed runs.
 Source audit unitc24668f pushed/synced; full HEAD and all four intended hashes
 matched. No new benchmark query/rewrite or source-validation scan launched.
+
+### Daytime handover closure (08:33 IST, 2026-10-14)
+
+New daytime work was explicitly requested after the overnight deadline. No
+overnight experiment guard or historical protocol is being extended; the automation
+remains paused. The interrupted table fallback verification had completed before
+the interruption: all 340 files / 2,139,848,623 bytes across seven exact retained
+SF1 table directories match manifest SHA256s/sizes/file sets. Source rehash stayed
+unchanged; six successful current snapshot IDs bind their result packages, while
+the failed table remains preserved without success reclassification. Local
+`results/physical_warehouse_fallback_20261014/`; evidence
+`retained_table_fallback_review_2026-10-14.json`, verification also copied to worker3.
+This is a byte fallback only, with worker3 absolute metadata paths retained.
+At the last pre-interruption process observation (01:11:24 UTC / 06:41:24 IST),
+no own run or Spark job was active, Spark REST was reachable and Thrift10000
+listening. No shutdown, cancellation, restart or deletion was performed.
+The final report is being committed/synchronized now under the new daytime request.

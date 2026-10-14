@@ -1,0 +1,76 @@
+{
+  "schema_version": "retained_table_byte_fallback_review_v1",
+  "status": "verified_byte_fallback_only",
+  "all_local_file_set_size_sha256_match": true,
+  "source_rehashed_unchanged": true,
+  "table_count": 7,
+  "file_count": 340,
+  "total_bytes": 2139848623,
+  "tables": [
+    {
+      "name": "integrity_sf1_20261014_0024",
+      "metadata_version": 1,
+      "current_snapshot_id": 2963541948322332238,
+      "table_uuid": "680be8b7-6dad-467f-b1d5-997eeda8d317",
+      "file_count": 40,
+      "bytes": 153534093
+    },
+    {
+      "name": "integrity_pilot_20261014_0039",
+      "metadata_version": 2,
+      "current_snapshot_id": 3129288059524244264,
+      "table_uuid": "9334584f-fbc4-4e3e-a7b4-0bf309b763ee",
+      "file_count": 50,
+      "bytes": 331052423
+    },
+    {
+      "name": "integrity_pilot_20261014_0054",
+      "metadata_version": 2,
+      "current_snapshot_id": 7970187667229592262,
+      "table_uuid": "e018bb48-6087-4432-b5e2-cb03a43f4a2d",
+      "file_count": 50,
+      "bytes": 331052428
+    },
+    {
+      "name": "integrity_matched_20261014",
+      "metadata_version": 2,
+      "current_snapshot_id": 5696072815703846747,
+      "table_uuid": "ed6f9e4c-6c03-4a5c-b013-1af6fa4a9987",
+      "file_count": 50,
+      "bytes": 331052405
+    },
+    {
+      "name": "integrity_matched_q0_20261014",
+      "metadata_version": 2,
+      "current_snapshot_id": 2979545464624785164,
+      "table_uuid": "756daa75-d899-4120-b4bb-808b7ab7757d",
+      "file_count": 50,
+      "bytes": 331052413
+    },
+    {
+      "name": "integrity_matched_q2_20261014",
+      "metadata_version": 2,
+      "current_snapshot_id": 7801199047025445571,
+      "table_uuid": "e1ca2965-ae65-4852-9aab-3b8dded9787f",
+      "file_count": 50,
+      "bytes": 331052431
+    },
+    {
+      "name": "integrity_matched_q3_20261014",
+      "metadata_version": 2,
+      "current_snapshot_id": 6861627319991723129,
+      "table_uuid": "8aee8b63-3b92-49cc-aadb-e022b26bc2bd",
+      "file_count": 50,
+      "bytes": 331052430
+    }
+  ],
+  "source_manifest_sha256": "f27bd469ee3fe8714df5b4c44615d4d304cc95a1cd1e91c18132f1d30f696f09",
+  "local_directory": "/media/shashank/Data1/PDocuments/Capstone/implementation/results/physical_warehouse_fallback_20261014",
+  "limitations": [
+    "Iceberg metadata retains absolute worker3 paths. This is a complete byte fallback of these retained experiment tables, not an imported or portable local catalog.",
+    "Historical original warehouse, unrelated archive/drafts and larger tables are outside this scoped preservation copy.",
+    "No new engine query/rewrite or table modification used for verification."
+  ],
+  "all_six_successful_current_snapshots_bind_results": true,
+  "failed_table_preserved_without_success_reclassification": true
+}

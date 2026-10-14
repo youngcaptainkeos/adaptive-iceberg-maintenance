@@ -138,8 +138,8 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
   queue: offline final audit, resource/claim reconciliation, handover and Git
   verification. At 07:00 IST stop work and pause heartbeat.
 
-- Retained-table fallback copy in progress: exactly seven isolated SF1 tables,
+- Retained-table fallback copy completed and verified: seven isolated SF1 tables,
   340 files / 2,139,848,623 bytes. `results/physical_warehouse_fallback_20261014/`.
-  Audit exact set/digests and source stability after completion; preserve active
-  transfer at deadline. Metadata paths remain worker3-specific; do not claim
+  Exact file set/size/SHA256 and source rehash matched; six successful
+  current snapshots bind results, failed table preserved. Metadata paths remain worker3-specific; do not claim
   portable catalog or silently rewrite them. Artifact sync only, no new engine run.
