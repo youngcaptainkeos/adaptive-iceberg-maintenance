@@ -397,3 +397,6 @@ fullestimate04:20–04:30ISTsubjectgates; no modeltuningor acceptedlivebranchyet
 
 Section44 complete32filethree-arm grouppassed, finalcompleted535/522/530 no policy
 claim. Separate diagnosticexportregistered, no refit; branchcoveragecheckedseparately.
+
+All332fileepisodes0deferrals/0waits: newdeferralbranch remainsunexercised, not
+livevalidated. SeparatecandidateexportnohupPID1550562launched; rawroundtripnext.

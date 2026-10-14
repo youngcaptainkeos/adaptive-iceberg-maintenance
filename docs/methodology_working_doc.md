@@ -1892,3 +1892,8 @@ output results/physical_cost_candidates_layout32_20261015. No refit/test-outcome
 tuning. SourcecohortSHA d13bbc70743d8ecaedddfebaec83c9bf746e0abbf17808c70b46cfc00c8b6258.
 Next nohup export/independentroundtrip, rawmirror/hashes, idlephysicalbytefallback;
 cutoffs/newphysicalepisodeconstraints preserved. No acceptedcostmodel/scheduler.
+
+Actualbranchdiagnostic: all3episodes0deferrals/0availabilitywaits, so newdeferral
+branchnotexercised andnotclaimedlivevalidated.32filefullrunpath passed. Separate
+exportnohupPID1550562 confirmed by actual launch receipt;
+nextcheckwithin5min/nextwake, log physical_cost_candidates_layout32_20261015_launch.log.

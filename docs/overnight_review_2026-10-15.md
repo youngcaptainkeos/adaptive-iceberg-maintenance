@@ -341,3 +341,8 @@ later530completed with966/979/971queued. Strictgatespassed; no causalpreferredpo
 CohortSHA d13bbc70743d8ecaedddfebaec83c9bf746e0abbf17808c70b46cfc00c8b6258.
 Branchdiagnosticrecorded separately, no unexercisedpathclaim. Separate32candidate
 exportregistered, no refit; next detachedexport/roundtrip/rawmirror/physicalfallback.
+
+Actual32filebranchcountsall0deferrals/0waits, so branchnotexercised/no validation
+claim. SeparateexportnohupPID1550562launched~23:00UTC; log
+results/physical_cost_candidates_layout32_20261015_launch.log, nextcheck5min/wake.
+b9e865dHEAD/5intendedSHAmatch. No modelrefit/no physicalcollectorrunning.
