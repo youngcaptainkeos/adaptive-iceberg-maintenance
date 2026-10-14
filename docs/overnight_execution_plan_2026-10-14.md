@@ -122,6 +122,11 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
 - Next bounded resource unit registered: `sf100_typed_source_audit_20261014.json`
   and `scripts/audit_tpch_typed_source.py`. Real full-field source-only scans, no
   engine/table writes, exact schema/cardinality/metadata gates, no new scan after
-  06:15. Running PID416658, execution82466a5; region/nation/supplier/customer
-  full scans passed, remaining outcomes pending. Audit raw results first. Missing
+  06:15. Running PID416658, execution82466a5; all seven smaller tables
+  passed; lineitem scan active since 06:02, final outcome pending. Audit raw results first. Missing
   generator and relational integrity are not supplied by typed parsing.
+
+- Completed strict retained SF1 attempt inventory: seven packages include the
+  failed correctness attempt and distinct successful contracts; zero accepted
+  training episodes. `physical_attempt_inventory_reviewed_2026-10-14.json`.
+  Publish/sync tool and verify independent remote inventory on unchanged evidence.

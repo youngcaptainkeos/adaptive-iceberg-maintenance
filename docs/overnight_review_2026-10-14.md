@@ -986,3 +986,27 @@ Part scan active; remaining outcomes pending. These are full real source reads,
 not samples or invented outcomes. No all-eight-table or generator acceptance yet.
 Preserve active scan at cutoff; no second auditor or competing physical pilot.
 Next heartbeat audits its result/raw per-table outcomes before dependent work.
+
+### 06:12 IST: all retained isolated SF1 attempts inventoried; SF100 final scan active
+
+Read-only raw inventory found seven scoped physical packages: one failed preserved
+correctness attempt, one repaired historical-timing/four-client correctness pilot,
+four matched measurement-integrity episodes, and one accepted source preparation.
+Every result binds its raw terminal event; duplicate/conflicting/missing-request
+outcomes refused, unfinished statement IDs reported, raw input hashes stable.
+Actual timing/action-feature/state contracts stay explicit, including Q1's missing
+action context and Q0's older inventory. Unknown/non-diagnostic contracts refused
+rather than misclassified. Accepted training episode count is zero; no dropped
+failed attempt, invented counterfactual target or promotion. Launches refused before
+raw-directory creation remain in this ledger, explicitly outside inventory scope.
+Evidence `physical_attempt_inventory_reviewed_2026-10-14.json`; tool
+`scripts/audit_physical_attempt_inventory.py`. Initial drafting report remains
+local-only untracked, unchanged physical source evidence retained.
+
+At 06:09 IST SF100 region5, nation25, supplier1,000,000, customer15,000,000,
+part20,000,000, partsupp80,000,000 and orders150,000,000 passed all registered
+field/cardinality/terminator/stable-file gates. Lineitem started 00:32 UTC
+(06:02 IST); PID416658 still active, result pending, no Spark jobs running.
+This existing read is allowed to finish naturally after the 06:15 cutoff; never
+start a competing scan/physical pilot or cancel it. No all-table/generator
+acceptance until final raw audit.

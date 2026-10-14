@@ -1,0 +1,199 @@
+{
+  "schema_version": "isolated_sf1_attempt_inventory_v1",
+  "created_utc": "2026-10-14T00:42:08.462530+00:00",
+  "audit_code_sha256": "8b4ee1bdeb534086362a56f36101b3bbeba7e5c581716215fd57c16d91505914",
+  "scope": "All retained results/sf1_*/events.jsonl packages. Source preparation, failed and repaired correctness, and matched diagnostics are distinct; excluded historical RUN_* and observation-only directories are outside this scope.",
+  "attempt_count": 7,
+  "status_counts": {
+    "failed_preserved": 1,
+    "accepted_physical_correctness_pilot": 1,
+    "accepted_matched_measurement_integrity_only": 4,
+    "accepted_correctness_source": 1
+  },
+  "accepted_training_episode_count": 0,
+  "attempts": [
+    {
+      "directory": "sf1_correctness_pilot_20261014_0039",
+      "experiment_id": "sf1_correctness_pilot_20261014_0039",
+      "reported_terminal_status": "failed_preserved",
+      "code_revision": "04de0a1667804dab1f3a792f6cfe87f17c30cc6a",
+      "events_sha256": "1d6a719e12ec28ff621f6387e3f6f4a9215f41e09db35dea9f0cab41e7c9ceaf",
+      "result_sha256": null,
+      "statement_requests": 18,
+      "statement_completions": 18,
+      "statement_failures": 0,
+      "unfinished_measurement_ids": [],
+      "physical_rewrite_attempts": 1,
+      "query_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "timing_contracts": {
+        "historical_unspecified": 18
+      },
+      "pre_action_observation_count": 0,
+      "decision_feature_contract": null,
+      "decision_state_contract": null,
+      "failures": [
+        {
+          "error_type": "ValidationError",
+          "error": "Rewrite metadata conservation failed",
+          "table": "local.experiment.integrity_pilot_20261014_0039"
+        }
+      ],
+      "training_accepted": false
+    },
+    {
+      "directory": "sf1_correctness_pilot_20261014_0054",
+      "experiment_id": "sf1_correctness_pilot_20261014_0054",
+      "reported_terminal_status": "accepted_physical_correctness_pilot",
+      "code_revision": "776c86dc23907b4bad966be4943413c11b514895",
+      "events_sha256": "2f9cc294903c45ff1ed387f693a0b87cdbea8341e5f6dd8c4d4511efecfccab7",
+      "result_sha256": "b1ec353e3f31fca52d6d77f5c471722f8ea34cb5c3458ef04acd131bac45d9d0",
+      "statement_requests": 26,
+      "statement_completions": 26,
+      "statement_failures": 0,
+      "unfinished_measurement_ids": [],
+      "physical_rewrite_attempts": 1,
+      "query_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "timing_contracts": {
+        "historical_unspecified": 26
+      },
+      "pre_action_observation_count": 0,
+      "decision_feature_contract": null,
+      "decision_state_contract": null,
+      "failures": [],
+      "training_accepted": false
+    },
+    {
+      "directory": "sf1_matched_measurement_20261014",
+      "experiment_id": "sf1_matched_measurement_20261014",
+      "reported_terminal_status": "accepted_matched_measurement_integrity_only",
+      "code_revision": "208f6a146c1cc470d34cde8a1f5e419583770c1d",
+      "events_sha256": "ebcaaaaa752e56c4752cba9f7f49c3c4cef06427dcb78ab26253ba3cdf217510",
+      "result_sha256": "d1a0850f9a36778e751d6050092e3ad7d2f4ce847272177a5b5f3ef400f80c39",
+      "statement_requests": 15,
+      "statement_completions": 15,
+      "statement_failures": 0,
+      "unfinished_measurement_ids": [],
+      "physical_rewrite_attempts": 1,
+      "query_ids": [
+        1
+      ],
+      "timing_contracts": {
+        "client_submission_v1": 15
+      },
+      "pre_action_observation_count": 0,
+      "decision_feature_contract": null,
+      "decision_state_contract": null,
+      "failures": [],
+      "training_accepted": false
+    },
+    {
+      "directory": "sf1_matched_q0_20261014",
+      "experiment_id": "sf1_matched_q0_20261014",
+      "reported_terminal_status": "accepted_matched_measurement_integrity_only",
+      "code_revision": "38f0514da328a9cea58d7e9e8aef0da881c7ec41",
+      "events_sha256": "5529f2a83ffc6fdb6afdfd2a348f037c0919195d599de2da433fd6dab4c5ea40",
+      "result_sha256": "2e7e7abd1baf8c7abbee535f6e26459dc74b04e7da1bd0eeab9c2f18c3748ebf",
+      "statement_requests": 15,
+      "statement_completions": 15,
+      "statement_failures": 0,
+      "unfinished_measurement_ids": [],
+      "physical_rewrite_attempts": 1,
+      "query_ids": [
+        0
+      ],
+      "timing_contracts": {
+        "client_submission_v1": 15
+      },
+      "pre_action_observation_count": 1,
+      "decision_feature_contract": "pre_action_windows_v1",
+      "decision_state_contract": null,
+      "failures": [],
+      "training_accepted": false
+    },
+    {
+      "directory": "sf1_matched_q2_20261014",
+      "experiment_id": "sf1_matched_q2_20261014",
+      "reported_terminal_status": "accepted_matched_measurement_integrity_only",
+      "code_revision": "7b69a6be0bdd00e7ecc81104582f679883fba762",
+      "events_sha256": "fcba244ac5901557bb17395b0b841f241e8ed05a2c881e4188aa7e54a867594f",
+      "result_sha256": "6c8027af982f0cf00c39f4e51a6c3181f27d7c69686485ca4371c01483d6b2c0",
+      "statement_requests": 18,
+      "statement_completions": 18,
+      "statement_failures": 0,
+      "unfinished_measurement_ids": [],
+      "physical_rewrite_attempts": 1,
+      "query_ids": [
+        2
+      ],
+      "timing_contracts": {
+        "client_submission_v1": 18
+      },
+      "pre_action_observation_count": 1,
+      "decision_feature_contract": "pre_action_windows_v1",
+      "decision_state_contract": "fresh_current_original_snapshot_v1",
+      "failures": [],
+      "training_accepted": false
+    },
+    {
+      "directory": "sf1_matched_q3_20261014",
+      "experiment_id": "sf1_matched_q3_20261014",
+      "reported_terminal_status": "accepted_matched_measurement_integrity_only",
+      "code_revision": "d520f4d1f8527025ac3f960ed52cf88783b4f734",
+      "events_sha256": "26847ce0ac1ec9f89cdf0bd4c4ab27c9eb6e5f324c7138069e4e5712e671d87b",
+      "result_sha256": "268b448f1df88ce8ebabe1126d0f987d15523fdf90883d6c3d492af8bbda242c",
+      "statement_requests": 18,
+      "statement_completions": 18,
+      "statement_failures": 0,
+      "unfinished_measurement_ids": [],
+      "physical_rewrite_attempts": 1,
+      "query_ids": [
+        3
+      ],
+      "timing_contracts": {
+        "client_submission_v1": 18
+      },
+      "pre_action_observation_count": 1,
+      "decision_feature_contract": "pre_action_windows_v1",
+      "decision_state_contract": "fresh_current_original_snapshot_v1",
+      "failures": [],
+      "training_accepted": false
+    },
+    {
+      "directory": "sf1_source_integrity_20261014_0024",
+      "experiment_id": "sf1_source_integrity_20261014_0024",
+      "reported_terminal_status": "accepted_correctness_source",
+      "code_revision": "4d38c844b9adce999abdbdd0be9dafa9b2fc4a75",
+      "events_sha256": "971508975b9eb20bb35dc65b42b3052facd1a87a521a8b0427ec3fd82e6b4180",
+      "result_sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57",
+      "statement_requests": 11,
+      "statement_completions": 11,
+      "statement_failures": 0,
+      "unfinished_measurement_ids": [],
+      "physical_rewrite_attempts": 0,
+      "query_ids": [],
+      "timing_contracts": {
+        "historical_unspecified": 11
+      },
+      "pre_action_observation_count": 0,
+      "decision_feature_contract": null,
+      "decision_state_contract": null,
+      "failures": [],
+      "training_accepted": false
+    }
+  ],
+  "limitations": [
+    "Inventories observed evidence only, not a cost schema, variance estimate or training approval.",
+    "Launches refused before evidence-directory creation remain documented in the overnight ledger, outside this raw-event inventory.",
+    "Successful diagnostics must not conceal failed attempts or combine incompatible timing/action-state contracts."
+  ]
+}
