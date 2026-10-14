@@ -1679,3 +1679,24 @@ accepted from historicalregression; real samplinggap/freshness cannot be repaire
 by inventedvalues or weakenedlimits. Alreadypassedsource0group retained; missing
 source0/32cell explicit. Fit remains blocked pending actualremainingfamilies and
 independent export/verification. No heavybackup/modelrun concurrent withqueries.
+
+## 35. Actual sampling gap diagnosis; independent counter/persistence pipeline
+
+SSH restored19:16UTC; recovery4stopped19:13:09UTC1passed/1failed/10unattempted.
+Passed01source1compact_now1557offered/523completed/1034queued; two sourcefamilies
+now have realpassedepisodes but independenttestfamily still missing. Failed02
+actualtelemetry interval19:08:28.651567..31.180153UTC2.528587620s, archivecheckpoint
+completed19:08:53UTC, actualwrite-rate~60MB/s. Savedrawdiagnosis
+results/recovery4_gap_diagnosis_20261015.json. Causal attribution tofsync not proved,
+but sampler currently serializesread+durablelogging so a logstall delaysnextread.
+
+Opt-in independent_counter_sampling_durable_publish_v1 separates realcounterreader
+fromFIFOwriter. No samplesdropped/generated; originalendpoints/elapsedvalues kept,
+features see samples onlyafterdurableemit/fsync. Writerdrains onobservercompletion;
+failures explicit; realgap/freshness/coverage gates unchanged. Thread/GIL/hostload
+can stilldelayactualread andmustfail, not be repaired. No service/process canceled.
+Registered11freshrecovery5episodes: source2sixarmsfirst toprioritizemissingfamily,
+thenfiveunpassedsource1arms; retainpassedsource0three/source1one. Two layouts/three
+arms/source-spacing/cutoffs/boundary/preparation/archivecontracts unchanged. All
+historical failed counts preserved. Next server syntax/rawregression then immutable
+launch; no fituntilrawverified independentfamily data. No calibration/policyclaim.

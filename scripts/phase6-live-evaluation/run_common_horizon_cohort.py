@@ -15,7 +15,7 @@ def run(config,revision):
     common=('mapping_record','mapping_audit','preparation_result','expected_query_ledgers','engine','spark_app_id','spark_rest_url','telemetry','client_count','boundary_rule','metadata_checkpoint_offsets_ns','no_new_operation_after_utc','decision_state_contract','metadata_max_age_seconds')
     global_fields=tuple(k for k in common if k not in ('mapping_record','mapping_audit'))
     require(all(all(c[k]==settings[0][k] for k in global_fields) for c in settings),'Different non-action global conditions')
-    for key in ('engine_archive_offsets_ns','boundary_preparation_contract','expected_spark_master','query_preparation_contract','telemetry_availability_contract'):
+    for key in ('engine_archive_offsets_ns','boundary_preparation_contract','expected_spark_master','query_preparation_contract','telemetry_availability_contract','telemetry_persistence_contract'):
         require(all(c.get(key)==settings[0].get(key) for c in settings),'Different shared archive/boundary/engine conditions')
     groups={}
     for c in settings:groups.setdefault(c.get('comparison_group','single_window'),[]).append(c)

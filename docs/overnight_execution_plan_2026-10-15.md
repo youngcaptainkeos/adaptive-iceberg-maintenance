@@ -137,3 +137,7 @@ rows butonefamilystillblocksfit. Mirrorpackage onceinactive before fit.
 Recovery4PID1285378launched remaining12source1/2episodes at00:11IST. Firstcheck
 00:30IST; inspectactiveprogress before nextwork. Fullrawmirror/export/fitting after
 collectorinactive; maintaincutoffs and frozenruntime. Prior groups/failures retained.
+
+Recovery5fresh11registered; independentcounterreader/durablepublish pipeline addresses
+actualsamplingstall withoutweakenedgates. Source2first thenremaining source1arms.
+Passedsource0group/source1now retained, allfailuresunchanged. Regressionthenlaunch.

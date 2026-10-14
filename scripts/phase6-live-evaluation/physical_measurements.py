@@ -9,6 +9,7 @@ import time
 from datetime import datetime, timezone
 import urllib.request
 import uuid
+import queue
 from contextlib import nullcontext
 
 from experiment_validation import ValidationError, require
@@ -140,7 +141,7 @@ class SparkEvidence:
 
 class TelemetrySampler:
     """Independent counter samples with actual monotonic intervals and gap evidence."""
-    def __init__(self, log, interval_seconds):
+    def __init__(self, log, interval_seconds, *, asynchronous_persistence=False):
         require(math.isfinite(interval_seconds) and interval_seconds > 0,
                 'Positive telemetry interval required')
         self.log = log
@@ -149,11 +150,36 @@ class TelemetrySampler:
         self.failure = None
         self.samples = []
         self.lock = threading.Lock()
+        self.asynchronous_persistence=asynchronous_persistence
+        self.persistence_queue=queue.Queue()
 
     def start(self):
         require(not hasattr(self, 'thread'), 'Sampler already started')
+        if self.asynchronous_persistence:
+            self.writer=threading.Thread(target=self._persist,daemon=True)
+            self.writer.start()
         self.thread = threading.Thread(target=self._run, daemon=True)
         self.thread.start()
+
+    def _publish(self,kind,fields):
+        if self.asynchronous_persistence:self.persistence_queue.put((kind,fields))
+        else:
+            self.log.emit(kind,**fields)
+            if kind=='telemetry_interval':
+                with self.lock:self.samples.append(fields)
+
+    def _persist(self):
+        try:
+            while True:
+                item=self.persistence_queue.get()
+                if item is None:return
+                kind,fields=item
+                self.log.emit(kind,**fields)
+                if kind=='telemetry_interval':
+                    with self.lock:self.samples.append(fields)
+        except Exception as exc:
+            self.failure=exc
+            self.log.emit('telemetry_failed',error_type=type(exc).__name__,error=str(exc))
 
     def _read(self):
         import psutil
@@ -172,7 +198,7 @@ class TelemetrySampler:
     def _run(self):
         try:
             previous = self._read()
-            self.log.emit('telemetry_origin', counters=previous)
+            self._publish('telemetry_origin',{'counters':previous})
             deadline = time.monotonic() + self.interval
             while not self.stop_event.wait(max(0, deadline - time.monotonic())):
                 current = self._read()
@@ -188,9 +214,7 @@ class TelemetrySampler:
                               read_bytes_per_second=read/elapsed, write_bytes_per_second=write/elapsed,
                               available_memory_bytes=current['available_memory_bytes'],
                               total_memory_bytes=current['total_memory_bytes'], counters=current)
-                self.log.emit('telemetry_interval', **sample)
-                with self.lock:
-                    self.samples.append(sample)
+                self._publish('telemetry_interval',sample)
                 previous = current
                 deadline += self.interval
                 # Do not emit catch-up pseudo-samples after scheduler delay.
@@ -199,6 +223,8 @@ class TelemetrySampler:
         except Exception as exc:
             self.failure = exc
             self.log.emit('telemetry_failed', error_type=type(exc).__name__, error=str(exc))
+        finally:
+            if self.asynchronous_persistence:self.persistence_queue.put(None)
 
     def window(self, *, seconds, max_interval_seconds, max_age_seconds):
         require(all(math.isfinite(x) and x > 0 for x in (seconds, max_interval_seconds, max_age_seconds)),
@@ -259,5 +285,6 @@ class TelemetrySampler:
         self.stop_event.set()
         if hasattr(self, 'thread'):
             self.thread.join()
+        if hasattr(self,'writer'):self.writer.join()
         if self.failure:
             raise ValidationError(f'Telemetry failed: {self.failure}')

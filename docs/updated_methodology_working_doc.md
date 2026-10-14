@@ -347,3 +347,7 @@ source1/2matrixregistered, retaining passedsource0group. No fit/calibration yet.
 
 Section34 recovery4remaining12source1/2episodes launchednohupPID1285378 inimmutable
 0b05393runtime. Firstcheck00:30IST, estimated03:30–04:15ISTsubjectgates. No fityet.
+
+Section35 actual2.5286s samplinggap/recovery4state1/1/10preserved. Independent real
+counterreader/FIFOdurablewriter implemented, onlyfsyncedfeatures, gatesunchanged.
+Fresh11recovery5 prioritizessource2, keepsalreadyacceptedsource0/1episodes.

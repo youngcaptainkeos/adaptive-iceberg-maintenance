@@ -251,3 +251,9 @@ results/sf1_overnight_recovery4_cohort_20261015_launch.log; matchingprogress/aud
 rawarms01..12. Historicalrawlaterregressionpassed;20unitSHA/HEADalreadymatched.
 Firstcheck00:30IST;fullestimate03:30–04:15IST. Allcutoffs/gates/failurespreserved.
 No remaining-familyornewwait-livegatepassed yet; no learnedmodel/calibrationclaim.
+
+Recovery4stopped1passed/1failed/10unattempted;01source1now1557offered/523completed/
+1034queued.02actualsamplinggap2.528587620s duringarchiveperiod; rawdiagnosis saved.
+Independentcounterreader/durableFIFOwriter opt-in, fsyncbeforefeatureavailability,
+no gap/age/coverage relaxation. Recovery5fresh11registered source2sixfirst then
+remainingfive source1; retainpassedsource0group/source1now. Next regression/launch.

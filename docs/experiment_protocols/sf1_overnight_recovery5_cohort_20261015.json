@@ -1,0 +1,74 @@
+{
+  "schema_version": "common_horizon_cohort_pilot_v1",
+  "registered_order": [
+    "compact_later",
+    "no_maintenance",
+    "compact_now",
+    "no_maintenance",
+    "compact_now",
+    "compact_later",
+    "compact_later",
+    "no_maintenance",
+    "compact_later",
+    "no_maintenance",
+    "compact_now"
+  ],
+  "episodes": [
+    {
+      "path": "sf1_overnight_recovery5_20261015_01.json",
+      "sha256": "dc4c60930fcf9fcf49f2ee4741162741c22cbfdaf7b26bda2b50dd4f4d076f64"
+    },
+    {
+      "path": "sf1_overnight_recovery5_20261015_02.json",
+      "sha256": "8bc062979208bffe8ce8df1d9ca8377936e58bfaa46c399b770b441d4412d1fe"
+    },
+    {
+      "path": "sf1_overnight_recovery5_20261015_03.json",
+      "sha256": "a67136efa0ed663b607782b67cc2bc986b7ea1233dfac37fec8fa00e9a696c92"
+    },
+    {
+      "path": "sf1_overnight_recovery5_20261015_04.json",
+      "sha256": "aa4cc38284f5a135d97267317e1b5d478b8f145382756faa8bb12a6352ec9847"
+    },
+    {
+      "path": "sf1_overnight_recovery5_20261015_05.json",
+      "sha256": "1c658f848b43912d118ee212ba38989f87bfc5884c1e1a5f2eafb459d88f2925"
+    },
+    {
+      "path": "sf1_overnight_recovery5_20261015_06.json",
+      "sha256": "0fd7262fba4703738d973e56a3e4a343c601e1dfc05cd956e5cad6e89ad788f4"
+    },
+    {
+      "path": "sf1_overnight_recovery5_20261015_07.json",
+      "sha256": "f8caa6d3e807ce36ad5f968b9f785fc9132edfb5e69bddb6f188845f6b0c1cd7"
+    },
+    {
+      "path": "sf1_overnight_recovery5_20261015_08.json",
+      "sha256": "9015d1c33a9a4de467280bf46d0943dcf0c5d5fd346c1d70c0c53141075eb230"
+    },
+    {
+      "path": "sf1_overnight_recovery5_20261015_09.json",
+      "sha256": "a2354d8695dfe9121d39a10ffbe04d5cc0037e1aca5cad550d8ad5a87a250bfa"
+    },
+    {
+      "path": "sf1_overnight_recovery5_20261015_10.json",
+      "sha256": "cbe1ff055e4e20597e2b8a43742f6e4b520458535c22de4949a9bb3ca3528408"
+    },
+    {
+      "path": "sf1_overnight_recovery5_20261015_11.json",
+      "sha256": "60164551cc38739a61532ffa337a28b436bafae043f1126710fb7e3592ea5c00"
+    }
+  ],
+  "no_new_episode_after_utc": "2026-10-14T23:15:00+00:00",
+  "output_directory": "../../results/sf1_overnight_recovery5_cohort_20261015",
+  "rationale": "Fresh11episode remainder after actual2.528587620s samplinggap. Counterreader separate from durable FIFOwriter, onlyfsyncedsamples available; samegap-age/coverage gates. Source2sixarms first, then fiveunpassedsource1arms; preservepassedsource0three/source1one and allfailed attempts. No outcome-selected retry.",
+  "limitations": [
+    "Controlled SF1 source layouts/three ten-minute windows/one warehouse/custom four-template SQL mix/single client, not natural ingestion or original Snowflake SQL.",
+    "Six matched workload-layout groups, one episode/arm/group; dependence, cache/time and live instrumentation effects remain.",
+    "All original source requests offered and residual queued/maintenance work retained; source timing shift preserves spacing without compression.",
+    "300-second offered histories may be missing early and stay missing; pre-query host histories are measured, no intensity/small-file heuristic invented.",
+    "Uniform engine archival and actual metadata/query refresh overheads are instrumented outcomes, not pure CPU-only causal cost.",
+    "New boundary/archive/layout paths require actual raw audit; compiler/legacy checks alone are not success.",
+    "Candidate training/exploratory model comparison only; no independent conformal promotion or adaptive policy result."
+  ]
+}
