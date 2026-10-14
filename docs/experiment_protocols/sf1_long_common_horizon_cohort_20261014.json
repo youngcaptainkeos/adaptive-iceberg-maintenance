@@ -1,0 +1,63 @@
+{
+  "schema_version": "common_horizon_cohort_pilot_v1",
+  "registered_order": [
+    "no_maintenance",
+    "compact_now",
+    "compact_later",
+    "compact_now",
+    "compact_later",
+    "no_maintenance",
+    "compact_later",
+    "no_maintenance",
+    "compact_now"
+  ],
+  "episodes": [
+    {
+      "path": "sf1_long_horizon_20261014_01.json",
+      "sha256": "84156c67e8d7fdccbe4bfccf7c6cbc0774270f3b2121f67a945aaba484118566"
+    },
+    {
+      "path": "sf1_long_horizon_20261014_02.json",
+      "sha256": "9316ec735a73b9a9409efadb99158868a43eeda4052808ae3d81921be28c77f6"
+    },
+    {
+      "path": "sf1_long_horizon_20261014_03.json",
+      "sha256": "5a96a73959b3e224ab57c849e33caa579cbadef6908c00780d4bc46d02ee3de0"
+    },
+    {
+      "path": "sf1_long_horizon_20261014_04.json",
+      "sha256": "bbd33d95945e30105e0aba19e27e957f51aab122aed0949732c5580afb2a7c2c"
+    },
+    {
+      "path": "sf1_long_horizon_20261014_05.json",
+      "sha256": "9c0010ee6327537491738302c694d208a4512f7e4e487189a964cc35ab14e58b"
+    },
+    {
+      "path": "sf1_long_horizon_20261014_06.json",
+      "sha256": "8b7f07d8fb1f2dde464a8ea165c37d586d581222417d3076675cb3d82b1c5b8b"
+    },
+    {
+      "path": "sf1_long_horizon_20261014_07.json",
+      "sha256": "626a91f74997cfe1eaea99fd8b676a9d4ac8c4526d635b40621b155c697c93e5"
+    },
+    {
+      "path": "sf1_long_horizon_20261014_08.json",
+      "sha256": "73bb6d1738181c546f039586ed9e7d408cfd62d2e9d45e25b0a2d37d9fd748d4"
+    },
+    {
+      "path": "sf1_long_horizon_20261014_09.json",
+      "sha256": "bcfef6e62049b4954c28273263cd81ba25ea120ea2c7515ad2c490b16705dca1"
+    }
+  ],
+  "output_directory": "../../results/sf1_long_common_horizon_cohort_20261014",
+  "rationale": "Nine real serial5-minute arms over three preregistered distinct training trace windows with Latin rotated arm order; within-group exact offered arrivals/config and across-arm initial raw file row/byte signature gates. All raw physical checks before each next episode, retain failed/unattempted, no retries to fit favorable results. Pilot only; no scalar objective/SLA/independent calibration/accepted cost labels.",
+  "limitations": [
+    "One episode/arm/window across three source windows is engineering completeness and demand variation screening, not statistical power, independent conformal calibration or accepted cost training.",
+    "One warehouse with three five-minute training windows, imposed benchmark mix and controlled SF1 fragmentation; no production SQL, ingestion or scale claim.",
+    "Rotated order balances arm positions but does not eliminate cache/time trends or shared-host dependence.",
+    "Equal logical content and file row/byte signature do not establish identical cache state or all physical locality.",
+    "Actual metadata/refresh/state-publication overhead and generator jitter measured; controller snapshot may lag commit.",
+    "Common-horizon residual queue and maintenance completion recorded separately; no arbitrary scalar weight or invented SLA.",
+    "No adaptive forecaster, trained cost model, oracle input, optimized deferral or scheduling benefit claim."
+  ]
+}

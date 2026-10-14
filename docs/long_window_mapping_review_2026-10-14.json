@@ -1,0 +1,49 @@
+{
+  "status": "three_real_source_mapping_audits_completed",
+  "windows": [
+    {
+      "status": "audited_complete_real_arrival_benchmark_mapping_only",
+      "arrival_count": 718,
+      "source_interval_start_utc": "2018-02-22T18:26:00.286000+00:00",
+      "source_interval_end_utc": "2018-02-22T18:31:00.286000+00:00",
+      "mapping_record_sha256": "b9b558b087166621e5b2ad12fcee0dcc1ab605db65d73b8ca34976290df58f14",
+      "audit_code_sha256": "97e5919f0bdcf4d13a3835f67f7dfacfbc9532f4ec0001286cd914c86b1bfc95",
+      "physical_replay_performed": false,
+      "limitations": [
+        "One training warehouse/minute and imposed benchmark SQL mix cannot establish original Snowflake workload reproduction.",
+        "This export is a schedule, not observed offered/dispatch/completion evidence.",
+        "A single-client baseline queue diagnostic is not a cost-training or common-horizon action comparison."
+      ]
+    },
+    {
+      "status": "audited_complete_real_arrival_benchmark_mapping_only",
+      "arrival_count": 762,
+      "source_interval_start_utc": "2018-02-22T20:00:00.286000+00:00",
+      "source_interval_end_utc": "2018-02-22T20:05:00.286000+00:00",
+      "mapping_record_sha256": "dd05b4a2d97854f99bf101c79d540a1c4321aeaaf628dff0cc5e2b9cd768d62c",
+      "audit_code_sha256": "97e5919f0bdcf4d13a3835f67f7dfacfbc9532f4ec0001286cd914c86b1bfc95",
+      "physical_replay_performed": false,
+      "limitations": [
+        "One training warehouse/minute and imposed benchmark SQL mix cannot establish original Snowflake workload reproduction.",
+        "This export is a schedule, not observed offered/dispatch/completion evidence.",
+        "A single-client baseline queue diagnostic is not a cost-training or common-horizon action comparison."
+      ]
+    },
+    {
+      "status": "audited_complete_real_arrival_benchmark_mapping_only",
+      "arrival_count": 744,
+      "source_interval_start_utc": "2018-02-23T20:00:00.286000+00:00",
+      "source_interval_end_utc": "2018-02-23T20:05:00.286000+00:00",
+      "mapping_record_sha256": "3f64dae2182a9e79900cd80da2e5b9a9d6956c14f6d125cab505a4829ea9580b",
+      "audit_code_sha256": "97e5919f0bdcf4d13a3835f67f7dfacfbc9532f4ec0001286cd914c86b1bfc95",
+      "physical_replay_performed": false,
+      "limitations": [
+        "One training warehouse/minute and imposed benchmark SQL mix cannot establish original Snowflake workload reproduction.",
+        "This export is a schedule, not observed offered/dispatch/completion evidence.",
+        "A single-client baseline queue diagnostic is not a cost-training or common-horizon action comparison."
+      ]
+    }
+  ],
+  "physical_replay_performed_by_mapping": false,
+  "note": "Inherited minute wording in original export limitation strings is stale; actual receipt horizon and audited source interval are300seconds. Original outputs preserved unchanged."
+}

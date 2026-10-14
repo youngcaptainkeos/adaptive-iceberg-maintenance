@@ -406,3 +406,22 @@ Mapper/source-auditor support multi-bin training-day selection; cohort permits
 separate mapping groups but requires identical offered work within each group.
 Compile checks passed on worker3; prior six-arm actual review passed. All further
 validation/physical runs remain on worker3 detached under nohup.
+
+### Three longer source-window audits completed
+
+Detached exporter/auditor coordinator PID728138 completed all3windows. Actual
+arrivals718/762/744, each300seconds, selected training source-days0/1/2 as
+registered; exact source identities/spacing/SQL mapping reconstruction passed.
+Start times2018-02-22T18:26:00.286Z,2018-02-22T20:00:00.286Z,
+2018-02-23T20:00:00.286Z. All raw mapping/config/code/audits mirrored locally.
+Original inherited limitation strings still say minute; these conservatively
+stale strings are preserved, with actual300-second receipts and clarification in
+`long_window_mapping_review_2026-10-14.json`. No source/outcome altered.
+
+Registered9real arms, rotated orders none/now/later; now/later/none; later/none/
+now. Exact within-window offered workload/config match; no comparing different
+source windows as if identical counterfactuals. Delayed action midpoint150s is a
+registered intervention. Fresh verified source clones and existing strict raw
+integrity gates, residual queues/maintenance and unchanged engine/client/SQL mix.
+New operational cutoff18:30IST applies to this unit; original historical protocols
+unchanged. No fitted cost model or scheduler and no automatic winner selection.

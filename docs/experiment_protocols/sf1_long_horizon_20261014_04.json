@@ -1,0 +1,79 @@
+{
+  "engine": {
+    "host": "127.0.0.1",
+    "port": 10000,
+    "username": "ccbd",
+    "expected_version": "3.3.4"
+  },
+  "spark_rest_url": "http://127.0.0.1:4040",
+  "spark_app_id": "local-1791896695889",
+  "rest_timeout_seconds": 5,
+  "telemetry": {
+    "interval_seconds": 1,
+    "window_seconds": [
+      60,
+      300
+    ],
+    "warmup_seconds": 305,
+    "max_interval_seconds": 2,
+    "max_age_seconds": 2,
+    "minimum_coverage_fraction": 0.95,
+    "rationale": "One-second real host counter cadence, five-minute warmup plus five-second margin; retain existing 95% coverage and two-second gap/freshness gates. Exact bounds/available frontier and actual submission freshness are independently checked. No normalized demand assumed."
+  },
+  "preparation_result": {
+    "path": "../../results/sf1_source_integrity_20261014_0024/result.json",
+    "sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57"
+  },
+  "schema_version": "common_horizon_arm_pilot_v1",
+  "experiment_id": "sf1_long_horizon_20261014_04",
+  "output_directory": "../../results/sf1_long_horizon_20261014_04",
+  "client_count": 1,
+  "boundary_rule": "no_dispatch_after_horizon_natural_inflight_completion",
+  "no_new_operation_after_utc": "2026-10-14T13:00:00+00:00",
+  "mapping_record": {
+    "path": "../../results/snowset_long_window_1_20261014/mapping_record.json",
+    "sha256": "dd05b4a2d97854f99bf101c79d540a1c4321aeaaf628dff0cc5e2b9cd768d62c"
+  },
+  "expected_query_ledgers": [
+    {
+      "path": "../../results/sf1_matched_q0_20261014/events.jsonl",
+      "sha256": "5529f2a83ffc6fdb6afdfd2a348f037c0919195d599de2da433fd6dab4c5ea40"
+    },
+    {
+      "path": "../../results/sf1_matched_measurement_20261014/events.jsonl",
+      "sha256": "ebcaaaaa752e56c4752cba9f7f49c3c4cef06427dcb78ab26253ba3cdf217510"
+    },
+    {
+      "path": "../../results/sf1_matched_q2_20261014/events.jsonl",
+      "sha256": "fcba244ac5901557bb17395b0b841f241e8ed05a2c881e4188aa7e54a867594f"
+    },
+    {
+      "path": "../../results/sf1_matched_q3_20261014/events.jsonl",
+      "sha256": "26847ce0ac1ec9f89cdf0bd4c4ab27c9eb6e5f324c7138069e4e5712e671d87b"
+    }
+  ],
+  "configuration_rationale": "Larger real five-minute three-window collection, all source arrivals from audited training-only day-index selection retained at original spacing. Three arms matched within each actual source window; rotated order balances arm positions across source windows without outcome search. Initial table/data/client/SQL conditions unchanged. Now is horizon start, later midpoint150seconds: explicit intervention, not a hardcoded learned policy. Five-minute horizon equals longest existing telemetry history and allows several measured rewrite durations to observe resulting layout consequences; operational18:30IST cutoff never cancels active work. One arm/window, three demand profiles, no power/independent-calibration claim or fitting. No pooled causal winner or synthetic targets.",
+  "limitations": [
+    "One episode/arm/window across three source windows is engineering completeness and demand variation screening, not statistical power, independent conformal calibration or accepted cost training.",
+    "One warehouse with three five-minute training windows, imposed benchmark mix and controlled SF1 fragmentation; no production SQL, ingestion or scale claim.",
+    "Rotated order balances arm positions but does not eliminate cache/time trends or shared-host dependence.",
+    "Equal logical content and file row/byte signature do not establish identical cache state or all physical locality.",
+    "Actual metadata/refresh/state-publication overhead and generator jitter measured; controller snapshot may lag commit.",
+    "Common-horizon residual queue and maintenance completion recorded separately; no arbitrary scalar weight or invented SLA.",
+    "No adaptive forecaster, trained cost model, oracle input, optimized deferral or scheduling benefit claim."
+  ],
+  "mapping_audit": {
+    "path": "../../results/snowset_long_window_1_20261014/source_mapping_audit.json",
+    "sha256": "09e2d6f1cfc690c8ed82bdc76019519fa3ac7d827ac8556f0d473db3adc440e5"
+  },
+  "destination_table": "local.experiment.integrity_horizon_long_20261014_04",
+  "action_arm": "compact_now",
+  "action_offset_ns": 0,
+  "metadata_checkpoint_offsets_ns": [
+    0,
+    150000000000
+  ],
+  "decision_state_contract": "fresh_current_original_snapshot_v1",
+  "metadata_max_age_seconds": 2,
+  "comparison_group": "training_source_day_1"
+}
