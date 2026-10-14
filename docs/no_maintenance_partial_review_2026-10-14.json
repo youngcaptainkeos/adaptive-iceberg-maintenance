@@ -1,0 +1,76 @@
+{
+  "status": "audited_partial_null_diagnostic_preserved_failure",
+  "planned_blocks": 4,
+  "audited_blocks": 1,
+  "unattempted_blocks": 3,
+  "failures_preserved": [
+    {
+      "error_type": "KeyError",
+      "error": "'file_state'"
+    }
+  ],
+  "audit_code_sha256": "ad90775a2c07a9f645f7fc2315ff4ab79f5d67e3d2f6e849d273cfb5ab281294",
+  "blocks": [
+    {
+      "table": "local.experiment.integrity_null_20261014_01",
+      "latencies_ms": {
+        "control_before": 2513.566123,
+        "placebo_middle": 2440.186065,
+        "control_after": 2501.015968
+      },
+      "signed_placebo_contrast_ms": -67.10498050000024,
+      "after_minus_before_ms": -12.550154999999904,
+      "registered_reference_gaps_seconds": [
+        1.928607459,
+        10.676690485
+      ],
+      "actual_gaps_seconds": [
+        2.013457583,
+        10.765172108
+      ]
+    }
+  ],
+  "observation_checks": [
+    {
+      "measurement_id": "e5e385509a4642f7a093c8362529a571",
+      "role": "control_before",
+      "snapshot_id": 6022991196870174019,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    },
+    {
+      "measurement_id": "d7df814296364a94b728673752234efc",
+      "role": "placebo_middle",
+      "snapshot_id": 6022991196870174019,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    },
+    {
+      "measurement_id": "74d62b4d56e9442d800c893e1c2df651",
+      "role": "control_after",
+      "snapshot_id": 6022991196870174019,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    }
+  ],
+  "events_sha256": "0b07547467ac0424c3ca01d47457a1f0a82d0c2681f0e2e2d0467d226eda424b",
+  "cost_training_accepted": false,
+  "limitations": [
+    "Four serial fresh-table blocks do not establish final sample size or independent host/cache conditions.",
+    "Observed prior query gaps matched, but maintenance REST/process sampling overhead is not reproduced; null and treated arms have unequal instrumentation.",
+    "No causal subtraction of historical treatment and current controls; time/cache trends and one SQL/layout remain limitations.",
+    "No confidence interval, training approval, original Snowflake SQL replay, scheduler or SLA claim."
+  ]
+}

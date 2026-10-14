@@ -59,7 +59,17 @@ def audit(directory, *, completed_blocks=None):
         require([r['role'] for r in probes] == list(ROLES), 'Null role order differs')
         require(all(canonical(r['rows']) == canonical(probes[0]['rows']) for r in probes), 'Query results changed')
         own = [r for r in observations if r['table'] == block['table']]
-        require(len(own) == 3 and all(r['snapshot_id'] == block['initial']['snapshot_id'] and r['file_state'] == block['initial']['file_state'] for r in own), 'Null state differs')
+        # Block summaries preserve exact files, whereas observations preserve aggregates.
+        # Derive aggregates from those raw files; never assume an absent summary field.
+        files=block['initial']['files']
+        state={'file_count':len(files),'record_count':sum(r[1] for r in files),'total_bytes':sum(r[2] for r in files)}
+        require(len(own) == 3 and all(r['snapshot_id'] == block['initial']['snapshot_id'] and r['file_state'] == state for r in own), 'Null state differs')
+        inventories=[r for r in complete.values() if requests[r['measurement_id']]['sql']==f"SELECT file_path, record_count, file_size_in_bytes FROM {block['table']}.files"]
+        snapshots=[r for r in complete.values() if requests[r['measurement_id']]['sql']==f"SELECT snapshot_id FROM {block['table']}.history ORDER BY made_current_at DESC LIMIT 1"]
+        require(len(inventories)==2 and len(snapshots)==2, 'Missing/extra raw before-after inventories')
+        for label,inventory,snapshot in zip(('initial','final'),inventories,snapshots):
+            require(sorted(inventory['rows'])==block[label]['files'] and snapshot['rows']==[[block[label]['snapshot_id']]], 'Summary differs from raw inventory/snapshot')
+            require(snapshot['fetch_end']['monotonic_ns']<=inventory['client_execute_start']['monotonic_ns'], 'Inventory chronology differs')
         require(block['initial'] == block['final'], 'Snapshot or exact files changed in null block')
         multiset = complete[(cfg['experiment_id'], block['multiset_measurement_id'])]
         source = json.loads((directory/'preparation_result.json').read_text())
@@ -85,7 +95,8 @@ def audit(directory, *, completed_blocks=None):
             require(overlapping and all(probe['marker'] in str(j.get('description','')) for j in overlapping), 'Raw unrelated Spark contamination')
         latency = [r['client_elapsed_ns']/1e6 for r in probes]
         summary.append({'table':block['table'], 'latencies_ms':dict(zip(ROLES,latency)), 'signed_placebo_contrast_ms':latency[1]-(latency[0]+latency[2])/2, 'after_minus_before_ms':latency[2]-latency[0], 'registered_reference_gaps_seconds':gaps, 'actual_gaps_seconds':actual_gaps})
-    return {'status':'audited_null_diagnostic_only', 'blocks':summary, 'observation_checks':checks, 'events_sha256':sha256(directory/'events.jsonl'), 'cost_training_accepted':False, 'limitations':cfg['limitations']}
+    failures=[{'error_type':r['error_type'],'error':r['error']} for r in rows if r['kind']=='null_control_failed']
+    return {'status':'audited_null_diagnostic_only' if expected==len(cfg['blocks']) and not failures else 'audited_partial_null_diagnostic_preserved_failure', 'planned_blocks':len(cfg['blocks']), 'audited_blocks':expected, 'unattempted_blocks':len(cfg['blocks'])-expected, 'failures_preserved':failures, 'audit_code_sha256':sha256(Path(__file__)), 'blocks':summary, 'observation_checks':checks, 'events_sha256':sha256(directory/'events.jsonl'), 'cost_training_accepted':False, 'limitations':cfg['limitations']}
 
 
 def run(config_path, revision):
@@ -173,9 +184,9 @@ def run(config_path, revision):
 
 
 if __name__ == '__main__':
-    p=argparse.ArgumentParser(description=__doc__); p.add_argument('--config');p.add_argument('--expected-revision');p.add_argument('--audit-directory');p.add_argument('--audit-output')
+    p=argparse.ArgumentParser(description=__doc__); p.add_argument('--config');p.add_argument('--expected-revision');p.add_argument('--audit-directory');p.add_argument('--audit-output');p.add_argument('--completed-blocks',type=int)
     a=p.parse_args()
     if a.audit_directory:
-        result=audit(a.audit_directory)
+        result=audit(a.audit_directory,completed_blocks=a.completed_blocks)
         with Path(a.audit_output).open('x') as stream: json.dump(result,stream,indent=2);stream.write('\n')
     else: run(a.config,a.expected_revision)

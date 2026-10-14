@@ -153,3 +153,27 @@ files, verify SHA256s, and document signed null contrasts alongside historical
 values without causal subtraction. Only then register queue/mapping and common-
 horizon collection. Shared candidate fitting remains blocked on real independent
 training/calibration/test data; its successful fit path has not yet been exercised.
+
+## Null-control failure diagnosis and repair
+
+User reported the missing completion. Worker3 inspection at05:19:55 UTC found
+PID476932 ended naturally, no active Spark jobs, one completed physical block,
+zero SQL failures, and a terminal auditor KeyError `file_state`. This was an
+implementation error: block summaries contain exact `files` and `snapshot_id`,
+while the audit incorrectly assumed an aggregate field in that summary.
+
+Repaired auditor derives aggregates from actual exact files and additionally
+binds both initial/final file lists and snapshots to raw SQL results. Explicit
+partial review records all registered/unattempted blocks and terminal failures;
+it does not change the original failed status. Worker3 compiled corrected code
+and audited the first completed block from original frozen code/logs with no new
+query. It passed timing/windows/snapshot/files/task/result/exact-multiset checks.
+Observed before/middle/after latencies:2513.566123/2440.186065/2501.015968ms;
+signed null contrast−67.1049805ms. One block is not a variance/causal conclusion.
+Review: `no_maintenance_partial_review_2026-10-14.json`; full failed raw package
+mirrored at `results/sf1_null_controls_20261014/`. Original failure.json remains.
+
+Recovery preregisters only the three unattempted original blocks/cadences/tables,
+not a repeated first block or a retry selected by outcome. Historical protocol,
+raw logs and failed table are preserved. The same12:30 IST operational cutoff
+applies. No cost labels/model promotion or maintenance operation added.

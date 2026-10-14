@@ -1,0 +1,79 @@
+{
+  "purpose": "null_drift_diagnostic_only_no_training",
+  "source": {
+    "path": "../../datasets/tpch/sf1/lineitem.tbl",
+    "sha256": "96d555e07a1ae8cf5196387d9edd9427f9af70c56fa5f4b18affee5555ddb184"
+  },
+  "generator_provenance": {
+    "path": "../../datasets/tpch/sf1/manifest.txt",
+    "sha256": "d2d80966fe1fa8790c35ea3ed6242b4d9ef2740cad888c84bd986348e9c39a32"
+  },
+  "engine": {
+    "host": "127.0.0.1",
+    "port": 10000,
+    "username": "ccbd",
+    "expected_version": "3.3.4"
+  },
+  "spark_rest_url": "http://127.0.0.1:4040",
+  "spark_app_id": "local-1791896695889",
+  "rest_timeout_seconds": 5,
+  "schema_version": "no_maintenance_controls_v1",
+  "experiment_id": "sf1_null_controls_recovery_20261014",
+  "configuration_rationale": "Four fresh isolated SF1 Q1 blocks, matching the four prior measured end-to-next-start query gaps exactly as minimum spacings. Four is an engineering null screen matched to the four previous treatments, not a precision claim. Same 305-second warmup, 60/300-second windows and dedicated metadata/query sessions. No rewrite, no cache clearing, no trace replay, no cost labels. Measured gap overshoot reported. Operational cutoff 12:30 IST; active work completes naturally. Recovery registration: original stopped solely at auditor KeyError after first real block. That block passed corrected raw audit and will not be repeated. Execute only original three unattempted blocks on original registered table identities/cadences. Retain original failure and partial audit; no selection by latency.",
+  "preparation_result": {
+    "path": "../../results/sf1_source_integrity_20261014_0024/result.json",
+    "sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57"
+  },
+  "output_directory": "../../results/sf1_null_controls_recovery_20261014",
+  "telemetry": {
+    "interval_seconds": 1,
+    "window_seconds": [
+      60,
+      300
+    ],
+    "warmup_seconds": 305,
+    "max_interval_seconds": 2,
+    "max_age_seconds": 2,
+    "minimum_coverage_fraction": 0.95,
+    "rationale": "One-second real host counter cadence, five-minute warmup plus five-second margin; retain existing 95% coverage and two-second gap/freshness gates. Exact bounds/available frontier and actual submission freshness are independently checked. No normalized demand assumed."
+  },
+  "layout": "repartition_to_verified_source_file_count",
+  "query_id": 1,
+  "no_new_operation_after_utc": "2026-10-14T07:00:00+00:00",
+  "blocks": [
+    {
+      "destination_table": "local.experiment.integrity_null_20261014_02",
+      "reference_events": {
+        "path": "../../results/sf1_order_repeat_20261014_02/events.jsonl",
+        "sha256": "84aeb6013f1faeb8593a04283744d328d90c2a36af5333693b276da111e6eb49"
+      }
+    },
+    {
+      "destination_table": "local.experiment.integrity_null_20261014_03",
+      "reference_events": {
+        "path": "../../results/sf1_order_repeat_20261014_03/events.jsonl",
+        "sha256": "082d4b6462d87b33db821fa856b396b404cc686af350de3515cdcbd8156a9abc"
+      }
+    },
+    {
+      "destination_table": "local.experiment.integrity_null_20261014_04",
+      "reference_events": {
+        "path": "../../results/sf1_order_repeat_20261014_04/events.jsonl",
+        "sha256": "4bbfee35ac42979a7194861fb6908f9387528146daf8a8ca7d0caba32a041f03"
+      }
+    }
+  ],
+  "limitations": [
+    "Four serial fresh-table blocks do not establish final sample size or independent host/cache conditions.",
+    "Observed prior query gaps matched, but maintenance REST/process sampling overhead is not reproduced; null and treated arms have unequal instrumentation.",
+    "No causal subtraction of historical treatment and current controls; time/cache trends and one SQL/layout remain limitations.",
+    "No confidence interval, training approval, original Snowflake SQL replay, scheduler or SLA claim."
+  ],
+  "recovery_parent": {
+    "original_protocol": "sf1_no_maintenance_controls_20261014.json",
+    "original_output": "../../results/sf1_null_controls_20261014",
+    "partial_audit": "../no_maintenance_partial_review_2026-10-14.json",
+    "original_completed_blocks": 1,
+    "original_failed_status_preserved": true
+  }
+}
