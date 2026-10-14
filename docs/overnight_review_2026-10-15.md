@@ -351,3 +351,7 @@ b9e865dHEAD/5intendedSHAmatch. No modelrefit/no physicalcollectorrunning.
 launched. Read-only9successfultablebyteinventorycode/protocol added, actualrawpaths/
 hashes andidleSparkrequired. Failedtables preserved, portablecatalognotproved.
 No physicalrunplanned; nextdetachedmanifest, mirroredbytesandposttransferhashcheck.
+
+ActualbyteinventorynohupPID1565619launch23:13UTC, log
+results/physical_table_byte_manifest_20261015_launch.log; check5min/wake. c283508HEAD/
+6unitSHAagreehosts.32verificationPID1565070 launched; no tablebytebackupclaimyet.

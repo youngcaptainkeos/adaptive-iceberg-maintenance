@@ -404,3 +404,5 @@ livevalidated. SeparatecandidateexportnohupPID1550562launched; rawroundtripnext.
 Section45 separate32fileexport1587queries/2rewritescompleted/independentchecklaunched;
 9successfultablebyteinventoryregistered, idle/read-only/actualrawpaths, noportability
 or bytefallbacksuccessclaimbeforetransferverification.
+
+ByteinventorynohupPID1565619launched; read-onlyactualhashmanifest beforetransfer.

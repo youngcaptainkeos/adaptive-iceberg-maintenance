@@ -1910,3 +1910,8 @@ idleSparkbefore/after. Failedtables remainremote untouched/excludedfromsuccessfu
 fallbackmanifest. NoSQL/tablemutation/deletion, noportablecatalogproof: absolutepaths
 andcatalogstate areworker3-specific. Next detachedmanifestjob, transferonlyactual
 manifestroots thenfullbefore/afterhashagreement beforefallbackclaim. No modelrefit.
+
+ActualbyteinventorynohupPID1565619launched23:13UTC; log
+results/physical_table_byte_manifest_20261015_launch.log, output
+results/physical_table_byte_manifest_20261015.json. Check5min/nextwake, nophysical
+operationinitiated. c283508HEAD/6unitSHAagreehosts. Tablebytesnotmirroredyet.
