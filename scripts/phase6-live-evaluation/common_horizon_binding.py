@@ -22,7 +22,7 @@ def audit_arm(rows,cfg,measured,requests,jobs,stages,rest,lo,hi,registered_sourc
     validations=[r for r in rows if r['kind']=='common_horizon_multiset_validation'];require(len(validations)==2,'Missing original/final multiset proofs')
     sources=[r for r in rows if r['kind']=='common_horizon_source'];require(len(sources)==1,'Missing/extra registered source')
     source=sources[0];require(source['table']==registered_source['table'] and source['snapshot_id']==registered_source['snapshot_id'],'Source identity differs from preparation receipt')
-    require(initial['file_state']['record_count']==registered_source['record_count'] and initial['file_state']['file_count']==registered_source['file_count'],'Initial layout differs from source declaration')
+    require(initial['file_state']['record_count']==registered_source['record_count'] and initial['file_state']['file_count']==cfg.get('initial_file_count',registered_source['file_count']),'Initial layout differs from source declaration')
     for validation,state in zip(validations,(initial,final)):
         mid=validation['measurement_id'];expected=f"SELECT count(*) FROM ((SELECT * FROM {source['table']} VERSION AS OF {source['snapshot_id']} EXCEPT ALL SELECT * FROM {table} VERSION AS OF {state['snapshot_id']}) UNION ALL (SELECT * FROM {table} VERSION AS OF {state['snapshot_id']} EXCEPT ALL SELECT * FROM {source['table']} VERSION AS OF {source['snapshot_id']})) AS differences"
         require(validation['snapshot_id']==state['snapshot_id'] and requests[mid]['sql']==expected and measured[(cfg['experiment_id'],mid)]['rows']==[[0]],'Raw multiset proof differs')

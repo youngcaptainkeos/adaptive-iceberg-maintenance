@@ -237,3 +237,19 @@ under explicit exploratory and later held-out gates. No synthetic labels or fit.
 Root `AGENTS.md` now records the user's standing requirement to append methodology
 after every major job, alongside real-data/server-validation and preservation /
 Git-integrity practices. Detailed record is in the continuing working ledger.
+
+### 8.4 Overnight end-to-end milestone authorized —2026-10-14/15
+
+Working ledger Job15records new user authorization until06:00IST tomorrow,
+updated existing automation and audit-driven18-arm diverse collection / actual
+demand-history / exploratory estimator queue. Execution and morning ledgers are
+`overnight_execution_plan_2026-10-15.md` / `overnight_review_2026-10-15.md`.
+No success or calibration claim follows from authorization. Services/failed data
+are preserved, and append-only evidence gates continue after every major job.
+
+### 8.5 Overnight diversity collector implementation
+
+Working ledger Job16records explicit real layout candidates, within-group strict
+matching, ten-minute actual offered-history exposure, server compilation and
+historical raw regression. New paths await registered physical execution; active
+collector will use an immutable checkout separate from later model development.

@@ -1284,3 +1284,39 @@ future repository work. This is a workflow change, not a scientific measurement
 or model promotion. The canonical working ledger and updated-master pointer remain
 append-only; no historic method text was removed. Future major jobs must append
 rationale, pipeline changes, verified evidence/failures and limits here.
+
+## 15. Overnight collection-to-model milestone authorized —2026-10-14/15
+
+User authorized autonomous work until06:00IST on2026-10-15. Existing same-chat
+15-minute heartbeat updated toACTIVE with that deadline, audit/repair-before-
+dependency queue and quiet-on-unchanged notifications. Queue and morning evidence
+ledger are `overnight_execution_plan_2026-10-15.md` and
+`overnight_review_2026-10-15.md`. No new physical episode after04:45IST, no new
+Spark/SQL/maintenance after05:15IST; active work/services preserved at cutoff.
+
+The next larger job targets18fresh controlled arms over three disjoint actual
+source windows and two named original layouts,10-minute source exposure to permit
+real300-second offered histories, complete raw audit/export then exploratory
+separate/shared/rewrite estimation. This is registration intent, not execution
+success or accepted calibration. Models and training features remain raw/split
+bound, no synthetic missing data/labels or hardcoded policy predictions. Data-scale,
+SQL mix, single-host, precision and independent calibration limitations remain.
+Append all launches/failures/checks/outputs below after actual jobs. Preserve
+original failed cohorts, occupied tables and dirty/archive/stash evidence.
+
+## 16. Overnight diversity collector implementation —2026-10-14
+
+Implemented named original-file-count interventions on verified source rows and
+strict raw layout-state binding. Comparison groups require identical workload/
+layout parameters; initial row/byte file signatures now match within declared
+layout groups, allowing intentionally different physical layouts across groups.
+Defaults retain historical contracts; no old outcome/data silently changed.
+New ten-minute source windows expose actual offered histories while retaining all
+600seconds in workload/debt accounting. No generated demands or imputed history.
+
+Worker3 detached compilation and raw regression of the actual accepted long
+baseline passed. This does not validate new32file or boundary branches; registered
+real collection is next. Immutable worker3 runtime checkout will protect active
+code/config while main develops new-schema estimators. Overnight queue/review
+record deadline/safety buffers and dynamic failure-first behavior. No model fit,
+accepted calibration or scheduling result in this implementation job.

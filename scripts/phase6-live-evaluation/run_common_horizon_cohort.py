@@ -17,13 +17,14 @@ def run(config,revision):
     require(all(all(c[k]==settings[0][k] for k in global_fields) for c in settings),'Different non-action global conditions')
     groups={}
     for c in settings:groups.setdefault(c.get('comparison_group','single_window'),[]).append(c)
-    for members in groups.values():require(all(all(c[k]==members[0][k] for k in common) for c in members),'Different offered work within matched window group')
+    for members in groups.values():
+        require(all(all(c[k]==members[0][k] for k in common) and c.get('initial_file_count')==members[0].get('initial_file_count') and c.get('layout_signature_group')==members[0].get('layout_signature_group') for c in members),'Different offered work/layout within matched window group')
     lock=(repo/'results'/'.common_horizon_cohort.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     out=(base/cfg['output_directory']).resolve();out.mkdir(parents=True,exist_ok=False);shutil.copy2(config,out/'config.json');code=out/'code';code.mkdir()
     dependencies=('run_common_horizon_cohort.py','run_trace_queue_diagnostic.py','common_horizon_binding.py','offered_queue_ledger.py','prepare_trace_benchmark_mapping.py','physical_measurements.py','experiment_validation.py','statement_timing.py','query_observation_binding.py','telemetry_binding.py','run_correctness_pilot.py','engine_overlap.py')
     digests={name:sha256(module/name) for name in dependencies}
     for name in dependencies:shutil.copy2(module/name,code/name)
-    report={'schema_version':cfg['schema_version'],'status':'running','protocol_revision':revision,'code_sha256':digests,'started_utc':datetime.now(timezone.utc).isoformat(),'planned_episodes':len(settings),'attempts':[],'cost_training_accepted':False,'limitations':cfg['limitations']};signature=None
+    report={'schema_version':cfg['schema_version'],'status':'running','protocol_revision':revision,'code_sha256':digests,'started_utc':datetime.now(timezone.utc).isoformat(),'planned_episodes':len(settings),'attempts':[],'cost_training_accepted':False,'limitations':cfg['limitations']};signatures={}
     def checkpoint(name='progress.json'):(out/name).write_text(json.dumps(report,indent=2)+'\n')
     checkpoint()
     try:
@@ -46,8 +47,8 @@ def run(config,revision):
             require(result.returncode==0,'Frozen raw post-run audit failed; stop')
             audited=json.loads(audit_path.read_text());require(audited['common_horizon_arm']['action_arm']==c['action_arm'],'Audited arm differs')
             layout=audited['common_horizon_arm']['initial_layout_signature']
-            if signature is None:signature=layout
-            require(layout==signature,'Initial file row/byte distribution differs across arms; no equivalence claim')
+            signature_group=c.get('layout_signature_group','single_layout');signature=signatures.setdefault(signature_group,layout)
+            require(layout==signature,'Initial file row/byte distribution differs within declared layout group; no equivalence claim')
             attempt.update(status='passed_physical_and_raw_audit_only',ended_utc=datetime.now(timezone.utc).isoformat(),raw_result_sha256=sha256(raw/'result.json'),audit_sha256=sha256(audit_path),events_sha256=audited['events_sha256'],outcomes={k:audited[k] for k in ('offered','dispatched','horizon_actual_transition_counts','final_states','boundary_observation_lateness_ms')},physical_arm=audited['common_horizon_arm'])
             checkpoint();print(json.dumps({'index':index,'arm':c['action_arm'],'status':attempt['status'],'outcomes':attempt['outcomes']}),flush=True)
         report['status']='completed_common_horizon_diagnostic_only'

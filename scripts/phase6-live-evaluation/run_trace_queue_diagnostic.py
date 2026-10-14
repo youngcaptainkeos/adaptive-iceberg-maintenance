@@ -146,7 +146,8 @@ def run(config,revision):
             require(cfg['action_offset_ns']=={'no_maintenance':None,'compact_now':0,'compact_later':mapping['horizon_ns']//2}[cfg['action_arm']],'Registered action offset differs')
             require(not any(r[1]==table.split('.')[-1] for r in execute('SHOW TABLES IN local.experiment')['rows']),'Never overwrite a target')
             require(execute(f"SELECT snapshot_id FROM {source['table']}.history ORDER BY made_current_at DESC LIMIT 1")['rows'][0][0]==source['snapshot_id'],'Source changed')
-            execute(f"CREATE TABLE {table} USING iceberg AS SELECT /*+ REPARTITION({source['file_count']}) */ * FROM {source['table']} VERSION AS OF {source['snapshot_id']}")
+            count=cfg.get('initial_file_count',source['file_count']);require(isinstance(count,int) and not isinstance(count,bool) and count>1,'Register real original file-count intervention')
+            execute(f"CREATE TABLE {table} USING iceberg AS SELECT /*+ REPARTITION({count}) */ * FROM {source['table']} VERSION AS OF {source['snapshot_id']}")
             log.emit('common_horizon_source',table=source['table'],snapshot_id=source['snapshot_id'])
         current_inventory_end_ns=[None]
         def inventory():
@@ -155,7 +156,7 @@ def run(config,revision):
             if not arm:require(snap['rows'][0][0]==source['snapshot_id'],'Source snapshot changed')
             return {'table':table,'snapshot_id':snap['rows'][0][0],'snapshot_measurement_id':snap['measurement_id'],'file_inventory_measurement_id':files['measurement_id'],'file_state':{'file_count':len(files['rows']),'record_count':sum(r[1] for r in files['rows']),'total_bytes':sum(r[2] for r in files['rows'])}}
         state=inventory();initial_state=state
-        require(state['file_state']['record_count']==source['record_count'] and state['file_state']['file_count']==source['file_count'],'Source/initial layout differs')
+        require(state['file_state']['record_count']==source['record_count'] and state['file_state']['file_count']==cfg.get('initial_file_count',source['file_count']),'Source/initial layout differs')
         if arm:log.emit('common_horizon_initial_state',**state)
         sampler.start();time.sleep(cfg['telemetry']['warmup_seconds']);guard()
         lo=time.monotonic_ns();hi=lo+mapping['horizon_ns'];log.emit('replay_clock',start_monotonic_ns=lo,end_monotonic_ns=hi,source_interval_start_utc=mapping['source_interval_start_utc'],source_interval_end_utc=mapping['source_interval_end_utc'])
