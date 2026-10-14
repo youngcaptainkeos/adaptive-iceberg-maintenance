@@ -1,0 +1,13 @@
+{
+  "schema_version": "matched_pre_action_export_mirror_v1",
+  "all_file_sha256_match": true,
+  "files": {
+    "decision_observations.json": "d04f3324a5e1256532b9580366f3756388a4b7c5e8507d7877b0e32abd5d95a5",
+    "export_code.py": "9695b5a786db25a3a2d1c91e8a2058681878ae02cc1caeea81be3584f260b592",
+    "export_record.json": "afeb0eb02f4e16652763376dcb920a46d0c50fb840c19c20f934428da39b123e",
+    "query_observations.csv": "112594a1ec993c7fa797ce4c01fd9284871af8786d8a44520ad476e34b918a81",
+    "source_config.json": "c97758536f4c01d7fdc67a8a8499a987ebfe843302fb7fe4c67b703cb1a23ba0",
+    "source_result.json": "2e7e7abd1baf8c7abbee535f6e26459dc74b04e7da1bd0eeab9c2f18c3748ebf"
+  },
+  "scope": "Four actual Q0 query observations and one real pre-action context; original immutable inventory not fresh ingestion-state proof; no training acceptance."
+}

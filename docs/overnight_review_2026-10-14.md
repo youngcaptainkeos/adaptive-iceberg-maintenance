@@ -849,3 +849,15 @@ at most two seconds; pre-action feature gates remain unchanged. Earlier Q0 evide
 retains its distinction, no stale inventory relabelled as fresh. Register Q2 on a
 new proper SF1 table with these strengthened gates, same query SQL/layout/action
 settings and physical cutoff. Short-query missed exposure remains refused evidence.
+
+Q0 export mirrored to worker3, all five hashes equal including the separate actual
+decision JSON. Manifest `matched_q0_export_mirror_2026-10-14.json`. Q2/fresh-state
+repair `7b69a6b` pushed and fast-forwarded; HEAD and all six intended file hashes
+matched. No active own physical pilot/collector or running Spark job at launch.
+Q2 **PID408414**, full execution `7b69a6be0bdd00e7ecc81104582f679883fba762`,
+artifacts `results/sf1_matched_q2_20261014/`, matching launch log/JSON receipt;
+result pending. Preserve operations/tables and audit success/failure before Q3.
+Actual filesystem inspection: warehouse path `/mnt/nfs-storage` is **ext4 on
+/dev/sdb** on this worker, despite its directory name. Do not assume network NFS
+semantics from the path. Host aggregate block-device counters still are not query-
+specific I/O; raw Spark task/file evidence remains separate.
