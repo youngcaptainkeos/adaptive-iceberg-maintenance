@@ -164,3 +164,37 @@ This is source implementation pending worker3 syntax validation and later actual
 end-to-end fitting. Run heavy verification/fitting only after physical collection
 is inactive. Bind future export/verification to actual completed raw evidence;
 never create placeholder hashes/labels to exercise a successful fit.
+
+## First fit outcome and next independent gates —2026-10-15
+
+First chronological fit was executed and independently reconstructed from saved
+real CSV targets, training medians and persisted models. Shared latency MAE311.395ms
+versus median22.928ms across521heldoutrows. SeparatependingFalse312.200versus20.364ms;
+pendingTrue1033.551versus48.999ms on12testrows/11trainrows,9negativepredictions.
+Rewrite199.722versus311.921ms on exactly1testrewrite/3trainrewrites. Models remain
+exploratory and rejected for scheduler use; one rewrite result cannot establish
+accuracy. No automatic winner, post-test feature pruning/refit or calibration.
+
+Next gate priorities:
+
+1. Fix availability race between waiting for durable samples and acquiring the
+   submission log lock. If samples are stale at lock acquisition, release before
+   waiting and record unsubmitted preparation; preserve FIFO, cutoff and all2s
+   gap/freshness rules. No physical SQL retry or erased failed episodes. Registered
+   live instrumentation comparison/new tables required; historical audit cannot
+   validate a new synchronization path. A separate-process telemetry observer may
+   be needed if Python/log contention continues; no fabricated catch-up counters.
+2. Collect independent matched source blocks with both original layouts and
+   measured pre/during/post maintenance regimes.11pendingtrainingqueries from one
+   episode are not a defensible conditional estimator. Same instrumentation across
+   train/calibration/test, verified larger scale and another resource setting remain
+   necessary; source0/32 and many other planned cells currently missing.
+3. Develop any positivity-preserving/log-target or lower-dimensional candidate using
+   training-only diagnostics with a new preregistered comparison and untouched
+   future test families. Current heldout results stay negative historical evidence;
+   do not tune alpha/remove inconvenient predictors on this test set and call it
+   independent validation. Feature-range diagnostics identify shifts, not causes.
+4. Preserve raw packages and actual table bytes/catalog references, then independent
+   calibration/power protocol. No accepted cost model, scheduler or publication-level
+   temporal maintenance benefit exists yet. Strong median baselines must stay in
+   future evaluation; completing the pipeline is not scientific acceptance.

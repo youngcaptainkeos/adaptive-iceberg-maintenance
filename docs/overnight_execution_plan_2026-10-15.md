@@ -157,3 +157,8 @@ calibration/promotion; datasetlimited4rewrites/16fileoriginal layout/confounding
 Firstfitfinished butnegativeheldoutlatencyresults. Independentsavedpredictionaudit
 nowimplemented; runnohup thenreportrawnegativebaselinecomparison/mirror. No
 heldouttuning, promotion or scheduleruse; independentcollectionplan next.
+
+Independentmodelauditpassed, negativeaccuracypreserved; no schedulerapproval. Verify
+sixsuccessfulrawpackage mirror, preservephysicalbytes/catalogreferences duringidle,
+then address lockacquisitionfreshness race/futureindependentcollectionregistration.
+No heldouttuning/refit toclaimaccuracy; newmodel comparisonneedsfuturetestblocks.

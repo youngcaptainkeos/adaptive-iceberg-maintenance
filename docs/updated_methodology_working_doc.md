@@ -377,3 +377,7 @@ not acceptedmodel. Independentread-only savedprediction auditimplemented, runnex
 No test-outcome tuning or calibrationclaim; rewriteoneheldoutrow insufficient.
 
 IndependentfitroundtripnohupPID1427023launched; no modelpromotionpendingaudit.
+
+Section40 independentfitroundtrip passed butlatencymodels failmedianbaselines;
+no schedulerapproval/calibration. Fitbundle6files mirroredSHA-identical; sixraw
+packagecopy underway. Learnedcostplan records next independentcollection gates.

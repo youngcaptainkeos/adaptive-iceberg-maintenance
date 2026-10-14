@@ -304,3 +304,12 @@ CSV/modelpredictionroundtrip audit; runworker3nohupnext. No accepted/calibratedm
 AuditnohupPID1427023launched21:00UTC, log
 results/candidate_cost_fit_independent_audit_20261015.log; nextcheck5min/nextwake.
 7f441ebHEAD/5unitSHAmatch. No tuning/rerun tohidefirstnegativefit.
+
+Independentfit auditpassed (SHAfad4fe8fb85c1c3f22ab34a54f59b61b6fc9d75ba712a306c3cf969d84f4d7f8).
+Shared311.395vsmedian22.928ms; separateFalse312.200vs20.364ms; separateTrue
+1033.551vs48.999ms/9negativepredictions. Rewrite199.722vs311.921ms only1testrow.
+1551missinghistoryqueriesexcluded,1031train/521testshared. Noacceptedmodel/scheduler.
+FitrecordSHA45b6b56c374046f74dc71bd9d7fbdb8f9903c91421ce26ac35e10bb45a26f1a6;
+6fitbundlefiles mirroredmatchingSHA.6successfulrawpackagecopyunderway~220MB; full
+integritycheckpending. Newtablephysicalbytefallbackstillmissing. Nextgates appended
+learnedcostplan: synchronizationrace/independentvariedblocks/untouchedfuturetest.

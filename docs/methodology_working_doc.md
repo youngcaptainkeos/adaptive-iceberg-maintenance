@@ -1801,3 +1801,24 @@ Independentfit auditnohupPID1427023launched21:00UTC; log
 results/candidate_cost_fit_independent_audit_20261015.log; intendedreceipt
 results/candidate_cost_fit_three_family_20261015/independent_audit.json. Check5min/
 nextwake; failures preserved andnotre-fit.7f441ebHEAD/5unitSHAagreehosts.
+
+## 40. Independent negative-model audit passed and bundle preserved
+
+Actual persistedprediction/CSVtarget/identity/trainingmedian/hash/coverage checks
+passed.1551earlyincompletehistoryqueries excluded;1031train/521test sharedrows.
+SharedMAE311.395130063ms versus median22.928232362ms; separatependingFalse
+312.200003429vs20.364429173ms (1020train/509test), pendingTrue1033.550793674vs
+48.999455208ms (11train/12test),9negativepredictions. Rewrite199.721930139vs
+311.921126999ms with3train/1test is not robustaccuracyapproval. Modelaudit successful
+means evidence reconstruction, not statisticalperformance. Learnedmodels rejected
+for scheduler use; no tuning/rerun to erase negative result.
+
+Independent auditSHAfad4fe8fb85c1c3f22ab34a54f59b61b6fc9d75ba712a306c3cf969d84f4d7f8;
+fitrecordSHA45b6b56c374046f74dc71bd9d7fbdb8f9903c91421ce26ac35e10bb45a26f1a6.
+Sixfitbundlefiles mirrored withSHAagreement. Range diagnostics show multipleactual
+I/O/demandheldoutvalues outside trainingrange; not a causal explanation or license
+for heldouttuning. Entire6successfulrawpackages (~220MB) mirror initiated; verify
+allrawfiles beforefallbackclaim. Actualphysicaltablebytes not yetmirrored fornewruns.
+No activephysical/modelprocess at21:10UTC. Append nextgates inlearnedcostplan:
+lock-acquisitionavailability race, matchedindependentvariedlayout/regimecollection,
+future untouchedtestblocks/trainingonlypositivemodelprotocol, physicalfallback.
