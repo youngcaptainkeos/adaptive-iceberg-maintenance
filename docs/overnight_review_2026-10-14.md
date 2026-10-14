@@ -1034,3 +1034,28 @@ raw episode records and auditor code hash equalled local results. Failed attempt
 and distinct contracts preserved. Source audit and all own physical pilots now
 finished naturally. No new physical operation after cutoff; remaining work is
 offline audit, documentation, Git synchronization and morning handover.
+
+### 06:31 IST: roadmap reconciled; retained-table fallback copying
+
+Publication goals now distinguish completed bounded measurement/data gates from
+unfinished offered-load accounting, repeated physical costs, uncertainty and
+scheduling. Explicit source preparation replaces reset language: existing tables
+are preserved. No calendar claim or trained-cost success inferred from diagnostic
+forecasting or four matched points.
+
+A scoped preservation copy is active locally through the existing terminal session,
+from the seven exact isolated benchmark table directories only: source preparation,
+failed/repaired correctness and four matched tables. It does not touch legacy
+warehouse, archive or draft files, query Spark or modify tables. Source manifest
+records 340 files / 2,139,848,623 bytes with individual SHA256s. Local destination
+`results/physical_warehouse_fallback_20261014/tables/`; source receipt
+`results/physical_warehouse_fallback_20261014/source_manifest.json`. Copy incomplete
+at this entry; no fallback acceptance until exact file set and bytes/digests match
+and source stability is rechecked. Metadata retains worker3 absolute paths: a
+byte backup is not a portable local Iceberg catalog. Preserve the copy if it is
+still active at 07:00; never kill/force-cancel it or remove retained data.
+
+The physical cutoff bars new engine/dataset-validation experiments. This work is
+artifact preservation and integrity synchronization of already completed runs.
+Source audit unitc24668f pushed/synced; full HEAD and all four intended hashes
+matched. No new benchmark query/rewrite or source-validation scan launched.

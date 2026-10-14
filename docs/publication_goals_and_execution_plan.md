@@ -90,7 +90,7 @@ or distribution shift. Learned delay cost does not prove starvation impossible.
 | Phase | Work and deliverables | Exit gate | Planning effort |
 | --- | --- | --- | --- |
 | P0: Contract and provenance | This plan; local/remote inventory; run evidence ledger; dataset and environment manifest; related-work comparison | Accepted scope; missing assets identified; no unsupported experiment treated as valid | 1 week |
-| P1: Physical harness | Query submission/start/end and IDs; arrival/queue metrics; writes and snapshot IDs; rewrite event/results; consistent telemetry; explicit failures; verified reset; fail-closed preflight | Physical pilot with verified overlap, real rewrites, proper dataset and complete event logs | 1–2 weeks |
+| P1: Physical harness | Query submission/start/end and IDs; arrival/queue metrics; writes and snapshot IDs; rewrite event/results; consistent telemetry; explicit failures; isolated source/table preparation; fail-closed preflight | Physical pilot with verified overlap, real rewrites, proper dataset and complete event logs | 1–2 weeks |
 | P2: Identifiable data | Matched control/treatment states; repeated counterbalanced runs over load, query mix, fragmentation and rewrite size; dataset checksums | Effects exceed measurement noise; enough independent events; supported state range | 1–2 weeks |
 | P3: Cost and transition models | Query-aware A/B; rewrite duration and post-layout estimates; separate train/calibration/test blocks; trivial baselines; per-condition errors | Useful held-out predictions; demonstrable fragmentation sensitivity; no leakage | 1–2 weeks |
 | P4: Forecasting and uncertainty | Model C; persistence/seasonal baselines where history permits; relevant horizons; temporal coverage and shift tests; fallback design | Forecasts have scheduling value; no future-data access; failure modes measured | 1–2 weeks |
@@ -154,10 +154,32 @@ not a universal magic count. Document workload provenance and baseline parameter
 - [x] P1 bounded step: remove active trace/training fabrication and retire legacy
   simulation/automatic launch paths. See `docs/fail_closed_experiment_contract.md`.
 - [x] P1 bounded step: add read-only provenance/engine/table preflight and disjoint
-  physical-data training gates. Live execution remains blocked; immutable run
-  packaging and positive end-to-end validation await the repaired event logger.
-- [ ] P1: Repair event timing, sampling, errors, resets, and offered-load generation.
+  physical-data training gates. Publication collection/scheduling remains blocked;
+  bounded diagnostics now have immutable evidence and positive raw validation.
+- [x] P1 bounded step: durable event IDs and actual execute clocks; independent
+  60/300-second telemetry with explicit available sample frontier; raw Spark
+  rewrite/task evidence; isolated verified SF1 table preparation and exact row/
+  query preservation. All four query templates have matched diagnostic episodes.
+  Q2/Q3 verify fresh pre-action state; preserve older Q1/Q0 contract limitations.
+- [x] P0 bounded step: complete Snowset source and training-selected arrival cohort
+  audited/mirrored; SF100 full-byte/cardinality agreement and all eight registered
+  typed fields audited. Generator/relational/ingestion gaps remain unresolved.
+- [x] P4 diagnostic only: past-only count forecasting improved held-out MAE versus
+  tested persistence/day/week baselines for one warehouse. No uncertainty coverage,
+  server-load prediction, deployed Model C or scheduling benefit accepted.
+- [ ] P1: Register genuine offered-load/SQL mapping, queue accounting and ingestion
+  semantics before publication replay. No existing-table reset or self-insert.
+- [ ] P2: Register repeated/counterbalanced variance and common-horizon action-cost
+  experiments; collect enough independent blocks before any cost fitting.
 - [ ] P2 onward: Proceed only after the preceding evidence gate is met.
+
+The overnight review and `common_horizon_cost_protocol.md` are the current queue
+and methodology dependency. `physical_attempt_inventory_reviewed_2026-10-14.json`
+preserves all seven scoped source/correctness/matched attempts, including the failed
+pilot and incompatible timing/action-state contracts. Accepted training episodes:
+zero. Point forecasting and physical measurement successes close bounded gates;
+they do not complete P2/P3/P4/P5 or establish a publication contribution. The effort
+estimates above remain provisional and must be reassessed after variance evidence.
 
 The first task is provenance and measurement integrity. Adding Model C to unreliable
 labels would produce a larger unreliable system. RUN_003 is an existing diagnostic
