@@ -231,3 +231,9 @@ or accepted scheduler evidence. Full export/frozen dependency/proof package mirr
 and hashes matched. Next collection must add disjoint windows/diverse physical
 state and correct history exposure; next trainer compares separate/shared costs
 under explicit exploratory and later held-out gates. No synthetic labels or fit.
+
+### 8.3 Persistent append workflow
+
+Root `AGENTS.md` now records the user's standing requirement to append methodology
+after every major job, alongside real-data/server-validation and preservation /
+Git-integrity practices. Detailed record is in the continuing working ledger.

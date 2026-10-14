@@ -1275,3 +1275,12 @@ accuracy/calibration gates. Do not force legacy normalized intensity/small-file
 fields into this data or assign before/after differences as causal penalties.
 No physical restart after the prior18:30cutoff, no model trained/promoted, no
 shutdown/cancellation/table deletion in this documentation/export job.
+
+### 14.1 Persistent workflow requirement
+
+Added root `AGENTS.md` to carry the user's append-only methodology, raw-evidence,
+worker3 detached-validation, preservation and audited Git/sync requirements into
+future repository work. This is a workflow change, not a scientific measurement
+or model promotion. The canonical working ledger and updated-master pointer remain
+append-only; no historic method text was removed. Future major jobs must append
+rationale, pipeline changes, verified evidence/failures and limits here.
