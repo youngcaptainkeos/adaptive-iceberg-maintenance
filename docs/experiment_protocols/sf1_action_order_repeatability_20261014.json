@@ -1,0 +1,49 @@
+{
+  "schema_version": "action_order_repeatability_pilot_v1",
+  "purpose": "diagnostic_repeatability_only_no_training",
+  "experiment_id": "sf1_order_repeatability_20261014",
+  "query_id": 1,
+  "registered_order": [
+    "rewrite_first",
+    "query_first",
+    "query_first",
+    "rewrite_first"
+  ],
+  "episode_configs": [
+    {
+      "path": "sf1_order_repeat_20261014_01.json",
+      "sha256": "7148be62aa87a595a23b66dbae2b31e24a8855af9fded172a5d6cacd831dfd11"
+    },
+    {
+      "path": "sf1_order_repeat_20261014_02.json",
+      "sha256": "6ae0e502d1c5d4f927b537f8624e67be67e57f60b084b9b200d4e9dd0a5ec3a5"
+    },
+    {
+      "path": "sf1_order_repeat_20261014_03.json",
+      "sha256": "ab664c6458787fb69da42074851edae5eb5a22182be5c4d893483d364ae47a15"
+    },
+    {
+      "path": "sf1_order_repeat_20261014_04.json",
+      "sha256": "68141b96e7fa88e1e1992aa959d923964655b90b4904594084a117257837ca81"
+    }
+  ],
+  "output_directory": "../../results/sf1_order_repeatability_20261014",
+  "no_new_operation_after_utc": "2026-10-14T04:44:59.773250+00:00",
+  "design_rationale": "Four preregistered distinct physical episodes, minimal two repetitions per execution order to see signed contrasts and crude within-order dispersion. ABBA is fixed before outcomes; every episode uses a fresh table with the same verified logical source, measured initial file count and identical query/telemetry/rewrite/session configuration. This bounded screening pilot informs the next variance/common-horizon design; it does not determine final sample size or statistical acceptance. Stop and audit any failed gate before dependent work.",
+  "registered_statistics": [
+    "Each of the four actual probe latencies, actual rewrite duration and task overlap",
+    "during minus arithmetic mean of before/after original-snapshot latency, with signed values preserved",
+    "compacted minus after-original latency reported separately",
+    "Individual values, mean and sample standard deviation only when at least two actual passed episodes exist; no confidence interval"
+  ],
+  "analysis_limitations": [
+    "Two episodes per order only: descriptive dispersion, not stable variance, confidence intervals or a sufficient training/calibration/test corpus.",
+    "Prespecified ABBA order balances position approximately but does not eliminate cache, host drift or serial dependence.",
+    "Arithmetic mean of original-snapshot before/after controls is an exploratory bracketing contrast, not an observed counterfactual or causal training target.",
+    "Compacted versus after-original contrast remains a separate layout comparison with cache/time confounding.",
+    "One Q1 query on controlled 16-file SF1 clones; no arrival replay, offered-load queueing, ingestion or workload/layout diversity.",
+    "REST/log/process observation overhead remains present. Actual task lifetimes overlap; simultaneous CPU execution not proven.",
+    "All attempted and failed/missed-exposure episodes are retained; stop the sequence after any failed gate, no retry until success or selective omission.",
+    "No cost training, conformal bounds, Model C promotion, scheduler benefit, model-count superiority or publication acceptance."
+  ]
+}

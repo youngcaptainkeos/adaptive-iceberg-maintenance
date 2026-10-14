@@ -7,6 +7,7 @@ from run_correctness_pilot import canonical,query_templates
 from statement_timing import completed_statements,TIMING_FIELDS,DURATION_FIELDS
 from query_observation_binding import verify_observations
 from engine_label_binding import read_engine_ledgers,rewrite_evidence,query_exposure
+from action_order_binding import verify_action_order
 
 
 def export(pilot_directory,result_hash,output_directory):
@@ -17,6 +18,8 @@ def export(pilot_directory,result_hash,output_directory):
     protocol=[r for r in records if r['kind']=='matched_protocol'];require(len(protocol)==1 and protocol[0]['configuration']==cfg and protocol[0]['code_revision']==result['code_revision'],'Raw protocol/result mismatch')
     for name,digest in protocol[0]['code_sha256'].items():require(sha256(source/'code'/name)==digest,'Frozen physical code changed')
     completed=completed_statements([events]);checks=verify_observations(records,cfg);require(checks==result['query_observation_checks'],'Reported observation checks differ')
+    order_check=verify_action_order(records,cfg)
+    if order_check is not None:require(order_check==result['action_order_check'],'Raw registered action order differs from result')
     requests={r['measurement_id']:r for r in records if r['kind']=='statement_requested'}
     # Reconstruct correctness from the raw completed statements, not acceptance flags.
     observations=[r for r in records if r['kind']=='query_observation']
@@ -72,6 +75,7 @@ def export(pilot_directory,result_hash,output_directory):
     manifest={'pre_action_observation_count':len(decisions),'schema_version':'diagnostic_physical_query_observations_v1','status':'exported_bound_measurements_only','origin':'physical_spark_iceberg_verified_sf1','row_count':len(rows),'source_result_sha256':result_hash,'source_events_sha256':event_hash,'export_code_sha256':sha256(Path(__file__)),'observations_sha256':sha256(output/'query_observations.csv'),'code_revision_of_physical_run':result['code_revision'],'scope':'Four actual probe observations from one matched episode. Fractions/bytes/monotonic durations preserved; no imputed intensity/small-file eligibility, split labels, future state, counterfactual cost or training approval. Old trainer schema intentionally incompatible.','limitations':result['limitations']}
     require(sha256(preparation)==cfg['preparation_result']['sha256'],'Preparation receipt changed during export')
     manifest.update(source_preparation_sha256=cfg['preparation_result']['sha256'],raw_correctness_checks=['current_snapshot_sql','matched_query_sql_and_result_equality','original_and_compacted_state_binding','bidirectional_source_current_multiset','record_and_rewritten_file_conservation'])
+    manifest['action_order_check']=order_check
     (output/'export_record.json').write_text(json.dumps(manifest,indent=2)+'\n');print(json.dumps(manifest))
 
 
