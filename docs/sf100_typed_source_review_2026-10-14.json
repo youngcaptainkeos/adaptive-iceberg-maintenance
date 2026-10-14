@@ -1,0 +1,74 @@
+{
+  "schema_version": "sf100_typed_source_offline_review_v1",
+  "status": "passed_registered_typed_fields_only",
+  "raw_result_sha256": "93f7da6d6b062cd2b414e47a13d68575ba6bf188b43fe009ac7485cba40d12e2",
+  "tables": [
+    {
+      "table": "region",
+      "rows": 5,
+      "invalid_field_count": 0,
+      "nonempty_terminators": 0
+    },
+    {
+      "table": "nation",
+      "rows": 25,
+      "invalid_field_count": 0,
+      "nonempty_terminators": 0
+    },
+    {
+      "table": "supplier",
+      "rows": 1000000,
+      "invalid_field_count": 0,
+      "nonempty_terminators": 0
+    },
+    {
+      "table": "customer",
+      "rows": 15000000,
+      "invalid_field_count": 0,
+      "nonempty_terminators": 0
+    },
+    {
+      "table": "part",
+      "rows": 20000000,
+      "invalid_field_count": 0,
+      "nonempty_terminators": 0
+    },
+    {
+      "table": "partsupp",
+      "rows": 80000000,
+      "invalid_field_count": 0,
+      "nonempty_terminators": 0
+    },
+    {
+      "table": "orders",
+      "rows": 150000000,
+      "invalid_field_count": 0,
+      "nonempty_terminators": 0
+    },
+    {
+      "table": "lineitem",
+      "rows": 600037902,
+      "invalid_field_count": 0,
+      "nonempty_terminators": 0
+    }
+  ],
+  "all_eight_started_before_cutoff": true,
+  "raw_completions_bind_result": true,
+  "all_registered_fields_present_and_zero_invalid": true,
+  "all_artifact_hashes_match_worker3": true,
+  "file_sha256": {
+    "audit_code.py": "062930a87f64b9f8072e811d93d9a6653c21f7ed381e24b8d1acf4be9e4be46e",
+    "config.json": "1717dc890faf59644e8106d62e228ac50f462cf97cfd914c7b0415e21eadd298",
+    "events.jsonl": "6b2f542e3baeed989efc00cbac6154f7f40b1a6f598b0aad67a6939d2f008588",
+    "result.json": "93f7da6d6b062cd2b414e47a13d68575ba6bf188b43fe009ac7485cba40d12e2",
+    "source_inventory.json": "3d41323f6ba5212cb0032c0d95e16b7e92cb25ecd0668917cb574fb279b20670"
+  },
+  "code_revision": "82466a50440d18e39118ff4132ee7bf290edcb9e",
+  "ended_utc": "2026-10-14T00:42:53.175914+00:00",
+  "process_state": "PID416658 ended naturally; no Spark workload used",
+  "limitations": [
+    "Prior full-byte source SHA256 is reused with exact size/mtime matching; no fresh source digest claimed.",
+    "Typed and lexical field validation only; no PK/FK relational integrity, generator authenticity or Iceberg readability certified.",
+    "Declared schema comes from the existing loader; no engine query or training data is produced."
+  ]
+}

@@ -1,6 +1,6 @@
 # Overnight review — 2026-10-14
 
-## Reading guide — status at 05:51 IST
+## Reading guide — status at 06:26 IST
 
 The project now has trustworthy measurement primitives and verified real arrival
 data, but no accepted cost model or forecast-aware scheduler. All four completed
@@ -9,7 +9,8 @@ SF1 matched episodes passed the strengthened offline correctness audit. These ar
 - **Data:** complete Snowset source/cohort validated and mirrored; actual arrival
   forecasting diagnostic improved count MAE on one held-out warehouse. Alibaba
   bytes/schema audited, but cluster events remain distinct from SQL arrivals.
-  SF100 source hashes/counts match; typed and generator-provenance gaps remain.
+  SF100 full source hashes/counts and registered typed fields pass; generator
+  provenance and relational integrity remain unresolved.
 - **Measurements:** actual execute clocks, available 60/300-second telemetry
   history, snapshot/file inventories, task overlap and preserved physical rows
   bind to raw evidence. Q2/Q3 add fresh pre-action table state. Historical invalid
@@ -1010,3 +1011,26 @@ field/cardinality/terminator/stable-file gates. Lineitem started 00:32 UTC
 This existing read is allowed to finish naturally after the 06:15 cutoff; never
 start a competing scan/physical pilot or cancel it. No all-table/generator
 acceptance until final raw audit.
+
+### 06:26 IST: SF100 all-eight typed gate passed; physical cutoff respected
+
+SF100 auditor PID416658 ended naturally at 00:42:53 UTC (06:12:53 IST).
+All eight actual source files passed full registered-field lexical/type/range/null
+checks, exact row counts and trailing serialization. Lineitem600,037,902 rows,
+all16 registered fields accounted for with zero invalid values. Small-table
+results previously reported remain bound to raw events. Independent offline
+audit matched every raw completion to result, config/schema/code and prior
+source inventory, checked all required invalid-field aggregates were present,
+all eight scan starts before 06:15, and zero failure/cutoff events.
+Raw/config/code/inventory/result package mirrored; every file SHA256 equal.
+Evidence `sf100_typed_source_review_2026-10-14.json`; artifacts
+`results/sf100_typed_source_audit_20261014/`. Generator/relational/large-Iceberg
+readability gates remain unresolved; no new source digest, generation history
+or publication training data invented.
+
+Previous attempt-inventory unit3a85d40 pushed/synced; HEAD and all four unit
+hashes matched. Independently executed the inventory on worker3; all seven
+raw episode records and auditor code hash equalled local results. Failed attempts
+and distinct contracts preserved. Source audit and all own physical pilots now
+finished naturally. No new physical operation after cutoff; remaining work is
+offline audit, documentation, Git synchronization and morning handover.

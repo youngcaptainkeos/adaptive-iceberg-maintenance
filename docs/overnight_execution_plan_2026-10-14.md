@@ -108,8 +108,8 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
   now have measured matched diagnostic episodes, distinct action-context contracts.
 - Strengthened raw SQL/result/multiset/file/row exporter passed all four episodes;
   audit packages mirrored/hash-verified. Common-horizon cost protocol drafted;
-  no executable replay/model acceptance. Next ready resource gap: SF100 typed
-  validation/generator provenance; next research gate: registered variance and
+  no executable replay/model acceptance. Next ready resource gap: SF100 generator provenance/relational
+  integrity; next research gate: registered variance and
   common-horizon costs. Preserve no-training and cutoff gates.
 - Next after this gate: broaden independent matched episodes/queries/layouts and
   training export schema; one matched point is not a variance/training corpus. Do not train cost
@@ -122,11 +122,18 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
 - Next bounded resource unit registered: `sf100_typed_source_audit_20261014.json`
   and `scripts/audit_tpch_typed_source.py`. Real full-field source-only scans, no
   engine/table writes, exact schema/cardinality/metadata gates, no new scan after
-  06:15. Running PID416658, execution82466a5; all seven smaller tables
-  passed; lineitem scan active since 06:02, final outcome pending. Audit raw results first. Missing
+  06:15. Completed PID416658 naturally at 06:12:53, execution82466a5. All eight
+  tables passed full-field checks; offline raw audit and artifact mirror hashes
+  matched. Missing
   generator and relational integrity are not supplied by typed parsing.
 
 - Completed strict retained SF1 attempt inventory: seven packages include the
   failed correctness attempt and distinct successful contracts; zero accepted
   training episodes. `physical_attempt_inventory_reviewed_2026-10-14.json`.
-  Publish/sync tool and verify independent remote inventory on unchanged evidence.
+  Tool published/synced; independent remote execution matched all seven raw
+  episode records and audit-code hash.
+
+- Physical cutoff passed: launch no new physical operations/scans. All own pilots
+  and SF100 auditor ended naturally; preserve services/tables/data. Remaining
+  queue: offline final audit, resource/claim reconciliation, handover and Git
+  verification. At 07:00 IST stop work and pause heartbeat.

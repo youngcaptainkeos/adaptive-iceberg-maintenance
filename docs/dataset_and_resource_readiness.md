@@ -15,7 +15,7 @@ was launched in this inventory step.
 | Asset | Evidence | Readiness |
 | --- | --- | --- |
 | TPC-H SF1 | All eight source tables on both machines; freshly counted rows and SHA256 agree with existing manifest and each other | Verified bytes/cardinality; generator/build provenance recorded in existing manifest |
-| TPC-H SF100 | All eight files match across both machines by fresh full-byte SHA256, bytes and newline row counts: 114641618862 bytes, lineitem 600037902 actual rows | Bytes/cardinality verified; typed parsing, relational checks and generator/build provenance still needed |
+| TPC-H SF100 | All eight files match across both machines by fresh full-byte SHA256, bytes and newline row counts: 114641618862 bytes, lineitem 600037902 actual rows | Bytes/cardinality and all registered typed/lexical fields verified; relational PK/FK checks and generator/build provenance still needed |
 | Large Iceberg lineitem | Initial metadata reports 600037902 records; inspected later snapshot reports 600039613 after writes | About 600 million, not the 60 million repeatedly claimed in drafts; metadata observation, not a newly executed COUNT query |
 | Alibaba 2017 archive | Same SHA256 locally/remotely; publisher size/CRC64 match; all six members fully audited against publisher schema | Missing resource/identity fields recorded; container trailing-empty-field serialization explicitly validated; SQL workload mapping still absent |
 | Snowset complete source | Full archive mirrored with equal SHA256; gzip/tar and all values from 2,000 regular Parquet files validated: 69,182,074 unique query IDs, 2,051 warehouses, approximately 13.34 observed days | Accepted arrival source only. No SQL text, ingestion or Iceberg action costs. Publisher does not provide an independent cryptographic checksum; recovered-range receipt limits retained |
@@ -102,7 +102,7 @@ not guarantee reproducible isolation or room for every retained snapshot.
    cluster jobs, not original database SQL. They do not automatically supply an
    ingestion trace or maintenance counterfactual labels.
    [Google trace documentation](https://github.com/google/cluster-data/blob/master/ClusterData2019.md).
-4. Complete SF100 generator provenance and typed/relational validation; bytes and
+4. Complete SF100 generator provenance and relational validation; typed fields, bytes and
    source row counts already match both machines. Use new isolated experiment
    tables and retain existing data/snapshots; no table reset is authorized.
 5. Finish fourth-query pilot audit, then register variance, common-horizon action
@@ -143,3 +143,20 @@ Subsequent implementation: `docs/fail_closed_experiment_contract.md` records rem
 of the trace/training fallbacks and retirement of unvalidated execution paths.
 The raw Alibaba archive still needs a reviewed transformation and workload mapping;
 its integrity check does not supply a ready-to-run experiment manifest.
+
+## Completed SF100 typed-source gate
+
+All eight inventoried source files passed actual full-field scans on worker3.
+Lineitem has exactly 600,037,902 parsed rows; zero invalid/null registered fields
+and nonempty trailing terminators across all tables. Existing loader types were
+used explicitly, with lexical and cast/range checks to refuse lossy decimal input.
+Raw per-table completions independently bind result/config/schema/source inventory,
+all fields are accounted for, and every scan started before 06:15 IST. The final
+scan ended naturally at 06:12:53 IST. Package mirrored with all SHA256s equal.
+See `sf100_typed_source_review_2026-10-14.json` and
+`results/sf100_typed_source_audit_20261014/`.
+
+This reuses the earlier full-byte digest inventory with exact source size/mtime
+agreement and stable files across the scan; no fresh digest or generator history
+is claimed. PK/FK constraints, TPC-H semantic distributions, immutable Iceberg
+readability and new large-scale experiment resources remain separate gates.
