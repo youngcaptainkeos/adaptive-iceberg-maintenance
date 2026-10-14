@@ -177,3 +177,13 @@ Recovery preregisters only the three unattempted original blocks/cadences/tables
 not a repeated first block or a retry selected by outcome. Historical protocol,
 raw logs and failed table are preserved. The same12:30 IST operational cutoff
 applies. No cost labels/model promotion or maintenance operation added.
+
+Recovery code/evidence committed and pushed as
+`04a57c4bc1c25e75a7f76fec2281738088222b73`; worker3 fast-forwarded and all four
+intended file hashes matched. All files in the original failed raw package also
+matched SHA256 locally/remotely. Recovery launched under nohup, PID492996
+confirmed alive at05:22:45 UTC (10:52:45 IST), no startup error. Output
+`results/sf1_null_controls_recovery_20261014/`; corresponding `_launch.log`.
+Estimated next check11:10–11:15 IST (three warmups plus real operation/audit
+cost); completion not yet established. Original failed run is not overwritten or
+reclassified. At handover no claim about the remaining controls or cost models.
