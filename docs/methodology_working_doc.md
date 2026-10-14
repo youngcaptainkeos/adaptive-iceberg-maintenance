@@ -1597,3 +1597,19 @@ auditSHA9f7acc9761f7fc0ed26aefa02a3bc1adfe354bc1133babd22fbbc7c8143fffdb.
 Small result/audit receipts mirrored exactly; full raw/byte mirroring and expensive
 candidate export/fit deferred during physical collection. No failed prior status
 changed, no new concurrent run, no accepted learned cost model/scheduler.
+
+## 31. First matched three-arm recovery group complete
+
+17:55UTC recovery3PID1177256active. Source_day_0_files_16 matched group01/02/03
+allpassed physical/frozen raw/layout signature gates.03compact_later1478offered,
+509ultimatelycompleted/969queued;101.703039mslate boundary census508completed/
+1dispatched/969queued. Baseline506versusnow509/later509 finalcounts are descriptive
+only, no winning schedule/causal effect claim. One episode/arm/one sourcefamily
+cannot support calibrated models.04now/source_day_0_files_32running since17:47:18.
+Original source spacing/debt/in-flightcompletion retained; no thinning/SLA objective.
+03resultSHA b6e2acc4d03368e1788e3df7140e5203ba219a30159a89fe1a2995517414626d;
+eventsSHA df2eec2216993c1d2cb111b893b18edf6648f5aa2daafd4932ba42f390fdf9d2;
+auditSHA 8734712789818bd57e73f553d4f6112f783c47bceee2b3cf30d5cea97c8eb846.
+Result/audit receipts mirrored hash-identical; full raw/bytes/export/fitting wait
+until inactive collection. Next validate32file real layout and remaining disjoint
+sourcefamilies before chronological candidate fit. All prior failures preserved.

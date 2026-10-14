@@ -330,3 +330,7 @@ Compaction02running. Receipts mirrored; no whole-cohort/model approval yet.
 Section30 recovery3compact_now passed live maintenance archive/physical/raw gates;
 1478offered/509finalcompleted/969queued. Deferred03running. No causal benefit or
 model approval from small count contrast; one family/layout remains limited.
+
+Section31 first matched source_day_0/files16three-arm group passed; finalcompleted
+506/509/509, no winner/causal claim.32file collection started, remaining sourcefamily
+and fitting gates pending.03result/audit receipts mirrored with matchingSHA.

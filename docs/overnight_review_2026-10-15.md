@@ -216,3 +216,14 @@ eventsSHA004e61fc09b232986280ac867fe209ddcdca84f60a76fe1ac5c9df10826aa08a;
 auditSHA9f7acc9761f7fc0ed26aefa02a3bc1adfe354bc1133babd22fbbc7c8143fffdb.
 Result/audit mirrored matching SHA. Bulk raw/byte/export/fit waits until inactive
 collector. Prior failures unchanged; no calibrated/accepted model.
+
+## First complete matched group
+
+17:55UTC PID1177256active,01/02/03passed physical/frozen raw withmatched16file
+signature.03later1478offered/509finalcompleted/969queued,101.703039mslate census
+508completed/1dispatched/969queued.506/509/509finalcounts not a schedule winner.
+04now32filegroupactive since17:47:18UTC; remaining sourcefamilies/model fit pending.
+03resultSHA b6e2acc4d03368e1788e3df7140e5203ba219a30159a89fe1a2995517414626d;
+eventsSHA df2eec2216993c1d2cb111b893b18edf6648f5aa2daafd4932ba42f390fdf9d2;
+auditSHA 8734712789818bd57e73f553d4f6112f783c47bceee2b3cf30d5cea97c8eb846.
+Small receipts mirrored, bulk/exportraw/fitting deferred toinactive collector.

@@ -120,3 +120,7 @@ Small receipts mirrored; avoid heavy fit/backup while collector active.
 
 17:40UTC recovery3now02passed live maintenance archival and strict raw/physical;
 deferred03running. Onefamily/layout not independent modeldata yet. No heavyfit.
+
+17:55UTC first matched16filegroup3passed,32file04active. Near-equalfinalcounts are
+negative evidence for claiming a winner, not precision/power proof. Continue
+registered diverse collection; independent sourcefamily fit gates pending.
