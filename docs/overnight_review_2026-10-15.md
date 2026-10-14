@@ -167,3 +167,10 @@ actual saved checkpoint validation script/receipt under results/*maintenance*202
 historical compaction raw audit passed. No activeSpark16:10UTC, no cost model fit.
 Same source/layout/order/cutoffs/gates; all prior failed/unattempted counts retained.
 Next inspect receipt, intendedSHA/HEADsync, immutable recovery2 detached launch.
+
+Recovery2actual nohup launch16:12UTC (21:42IST), PID1130786 confirmed active;
+/tmp/capstone_overnight_recovery2_runtime_20261015 atdd4ebf5a1c0cdad2f7a6e120f40ab0489831cd9f.
+All23registrationfileSHA match; actual saved query+maintenance checkpoint passed.
+Log results/sf1_overnight_recovery2_cohort_20261015_launch.log; firstcheck22:00IST,
+fullmatrixestimate02:15–03:15IST. No acceptednewarm/model at launch. Inspect active
+progress first nextwake; preserve all previous failed/table/unattempted records.

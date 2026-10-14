@@ -1510,3 +1510,12 @@ arms, uniform midpoint query+maintenance archive, boundaryv1 and23:15/23:45UTC
 cutoffs. Original failed statuses/counts unchanged; no favorable-outcome selection.
 No active physical/Spark jobs at16:10UTC. Next immutable launch after checkpoint
 receipt and Git/file agreement, then actual live audits before candidate export.
+
+Recovery2 launched16:12UTC undernohup PID1130786 confirmed alive, frozen
+/tmp/capstone_overnight_recovery2_runtime_20261015 at
+dd4ebf5a1c0cdad2f7a6e120f40ab0489831cd9f. All23registration filesSHA256 agree
+local/worker3. Log results/sf1_overnight_recovery2_cohort_20261015_launch.log;
+progress/audits matching cohort directory, arms sf1_overnight_recovery2_20261015_01..18.
+Saved real checkpoint query+maintenance validation passed, not livepath approval.
+First check approximately22:00IST; full matrix02:15–03:15IST if healthy. No
+recovery2episode accepted yet, no learned model fit. Inspect nextwake before work.

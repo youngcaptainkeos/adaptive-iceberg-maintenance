@@ -308,3 +308,6 @@ maintenance calls with existing strict raw task attribution; validation pending.
 Section26 saved real compaction-task checkpoint validation and recovery2 fresh
 matrix registration; same source/layout/gates/cutoffs, failed counts unchanged.
 Saved-evidence check is not live-path/model approval; real collection gate next.
+
+Recovery2actual launchPID1130786, immutabledd4ebf5runtime;23registeredfileSHA match.
+Saved real query+maintenance checkpoint passed; live collection/fitting pending.
