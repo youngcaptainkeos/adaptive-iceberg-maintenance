@@ -304,3 +304,7 @@ arm running; receipt hashes mirrored. One family is not train/test or calibratio
 Section25 recovery compaction arm failed missing archived rewrite tasks:1passed/
 1failed/16unattempted preserved. Uniform midpoint checkpoint extended to completed
 maintenance calls with existing strict raw task attribution; validation pending.
+
+Section26 saved real compaction-task checkpoint validation and recovery2 fresh
+matrix registration; same source/layout/gates/cutoffs, failed counts unchanged.
+Saved-evidence check is not live-path/model approval; real collection gate next.

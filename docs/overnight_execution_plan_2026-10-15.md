@@ -102,3 +102,7 @@ mirror/fitting after collector inactive. No calibrated model or scheduler accept
 16unattempted preserved. Repair completed maintenance archival in uniform midpoint,
 validate actual historical active arm, then fresh immutable recovery registration.
 No active collector; do not fit one-family dataset or upgrade failed arm.
+
+Recovery2fresh18matrix registered; actual saved compaction checkpoint validation
+then immutable launch. No physical/Spark activity16:10UTC. Keep all original
+failed inventories; live midpoint maintenance path must pass actual raw audit.

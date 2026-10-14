@@ -1496,3 +1496,17 @@ all arms, instrumentation workload remains a limitation. Next server detached
 syntax/historical active-arm regression then new recovery identities/registration;
 prior failed ninearm1/1/7, original overnight0/1/17, firstrecovery1/1/16 stay intact.
 No fitting or calibrated scheduler claim. Model export waits for independent data.
+
+## 26. Completed-maintenance archive validation and fresh recovery2 registration
+
+Worker3 detached validation invokes actual checkpoint implementation on saved real
+successful compaction arm02 raw events/jobs/stages/task payloads, no generated
+measurements or dummy data. Receipt results/maintenance_checkpoint_real_validation_20261015.json;
+script results/validate_maintenance_archive_real_20261015.py. Historical raw audit
+also passed results/maintenance_archive_regression_20261015.json. These validate
+saved-evidence code path, not new live midpoint success. Registered recovery2
+18fresh table/episode identities, same three source windows/two layouts/rotated
+arms, uniform midpoint query+maintenance archive, boundaryv1 and23:15/23:45UTC
+cutoffs. Original failed statuses/counts unchanged; no favorable-outcome selection.
+No active physical/Spark jobs at16:10UTC. Next immutable launch after checkpoint
+receipt and Git/file agreement, then actual live audits before candidate export.

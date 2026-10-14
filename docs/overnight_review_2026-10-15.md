@@ -161,3 +161,9 @@ RESTtasks unavailable at final audit. No activeSpark at15:55UTC. Failed02preserv
 no labels reused. Added actual completed maintenance archival at uniform midpoint,
 unique actual decision table binding/existing strict rewrite attribution. Next
 worker3 detached syntax/active-arm regression, then fresh registered recovery.
+
+Recovery2registered18fresh identities after maintenance archival repair. Worker3
+actual saved checkpoint validation script/receipt under results/*maintenance*20261015*;
+historical compaction raw audit passed. No activeSpark16:10UTC, no cost model fit.
+Same source/layout/order/cutoffs/gates; all prior failed/unattempted counts retained.
+Next inspect receipt, intendedSHA/HEADsync, immutable recovery2 detached launch.
