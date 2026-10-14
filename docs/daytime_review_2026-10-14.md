@@ -425,3 +425,29 @@ registered intervention. Fresh verified source clones and existing strict raw
 integrity gates, residual queues/maintenance and unchanged engine/client/SQL mix.
 New operational cutoff18:30IST applies to this unit; original historical protocols
 unchanged. No fitted cost model or scheduler and no automatic winner selection.
+
+### Larger nine-episode cohort launched
+
+Longer-window implementation/review unit842e4df and registration unit
+5d25c0098a35fb360f6cbbb544b915906740e39f pushed/worker3 fast-forwarded; all10
+implementation and12registration/report file hashes matched. All three complete
+mapping-package sorted file/SHA256 manifests also matched. No active Spark jobs
+before launch. Coordinator PID733088 confirmed alive, started09:39:10 UTC
+(15:09:10 IST),9planned episodes, first no-maintenance/source-day0 running.
+Output `results/sf1_long_common_horizon_cohort_20261014/` and corresponding launch
+log, with per-episode raw/frozen-code/audits in `results/sf1_long_horizon_20261014_01`
+through `_09`. Estimated check-in16:50–17:10 IST; real query/audit overhead may
+vary. Operational no-new-operation cutoff18:30IST, all active work finishes.
+No result for this collection or cost-training acceptance yet. Stop on any gate,
+preserve failure/unattempted count and tables, no retry-until-positive. Documentation
+sync permitted while code/config remain pinned. No shutdown/cancellation/deletion.
+
+Next check final/progress/log first. On completion, run group-aware full review on
+worker3 detached, mirror all raw packages and verify hashes, report each matched
+window's latency/throughput/queue/maintenance/layout outcomes with one arm/window
+limits. Do not pool different windows into per-request counterfactual labels or
+fabricate cost targets. Physical byte backups of new retained tables remain a
+separate pending task; raw/code/result packages of previous completed cohort are
+fully mirrored, not a claim that every newly created warehouse file is local.
+Proceed to more varied physical layouts/workloads and legitimate independent
+training/calibration/test registration only when audited outcomes justify it.
