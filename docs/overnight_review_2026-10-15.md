@@ -290,3 +290,8 @@ verificationSHAe1af34743dc1167ab28f863f06853fdd3f6c5ac8d3a9090ab063d644ba126c36.
 Firstfitactualhashconfigregistered trainfamilies0/1,test2/alpha1/noimputation; no
 physicalcollectoractive. Limited4rewrites/16fileoriginallayout/versionconfounding
 explicit. Nextdetachedfit, outputaudit; no modelclaimyet.
+
+FirstfitnohupPID1411927launch20:44UTC; log
+results/candidate_cost_fit_three_family_20261015_launch.log, check5min/nextwake.
+20candidatefilesSHA agreeincludingverification afterrefreshedmirror. da9c915HEAD/
+5unitSHAagree. No physicalcollectoractive; fitresultmustbe audited beforeclaims.

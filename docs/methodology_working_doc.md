@@ -1771,3 +1771,10 @@ missingregimes notfit, negativepredictions retained, failureattemptssaved. Onlyf
 rewriteexamples/oneoriginallayout/instrumentversionconfounding/incompletegroups:
 this is pipeline/exploratoryevidence, not acceptedscientificcostmodel. Next worker3
 nohup fit/log/PID, then auditactualoutputs/predictions/errors before claims.
+
+FirstfitnohupPID1411927launched20:44UTC; log
+results/candidate_cost_fit_three_family_20261015_launch.log. Checkwithin5minutes/
+nextwake, then auditresults before accuracyclaims. Finalcandidatepackageincluding
+independentverification20filesSHA agreedhosts, da9c915HEAD/5unitSHA agree. First
+mirror occurredbeforeverificationfilecompleted; refreshedmirror nowverifiedfull
+package. Fit/data/gates frozen for this shortjob; no physicalcollector active.
