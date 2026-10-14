@@ -1840,3 +1840,16 @@ prepare. PreserveFIFO/cutoffs/actual2s gap-age/history gates; noSQLretry or prio
 failedstatusupgrade. Newpathrequires preregisteredfreshlivevalidation, not fake
 samplesor historicalcompile-success. Physicalbytepreservation is independentjob
 whileidle; no modelrefitting onheldoutoutcomes.
+
+## 42. Lock-acquisition sample expiry repair, no physical SQL retry
+
+Added opt-in release_and_wait_for_real_sample_v1: oncepreparationlock acquired,
+readactualdurablyavailable sample-end/clock; expiredsample triggers typedexception
+beforeanyobservation/dispatch/SQLintent. Lockreleased, savequery_preparation_deferred
+actualidentity/clock/sampleendpoint, waitoutsideforrealdurablesample, retain sameFIFO
+requestuntiloriginalhorizon. No counterfactualprediction/timestamprepair/SQLretry or
+newmaxageconstant. Actualwindowgap/freshness/history/coverage remain strict. Raw
+checkerbinds deferralcontract/sourceUUID/expiredage/chronologybeforeanySQLintent;
+cohortrequiresidenticalcontractallarms. Historicalfrozenruntimesunchanged.
+Serverrawregressionnext, newpathrequiresfreshregisteredlivevalidation. Negativefit
+unchanged, no promotion. No activephysical/modeljob at21:40UTC.

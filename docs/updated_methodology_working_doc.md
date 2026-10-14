@@ -385,3 +385,6 @@ packagecopy underway. Learnedcostplan records next independentcollection gates.
 Section41 all144rawfilesfrom6successfulpackages mirrored/SHAverified;20candidate/
 6modelbundlefilesalreadyverified. Physicaltablebytes/portablecatalogfallback still
 missing. Negativefit unchanged; submissionavailabilityrace repair remainsnextgate.
+
+Section42 sampleexpiredafterlock acquisitionnowexplicitunsubmitteddeferral/release/
+realwait opt-in; raw chronology/sourcebinding added, gatesunchanged. Livepathpending.

@@ -319,3 +319,8 @@ PID1456293finished144OK/noFAILED, log results/six_raw_mirror_integrity_20261015.
 Candidate20files/modelbundle6filesalreadySHAidentical. Thisdoesnotinclude newtable
 physicalbytes/catalogportability. No activeSpark/collector/model21:25UTC. Negative
 fitunchanged; nextlockavailabilityrace repair andactualphysicalfallbackpreservation.
+
+Submissionavailabilityrace repairimplemented: expiryunderacquiredlock recordsactual
+unsubmitteddeferral, releaseandwaitoutside, retainFIFO/originalhorizon/noSQLretry.
+Rawcheckerbindscontract/UUID/age/intentchronology; samecohortcontractrequired.
+Historicalregressionnext; noacceptedlivepath/model. No activeSpark21:40UTC.

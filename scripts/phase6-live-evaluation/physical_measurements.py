@@ -280,6 +280,9 @@ class TelemetrySampler:
                       deadline_monotonic_ns=deadline_ns,outcome='horizon_reached_request_retained_queued')
         return False
 
+    def available_sample_end_ns(self):
+        with self.lock:return self.samples[-1]['end']['monotonic_ns'] if self.samples else None
+
     def stop(self):
         # Stops only our observer thread, never a database operation/service.
         self.stop_event.set()

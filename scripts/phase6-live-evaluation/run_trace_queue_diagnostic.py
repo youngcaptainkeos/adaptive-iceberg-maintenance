@@ -14,6 +14,11 @@ from common_horizon_binding import audit_arm
 from engine_archive import merged_engine_frames,capture_completed_query_tasks,ArchivedTaskEvidence
 
 
+class PreparationSampleUnavailable(Exception):
+    def __init__(self,checked,last):
+        self.checked=checked;self.last=last
+
+
 def audit(directory):
     directory=Path(directory);cfg=json.loads((directory/'config.json').read_text());rows=[json.loads(s) for s in (directory/'events.jsonl').open()]
     mapped=list(csv.DictReader((directory/'mapped_arrivals.csv').open()));mapping=json.loads((directory/'mapping_record.json').read_text())
@@ -46,6 +51,12 @@ def audit(directory):
     dispatched=[r['source']['source_query_id'] for r in transitions if r['state']=='dispatched']
     require(offered==[r['source_query_id'] for r in mapped] and dispatched==offered[:len(dispatched)],'FIFO order differs')
     measured=completed_statements([directory/'events.jsonl']);requests={r['measurement_id']:r for r in rows if r['kind']=='statement_requested'}
+    for event in (r for r in rows if r['kind']=='query_preparation_deferred'):
+        require(cfg.get('submission_availability_contract')=='release_and_wait_for_real_sample_v1','Unregistered submission deferral')
+        mid=event['measurement_id'];checked=event['checked_at']['monotonic_ns'];last=event['last_available_sample_end_ns']
+        require(identities.get(event['source_query_id'])==mid and checked<=event['recorded']['monotonic_ns'],'Unknown/deferred clock identity')
+        require(last is None or (checked-last)/1e9>cfg['telemetry']['max_age_seconds'],'Deferral did not observe expired sample')
+        require(mid not in requests or checked<requests[mid]['request_start']['monotonic_ns'],'Deferral after SQL intent')
     abandoned=[r for r in rows if r['kind']=='query_observation_not_dispatched']
     abandoned_ids={r['measurement_id'] for r in abandoned}
     if abandoned:
@@ -232,6 +243,10 @@ def run(config,revision):
                 dispatched_preparation=False
                 def prepare_submission():
                     nonlocal dispatched_preparation
+                    if cfg.get('submission_availability_contract')=='release_and_wait_for_real_sample_v1':
+                        checked=stamp();last=sampler.available_sample_end_ns()
+                        if last is None or (checked['monotonic_ns']-last)/1e9>t['max_age_seconds']:
+                            raise PreparationSampleUnavailable(checked,last)
                     fresh=[sampler.window(seconds=w,max_interval_seconds=t['max_interval_seconds'],max_age_seconds=t['max_age_seconds']) for w in t['window_seconds']]
                     log.emit('query_observation',measurement_id=mid,query_id=qid,role='trace_query',windows=fresh,**query_state)
                     checked=stamp()
@@ -243,7 +258,16 @@ def run(config,revision):
                     dispatched_preparation=True
                     return True
                 try:
-                    probe=rec.execute(query,sql,role='trace_query',query_id=qid,measurement_id=mid,prepare_submission=prepare_submission)
+                    probe=None
+                    while time.monotonic_ns()<hi:
+                        try:
+                            probe=rec.execute(query,sql,role='trace_query',query_id=qid,measurement_id=mid,prepare_submission=prepare_submission)
+                            break
+                        except PreparationSampleUnavailable as unavailable:
+                            log.emit('query_preparation_deferred',measurement_id=mid,source_query_id=identity,
+                                     checked_at=unavailable.checked,last_available_sample_end_ns=unavailable.last,
+                                     reason='expired_durable_sample_after_lock_acquisition_no_sql_intent')
+                            if not sampler.wait_for_available_sample(deadline_ns=hi,max_age_seconds=t['max_age_seconds'],measurement_id=mid):break
                     if probe is None:break
                     ledger.transition(identity,'completed',measurement_id=mid,session_id='query_0');probes.append(probe)
                 except Exception:

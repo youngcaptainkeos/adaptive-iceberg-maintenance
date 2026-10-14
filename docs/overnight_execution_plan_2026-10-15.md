@@ -166,3 +166,6 @@ No heldouttuning/refit toclaimaccuracy; newmodel comparisonneedsfuturetestblocks
 Sixsuccessfulrawpackages144files mirrored/hashverified, candidate20/model6already
 verified. No physicaltablebytefallbackyet. Next lockacquisitionavailabilityrepair
 with unsubmitteddeferral/strictgates, orphysicalbytepreservationwhileidle; noheldoutrefit.
+
+Submissionavailabilityrace repairimplemented, rawregression thenfreshregistered
+livevalidation beforeacceptance. RetainFIFO/cutoffs/strictage-gap gates andnegativefit.
