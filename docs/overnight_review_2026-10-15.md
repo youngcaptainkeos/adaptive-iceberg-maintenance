@@ -361,3 +361,9 @@ localresults/physical_table_byte_fallback_20261015; session81303 runningcopy, sc
 /tmp/copy_physical_table_fallback_20261015.sh. Firstautoapprovalreviewtimeout didnot
 startcommand; smallerretry succeeded. Nextwakepollcopy, thenfile/size/hashcheck;
 backupnotyetcomplete, mayremainpartialatcutoff. No physical/service/data mutation.
+
+Tablecopy81303finishedexit0; localcopiedfilehashinventoryuploaded, independent
+worker3nohupbyteverifierPID1595507launched. Script/log results/*mirrored_table_bytes*/
+physical_table_byte_fallback_verification_20261015.log, pendingreceiptJSON.32raw/
+candidatemirror95731running. Next actualcompletedreceipts/hashagreement thenmorning
+review, no newphysicaloperations. Originaltabledata/services remainuntouched.

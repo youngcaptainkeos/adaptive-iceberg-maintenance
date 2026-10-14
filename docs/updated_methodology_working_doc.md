@@ -410,3 +410,7 @@ ByteinventorynohupPID1565619launched; read-onlyactualhashmanifest beforetransfer
 Section46 actual9table/516file/2.486GB bytecopystarted (session81303), outcome/hash
 verificationpending. Approvaltimeoutbeforefirstcommand, narrowerretry succeeded.
 No portablecatalog/completebackupclaim yet; preservepartialcopy atcutoff.
+
+Section47 tablecopyexit0, independentworker3local-vs-originalandunchangedsources
+verificationnohupPID1595507launched.32raw/candidatecopy session95731stillpending.
+No portablecatalogclaim; finalhashreceiptsrequiredbeforebackupapproval.

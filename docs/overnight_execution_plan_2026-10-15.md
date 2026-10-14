@@ -182,3 +182,6 @@ Runnohupmanifest thenactualroottransfer/hashagreement; no newphysicalepisode pla
 Physicalbytecopy session81303running (9tables/516files/2.486GB). Nextwakepollbefore
 competingcopy; posttransfermanifesthashcheck beforefallbacksuccessclaim. Preserve
 partialcopy/runningoperationatdeadline, no kill/delete/restart.
+
+Tabletransferfinishedexit0; worker3byteverifyPID1595507launched. Pollreceipt and
+32raw/candidatecopysession95731; verifyhashes, saveclearfinalmorningreview beforecutoff.

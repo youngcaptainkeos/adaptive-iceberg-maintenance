@@ -1929,3 +1929,16 @@ physicalSQLrun started; no service/table/process shutdown. Transferoutcome/hashe
 notyetaccepted; mayremainpartial atcutoff. Estimatedchecknext15minwake; no guarantee
 of full2.5GB copybydeadline. Postcopyallfile/size/SHA agreement required, absolute
 catalogpaths remainworker3-specific. Failedtablebytes stillremote untouched.
+
+## 47. Byte copy finished; independent worker3 before/after verification launched
+
+Transferexecsession81303finishedexit0. Actualcopiedfilehashinventory collected
+results/local_table_byte_inventory_20261015.json, uploadedtoworker3. Independent
+read-onlynohup verifierPID1595507 comparesallcopiedrelativepaths/size/SHA against
+originalactualmanifest thenrehashesworker3sources/checksnoadded/missingfiles.
+Script results/verify_mirrored_table_bytes_20261015.py, log
+results/physical_table_byte_fallback_verification_20261015.log; receiptmatchingJSON.
+No Spark/SQL/data mutation, noportablecatalogproof. Pendingverification cannotbe
+backupapproval. Completed32candidate/cohort/raw3armmirrortransferexecsession95731
+stillrunningatlaunch; no competingphysicalexperiment/modeljob. Nextcheckbothjobs,
+allmirroredraw/candidateSHA agreement andfinalmorningstatus before06:00IST.
