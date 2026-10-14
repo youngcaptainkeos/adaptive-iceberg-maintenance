@@ -348,3 +348,27 @@ Final implementation additionally reports maintenance at horizon and latest
 actually available layout, with exact source and original pre-action snapshot
 binding. Physical three-arm path awaits registered real pilot execution; no
 synthetic scenario or fake tests used to claim it passed.
+
+### Six-episode cohort launch
+
+Final modules compiled on worker3 without errors; historical real queue audit
+passed after the staging dependency repair. Published full implementation/protocol
+asb8e83fc397b8047cf8e56f2c5416e990b0a60e9a. Worker3 fast-forwarded and all14
+intended file SHA256s matched. Spark reported zero active jobs before launch.
+Coordinator launched under nohup, PID582334, started07:09:50 UTC (12:39:50 IST).
+Progress confirms first no-maintenance episode running; planned6episodes. Output
+`results/sf1_common_horizon_cohort_20261014/`; corresponding `_launch.log`, per-
+episode logs, progress/result and frozen raw audits. Episode tables/packages
+`integrity_horizon_20261014_01` through `_06` / `results/sf1_horizon_20261014_01`
+through `_06`. Estimated check-in13:20–13:30 IST; required histories, actual query/
+rewrite, multiset and engine audit overhead may vary. No arm outcome claim yet.
+
+Documentation-only launch commits may fast-forward during execution; coordinator
+explicitly pins runtime module hashes and preregistered configs and rejects code/
+protocol changes before each next arm. Every physical arm and frozen post-run raw
+audit must pass before another. Stop/failure and unattempted counts remain. No
+competing run, cancellations, shutdown, table drop, synthetic labels or cost fit.
+Next check: final/progress/log first; investigate failure before changing running
+code or retrying. On complete cohort, mirror/verify all packages, review each arm's
+throughput/queue/latency/action/layout and actual exposure with n2 limits, then
+register larger independent collection/splits before model fitting.
