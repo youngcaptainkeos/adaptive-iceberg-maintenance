@@ -1,9 +1,11 @@
 # Common-horizon action-cost protocol
 
-Status: design dependency, not an executable experiment registration or accepted
-training schema. The four-query SF1 pilots validate measurement integrity only.
-No horizon, load scale, repetition count, query mix, penalty weight or ingestion
-process is silently selected here.
+Status: research contract with a registered bounded engineering pilot at
+`experiment_protocols/sf1_common_horizon_cohort_20261014.json`; no accepted training
+schema or statistical approval. The pilot explicitly declares its60-second source
+bin, benchmark mix, one client, action candidates and two episodes per arm. No
+penalty weight, SLA or ingestion process is silently selected. See
+`common_horizon_pilot_implementation.md` for scope and remaining limitations.
 
 ## Research target
 

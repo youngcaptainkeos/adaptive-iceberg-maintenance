@@ -1,0 +1,48 @@
+{
+  "schema_version": "common_horizon_cohort_pilot_v1",
+  "registered_order": [
+    "no_maintenance",
+    "compact_now",
+    "compact_later",
+    "compact_later",
+    "compact_now",
+    "no_maintenance"
+  ],
+  "episodes": [
+    {
+      "path": "sf1_horizon_20261014_01.json",
+      "sha256": "54931656963978b665b806ed671fad6e4448214bf7485ebc9aa68988d535c6a0"
+    },
+    {
+      "path": "sf1_horizon_20261014_02.json",
+      "sha256": "d82dfa086ab3f389f4d69b6dc86accc1352b0958c754c42d1f9984e69d239ee5"
+    },
+    {
+      "path": "sf1_horizon_20261014_03.json",
+      "sha256": "bb0f2710f7968eaf2473f8b489de5010ee4cee51550bd1d2728ceea6cefa6745"
+    },
+    {
+      "path": "sf1_horizon_20261014_04.json",
+      "sha256": "a3200808a3547fed78d9c5d5b68270fc624346ad325707e6927411aa208eee05"
+    },
+    {
+      "path": "sf1_horizon_20261014_05.json",
+      "sha256": "a97409c1c66ccc4500b64365907c9c5e23a69faab301311900b34d44d4d70510"
+    },
+    {
+      "path": "sf1_horizon_20261014_06.json",
+      "sha256": "375d525875338c3f2d8e2ec50226e96a0172a7c61c10d26332531a2d00531ddd"
+    }
+  ],
+  "output_directory": "../../results/sf1_common_horizon_cohort_20261014",
+  "rationale": "Six real serial arms, audit each before next, preserve failed attempts and all unattempted count; no retries until positive or fitting on diagnostics. Every arm offers unchanged original arrivals and includes residual debt; initial row/byte file signature gated. Counterbalanced pilot before selecting precision/repetitions on larger independent collection.",
+  "limitations": [
+    "Two episodes/arm is engineering completeness/variance screening, not statistical power, independent conformal calibration or accepted cost training.",
+    "One warehouse/minute, imposed benchmark mix and controlled SF1 fragmentation; no production SQL, ingestion or scale claim.",
+    "Reverse order reduces simple order imbalance but does not eliminate cache/time trends or shared-host dependence.",
+    "Equal logical content and file row/byte signature do not establish identical cache state or all physical locality.",
+    "Actual metadata/refresh/state-publication overhead and generator jitter measured; controller snapshot may lag commit.",
+    "Common-horizon residual queue and maintenance completion recorded separately; no arbitrary scalar weight or invented SLA.",
+    "No adaptive forecaster, trained cost model, oracle input, optimized deferral or scheduling benefit claim."
+  ]
+}

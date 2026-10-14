@@ -323,3 +323,28 @@ conditions and independent blocks. Choose horizon/concurrency/repetition using
 these capacity/variance diagnostics with explicit rationale before outcomes,
 without changing source arrivals to force a desirable result. No new physical
 experiment launched in this status/audit turn.
+
+## Larger unit: registered three-arm common-horizon cohort
+
+User requested larger implementation steps. Added complete physical arm support,
+raw action/snapshot/multiset/overlap binding, and serial six-episode coordinator.
+Order no-maintenance/now/later/later/now/no-maintenance; two per arm, full113
+arrivals each, same60-second horizon and one client on fresh isolated verified
+SF1 clones. Later is a registered midpoint intervention, not a scheduler constant
+or optimized prediction. All queue/maintenance debt remains explicit. Initial
+row/byte file distributions must match, each episode/raw audit passes before the
+next, failed/unattempted counts retained. Metadata checkpoints shared across arms;
+actual post-commit metadata/query refresh overhead is recorded and a limitation.
+No trained model, oracle future policy, artificial demand or causal label.
+
+Common-horizon modules compiled on worker3. First staged regression audit failed
+because the temporary validation directory lacked offered_queue_ledger.py; this
+was a validation staging/import failure, not a physical experiment. Repeated
+with tracked worker3 dependencies on PYTHONPATH; all actual113-arrival prior
+queue gates passed, including41 completed at horizon/1 active/71 queued and42
+natural final completions. Original log retained in `/tmp/capstone-null-controls-
+20261014/common_horizon_validation.log`; repaired audit and log alongside it.
+Final implementation additionally reports maintenance at horizon and latest
+actually available layout, with exact source and original pre-action snapshot
+binding. Physical three-arm path awaits registered real pilot execution; no
+synthetic scenario or fake tests used to claim it passed.

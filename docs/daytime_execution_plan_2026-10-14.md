@@ -66,3 +66,18 @@ boundary observer lateness and post-boundary completions. No compaction or cost
 labels in this screen. Register exact mapping receipt, code and expected real query
 results before execution; stop on any evidence gate failure. Baseline capacity and
 actual intake/service/queue rates are outcomes, never reasons to thin the trace.
+
+## Larger common-horizon unit
+
+Register/run/audit six serial arms in order no-maintenance/now/later/later/now/
+no-maintenance, fresh isolated SF1 table each. All113 arrivals unchanged and same
+source-bin60-second horizon; one FIFO client with residual debt, useful real
+rewrites only, actual pre-action state/history, every query SQL/result/task.
+Later means registered midpoint candidate, not a model/policy prediction.
+Original and final snapshots each exact-multiset validated; initial file row/byte
+signature must match across arms. Stop cohort on physical/raw/cohort gate failure;
+preserve failed/unattempted inventory and no blind retry. Six episodes estimate
+engineering readiness, not calibrated cost-model training or publication power.
+Protocol: `experiment_protocols/sf1_common_horizon_cohort_20261014.json`.
+Operational cutoff16:00 IST; never cancel an in-flight operation. Estimated serial
+work40–50 minutes including required histories and auditing, not a guarantee.

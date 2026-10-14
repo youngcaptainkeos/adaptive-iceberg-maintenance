@@ -1,0 +1,78 @@
+{
+  "engine": {
+    "host": "127.0.0.1",
+    "port": 10000,
+    "username": "ccbd",
+    "expected_version": "3.3.4"
+  },
+  "spark_rest_url": "http://127.0.0.1:4040",
+  "spark_app_id": "local-1791896695889",
+  "rest_timeout_seconds": 5,
+  "telemetry": {
+    "interval_seconds": 1,
+    "window_seconds": [
+      60,
+      300
+    ],
+    "warmup_seconds": 305,
+    "max_interval_seconds": 2,
+    "max_age_seconds": 2,
+    "minimum_coverage_fraction": 0.95,
+    "rationale": "One-second real host counter cadence, five-minute warmup plus five-second margin; retain existing 95% coverage and two-second gap/freshness gates. Exact bounds/available frontier and actual submission freshness are independently checked. No normalized demand assumed."
+  },
+  "preparation_result": {
+    "path": "../../results/sf1_source_integrity_20261014_0024/result.json",
+    "sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57"
+  },
+  "schema_version": "common_horizon_arm_pilot_v1",
+  "experiment_id": "sf1_horizon_20261014_03",
+  "output_directory": "../../results/sf1_horizon_20261014_03",
+  "client_count": 1,
+  "boundary_rule": "no_dispatch_after_horizon_natural_inflight_completion",
+  "no_new_operation_after_utc": "2026-10-14T10:30:00+00:00",
+  "mapping_record": {
+    "path": "../../results/snowset_benchmark_mapping_20261014/mapping_record.json",
+    "sha256": "22ef86334768aba15bf7d8f5f9b0d5d69668c83fa3ff93567257641c590cf6e5"
+  },
+  "expected_query_ledgers": [
+    {
+      "path": "../../results/sf1_matched_q0_20261014/events.jsonl",
+      "sha256": "5529f2a83ffc6fdb6afdfd2a348f037c0919195d599de2da433fd6dab4c5ea40"
+    },
+    {
+      "path": "../../results/sf1_matched_measurement_20261014/events.jsonl",
+      "sha256": "ebcaaaaa752e56c4752cba9f7f49c3c4cef06427dcb78ab26253ba3cdf217510"
+    },
+    {
+      "path": "../../results/sf1_matched_q2_20261014/events.jsonl",
+      "sha256": "fcba244ac5901557bb17395b0b841f241e8ed05a2c881e4188aa7e54a867594f"
+    },
+    {
+      "path": "../../results/sf1_matched_q3_20261014/events.jsonl",
+      "sha256": "26847ce0ac1ec9f89cdf0bd4c4ab27c9eb6e5f324c7138069e4e5712e671d87b"
+    }
+  ],
+  "configuration_rationale": "Preregistered real three-arm common-horizon engineering pilot, two fresh isolated SF1 tables per arm in reverse-balanced order. Identical 113 offered arrivals and 60-second source-bin horizon inherited from audited intake screen; one FIFO query client retains measured overloaded regime, all residual queued work reported. Now is t0; later is the midpoint candidate t30 seconds, an explicit experimental intervention, not a learned/policy prediction or optimal deferral. Metadata checkpoints t0/t30 occur in every arm; actual post-commit publication and query refresh add measured instrumentation overhead only to changed states, a stated limitation. Queries pin the latest available controller snapshot; a commit-to-publication lag remains observed rather than assumed zero. Initial raw file row/byte distribution must match across episodes. Original/final full multisets and SQL results bind the verified source. Strict fresh preaction windows/metadata and completed-task attribution; missed overlap is a reported outcome, never fabricated exposure. Only useful rewrites certify action transition, but failed/no-op attempts remain in inventory. 16:00 IST operational cutoff safeguards this serial ~45-minute unit and never cancels active work.",
+  "limitations": [
+    "Two episodes/arm is engineering completeness/variance screening, not statistical power, independent conformal calibration or accepted cost training.",
+    "One warehouse/minute, imposed benchmark mix and controlled SF1 fragmentation; no production SQL, ingestion or scale claim.",
+    "Reverse order reduces simple order imbalance but does not eliminate cache/time trends or shared-host dependence.",
+    "Equal logical content and file row/byte signature do not establish identical cache state or all physical locality.",
+    "Actual metadata/refresh/state-publication overhead and generator jitter measured; controller snapshot may lag commit.",
+    "Common-horizon residual queue and maintenance completion recorded separately; no arbitrary scalar weight or invented SLA.",
+    "No adaptive forecaster, trained cost model, oracle input, optimized deferral or scheduling benefit claim."
+  ],
+  "mapping_audit": {
+    "path": "../../results/snowset_benchmark_mapping_20261014/source_mapping_audit.json",
+    "sha256": "958d41147c46a8e37d3605700b5f2d276ea12c6a1f2b19e9005d2f8477525189"
+  },
+  "destination_table": "local.experiment.integrity_horizon_20261014_03",
+  "action_arm": "compact_later",
+  "action_offset_ns": 30000000000,
+  "metadata_checkpoint_offsets_ns": [
+    0,
+    30000000000
+  ],
+  "decision_state_contract": "fresh_current_original_snapshot_v1",
+  "metadata_max_age_seconds": 2
+}

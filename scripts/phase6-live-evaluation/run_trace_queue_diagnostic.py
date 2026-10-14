@@ -10,6 +10,7 @@ from run_correctness_pilot import query_templates,canonical
 from query_observation_binding import verify_observations
 from statement_timing import completed_statements
 from engine_overlap import task_intervals,engine_time
+from common_horizon_binding import audit_arm
 
 
 def audit(directory):
@@ -53,19 +54,23 @@ def audit(directory):
         candidates=[r for r in completed_statements([path]).values() if r['role']=='control_before'];require(len(candidates)==1,'Ambiguous expected result reference')
         ref=candidates[0];rebuilt_refs[str(ref['query_id'])]=canonical(ref['rows'])
     require(refs==rebuilt_refs,'Expected results differ from raw references')
+    arm=cfg.get('schema_version')=='common_horizon_arm_pilot_v1'
+    observed_by_id={r['measurement_id']:r for r in observed}
+    table=cfg['destination_table'] if arm else source['table']
+    allowed_markers=[r['marker'] for r in requests.values()]
     latencies=[];rests=[r for r in rows if r['kind']=='spark_rest'];jobs=[r['payload'] for r in rests if r['resource']=='jobs'][-1];stages=[r['payload'] for r in rests if r['resource']=='stages'][-1]
     class RecordedREST:
         def capture_tasks(self,stage,attempt,count):
             data=[r['payload'] for r in rests if r['resource']==f'stages/{stage}/{attempt}/taskList?length={count}'];require(data and len(data[-1])==count,'Missing raw tasks');return data[-1]
     for identity in dispatched:
         mid=identities[identity];r=measured[(cfg['experiment_id'],mid)];qid=int(expected[identity]['query_id'])
-        require(requests[mid]['query_id']==qid and requests[mid]['sql']==query_templates(source['table'])[qid].replace(f"FROM {source['table']}",f"FROM {source['table']} VERSION AS OF {source['snapshot_id']}"),'Dispatched SQL differs')
+        require(requests[mid]['query_id']==qid and requests[mid]['sql']==query_templates(table)[qid].replace(f'FROM {table}',f"FROM {table} VERSION AS OF {observed_by_id[mid]['snapshot_id']}"),'Dispatched SQL differs')
         require(times[identity]['dispatched']<=r['client_execute_start']['monotonic_ns']<hi and r['fetch_end']['monotonic_ns']<=times[identity]['completed'],'Call/outcome boundary differs')
         require(canonical(r['rows'])==refs[str(qid)],'Benchmark result differs')
         task_intervals(jobs,stages,RecordedREST(),marker=r['marker'])
         a=datetime.fromisoformat(r['client_execute_start']['utc']).timestamp();b=datetime.fromisoformat(r['fetch_end']['utc']).timestamp()
         active=[j for j in jobs if engine_time(j['submissionTime'])<b and (not j.get('completionTime') or engine_time(j['completionTime'])>a)]
-        require(active and all(r['marker'] in str(j.get('description','')) for j in active),'Foreign Spark work')
+        require(active and all((any(marker in str(j.get('description','')) for marker in allowed_markers) or (str(j.get('description','')).startswith('Rewriting ') and str(j.get('description','')).endswith(' in '+table))) if arm else r['marker'] in str(j.get('description','')) for j in active),'Foreign Spark work')
         latencies.append({'source_query_id':identity,'query_id':qid,'service_ms':r['client_elapsed_ns']/1e6,'generator_lateness_ms':(times[identity]['offered']-(lo+int(expected[identity]['offset_ns'])))/1e6,'queue_to_dispatch_ms':(times[identity]['dispatched']-times[identity]['queued'])/1e6,'completed_within_horizon':r['fetch_end']['monotonic_ns']<=hi})
     boundaries=[r for r in rows if r['kind']=='queue_boundary'];require(len(boundaries)==1 and boundaries[0]['horizon_end_monotonic_ns']==hi,'Missing fixed boundary')
     boundary=boundaries[0];prior=[r for r in transitions if r['recorded']['monotonic_ns']<boundary['recorded']['monotonic_ns']];at={}
@@ -73,20 +78,25 @@ def audit(directory):
     require(boundary['observed_states']==at,'Boundary census differs from raw ledger')
     from collections import Counter
     require(boundary['observed_counts']==dict(Counter(at.values())),'Boundary counts differ')
-    inventories=[r for r in measured.values() if requests[r['measurement_id']]['sql']==f"SELECT file_path, record_count, file_size_in_bytes FROM {source['table']}.files"]
-    snapshots=[r for r in measured.values() if requests[r['measurement_id']]['sql']==f"SELECT snapshot_id FROM {source['table']}.history ORDER BY made_current_at DESC LIMIT 1"]
-    require(len(inventories)==2 and sorted(inventories[0]['rows'])==sorted(inventories[1]['rows']) and len(snapshots)==2 and all(r['rows']==[[source['snapshot_id']]] for r in snapshots),'Source state changed')
-    require(not any('rewrite_data_files' in r['sql'].lower() for r in requests.values()),'Maintenance in diagnostic')
+    arm_evidence=None
+    if arm:
+        arm_evidence=audit_arm(rows,cfg,measured,requests,jobs,stages,RecordedREST(),lo,hi,source)
+    else:
+        inventories=[r for r in measured.values() if requests[r['measurement_id']]['sql']==f"SELECT file_path, record_count, file_size_in_bytes FROM {source['table']}.files"]
+        snapshots=[r for r in measured.values() if requests[r['measurement_id']]['sql']==f"SELECT snapshot_id FROM {source['table']}.history ORDER BY made_current_at DESC LIMIT 1"]
+        require(len(inventories)==2 and sorted(inventories[0]['rows'])==sorted(inventories[1]['rows']) and len(snapshots)==2 and all(r['rows']==[[source['snapshot_id']]] for r in snapshots),'Source state changed')
+        require(not any('rewrite_data_files' in r['sql'].lower() for r in requests.values()),'Maintenance in diagnostic')
     horizon_states={}
     for r in transitions:
         if r['actual_transition']['monotonic_ns']<=hi:horizon_states[r['source']['source_query_id']]=r['state']
     require(sha256(directory/'code'/'run_correctness_pilot.py')==mapping['source_sha256']['sql_template_code'], 'Executed SQL vocabulary differs from mapped template source')
-    return {'horizon_actual_transition_counts':dict(Counter(horizon_states.values())), 'horizon_not_yet_offered_ids':[k for k in expected if k not in horizon_states], 'status':'audited_real_arrival_queue_diagnostic_only','offered':len(mapped),'dispatched':len(dispatched),'final_states':dict(Counter(states.values())),'unfinished_queued_ids':[k for k,v in states.items() if v=='queued'],'boundary_observed_counts':boundary['observed_counts'],'boundary_observation_lateness_ms':(boundary['recorded']['monotonic_ns']-hi)/1e6,'queries':latencies,'events_sha256':sha256(directory/'events.jsonl'),'cost_training_accepted':False,'limitations':cfg['limitations']}
+    return {'common_horizon_arm':arm_evidence,'horizon_actual_transition_counts':dict(Counter(horizon_states.values())), 'horizon_not_yet_offered_ids':[k for k in expected if k not in horizon_states], 'status':'audited_real_arrival_queue_diagnostic_only','offered':len(mapped),'dispatched':len(dispatched),'final_states':dict(Counter(states.values())),'unfinished_queued_ids':[k for k,v in states.items() if v=='queued'],'boundary_observed_counts':boundary['observed_counts'],'boundary_observation_lateness_ms':(boundary['recorded']['monotonic_ns']-hi)/1e6,'queries':latencies,'events_sha256':sha256(directory/'events.jsonl'),'cost_training_accepted':False,'limitations':cfg['limitations']}
 
 
 def run(config,revision):
     cfg,base=load_json(config);repo=Path(__file__).resolve().parents[2]
-    require(cfg['schema_version']=='trace_queue_diagnostic_v1' and cfg['client_count']==1 and cfg['boundary_rule']=='no_dispatch_after_horizon_natural_inflight_completion','Unregistered diagnostic')
+    arm=cfg['schema_version']=='common_horizon_arm_pilot_v1'
+    require(cfg['schema_version'] in ('trace_queue_diagnostic_v1','common_horizon_arm_pilot_v1') and cfg['client_count']==1 and cfg['boundary_rule']=='no_dispatch_after_horizon_natural_inflight_completion','Unregistered diagnostic')
     require(subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip()==revision,'HEAD mismatch')
     require(subprocess.run(['git','diff','--exit-code','HEAD','--','scripts/phase6-live-evaluation/*.py'],cwd=repo,capture_output=True).returncode==0,'Dirty experiment code')
     record_path=verified_file(cfg['mapping_record'],base);mapping=json.loads(record_path.read_text());mapping_audit_path=verified_file(cfg['mapping_audit'],base);mapping_audit=json.loads(mapping_audit_path.read_text());require(mapping_audit['status']=='audited_complete_real_arrival_benchmark_mapping_only' and mapping_audit['mapping_record_sha256']==sha256(record_path),'Unaudited mapping');mapped_path=record_path.parent/'mapped_arrivals.csv';require(sha256(mapped_path)==mapping['mapped_arrivals_sha256'],'Mapped arrivals changed')
@@ -100,7 +110,7 @@ def run(config,revision):
     def guard():require(datetime.now(timezone.utc)<deadline,'Operational cutoff; no new statement')
     guard();lock=(repo/'results'/'.physical_correctness.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     out=(base/cfg['output_directory']).resolve();out.mkdir(parents=True,exist_ok=False);code=out/'code';code.mkdir()
-    for name in ('run_trace_queue_diagnostic.py','offered_queue_ledger.py','prepare_trace_benchmark_mapping.py','physical_measurements.py','experiment_validation.py','statement_timing.py','query_observation_binding.py','telemetry_binding.py','run_correctness_pilot.py','engine_overlap.py'):shutil.copy2(Path(__file__).parent/name,code/name)
+    for name in ('run_trace_queue_diagnostic.py','offered_queue_ledger.py','prepare_trace_benchmark_mapping.py','physical_measurements.py','experiment_validation.py','statement_timing.py','query_observation_binding.py','telemetry_binding.py','run_correctness_pilot.py','engine_overlap.py','common_horizon_binding.py'):shutil.copy2(Path(__file__).parent/name,code/name)
     for src,name in ((Path(config),'config.json'),(source_path,'preparation_result.json'),(record_path,'mapping_record.json'),(mapping_audit_path,'mapping_audit.json'),(mapped_path,'mapped_arrivals.csv')):shutil.copy2(src,out/name)
     for i,spec in enumerate(cfg['expected_query_ledgers']):shutil.copy2(verified_file(spec,base),out/f'expected_ledger_{i}.jsonl')
     (out/'expected_query_results.json').write_text(json.dumps(expected,indent=2)+'\n')
@@ -108,16 +118,31 @@ def run(config,revision):
     log.emit('trace_queue_protocol',configuration=cfg,code_revision=revision,code_sha256={p.name:sha256(p) for p in code.iterdir()})
     from pyhive import hive
     try:
-        for _ in range(2):connections.append(hive.Connection(**{k:cfg['engine'][k] for k in ('host','port','username')}))
-        metadata,query=[c.cursor() for c in connections]
+        for _ in range(3 if arm else 2):connections.append(hive.Connection(**{k:cfg['engine'][k] for k in ('host','port','username')}))
+        cursors=[c.cursor() for c in connections];metadata,query=cursors[:2]
+        maintenance_cursor=cursors[2] if arm else None
         def execute(sql):guard();return rec.execute(metadata,sql,role='metadata')
         require(not rest._capture('jobs?status=running'),'Other active Spark jobs')
         require(execute('SELECT version()')['rows'][0][0].split()[0]==cfg['engine']['expected_version'],'Engine mismatch');rest.capture('environment')
+        table=source['table']
+        if arm:
+            import re
+            table=cfg['destination_table'];require(re.fullmatch(r'local\.experiment\.integrity_horizon_[a-z0-9_]+',table),'Dedicated isolated arm required')
+            require(cfg['action_arm'] in ('no_maintenance','compact_now','compact_later') and cfg['metadata_checkpoint_offsets_ns']==[0,mapping['horizon_ns']//2],'Registered arm/checkpoints required')
+            require(cfg['action_offset_ns']=={'no_maintenance':None,'compact_now':0,'compact_later':mapping['horizon_ns']//2}[cfg['action_arm']],'Registered action offset differs')
+            require(not any(r[1]==table.split('.')[-1] for r in execute('SHOW TABLES IN local.experiment')['rows']),'Never overwrite a target')
+            require(execute(f"SELECT snapshot_id FROM {source['table']}.history ORDER BY made_current_at DESC LIMIT 1")['rows'][0][0]==source['snapshot_id'],'Source changed')
+            execute(f"CREATE TABLE {table} USING iceberg AS SELECT /*+ REPARTITION({source['file_count']}) */ * FROM {source['table']} VERSION AS OF {source['snapshot_id']}")
+            log.emit('common_horizon_source',table=source['table'],snapshot_id=source['snapshot_id'])
+        current_inventory_end_ns=[None]
         def inventory():
-            snap=execute(f"SELECT snapshot_id FROM {source['table']}.history ORDER BY made_current_at DESC LIMIT 1");files=execute(f"SELECT file_path, record_count, file_size_in_bytes FROM {source['table']}.files")
-            require(snap['rows'][0][0]==source['snapshot_id'],'Source snapshot changed')
-            return {'table':source['table'],'snapshot_id':source['snapshot_id'],'snapshot_measurement_id':snap['measurement_id'],'file_inventory_measurement_id':files['measurement_id'],'file_state':{'file_count':len(files['rows']),'record_count':sum(r[1] for r in files['rows']),'total_bytes':sum(r[2] for r in files['rows'])}}
-        state=inventory();require(state['file_state']['record_count']==source['record_count'] and state['file_state']['file_count']==source['file_count'],'Source layout differs')
+            snap=execute(f"SELECT snapshot_id FROM {table}.history ORDER BY made_current_at DESC LIMIT 1");files=execute(f"SELECT file_path, record_count, file_size_in_bytes FROM {table}.files")
+            current_inventory_end_ns[0]=files['fetch_end']['monotonic_ns']
+            if not arm:require(snap['rows'][0][0]==source['snapshot_id'],'Source snapshot changed')
+            return {'table':table,'snapshot_id':snap['rows'][0][0],'snapshot_measurement_id':snap['measurement_id'],'file_inventory_measurement_id':files['measurement_id'],'file_state':{'file_count':len(files['rows']),'record_count':sum(r[1] for r in files['rows']),'total_bytes':sum(r[2] for r in files['rows'])}}
+        state=inventory();initial_state=state
+        require(state['file_state']['record_count']==source['record_count'] and state['file_state']['file_count']==source['file_count'],'Source/initial layout differs')
+        if arm:log.emit('common_horizon_initial_state',**state)
         sampler.start();time.sleep(cfg['telemetry']['warmup_seconds']);guard()
         lo=time.monotonic_ns();hi=lo+mapping['horizon_ns'];log.emit('replay_clock',start_monotonic_ns=lo,end_monotonic_ns=hi,source_interval_start_utc=mapping['source_interval_start_utc'],source_interval_end_utc=mapping['source_interval_end_utc'])
         ledger=OfferedQueueLedger(log,mapped,lo,hi);pending=queue.Queue();identities={r['source_query_id']:uuid.uuid4().hex for r in mapped}
@@ -127,31 +152,71 @@ def run(config,revision):
                 for r in mapped:
                     wait_until(lo+int(r['offset_ns']));identity=r['source_query_id'];mid=identities[identity]
                     ledger.transition(identity,'offered',measurement_id=mid);ledger.transition(identity,'queued',measurement_id=mid);pending.put(r)
-            except Exception as e:errors.append(e)
+            except Exception as e:
+                errors.append(e);log.emit('trace_queue_thread_failed',error_type=type(e).__name__,error=str(e))
         def boundary():
             try:wait_until(hi);ledger.boundary()
-            except Exception as e:errors.append(e)
+            except Exception as e:
+                errors.append(e);log.emit('trace_queue_thread_failed',error_type=type(e).__name__,error=str(e))
         for func in (offer,boundary):
             thread=threading.Thread(target=func);threads.append(thread);thread.start()
-        probes=[]
+        state_lock=threading.Lock();actions=[]
+        def action_schedule():
+            nonlocal state
+            try:
+                for offset in cfg['metadata_checkpoint_offsets_ns']:
+                    wait_until(lo+offset);guard()
+                    refreshed=execute(f'REFRESH TABLE {table}');current=inventory()
+                    log.emit('common_horizon_checkpoint',offset_ns=offset,**current)
+                    with state_lock:state=current
+                    if offset!=cfg['action_offset_ns']:continue
+                    mid=uuid.uuid4().hex;t=cfg['telemetry']
+                    windows=[sampler.window(seconds=w,max_interval_seconds=t['max_interval_seconds'],max_age_seconds=t['max_age_seconds']) for w in t['window_seconds']]
+                    current=dict(current,decision_refresh_measurement_id=refreshed['measurement_id'])
+                    log.emit('maintenance_decision_observation',measurement_id=mid,query_id=None,role='maintenance',windows=windows,**current)
+                    guard();require(time.monotonic_ns()<hi,'No action after horizon')
+                    require((time.monotonic_ns()-current_inventory_end_ns[0])/1e9<=cfg['metadata_max_age_seconds'],'Fresh action inventory expired')
+                    action=rec.execute(maintenance_cursor,f"CALL local.system.rewrite_data_files(table => '{table.removeprefix('local.')}', strategy => 'binpack', options => map('partial-progress.enabled','false'))",role='maintenance',measurement_id=mid);actions.append(action)
+                    execute(f'REFRESH TABLE {table}');updated=inventory()
+                    log.emit('common_horizon_state_published',**updated)
+                    with state_lock:state=updated
+            except Exception as e:
+                errors.append(e);log.emit('trace_queue_thread_failed',error_type=type(e).__name__,error=str(e))
+        if arm:
+            thread=threading.Thread(target=action_schedule);threads.append(thread);thread.start()
+        probes=[];query_snapshot=None
         while time.monotonic_ns()<hi:
             try:r=pending.get(timeout=max(0,(hi-time.monotonic_ns())/1e9))
             except queue.Empty:break
             if time.monotonic_ns()>=hi:break
             guard();identity=r['source_query_id'];mid=identities[identity];qid=int(r['query_id']);t=cfg['telemetry']
             windows=[sampler.window(seconds=w,max_interval_seconds=t['max_interval_seconds'],max_age_seconds=t['max_age_seconds']) for w in t['window_seconds']]
-            log.emit('query_observation',measurement_id=mid,query_id=qid,role='trace_query',windows=windows,**state)
+            with state_lock:query_state=state
+            if arm and query_snapshot!=query_state['snapshot_id']:
+                guard();rec.execute(query,f'REFRESH TABLE {table}',role='query_session_state_refresh');query_snapshot=query_state['snapshot_id']
+                windows=[sampler.window(seconds=w,max_interval_seconds=t['max_interval_seconds'],max_age_seconds=t['max_age_seconds']) for w in t['window_seconds']]
             if time.monotonic_ns()>=hi:break
+            log.emit('query_observation',measurement_id=mid,query_id=qid,role='trace_query',windows=windows,**query_state)
+            require(time.monotonic_ns()<hi,'Observation logging crossed horizon; retain failed attempt')
             ledger.transition(identity,'dispatched',measurement_id=mid,session_id='query_0');guard()
-            sql=query_templates(source['table'])[qid].replace(f"FROM {source['table']}",f"FROM {source['table']} VERSION AS OF {source['snapshot_id']}")
+            sql=query_templates(table)[qid].replace(f'FROM {table}',f"FROM {table} VERSION AS OF {query_state['snapshot_id']}")
             try:
                 probe=rec.execute(query,sql,role='trace_query',query_id=qid,measurement_id=mid);ledger.transition(identity,'completed',measurement_id=mid,session_id='query_0');probes.append(probe)
             except Exception:
                 ledger.transition(identity,'failed',measurement_id=mid,session_id='query_0');raise
         for thread in threads:thread.join()
-        require(not errors,'Offer/boundary thread failed')
-        inventory();jobs=rest.capture('jobs');stages=rest.capture('stages')
+        if errors:raise errors[0]
+        final_state=inventory()
+        if arm:
+            log.emit('common_horizon_final_state',**final_state)
+            for check_state in (initial_state,final_state):
+                snapshot=check_state['snapshot_id']
+                result=execute(f"SELECT count(*) FROM ((SELECT * FROM {source['table']} VERSION AS OF {source['snapshot_id']} EXCEPT ALL SELECT * FROM {table} VERSION AS OF {snapshot}) UNION ALL (SELECT * FROM {table} VERSION AS OF {snapshot} EXCEPT ALL SELECT * FROM {source['table']} VERSION AS OF {source['snapshot_id']})) AS differences")
+                require(result['rows'][0][0]==0,'Arm logical multiset changed')
+                log.emit('common_horizon_multiset_validation',snapshot_id=snapshot,measurement_id=result['measurement_id'])
+        jobs=rest.capture('jobs');stages=rest.capture('stages')
         for probe in probes:task_intervals(jobs,stages,rest,marker=probe['marker'])
+        for action in actions:task_intervals(jobs,stages,rest,rewrite_table=table,request=action)
         sampler.stop();result=audit(out);safe_to_close=True;result['code_revision']=revision;(out/'result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
     except Exception as e:
         log.emit('trace_queue_failed',error_type=type(e).__name__,error=str(e));(out/'failure.json').write_text(json.dumps({'status':'failed_preserved','error':str(e)},indent=2)+'\n');raise
