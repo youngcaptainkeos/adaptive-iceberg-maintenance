@@ -1,0 +1,440 @@
+{
+  "horizon_actual_transition_counts": {
+    "completed": 41,
+    "dispatched": 1,
+    "queued": 71
+  },
+  "horizon_not_yet_offered_ids": [],
+  "status": "audited_real_arrival_queue_diagnostic_only",
+  "offered": 113,
+  "dispatched": 42,
+  "final_states": {
+    "completed": 42,
+    "queued": 71
+  },
+  "unfinished_queued_ids": [
+    "7647381856574976793",
+    "7967004785615496413",
+    "2259781574342325523",
+    "8521398839520181258",
+    "5881448950430315082",
+    "7144151330849960094",
+    "2276134881618763293",
+    "2146464416632636622",
+    "8269693806150140789",
+    "471872727668698404",
+    "8934784708354028670",
+    "6750929389641520820",
+    "2229359433336809918",
+    "3768416182477712674",
+    "486914538877371148",
+    "7189675976654244705",
+    "486247237267126171",
+    "2298549735609177581",
+    "7000461208221531382",
+    "5226800460314524689",
+    "1511433191087888323",
+    "3722841261177893499",
+    "7358098041400210409",
+    "2825782564429996046",
+    "1904406803535954552",
+    "1248608037190947083",
+    "8947267400906925300",
+    "2446634032969003227",
+    "1220511061966880949",
+    "2287910415015490421",
+    "6852812243574637282",
+    "1694917311922552102",
+    "8272194919225660028",
+    "4417438105219290280",
+    "3505946709446049282",
+    "6143560984519320638",
+    "2267055543375108364",
+    "2164672622319351458",
+    "5863070503418389749",
+    "396810601231792625",
+    "3374748347424776134",
+    "4543537417145338132",
+    "3700993468071530413",
+    "8207065606817085725",
+    "6618519958563214586",
+    "1673250147874031458",
+    "3993424463984909177",
+    "9113767805265290425",
+    "2893085533072068438",
+    "5906880305916981339",
+    "4067244205065307369",
+    "1714586780354087155",
+    "2398646632190922574",
+    "7727564959248597685",
+    "158688013168422516",
+    "1083188925877549901",
+    "5192080252175334072",
+    "1041952035188190555",
+    "3310540822757586589",
+    "5324830380556370821",
+    "4266571311177219449",
+    "3353049431836187697",
+    "1331605567176503617",
+    "599131967040953273",
+    "5398200038414731192",
+    "2879182708386927774",
+    "3516765626672610810",
+    "6045787523728884407",
+    "8637785904315471842",
+    "8162928994692297692",
+    "8116481716811995923"
+  ],
+  "boundary_observed_counts": {
+    "completed": 41,
+    "dispatched": 1,
+    "queued": 71
+  },
+  "boundary_observation_lateness_ms": 4.118773,
+  "queries": [
+    {
+      "source_query_id": "8305634485816232694",
+      "query_id": 0,
+      "service_ms": 485.601147,
+      "generator_lateness_ms": 14.751731,
+      "queue_to_dispatch_ms": 100.411889,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "3140896127011203291",
+      "query_id": 1,
+      "service_ms": 2655.16858,
+      "generator_lateness_ms": 47.062186,
+      "queue_to_dispatch_ms": 684.103932,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "8208596142661555319",
+      "query_id": 2,
+      "service_ms": 524.844484,
+      "generator_lateness_ms": 1.649536,
+      "queue_to_dispatch_ms": 1935.114065,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "1111339192927860173",
+      "query_id": 3,
+      "service_ms": 281.75893,
+      "generator_lateness_ms": 0.713357,
+      "queue_to_dispatch_ms": 1977.271552,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "6399290180194372812",
+      "query_id": 0,
+      "service_ms": 382.130311,
+      "generator_lateness_ms": 0.186703,
+      "queue_to_dispatch_ms": 2403.235968,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "6772875242289130990",
+      "query_id": 1,
+      "service_ms": 2621.656876,
+      "generator_lateness_ms": 0.275378,
+      "queue_to_dispatch_ms": 2770.168828,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "7613413682757982511",
+      "query_id": 2,
+      "service_ms": 479.064564,
+      "generator_lateness_ms": 51.689987,
+      "queue_to_dispatch_ms": 5522.164897,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "5729623362049754656",
+      "query_id": 3,
+      "service_ms": 276.611911,
+      "generator_lateness_ms": 36.053025,
+      "queue_to_dispatch_ms": 5222.282025,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "8201608492440450334",
+      "query_id": 0,
+      "service_ms": 417.50763,
+      "generator_lateness_ms": 115.862163,
+      "queue_to_dispatch_ms": 5564.31876,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "5000734200252669312",
+      "query_id": 1,
+      "service_ms": 2537.212572,
+      "generator_lateness_ms": 0.684054,
+      "queue_to_dispatch_ms": 5473.19908,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "6892740461577218851",
+      "query_id": 2,
+      "service_ms": 465.180698,
+      "generator_lateness_ms": 0.165297,
+      "queue_to_dispatch_ms": 8068.702037,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "2949581173853673943",
+      "query_id": 3,
+      "service_ms": 273.528807,
+      "generator_lateness_ms": 27.376011,
+      "queue_to_dispatch_ms": 8594.247201,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "2495603605662091274",
+      "query_id": 0,
+      "service_ms": 418.301221,
+      "generator_lateness_ms": 2.568544,
+      "queue_to_dispatch_ms": 6785.52015,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "8103560957881231855",
+      "query_id": 1,
+      "service_ms": 2530.790034,
+      "generator_lateness_ms": 27.122409,
+      "queue_to_dispatch_ms": 7411.596299,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "675905129471022620",
+      "query_id": 2,
+      "service_ms": 459.793319,
+      "generator_lateness_ms": 0.376942,
+      "queue_to_dispatch_ms": 9830.195771,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "4961485041072068448",
+      "query_id": 3,
+      "service_ms": 256.830242,
+      "generator_lateness_ms": 0.185757,
+      "queue_to_dispatch_ms": 10355.880848,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "2587677369155083252",
+      "query_id": 0,
+      "service_ms": 390.252708,
+      "generator_lateness_ms": 1.266546,
+      "queue_to_dispatch_ms": 9563.68079,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "7789069002513465308",
+      "query_id": 1,
+      "service_ms": 2549.80713,
+      "generator_lateness_ms": 109.32874,
+      "queue_to_dispatch_ms": 9939.123766,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "6625643968857185915",
+      "query_id": 2,
+      "service_ms": 447.649359,
+      "generator_lateness_ms": 0.282546,
+      "queue_to_dispatch_ms": 12383.010791,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "5239872451037047934",
+      "query_id": 3,
+      "service_ms": 268.70164,
+      "generator_lateness_ms": 0.340739,
+      "queue_to_dispatch_ms": 12700.448154,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "3925325225840453328",
+      "query_id": 0,
+      "service_ms": 377.432883,
+      "generator_lateness_ms": 69.073357,
+      "queue_to_dispatch_ms": 13176.261518,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "1976501992863525980",
+      "query_id": 1,
+      "service_ms": 2597.55535,
+      "generator_lateness_ms": 0.22048,
+      "queue_to_dispatch_ms": 13501.792452,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "6740080238057866572",
+      "query_id": 2,
+      "service_ms": 479.703225,
+      "generator_lateness_ms": 39.829478,
+      "queue_to_dispatch_ms": 16188.412094,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "7637613996866147188",
+      "query_id": 3,
+      "service_ms": 255.087896,
+      "generator_lateness_ms": 1.91348,
+      "queue_to_dispatch_ms": 14235.332915,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "5469997471457959676",
+      "query_id": 0,
+      "service_ms": 374.630432,
+      "generator_lateness_ms": 0.501896,
+      "queue_to_dispatch_ms": 14185.124395,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "3301306802000960127",
+      "query_id": 1,
+      "service_ms": 2633.394917,
+      "generator_lateness_ms": 0.585407,
+      "queue_to_dispatch_ms": 14168.646084,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "2749304223233252820",
+      "query_id": 2,
+      "service_ms": 466.0834,
+      "generator_lateness_ms": 9.777919,
+      "queue_to_dispatch_ms": 16887.528453,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "3102196453711172771",
+      "query_id": 3,
+      "service_ms": 259.110807,
+      "generator_lateness_ms": 0.225748,
+      "queue_to_dispatch_ms": 17288.258613,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "8922470970585900073",
+      "query_id": 0,
+      "service_ms": 368.773534,
+      "generator_lateness_ms": 82.640727,
+      "queue_to_dispatch_ms": 17580.275056,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "771210547160911229",
+      "query_id": 1,
+      "service_ms": 2649.41932,
+      "generator_lateness_ms": 90.550632,
+      "queue_to_dispatch_ms": 18005.891341,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "716689690572055110",
+      "query_id": 2,
+      "service_ms": 466.633271,
+      "generator_lateness_ms": 0.473694,
+      "queue_to_dispatch_ms": 20416.601077,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "6989554579264647734",
+      "query_id": 3,
+      "service_ms": 259.40738,
+      "generator_lateness_ms": 52.915149,
+      "queue_to_dispatch_ms": 20983.47775,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "7213212099694771304",
+      "query_id": 0,
+      "service_ms": 379.15954,
+      "generator_lateness_ms": 0.309258,
+      "queue_to_dispatch_ms": 21184.022071,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "3233563516723102579",
+      "query_id": 1,
+      "service_ms": 2638.147864,
+      "generator_lateness_ms": 32.686929,
+      "queue_to_dispatch_ms": 21526.071323,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "1275737977249343751",
+      "query_id": 2,
+      "service_ms": 469.6693,
+      "generator_lateness_ms": 10.854955,
+      "queue_to_dispatch_ms": 24212.087393,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "6122421730414709391",
+      "query_id": 3,
+      "service_ms": 270.768173,
+      "generator_lateness_ms": 0.249107,
+      "queue_to_dispatch_ms": 24663.514144,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "6844092425023014166",
+      "query_id": 0,
+      "service_ms": 374.271176,
+      "generator_lateness_ms": 2.183464,
+      "queue_to_dispatch_ms": 22954.769945,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "906938565844302728",
+      "query_id": 1,
+      "service_ms": 2583.442407,
+      "generator_lateness_ms": 0.191427,
+      "queue_to_dispatch_ms": 23347.222395,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "6370951998148920637",
+      "query_id": 2,
+      "service_ms": 466.686893,
+      "generator_lateness_ms": 0.280807,
+      "queue_to_dispatch_ms": 25932.050723,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "317769540232903009",
+      "query_id": 3,
+      "service_ms": 284.886623,
+      "generator_lateness_ms": 1.203053,
+      "queue_to_dispatch_ms": 25364.724797,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "296480612077985602",
+      "query_id": 0,
+      "service_ms": 373.795878,
+      "generator_lateness_ms": 0.893177,
+      "queue_to_dispatch_ms": 25448.971472,
+      "completed_within_horizon": true
+    },
+    {
+      "source_query_id": "2630428830619526214",
+      "query_id": 1,
+      "service_ms": 2548.622756,
+      "generator_lateness_ms": 24.737867,
+      "queue_to_dispatch_ms": 25874.476756,
+      "completed_within_horizon": false
+    }
+  ],
+  "events_sha256": "ad96a03644f86e853025e3c20db96f7848f9ca9708967163f3bda2e07281f1cc",
+  "cost_training_accepted": false,
+  "limitations": [
+    "One warehouse/minute and artificial declared query mix, not original Snowflake workload reproduction.",
+    "One serial query client with diagnostic layout; capacity does not generalize to production or prove optimal concurrency.",
+    "Boundary observation lateness and actual generator lag reported, not assumed zero.",
+    "No counterfactual action effect, accepted cost labels, SLA, model fit or scheduler benefit."
+  ]
+}

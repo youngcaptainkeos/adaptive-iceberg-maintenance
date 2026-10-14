@@ -286,3 +286,40 @@ dispatched, completed-within/outside-boundary, queued/failed IDs, intake latenes
 queue delays and actual service without claiming original SQL workload. Register
 common-horizon control/action collection only after this gate. No maintenance,
 model training/promotion, process shutdown or dataset deletion occurred.
+
+## Completed real-arrival queue diagnostic
+
+PID527052 finished naturally. All113 source arrivals were actually offered, in
+original order/spacing with measured intake lateness, not dropped or retimed.
+At the fixed60-second horizon,41 completed,1 dispatched/in-flight and71 queued;
+final state42 completed and71 queued after the in-flight query completed naturally.
+No queued request dispatched after horizon. Queued identities are retained debt,
+not queries still executing on Spark. Zero failed queries in this accepted screen.
+Actual boundary observer lateness4.118773ms, separately reported from actual
+transition-clock reconstruction; both observed and reconstructed counts agree.
+
+Frozen-code post-run audit ran separately under nohup as PID541882 and passed
+source mapping/digests, FIFO/state/session/UUID conservation, all offered identity
+coverage, actual SQL and expected results, client clocks, telemetry windows,
+attributable query tasks, no unrelated Spark work and unchanged source snapshot/
+exact files. Spark reported no active jobs. Full raw/frozen-code/reference/mapping/
+result/post-run-audit package mirrored locally; all file SHA256s matched worker3.
+Review `snowset_queue_diagnostic_review_2026-10-14.json`; raw package
+`results/sf1_snowset_queue_diagnostic_20261014/`.
+
+The selected mapped arrival minute exceeds this one-client configuration's service
+capacity. That is a measured configuration-specific result, not proof that the
+server or original Snowflake workload is overloaded generally. No thinning,
+time compression or post-horizon draining hid the remaining71 arrivals. Report
+unfinished work explicitly in future paired arms; completed-only latency can be
+selection-biased. One controlled mix/warehouse/minute, with actual intake jitter,
+does not justify stable cost labels, independent training/calibration, or scheduler
+benefit. No maintenance, cost fitting/promotion, cancelled process or deletion.
+
+Next: preregister equivalent-state, identical-offered-work action/control horizons
+and boundary debt accounting; include no-maintenance, compact-now and delayed
+maintenance under declared timing, counterbalanced order, measured layout/cache
+conditions and independent blocks. Choose horizon/concurrency/repetition using
+these capacity/variance diagnostics with explicit rationale before outcomes,
+without changing source arrivals to force a desirable result. No new physical
+experiment launched in this status/audit turn.
