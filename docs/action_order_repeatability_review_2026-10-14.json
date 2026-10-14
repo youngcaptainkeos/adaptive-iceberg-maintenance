@@ -1,0 +1,183 @@
+{
+  "schema_version": "action_order_repeatability_review_v1",
+  "status": "completed_diagnostic_only",
+  "planned_episodes": 4,
+  "attempted_episodes": 4,
+  "passed_episodes": 4,
+  "failures_preserved": [],
+  "not_attempted_count": 0,
+  "cells": {
+    "query_first": {
+      "planned_episodes": 2,
+      "passed_episodes": 2,
+      "individual_signed_contrasts_ms": [
+        97.48075949999975,
+        93.93509650000033
+      ],
+      "mean_signed_contrast_ms": 95.70792800000004,
+      "sample_standard_deviation_ms": 2.507162351101829,
+      "confidence_interval": null
+    },
+    "rewrite_first": {
+      "planned_episodes": 2,
+      "passed_episodes": 2,
+      "individual_signed_contrasts_ms": [
+        -46.429857000000084,
+        168.0828164999998
+      ],
+      "mean_signed_contrast_ms": 60.82647974999986,
+      "sample_standard_deviation_ms": 151.68336608230572,
+      "confidence_interval": null
+    }
+  },
+  "observations": [
+    {
+      "index": 1,
+      "experiment_id": "sf1_order_repeat_20261014_01",
+      "action_order": "rewrite_first",
+      "actual_query_latencies_ms": {
+        "control_before": 2525.369298,
+        "during_rewrite": 2522.272497,
+        "control_after_original_snapshot": 2612.03541,
+        "compacted_layout": 2503.823172
+      },
+      "bracketed_original_mean_ms": 2568.702354,
+      "during_minus_bracketed_original_ms": -46.429857000000084,
+      "relative_bracketed_contrast": -0.018075218768612566,
+      "compacted_minus_after_original_ms": -108.21223800000007,
+      "rewrite_client_elapsed_ms": 14013.93347,
+      "task_overlap_seconds": 2.430000066757202,
+      "original_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "compacted_state": {
+        "file_count": 1,
+        "record_count": 6001215,
+        "total_bytes": 163892210
+      },
+      "source_result_sha256": "47a527480b93725376b78a7f67267b842ee996989c35974e6a317a0fbb97158e"
+    },
+    {
+      "index": 2,
+      "experiment_id": "sf1_order_repeat_20261014_02",
+      "action_order": "query_first",
+      "actual_query_latencies_ms": {
+        "control_before": 2536.292714,
+        "during_rewrite": 2601.486696,
+        "control_after_original_snapshot": 2471.719159,
+        "compacted_layout": 2513.699497
+      },
+      "bracketed_original_mean_ms": 2504.0059365,
+      "during_minus_bracketed_original_ms": 97.48075949999975,
+      "relative_bracketed_contrast": 0.0389299234794365,
+      "compacted_minus_after_original_ms": 41.98033799999985,
+      "rewrite_client_elapsed_ms": 13627.837096,
+      "task_overlap_seconds": 1.553999900817871,
+      "original_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "compacted_state": {
+        "file_count": 1,
+        "record_count": 6001215,
+        "total_bytes": 163892210
+      },
+      "source_result_sha256": "1b8cb9407ea762bb9cf4da15177cc14de10a05d86878e29126e290eed01337b4"
+    },
+    {
+      "index": 3,
+      "experiment_id": "sf1_order_repeat_20261014_03",
+      "action_order": "query_first",
+      "actual_query_latencies_ms": {
+        "control_before": 2545.704242,
+        "during_rewrite": 2568.385773,
+        "control_after_original_snapshot": 2403.197111,
+        "compacted_layout": 2384.714868
+      },
+      "bracketed_original_mean_ms": 2474.4506764999996,
+      "during_minus_bracketed_original_ms": 93.93509650000033,
+      "relative_bracketed_contrast": 0.03796199996714719,
+      "compacted_minus_after_original_ms": -18.482242999999926,
+      "rewrite_client_elapsed_ms": 13725.046789,
+      "task_overlap_seconds": 1.4210000038146973,
+      "original_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "compacted_state": {
+        "file_count": 1,
+        "record_count": 6001215,
+        "total_bytes": 163892210
+      },
+      "source_result_sha256": "e0076e7bed1222a8fdf89a351901a336d25f1258ecc494ce5aa3d918029c5d24"
+    },
+    {
+      "index": 4,
+      "experiment_id": "sf1_order_repeat_20261014_04",
+      "action_order": "rewrite_first",
+      "actual_query_latencies_ms": {
+        "control_before": 2509.736348,
+        "during_rewrite": 2724.164359,
+        "control_after_original_snapshot": 2602.426737,
+        "compacted_layout": 2419.49287
+      },
+      "bracketed_original_mean_ms": 2556.0815425,
+      "during_minus_bracketed_original_ms": 168.0828164999998,
+      "relative_bracketed_contrast": 0.06575800251489818,
+      "compacted_minus_after_original_ms": -182.93386699999974,
+      "rewrite_client_elapsed_ms": 14248.167443,
+      "task_overlap_seconds": 2.6629998683929443,
+      "original_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "compacted_state": {
+        "file_count": 1,
+        "record_count": 6001215,
+        "total_bytes": 163892210
+      },
+      "source_result_sha256": "26e496102306913b4595f7817af00ff841025fdaa7b41066c487ac78ccafda27"
+    }
+  ],
+  "input_sha256": {
+    "cohort_result": "27e2c8e1b52b83554d1aeae808deccd0ad0e0d8a869e4d792b16b3a8fa8c5764",
+    "cohort_config": "a7e7fc51c34ad197e88ea6eeed9e1273c883603ac0550eacb051d80e306e4a4b",
+    "sf1_order_repeat_20261014_01": {
+      "events": "8c7a582fe0e75d1f51c89de960e92e8af9c06620f81f3e1c4b29de155f87d0ce",
+      "result": "47a527480b93725376b78a7f67267b842ee996989c35974e6a317a0fbb97158e",
+      "export": "44e660819f0f4e28f155da73e603a7c741ce1e3bc00e326894ed95f669111a3d"
+    },
+    "sf1_order_repeat_20261014_02": {
+      "events": "84aeb6013f1faeb8593a04283744d328d90c2a36af5333693b276da111e6eb49",
+      "result": "1b8cb9407ea762bb9cf4da15177cc14de10a05d86878e29126e290eed01337b4",
+      "export": "053a40a169bd8f86e036c730b20361e3a4745898d1c09c7652268cb4174a4749"
+    },
+    "sf1_order_repeat_20261014_03": {
+      "events": "082d4b6462d87b33db821fa856b396b404cc686af350de3515cdcbd8156a9abc",
+      "result": "e0076e7bed1222a8fdf89a351901a336d25f1258ecc494ce5aa3d918029c5d24",
+      "export": "f01be0a7408f6a639230a4429298150a358469d9d034275bd5b10f08dc90872f"
+    },
+    "sf1_order_repeat_20261014_04": {
+      "events": "4bbfee35ac42979a7194861fb6908f9387528146daf8a8ca7d0caba32a041f03",
+      "result": "26e496102306913b4595f7817af00ff841025fdaa7b41066c487ac78ccafda27",
+      "export": "40cfe07eafafdd0c9e1eec06bb5dec6db25e13b54b4b76ecbd656752fdd4cbe0"
+    }
+  },
+  "review_code_sha256": "463741e7f28bf11c6348316208f2804dfc240e858a371462a5de2ee1bcca1c91",
+  "cost_training_accepted": false,
+  "limitations": [
+    "Two episodes per order only: descriptive dispersion, not stable variance, confidence intervals or a sufficient training/calibration/test corpus.",
+    "Prespecified ABBA order balances position approximately but does not eliminate cache, host drift or serial dependence.",
+    "Arithmetic mean of original-snapshot before/after controls is an exploratory bracketing contrast, not an observed counterfactual or causal training target.",
+    "Compacted versus after-original contrast remains a separate layout comparison with cache/time confounding.",
+    "One Q1 query on controlled 16-file SF1 clones; no arrival replay, offered-load queueing, ingestion or workload/layout diversity.",
+    "REST/log/process observation overhead remains present. Actual task lifetimes overlap; simultaneous CPU execution not proven.",
+    "All attempted and failed/missed-exposure episodes are retained; stop the sequence after any failed gate, no retry until success or selective omission.",
+    "No cost training, conformal bounds, Model C promotion, scheduler benefit, model-count superiority or publication acceptance."
+  ]
+}

@@ -103,3 +103,33 @@ times while using declared benchmark SQL; it would not reproduce Snowflake's
 original SQL workload. Check replay capacity before physical execution. Collect
 independent common-horizon action blocks only after those controls and queue gates
 pass. Do not derive counterfactual cost labels from the four pilot episodes.
+
+## Next authorized implementation: null controls and model candidates
+
+User authorized the next step and cost-model implementation, with every validation
+and physical run on worker3 detached via nohup. Registered four fresh SF1 Q1 null
+blocks matching previous actual query end-to-next-start spacings from SHA-pinned
+raw logs. Same warmup/windows and result/layout/multiset gates; no rewrite/cache
+flush/trace replay. Null contrasts remain descriptive, not causal cost labels.
+The independent raw review reconstructs timings, windows, SQL/state, Spark tasks
+and unrelated-job exclusion. Stop on any gate failure and preserve every table.
+Operational cutoff 12:30 IST is not a scientific horizon.
+
+Added opt-in shared action-conditioned latency candidate to the existing strict
+A/B trainer, with identical splits/hyperparameters, whole-experiment calibration,
+and unchanged per-regime/query accuracy/coverage gates. All candidates must pass
+before publishing a new bundle; no automatic scheduler selection. This implements
+a candidate comparison, not future-defer cost or a deployed scheduler. Current
+pilot/control data cannot meet the physical training schema and independent split
+requirements, so no cost fit or model promotion is authorized by these artifacts.
+Snowset supplies arrivals without SQL; Alibaba supplies cluster-task events;
+neither supplies action labels. Existing dataset/provenance limitations remain.
+
+Worker3 detached prepublication checks: both changed Python files compiled;
+independent review of all four actual historical episodes passed. Raw reference
+gaps were [1.928607459,10.676690485], [0.591082813,12.599220833],
+[0.557166038,12.715071664], [8.018002224,4.622654346] seconds. The modified trainer
+correctly refused actual diagnostic observations because required physical
+training fields/splits were absent. No model was fitted; shared fitting/acceptance
+remains unvalidated until a legitimate corpus exists. Logs staged on worker3 at
+`/tmp/capstone-null-controls-20261014/validation.log` and `model_validation.log`.

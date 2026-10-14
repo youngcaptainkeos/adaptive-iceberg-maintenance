@@ -42,6 +42,8 @@ def validate_protocol(protocol):
     require(protocol.get('schema_version') == 'physical_training_protocol_v1', 'Unsupported training protocol.')
     require(isinstance(protocol.get('rationale'), str) and protocol['rationale'].strip(),
             'Declare protocol/sample-size/acceptance rationale before evaluation.')
+    require(protocol.get('model_candidates', ['separate']) in (['separate'], ['separate', 'shared_action_conditioned']),
+            'Register separate or separate-plus-shared candidates; no hidden search.')
     alpha = finite_number(protocol.get('alpha'), 'alpha')
     require(0 < alpha < 1, 'alpha must be in (0,1).')
     for name in ('min_queries_per_split_per_query', 'min_compaction_events_per_split'):
@@ -236,6 +238,46 @@ def train_and_save_models(df, model_dir, *, protocol, compaction_events, provena
         metadata[name] = {'q_hat': bound, 'acceptance_passed': True, 'per_query_metrics': detail,
                           'calibration_unit': 'maximum absolute residual per experiment block',
                           'split_samples': {s: len(part) for s, part in parts.items()}}
+    if protocol.get('model_candidates') == ['separate', 'shared_action_conditioned']:
+        shared_features = FEATURE_LIST + ['compaction_active']
+        parts = {s: prepared[prepared['split'] == s] for s in SPLITS}
+        train, calib, test = (parts[s] for s in SPLITS)
+        model, bound = train_conformal_model(
+            train[shared_features], train['target_ms'], calib[shared_features],
+            calib['target_ms'], alpha=protocol['alpha'],
+            model_parameters=protocol['model_parameters'], calibration_groups=calib['experiment_id'])
+        preds = model.predict(test[shared_features])
+        require(np.isfinite(preds).all(), 'Shared model produced nonfinite predictions.')
+        detail = {}
+        for regime in (True, False):
+            for q in QUERY_IDS:
+                mask = (test['compaction_active'] == regime) & (test['query_id'] == q)
+                actual = test.loc[mask, 'target_ms'].to_numpy()
+                predicted = preds[mask.to_numpy()]
+                mae = float(mean_absolute_error(actual, predicted))
+                coverage = float(np.mean(np.abs(actual - predicted) <= bound))
+                median = float(train.loc[(train['compaction_active'] == regime) &
+                                         (train['query_id'] == q), 'target_ms'].median())
+                baseline_mae = float(np.mean(np.abs(actual - median)))
+                improvement = (baseline_mae-mae)/baseline_mae if baseline_mae > 0 else (0.0 if mae == 0 else -math.inf)
+                key = f"{'compacting' if regime else 'baseline'}_query_{q}"
+                detail[key] = {'mae_ms':mae, 'coverage':coverage, 'n':int(mask.sum()),
+                               'median_baseline_mae_ms':baseline_mae,
+                               'separate_model_mae_ms':metadata['model_a' if regime else 'model_b']['per_query_metrics'][str(q)]['mae_ms']}
+                require(mae <= protocol['maximum_test_mae_ms_by_query'][str(q)]
+                        and coverage >= protocol['minimum_test_coverage']
+                        and improvement >= protocol['minimum_relative_mae_improvement'],
+                        f'Shared model {key} failed unchanged acceptance: {detail[key]}')
+        fitted['model_shared'] = model
+        metadata['model_shared'] = {'features':shared_features, 'q_hat':bound,
+                                    'acceptance_passed':True, 'per_regime_query_metrics':detail,
+                                    'calibration_unit':'maximum absolute residual per whole experiment block',
+                                    'split_samples':{s:len(part) for s,part in parts.items()},
+                                    'scope':'Observed query service latency; not deferred/common-horizon action cost or causal scheduling benefit.'}
+        metadata['candidate_comparison'] = {'registered_candidates':protocol['model_candidates'],
+                                            'same_split_and_hyperparameters':True,
+                                            'automatic_scheduler_selection':False,
+                                            'limitation':'Marginal block conformal construction does not guarantee conditional coverage; regime/query test gates are empirical.'}
     # Only publish a complete, accepted, self-contained bundle after every gate.
     destination.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(dir=destination.parent, prefix='.training-') as temp:
@@ -250,7 +292,8 @@ def train_and_save_models(df, model_dir, *, protocol, compaction_events, provena
         metadata['execution_evidence'] = [value for name, value in metadata.items()
                                           if name.startswith(('execution_evidence_', 'raw_statement_events_'))]
         for name, model in fitted.items():
-            target = staging / ('model_a_compaction.joblib' if name == 'model_a' else 'model_b_baseline.joblib')
+            target = staging / {'model_a':'model_a_compaction.joblib', 'model_b':'model_b_baseline.joblib',
+                                'model_shared':'model_shared_action_conditioned.joblib'}[name]
             joblib.dump(model, target)
             metadata[name]['artifact'] = {'path': target.name, 'sha256': sha256(target)}
         (staging / 'model_metadata.json').write_text(json.dumps(metadata, indent=2, allow_nan=False))
