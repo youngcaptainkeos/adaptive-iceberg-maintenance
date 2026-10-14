@@ -326,3 +326,7 @@ raw regression passed; firstlive serialized path validation still pending.
 Section29 recovery3baselinepassed actual strict freshness/raw audit:1478offered,
 506ultimatelycompleted/972queued; boundary observer lateness73.220066ms retained.
 Compaction02running. Receipts mirrored; no whole-cohort/model approval yet.
+
+Section30 recovery3compact_now passed live maintenance archive/physical/raw gates;
+1478offered/509finalcompleted/969queued. Deferred03running. No causal benefit or
+model approval from small count contrast; one family/layout remains limited.

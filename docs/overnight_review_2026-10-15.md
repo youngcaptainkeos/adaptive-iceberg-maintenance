@@ -205,3 +205,14 @@ eventsSHA2c10774a71162efb9433eb61a98951fcf944cde056b06f116fd68c7cdeafb1b2;
 auditSHA479ded45a36f2cca033ebbf46caf7b9f48b152412501b884bbc88f010aff4e1c.
 Result/audit mirrored matching hashes; full raw/byte transfer deferred until
 physical collection inactive. All failed prior attempts unchanged; no model fit.
+
+## Recovery3 live maintenance archival success
+
+17:40UTC PID1177256active,02compact_nowpassed physical/frozen raw.1478offered,
+509ultimatelycompleted/969queued;11.735593mslate boundary census508completed/
+1dispatched/969queued.03deferredrunning since17:30:36UTC. No benefit/winner claim.
+ResultSHA661de18684bdd69aefb8c6539b34fab8ffa376c75fb20c2f108c879f2f959846;
+eventsSHA004e61fc09b232986280ac867fe209ddcdca84f60a76fe1ac5c9df10826aa08a;
+auditSHA9f7acc9761f7fc0ed26aefa02a3bc1adfe354bc1133babd22fbbc7c8143fffdb.
+Result/audit mirrored matching SHA. Bulk raw/byte/export/fit waits until inactive
+collector. Prior failures unchanged; no calibrated/accepted model.

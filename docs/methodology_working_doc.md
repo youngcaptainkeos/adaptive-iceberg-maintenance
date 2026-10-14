@@ -1580,3 +1580,20 @@ Small immutable result/audit receipts mirrored matching hashes; bulk evidence/by
 wait until no active query collection. All prior failed counts remain unchanged.
 Next inspect current action-arm raw gate before further export/fit. No heavy fit
 or second collector started concurrently, no service/table stopped or deleted.
+
+## 30. Immediate compaction live archive/physical audit passes
+
+At17:40UTC recovery3coordinator1177256active. Arm02compact_now passed physical
+and independent frozen raw audit including actual maintenance task evidence;
+1478offered/509ultimatelycompleted/969queued final. Recorded boundary observer
+11.735593ms late,508completed/1dispatched/969queued census. Deferred03running
+since17:30:36UTC. Near-identical baseline/action counts are descriptive only, no
+causal compaction benefit or model winner. Current one sourcefamily/one layout
+still not independent calibration/test evidence. Live maintenance archive repair
+now validated once under unchanged raw gates; later/32file branches still pending.
+ResultSHA661de18684bdd69aefb8c6539b34fab8ffa376c75fb20c2f108c879f2f959846;
+eventsSHA004e61fc09b232986280ac867fe209ddcdca84f60a76fe1ac5c9df10826aa08a;
+auditSHA9f7acc9761f7fc0ed26aefa02a3bc1adfe354bc1133babd22fbbc7c8143fffdb.
+Small result/audit receipts mirrored exactly; full raw/byte mirroring and expensive
+candidate export/fit deferred during physical collection. No failed prior status
+changed, no new concurrent run, no accepted learned cost model/scheduler.

@@ -117,3 +117,6 @@ then immutable launch. Same strict2s age/no-padding/task/results/layout gates.
 17:25UTC recovery3baselinepassed strictfreshness/physical/raw;compact_now02running.
 Submission repair validated once; maintenance/32file/cohort/model gates still pending.
 Small receipts mirrored; avoid heavy fit/backup while collector active.
+
+17:40UTC recovery3now02passed live maintenance archival and strict raw/physical;
+deferred03running. Onefamily/layout not independent modeldata yet. No heavyfit.
