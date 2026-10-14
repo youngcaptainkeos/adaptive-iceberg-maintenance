@@ -54,3 +54,15 @@ restart, drop, reset or deletion; no synthetic workload/data or invented labels.
 
 After each unit: audit, targeted commit, GitHub push, worker3 fast-forward, HEAD
 and intended-file SHA256 verification. Preserve unrelated dirty files/archive.
+
+## Registered queue implementation unit
+
+Map every arrival in the first nonempty complete TRAIN bin, preserving spacing;
+round-robin the existing four declared custom SQL templates (not inferred SQL).
+Export and audit on worker3 before any physical replay. A one-client FIFO baseline
+screen retains all offered work and reports queued debt at the fixed source-bin
+boundary. No dispatch after horizon; in-flight work completes naturally. Record
+boundary observer lateness and post-boundary completions. No compaction or cost
+labels in this screen. Register exact mapping receipt, code and expected real query
+results before execution; stop on any evidence gate failure. Baseline capacity and
+actual intake/service/queue rates are outcomes, never reasons to thin the trace.

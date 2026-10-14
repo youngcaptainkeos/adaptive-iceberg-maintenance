@@ -214,3 +214,39 @@ Next research gate: register transparent offered-arrival/queue and benchmark SQL
 mapping, then common-horizon counterbalanced action/control collection accounting
 for query order/cache drift. Avoid treating one bracketed query contrast as a
 causal compaction label. No new physical experiment started during this check.
+
+## Offered-arrival queue implementation in progress
+
+Added SHA-bound first-nonempty-complete-TRAIN-bin export and explicit ordinal
+round-robin mapping across the existing four custom SF1 SQL templates. This is a
+controlled benchmark mix, not original Snowflake SQL. Added actual offered /
+queued / dispatched / completed / failed transitions, dedicated session/FIFO
+ownership, UUID/raw SQL binding, boundary observer lateness and queued identity
+retention. Physical runner is diagnostic only, one real query client; all offered
+arrivals remain at original spacing, no new dispatch after source-bin horizon,
+in-flight work finishes naturally. Raw auditor reconstructs transitions, timing,
+SQL/results, windows, no-foreign-job task evidence and unchanged source files.
+No trace simulation, synthetic service labels, maintenance, or cost-model fit.
+
+### Validation/connectivity blocker
+
+No physical trace replay or mapping export has been launched. Staging/compile SSH
+calls stalled; bounded SSH retry to10.10.3.232:22 returned connection timeout.
+Compilation success is therefore unknown, not passed. An initial staging approval
+review also timed out (no unsafe-action finding); narrow-file retry was allowed,
+but transport subsequently stalled. User asked to check campus/VPN reachability.
+New code is a pending-validation implementation, not accepted execution evidence.
+No dataset, timing, queue result, model or scheduler claim is fabricated to fill
+the gap. Mapping config is preregistered; physical replay config awaits actual
+SHA-bound mapping export/audit before registration/launch. GitHub publication of
+this pending unit may proceed independently; worker3 fast-forward/hash sync is
+blocked until SSH returns. No services/processes/tables were stopped or deleted.
+
+Resume sequence: inspect active processes and any staging log first; stage latest
+source (including final raw boundary/UUID checks); compile under nohup on worker3;
+run mapping exporter then separate raw-source audit under nohup. Pin actual
+mapping-record SHA256 in a one-client diagnostic config before physical launch.
+Inspect measured capacity/remaining queue honestly. Preserve every first-minute
+arrival and no dispatch beyond horizon; one in-flight query completes naturally.
+Only after the real offered ledger passes audit should common-horizon paired
+compaction/deferral collection proceed. Existing cost fit remains blocked.

@@ -1,0 +1,169 @@
+#!/usr/bin/env python3
+"""Real offered arrivals, one FIFO physical SQL client; no maintenance or training."""
+import argparse,csv,fcntl,json,queue,shutil,subprocess,threading,time,uuid
+from datetime import datetime,timezone
+from pathlib import Path
+from experiment_validation import load_json,verified_file,require,sha256
+from physical_measurements import EventLog,StatementRecorder,SparkEvidence,TelemetrySampler,stamp
+from offered_queue_ledger import OfferedQueueLedger
+from run_correctness_pilot import query_templates,canonical
+from query_observation_binding import verify_observations
+from statement_timing import completed_statements
+from engine_overlap import task_intervals,engine_time
+
+
+def audit(directory):
+    directory=Path(directory);cfg=json.loads((directory/'config.json').read_text());rows=[json.loads(s) for s in (directory/'events.jsonl').open()]
+    mapped=list(csv.DictReader((directory/'mapped_arrivals.csv').open()));mapping=json.loads((directory/'mapping_record.json').read_text())
+    require(sha256(directory/'mapped_arrivals.csv')==mapping['mapped_arrivals_sha256'] and len(mapped)==mapping['arrival_count'],'Mapped input changed')
+    protocols=[r for r in rows if r['kind']=='trace_queue_protocol'];require(len(protocols)==1 and protocols[0]['configuration']==cfg,'Raw protocol differs')
+    for name,digest in protocols[0]['code_sha256'].items():require(sha256(directory/'code'/name)==digest,'Frozen code differs')
+    require(sha256(directory/'mapping_record.json')==cfg['mapping_record']['sha256'],'Mapping receipt differs')
+    start=[r for r in rows if r['kind']=='replay_clock'];require(len(start)==1,'Missing/duplicate clock')
+    start=start[0];lo=start['start_monotonic_ns'];hi=start['end_monotonic_ns'];require(hi-lo==mapping['horizon_ns'],'Horizon changed')
+    transitions=[r for r in rows if r['kind']=='queue_transition'];states={};slots={};expected={r['source_query_id']:r for r in mapped};identities={};times={}
+    for r in transitions:
+        identity=r['source']['source_query_id'];state=r['state'];previous=states.get(identity)
+        require(identity in expected and r['source']==expected[identity] and r['previous_state']==previous,'Source/state chain differs')
+        require((previous,state) in ((None,'offered'),('offered','queued'),('queued','dispatched'),('dispatched','completed'),('dispatched','failed')),'Illegal actual queue chain')
+        ns=r['actual_transition']['monotonic_ns'];require(ns<=r['recorded']['monotonic_ns'],'Future transition stamp')
+        require(r['scheduled_monotonic_ns']==lo+int(expected[identity]['offset_ns']),'Retimed source arrival')
+        if state=='offered':
+            require(ns>=r['scheduled_monotonic_ns'],'Offered before source arrival');identities[identity]=r['measurement_id'];times[identity]={}
+        require(identities[identity]==r['measurement_id'],'Measurement UUID changed')
+        if times[identity]:require(ns>=max(times[identity].values()),'Queue clock reversal')
+        times[identity][state]=ns
+        if state=='dispatched':
+            require(r['session_id']=='query_0' and r['session_id'] not in slots and ns<hi,'Busy/late dispatch');slots[r['session_id']]=identity
+        if state in ('completed','failed'):
+            require(slots.get(r['session_id'])==identity,'Outcome session differs');del slots[r['session_id']]
+        states[identity]=state
+    require(set(states)==set(expected) and len(set(identities.values()))==len(expected),'Missing offered arrivals or reused measurement UUID')
+    require(not slots and all(s in ('queued','completed','failed') for s in states.values()),'In-flight final state')
+    offered=[r['source']['source_query_id'] for r in transitions if r['state']=='offered']
+    dispatched=[r['source']['source_query_id'] for r in transitions if r['state']=='dispatched']
+    require(offered==[r['source_query_id'] for r in mapped] and dispatched==offered[:len(dispatched)],'FIFO order differs')
+    measured=completed_statements([directory/'events.jsonl']);requests={r['measurement_id']:r for r in rows if r['kind']=='statement_requested'}
+    observed=[r for r in rows if r['kind']=='query_observation'];require(len(observed)==len(dispatched)>0,'Missing actual query evidence')
+    verify_observations(rows,cfg)
+    source=json.loads((directory/'preparation_result.json').read_text());require(sha256(directory/'preparation_result.json')==cfg['preparation_result']['sha256'],'Source receipt changed')
+    refs=json.loads((directory/'expected_query_results.json').read_text()); rebuilt_refs={}
+    for i,spec in enumerate(cfg['expected_query_ledgers']):
+        path=directory/f'expected_ledger_{i}.jsonl';require(sha256(path)==spec['sha256'],'Expected result ledger changed')
+        candidates=[r for r in completed_statements([path]).values() if r['role']=='control_before'];require(len(candidates)==1,'Ambiguous expected result reference')
+        ref=candidates[0];rebuilt_refs[str(ref['query_id'])]=canonical(ref['rows'])
+    require(refs==rebuilt_refs,'Expected results differ from raw references')
+    latencies=[];rests=[r for r in rows if r['kind']=='spark_rest'];jobs=[r['payload'] for r in rests if r['resource']=='jobs'][-1];stages=[r['payload'] for r in rests if r['resource']=='stages'][-1]
+    class RecordedREST:
+        def capture_tasks(self,stage,attempt,count):
+            data=[r['payload'] for r in rests if r['resource']==f'stages/{stage}/{attempt}/taskList?length={count}'];require(data and len(data[-1])==count,'Missing raw tasks');return data[-1]
+    for identity in dispatched:
+        mid=identities[identity];r=measured[(cfg['experiment_id'],mid)];qid=int(expected[identity]['query_id'])
+        require(requests[mid]['query_id']==qid and requests[mid]['sql']==query_templates(source['table'])[qid].replace(f"FROM {source['table']}",f"FROM {source['table']} VERSION AS OF {source['snapshot_id']}"),'Dispatched SQL differs')
+        require(times[identity]['dispatched']<=r['client_execute_start']['monotonic_ns']<hi and r['fetch_end']['monotonic_ns']<=times[identity]['completed'],'Call/outcome boundary differs')
+        require(canonical(r['rows'])==refs[str(qid)],'Benchmark result differs')
+        task_intervals(jobs,stages,RecordedREST(),marker=r['marker'])
+        a=datetime.fromisoformat(r['client_execute_start']['utc']).timestamp();b=datetime.fromisoformat(r['fetch_end']['utc']).timestamp()
+        active=[j for j in jobs if engine_time(j['submissionTime'])<b and (not j.get('completionTime') or engine_time(j['completionTime'])>a)]
+        require(active and all(r['marker'] in str(j.get('description','')) for j in active),'Foreign Spark work')
+        latencies.append({'source_query_id':identity,'query_id':qid,'service_ms':r['client_elapsed_ns']/1e6,'generator_lateness_ms':(times[identity]['offered']-(lo+int(expected[identity]['offset_ns'])))/1e6,'queue_to_dispatch_ms':(times[identity]['dispatched']-times[identity]['queued'])/1e6,'completed_within_horizon':r['fetch_end']['monotonic_ns']<=hi})
+    boundaries=[r for r in rows if r['kind']=='queue_boundary'];require(len(boundaries)==1 and boundaries[0]['horizon_end_monotonic_ns']==hi,'Missing fixed boundary')
+    boundary=boundaries[0];prior=[r for r in transitions if r['recorded']['monotonic_ns']<boundary['recorded']['monotonic_ns']];at={}
+    for r in prior:at[r['source']['source_query_id']]=r['state']
+    require(boundary['observed_states']==at,'Boundary census differs from raw ledger')
+    from collections import Counter
+    require(boundary['observed_counts']==dict(Counter(at.values())),'Boundary counts differ')
+    inventories=[r for r in measured.values() if requests[r['measurement_id']]['sql']==f"SELECT file_path, record_count, file_size_in_bytes FROM {source['table']}.files"]
+    snapshots=[r for r in measured.values() if requests[r['measurement_id']]['sql']==f"SELECT snapshot_id FROM {source['table']}.history ORDER BY made_current_at DESC LIMIT 1"]
+    require(len(inventories)==2 and sorted(inventories[0]['rows'])==sorted(inventories[1]['rows']) and len(snapshots)==2 and all(r['rows']==[[source['snapshot_id']]] for r in snapshots),'Source state changed')
+    require(not any('rewrite_data_files' in r['sql'].lower() for r in requests.values()),'Maintenance in diagnostic')
+    horizon_states={}
+    for r in transitions:
+        if r['actual_transition']['monotonic_ns']<=hi:horizon_states[r['source']['source_query_id']]=r['state']
+    require(sha256(directory/'code'/'run_correctness_pilot.py')==mapping['source_sha256']['sql_template_code'], 'Executed SQL vocabulary differs from mapped template source')
+    return {'horizon_actual_transition_counts':dict(Counter(horizon_states.values())), 'horizon_not_yet_offered_ids':[k for k in expected if k not in horizon_states], 'status':'audited_real_arrival_queue_diagnostic_only','offered':len(mapped),'dispatched':len(dispatched),'final_states':dict(Counter(states.values())),'unfinished_queued_ids':[k for k,v in states.items() if v=='queued'],'boundary_observed_counts':boundary['observed_counts'],'boundary_observation_lateness_ms':(boundary['recorded']['monotonic_ns']-hi)/1e6,'queries':latencies,'events_sha256':sha256(directory/'events.jsonl'),'cost_training_accepted':False,'limitations':cfg['limitations']}
+
+
+def run(config,revision):
+    cfg,base=load_json(config);repo=Path(__file__).resolve().parents[2]
+    require(cfg['schema_version']=='trace_queue_diagnostic_v1' and cfg['client_count']==1 and cfg['boundary_rule']=='no_dispatch_after_horizon_natural_inflight_completion','Unregistered diagnostic')
+    require(subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip()==revision,'HEAD mismatch')
+    require(subprocess.run(['git','diff','--exit-code','HEAD','--','scripts/phase6-live-evaluation/*.py'],cwd=repo,capture_output=True).returncode==0,'Dirty experiment code')
+    record_path=verified_file(cfg['mapping_record'],base);mapping=json.loads(record_path.read_text());mapped_path=record_path.parent/'mapped_arrivals.csv';require(sha256(mapped_path)==mapping['mapped_arrivals_sha256'],'Mapped arrivals changed')
+    mapped=list(csv.DictReader(mapped_path.open()));require(mapped and mapping['status']=='mapped_real_arrivals_no_physical_replay','Unaccepted mapping')
+    source_path=verified_file(cfg['preparation_result'],base);source=json.loads(source_path.read_text());require(source['status']=='accepted_correctness_source','Unaccepted SF1')
+    expected={}
+    for spec in cfg['expected_query_ledgers']:
+        raw=verified_file(spec,base);records=completed_statements([raw]);matches=[r for r in records.values() if r['role']=='control_before'];require(len(matches)==1,'Ambiguous expected SQL results');r=matches[0];expected[str(r['query_id'])]=canonical(r['rows'])
+    require(set(expected)==set(str(q) for q in range(4)),'Missing query correctness references')
+    deadline=datetime.fromisoformat(cfg['no_new_operation_after_utc'])
+    def guard():require(datetime.now(timezone.utc)<deadline,'Operational cutoff; no new statement')
+    guard();lock=(repo/'results'/'.physical_correctness.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+    out=(base/cfg['output_directory']).resolve();out.mkdir(parents=True,exist_ok=False);code=out/'code';code.mkdir()
+    for name in ('run_trace_queue_diagnostic.py','offered_queue_ledger.py','prepare_trace_benchmark_mapping.py','physical_measurements.py','experiment_validation.py','statement_timing.py','query_observation_binding.py','telemetry_binding.py','run_correctness_pilot.py','engine_overlap.py'):shutil.copy2(Path(__file__).parent/name,code/name)
+    for src,name in ((Path(config),'config.json'),(source_path,'preparation_result.json'),(record_path,'mapping_record.json'),(mapped_path,'mapped_arrivals.csv')):shutil.copy2(src,out/name)
+    for i,spec in enumerate(cfg['expected_query_ledgers']):shutil.copy2(verified_file(spec,base),out/f'expected_ledger_{i}.jsonl')
+    (out/'expected_query_results.json').write_text(json.dumps(expected,indent=2)+'\n')
+    log=EventLog(out/'events.jsonl',cfg['experiment_id']);rec=StatementRecorder(log);rest=SparkEvidence(cfg['spark_rest_url'],cfg['spark_app_id'],cfg['rest_timeout_seconds'],log);sampler=TelemetrySampler(log,cfg['telemetry']['interval_seconds']);connections=[];errors=[];threads=[];safe_to_close=False
+    log.emit('trace_queue_protocol',configuration=cfg,code_revision=revision,code_sha256={p.name:sha256(p) for p in code.iterdir()})
+    from pyhive import hive
+    try:
+        for _ in range(2):connections.append(hive.Connection(**{k:cfg['engine'][k] for k in ('host','port','username')}))
+        metadata,query=[c.cursor() for c in connections]
+        def execute(sql):guard();return rec.execute(metadata,sql,role='metadata')
+        require(not rest._capture('jobs?status=running'),'Other active Spark jobs')
+        require(execute('SELECT version()')['rows'][0][0].split()[0]==cfg['engine']['expected_version'],'Engine mismatch');rest.capture('environment')
+        def inventory():
+            snap=execute(f"SELECT snapshot_id FROM {source['table']}.history ORDER BY made_current_at DESC LIMIT 1");files=execute(f"SELECT file_path, record_count, file_size_in_bytes FROM {source['table']}.files")
+            require(snap['rows'][0][0]==source['snapshot_id'],'Source snapshot changed')
+            return {'table':source['table'],'snapshot_id':source['snapshot_id'],'snapshot_measurement_id':snap['measurement_id'],'file_inventory_measurement_id':files['measurement_id'],'file_state':{'file_count':len(files['rows']),'record_count':sum(r[1] for r in files['rows']),'total_bytes':sum(r[2] for r in files['rows'])}}
+        state=inventory();require(state['file_state']['record_count']==source['record_count'] and state['file_state']['file_count']==source['file_count'],'Source layout differs')
+        sampler.start();time.sleep(cfg['telemetry']['warmup_seconds']);guard()
+        lo=time.monotonic_ns();hi=lo+mapping['horizon_ns'];log.emit('replay_clock',start_monotonic_ns=lo,end_monotonic_ns=hi,source_interval_start_utc=mapping['source_interval_start_utc'],source_interval_end_utc=mapping['source_interval_end_utc'])
+        ledger=OfferedQueueLedger(log,mapped,lo,hi);pending=queue.Queue();identities={r['source_query_id']:uuid.uuid4().hex for r in mapped}
+        def wait_until(ns):time.sleep(max(0,(ns-time.monotonic_ns())/1e9))
+        def offer():
+            try:
+                for r in mapped:
+                    wait_until(lo+int(r['offset_ns']));identity=r['source_query_id'];mid=identities[identity]
+                    ledger.transition(identity,'offered',measurement_id=mid);ledger.transition(identity,'queued',measurement_id=mid);pending.put(r)
+            except Exception as e:errors.append(e)
+        def boundary():
+            try:wait_until(hi);ledger.boundary()
+            except Exception as e:errors.append(e)
+        for func in (offer,boundary):
+            thread=threading.Thread(target=func);threads.append(thread);thread.start()
+        probes=[]
+        while time.monotonic_ns()<hi:
+            try:r=pending.get(timeout=max(0,(hi-time.monotonic_ns())/1e9))
+            except queue.Empty:break
+            if time.monotonic_ns()>=hi:break
+            guard();identity=r['source_query_id'];mid=identities[identity];qid=int(r['query_id']);t=cfg['telemetry']
+            windows=[sampler.window(seconds=w,max_interval_seconds=t['max_interval_seconds'],max_age_seconds=t['max_age_seconds']) for w in t['window_seconds']]
+            log.emit('query_observation',measurement_id=mid,query_id=qid,role='trace_query',windows=windows,**state)
+            if time.monotonic_ns()>=hi:break
+            ledger.transition(identity,'dispatched',measurement_id=mid,session_id='query_0');guard()
+            sql=query_templates(source['table'])[qid].replace(f"FROM {source['table']}",f"FROM {source['table']} VERSION AS OF {source['snapshot_id']}")
+            try:
+                probe=rec.execute(query,sql,role='trace_query',query_id=qid,measurement_id=mid);ledger.transition(identity,'completed',measurement_id=mid,session_id='query_0');probes.append(probe)
+            except Exception:
+                ledger.transition(identity,'failed',measurement_id=mid,session_id='query_0');raise
+        for thread in threads:thread.join()
+        require(not errors,'Offer/boundary thread failed')
+        inventory();jobs=rest.capture('jobs');stages=rest.capture('stages')
+        for probe in probes:task_intervals(jobs,stages,rest,marker=probe['marker'])
+        sampler.stop();result=audit(out);safe_to_close=True;result['code_revision']=revision;(out/'result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
+    except Exception as e:
+        log.emit('trace_queue_failed',error_type=type(e).__name__,error=str(e));(out/'failure.json').write_text(json.dumps({'status':'failed_preserved','error':str(e)},indent=2)+'\n');raise
+    finally:
+        for thread in threads:thread.join()
+        if hasattr(sampler,'thread'):sampler.stop()
+        log.close();lock.close()
+        if safe_to_close:
+            for c in connections:c.close()
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--config');p.add_argument('--expected-revision');p.add_argument('--audit-directory');p.add_argument('--audit-output');a=p.parse_args()
+    if a.audit_directory:
+        with Path(a.audit_output).open('x') as f:json.dump(audit(a.audit_directory),f,indent=2);f.write('\n')
+    else:run(a.config,a.expected_revision)
