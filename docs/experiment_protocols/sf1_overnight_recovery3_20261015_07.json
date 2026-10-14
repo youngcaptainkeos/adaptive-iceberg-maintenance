@@ -1,0 +1,87 @@
+{
+  "engine": {
+    "host": "127.0.0.1",
+    "port": 10000,
+    "username": "ccbd",
+    "expected_version": "3.3.4"
+  },
+  "spark_rest_url": "http://127.0.0.1:4040",
+  "spark_app_id": "local-1791896695889",
+  "rest_timeout_seconds": 5,
+  "telemetry": {
+    "interval_seconds": 1,
+    "window_seconds": [
+      60,
+      300
+    ],
+    "warmup_seconds": 305,
+    "max_interval_seconds": 2,
+    "max_age_seconds": 2,
+    "minimum_coverage_fraction": 0.95,
+    "rationale": "One-second real host counter cadence, five-minute warmup plus five-second margin; retain existing 95% coverage and two-second gap/freshness gates. Exact bounds/available frontier and actual submission freshness are independently checked. No normalized demand assumed."
+  },
+  "preparation_result": {
+    "path": "../../results/sf1_source_integrity_20261014_0024/result.json",
+    "sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57"
+  },
+  "schema_version": "common_horizon_arm_pilot_v1",
+  "experiment_id": "sf1_overnight_recovery3_20261015_07",
+  "output_directory": "../../results/sf1_overnight_recovery3_20261015_07",
+  "client_count": 1,
+  "boundary_rule": "no_dispatch_after_horizon_natural_inflight_completion",
+  "no_new_operation_after_utc": "2026-10-14T23:45:00+00:00",
+  "mapping_record": {
+    "path": "../../results/snowset_overnight_window_1_20261015/mapping_record.json",
+    "sha256": "291f7f086fd64c5e6677abeebb501c62b26c55d2aab7eb03d50c56103033d7ec"
+  },
+  "expected_query_ledgers": [
+    {
+      "path": "../../results/sf1_matched_q0_20261014/events.jsonl",
+      "sha256": "5529f2a83ffc6fdb6afdfd2a348f037c0919195d599de2da433fd6dab4c5ea40"
+    },
+    {
+      "path": "../../results/sf1_matched_measurement_20261014/events.jsonl",
+      "sha256": "ebcaaaaa752e56c4752cba9f7f49c3c4cef06427dcb78ab26253ba3cdf217510"
+    },
+    {
+      "path": "../../results/sf1_matched_q2_20261014/events.jsonl",
+      "sha256": "fcba244ac5901557bb17395b0b841f241e8ed05a2c881e4188aa7e54a867594f"
+    },
+    {
+      "path": "../../results/sf1_matched_q3_20261014/events.jsonl",
+      "sha256": "26847ce0ac1ec9f89cdf0bd4c4ab27c9eb6e5f324c7138069e4e5712e671d87b"
+    }
+  ],
+  "configuration_rationale": "Overnight real cost-candidate matrix: three preregistered disjoint600-second training source windows and two controlled original layouts.16files equals verified source count;32tests two waves of observedlocal[16]task parallelism, explicitly an experimental layout rather than natural ingestion or policy constant. Actual file distributions/source rows/multisets/results and shared engine settings verified. Preserve every arrival and all600seconds of work/debt; first300seconds provide real offered history, later features can have complete300seconds, no padded fake warmup demand. Midpoint action is declared experimental candidate, not optimal/learned prediction. Uniform midpoint engine REST checkpoint archives completed task evidence before UI retention; logging/REST overhead remains limitation. Register unsubmitted prepared observation at actual boundary without SQL/dispatch, keep it queued. Immutable worker3 checkout guards active code. Stop any gate; no retry to win, calibrated acceptance or scheduler claim. New SQL/maintenance cutoff05:15IST onOct15; coordinator no-new-episode cutoff04:45IST, all in-flight operations finish naturally. Fresh recovery after preserved task-retention failure. Archive-first actual complete successful stage-attempt frames, live fetch only if missing; unchanged attribution/task/timing gates. Original baseline remains failed; no label reuse or selected retry. Second recovery after completed-maintenance task archival omission; midpoint archives actual completed query and rewrite tasks under same strict attribution. Prior failed attempts remain excluded. Fresh recovery after actual telemetry age failure: shared reentrant queue/log lock serializes fresh-window observation/dispatch/intent only, released beforeRPC;2s raw freshness unchanged. No timestamps adjusted. Check logging overhead as limitation.",
+  "limitations": [
+    "Controlled SF1 source layouts/three ten-minute windows/one warehouse/custom four-template SQL mix/single client, not natural ingestion or original Snowflake SQL.",
+    "Six matched workload-layout groups, one episode/arm/group; dependence, cache/time and live instrumentation effects remain.",
+    "All original source requests offered and residual queued/maintenance work retained; source timing shift preserves spacing without compression.",
+    "300-second offered histories may be missing early and stay missing; pre-query host histories are measured, no intensity/small-file heuristic invented.",
+    "Uniform engine archival and actual metadata/query refresh overheads are instrumented outcomes, not pure CPU-only causal cost.",
+    "New boundary/archive/layout paths require actual raw audit; compiler/legacy checks alone are not success.",
+    "Candidate training/exploratory model comparison only; no independent conformal promotion or adaptive policy result."
+  ],
+  "mapping_audit": {
+    "path": "../../results/snowset_overnight_window_1_20261015/source_mapping_audit.json",
+    "sha256": "d7804a05a958a68e4c35613aee2ceb898783dff180bb8eef6d1359161be7a065"
+  },
+  "destination_table": "local.experiment.integrity_horizon_recovery3_20261015_07",
+  "action_arm": "compact_now",
+  "action_offset_ns": 0,
+  "metadata_checkpoint_offsets_ns": [
+    0,
+    300000000000
+  ],
+  "decision_state_contract": "fresh_current_original_snapshot_v1",
+  "metadata_max_age_seconds": 2,
+  "comparison_group": "source_day_1_files_16",
+  "layout_signature_group": "initial_files_16",
+  "initial_file_count": 16,
+  "expected_spark_master": "local[16]",
+  "engine_archive_offsets_ns": [
+    300000000000
+  ],
+  "boundary_preparation_contract": "retain_queued_unsubmitted_observation_v1",
+  "query_preparation_contract": "serialized_durable_submission_v1"
+}

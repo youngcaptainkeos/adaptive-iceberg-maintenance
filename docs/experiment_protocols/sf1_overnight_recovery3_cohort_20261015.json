@@ -1,0 +1,109 @@
+{
+  "schema_version": "common_horizon_cohort_pilot_v1",
+  "registered_order": [
+    "no_maintenance",
+    "compact_now",
+    "compact_later",
+    "compact_now",
+    "compact_later",
+    "no_maintenance",
+    "compact_now",
+    "compact_later",
+    "no_maintenance",
+    "compact_later",
+    "no_maintenance",
+    "compact_now",
+    "compact_later",
+    "no_maintenance",
+    "compact_now",
+    "no_maintenance",
+    "compact_now",
+    "compact_later"
+  ],
+  "episodes": [
+    {
+      "path": "sf1_overnight_recovery3_20261015_01.json",
+      "sha256": "be525cf13e5895946732a203106f1bfed846eff0b820d9067b27dcce5be63899"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_02.json",
+      "sha256": "b6a85fbdbf5c45d87ddb876fa7c375b3873d013d22e444622f236b0581bf79e2"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_03.json",
+      "sha256": "f6e785b1660f434fe4f5de506880eebd6760dd9deaaff479238848aad3221386"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_04.json",
+      "sha256": "1d81cdfa37636ff0b01760207ecbe079109304b9cc89bd85cc4752565ab72624"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_05.json",
+      "sha256": "c20374b80edf8f9d4fd17caff8f4f227d155ba034d68c35b10c8e227d4b3a3d4"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_06.json",
+      "sha256": "e7155c7365dc03a3c33d9b2ecd1a4c1d6beadfce83b9ba4dde5bae266cce1c4e"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_07.json",
+      "sha256": "72d4c2e79f4538f3478aeaaf92336a12a26b7af7143506a80faafe936237410d"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_08.json",
+      "sha256": "250d90e60f9541d7ceeec983822a573605ca1e8de77c41f0b8c3eb49fde81c89"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_09.json",
+      "sha256": "92ab080f695721b7357f32af5e00c78c43dfc7589cbfec513c17947224547ce4"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_10.json",
+      "sha256": "5648a1e8a59b04e0b101b9ba79deb208178467de336192aac15fac990bb957d0"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_11.json",
+      "sha256": "75404a9ac8cf263d50332df7aa58849e7f6f4d47d6e4ceca118b27102be803ed"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_12.json",
+      "sha256": "d96eb4b87e9734c591ba52f021704ab58cb5f69ddf883e7c1a1e480a95e3e925"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_13.json",
+      "sha256": "6dd3b336e77d2127c855b8b1739e73fceac2ba05e8212c828446ef01285a976d"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_14.json",
+      "sha256": "ce4697c7c6808b5dab69ee8a6e5b4886ee242ba4b793556193852930a24b51c6"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_15.json",
+      "sha256": "efa1ac9b0124abbe4704e619472334e3c19890ca71bedd9b4652bd8d4ec28e8b"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_16.json",
+      "sha256": "c4842c7f7808e99ea1ace06744357c06222e2778d21c7b8ec5bf101f9f9ae27f"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_17.json",
+      "sha256": "72ee53eb20f8bd2fc337e3fe508106e3e3ffd98f3fcc0c8306294b0d618fa5cd"
+    },
+    {
+      "path": "sf1_overnight_recovery3_20261015_18.json",
+      "sha256": "15fa5b418fb8285df5dac041520ec7484af990d05ee6fc94cd171d5260116c4c"
+    }
+  ],
+  "no_new_episode_after_utc": "2026-10-14T23:15:00+00:00",
+  "output_directory": "../../results/sf1_overnight_recovery3_cohort_20261015",
+  "rationale": "New user-authorized overnight18episode controlled matrix; six matched groups, three600second source families and two original file layouts. Each arm once/group, rotated order. Strict per-arm raw audit and within-layout signatures, all failed/unattempted retained. Runtime immutable worktree with dataset/results symlinks to canonical worker3 storage. No training/promotion claim and no replay of original Snowflake SQL. Fresh recovery registered after identified archive-selection implementation defect, not outcome selection. Original18matrix0passed/1failed/17unattempted unchanged. Same source/layout/order/gates/cutoffs; all fresh identities. Second recovery after maintenance checkpoint omission repair, same scientific matrix/cutoffs. First recovery1passed/1failed/16unattempted retained. Fresh identities only. Recovery3 after actual freshness failure with serialized preparation repair and lock-order audit. Prior0/1/17 preserved; same workload/layout/order/cutoffs/gates, fresh tables.",
+  "limitations": [
+    "Controlled SF1 source layouts/three ten-minute windows/one warehouse/custom four-template SQL mix/single client, not natural ingestion or original Snowflake SQL.",
+    "Six matched workload-layout groups, one episode/arm/group; dependence, cache/time and live instrumentation effects remain.",
+    "All original source requests offered and residual queued/maintenance work retained; source timing shift preserves spacing without compression.",
+    "300-second offered histories may be missing early and stay missing; pre-query host histories are measured, no intensity/small-file heuristic invented.",
+    "Uniform engine archival and actual metadata/query refresh overheads are instrumented outcomes, not pure CPU-only causal cost.",
+    "New boundary/archive/layout paths require actual raw audit; compiler/legacy checks alone are not success.",
+    "Candidate training/exploratory model comparison only; no independent conformal promotion or adaptive policy result."
+  ]
+}

@@ -9,7 +9,9 @@ class OfferedQueueLedger:
     def __init__(self,log,scheduled,start_ns,end_ns):
         self.log=log;self.scheduled={r['source_query_id']:r for r in scheduled}
         require(len(self.scheduled)==len(scheduled),'Duplicate arrivals')
-        self.start_ns=start_ns;self.end_ns=end_ns;self.states={};self.slots={};self.lock=threading.Lock()
+        # One reentrant durable-log/queue lock prevents ledger->log versus
+        # serialized submission log->ledger inversion. No RPC holds this lock.
+        self.start_ns=start_ns;self.end_ns=end_ns;self.states={};self.slots={};self.lock=log.lock
 
     def transition(self,identity,state,*,measurement_id,session_id=None):
         with self.lock:

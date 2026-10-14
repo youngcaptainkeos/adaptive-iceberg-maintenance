@@ -1539,3 +1539,16 @@ requires fresh protocol/live validation; original frozen runtimes unchanged.
 Next detached server syntax/raw regression, inspect preparation error accounting,
 register fresh identifiers before launch. All prior failed counts unchanged;
 no model fit/labels from failed package. Avoid blind repeat without causal repair.
+
+## 28. Submission lock-order audit and recovery3 registration
+
+Before live use, found ledger->log versus preparelog->ledger inversion. Queue state
+and durable log now share one reentrant lock; RPC/fetch never hold it. Before-
+dispatch preparation failure leaves queued rather than inventing a failed SQL
+transition. Shared cohort check binds preparation contract across all arms.
+Registered18fresh recovery3identities with serialized_durable_submission_v1,
+existing boundary/archive contracts and same source/layout/order/cutoffs/gates.
+Prior frozen runs/counts unchanged. Server detached syntax/historical actual raw
+baseline regression next, then frozen runtime launch if checks pass. This lock
+change alters instrumentation scheduling; actual generator lateness/backlog remain
+reported, not assumed original SQL replay or timing-neutral causal measurement.

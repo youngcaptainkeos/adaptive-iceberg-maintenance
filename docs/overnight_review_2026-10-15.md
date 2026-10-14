@@ -181,3 +181,8 @@ queries remain diagnostic excluded labels. Added opt-in serialized preparation
 using fresh actual windows plus durable observation/dispatch/intent, release lock
 beforeRPC. Gates unchanged; new livepath pending. No activeSpark16:40UTC. Raw
 freshness diagnosis results/recovery2_freshness_diagnosis_20261015.json.
+
+Submission audit caught log/ledger inversion before launch; sharedRLock fixes it,
+pre-dispatch failures stayqueued. Recovery3fresh18identities register serialized
+preparation, same source/layout/order/cutoffs/gates. No activeSpark16:55UTC.
+Next server syntax/rawregression, immutable launch. No fit/model acceptance yet.

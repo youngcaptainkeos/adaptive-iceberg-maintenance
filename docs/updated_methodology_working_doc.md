@@ -315,3 +315,7 @@ Saved real query+maintenance checkpoint passed; live collection/fitting pending.
 Section27 recovery2failed actual2s freshness (2.179098077s sample age);0/1/17retained.
 Opt-in serialized durable pre-submission preparation implemented without relaxing
 raw gates; validation/new protocol needed. Logging contention suspected, not proved.
+
+Section28 fixes submission/ledger lock inversion before physical use, preserves
+pre-dispatch failure states, registers fresh recovery3same strict matrix/gates.
+Instrumentation scheduling change remains explicit limitation; live validation next.

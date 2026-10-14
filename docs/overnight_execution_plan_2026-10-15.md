@@ -110,3 +110,6 @@ failed inventories; live midpoint maintenance path must pass actual raw audit.
 16:40UTC priority freshness repair: recovery2failed0/1/17. Actual sampleage2.179s
 versus strict2s. Validate serialized preparation path/error accounting and register
 fresh cohort before any restart; no weakened age gate or failed labels.
+
+Recovery3registered after lock-order/pre-dispatch audit; syntax/rawregression gate
+then immutable launch. Same strict2s age/no-padding/task/results/layout gates.
