@@ -169,3 +169,6 @@ with unsubmitteddeferral/strictgates, orphysicalbytepreservationwhileidle; nohel
 
 Submissionavailabilityrace repairimplemented, rawregression thenfreshregistered
 livevalidation beforeacceptance. RetainFIFO/cutoffs/strictage-gap gates andnegativefit.
+
+Fresh32filethree-armdiagnostic registered forlive repairedpath/layoutvalidation;
+source2overlapcannotbeindependentmodeltest. No refitcurrentheldout; cutoffsunchanged.

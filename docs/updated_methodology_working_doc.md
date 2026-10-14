@@ -388,3 +388,6 @@ missing. Negativefit unchanged; submissionavailabilityrace repair remainsnextgat
 
 Section42 sampleexpiredafterlock acquisitionnowexplicitunsubmitteddeferral/release/
 realwait opt-in; raw chronology/sourcebinding added, gatesunchanged. Livepathpending.
+
+Section43 fresh32filethree-armdiagnosticregistered forlive layout/submissionpath,
+allgates/cutoffsunchanged. Source2overlap notindependentfuturetest; no modelrefit.

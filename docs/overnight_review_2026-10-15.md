@@ -324,3 +324,8 @@ Submissionavailabilityrace repairimplemented: expiryunderacquiredlock recordsact
 unsubmitteddeferral, releaseandwaitoutside, retainFIFO/originalhorizon/noSQLretry.
 Rawcheckerbindscontract/UUID/age/intentchronology; samecohortcontractrequired.
 Historicalregressionnext; noacceptedlivepath/model. No activeSpark21:40UTC.
+
+Freshsf1_layout32_validation3armgroupregistered21:55UTC afterpassedhistoricalraw
+regression/idleSpark. Source2realwindow32files, baseline/now/later, freshtableIDs,
+newsubmissiondeferralcontract/allstrictgates. Notnewindependenttest/calibration;
+currentfitnegativeunchanged. NextSHAimmutablelaunch, expected~50minruntime.

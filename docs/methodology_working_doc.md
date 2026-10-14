@@ -1853,3 +1853,17 @@ checkerbinds deferralcontract/sourceUUID/expiredage/chronologybeforeanySQLintent
 cohortrequiresidenticalcontractallarms. Historicalfrozenruntimesunchanged.
 Serverrawregressionnext, newpathrequiresfreshregisteredlivevalidation. Negativefit
 unchanged, no promotion. No activephysical/modeljob at21:40UTC.
+
+## 43. Fresh32file matched group preregistered for repaired live path
+
+21:55UTC noactiveSpark/collector. Historicalreal source2laterrawregression passed
+submission_deferral_raw_regression_20261015.json; codef4e831d7unitSHA/HEADagree.
+Registered sf1_layout32_validation_cohort_20261015.json and3freshbaseline/now/later
+identities. Sameactual600ssource2window/fullarrivals, actual32filecontrolledlayout,
+allstrictsampling/task/layout/result/gap/freshness/multiset/cutoffgates; newopt-in
+unsubmitteddeferralcontract, matchedinstrumentationallarms. No reusefailedtables.
+Purpose validate32layout and newsubmissionpath, not refittingtoimprove currenttest.
+Sourceoverlapscurrenttestfamily2 so notnewindependenttest/calibration; crossversion
+16vs32comparisonconfounded. Negativefit preserved. Episodecutoff04:45IST/SQL05:15
+unchanged; reserveaftercompletionforrawaudit/mirror and morningreview. Next immutable
+worker3launchafterregistration/headSHAchecks; actualbranchmustbeobservedtoclaimvalid.
