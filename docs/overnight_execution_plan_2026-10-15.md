@@ -133,3 +133,7 @@ Recovery4remaining12episodes registered forsource1/2layouts16/32; retain already
 passedsource0group. Real-sample availabilitywait (not gap/age relaxation) needs
 syntax/rawregression then livevalidation. Newexportroundtrippassed772full300shistory
 rows butonefamilystillblocksfit. Mirrorpackage onceinactive before fit.
+
+Recovery4PID1285378launched remaining12source1/2episodes at00:11IST. Firstcheck
+00:30IST; inspectactiveprogress before nextwork. Fullrawmirror/export/fitting after
+collectorinactive; maintaincutoffs and frozenruntime. Prior groups/failures retained.

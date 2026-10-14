@@ -344,3 +344,6 @@ Real3arm candidate export nohupPID1261960 launched; nextcheck5min/rawroundtrip.
 Section33 new1524query/2rewrite candidates independently verified,772full300s
 historyrows/onefamily. Real-durable-sample wait implemented; fresh12episode remaining
 source1/2matrixregistered, retaining passedsource0group. No fit/calibration yet.
+
+Section34 recovery4remaining12source1/2episodes launchednohupPID1285378 inimmutable
+0b05393runtime. Firstcheck00:30IST, estimated03:30–04:15ISTsubjectgates. No fityet.

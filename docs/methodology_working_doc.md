@@ -1661,3 +1661,21 @@ matchedgroup rather than repeat identical pilots. Enables planned chronological
 three-family candidate comparison if collection passes; source0/32cell remains
 missing. No model/power/calibration claim. Fresh immutablelaunch after worker3
 syntax/rawregression/registrationSHA; all prior failures unchanged.
+
+## 34. Remaining-source-family recovery4 detached launch
+
+At18:40UTC/00:10IST no activecollector/export/physicalSparkjob. Historical actual
+later-arm raw regression passed results/availability_wait_raw_regression_20261015.json;
+0b0539352c736967ead44a3c47ecf8d40b06b1b3 HEAD/all20intendedunitSHA previously
+matched hosts. Created immutable sparse runtime
+/tmp/capstone_overnight_recovery4_runtime_20261015 at thatrevision, canonicaldata/
+results symlinks. nohup coordinatorPID1285378 confirmed alive,12registeredepisodes
+for source1/2layouts16/32. Log results/sf1_overnight_recovery4_cohort_20261015_launch.log,
+progress/audits matchingcohortdirectory, raw sf1_overnight_recovery4_20261015_01..12.
+
+Firstcheck00:30IST; fullestimate03:30–04:15IST if strict raw gates pass, existing
+04:45episode/05:15operation/06:00workcutoffs unchanged. Wait contract livepath not
+accepted from historicalregression; real samplinggap/freshness cannot be repaired
+by inventedvalues or weakenedlimits. Alreadypassedsource0group retained; missing
+source0/32cell explicit. Fit remains blocked pending actualremainingfamilies and
+independent export/verification. No heavybackup/modelrun concurrent withqueries.

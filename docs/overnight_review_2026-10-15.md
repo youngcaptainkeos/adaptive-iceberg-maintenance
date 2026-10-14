@@ -243,3 +243,11 @@ onefamily. VerifierPID1269964completed. Availabilitywait real durable samples/no
 horizonextension/noSQLretry/unchangedgap-agegates implemented. Recovery4registered
 12fresh remaining source1/2×16/32×threearms, retainpassedsource0/16group, source0/32
 missing. Next server syntax/rawregression and immutablelaunch; fit still pending.
+
+Recovery4remaining12episodecollectionnohupPID1285378 confirmedactive18:41UTC/
+00:11IST. Immutable /tmp/capstone_overnight_recovery4_runtime_20261015 at
+0b0539352c736967ead44a3c47ecf8d40b06b1b3. Log
+results/sf1_overnight_recovery4_cohort_20261015_launch.log; matchingprogress/audits,
+rawarms01..12. Historicalrawlaterregressionpassed;20unitSHA/HEADalreadymatched.
+Firstcheck00:30IST;fullestimate03:30–04:15IST. Allcutoffs/gates/failurespreserved.
+No remaining-familyornewwait-livegatepassed yet; no learnedmodel/calibrationclaim.
