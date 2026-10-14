@@ -300,3 +300,7 @@ Firstfitnegative: pairedlater shared24.8856ms/separate66.7832msMAE; heldoutbasel
 shared601.2233/separate593.8812ms. PendingTrue11train/12test9negativepredictions;
 rewrite3train/1test199.7219msvsmedian311.9211ms notscientificapproval. Addedindependent
 CSV/modelpredictionroundtrip audit; runworker3nohupnext. No accepted/calibratedmodel.
+
+AuditnohupPID1427023launched21:00UTC, log
+results/candidate_cost_fit_independent_audit_20261015.log; nextcheck5min/nextwake.
+7f441ebHEAD/5unitSHAmatch. No tuning/rerun tohidefirstnegativefit.
