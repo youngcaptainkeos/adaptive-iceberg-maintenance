@@ -953,3 +953,22 @@ Next ready work: resolve typed SF100 source validation without inventing its mis
 generator history, or preregister bounded variance/common-horizon methodology.
 Do not launch publication replay, promote models or select horizons/mixes from
 held-out outcomes. No new physical operation after 06:15 IST; final audit remains.
+
+### 05:57 IST: next resource gate registered, SF100 typed-source audit
+
+Prior unit ca2ba9c pushed/synced; HEAD and all eight intended SHA256s matched.
+No active own physical pilot or running Spark jobs at this heartbeat. Register
+a read-only full-field SF100 validator using the eight explicit column schemas
+from the existing loader; no Spark session/table writes. Every field contributes
+to aggregates to prevent pruning. Strict pipe/trailing-empty structure, required
+non-null fields, integer/date/decimal lexical formats and range/cast gates, actual
+row counts against prior full-source inventory, and unchanged size/mtime/inode
+across the scan required. Decimal syntax refuses excess fractional precision,
+not silently rounding it. Prior SHA256 is reused only with exact file metadata
+agreement; no fresh source digest or generator authentication claimed.
+
+Four threads/4GB streaming memory are explicit observer resource limits. Small
+tables first, lineitem last; no new scan after 06:15 IST, no cancellation of an
+active scan. If the cutoff prevents completion, retain partial status; no all-table
+acceptance. Generator and relational PK/FK integrity remain separate unresolved
+gates. Code/protocol will be published and synchronized before actual execution.

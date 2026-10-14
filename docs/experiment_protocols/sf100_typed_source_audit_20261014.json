@@ -1,0 +1,289 @@
+{
+  "schema_version": "tpch_typed_source_audit_v1",
+  "purpose": "read_only_typed_source_validation_no_engine_or_training",
+  "source_inventory": {
+    "path": "../sf100_remote_source_validation_2026-10-14.json",
+    "sha256": "3d41323f6ba5212cb0032c0d95e16b7e92cb25ecd0668917cb574fb279b20670"
+  },
+  "schema_origin": {
+    "path": "../../scripts/load_tpch_to_iceberg_sf100.py",
+    "sha256": "43d419a23d7dbb5c4938fe1c9d877ce9075f310e016bb68069e24c6b5c8cfddd",
+    "scope": "Existing declared loader column types, not independent generator certification"
+  },
+  "schemas": {
+    "customer": [
+      {
+        "name": "C_CUSTKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "C_NAME",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "C_ADDRESS",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "C_NATIONKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "C_PHONE",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "C_ACCTBAL",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "C_MKTSEGMENT",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "C_COMMENT",
+        "type": "VARCHAR"
+      }
+    ],
+    "orders": [
+      {
+        "name": "O_ORDERKEY",
+        "type": "BIGINT"
+      },
+      {
+        "name": "O_CUSTKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "O_ORDERSTATUS",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "O_TOTALPRICE",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "O_ORDERDATE",
+        "type": "DATE"
+      },
+      {
+        "name": "O_ORDERPRIORITY",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "O_CLERK",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "O_SHIPPRIORITY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "O_COMMENT",
+        "type": "VARCHAR"
+      }
+    ],
+    "lineitem": [
+      {
+        "name": "L_ORDERKEY",
+        "type": "BIGINT"
+      },
+      {
+        "name": "L_PARTKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "L_SUPPKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "L_LINENUMBER",
+        "type": "INTEGER"
+      },
+      {
+        "name": "L_QUANTITY",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "L_EXTENDEDPRICE",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "L_DISCOUNT",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "L_TAX",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "L_RETURNFLAG",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "L_LINESTATUS",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "L_SHIPDATE",
+        "type": "DATE"
+      },
+      {
+        "name": "L_COMMITDATE",
+        "type": "DATE"
+      },
+      {
+        "name": "L_RECEIPTDATE",
+        "type": "DATE"
+      },
+      {
+        "name": "L_SHIPINSTRUCT",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "L_SHIPMODE",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "L_COMMENT",
+        "type": "VARCHAR"
+      }
+    ],
+    "part": [
+      {
+        "name": "P_PARTKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "P_NAME",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "P_MFGR",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "P_BRAND",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "P_TYPE",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "P_SIZE",
+        "type": "INTEGER"
+      },
+      {
+        "name": "P_CONTAINER",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "P_RETAILPRICE",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "P_COMMENT",
+        "type": "VARCHAR"
+      }
+    ],
+    "partsupp": [
+      {
+        "name": "PS_PARTKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "PS_SUPPKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "PS_AVAILQTY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "PS_SUPPLYCOST",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "PS_COMMENT",
+        "type": "VARCHAR"
+      }
+    ],
+    "supplier": [
+      {
+        "name": "S_SUPPKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "S_NAME",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "S_ADDRESS",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "S_NATIONKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "S_PHONE",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "S_ACCTBAL",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "S_COMMENT",
+        "type": "VARCHAR"
+      }
+    ],
+    "nation": [
+      {
+        "name": "N_NATIONKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "N_NAME",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "N_REGIONKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "N_COMMENT",
+        "type": "VARCHAR"
+      }
+    ],
+    "region": [
+      {
+        "name": "R_REGIONKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "R_NAME",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "R_COMMENT",
+        "type": "VARCHAR"
+      }
+    ]
+  },
+  "table_order": [
+    "region",
+    "nation",
+    "supplier",
+    "customer",
+    "part",
+    "partsupp",
+    "orders",
+    "lineitem"
+  ],
+  "threads": 4,
+  "memory_limit": "4GB",
+  "no_new_scan_after_utc": "2026-10-14T00:45:00+00:00",
+  "rationale": "Read all actual fields from every immutable inventoried SF100 source. Four CPU threads and 4GB streaming memory limit bound observer resource use on the 20-logical-CPU worker; no active physical pilot allowed. Small tables first to retain bounded progress, largest lineitem last; refuse starting any new scan after 06:15 IST without cancelling an already active scan. Require prior full source digest inventory and unchanged bytes/mtime before and after each typed scan; no new source hash or generator history invented. Strict full-field-count CSV, actual required values, lexical/type/range precision and real row counts checked. Partial completion is not all-table acceptance."
+}

@@ -118,3 +118,9 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
   AutoComp attribution/reproduction claim corrected; faithful baseline still pending.
 - Still blocked: publication replay/collector/evaluator, accepted independent training
   data, forecast-aware scheduling. Remaining legacy code has not been re-enabled.
+
+- Next bounded resource unit registered: `sf100_typed_source_audit_20261014.json`
+  and `scripts/audit_tpch_typed_source.py`. Real full-field source-only scans, no
+  engine/table writes, exact schema/cardinality/metadata gates, no new scan after
+  06:15. Launch after publication/sync verification; audit failures first. Missing
+  generator and relational integrity are not supplied by typed parsing.
