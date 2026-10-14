@@ -77,3 +77,11 @@ Notify only meaningful completion/failure/human action and morning handover.
 The local app/computer and campus/VPN connection must remain available for heartbeat
 execution; detached server jobs persist across SSH disconnects. No promise of
 calibration/publication just because overnight time is available.
+
+## Dynamic priority at14:55UTC
+
+Initial18matrix stopped0passed/1failed/17unattempted on task-retention retrieval.
+Repair archive-first actual successful task-frame selection and validate raw
+checkpoint/historical successful arm before fresh recovery IDs/runtime launch.
+Do not upgrade failed original or use its497diagnostic rows for fitting. Trainer
+implemented8de48a6, server syntax checked; actual fit still blocked by diversity.

@@ -279,3 +279,8 @@ candidate-schema shared/separate latency and rewrite-duration trainer, chronolog
 whole-source-family gates, training-only processing, missing-history exclusions
 and explicit no-promotion outputs. Preregistration appended to learned-cost plan.
 Implementation pending real fit; immutable18episode physical collection continues.
+
+2026-10-14 evening Section21: first overnight baseline failed Spark UI task-retention
+retrieval;0passed/1failed/17unattempted preserved. Implemented raw complete-frame
+adapter for archived tasks; real regression validation pending. No promotion/retry
+of occupied tables. Next fresh registered recovery after evidence checks.

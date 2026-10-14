@@ -1397,3 +1397,23 @@ Validation next: detached worker3 syntax check; successful end-to-end validation
 requires completed diverse raw export and registered actual hashes. Existing
 489query/4rewrite corpus has only one source family and cannot train/test this
 protocol. Three planned families still insufficient for calibration/generalization.
+
+## 21. Overnight matrix stopped on task-retention failure; evidence adapter repair
+
+At14:55UTC coordinator1031940 had exited naturally. First baseline failed at final
+live task retrieval: Incomplete task-attempt REST evidence; cohort status remains
+0passed/1failed/17unattempted. Original nine-arm run still1passed/1failed/7unattempted.
+No processes canceled, tables reused or labels exported. Actual raw diagnostic
+results/overnight_task_archive_diagnosis_20261015.json reports497completed queries,
+495task payloads including an empty final response for stages/5657/0/taskList?length=1.
+Midpoint archives existed, but final execution still re-requested archived early
+stages from Spark UI, and auditor selected the last response even if empty.
+
+Repair: ArchivedTaskEvidence uses an actual complete successful stage-attempt raw
+frame with unchanged task IDs; final collector requests live evidence only when
+no complete archive exists. Raw auditor uses the same complete-frame selection.
+No invented task frames, timing/attribution gates unchanged. Failed original
+package remains failed regardless of diagnostic checks. Detached server raw
+regression/archived-checkpoint validation next; then register new recovery cohort
+identities and immutable revision before physical execution. Missing archives must
+still fail. No cost fit/calibration result exists.

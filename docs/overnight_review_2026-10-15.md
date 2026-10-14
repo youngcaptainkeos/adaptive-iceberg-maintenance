@@ -105,3 +105,16 @@ predictions, group errors and missing-history inventory; absent regimes not fitt
 No actual fit result. At14:44UTC frozen coordinator1031940 first episode running.
 Next: worker3 detached syntax check; later completed raw export and actual-hash fit
 registration when physical collector inactive. Existing one-family corpus blocked.
+
+## Failure and repaired task archive selection
+
+Coordinator1031940 exited14:53:27UTC. First baseline failed final live task REST
+retrieval despite midpoint archive;0passed/1failed/17unattempted.497completed query
+statements are diagnostic, not accepted training rows. Empty final resource
+stages/5657/0/taskList?length=1. Raw diagnosis
+results/overnight_task_archive_diagnosis_20261015.json. Added ArchivedTaskEvidence:
+actual complete successful archived stage-attempt tasks selected first; live fetch
+only if absent, identity consistency checked. Auditor no longer discards complete
+raw frame for later empty retention response. Original failed status preserved.
+Next detached regression and checkpoint raw checks, then fresh registered recovery.
+Prior trainer syntax passed onworker3;8de48a6 HEAD/all5intendedSHA256 matched hosts.

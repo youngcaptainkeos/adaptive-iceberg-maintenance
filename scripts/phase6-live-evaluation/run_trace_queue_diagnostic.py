@@ -11,7 +11,7 @@ from query_observation_binding import verify_observations
 from statement_timing import completed_statements
 from engine_overlap import task_intervals,engine_time
 from common_horizon_binding import audit_arm
-from engine_archive import merged_engine_frames,capture_completed_query_tasks
+from engine_archive import merged_engine_frames,capture_completed_query_tasks,ArchivedTaskEvidence
 
 
 def audit(directory):
@@ -74,9 +74,7 @@ def audit(directory):
     table=cfg['destination_table'] if arm else source['table']
     allowed_markers=[r['marker'] for r in requests.values()]
     latencies=[];rests=[r for r in rows if r['kind']=='spark_rest'];jobs,stages=merged_engine_frames(rows)
-    class RecordedREST:
-        def capture_tasks(self,stage,attempt,count):
-            data=[r['payload'] for r in rests if r['resource']==f'stages/{stage}/{attempt}/taskList?length={count}'];require(data and len(data[-1])==count,'Missing raw tasks');return data[-1]
+    def RecordedREST():return ArchivedTaskEvidence(rows)
     for identity in dispatched:
         mid=identities[identity];r=measured[(cfg['experiment_id'],mid)];qid=int(expected[identity]['query_id'])
         require(requests[mid]['query_id']==qid and requests[mid]['sql']==query_templates(table)[qid].replace(f'FROM {table}',f"FROM {table} VERSION AS OF {observed_by_id[mid]['snapshot_id']}"),'Dispatched SQL differs')
@@ -251,8 +249,9 @@ def run(config,revision):
         rest.capture('jobs');rest.capture('stages')
         with log.lock:engine_rows=[json.loads(line) for line in (out/'events.jsonl').open()]
         jobs,stages=merged_engine_frames(engine_rows)
-        for probe in probes:task_intervals(jobs,stages,rest,marker=probe['marker'])
-        for action in actions:task_intervals(jobs,stages,rest,rewrite_table=table,request=action)
+        retained=ArchivedTaskEvidence(engine_rows,live=rest)
+        for probe in probes:task_intervals(jobs,stages,retained,marker=probe['marker'])
+        for action in actions:task_intervals(jobs,stages,retained,rewrite_table=table,request=action)
         sampler.stop();result=audit(out);safe_to_close=True;result['code_revision']=revision;(out/'result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
     except Exception as e:
         log.emit('trace_queue_failed',error_type=type(e).__name__,error=str(e));(out/'failure.json').write_text(json.dumps({'status':'failed_preserved','error':str(e)},indent=2)+'\n');raise

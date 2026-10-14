@@ -4,6 +4,31 @@ from engine_overlap import task_intervals
 from experiment_validation import require
 
 
+class ArchivedTaskEvidence:
+    """Read complete successful raw task frames before requesting retained UI data.
+
+    An empty later REST response is evidence of missing retention, not a reason
+    to discard an earlier complete immutable stage-attempt frame.
+    """
+    def __init__(self, rows, live=None):
+        self.rows = rows
+        self.live = live
+
+    def capture_tasks(self, stage, attempt, count):
+        resource = f'stages/{stage}/{attempt}/taskList?length={count}'
+        complete = [r['payload'] for r in self.rows if r['kind'] == 'spark_rest'
+                    and r['resource'] == resource and isinstance(r['payload'], list)
+                    and len(r['payload']) == count
+                    and all(t.get('status') == 'SUCCESS' and t.get('duration', 0) > 0 for t in r['payload'])]
+        if complete:
+            # Same completed attempt must never silently change task identities.
+            identities = [{t['taskId'] for t in frame} for frame in complete]
+            require(all(ids == identities[0] for ids in identities), 'Archived task identities changed')
+            return complete[-1]
+        require(self.live is not None, 'Missing complete raw tasks')
+        return self.live.capture_tasks(stage, attempt, count)
+
+
 def merged_engine_frames(rows):
     jobs={};stages={}
     for event in rows:
