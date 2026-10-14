@@ -140,3 +140,15 @@ shared/separate per-episode comparison with unpaired inventory, source-family er
 groups, artifact hashes, preserved failed-fit receipts. No actual fit. Recovery
 PID1068198 active at15:25UTC; no competing experiment/model execution started.
 Next worker3 detached syntax then real export/fit when physical cohort inactive.
+
+## Recovery01 accepted as physical diagnostic only
+
+15:40UTC PID1068198 active; recovery01 passed frozen raw/physical audit,1478offered,
+497completed in horizon,981queued final. Boundary observation125.599992ms late,
+horizon unchanged. compact_now recovery02 running since15:28:45UTC.
+ResultSHA b51b5ee2c292cdb9dd79c508819bb077ce5c6b0246d7c277cbb60a6184bcacec;
+eventsSHA 5c7ad495767b4fe9487e831a2f03f22a7581cf208ef9f9228a9ebfdf160df828;
+auditSHA a6d06880f6bf79b0d560fb6766707b0562593722e19782eaff06c1e6796e23e8.
+Small result/audit receipts mirrored matching hashes; full raw mirror deferred while
+query collection active. No model fit or independent source-family claim yet.
+Trainer reporting syntax passed;d9f19d9HEAD/5intendedfilesSHA matched hosts.

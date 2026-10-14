@@ -93,3 +93,7 @@ matrix preserved. Historical raw adapter regression passed, no activeSpark15:10U
 Trainer reporting audit adds paired held-out UUID comparisons and failed-fit receipts.
 Do not equate implementation/syntax with real fit validation. Recovery active15:25UTC;
 next dependent export/fit still gated on completed raw physical evidence.
+
+15:40UTC recovery01passed physical+frozen raw audit;1478offered/497completed/981queued.
+Recovery02active; keep runtime immutable. Small receipts mirrored; full raw export/
+mirror/fitting after collector inactive. No calibrated model or scheduler accepted.

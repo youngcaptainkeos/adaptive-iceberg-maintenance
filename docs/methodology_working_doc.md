@@ -1455,3 +1455,24 @@ reusing output or hiding partial bundles. No real fitting occurred or accuracy
 claim made. Worker3 detached syntax validation next; model behavior still requires
 actual diverse verified export. Heavy validation/fitting remains deferred until
 physical collector inactive. Frozen recovery runtime unaffected by main edits.
+
+## 24. First recovery ten-minute baseline passed actual raw gates
+
+At15:40UTC coordinator1068198 active, second compact_now arm running since15:28:45.
+Recovery01 no_maintenance passed physical and independent frozen raw audit:
+1478offered,497dispatched/completed within horizon,981queued at boundary/final;
+boundary observation125.599992ms late reported without changing registered horizon.
+ResultSHA256 b51b5ee2c292cdb9dd79c508819bb077ce5c6b0246d7c277cbb60a6184bcacec;
+eventsSHA256 5c7ad495767b4fe9487e831a2f03f22a7581cf208ef9f9228a9ebfdf160df828;
+independent auditSHA256 a6d06880f6bf79b0d560fb6766707b0562593722e19782eaff06c1e6796e23e8.
+Small immutable result/audit receipts mirrored locally with matching hashes; full
+raw package/physical byte mirror deferred while active queries to avoid I/O load.
+Logs/raw paths results/sf1_overnight_recovery_20261015_01 and matching cohort.
+
+This validates archive-first evidence retrieval on an actual600s episode, not just
+historical regression. It does not validate the32file/new-maintenance branches or
+make this one family independent training/test/calibration data. Offered backlog
+remains part of evaluation; no workload thinning or assumed zero deferred cost.
+Original failed18matrix remains0passed/1failed/17unattempted; original nine-arm
+1passed/1failed/7unattempted. No cost fitting/promotion. Next gates remaining raw
+arms, matching layout/source groups, whole-family export and actual fit registration.
