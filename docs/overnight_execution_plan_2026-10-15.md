@@ -153,3 +153,7 @@ incompletegroups/instrumentversionconfounding explicit. Physicalrepair remainsga
 Threefamilyrawroundtrippassed, actualhashfirstfitregistered. Runworker3nohupfit,
 retainfailedattempt/negativepredictions, independentoutputaudit beforeclaims. No
 calibration/promotion; datasetlimited4rewrites/16fileoriginal layout/confounding.
+
+Firstfitfinished butnegativeheldoutlatencyresults. Independentsavedpredictionaudit
+nowimplemented; runnohup thenreportrawnegativebaselinecomparison/mirror. No
+heldouttuning, promotion or scheduleruse; independentcollectionplan next.

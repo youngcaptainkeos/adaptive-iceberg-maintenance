@@ -295,3 +295,8 @@ FirstfitnohupPID1411927launch20:44UTC; log
 results/candidate_cost_fit_three_family_20261015_launch.log, check5min/nextwake.
 20candidatefilesSHA agreeincludingverification afterrefreshedmirror. da9c915HEAD/
 5unitSHAagree. No physicalcollectoractive; fitresultmustbe audited beforeclaims.
+
+Firstfitnegative: pairedlater shared24.8856ms/separate66.7832msMAE; heldoutbaseline
+shared601.2233/separate593.8812ms. PendingTrue11train/12test9negativepredictions;
+rewrite3train/1test199.7219msvsmedian311.9211ms notscientificapproval. Addedindependent
+CSV/modelpredictionroundtrip audit; runworker3nohupnext. No accepted/calibratedmodel.

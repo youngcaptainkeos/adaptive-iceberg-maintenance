@@ -1778,3 +1778,21 @@ nextwake, then auditresults before accuracyclaims. Finalcandidatepackageincludin
 independentverification20filesSHA agreedhosts, da9c915HEAD/5unitSHA agree. First
 mirror occurredbeforeverificationfilecompleted; refreshedmirror nowverifiedfull
 package. Fit/data/gates frozen for this shortjob; no physicalcollector active.
+
+## 39. First fit negative results and independent saved-model audit implemented
+
+Firstfitcompleted onworker3, uncalibrated/noauthorization. Preliminaryfitreport
+paired521heldoutqueries: later262sharedMAE24.8856ms/separate66.7832ms versus
+baselineepisode259shared601.2233ms/separate593.8812ms. SeparatependingTrue trains
+11/test12with9negativepredictions; rewrite3train/1testMAE199.7219ms versus
+median311.9211ms. This is not successfulcostgeneralization: baselineepisode severe
+error, tinyconditional/rewriteblocks and negativepredictions. No tuning/refitting
+onheldoutoutcomes, no calibration/promotion. Preliminaryvalues need independent
+roundtrip before finalaccuracyreport. All failed physicalattempts remain excluded.
+
+Added audit_candidate_cost_fit.py, read-only actualCSVtarget/identity/wholeepisode
+membership/missinghistoryinventory/trainingmedian andpersistedprediction checks,
+artifactSHA, rowcoverage, negativepredictions and descriptivetrain-range shifts.
+Doesnotrefit or selectwinner; rangeoutliers not permission for heldouttuning.
+Next worker3nohup auditandactualreceipt, mirrorfit/candidate/rawpackages, append
+negativefindings and nextindependentcollectiongate. No activephysical/modeljob.
