@@ -126,3 +126,11 @@ Specific archive-reader repair, not favorable-outcome repetition. Historical raw
 regression passed; checkpoint-only diagnostic receipt onworker3. No active Spark
 jobs at15:10UTC; coordinator1031940 remains exited. Original failure unchanged.
 Next inspect receipt and immutable launch; no learned model fit yet.
+
+Recovery actual launch15:12UTC (20:42IST): PID1068198 alive, first arm running,
+immutable /tmp/capstone_overnight_recovery_runtime_20261015 at8a11a71eef51507dc4023763c9d2b67331b53b6e.
+All23registration filesSHA256 match local/worker3. Checkpoint247queries/741tasks
+passed only archived-evidence check; failed original unchanged. Log
+results/sf1_overnight_recovery_cohort_20261015_launch.log; cohort progress/result in
+results/sf1_overnight_recovery_cohort_20261015. First check21:00IST, whole matrix
+estimated01:15–02:15IST; actual success not yet known. No fitting alongside queries.

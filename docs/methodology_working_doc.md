@@ -1431,3 +1431,14 @@ run midpoint task check saved archive_checkpoint_validation_20261015.json; this
 certifies archived task availability only, cannot upgrade the failed episode.
 Next gate: inspect checkpoint receipt, commit/sync/hashes, frozen recovery checkout
 and detached launch if no competing work. Model fitting still blocked by diversity.
+
+Recovery launch evidence: actual archived checkpoint247queries/741tasks passed on
+worker3; failed original status unchanged. All23registered unitSHA256 matched
+bothhosts at8a11a71eef51507dc4023763c9d2b67331b53b6e. Fresh frozen runtime
+/tmp/capstone_overnight_recovery_runtime_20261015 at that revision, canonical
+results/datasets symlinked. nohup coordinatorPID1068198 confirmed running15:12UTC;
+log results/sf1_overnight_recovery_cohort_20261015_launch.log, progress/raw audits
+in matching cohort directory and arms sf1_overnight_recovery_20261015_01..18.
+Estimated first gate around21:00IST; full matrix around01:15–02:15IST if healthy.
+No recovery result accepted at launch. Next wake audit progress before dependent
+work; collection runtime frozen, heavy fitting/export waits for inactive collector.

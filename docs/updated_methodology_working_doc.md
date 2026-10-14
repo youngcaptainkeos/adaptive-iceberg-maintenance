@@ -288,3 +288,7 @@ of occupied tables. Next fresh registered recovery after evidence checks.
 Section22 registers fresh18episode recovery after identified task archive reader
 bug; same scientific matrix/gates, original failed/unattempted inventory unchanged.
 Historical raw regression passed; checkpoint diagnostic receipt awaiting inspection.
+
+Recovery launch confirmedPID1068198 at15:12UTC, immutable8a11a71runtime. Actual
+checkpoint247queries/741tasks verified; all23registration filesSHA256 agree. No
+recovery arm or learned model accepted yet; see Section22 launch evidence.
