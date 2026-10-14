@@ -300,3 +300,7 @@ model accuracy/calibration claim; physical recovery runtime remains immutable.
 Section24 first recovery ten-minute baseline passed physical+raw gates:1478offered,
 497completed,981queued,125.599992ms boundary observation lateness retained. Second
 arm running; receipt hashes mirrored. One family is not train/test or calibration.
+
+Section25 recovery compaction arm failed missing archived rewrite tasks:1passed/
+1failed/16unattempted preserved. Uniform midpoint checkpoint extended to completed
+maintenance calls with existing strict raw task attribution; validation pending.

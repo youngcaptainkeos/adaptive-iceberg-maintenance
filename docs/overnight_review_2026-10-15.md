@@ -152,3 +152,12 @@ auditSHA a6d06880f6bf79b0d560fb6766707b0562593722e19782eaff06c1e6796e23e8.
 Small result/audit receipts mirrored matching hashes; full raw mirror deferred while
 query collection active. No model fit or independent source-family claim yet.
 Trainer reporting syntax passed;d9f19d9HEAD/5intendedfilesSHA matched hosts.
+
+## Recovery02 failed maintenance task retention
+
+PID1068198 exited15:45:13UTC; firstrecovery1passed/1failed/16unattempted. Query
+archiving worked, but checkpoint omitted completed maintenance tasks; earlyrewrite
+RESTtasks unavailable at final audit. No activeSpark at15:55UTC. Failed02preserved,
+no labels reused. Added actual completed maintenance archival at uniform midpoint,
+unique actual decision table binding/existing strict rewrite attribution. Next
+worker3 detached syntax/active-arm regression, then fresh registered recovery.

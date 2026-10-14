@@ -97,3 +97,8 @@ next dependent export/fit still gated on completed raw physical evidence.
 15:40UTC recovery01passed physical+frozen raw audit;1478offered/497completed/981queued.
 Recovery02active; keep runtime immutable. Small receipts mirrored; full raw export/
 mirror/fitting after collector inactive. No calibrated model or scheduler accepted.
+
+15:55UTC priority: recovery02failed final rewrite-task retention;1passed/1failed/
+16unattempted preserved. Repair completed maintenance archival in uniform midpoint,
+validate actual historical active arm, then fresh immutable recovery registration.
+No active collector; do not fit one-family dataset or upgrade failed arm.

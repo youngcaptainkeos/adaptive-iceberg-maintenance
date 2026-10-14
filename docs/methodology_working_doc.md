@@ -1476,3 +1476,23 @@ remains part of evaluation; no workload thinning or assumed zero deferred cost.
 Original failed18matrix remains0passed/1failed/17unattempted; original nine-arm
 1passed/1failed/7unattempted. No cost fitting/promotion. Next gates remaining raw
 arms, matching layout/source groups, whole-family export and actual fit registration.
+
+## 25. Maintenance task archival omission detected and repaired
+
+At15:55UTC recoverycoordinator1068198 exited naturally15:45:13UTC:1passed/1failed/
+16unattempted. Recovery02 compact_now failed final rewrite task retrieval with
+Incomplete task-attempt REST evidence; query archive reader succeeded. No running
+Spark jobs observed. Midpoint archive only processed trace_query statements, so
+actual early rewrite tasks were not preserved before Spark UI eviction. This is
+another instrumentation implementation defect, not evidence that compaction is
+ineffective. No failed labels admitted, tables/processes/data preserved.
+
+Extended uniform midpoint checkpoint to actual completed maintenance statements:
+unique matching pre-action decision supplies fresh table, existing strict rewrite
+job-group/table/client-time/task attribution certifies actual archived tasks. No
+invented tasks or relaxed successful/no-retry/coverage gates. Running/uncompleted
+maintenance still must certify at final audit. Same midpoint overhead applied to
+all arms, instrumentation workload remains a limitation. Next server detached
+syntax/historical active-arm regression then new recovery identities/registration;
+prior failed ninearm1/1/7, original overnight0/1/17, firstrecovery1/1/16 stay intact.
+No fitting or calibrated scheduler claim. Model export waits for independent data.

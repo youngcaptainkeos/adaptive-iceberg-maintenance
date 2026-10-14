@@ -46,10 +46,21 @@ def capture_completed_query_tasks(rest,log,event_path):
     with log.lock:rows=[json.loads(line) for line in event_path.open()]
     requested={r['measurement_id']:r for r in rows if r['kind']=='statement_requested'}
     completed=[r for r in rows if r['kind']=='statement_completed' and r['role']=='trace_query']
-    certified=[]
+    certified=[];maintenance=[]
     for statement in completed:
         marker=requested[statement['measurement_id']]['marker'];selected=[j for j in jobs if marker in str(j.get('description',''))]
         if not selected or any(j['status']!='SUCCEEDED' for j in selected):continue  # Not certified; final audit still requires complete evidence.
         intervals=task_intervals(jobs,stages,rest,marker=marker)
         certified.append(statement['measurement_id'])
-    log.emit('engine_archive_checkpoint',certified_completed_query_ids=certified,meaning='Actual REST completed-task snapshots preserved before UI retention; omitted/running queries must certify at final audit')
+    # Rewrite jobs carry Iceberg's own descriptions, rather than SQL markers.
+    # Bind them to the actual completed maintenance call and fresh episode table.
+    for statement in rows:
+        if statement['kind']!='statement_completed' or statement['role']!='maintenance':continue
+        decisions=[r for r in rows if r['kind']=='maintenance_decision_observation'
+                   and r['measurement_id']==statement['measurement_id']]
+        require(len(decisions)==1,'Missing unique maintenance archive decision')
+        task_intervals(jobs,stages,rest,rewrite_table=decisions[0]['table'],request=statement)
+        maintenance.append(statement['measurement_id'])
+    log.emit('engine_archive_checkpoint',certified_completed_query_ids=certified,
+             certified_completed_maintenance_ids=maintenance,
+             meaning='Actual REST completed-query and maintenance task snapshots preserved before UI retention; omitted/running calls must certify at final audit')
