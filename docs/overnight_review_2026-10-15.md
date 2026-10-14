@@ -53,3 +53,15 @@ task payloads preserved during registered midpoint checkpoint; final audit still
 requires all actual tasks. Same checkpoint overhead applies to every arm and is
 an instrumentation limitation. Worker3 detached compile and historical raw arm
 regression passed. New live archive path remains to be validated by real cohort.
+
+## Matrix registration prepared
+
+Three600-second actual source-window exports/audits completed and mirrored. New
+18episode configs pin each actual mapping/audit hash: three source days ×16/32
+original files ×none/now/later, rotated order. Boundary preparationv1opted in,
+midpoint raw engine archive uniform, actual expected Spark masterlocal[16]bound,
+initial row/byte signature checked per layout and workload/layout identical per
+matched group. Whole600seconds counted; full offered300seconds available only
+later in actual replay, never zero-padded. No new episodes after04:45IST and no
+new SQL after05:15IST. Immutable runtime checkout still to create/launch. Models
+remain uncalibrated/unfitted; original failed nine-arm run unchanged.

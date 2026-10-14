@@ -259,3 +259,9 @@ collector will use an immutable checkout separate from later model development.
 Working ledger Job17records actual stage-count motivation, in-run preservation of
 raw completed tasks and actual-frame merging for longer episodes, with strict
 final gates and uniform instrumentation limitations. No engine restart/fake history.
+
+### 8.7 Registered overnight cost matrix
+
+Working ledger Job18records18fresh real arms, three audited600-second source
+windows, two controlled layouts, equal within-group conditions and immutable
+runtime plan. New paths require live raw audit; no calibration/policy claim.

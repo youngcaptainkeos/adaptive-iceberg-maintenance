@@ -1,0 +1,109 @@
+{
+  "schema_version": "common_horizon_cohort_pilot_v1",
+  "registered_order": [
+    "no_maintenance",
+    "compact_now",
+    "compact_later",
+    "compact_now",
+    "compact_later",
+    "no_maintenance",
+    "compact_now",
+    "compact_later",
+    "no_maintenance",
+    "compact_later",
+    "no_maintenance",
+    "compact_now",
+    "compact_later",
+    "no_maintenance",
+    "compact_now",
+    "no_maintenance",
+    "compact_now",
+    "compact_later"
+  ],
+  "episodes": [
+    {
+      "path": "sf1_overnight_cost_20261015_01.json",
+      "sha256": "410cbb8e65af044d41cd31bb160361f1817428ad0fa1a0e2b1b0b358136272ae"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_02.json",
+      "sha256": "8d18b364dc8e9dbea1b0fe3ab9fafc97a0a0b115013d43d8c1d9c07c18156252"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_03.json",
+      "sha256": "5d25a701d9fa32c21b49bfee50bb093feae2d0134af16ca8017a419f46cd77a0"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_04.json",
+      "sha256": "f565bba8b79e261d5196f67eeecef39dc502c5bddc0416f73a554f6a2a262651"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_05.json",
+      "sha256": "b3c8620ae89c616ce43864bedb38c556fd4811c4f6f0a9226e0a88db01d9aba3"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_06.json",
+      "sha256": "b17cc1ad1e70ed5e15cee44d35bdb6db59785bceac4d923a6d542a16dc01222f"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_07.json",
+      "sha256": "5fa364d582fda74591748d00462c9a33a1df92be856dd1519ccdb0e50f744c58"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_08.json",
+      "sha256": "b1f70568be7fb0fc92561b547525a2fa29e32567f3487992c061376ed055cec3"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_09.json",
+      "sha256": "d09687d86744a5c8b5ef0cce94d55c27d86149665a7546a19740e8986d06808f"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_10.json",
+      "sha256": "808fa4373bc8b603b8c3d10f0067f8776dd22748e21de37a67dcf58eb8cbe777"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_11.json",
+      "sha256": "346e946e1fcd8931471b8203e3a3261bcbab0cff2e9075516943b2f31ae58f1c"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_12.json",
+      "sha256": "b35afdf08bc78a2c1002540d6068f39d1bc9f469c4b24a5a65a6f7e6fb1e60a5"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_13.json",
+      "sha256": "28106c4c35e0da66ce845e6f3ba477eb230eddb4413bb285e88fd8d45da824ba"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_14.json",
+      "sha256": "bdec1ee50370e9fe139df0735e1b56f54f74dec412fdefaa5587871244783400"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_15.json",
+      "sha256": "24d8af51d0ba5cbdc83ed0ad968bbc6fccb7afca57f630d29ccf79264f517fd0"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_16.json",
+      "sha256": "67c208ef0a5aea063ff63a40be4d8e585631261b99fde3c1401056e1539ba457"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_17.json",
+      "sha256": "6a52a608b443667edf167e7ad371a31738921b59f3bc64a9af0242caf56df219"
+    },
+    {
+      "path": "sf1_overnight_cost_20261015_18.json",
+      "sha256": "56d738b9961d799fe1cb92e465137c8bdf91593aedd56f59a4d64aa632cc3feb"
+    }
+  ],
+  "no_new_episode_after_utc": "2026-10-14T23:15:00+00:00",
+  "output_directory": "../../results/sf1_overnight_cost_cohort_20261015",
+  "rationale": "New user-authorized overnight18episode controlled matrix; six matched groups, three600second source families and two original file layouts. Each arm once/group, rotated order. Strict per-arm raw audit and within-layout signatures, all failed/unattempted retained. Runtime immutable worktree with dataset/results symlinks to canonical worker3 storage. No training/promotion claim and no replay of original Snowflake SQL.",
+  "limitations": [
+    "Controlled SF1 source layouts/three ten-minute windows/one warehouse/custom four-template SQL mix/single client, not natural ingestion or original Snowflake SQL.",
+    "Six matched workload-layout groups, one episode/arm/group; dependence, cache/time and live instrumentation effects remain.",
+    "All original source requests offered and residual queued/maintenance work retained; source timing shift preserves spacing without compression.",
+    "300-second offered histories may be missing early and stay missing; pre-query host histories are measured, no intensity/small-file heuristic invented.",
+    "Uniform engine archival and actual metadata/query refresh overheads are instrumented outcomes, not pure CPU-only causal cost.",
+    "New boundary/archive/layout paths require actual raw audit; compiler/legacy checks alone are not success.",
+    "Candidate training/exploratory model comparison only; no independent conformal promotion or adaptive policy result."
+  ]
+}

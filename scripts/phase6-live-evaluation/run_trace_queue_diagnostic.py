@@ -59,6 +59,9 @@ def audit(directory):
     bound_rows=[r for r in rows if not(r['kind']=='query_observation' and r['measurement_id'] in abandoned_ids)]
     observed=[r for r in bound_rows if r['kind']=='query_observation'];require(len(observed)==len(dispatched)>0,'Missing actual query evidence')
     verify_observations(bound_rows,cfg)
+    if cfg.get('expected_spark_master'):
+        environments=[r['payload'] for r in rows if r['kind']=='spark_rest' and r['resource']=='environment']
+        require(len(environments)==1 and dict(environments[0]['sparkProperties']).get('spark.master')==cfg['expected_spark_master'],'Actual raw parallelism differs')
     source=json.loads((directory/'preparation_result.json').read_text());require(sha256(directory/'preparation_result.json')==cfg['preparation_result']['sha256'],'Source receipt changed')
     refs=json.loads((directory/'expected_query_results.json').read_text()); rebuilt_refs={}
     for i,spec in enumerate(cfg['expected_query_ledgers']):
@@ -138,7 +141,8 @@ def run(config,revision):
         maintenance_cursor=cursors[2] if arm else None
         def execute(sql):guard();return rec.execute(metadata,sql,role='metadata')
         require(not rest._capture('jobs?status=running'),'Other active Spark jobs')
-        require(execute('SELECT version()')['rows'][0][0].split()[0]==cfg['engine']['expected_version'],'Engine mismatch');rest.capture('environment')
+        require(execute('SELECT version()')['rows'][0][0].split()[0]==cfg['engine']['expected_version'],'Engine mismatch');environment=rest.capture('environment')
+        if cfg.get('expected_spark_master'):require(dict(environment['sparkProperties']).get('spark.master')==cfg['expected_spark_master'],'Registered parallelism environment differs')
         table=source['table']
         if arm:
             import re

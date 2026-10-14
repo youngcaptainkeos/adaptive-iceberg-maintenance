@@ -1335,3 +1335,23 @@ Worker3 compilation and actual historical raw regression passed; new live archiv
 path awaits the registered physical matrix. No engine restart/retention-setting
 change or retrospective repair of missing old evidence. Candidate export freezes
 this verifier dependency with other actual runtime modules.
+
+## 18. Registered overnight cost-collection matrix —2026-10-14/15
+
+Prepared18fresh arms in six matched source-window/layout groups. Actual three
+600-second training-window exports passed independent source coverage/spacing/
+SQL mapping audits.16/32original-file candidates are declared verified-source /
+two-local[16]-task-wave interventions on identical real rows; source/generator
+provenance unchanged, actual parallelism bound to raw environment. Within each
+group all three maintenance arms use identical workload/horizon/client/engine/
+archive/boundary conditions. Layout signatures match within named layout groups,
+not across intentionally different layouts. All original/final logical content
+and useful rewrite/actual timing/task/window gates remain strict.
+
+Code/config registration is not live-path acceptance. Opt-in boundary preparation,
+midpoint engine archive and32file layout need real execution evidence. Runtime
+will be an immutable sparse Git worktree, with canonical dataset/results links,
+so later estimator implementation cannot modify active collector code. Original
+failed/occupied tables remain; fresh identity matrix is not silent retry/promotion.
+New episode cutoff04:45IST, new SQL cutoff05:15IST, automation stop06:00ISTOct15.
+No accepted cost model/uncertainty/scheduler claim from registration.
