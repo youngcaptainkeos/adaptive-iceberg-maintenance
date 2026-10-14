@@ -178,3 +178,7 @@ Next rawroundtrip/mirror andphysicalbytefallback whileidle, savefinalmorningrevi
 
 32filecandidateindependentchecklaunched;9successfultablebyteinventoryregistered.
 Runnohupmanifest thenactualroottransfer/hashagreement; no newphysicalepisode planned.
+
+Physicalbytecopy session81303running (9tables/516files/2.486GB). Nextwakepollbefore
+competingcopy; posttransfermanifesthashcheck beforefallbacksuccessclaim. Preserve
+partialcopy/runningoperationatdeadline, no kill/delete/restart.

@@ -1915,3 +1915,17 @@ ActualbyteinventorynohupPID1565619launched23:13UTC; log
 results/physical_table_byte_manifest_20261015_launch.log, output
 results/physical_table_byte_manifest_20261015.json. Check5min/nextwake, nophysical
 operationinitiated. c283508HEAD/6unitSHAagreehosts. Tablebytesnotmirroredyet.
+
+## 46. Physical byte transfer initiated; approval timeout preserved
+
+Firstcombinedcopycommand didnotstart: automaticpermissionreview timedout (not a
+safetyfinding). Allowedoneretry splitread-onlymanifest transfer succeeded. Actual
+manifest9tables/516files/2,486,276,798bytes downloaded, saved
+results/physical_table_byte_manifest_20261015.json. Source-registered table roots
+only, copywithoutdelete/reset to results/physical_table_byte_fallback_20261015/
+<experiment_id>/<table_root_name>/. Copycommands /tmp/copy_physical_table_fallback_20261015.sh
+use10sSSHconnecttimeout; running localtransfer execsession81303. No validation/model/
+physicalSQLrun started; no service/table/process shutdown. Transferoutcome/hashes
+notyetaccepted; mayremainpartial atcutoff. Estimatedchecknext15minwake; no guarantee
+of full2.5GB copybydeadline. Postcopyallfile/size/SHA agreement required, absolute
+catalogpaths remainworker3-specific. Failedtablebytes stillremote untouched.

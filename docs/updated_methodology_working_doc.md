@@ -406,3 +406,7 @@ Section45 separate32fileexport1587queries/2rewritescompleted/independentchecklau
 or bytefallbacksuccessclaimbeforetransferverification.
 
 ByteinventorynohupPID1565619launched; read-onlyactualhashmanifest beforetransfer.
+
+Section46 actual9table/516file/2.486GB bytecopystarted (session81303), outcome/hash
+verificationpending. Approvaltimeoutbeforefirstcommand, narrowerretry succeeded.
+No portablecatalog/completebackupclaim yet; preservepartialcopy atcutoff.

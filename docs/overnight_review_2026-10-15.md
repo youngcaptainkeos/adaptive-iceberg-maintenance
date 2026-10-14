@@ -355,3 +355,9 @@ No physicalrunplanned; nextdetachedmanifest, mirroredbytesandposttransferhashche
 ActualbyteinventorynohupPID1565619launch23:13UTC, log
 results/physical_table_byte_manifest_20261015_launch.log; check5min/wake. c283508HEAD/
 6unitSHAagreehosts.32verificationPID1565070 launched; no tablebytebackupclaimyet.
+
+Bytefallbacktransferstarted:9tables/516files/2,486,276,798bytes actualmanifest,
+localresults/physical_table_byte_fallback_20261015; session81303 runningcopy, script
+/tmp/copy_physical_table_fallback_20261015.sh. Firstautoapprovalreviewtimeout didnot
+startcommand; smallerretry succeeded. Nextwakepollcopy, thenfile/size/hashcheck;
+backupnotyetcomplete, mayremainpartialatcutoff. No physical/service/data mutation.
