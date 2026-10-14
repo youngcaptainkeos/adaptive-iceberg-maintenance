@@ -10,6 +10,7 @@ import json
 import math
 import platform
 import shutil
+import traceback
 from datetime import datetime
 from pathlib import Path
 
@@ -46,7 +47,9 @@ def run(config):
 
     cfg = json.loads(config.read_text())
     require(cfg['schema_version'] == 'candidate_cost_fit_v1', 'Unsupported fit protocol')
-    require(cfg['ridge_alpha'] > 0, 'Register positive regularization')
+    require(isinstance(cfg['ridge_alpha'], (int, float)) and not isinstance(cfg['ridge_alpha'], bool)
+            and math.isfinite(cfg['ridge_alpha']) and cfg['ridge_alpha'] > 0, 'Register finite positive regularization')
+    require(isinstance(cfg['require_complete_demand_history'], bool), 'Register demand-history choice')
     base = config.parent
     directory = (base / cfg['export_directory']).resolve()
     manifest_path = directory / 'export_record.json'
@@ -92,7 +95,7 @@ def run(config):
     dropped = []
     if cfg['require_complete_demand_history']:
         dropped = [r for r in queries if any(r[f'offered_history_complete_{s}s'] != 'True' for s in (60, 300))]
-        queries = [r for r in queries if r not in dropped]
+        queries = [r for r in queries if all(r[f'offered_history_complete_{s}s'] == 'True' for s in (60, 300))]
     numeric = QUERY + (['offered_count_60s', 'offered_count_300s'] if cfg['require_complete_demand_history'] else [])
     output = (base / cfg['output_directory']).resolve()
     require(not output.exists(), 'Output occupied; preserve previous attempt')
@@ -113,7 +116,7 @@ def run(config):
             return np.asarray([[number(r[f]) for f in columns] for r in records], dtype=float)
         x, xt = matrix(training), matrix(testing)
         y = np.asarray([number(r[target]) for r in training])
-        require(all(y > 0), 'Nonpositive measured service time')
+        require(all(y > 0) and all(number(r[target]) > 0 for r in testing), 'Nonpositive measured service time')
         transformers = [('numeric', StandardScaler(), list(range(len(fields))))]
         if categorical:
             known = {r['query_id'] for r in training}
@@ -132,7 +135,7 @@ def run(config):
                                 'prediction_ms': float(pred), 'training_median_ms': baseline})
         own = [p for p in predictions if p['model'] == name]
         groups = {}
-        for dimension in ('experiment_id', 'query_id', 'maintenance_pending', 'file_count'):
+        for dimension in ('experiment_id', 'source_family', 'query_id', 'maintenance_pending', 'file_count'):
             groups[dimension] = {}
             for value in sorted({str(p[dimension]) for p in own}):
                 block = [p for p in own if str(p[dimension]) == value]
@@ -147,13 +150,29 @@ def run(config):
         fit('latency_separate_pending_' + pending, [r for r in queries if r[STATE] == pending],
             [f for f in numeric if f != STATE], 'service_target_ms', True)
     fit('rewrite_duration', rewrites, LAYOUT + HOST, 'rewrite_service_target_ms')
+    shared = {(p['experiment_id'], p['measurement_id']): p for p in predictions if p['model'] == 'latency_shared'}
+    separate = {(p['experiment_id'], p['measurement_id']): p for p in predictions if p['model'].startswith('latency_separate_')}
+    common = sorted(shared.keys() & separate.keys())
+    comparison = {'status': 'descriptive_matched_queries_only_no_winner_selection',
+                  'shared_test_rows': len(shared), 'separate_test_rows': len(separate), 'paired_rows': len(common),
+                  'unpaired_shared_ids': [list(k) for k in sorted(shared.keys() - separate.keys())],
+                  'paired_episode_mae': {}}
+    for eid in sorted({k[0] for k in common}):
+        keys = [k for k in common if k[0] == eid]
+        require(all(shared[k]['actual_ms'] == separate[k]['actual_ms'] for k in keys), 'Paired targets differ')
+        comparison['paired_episode_mae'][eid] = {
+            'rows': len(keys),
+            'shared_mae_ms': float(np.mean([abs(shared[k]['prediction_ms'] - shared[k]['actual_ms']) for k in keys])),
+            'separate_mae_ms': float(np.mean([abs(separate[k]['prediction_ms'] - separate[k]['actual_ms']) for k in keys]))}
     joblib.dump(models, output / 'exploratory_models.joblib')
     (output / 'heldout_predictions.json').write_text(json.dumps(predictions, indent=2) + '\n')
     report = {'status': 'exploratory_uncalibrated_no_scheduler_authorization', 'calibrated_training_accepted': False,
               'scheduler_authorized': False, 'export_record_sha256': cfg['export_record_sha256'], 'config_sha256': sha256(config),
               'trainer_sha256': sha256(Path(__file__)), 'source_families': [[a.isoformat(), b.isoformat()] for a, b in families],
               'episode_family_assignment': assignments, 'dropped_incomplete_history_measurements': [r['measurement_id'] for r in dropped],
-              'models': summaries, 'versions': {'python': platform.python_version(), 'sklearn': sklearn.__version__, 'numpy': np.__version__},
+              'models': summaries, 'paired_latency_comparison': comparison,
+              'artifact_sha256': {name: sha256(output / name) for name in ('config.json', 'trainer.py', 'exploratory_models.joblib', 'heldout_predictions.json')},
+              'versions': {'python': platform.python_version(), 'sklearn': sklearn.__version__, 'numpy': np.__version__},
               'limitations': ['No calibration, model selection, counterfactual penalty or scheduler promotion.',
                               'Observed client maintenance pending is not exact engine-active exposure.',
                               'Rows within episodes/source families are dependent; row MAE is descriptive.',
@@ -165,4 +184,19 @@ def run(config):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config', type=Path, required=True)
-    run(parser.parse_args().config.resolve())
+    args = parser.parse_args()
+    config = args.config.resolve()
+    try:
+        run(config)
+    except Exception as exc:
+        # Persist a distinct attempt receipt beside the protocol, even if a gate
+        # failed before an output directory could be created. Never overwrite.
+        from datetime import timezone
+        stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
+        failure = config.with_name(config.stem + '.failed_' + stamp + '.json')
+        with failure.open('x') as handle:
+            json.dump({'status': 'failed_fit_attempt_preserved', 'error_type': type(exc).__name__,
+                       'error': str(exc), 'traceback': traceback.format_exc(),
+                       'config_path': str(config), 'config_sha256': sha256(config) if config.is_file() else None,
+                       'trainer_sha256': sha256(Path(__file__)), 'scheduler_authorized': False}, handle, indent=2)
+        raise

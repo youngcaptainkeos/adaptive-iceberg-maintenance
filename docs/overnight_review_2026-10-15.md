@@ -134,3 +134,9 @@ passed only archived-evidence check; failed original unchanged. Log
 results/sf1_overnight_recovery_cohort_20261015_launch.log; cohort progress/result in
 results/sf1_overnight_recovery_cohort_20261015. First check21:00IST, whole matrix
 estimated01:15–02:15IST; actual success not yet known. No fitting alongside queries.
+
+Trainer audit unit: finite parameter and positive held-out target gates, same-UUID
+shared/separate per-episode comparison with unpaired inventory, source-family error
+groups, artifact hashes, preserved failed-fit receipts. No actual fit. Recovery
+PID1068198 active at15:25UTC; no competing experiment/model execution started.
+Next worker3 detached syntax then real export/fit when physical cohort inactive.

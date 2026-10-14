@@ -1442,3 +1442,16 @@ in matching cohort directory and arms sf1_overnight_recovery_20261015_01..18.
 Estimated first gate around21:00IST; full matrix around01:15–02:15IST if healthy.
 No recovery result accepted at launch. Next wake audit progress before dependent
 work; collection runtime frozen, heavy fitting/export waits for inactive collector.
+
+## 23. Exploratory model reporting audit
+
+While immutable recovery collection runs, audited trainer reporting. Added finite
+positive registered regularization/boolean-history contract; test-target positive
+check; family-level error groups; shared/separate comparison on exactly matched
+held-out UUIDs with per-episode errors and explicit unpaired counts, no winner
+selection. Bundles bind saved models/predictions/config/source by SHA256. Failed
+fit gates save distinct timestamped failure receipts beside registration, without
+reusing output or hiding partial bundles. No real fitting occurred or accuracy
+claim made. Worker3 detached syntax validation next; model behavior still requires
+actual diverse verified export. Heavy validation/fitting remains deferred until
+physical collector inactive. Frozen recovery runtime unaffected by main edits.

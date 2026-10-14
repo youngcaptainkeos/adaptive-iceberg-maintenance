@@ -292,3 +292,7 @@ Historical raw regression passed; checkpoint diagnostic receipt awaiting inspect
 Recovery launch confirmedPID1068198 at15:12UTC, immutable8a11a71runtime. Actual
 checkpoint247queries/741tasks verified; all23registration filesSHA256 agree. No
 recovery arm or learned model accepted yet; see Section22 launch evidence.
+
+Section23 trainer audit adds matched shared/separate UUID comparisons, family error
+groups, artifact hashes and durable failed-fit receipts. Implementation only; no
+model accuracy/calibration claim; physical recovery runtime remains immutable.

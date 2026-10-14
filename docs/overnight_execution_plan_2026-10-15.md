@@ -89,3 +89,7 @@ implemented8de48a6, server syntax checked; actual fit still blocked by diversity
 Recovery registration: sf1_overnight_recovery_cohort_20261015.json and18fresh arms.
 Inspect actual checkpoint diagnostic before immutable launch; original failed
 matrix preserved. Historical raw adapter regression passed, no activeSpark15:10UTC.
+
+Trainer reporting audit adds paired held-out UUID comparisons and failed-fit receipts.
+Do not equate implementation/syntax with real fit validation. Recovery active15:25UTC;
+next dependent export/fit still gated on completed raw physical evidence.
