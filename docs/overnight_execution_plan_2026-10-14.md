@@ -47,7 +47,7 @@ correctness; 03:30–05:45 next ready validation/collection; 05:45–06:15 audit
 Legacy collector/evaluator/reset/launchers remain blocked until explicitly repaired.
 No publication-readiness or forecasting claim follows from a correctness pilot.
 
-## Current queue state (05:45 IST)
+## Current queue state (05:51 IST)
 
 - Completed bounded event/telemetry primitives and real 60-second pre-query windows.
 - Completed isolated verified SF1 source preparation and repaired query/rewrite pilot.
@@ -103,8 +103,14 @@ No publication-readiness or forecasting claim follows from a correctness pilot.
   inventory, actual RPC metadata freshness, raw 60/300 windows, verified task
   overlap and exact row/result conservation. Raw/export mirrored, all hashes equal.
   Four measured query rows plus one decision context; still diagnostic-only.
-- Preregister unchanged Q3 aggregation with identical strengthened gates/new table.
-  Launch only after audit/code sync and no active own work/Spark jobs.
+- Q3 passed fresh pre-action/window/task/correctness gates; PID412112 ended
+  naturally. Raw/export mirrored, all hashes equal. All four query templates
+  now have measured matched diagnostic episodes, distinct action-context contracts.
+- Strengthened raw SQL/result/multiset/file/row exporter passed all four episodes;
+  audit packages mirrored/hash-verified. Common-horizon cost protocol drafted;
+  no executable replay/model acceptance. Next ready resource gap: SF100 typed
+  validation/generator provenance; next research gate: registered variance and
+  common-horizon costs. Preserve no-training and cutoff gates.
 - Next after this gate: broaden independent matched episodes/queries/layouts and
   training export schema; one matched point is not a variance/training corpus. Do not train cost
   models on this correctness pilot or silently use partial/cluster data as SQL demand.

@@ -1,0 +1,100 @@
+{
+  "schema_version": "fresh_pre_action_matched_measurement_review_v1",
+  "status": "accepted_matched_measurement_integrity_only",
+  "table": "local.experiment.integrity_matched_q3_20261014",
+  "original": {
+    "table": "local.experiment.integrity_matched_q3_20261014",
+    "snapshot_id": 4643245528519293386,
+    "snapshot_measurement_id": "684a6af936824cf6a2a3a4387b116c12",
+    "file_inventory_measurement_id": "c5027414510547d185312edddc3802aa",
+    "file_state": {
+      "file_count": 16,
+      "record_count": 6001215,
+      "total_bytes": 164550027
+    }
+  },
+  "compacted": {
+    "table": "local.experiment.integrity_matched_q3_20261014",
+    "snapshot_id": 6861627319991723129,
+    "snapshot_measurement_id": "f6b67e1850244aa89aa05a4342eec6a1",
+    "file_inventory_measurement_id": "9d7e79c19c7b4634aa6df1cfc5d2a7c8",
+    "file_state": {
+      "file_count": 1,
+      "record_count": 6001215,
+      "total_bytes": 163892210
+    }
+  },
+  "decision_checks": [
+    {
+      "measurement_id": "aa3c5dbcc1124b9fb59b85f8814e0ce7",
+      "role": "maintenance",
+      "snapshot_id": 4643245528519293386,
+      "file_state": {
+        "file_count": 16,
+        "record_count": 6001215,
+        "total_bytes": 164550027
+      },
+      "windows_verified": 2
+    }
+  ],
+  "metadata_age_at_actual_rpc_seconds": 0.234216723,
+  "positive_task_overlap_seconds": [
+    0.2369999885559082
+  ],
+  "multiset_difference_count": 0,
+  "all_raw_and_export_file_hashes_match_worker3": true,
+  "file_sha256": {
+    "results/sf1_matched_q3_20261014": {
+      "config.json": "07a2f8309773ed9fee2185c29fa0a5e292fb1ce45a81601519cf267db4493e10",
+      "events.jsonl": "26847ce0ac1ec9f89cdf0bd4c4ab27c9eb6e5f324c7138069e4e5712e671d87b",
+      "result.json": "268b448f1df88ce8ebabe1126d0f987d15523fdf90883d6c3d492af8bbda242c",
+      "code/engine_overlap.py": "ce2d8d9ccb0c1cf486e7ff86b39d2a737450747ebdee9b70297a07d8cd475109",
+      "code/experiment_validation.py": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4",
+      "code/physical_measurements.py": "2c9f811ad095d6c386b50216c3f0428018f68f6a734fafb8514e2078f6112da1",
+      "code/query_observation_binding.py": "eedd836f4d5b2ff5b5c1a60270c102e247da61f11697190438ec3dc197ad109d",
+      "code/run_correctness_pilot.py": "de622efc4df5f4955440a81d8bc2c2b0d2a898d1ae740549f35a5901e23e74c7",
+      "code/run_matched_measurement_pilot.py": "6030e260350fa6d47d1d1fa017d34c95c2f7aee386a359a77a74186b634c86e0",
+      "code/statement_timing.py": "b30ea58ab27518bf3fe8494015c47dea40ea5cc4e2c88774b4489f0af5efadab",
+      "code/telemetry_binding.py": "81b943944f021f0d50dd9d0b1274d1c9f9851e7760160f7b7e025aeb4d73dfea"
+    },
+    "results/matched_q3_raw_conservation_audit_20261014": {
+      "decision_observations.json": "c9c1a064b310fcd7444cdf8a2ba61a4773af75736a22660e94bbc32f83528a9d",
+      "export_code.py": "279ace7623100dabf186215796ace0bf14c4dc79edcd6f4fe068b9f04c0adbe8",
+      "export_record.json": "45d476ed2a7c68cc0e95c8a44e98ab96553b7ceefff4593421e5686b16b0a78d",
+      "query_observations.csv": "50fe688ba0b7096add2dfd2f70e30942acb089edd9a8433eb13e7ca2e0e0f68e",
+      "source_config.json": "07a2f8309773ed9fee2185c29fa0a5e292fb1ce45a81601519cf267db4493e10",
+      "source_preparation_result.json": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57",
+      "source_result.json": "268b448f1df88ce8ebabe1126d0f987d15523fdf90883d6c3d492af8bbda242c"
+    }
+  },
+  "export": {
+    "pre_action_observation_count": 1,
+    "schema_version": "diagnostic_physical_query_observations_v1",
+    "status": "exported_bound_measurements_only",
+    "origin": "physical_spark_iceberg_verified_sf1",
+    "row_count": 4,
+    "source_result_sha256": "268b448f1df88ce8ebabe1126d0f987d15523fdf90883d6c3d492af8bbda242c",
+    "source_events_sha256": "26847ce0ac1ec9f89cdf0bd4c4ab27c9eb6e5f324c7138069e4e5712e671d87b",
+    "export_code_sha256": "279ace7623100dabf186215796ace0bf14c4dc79edcd6f4fe068b9f04c0adbe8",
+    "observations_sha256": "50fe688ba0b7096add2dfd2f70e30942acb089edd9a8433eb13e7ca2e0e0f68e",
+    "code_revision_of_physical_run": "d520f4d1f8527025ac3f960ed52cf88783b4f734",
+    "scope": "Four actual probe observations from one matched episode. Fractions/bytes/monotonic durations preserved; no imputed intensity/small-file eligibility, split labels, future state, counterfactual cost or training approval. Old trainer schema intentionally incompatible.",
+    "limitations": [
+      "One query/one physical rewrite, not variance or statistical/cost/model approval",
+      "Controlled benchmark layout, not natural fragmentation or trace replay",
+      "Host background/cache/time trends recorded only through counters; matched snapshots alone are not a causal guarantee",
+      "REST/logging observation overhead differs during maintenance; no idle-host or pure CPU-execution claim",
+      "No intensity/small-file eligibility/forecast feature invented or training export"
+    ],
+    "source_preparation_sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57",
+    "raw_correctness_checks": [
+      "current_snapshot_sql",
+      "matched_query_sql_and_result_equality",
+      "original_and_compacted_state_binding",
+      "bidirectional_source_current_multiset",
+      "record_and_rewritten_file_conservation"
+    ]
+  },
+  "process_state": "PID412112 ended naturally before audit; table and services preserved",
+  "scope": "One Q3 episode; raw correctness/windows/timing/task evidence accepted, no statistical/cost/scheduler acceptance."
+}

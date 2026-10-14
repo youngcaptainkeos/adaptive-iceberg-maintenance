@@ -25,6 +25,8 @@ def verify_observations(rows, cfg, kind="query_observation"):
                     and re.search(r"\btable\s*=>\s*'"+re.escape(table.removeprefix('local.'))+"'",request['sql'],re.IGNORECASE),'Pre-action observation does not bind actual rewrite table')
         inventory_id=observation['file_inventory_measurement_id'];snapshot_id=observation['snapshot_measurement_id']
         require(inventory_id in completed and snapshot_id in completed,'Missing actual metadata statement')
+        require(requests[snapshot_id]['sql']==f'SELECT snapshot_id FROM {table}.history ORDER BY made_current_at DESC LIMIT 1','Unreviewed current-snapshot SQL')
+        require(len(completed[snapshot_id]['rows'])==1 and len(completed[snapshot_id]['rows'][0])==1,'Ambiguous current snapshot result')
         require(completed[snapshot_id]['rows'][0][0]==snapshot,'Metadata snapshot differs')
         require(requests[inventory_id]['sql']==f'SELECT file_path, record_count, file_size_in_bytes FROM {table}.files','Unreviewed inventory SQL')
         files=completed[inventory_id]['rows'];require(files and len({r[0] for r in files})==len(files),'Missing/duplicate physical files')

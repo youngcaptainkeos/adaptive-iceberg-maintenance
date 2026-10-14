@@ -18,9 +18,21 @@ was launched in this inventory step.
 | TPC-H SF100 | All eight files match across both machines by fresh full-byte SHA256, bytes and newline row counts: 114641618862 bytes, lineitem 600037902 actual rows | Bytes/cardinality verified; typed parsing, relational checks and generator/build provenance still needed |
 | Large Iceberg lineitem | Initial metadata reports 600037902 records; inspected later snapshot reports 600039613 after writes | About 600 million, not the 60 million repeatedly claimed in drafts; metadata observation, not a newly executed COUNT query |
 | Alibaba 2017 archive | Same SHA256 locally/remotely; publisher size/CRC64 match; all six members fully audited against publisher schema | Missing resource/identity fields recorded; container trailing-empty-field serialization explicitly validated; SQL workload mapping still absent |
+| Snowset complete source | Full archive mirrored with equal SHA256; gzip/tar and all values from 2,000 regular Parquet files validated: 69,182,074 unique query IDs, 2,051 warehouses, approximately 13.34 observed days | Accepted arrival source only. No SQL text, ingestion or Iceberg action costs. Publisher does not provide an independent cryptographic checksum; recovered-range receipt limits retained |
+| Snowset selected arrival cohort | Training-only warehouse selection; 2,760,971 actual arrivals, 19,211 complete minute bins; independent timestamp/identity/bin audit and both-host hashes passed | Original timing preserved; one warehouse and short history. Partial tail retained separately; no padded quiet tail or approved SQL mapping |
+| Arrival forecast diagnostic | Past-only Poisson count model versus persistence/day/week baselines; saved prediction/truth/split/metric audit passed | Lower held-out count MAE on one warehouse; no uncertainty, server-load, scheduling or Model C acceptance |
 | Verified workload replay | Historical Google CSV absent; no approved observed replay manifest exists | Missing; synthetic fallback removed by the fail-closed step |
 | Publication training data | Historical runs exist, with known leakage/label/schema and sample-size problems | Not ready for the new model/forecast claims |
-| Long independent workload traces | Alibaba server_usage covers 39600–82500 seconds; 80386 positive task creations preserved at times 5–60181 | Cluster-event candidates only; no verified SQL arrivals, quiet-tail extension or multi-day periodicity |
+| Long independent workload traces | Alibaba server_usage covers 39600–82500 seconds; 80386 positive task creations preserved at times 5–60181. Snowset separately provides validated SQL-query arrival timestamps | Alibaba remains a cluster-event candidate; Snowset has limited temporal depth and no original SQL mapping |
+
+The overnight work changed availability, not publication readiness. Snowset source,
+cohort and forecast evidence is recorded in `snowset_complete_source_validation_2026-10-14.json`,
+`snowset_independent_cohort_audit_2026-10-14.json` and
+`arrival_forecast_diagnostic_review_2026-10-14.json`. Actual SF1 matched Q1/Q0/Q2/Q3
+episodes passed timing/window/task/result/row checks; strengthened Q2 additionally
+passed fresh pre-action state binding, as did Q3. They remain diagnostic episodes
+rather than independent cost-training data. Q3 ended naturally and all four
+episodes passed strengthened raw correctness export checks.
 
 Alibaba archive SHA256 is
 `b7efe9dc9caa75352de41b9ac34b329602cde3414fd7cab87c1d21a9a9871d66`.
@@ -78,27 +90,31 @@ not guarantee reproducible isolation or room for every retained snapshot.
    the unknown acquisition history. Validate timestamps, units, missing values and
    sorting for every used trace member. Never relabel a CPU curve as observed SQL
    demand. This file's presence does not mean the Google-mapper experiment used it.
-2. Obtain a real database arrival trace for forecast validation and trace-driven
-   benchmark replay. A candidate is Snowset, whose published data contains query
-   timing/resource records over 14 days. Its schema includes createdTime but no
-   SQL-text replay field: any mapping to TPC-H query templates must be explicit
-   and justified, not represented as replay of original queries.
+2. Snowset acquisition and complete arrival validation are finished. Register an
+   explicit training-only arrival-to-benchmark-SQL mapping and queue accounting
+   before trace-driven physical replay. The actual observed source interval is
+   approximately 13.34 days; do not pad it to a nominal 14-day quiet endpoint.
+   Its schema includes createdTime but no SQL-text replay field: mapping to TPC-H
+   templates must be justified, not represented as replay of original queries.
    [Dataset documentation](https://github.com/resource-disaggregation/snowset)
    and [schema](https://github.com/resource-disaggregation/snowset/blob/master/schema.md).
 3. Google cluster traces are another genuine demand/resource source but describe
    cluster jobs, not original database SQL. They do not automatically supply an
    ingestion trace or maintenance counterfactual labels.
    [Google trace documentation](https://github.com/google/cluster-data/blob/master/ClusterData2019.md).
-4. Complete the SF100 generation/checksum/cardinality manifest, then identify
-   immutable source snapshots and data locations for table resets.
-5. Repair the physical harness, then collect independent compaction/no-compaction
-   observations with matched states and offered workloads. External traces cannot
-   replace measuring Iceberg action costs on our actual system.
+4. Complete SF100 generator provenance and typed/relational validation; bytes and
+   source row counts already match both machines. Use new isolated experiment
+   tables and retain existing data/snapshots; no table reset is authorized.
+5. Finish fourth-query pilot audit, then register variance, common-horizon action
+   comparison and independent experiment splits. Reliable measurement primitives
+   exist; publication replay and accepted cost schema remain unimplemented.
+   External traces cannot replace actual Iceberg action-cost measurements.
 6. Secure a second environment/configuration for generalization, or scope claims
    explicitly to tested hardware while varying data size and resource budgets.
 
-No large external download was started, no source dataset was regenerated, and
-no active Spark table/process was changed. Existing pilot output remains
+The original inventory started no large external download and regenerated no source;
+later authorized overnight Snowset acquisition is recorded above. No service was
+shut down, restarted or cancelled. Existing tables remain preserved. Pilot output remains
 diagnostic/failed-validation evidence rather than publication success.
 
 ## Source reconciliation result and audit

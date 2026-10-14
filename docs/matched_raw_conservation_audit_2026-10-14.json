@@ -1,0 +1,125 @@
+{
+  "scope": "Read-only audits of three real episodes; no altered data or retrospective action-context acceptance. Prior exports retained.",
+  "episodes": {
+    "q1": {
+      "path": "results/matched_q1_raw_conservation_audit_20261014",
+      "manifest": {
+        "pre_action_observation_count": 0,
+        "schema_version": "diagnostic_physical_query_observations_v1",
+        "status": "exported_bound_measurements_only",
+        "origin": "physical_spark_iceberg_verified_sf1",
+        "row_count": 4,
+        "source_result_sha256": "d1a0850f9a36778e751d6050092e3ad7d2f4ce847272177a5b5f3ef400f80c39",
+        "source_events_sha256": "ebcaaaaa752e56c4752cba9f7f49c3c4cef06427dcb78ab26253ba3cdf217510",
+        "export_code_sha256": "279ace7623100dabf186215796ace0bf14c4dc79edcd6f4fe068b9f04c0adbe8",
+        "observations_sha256": "b71dc498833c4d9cff170e8b54a024b7fcee1b93290da05ca58c3dbf6bdf6480",
+        "code_revision_of_physical_run": "208f6a146c1cc470d34cde8a1f5e419583770c1d",
+        "scope": "Four actual probe observations from one matched episode. Fractions/bytes/monotonic durations preserved; no imputed intensity/small-file eligibility, split labels, future state, counterfactual cost or training approval. Old trainer schema intentionally incompatible.",
+        "limitations": [
+          "One query/one physical rewrite, not variance or statistical/cost/model approval",
+          "Controlled benchmark layout, not natural fragmentation or trace replay",
+          "Host background/cache/time trends recorded only through counters; matched snapshots alone are not a causal guarantee",
+          "REST/logging observation overhead differs during maintenance; no idle-host or pure CPU-execution claim",
+          "No intensity/small-file eligibility/forecast feature invented or training export"
+        ],
+        "source_preparation_sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57",
+        "raw_correctness_checks": [
+          "current_snapshot_sql",
+          "matched_query_sql_and_result_equality",
+          "original_and_compacted_state_binding",
+          "bidirectional_source_current_multiset",
+          "record_and_rewritten_file_conservation"
+        ]
+      },
+      "files": {
+        "export_code.py": "279ace7623100dabf186215796ace0bf14c4dc79edcd6f4fe068b9f04c0adbe8",
+        "export_record.json": "38f3952e4c328f37950b09c0dd368d654150b8a47e6869759440a2ee735d610e",
+        "query_observations.csv": "b71dc498833c4d9cff170e8b54a024b7fcee1b93290da05ca58c3dbf6bdf6480",
+        "source_config.json": "bf168ee6c330811b3908b0764dc5c8634aa1d5fdb0f37fe9e300aa15e61380c0",
+        "source_preparation_result.json": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57",
+        "source_result.json": "d1a0850f9a36778e751d6050092e3ad7d2f4ce847272177a5b5f3ef400f80c39"
+      }
+    },
+    "q0": {
+      "path": "results/matched_q0_raw_conservation_audit_20261014",
+      "manifest": {
+        "pre_action_observation_count": 1,
+        "schema_version": "diagnostic_physical_query_observations_v1",
+        "status": "exported_bound_measurements_only",
+        "origin": "physical_spark_iceberg_verified_sf1",
+        "row_count": 4,
+        "source_result_sha256": "2e7e7abd1baf8c7abbee535f6e26459dc74b04e7da1bd0eeab9c2f18c3748ebf",
+        "source_events_sha256": "5529f2a83ffc6fdb6afdfd2a348f037c0919195d599de2da433fd6dab4c5ea40",
+        "export_code_sha256": "279ace7623100dabf186215796ace0bf14c4dc79edcd6f4fe068b9f04c0adbe8",
+        "observations_sha256": "112594a1ec993c7fa797ce4c01fd9284871af8786d8a44520ad476e34b918a81",
+        "code_revision_of_physical_run": "38f0514da328a9cea58d7e9e8aef0da881c7ec41",
+        "scope": "Four actual probe observations from one matched episode. Fractions/bytes/monotonic durations preserved; no imputed intensity/small-file eligibility, split labels, future state, counterfactual cost or training approval. Old trainer schema intentionally incompatible.",
+        "limitations": [
+          "One query/one physical rewrite, not variance or statistical/cost/model approval",
+          "Controlled benchmark layout, not natural fragmentation or trace replay",
+          "Host background/cache/time trends recorded only through counters; matched snapshots alone are not a causal guarantee",
+          "REST/logging observation overhead differs during maintenance; no idle-host or pure CPU-execution claim",
+          "No intensity/small-file eligibility/forecast feature invented or training export"
+        ],
+        "source_preparation_sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57",
+        "raw_correctness_checks": [
+          "current_snapshot_sql",
+          "matched_query_sql_and_result_equality",
+          "original_and_compacted_state_binding",
+          "bidirectional_source_current_multiset",
+          "record_and_rewritten_file_conservation"
+        ]
+      },
+      "files": {
+        "decision_observations.json": "d04f3324a5e1256532b9580366f3756388a4b7c5e8507d7877b0e32abd5d95a5",
+        "export_code.py": "279ace7623100dabf186215796ace0bf14c4dc79edcd6f4fe068b9f04c0adbe8",
+        "export_record.json": "f5768971567f6dac88c88b10ff2158ef0b47e0e5197ba981f154e8df2dadcb1e",
+        "query_observations.csv": "112594a1ec993c7fa797ce4c01fd9284871af8786d8a44520ad476e34b918a81",
+        "source_config.json": "c97758536f4c01d7fdc67a8a8499a987ebfe843302fb7fe4c67b703cb1a23ba0",
+        "source_preparation_result.json": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57",
+        "source_result.json": "2e7e7abd1baf8c7abbee535f6e26459dc74b04e7da1bd0eeab9c2f18c3748ebf"
+      }
+    },
+    "q2": {
+      "path": "results/matched_q2_raw_conservation_audit_20261014",
+      "manifest": {
+        "pre_action_observation_count": 1,
+        "schema_version": "diagnostic_physical_query_observations_v1",
+        "status": "exported_bound_measurements_only",
+        "origin": "physical_spark_iceberg_verified_sf1",
+        "row_count": 4,
+        "source_result_sha256": "6c8027af982f0cf00c39f4e51a6c3181f27d7c69686485ca4371c01483d6b2c0",
+        "source_events_sha256": "fcba244ac5901557bb17395b0b841f241e8ed05a2c881e4188aa7e54a867594f",
+        "export_code_sha256": "279ace7623100dabf186215796ace0bf14c4dc79edcd6f4fe068b9f04c0adbe8",
+        "observations_sha256": "6e359ce8ebb860023f808f024decb61bb17af161626352a68cedfb1a5003acbe",
+        "code_revision_of_physical_run": "7b69a6be0bdd00e7ecc81104582f679883fba762",
+        "scope": "Four actual probe observations from one matched episode. Fractions/bytes/monotonic durations preserved; no imputed intensity/small-file eligibility, split labels, future state, counterfactual cost or training approval. Old trainer schema intentionally incompatible.",
+        "limitations": [
+          "One query/one physical rewrite, not variance or statistical/cost/model approval",
+          "Controlled benchmark layout, not natural fragmentation or trace replay",
+          "Host background/cache/time trends recorded only through counters; matched snapshots alone are not a causal guarantee",
+          "REST/logging observation overhead differs during maintenance; no idle-host or pure CPU-execution claim",
+          "No intensity/small-file eligibility/forecast feature invented or training export"
+        ],
+        "source_preparation_sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57",
+        "raw_correctness_checks": [
+          "current_snapshot_sql",
+          "matched_query_sql_and_result_equality",
+          "original_and_compacted_state_binding",
+          "bidirectional_source_current_multiset",
+          "record_and_rewritten_file_conservation"
+        ]
+      },
+      "files": {
+        "decision_observations.json": "7110cdcdcf70c16cf6808b8fda2c87758e6746d057666e05eb52f1975d3f1efe",
+        "export_code.py": "279ace7623100dabf186215796ace0bf14c4dc79edcd6f4fe068b9f04c0adbe8",
+        "export_record.json": "f36c0f8551ac4e7f88c593d59b686ee9a9449076a82dd7d518649205490a367a",
+        "query_observations.csv": "6e359ce8ebb860023f808f024decb61bb17af161626352a68cedfb1a5003acbe",
+        "source_config.json": "de6fcd58bbbcee70b8056bfb6b36921dfa1901cce13930f1d5e10a7236287c74",
+        "source_preparation_result.json": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57",
+        "source_result.json": "6c8027af982f0cf00c39f4e51a6c3181f27d7c69686485ca4371c01483d6b2c0"
+      }
+    }
+  },
+  "all_audit_package_hashes_match_worker3": true
+}

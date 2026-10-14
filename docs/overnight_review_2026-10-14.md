@@ -1,5 +1,30 @@
 # Overnight review — 2026-10-14
 
+## Reading guide — status at 05:51 IST
+
+The project now has trustworthy measurement primitives and verified real arrival
+data, but no accepted cost model or forecast-aware scheduler. All four completed
+SF1 matched episodes passed the strengthened offline correctness audit. These are measurement diagnostics, not a statistical experiment corpus.
+
+- **Data:** complete Snowset source/cohort validated and mirrored; actual arrival
+  forecasting diagnostic improved count MAE on one held-out warehouse. Alibaba
+  bytes/schema audited, but cluster events remain distinct from SQL arrivals.
+  SF100 source hashes/counts match; typed and generator-provenance gaps remain.
+- **Measurements:** actual execute clocks, available 60/300-second telemetry
+  history, snapshot/file inventories, task overlap and preserved physical rows
+  bind to raw evidence. Q2/Q3 add fresh pre-action table state. Historical invalid
+  training data/models stay blocked; no fake features or counterfactual targets.
+- **Next research gate:** repeated matched physical episodes, registered arrival
+  mapping/queue accounting and common-horizon compact-now versus wait costs.
+  See `common_horizon_cost_protocol.md` and `dataset_and_resource_readiness.md`.
+- **Limits:** one server, benchmark layout interventions, one trace cohort, short
+  calibration history and no ingestion source. No scheduling-benefit, uncertainty
+  coverage, faithful AutoComp reproduction or SIGMOD/PVLDB readiness claim.
+- **Preservation:** existing services/tables/dirty files/archive retained. New
+  physical operations stop at 06:15; agent work ends at 07:00. The entries below
+  retain failures and evolving audit boundaries; later entries supersede older
+  status statements. Raw UTC clocks are authoritative for chronology.
+
 ## In progress
 
 Started 00:07 IST; deadline 07:00 IST. No shutdown or cancellation authorized.
@@ -862,7 +887,7 @@ Actual filesystem inspection: warehouse path `/mnt/nfs-storage` is **ext4 on
 semantics from the path. Host aggregate block-device counters still are not query-
 specific I/O; raw Spark task/file evidence remains separate.
 
-### 05:45 IST onward: Q2 fresh-state gate passed, Q3 preregistered
+### 05:42 IST onward: Q2 fresh-state gate passed, Q3 preregistered
 
 Q2 ended naturally; the local exporter independently reconstructed raw statement
 timing, actual telemetry windows/frontiers, snapshot/file metadata and rewrite/task
@@ -879,3 +904,52 @@ fresh-state/window/exposure/conservation gates retained. No extra generated load
 slowed SQL or invented intensity. This covers the fourth query type only, not
 independent repetitions or workload/layout diversity. No cost training authorized
 by these diagnostics. Audit its raw result before proceeding; preserve failures.
+
+### 05:45 IST: Q3 active; offline conservation audit strengthened
+
+Q3 launched at 00:13:17 UTC (05:43:17 IST), PID412112, full execution
+`d520f4d1f8527025ac3f960ed52cf88783b4f734`. No active own pilot/collector or
+running Spark jobs at launch; HEAD and four unit hashes matched across both hosts.
+Artifacts `results/sf1_matched_q3_20261014/`, matching launch log/JSON receipt.
+Result pending; never duplicate/cancel its work.
+
+Offline export now checks actual current-snapshot SQL/cardinality, unchanged SQL
+semantics and raw result equality across all four probes, observed original versus
+compacted state, pre-action state equality, pinned preparation receipt, exact raw
+bidirectional EXCEPT ALL zero-difference statement, and measured file/row
+conservation. This closes reliance on acceptance flags for correctness. All three
+completed real episodes Q1/Q0/Q2 passed the strengthened read-only audit; separate
+`results/matched_q*_raw_conservation_audit_20261014/` packages retain prior exports.
+Evidence `matched_raw_conservation_audit_2026-10-14.json`. No fake mutations/runs.
+
+Added `common_horizon_cost_protocol.md` as a design dependency, not an executable
+registration: explicit offered/queued/service boundaries, matched physical arms,
+boundary work/maintenance debt, genuine unobserved counterfactuals, variance and
+independent splits. Still no horizon/mix/penalty/ingestion values invented and no
+cost model trained. Synchronize code after the active frozen Q3 run finishes.
+
+### 05:51 IST: Q3 completed and full four-query raw audit covered
+
+Q3 PID412112 ended naturally. Original snapshot4643245528519293386 and compacted
+6861627319991723129; actual fresh inventory age **0.234217s** at maintenance
+RPC. Rewrote 16 files/164,550,027 bytes into one file, exact 6,001,215 rows and
+all query results preserved, zero bidirectional multiset difference. Treatment
+verified task-lifetime overlap **0.236999989s**;
+original controls/layout had no rewrite exposure. Strict offline exporter passed
+raw SQL/result/multiset/file/row checks as well as clocks, windows and tasks. Raw
+and seven-file export package mirrored, all SHA256 equal. Evidence
+`matched_q3_validation_2026-10-14.json`, `results/sf1_matched_q3_20261014/`,
+`results/matched_q3_raw_conservation_audit_20261014/`.
+
+All four query templates now have measured matched diagnostic episodes; Q1 lacks
+pre-action context, Q0 retains older immutable inventory, Q2/Q3 verify fresh
+pre-action state. Do not flatten these contracts into an accepted training corpus.
+Three earlier strengthened audit packages also mirrored/hash-verified. Updated
+resource readiness with complete Snowset source/cohort and point-forecast evidence
+and remaining SF100/ingestion/replay/independent-experiment gaps. No active own
+physical pilot remains; Spark and all tables/data/services preserved.
+
+Next ready work: resolve typed SF100 source validation without inventing its missing
+generator history, or preregister bounded variance/common-horizon methodology.
+Do not launch publication replay, promote models or select horizons/mixes from
+held-out outcomes. No new physical operation after 06:15 IST; final audit remains.
