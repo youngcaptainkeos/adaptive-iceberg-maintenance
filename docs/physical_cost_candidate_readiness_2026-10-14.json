@@ -1,0 +1,24 @@
+{
+  "status": "verified_candidate_csv_raw_roundtrip_only",
+  "query_rows": 489,
+  "rewrite_rows": 4,
+  "episodes": 7,
+  "overlapping_source_interval_families": [
+    [
+      "2018-02-22T18:26:00.286000+00:00",
+      "2018-02-22T18:31:00.286000+00:00"
+    ]
+  ],
+  "source_family_count": 1,
+  "fully_observed_300s_demand_rows": 0,
+  "failed_attempts_retained": [
+    {
+      "experiment_id": "sf1_long_horizon_20261014_02",
+      "status": "failed_preserved",
+      "included_in_candidate_rows": false
+    }
+  ],
+  "calibrated_training_accepted": false,
+  "export_record_sha256": "4563bda9af99dc82ce7ff80e863a531b68d6481f1fc2d8b235819d77c3e80538",
+  "verification_code_sha256": "e9d242b1253aafe1442b6edbe894dbb5c75fc8270ccf2d0f5aa579daa1b2a35a"
+}

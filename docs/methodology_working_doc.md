@@ -1236,3 +1236,42 @@ stash84709ace32daa6c1af22e66522cf2c3e4e86a2e8, with exact local file/diff fallba
 under the reconciliation directory. Other remote dirty files and the unrelated
 archive were untouched. Both methodology updates add lines only; original local
 text remains as historical evidence, with corrections appended rather than removed.
+
+## 14. Cost-candidate export completed and independently verified —2026-10-14
+
+Registered implementation2cb68cd8d2af23103ea2e724f5ae0acce1d951ab pushed and
+worker3 fast-forwarded; all5intended file SHA256s matched. Detached exporter
+PID974140 completed naturally on actual successful source packages. Output
+`results/physical_cost_candidates_20261014/`:489query observations,4actual useful
+rewrite observations and7successful episodes. Failed second long arm excluded;
+failed/unattempted cohort inventory retained. No synthetic augmentation or model
+fitting. Query targets are raw actual service ms; rewrite targets are actual call
+duration/work. Predictor allowlist excludes task-overlap outcomes, source/episode
+identity, assigned arm and other diagnostic future/outcome fields.
+
+Separate verifier PID977499 compiled and ran on worker3 under nohup. CSV targets,
+pre-query feature clocks/table state/windows, source IDs, offered-history counts/
+missingness and rewrite work reconstructed from raw events; artifact/source hashes
+and coverage passed. Readiness report `physical_cost_candidate_readiness_2026-10-14.json`
+records1connected source-overlap family and0fully observed300-second offered-history
+rows.7physical episodes/489rows are not489independent experiments or multiple
+independent trace families. Current data can guide exploratory engineering, not
+independent held-out calibration or scheduler acceptance. Missing300-second demand
+was not filled with zero; existing host300-second histories remain actually measured.
+
+Full candidate tables/config/exporter/verifier-dependency code/manifest/round-trip
+proof mirrored locally; sorted file/SHA256 manifest matched worker3. Original raw
+packages remain separately retained. Both methodology files passed server-side
+byte-prefix preservation checks againstf07c2d6and the exact dirty remote methodology
+stash. Historical text/deletion history remained recoverable; all other dirty files
+were untouched. Append proof snapshot is
+`results/methodology_append_verification_20261014.json` (the2cb68cddoc version).
+
+Next major job: recover boundary-safe collection with preregistered new tables/
+cutoff and explicitly varied physical states, disjoint source-time families and
+appropriate observed-history burn-in. Implement the new candidate-schema trainer
+for exploratory A/B/shared/rewrite comparisons, then independent chronological
+accuracy/calibration gates. Do not force legacy normalized intensity/small-file
+fields into this data or assign before/after differences as causal penalties.
+No physical restart after the prior18:30cutoff, no model trained/promoted, no
+shutdown/cancellation/table deletion in this documentation/export job.

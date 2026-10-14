@@ -219,3 +219,15 @@ failed/unattempted inventory. Incomplete offered histories remain missing; futur
 engine overlap and arm/outcome fields cannot enter predictors. Export completion
 will be logged after worker3's detached real-artifact run. This is candidate data,
 not accepted calibrated training or a deployed learned scheduler.
+
+### 8.2 Major job: verified candidate export completed —2026-10-14
+
+Working ledger Job14records detached worker3 export and independent raw CSV
+verification:489actual query observations,4real rewrites,7successful episodes,
+with failed/unattempted inventory. Current corpus has1overlapping source-time
+family and0fully observed300-second offered-demand rows; incomplete demand remains
+missing. These are candidate engineering data, not independent calibrated training
+or accepted scheduler evidence. Full export/frozen dependency/proof package mirrored
+and hashes matched. Next collection must add disjoint windows/diverse physical
+state and correct history exposure; next trainer compares separate/shared costs
+under explicit exploratory and later held-out gates. No synthetic labels or fit.

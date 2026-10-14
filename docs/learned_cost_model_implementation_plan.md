@@ -124,3 +124,15 @@ history and supersede them explicitly. Every repository unit: targeted commit,
 GitHub push, worker3 fast-forward and intended SHA256 agreement; preserve dirt.
 All validation/physical runs occur on worker3 detached under nohup with log/PID/
 expected check time. Never restart/kill/cancel services or delete tables/data.
+
+## Job1 completion/readiness —2026-10-14
+
+Implemented and ran the raw-verified exporter and independent round-trip verifier
+on worker3 under nohup:489query rows,4rewrite rows,7successful episodes. Source
+failures/unattempted remain excluded and recorded. Artifact hashes mirrored.
+`physical_cost_candidate_readiness_2026-10-14.json` shows one connected overlapping
+source interval family and no full300-second offered-demand history rows. This
+blocks independent source-family train/test/calibration and demand-history inputs;
+it does not erase the valid host windows/physical latency targets. Next collection
+must explicitly address those gaps and varied layouts, rather than counting more
+queries from the same source minute as independent trials. No model fit occurred.
