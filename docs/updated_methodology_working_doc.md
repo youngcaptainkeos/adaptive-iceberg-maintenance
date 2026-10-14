@@ -354,3 +354,7 @@ Fresh11recovery5 prioritizessource2, keepsalreadyacceptedsource0/1episodes.
 
 Recovery5launchPID1334649confirmed, immutable95a5548/19unitSHAagree. Historical
 source1rawregressionpassed, liveindependentsamplingneedsaudit. Firstcheck01:20IST.
+
+Section36 third disjointsourcefamily/liveindependentsamplingpassed.01source2later
+1501offered/528finalcompleted/973queued; baseline02running. Threefamilies enable
+possibleexploratorysplit afterexport, not calibrated/acceptedmodels. Receiptsmirrored.

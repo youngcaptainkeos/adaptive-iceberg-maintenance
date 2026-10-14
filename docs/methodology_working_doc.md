@@ -1710,3 +1710,20 @@ results/sf1_overnight_recovery5_cohort_20261015_launch.log; matchingprogress/raw
 01..11. Firstcheck01:20IST;fullestimate04:00–04:30ISTsubjectstrictgates. Existing
 cutoffs preserved; noheavyfit/backupwhilequeriesactive. Three-family exportfit
 possibleonlyonactualsuccessfulsource2data, nofuturelabels/manufacturedsample.
+
+## 36. Third disjoint source family and live independent sampling pass
+
+19:55UTC PID1334649active; recovery5arm01source2compact_laterpassed physical+
+frozen raw gates,1501offered/528ultimatelycompleted/973queued.134.852304mslate
+boundarycensus527completed/1dispatched/973queued retained.02source2baselineactive
+since19:44:48UTC. Independentreader/durablewriter now passed one actualepisode;
+no samplegap/freshness thresholds relaxed. Successfulepisodes now coverthree
+registered disjoint600s sourcewindows (source0three,source1now,source2later).
+This enables a possible whole-family chronological exploratorysplit afterexport,
+not sufficient calibration/power/causal/generalization evidence. Still no actualfit.
+ResultSHA72440a6724b661694ffc73dd8272a432f6ccf2859bcbafc4332ac529ae1c5293;
+eventsSHA89f8df6e2d40c2572b7c2b42629860902e60d172d30afc6b1111b774a5e3afc7;
+auditSHA2f7368ecabf1ccb817b3e78e867da4af0022a870c3f0531301fea1c1a3fa01d2.
+Smallimmutable result/audit receipts mirrored; fullraw/exportroundtrip/fit wait for
+inactivecollector. Remaining32file/layout/sourcearms stillpending; all prior
+failed/unattempted counts unchanged. Next physical gates before dependentmodeljob.

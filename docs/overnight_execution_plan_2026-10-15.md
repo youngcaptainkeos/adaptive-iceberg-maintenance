@@ -141,3 +141,7 @@ collectorinactive; maintaincutoffs and frozenruntime. Prior groups/failures reta
 Recovery5fresh11registered; independentcounterreader/durablepublish pipeline addresses
 actualsamplingstall withoutweakenedgates. Source2first thenremaining source1arms.
 Passedsource0group/source1now retained, allfailuresunchanged. Regressionthenlaunch.
+
+19:55UTC source2firstarmpassed/liveindependentsamplingvalidatedonce. Threefamilies
+nowavailableinprinciple; aftercollectorstops exportallacceptedepisodes plusallfailed
+inventories, rawroundtrip thenpreregisteractualhashes/familysplit andexploratoryfit.

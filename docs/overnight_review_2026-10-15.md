@@ -264,3 +264,12 @@ Recovery5nohupPID1334649alive19:28UTC/00:58IST. Frozen
 arm, correction: no laterarm implied). Log
 results/sf1_overnight_recovery5_cohort_20261015_launch.log; firstcheck01:20IST,
 fullestimate04:00–04:30ISTsubjectgates. Noacceptednewreader/writerlivepath/modelyet.
+
+19:55UTC recovery5PID1334649active;01source2laterpassedphysical/frozenraw:
+1501offered/528finalcompleted/973queued,134.852304mslateboundarycensus527completed/
+1dispatched/973queued.02baselineactive19:44:48UTC. Liveindependentsamplingpassedonce;
+nowthree disjointsourcefamilies havepassedepisodes. Actualfit stillpendingverified
+export, calibrationblocked. ResultSHA72440a6724b661694ffc73dd8272a432f6ccf2859bcbafc4332ac529ae1c5293;
+eventsSHA89f8df6e2d40c2572b7c2b42629860902e60d172d30afc6b1111b774a5e3afc7;
+auditSHA2f7368ecabf1ccb817b3e78e867da4af0022a870c3f0531301fea1c1a3fa01d2.
+Smallreceiptsmirrored;fullraw/export/fitafterinactivecollector. Priorfailuresunchanged.
