@@ -367,3 +367,13 @@ worker3nohupbyteverifierPID1595507launched. Script/log results/*mirrored_table_b
 physical_table_byte_fallback_verification_20261015.log, pendingreceiptJSON.32raw/
 candidatemirror95731running. Next actualcompletedreceipts/hashagreement thenmorning
 review, no newphysicaloperations. Originaltabledata/services remainuntouched.
+
+## Authoritative morning status prepared05:25IST
+
+See morning_review_2026-10-15.md forconcise outcomes/failures/resources/nextgates.
+9successful tablebytecopies516files/2,486,276,798bytes verified againstoriginal/
+unchangedworker3sources; portablecatalogunverified. Final32evidence117filesSHA
+matched; earlier144raw/20candidate/6fitagreementunchanged. Noactiveowncollector/
+fitter/auditor/Sparkjobs23:55UTC. Negativefitpreserved/no calibratedscheduler.
+Allfailedcounts preserved as summarytable. Automationcontinuesonlyaudit/handover
+until06:00IST thenpause; neverstopservices/processes/deletedata.

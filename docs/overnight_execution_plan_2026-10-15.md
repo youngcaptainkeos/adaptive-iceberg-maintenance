@@ -185,3 +185,7 @@ partialcopy/runningoperationatdeadline, no kill/delete/restart.
 
 Tabletransferfinishedexit0; worker3byteverifyPID1595507launched. Pollreceipt and
 32raw/candidatecopysession95731; verifyhashes, saveclearfinalmorningreview beforecutoff.
+
+Morning summary saved morning_review_2026-10-15.md. Verifiedninebytefallbacktables/
+516files plusfinal117raw/candidatefiles. No physicaljobs; doonlyfinalreadonlyaudit/
+documentsync. At06:00ISTpauseautomationandreport savedsummary, preserveservices.

@@ -1942,3 +1942,20 @@ No Spark/SQL/data mutation, noportablecatalogproof. Pendingverification cannotbe
 backupapproval. Completed32candidate/cohort/raw3armmirrortransferexecsession95731
 stillrunningatlaunch; no competingphysicalexperiment/modeljob. Nextcheckbothjobs,
 allmirroredraw/candidateSHA agreement andfinalmorningstatus before06:00IST.
+
+## 48. Full accepted evidence/byte fallback verification and morning handover
+
+Worker3byteverifierpassed9tables/516files/2,486,276,798bytes: allcopiedpaths/size/
+SHA matchoriginalmanifest; sourcesrehashunchanged. Receiptmirroredlocally
+physical_table_byte_fallback_verification_20261015.json; sourceManifestSHA
+89e5e51c04ed818cbcd6e502282dd2c5e51d7a5991f67fca867817722a7b1a96. Portablecatalog
+notproved; failedtables remainremote. Final32candidate/cohort/raw3arms117files
+mirrored, nohupSHAcheckPID1610036finished117OK/noFAILED. Previous144raw/20candidate/
+6fitfilesagreement unchanged. No activeownphysical/modeljobs/Sparkjobs23:55UTC.
+
+Saved docs/morning_review_2026-10-15.md distinguishes implemented/fitted/negative/
+uncalibrated/acceptedrawstates, exactfailedcounts/resources/nextgates/fallbacklimits.
+No newphysicaloperations aftercutoffs. Automationstillactiveuntil06:00IST; pauseat
+cutoffwithoutcancelinganyservice. Allfuturemodelsneednewuntouchedtestblocks;
+tonight's heldoutnegativefitnotrefitted. Targetedpush/sync/hashcheckscontinuefor
+finaldocs; unrelateddirty/stashes/archivepreserved.
