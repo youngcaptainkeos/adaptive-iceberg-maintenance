@@ -1822,3 +1822,21 @@ allrawfiles beforefallbackclaim. Actualphysicaltablebytes not yetmirrored fornew
 No activephysical/modelprocess at21:10UTC. Append nextgates inlearnedcostplan:
 lock-acquisitionavailability race, matchedindependentvariedlayout/regimecollection,
 future untouchedtestblocks/trainingonlypositivemodelprotocol, physicalfallback.
+
+## 41. Six successful raw packages fully mirrored and hash verified
+
+All144files across6accepted-for-physical-diagnostic packages mirrored locally,
+including rawevents/frozenprotocol/code/SQLreferences/mapping/results. Worker3
+nohupSHA256checkPID1456293finished,144OK/noFAILED; receipt
+results/six_raw_mirror_integrity_20261015.log, manifest /tmp/six_raw_mirror_hashes.
+No activeSpark/collector/modelprocess at21:25UTC. Together with20candidatepackage
+and6fitbundlefiles, actual model-input/predictionevidence has fallbackcopies. This
+is rawresearch-evidence fallback, not Icebergtable-byte/portablecatalog fallback;
+newphysicaltablebytecopy stillmissing. Neverdelete/resetremotedata or archive.
+
+Negativefit remains unchanged. Nextcodegate: releasepreparationlock ifactualdurable
+sample expiredwhileacquiringit, recordunsubmitteddeferral, waitoutside thenfresh
+prepare. PreserveFIFO/cutoffs/actual2s gap-age/history gates; noSQLretry or prior
+failedstatusupgrade. Newpathrequires preregisteredfreshlivevalidation, not fake
+samplesor historicalcompile-success. Physicalbytepreservation is independentjob
+whileidle; no modelrefitting onheldoutoutcomes.

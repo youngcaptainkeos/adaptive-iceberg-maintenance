@@ -381,3 +381,7 @@ IndependentfitroundtripnohupPID1427023launched; no modelpromotionpendingaudit.
 Section40 independentfitroundtrip passed butlatencymodels failmedianbaselines;
 no schedulerapproval/calibration. Fitbundle6files mirroredSHA-identical; sixraw
 packagecopy underway. Learnedcostplan records next independentcollection gates.
+
+Section41 all144rawfilesfrom6successfulpackages mirrored/SHAverified;20candidate/
+6modelbundlefilesalreadyverified. Physicaltablebytes/portablecatalogfallback still
+missing. Negativefit unchanged; submissionavailabilityrace repair remainsnextgate.
