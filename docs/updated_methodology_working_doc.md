@@ -394,3 +394,6 @@ allgates/cutoffsunchanged. Source2overlap notindependentfuturetest; no modelrefi
 
 32filematchedgroupnohupPID1486932alive, immutable1fa3d3d/8SHAagree. Firstcheck03:50,
 fullestimate04:20–04:30ISTsubjectgates; no modeltuningor acceptedlivebranchyet.
+
+Section44 complete32filethree-arm grouppassed, finalcompleted535/522/530 no policy
+claim. Separate diagnosticexportregistered, no refit; branchcoveragecheckedseparately.

@@ -335,3 +335,9 @@ currentfitnegativeunchanged. NextSHAimmutablelaunch, expected~50minruntime.
 8unitSHAagree. Log results/sf1_layout32_validation_cohort_20261015_launch.log;
 firstcheck03:50IST, fullestimate04:20–04:30IST. Allgates/cutoffsunchanged, no
 acceptedlayout/newdeferralbranchatlaunch; negativefitpreserved/noheavyfitconcurrent.
+
+32filecohortcompleted22:46:44UTC3/0/0,1501offeredperarm; finalbaseline535/now522/
+later530completed with966/979/971queued. Strictgatespassed; no causalpreferredpolicy.
+CohortSHA d13bbc70743d8ecaedddfebaec83c9bf746e0abbf17808c70b46cfc00c8b6258.
+Branchdiagnosticrecorded separately, no unexercisedpathclaim. Separate32candidate
+exportregistered, no refit; next detachedexport/roundtrip/rawmirror/physicalfallback.

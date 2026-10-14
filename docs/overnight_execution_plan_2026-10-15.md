@@ -172,3 +172,6 @@ livevalidation beforeacceptance. RetainFIFO/cutoffs/strictage-gap gates andnegat
 
 Fresh32filethree-armdiagnostic registered forlive repairedpath/layoutvalidation;
 source2overlapcannotbeindependentmodeltest. No refitcurrentheldout; cutoffsunchanged.
+
+32filegroupcomplete3passed/nofailed; separatecandidateexportregistered/norefitting.
+Next rawroundtrip/mirror andphysicalbytefallback whileidle, savefinalmorningreview.

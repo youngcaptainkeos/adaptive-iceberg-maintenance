@@ -1875,3 +1875,20 @@ Log results/sf1_layout32_validation_cohort_20261015_launch.log; matchingprogress
 audits andarms sf1_layout32_validation_20261015_01..03. Firstcheck03:50IST, group
 estimated04:20–04:30ISTsubjectrawgates. Noacceptednewlayout/deferralbranchatlaunch.
 No heavycopy/fitting concurrent; finishinflightnaturally/cutoffs unchanged.
+
+## 44. Complete32file matched physical group passed; separate diagnostic export
+
+Cohortcompleted22:46:44UTC3passed/0failed/0unattempted; no process canceled.
+Each1501offered. Baseline535finalcompleted/966queued, now522/979, later530/971;
+latecensus534/521/529completed plus1dispatchedeach, observer89.500690/100.443621/
+77.118767mslate. Strictphysical/logical/raw/layout/task/freshnessgates passed;
+singleepisodes/no causalpreferredpolicy or calibrationclaim. Allpriorfailedcounts
+unchanged, existingnegativefit unchanged. New source2overlap isnotindependentfamily.
+Branch diagnostic results/layout32_branch_evidence_20261015.json separatelyrecords
+actualunsubmitteddeferrals/waits; passingepisodecannotproveunexercisedbranch.
+
+Registered separate32filecandidateexport, SHA-bound3results and9cohortinventories,
+output results/physical_cost_candidates_layout32_20261015. No refit/test-outcome
+tuning. SourcecohortSHA d13bbc70743d8ecaedddfebaec83c9bf746e0abbf17808c70b46cfc00c8b6258.
+Next nohup export/independentroundtrip, rawmirror/hashes, idlephysicalbytefallback;
+cutoffs/newphysicalepisodeconstraints preserved. No acceptedcostmodel/scheduler.

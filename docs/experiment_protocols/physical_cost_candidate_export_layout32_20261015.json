@@ -1,0 +1,62 @@
+{
+  "schema_version": "physical_cost_candidate_export_v1",
+  "successful_arm_results": [
+    {
+      "path": "../../results/sf1_layout32_validation_20261015_01/result.json",
+      "sha256": "c53b8413718746d4f79bd5a49aee5b85641dba6482a6fb13421f4b6ed5d0cd52"
+    },
+    {
+      "path": "../../results/sf1_layout32_validation_20261015_02/result.json",
+      "sha256": "3b518188db35c2005ba486b9fc1151441843a0656f74fedcb4b9393bb768f37a"
+    },
+    {
+      "path": "../../results/sf1_layout32_validation_20261015_03/result.json",
+      "sha256": "8edf109ca686993b9eb7c7d08df0a1c2835dfd4a7f8c92bfc3ab6ccb3725a111"
+    }
+  ],
+  "attempt_inventories": [
+    {
+      "path": "../../results/sf1_common_horizon_cohort_20261014/result.json",
+      "sha256": "0440032e0ddcc0ed54bc4c9c47a80c2642a3a7ef007f32e20a58db92301aadb3"
+    },
+    {
+      "path": "../../results/sf1_long_common_horizon_cohort_20261014/result.json",
+      "sha256": "2012f59f1b2f0d2bf386d653d9afb20b02908218af7386f8550318ca100a2351"
+    },
+    {
+      "path": "../../results/sf1_overnight_cost_cohort_20261015/result.json",
+      "sha256": "22febe94069f18a1e00c7ad77cf942df9c2f8c7aeb576502e47e1ed1c7b7d7db"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery_cohort_20261015/result.json",
+      "sha256": "be778c35974fb836892c599f29dba6feb1ab89bba927c6dd7f563f44468ee613"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery2_cohort_20261015/result.json",
+      "sha256": "df200ec8ff7c02dc760c23eb213c22e4be2c3a6a9af9cb0c8b4272d847c84508"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery3_cohort_20261015/result.json",
+      "sha256": "73cb1b166f5d9fac08f0be2525c886f8bb06f1469bb2f2b55e2b898f2b12fd75"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery4_cohort_20261015/result.json",
+      "sha256": "18dc83169d9790563f88fa6bb4e4af001c47bf19d7e49bbb84e6dfd838851c67"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery5_cohort_20261015/result.json",
+      "sha256": "3af70b3f3afb95329ea281ce0ed7123f85282b7efa8242cb6c35983de2ade25a"
+    },
+    {
+      "path": "../../results/sf1_layout32_validation_cohort_20261015/result.json",
+      "sha256": "d13bbc70743d8ecaedddfebaec83c9bf746e0abbf17808c70b46cfc00c8b6258"
+    }
+  ],
+  "output_directory": "../../results/physical_cost_candidates_layout32_20261015",
+  "limitations": [
+    "Three32filematched diagnosticarms onexisting sourcefamily2, not independentnewtrain/test/calibration.",
+    "No modelrefit/currentheldouttuning or preferredpolicyclaim; countcontrasts singleepisodes.",
+    "Actualinstrumentation/32filevariation, earlier16vs32crossversioneffectconfounded.",
+    "Missingdemandhistories staymissing andallfailureinventories retained."
+  ]
+}
