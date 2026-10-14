@@ -257,3 +257,10 @@ Recovery4stopped1passed/1failed/10unattempted;01source1now1557offered/523complet
 Independentcounterreader/durableFIFOwriter opt-in, fsyncbeforefeatureavailability,
 no gap/age/coverage relaxation. Recovery5fresh11registered source2sixfirst then
 remainingfive source1; retainpassedsource0group/source1now. Next regression/launch.
+
+Recovery5nohupPID1334649alive19:28UTC/00:58IST. Frozen
+/tmp/capstone_overnight_recovery5_runtime_20261015 at95a5548d9f46471b852f0d796b6268055babb1f0;
+19unitSHA/HEADmatchhosts; actualsource1rawlaterregressionreceiptpassed (source1now
+arm, correction: no laterarm implied). Log
+results/sf1_overnight_recovery5_cohort_20261015_launch.log; firstcheck01:20IST,
+fullestimate04:00–04:30ISTsubjectgates. Noacceptednewreader/writerlivepath/modelyet.

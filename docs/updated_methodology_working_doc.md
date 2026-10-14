@@ -351,3 +351,6 @@ Section34 recovery4remaining12source1/2episodes launchednohupPID1285378 inimmuta
 Section35 actual2.5286s samplinggap/recovery4state1/1/10preserved. Independent real
 counterreader/FIFOdurablewriter implemented, onlyfsyncedfeatures, gatesunchanged.
 Fresh11recovery5 prioritizessource2, keepsalreadyacceptedsource0/1episodes.
+
+Recovery5launchPID1334649confirmed, immutable95a5548/19unitSHAagree. Historical
+source1rawregressionpassed, liveindependentsamplingneedsaudit. Firstcheck01:20IST.

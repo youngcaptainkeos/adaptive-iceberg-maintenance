@@ -1700,3 +1700,13 @@ thenfiveunpassedsource1arms; retainpassedsource0three/source1one. Two layouts/th
 arms/source-spacing/cutoffs/boundary/preparation/archivecontracts unchanged. All
 historical failed counts preserved. Next server syntax/rawregression then immutable
 launch; no fituntilrawverified independentfamily data. No calibration/policyclaim.
+
+Recovery5nohup launch19:28UTC/00:58IST, PID1334649alive, frozen
+/tmp/capstone_overnight_recovery5_runtime_20261015 at
+95a5548d9f46471b852f0d796b6268055babb1f0. All19unitSHA/HEADmatchhosts;
+actualsource1nowrawregressionpassed independent_sampling_raw_regression_20261015.json.
+Live newreader/writer contract stillneedsphysicalaudit. Log
+results/sf1_overnight_recovery5_cohort_20261015_launch.log; matchingprogress/rawarms
+01..11. Firstcheck01:20IST;fullestimate04:00–04:30ISTsubjectstrictgates. Existing
+cutoffs preserved; noheavyfit/backupwhilequeriesactive. Three-family exportfit
+possibleonlyonactualsuccessfulsource2data, nofuturelabels/manufacturedsample.
