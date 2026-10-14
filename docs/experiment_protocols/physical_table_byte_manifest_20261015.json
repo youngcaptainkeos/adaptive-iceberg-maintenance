@@ -1,0 +1,46 @@
+{
+  "schema_version": "physical_table_byte_manifest_v1",
+  "successful_results": [
+    {
+      "path": "../../results/sf1_overnight_recovery3_20261015_01/result.json",
+      "sha256": "15bda7ede5e00397a650fe35174a1479797d8b248f41afa57e0cf212424b938f"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery3_20261015_02/result.json",
+      "sha256": "661de18684bdd69aefb8c6539b34fab8ffa376c75fb20c2f108c879f2f959846"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery3_20261015_03/result.json",
+      "sha256": "b6e2acc4d03368e1788e3df7140e5203ba219a30159a89fe1a2995517414626d"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery4_20261015_01/result.json",
+      "sha256": "4ff9745e993a1fef90cdc02be05fe0959c522d5e437a6c873a7f5f117b2852e1"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery5_20261015_01/result.json",
+      "sha256": "72440a6724b661694ffc73dd8272a432f6ccf2859bcbafc4332ac529ae1c5293"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery5_20261015_02/result.json",
+      "sha256": "9346148b3470ef94d31fb79285bc996f8e24c4065712dc552ef6a9f64f8b2058"
+    },
+    {
+      "path": "../../results/sf1_layout32_validation_20261015_01/result.json",
+      "sha256": "c53b8413718746d4f79bd5a49aee5b85641dba6482a6fb13421f4b6ed5d0cd52"
+    },
+    {
+      "path": "../../results/sf1_layout32_validation_20261015_02/result.json",
+      "sha256": "3b518188db35c2005ba486b9fc1151441843a0656f74fedcb4b9393bb768f37a"
+    },
+    {
+      "path": "../../results/sf1_layout32_validation_20261015_03/result.json",
+      "sha256": "8edf109ca686993b9eb7c7d08df0a1c2835dfd4a7f8c92bfc3ab6ccb3725a111"
+    }
+  ],
+  "spark_rest_url": "http://127.0.0.1:4040",
+  "spark_app_id": "local-1791896695889",
+  "rest_timeout_seconds": 5,
+  "output": "../../results/physical_table_byte_manifest_20261015.json",
+  "rationale": "Read-only fallback of9successful fresh physicaltables, actual raw inventorypathbinding plus allretaineddata/metadata hashes. RequireidleSpark; no deletion/portablecatalog/modelapprovalclaim. Failedtables remainremote untouched."
+}

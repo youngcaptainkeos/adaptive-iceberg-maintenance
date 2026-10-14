@@ -346,3 +346,8 @@ Actual32filebranchcountsall0deferrals/0waits, so branchnotexercised/no validatio
 claim. SeparateexportnohupPID1550562launched~23:00UTC; log
 results/physical_cost_candidates_layout32_20261015_launch.log, nextcheck5min/wake.
 b9e865dHEAD/5intendedSHAmatch. No modelrefit/no physicalcollectorrunning.
+
+32filecandidateexport1587queries/2rewrites/3episodes completed; independentroundtrip
+launched. Read-only9successfultablebyteinventorycode/protocol added, actualrawpaths/
+hashes andidleSparkrequired. Failedtables preserved, portablecatalognotproved.
+No physicalrunplanned; nextdetachedmanifest, mirroredbytesandposttransferhashcheck.

@@ -175,3 +175,6 @@ source2overlapcannotbeindependentmodeltest. No refitcurrentheldout; cutoffsuncha
 
 32filegroupcomplete3passed/nofailed; separatecandidateexportregistered/norefitting.
 Next rawroundtrip/mirror andphysicalbytefallback whileidle, savefinalmorningreview.
+
+32filecandidateindependentchecklaunched;9successfultablebyteinventoryregistered.
+Runnohupmanifest thenactualroottransfer/hashagreement; no newphysicalepisode planned.

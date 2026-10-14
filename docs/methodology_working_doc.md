@@ -1897,3 +1897,16 @@ Actualbranchdiagnostic: all3episodes0deferrals/0availabilitywaits, so newdeferra
 branchnotexercised andnotclaimedlivevalidated.32filefullrunpath passed. Separate
 exportnohupPID1550562 confirmed by actual launch receipt;
 nextcheckwithin5min/nextwake, log physical_cost_candidates_layout32_20261015_launch.log.
+
+## 45.32file verification launch and successful-table byte fallback registration
+
+32fileexportcompleted1587query/2rewrite/3episode rows. Independentroundtripnohup
+PID1565070 confirmed by actual launch receipt.
+No physical/modelcollectoractive23:10UTC. No newphysicalexperimentplanned tonight.
+Implementedbuild_physical_table_manifest.py/registered9actualsuccessfultables:
+SHA-boundresults/rawevents, actualinitialinventorylocaldatafilepaths deterministically
+bind table-root, allretaineddata/metadatafilesSHA/size, no symlinks/ambiguousroots,
+idleSparkbefore/after. Failedtables remainremote untouched/excludedfromsuccessful
+fallbackmanifest. NoSQL/tablemutation/deletion, noportablecatalogproof: absolutepaths
+andcatalogstate areworker3-specific. Next detachedmanifestjob, transferonlyactual
+manifestroots thenfullbefore/afterhashagreement beforefallbackclaim. No modelrefit.
