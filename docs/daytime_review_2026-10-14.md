@@ -250,3 +250,18 @@ Inspect measured capacity/remaining queue honestly. Preserve every first-minute
 arrival and no dispatch beyond horizon; one in-flight query completes naturally.
 Only after the real offered ledger passes audit should common-horizon paired
 compaction/deferral collection proceed. Existing cost fit remains blocked.
+
+### Connectivity restored; real mapping audit passed
+
+User restored connectivity. Worker3 fast-forwarded implementation2107004; all eight
+intended file hashes matched. Detached mapping/compile coordinator PID523252
+completed naturally. All four Python modules compiled. Source export and separate
+source reconstruction audit passed: bin1346,2018-02-22T18:26:00.286Z through
+18:27:00.286Z,113 actual arrivals,60-second horizon. Mapping-record SHA256
+22ef86334768aba15bf7d8f5f9b0d5d69668c83fa3ff93567257641c590cf6e5.
+No physical query was run by the export/audit. Record/audit/raw mapped CSV and
+frozen mapping code mirrored locally. Replay registration pins this actual receipt
+and audit, original SF1 source receipt, four real query correctness ledgers,
+one FIFO client, unchanged telemetry gates and14:00 IST operational cutoff.
+All113 arrivals retained; any overload becomes measured residual queue. No
+maintenance, ingestion, accepted cost labels, fitted model or scheduler claim.

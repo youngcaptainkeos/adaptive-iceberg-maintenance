@@ -1,0 +1,14 @@
+{
+  "status": "audited_complete_real_arrival_benchmark_mapping_only",
+  "arrival_count": 113,
+  "source_interval_start_utc": "2018-02-22T18:26:00.286000+00:00",
+  "source_interval_end_utc": "2018-02-22T18:27:00.286000+00:00",
+  "mapping_record_sha256": "22ef86334768aba15bf7d8f5f9b0d5d69668c83fa3ff93567257641c590cf6e5",
+  "audit_code_sha256": "a64cd7e021a361fa9111610be37f7b9a07b92552fa470f53f92716a1c754739c",
+  "physical_replay_performed": false,
+  "limitations": [
+    "One training warehouse/minute and imposed benchmark SQL mix cannot establish original Snowflake workload reproduction.",
+    "This export is a schedule, not observed offered/dispatch/completion evidence.",
+    "A single-client baseline queue diagnostic is not a cost-training or common-horizon action comparison."
+  ]
+}

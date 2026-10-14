@@ -18,7 +18,7 @@ def audit(directory):
     require(sha256(directory/'mapped_arrivals.csv')==mapping['mapped_arrivals_sha256'] and len(mapped)==mapping['arrival_count'],'Mapped input changed')
     protocols=[r for r in rows if r['kind']=='trace_queue_protocol'];require(len(protocols)==1 and protocols[0]['configuration']==cfg,'Raw protocol differs')
     for name,digest in protocols[0]['code_sha256'].items():require(sha256(directory/'code'/name)==digest,'Frozen code differs')
-    require(sha256(directory/'mapping_record.json')==cfg['mapping_record']['sha256'],'Mapping receipt differs')
+    require(sha256(directory/'mapping_record.json')==cfg['mapping_record']['sha256'] and sha256(directory/'mapping_audit.json')==cfg['mapping_audit']['sha256'],'Mapping receipt/audit differs')
     start=[r for r in rows if r['kind']=='replay_clock'];require(len(start)==1,'Missing/duplicate clock')
     start=start[0];lo=start['start_monotonic_ns'];hi=start['end_monotonic_ns'];require(hi-lo==mapping['horizon_ns'],'Horizon changed')
     transitions=[r for r in rows if r['kind']=='queue_transition'];states={};slots={};expected={r['source_query_id']:r for r in mapped};identities={};times={}
@@ -89,7 +89,7 @@ def run(config,revision):
     require(cfg['schema_version']=='trace_queue_diagnostic_v1' and cfg['client_count']==1 and cfg['boundary_rule']=='no_dispatch_after_horizon_natural_inflight_completion','Unregistered diagnostic')
     require(subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip()==revision,'HEAD mismatch')
     require(subprocess.run(['git','diff','--exit-code','HEAD','--','scripts/phase6-live-evaluation/*.py'],cwd=repo,capture_output=True).returncode==0,'Dirty experiment code')
-    record_path=verified_file(cfg['mapping_record'],base);mapping=json.loads(record_path.read_text());mapped_path=record_path.parent/'mapped_arrivals.csv';require(sha256(mapped_path)==mapping['mapped_arrivals_sha256'],'Mapped arrivals changed')
+    record_path=verified_file(cfg['mapping_record'],base);mapping=json.loads(record_path.read_text());mapping_audit_path=verified_file(cfg['mapping_audit'],base);mapping_audit=json.loads(mapping_audit_path.read_text());require(mapping_audit['status']=='audited_complete_real_arrival_benchmark_mapping_only' and mapping_audit['mapping_record_sha256']==sha256(record_path),'Unaudited mapping');mapped_path=record_path.parent/'mapped_arrivals.csv';require(sha256(mapped_path)==mapping['mapped_arrivals_sha256'],'Mapped arrivals changed')
     mapped=list(csv.DictReader(mapped_path.open()));require(mapped and mapping['status']=='mapped_real_arrivals_no_physical_replay','Unaccepted mapping')
     source_path=verified_file(cfg['preparation_result'],base);source=json.loads(source_path.read_text());require(source['status']=='accepted_correctness_source','Unaccepted SF1')
     expected={}
@@ -101,7 +101,7 @@ def run(config,revision):
     guard();lock=(repo/'results'/'.physical_correctness.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     out=(base/cfg['output_directory']).resolve();out.mkdir(parents=True,exist_ok=False);code=out/'code';code.mkdir()
     for name in ('run_trace_queue_diagnostic.py','offered_queue_ledger.py','prepare_trace_benchmark_mapping.py','physical_measurements.py','experiment_validation.py','statement_timing.py','query_observation_binding.py','telemetry_binding.py','run_correctness_pilot.py','engine_overlap.py'):shutil.copy2(Path(__file__).parent/name,code/name)
-    for src,name in ((Path(config),'config.json'),(source_path,'preparation_result.json'),(record_path,'mapping_record.json'),(mapped_path,'mapped_arrivals.csv')):shutil.copy2(src,out/name)
+    for src,name in ((Path(config),'config.json'),(source_path,'preparation_result.json'),(record_path,'mapping_record.json'),(mapping_audit_path,'mapping_audit.json'),(mapped_path,'mapped_arrivals.csv')):shutil.copy2(src,out/name)
     for i,spec in enumerate(cfg['expected_query_ledgers']):shutil.copy2(verified_file(spec,base),out/f'expected_ledger_{i}.jsonl')
     (out/'expected_query_results.json').write_text(json.dumps(expected,indent=2)+'\n')
     log=EventLog(out/'events.jsonl',cfg['experiment_id']);rec=StatementRecorder(log);rest=SparkEvidence(cfg['spark_rest_url'],cfg['spark_app_id'],cfg['rest_timeout_seconds'],log);sampler=TelemetrySampler(log,cfg['telemetry']['interval_seconds']);connections=[];errors=[];threads=[];safe_to_close=False
