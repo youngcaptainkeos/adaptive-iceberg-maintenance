@@ -133,3 +133,23 @@ correctly refused actual diagnostic observations because required physical
 training fields/splits were absent. No model was fitted; shared fitting/acceptance
 remains unvalidated until a legitimate corpus exists. Logs staged on worker3 at
 `/tmp/capstone-null-controls-20261014/validation.log` and `model_validation.log`.
+
+## Detached control execution
+
+Implementation committed/pushed as `5f2a5544ebe1cd471052f5edf2ee4dd7658ddb4e`;
+worker3 fast-forwarded, all eight intended SHA256s matched. Real control runner
+launched under nohup, PID476932 confirmed alive at04:19:47 UTC (09:49:47 IST).
+Output `results/sf1_null_controls_20261014/`; launch log
+`results/sf1_null_controls_20261014_launch.log`. Four 305-second warmups plus
+actual query, clone, validation and observed spacing overhead imply an estimated
+10:15–10:20 IST check-in, not a completion guarantee. At handover the run is active;
+no result/variance/causal-effect claim is made. Any failure stops dependent blocks
+and retains evidence; any in-flight operation completes naturally.
+
+Next check: inspect PID/log/progress without starting another physical run. After
+natural completion, execute the frozen runner's `--audit-directory` and
+`--audit-output` on worker3 under nohup, mirror all raw/frozen-code/reference/audit
+files, verify SHA256s, and document signed null contrasts alongside historical
+values without causal subtraction. Only then register queue/mapping and common-
+horizon collection. Shared candidate fitting remains blocked on real independent
+training/calibration/test data; its successful fit path has not yet been exercised.
