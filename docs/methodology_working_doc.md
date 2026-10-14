@@ -1751,3 +1751,23 @@ ThreefamilyexportnohupPID1396241 launched20:28UTC; log
 results/physical_cost_candidates_three_family_20261015_launch.log. Checkwithin5min/
 nextwake; independentroundtrip before fit.8cfa5f7HEAD/5intendedSHA agreehosts.
 Nophysicalcollector running, no acceptedfit/exportresultatlaunch.
+
+## 38. Independent three-family roundtrip and registered first exploratory fit
+
+Exportcompleted3103query/4rewrite/6episode rows. Worker3nohup verifierPID1410147
+completed independentrawroundtrip; output
+results/physical_cost_candidates_three_family_20261015/independent_verification.json.
+ExportrecordSHA306c9844453174951abf262fd22b607ce3e6c341ad340f08c6e650cf2a0e0712;
+verificationSHAe1af34743dc1167ab28f863f06853fdd3f6c5ac8d3a9090ab063d644ba126c36.
+Fullcandidatepackage mirrored locally; intendedartifactSHA agreement next. Noactive
+physicalcollector, so fitting won't compete withphysicalquerywindows.
+
+Registered candidate_cost_fit_three_family_20261015.json: originalpreregistered
+chronologicalfamily0/1train,2test; alpha1.0noheldouttuning, fullreal60/300sdemandonly,
+training-onlyencoding/scaling/medians, shared/separatependinglatency and rewrite
+clientduration. Wholeepisodes/sourcefamilies preserved; no calibration or scalar
+counterfactual objective. Primaryfit bundles explicitlyuncalibrated/noscheduler;
+missingregimes notfit, negativepredictions retained, failureattemptssaved. Onlyfour
+rewriteexamples/oneoriginallayout/instrumentversionconfounding/incompletegroups:
+this is pipeline/exploratoryevidence, not acceptedscientificcostmodel. Next worker3
+nohup fit/log/PID, then auditactualoutputs/predictions/errors before claims.

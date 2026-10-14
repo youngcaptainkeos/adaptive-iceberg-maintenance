@@ -364,3 +364,7 @@ preserved. Sixsuccessfulthree-family exportregistered;16fileonly/versionconfound
 explicit. Prioritize independentroundtrip/exploratoryfit, no modelpromotion.
 
 ThreefamilyexportPID1396241nohup launched; nextcheck5min/independentroundtrip.
+
+Section38 threefamily3103query/4rewrite export independentlyrawverified/mirrored;
+actualhashchronological fitregistered (train0/1,test2,alpha1,realhistoryonly).
+Exploratoryfit pending; no calibration/modelpromotion/generalizationclaim.

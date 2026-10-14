@@ -149,3 +149,7 @@ inventories, rawroundtrip thenpreregisteractualhashes/familysplit andexploratory
 20:25UTC recovery5stopped2/1/8 onlockedfreshness. Prioritize threefamily sixepisode
 export+independentroundtrip+registeredexploratoryfit now; no blindretry.16fileonly/
 incompletegroups/instrumentversionconfounding explicit. Physicalrepair remainsgate.
+
+Threefamilyrawroundtrippassed, actualhashfirstfitregistered. Runworker3nohupfit,
+retainfailedattempt/negativepredictions, independentoutputaudit beforeclaims. No
+calibration/promotion; datasetlimited4rewrites/16fileoriginal layout/confounding.

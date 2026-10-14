@@ -1,0 +1,25 @@
+{
+  "schema_version": "candidate_cost_fit_v1",
+  "export_directory": "../../results/physical_cost_candidates_three_family_20261015",
+  "export_record_sha256": "306c9844453174951abf262fd22b607ce3e6c341ad340f08c6e650cf2a0e0712",
+  "verification": {
+    "path": "../../results/physical_cost_candidates_three_family_20261015/independent_verification.json",
+    "sha256": "e1af34743dc1167ab28f863f06853fdd3f6c5ac8d3a9090ab063d644ba126c36"
+  },
+  "train_family_indices": [
+    0,
+    1
+  ],
+  "test_family_indices": [
+    2
+  ],
+  "ridge_alpha": 1.0,
+  "require_complete_demand_history": true,
+  "output_directory": "../../results/candidate_cost_fit_three_family_20261015",
+  "rationale": "Predeclared firsttwochronological whole sourcefamilies train/thirdtest; trainingonlyscaling/SQLonehot/medians, alpha1L2stabilization with noheldoutsearch. Noimputation; discard earlyincomplete60/300sdemandhistory with explicitUUIDinventory. Only measuredclientduration, no counterfactual penalty. Uncalibrated exploratorycomparison, no winner/promotion.",
+  "limitations": [
+    "Only6episodes/3families, 4rewrites andonly16fileoriginal layout; no power/calibration/generalization approval.",
+    "Telemetry instrumentation revisions/time confoundedwithsourcefamily; incompleteactiongroups source1/2.",
+    "Maintenance-clientpending isnotexactengineactive; actualtaskoverlap excludedpredictors."
+  ]
+}

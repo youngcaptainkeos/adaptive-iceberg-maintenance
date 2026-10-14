@@ -283,3 +283,10 @@ no32file/modelcalibration/schedulerclaim. No activeSpark20:25UTC.
 ThreefamilyexportnohupPID1396241launched20:28UTC, log
 results/physical_cost_candidates_three_family_20261015_launch.log; check5min/nextwake,
 rawroundtripnext.8cfa5f7HEAD/5unitSHA agree; nofit/exportrawapprovalatlaunch.
+
+Threefamilyexport3103queries/4rewrites/6episodes independentlyroundtrippassed under
+nohupPID1410147. Candidatepackage mirrored. ExportrecordSHA306c9844453174951abf262fd22b607ce3e6c341ad340f08c6e650cf2a0e0712;
+verificationSHAe1af34743dc1167ab28f863f06853fdd3f6c5ac8d3a9090ab063d644ba126c36.
+Firstfitactualhashconfigregistered trainfamilies0/1,test2/alpha1/noimputation; no
+physicalcollectoractive. Limited4rewrites/16fileoriginallayout/versionconfounding
+explicit. Nextdetachedfit, outputaudit; no modelclaimyet.
