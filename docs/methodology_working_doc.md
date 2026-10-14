@@ -1320,3 +1320,18 @@ real collection is next. Immutable worker3 runtime checkout will protect active
 code/config while main develops new-schema estimators. Overnight queue/review
 record deadline/safety buffers and dynamic failure-first behavior. No model fit,
 accepted calibration or scheduling result in this implementation job.
+
+## 17. Longer-run engine evidence retention —2026-10-14
+
+Actual prior246-query episode produced492Spark jobs/stages. To avoid losing early
+evidence in longer retained-UI history, added a registered in-run REST checkpoint
+that preserves completed query task payloads. Raw job/stage frames merge by actual
+job ID and stage ID/attempt, retaining latest recorded fields and failed attempts;
+no invented engine completion/time. Final task/overlap audit remains strict.
+
+Checkpoint runs uniformly across arms with measured host/logging overhead, not
+extra SQL or artificial demand. Its instrumentation effects remain a limitation.
+Worker3 compilation and actual historical raw regression passed; new live archive
+path awaits the registered physical matrix. No engine restart/retention-setting
+change or retrospective repair of missing old evidence. Candidate export freezes
+this verifier dependency with other actual runtime modules.

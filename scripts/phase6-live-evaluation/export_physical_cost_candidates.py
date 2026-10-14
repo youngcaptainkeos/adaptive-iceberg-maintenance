@@ -11,7 +11,7 @@ WINDOW_FIELDS=('cpu_busy_fraction','memory_used_fraction','read_bytes_per_second
 
 def export(config):
     cfg,base=load_json(config);require(cfg['schema_version']=='physical_cost_candidate_export_v1','Unregistered export')
-    names=('run_trace_queue_diagnostic','common_horizon_binding','offered_queue_ledger','prepare_trace_benchmark_mapping','physical_measurements','experiment_validation','statement_timing','query_observation_binding','telemetry_binding','run_correctness_pilot','engine_overlap')
+    names=('run_trace_queue_diagnostic','common_horizon_binding','offered_queue_ledger','prepare_trace_benchmark_mapping','physical_measurements','experiment_validation','statement_timing','query_observation_binding','telemetry_binding','run_correctness_pilot','engine_overlap','engine_archive')
     dependencies={name:Path(importlib.import_module(name).__file__).resolve() for name in names};dependency_hashes={name:sha256(path) for name,path in dependencies.items()}
     queries=[];rewrites=[];episodes=[];inventory=[];seen=set();inputs={}
     for spec in cfg['successful_arm_results']:

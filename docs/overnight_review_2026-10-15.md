@@ -42,3 +42,14 @@ worker3; separate raw regression of actual passed long baseline succeeded. New
 layout/boundary paths still need real execution, not approved by compilation alone.
 Immutable worker3 checkout will separate active collector code from later trainer
 implementation. No Spark/own run at starting inspection and no table/data removed.
+
+## Engine-retention blocker repaired before longer collection
+
+Actual accepted5-minute baseline had246queries producing492jobs/completed stages.
+Ten-minute episodes can outlive UI retention of early evidence. Added raw engine
+archive checkpoint support and merger of actual job/stage frames by ID/attempt,
+retaining failed/retried frames rather than fabricating completion. Completed query
+task payloads preserved during registered midpoint checkpoint; final audit still
+requires all actual tasks. Same checkpoint overhead applies to every arm and is
+an instrumentation limitation. Worker3 detached compile and historical raw arm
+regression passed. New live archive path remains to be validated by real cohort.

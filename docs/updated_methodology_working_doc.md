@@ -253,3 +253,9 @@ Working ledger Job16records explicit real layout candidates, within-group strict
 matching, ten-minute actual offered-history exposure, server compilation and
 historical raw regression. New paths await registered physical execution; active
 collector will use an immutable checkout separate from later model development.
+
+### 8.6 Raw engine retention support
+
+Working ledger Job17records actual stage-count motivation, in-run preservation of
+raw completed tasks and actual-frame merging for longer episodes, with strict
+final gates and uniform instrumentation limitations. No engine restart/fake history.

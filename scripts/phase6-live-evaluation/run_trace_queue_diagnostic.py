@@ -11,6 +11,7 @@ from query_observation_binding import verify_observations
 from statement_timing import completed_statements
 from engine_overlap import task_intervals,engine_time
 from common_horizon_binding import audit_arm
+from engine_archive import merged_engine_frames,capture_completed_query_tasks
 
 
 def audit(directory):
@@ -69,7 +70,7 @@ def audit(directory):
     observed_by_id={r['measurement_id']:r for r in observed}
     table=cfg['destination_table'] if arm else source['table']
     allowed_markers=[r['marker'] for r in requests.values()]
-    latencies=[];rests=[r for r in rows if r['kind']=='spark_rest'];jobs=[r['payload'] for r in rests if r['resource']=='jobs'][-1];stages=[r['payload'] for r in rests if r['resource']=='stages'][-1]
+    latencies=[];rests=[r for r in rows if r['kind']=='spark_rest'];jobs,stages=merged_engine_frames(rows)
     class RecordedREST:
         def capture_tasks(self,stage,attempt,count):
             data=[r['payload'] for r in rests if r['resource']==f'stages/{stage}/{attempt}/taskList?length={count}'];require(data and len(data[-1])==count,'Missing raw tasks');return data[-1]
@@ -124,7 +125,7 @@ def run(config,revision):
     def guard():require(datetime.now(timezone.utc)<deadline,'Operational cutoff; no new statement')
     guard();lock=(repo/'results'/'.physical_correctness.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     out=(base/cfg['output_directory']).resolve();out.mkdir(parents=True,exist_ok=False);code=out/'code';code.mkdir()
-    for name in ('run_trace_queue_diagnostic.py','offered_queue_ledger.py','prepare_trace_benchmark_mapping.py','physical_measurements.py','experiment_validation.py','statement_timing.py','query_observation_binding.py','telemetry_binding.py','run_correctness_pilot.py','engine_overlap.py','common_horizon_binding.py'):shutil.copy2(Path(__file__).parent/name,code/name)
+    for name in ('run_trace_queue_diagnostic.py','offered_queue_ledger.py','prepare_trace_benchmark_mapping.py','physical_measurements.py','experiment_validation.py','statement_timing.py','query_observation_binding.py','telemetry_binding.py','run_correctness_pilot.py','engine_overlap.py','common_horizon_binding.py','engine_archive.py'):shutil.copy2(Path(__file__).parent/name,code/name)
     for src,name in ((Path(config),'config.json'),(source_path,'preparation_result.json'),(record_path,'mapping_record.json'),(mapping_audit_path,'mapping_audit.json'),(mapped_path,'mapped_arrivals.csv')):shutil.copy2(src,out/name)
     for i,spec in enumerate(cfg['expected_query_ledgers']):shutil.copy2(verified_file(spec,base),out/f'expected_ledger_{i}.jsonl')
     (out/'expected_query_results.json').write_text(json.dumps(expected,indent=2)+'\n')
@@ -199,6 +200,15 @@ def run(config,revision):
                 errors.append(e);log.emit('trace_queue_thread_failed',error_type=type(e).__name__,error=str(e))
         if arm:
             thread=threading.Thread(target=action_schedule);threads.append(thread);thread.start()
+        def archive_engine():
+            try:
+                for offset in cfg.get('engine_archive_offsets_ns',[]):
+                    wait_until(lo+offset);capture_completed_query_tasks(rest,log,out/'events.jsonl')
+            except Exception as e:
+                errors.append(e);log.emit('trace_queue_thread_failed',error_type=type(e).__name__,error=str(e))
+        if cfg.get('engine_archive_offsets_ns'):
+            require(all(0<x<mapping['horizon_ns'] for x in cfg['engine_archive_offsets_ns']),'Register within-horizon engine archive checkpoints')
+            thread=threading.Thread(target=archive_engine);threads.append(thread);thread.start()
         probes=[];query_snapshot=None
         while time.monotonic_ns()<hi:
             try:r=pending.get(timeout=max(0,(hi-time.monotonic_ns())/1e9))
@@ -234,7 +244,9 @@ def run(config,revision):
                 result=execute(f"SELECT count(*) FROM ((SELECT * FROM {source['table']} VERSION AS OF {source['snapshot_id']} EXCEPT ALL SELECT * FROM {table} VERSION AS OF {snapshot}) UNION ALL (SELECT * FROM {table} VERSION AS OF {snapshot} EXCEPT ALL SELECT * FROM {source['table']} VERSION AS OF {source['snapshot_id']})) AS differences")
                 require(result['rows'][0][0]==0,'Arm logical multiset changed')
                 log.emit('common_horizon_multiset_validation',snapshot_id=snapshot,measurement_id=result['measurement_id'])
-        jobs=rest.capture('jobs');stages=rest.capture('stages')
+        rest.capture('jobs');rest.capture('stages')
+        with log.lock:engine_rows=[json.loads(line) for line in (out/'events.jsonl').open()]
+        jobs,stages=merged_engine_frames(engine_rows)
         for probe in probes:task_intervals(jobs,stages,rest,marker=probe['marker'])
         for action in actions:task_intervals(jobs,stages,rest,rewrite_table=table,request=action)
         sampler.stop();result=audit(out);safe_to_close=True;result['code_revision']=revision;(out/'result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)

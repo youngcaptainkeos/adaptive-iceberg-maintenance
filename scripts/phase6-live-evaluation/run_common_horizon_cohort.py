@@ -21,7 +21,7 @@ def run(config,revision):
         require(all(all(c[k]==members[0][k] for k in common) and c.get('initial_file_count')==members[0].get('initial_file_count') and c.get('layout_signature_group')==members[0].get('layout_signature_group') for c in members),'Different offered work/layout within matched window group')
     lock=(repo/'results'/'.common_horizon_cohort.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     out=(base/cfg['output_directory']).resolve();out.mkdir(parents=True,exist_ok=False);shutil.copy2(config,out/'config.json');code=out/'code';code.mkdir()
-    dependencies=('run_common_horizon_cohort.py','run_trace_queue_diagnostic.py','common_horizon_binding.py','offered_queue_ledger.py','prepare_trace_benchmark_mapping.py','physical_measurements.py','experiment_validation.py','statement_timing.py','query_observation_binding.py','telemetry_binding.py','run_correctness_pilot.py','engine_overlap.py')
+    dependencies=('run_common_horizon_cohort.py','run_trace_queue_diagnostic.py','common_horizon_binding.py','offered_queue_ledger.py','prepare_trace_benchmark_mapping.py','physical_measurements.py','experiment_validation.py','statement_timing.py','query_observation_binding.py','telemetry_binding.py','run_correctness_pilot.py','engine_overlap.py','engine_archive.py')
     digests={name:sha256(module/name) for name in dependencies}
     for name in dependencies:shutil.copy2(module/name,code/name)
     report={'schema_version':cfg['schema_version'],'status':'running','protocol_revision':revision,'code_sha256':digests,'started_utc':datetime.now(timezone.utc).isoformat(),'planned_episodes':len(settings),'attempts':[],'cost_training_accepted':False,'limitations':cfg['limitations']};signatures={}
