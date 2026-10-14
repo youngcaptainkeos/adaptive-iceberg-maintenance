@@ -118,3 +118,11 @@ only if absent, identity consistency checked. Auditor no longer discards complet
 raw frame for later empty retention response. Original failed status preserved.
 Next detached regression and checkpoint raw checks, then fresh registered recovery.
 Prior trainer syntax passed onworker3;8de48a6 HEAD/all5intendedSHA256 matched hosts.
+
+## Fresh recovery registration
+
+18fresh recovery configs/tables retain original order/source/layout/boundary/cutoffs.
+Specific archive-reader repair, not favorable-outcome repetition. Historical raw
+regression passed; checkpoint-only diagnostic receipt onworker3. No active Spark
+jobs at15:10UTC; coordinator1031940 remains exited. Original failure unchanged.
+Next inspect receipt and immutable launch; no learned model fit yet.

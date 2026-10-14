@@ -284,3 +284,7 @@ Implementation pending real fit; immutable18episode physical collection continue
 retrieval;0passed/1failed/17unattempted preserved. Implemented raw complete-frame
 adapter for archived tasks; real regression validation pending. No promotion/retry
 of occupied tables. Next fresh registered recovery after evidence checks.
+
+Section22 registers fresh18episode recovery after identified task archive reader
+bug; same scientific matrix/gates, original failed/unattempted inventory unchanged.
+Historical raw regression passed; checkpoint diagnostic receipt awaiting inspection.

@@ -1417,3 +1417,17 @@ package remains failed regardless of diagnostic checks. Detached server raw
 regression/archived-checkpoint validation next; then register new recovery cohort
 identities and immutable revision before physical execution. Missing archives must
 still fail. No cost fit/calibration result exists.
+
+## 22. Fresh task-archive recovery matrix registration
+
+Registered18fresh recovery episode/table/config identities in
+sf1_overnight_recovery_cohort_20261015.json; unchanged three actual600s windows,
+16/32layouts, rotated matched arms, boundaryv1/archive midpoint, cutoffs/gates.
+Reason is specific evidence-reader defect, not favorable-outcome retries. Original
+18matrix0passed/1failed/17unattempted preserved, no reuse of failed rows/tables.
+Historical successful baseline raw regression passed under repaired reader on
+worker3 (results/archive_adapter_regression_20261015.json). Detached actual failed
+run midpoint task check saved archive_checkpoint_validation_20261015.json; this
+certifies archived task availability only, cannot upgrade the failed episode.
+Next gate: inspect checkpoint receipt, commit/sync/hashes, frozen recovery checkout
+and detached launch if no competing work. Model fitting still blocked by diversity.

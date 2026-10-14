@@ -85,3 +85,7 @@ Repair archive-first actual successful task-frame selection and validate raw
 checkpoint/historical successful arm before fresh recovery IDs/runtime launch.
 Do not upgrade failed original or use its497diagnostic rows for fitting. Trainer
 implemented8de48a6, server syntax checked; actual fit still blocked by diversity.
+
+Recovery registration: sf1_overnight_recovery_cohort_20261015.json and18fresh arms.
+Inspect actual checkpoint diagnostic before immutable launch; original failed
+matrix preserved. Historical raw adapter regression passed, no activeSpark15:10UTC.
