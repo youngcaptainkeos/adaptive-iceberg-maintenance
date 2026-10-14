@@ -265,3 +265,11 @@ final gates and uniform instrumentation limitations. No engine restart/fake hist
 Working ledger Job18records18fresh real arms, three audited600-second source
 windows, two controlled layouts, equal within-group conditions and immutable
 runtime plan. New paths require live raw audit; no calibration/policy claim.
+
+### 8.8 Immutable overnight matrix launched
+
+Working ledger Job19records18planned real arms launched on worker3 under nohup
+PID1031940 at20:07:27IST, frozen detached code/config checkout, identical intended
+file hashes and canonical source/results links. First baseline running, outcomes
+unestablished. Fifteen-minute audit/repair automation continues to06:00ISTOct15;
+no simultaneous heavy fitting, fabricated labels or automatic calibration claims.

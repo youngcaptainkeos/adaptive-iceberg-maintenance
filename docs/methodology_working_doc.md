@@ -1355,3 +1355,21 @@ so later estimator implementation cannot modify active collector code. Original
 failed/occupied tables remain; fresh identity matrix is not silent retry/promotion.
 New episode cutoff04:45IST, new SQL cutoff05:15IST, automation stop06:00ISTOct15.
 No accepted cost model/uncertainty/scheduler claim from registration.
+
+## 19. Immutable overnight collection launched —2026-10-14
+
+Setup/registration commit60e15ba9cbc3b0fc53173d45f9bae2481349f33e pushed/synced,
+all intended file name/SHA256 manifests matched. Worker3 sparse detached Git
+worktree `/tmp/capstone_overnight_runtime_20261015` freezes code/configs with
+canonical dataset/results links; no existing data/service removed. New main-
+checkout trainer development cannot change the active collector source/HEAD.
+
+Detached coordinator PID1031940, launch20:07:27IST,18planned real arms. Actual
+progress confirms initial baseline running, not success. Logs/raw/audits in
+`results/sf1_overnight_cost_cohort_20261015` and per-arm `_01`..`_18` packages.
+Estimated4.5–5.5hours; actual operation/audit times and gates govern outcome.
+Automation wakes15-minute to audit/repair/continue, records failures and append-
+only methodology, stops at06:00ISTOct15and leaves in-flight services/work running.
+No heavy model fitting/backup alongside physical query windows; no trained or
+calibrated model claimed at launch. Morning review records precise completed/
+running/failed/unvalidated states and next scientific gates.

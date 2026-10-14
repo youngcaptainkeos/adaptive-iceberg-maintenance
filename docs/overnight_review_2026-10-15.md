@@ -65,3 +65,31 @@ matched group. Whole600seconds counted; full offered300seconds available only
 later in actual replay, never zero-padded. No new episodes after04:45IST and no
 new SQL after05:15IST. Immutable runtime checkout still to create/launch. Models
 remain uncalibrated/unfitted; original failed nine-arm run unchanged.
+
+## Actual immutable collection launch
+
+All intended setup files through60e15ba matched local/worker3 sorted name/SHA256
+manifest. Created detached sparse runtime Git worktree
+`/tmp/capstone_overnight_runtime_20261015` at
+60e15ba9cbc3b0fc53173d45f9bae2481349f33e, tracked collector/configs frozen;
+canonical datasets/results symlinked without moving/deleting source data. Main
+checkout can implement trainer without changing active runtime code/HEAD/configs.
+
+Cohort launched under nohup, PID1031940 confirmed alive, started14:37:27UTC
+(20:07:27IST),18planned episodes, first baseline running. Log
+`results/sf1_overnight_cost_cohort_20261015_launch.log`; progress/result/audits under
+`results/sf1_overnight_cost_cohort_20261015/`; per-arm packages
+`results/sf1_overnight_cost_20261015_01` through `_18`. Estimated full collection
+about4.5–5.5hours including305s host warmup,600s real source workload, exact logical
+validation and raw engine archives/audits per episode; no completion guarantee.
+No accepted new arm/model/calibration result at launch.
+
+Next wake: inspect immutable coordinator/progress/log first. If active and healthy,
+implement new-schema exploratory estimator in main checkout; do not edit runtime
+or run heavy fitting/backup concurrently with physical query windows. On completed
+matrix re-audit/mirror/hashes, rebuild candidate export/readiness with all failure
+inventories, preregister actual source-family chronological fit before execution.
+If failed, inspect raw cause and immutable frozen code before a new registered
+repair; no occupied-table reuse or outcome-selected retries. No run past stated
+launch/SQL deadlines. Need laptop/app and campus/VPN available for heartbeat; SSH
+worker jobs survive disconnects. AutomationACTIVE verified in app.
