@@ -166,3 +166,56 @@ The final offline evaluation of the 8-policy suite was conducted on the 4-hour c
 - **Director's Audit Report (Phase 4):** [phase4_audit_report.md](file:///home/shashank/.gemini/antigravity/brain/5e14b653-0a3b-4484-b6b2-f8b697861d3b/phase4_audit_report.md)
 - **Phase 3C-3F Audit & Phase 5 Architecture:** [phase3cf_audit_and_phase5_design.md](file:///home/shashank/.gemini/antigravity/brain/5e14b653-0a3b-4484-b6b2-f8b697861d3b/phase3cf_audit_and_phase5_design.md)
 - **Phase 5 Execution Prompts:** [phase5_execution_prompts.md](file:///home/shashank/.gemini/antigravity/brain/5e14b653-0a3b-4484-b6b2-f8b697861d3b/phase5_execution_prompts.md)
+
+---
+
+## 8. Current append-only methodology reconciliation —2026-10-14
+
+The current continuing evidence ledger is `docs/methodology_working_doc.md`,
+Section12, appended without rewriting historical text. Its2026-10-14evidence
+corrections supersede incompatible success/novelty/safety claims in this master
+snapshot. Historical Phase5tables/conclusions above are not accepted evidence for
+a calibrated deployed scheduler under the current raw physical contracts. In
+particular no universal novelty exclusion, distribution-free safety or fixed-SLA
+policy benefit is asserted from the current audited artifacts.
+
+Current verified pipeline: actual Spark/Iceberg execute/fetch clocks and raw task
+attribution; exact available60/300-second telemetry; fresh pre-action state;
+source/snapshot/files/full-multiset/query-result conservation; dedicated client
+sessions; SHA-pinned actual Snowset arrivals mapped explicitly to custom benchmark
+SQL; offer/queue/dispatch/outcome accounting and common-horizon residual debt.
+Alibaba/Borg are not original database SQL replay implementations. SF100 raw
+lineitem count is600,037,902, with remaining generator/relational/large-table gates.
+
+Four order pilots and four null controls passed raw integrity audits; controls
+show31–73ms middle-query variation without maintenance. One-minute queue screen
+retained113arrivals with41in-horizon completions,1natural completion afterward and
+71queued. Six three-arm common-horizon episodes passed; none41/39, now41/37,
+later41/39in-horizon completions show no robust throughput winner. Five-minute
+source mappings718/762/744passed; larger9-arm collection stopped after1passed,
+1boundary-bookkeeping failure,7unattempted. Original failures are preserved, and
+boundary preparation repair awaits real registered recovery. Services/tables remain.
+
+No learned cost model or calibrated temporal scheduler is accepted. Separate A/B
+and opt-in shared candidate code exists; fitting waits for raw-verified candidate
+export and sufficiently diverse independent collection. The complete next milestone
+and gates are in `docs/learned_cost_model_implementation_plan.md`: measured query/
+rewrite/episode export, collection matrix, exploratory comparison, chronological
+independent calibration/test, then held-out physical forecast/policy benefit.
+Model count is an empirical choice; learned future demand must improve scheduling.
+
+For paper writing use the append-only working ledger, current raw reviews and
+frozen protocol/code/source hashes. Append purpose/pipeline change/evidence/failure/
+limitations after every major job; preserve earlier prose as history. Unsupported
+older tables must not be promoted to current Results. This file keeps a synchronized
+append-only summary/pointer; the working ledger records detailed job history.
+
+### 8.1 Major job: cost-candidate pipeline implemented —2026-10-14
+
+Appended detailed Job13to the continuing methodology ledger. A preregistered raw-
+verified exporter now separates query service targets, rewrite duration/work and
+whole-episode debt, with a strict pre-query predictor allowlist and retained
+failed/unattempted inventory. Incomplete offered histories remain missing; future
+engine overlap and arm/outcome fields cannot enter predictors. Export completion
+will be logged after worker3's detached real-artifact run. This is candidate data,
+not accepted calibrated training or a deployed learned scheduler.

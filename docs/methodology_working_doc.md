@@ -1010,3 +1010,229 @@ introducing services not already justified above.
   10-file compaction actuation guardrails, a priori SF100-grounded SLA (6.75s), competitive
   threshold baselines (50-75 files), and multi-trial counterbalanced evaluation with the
   Phase 2H/2I statistical testing pipeline.
+
+---
+
+## 12. Append-only evidence reconciliation —2026-10-14
+
+This appended record supersedes conflicting current-status claims above without
+rewriting historical entries. `docs/methodology_working_doc.md` is the continuing
+methodology ledger; `updated_methodology_working_doc.md` keeps an append-only
+cross-reference. Every major implementation, collection, model or evaluation job
+must append its rationale, protocol/code revision, pipeline change, provenance,
+raw artifacts, checks/failures, limitations and next gate. Earlier prose is not
+automatically verified or suitable for the paper's Results section.
+
+### 12.1 Research scope and corrections to historical claims
+
+The target is forecast-aware timing of existing Iceberg compaction: act now or
+wait based on future demand and measured action consequences, with uncertainty
+and explicit residual query/maintenance work. No new compaction algorithm is
+claimed. Separate A/B versus a shared conditional cost estimator is an empirical
+architecture comparison; three models is not the contribution by itself.
+
+Historical scheduler success, distribution-free safety, novelty exclusivity and
+fixed-SLA/threshold conclusions in older methodology/master sections are not
+accepted current evidence. Synthetic fallbacks, insufficient calibration blocks,
+legacy no-op labels and post-hoc thresholds cannot establish policy benefit.
+Old studies not re-audited under the current raw contracts remain historical
+reports, not independently reproduced findings. Primary-source novelty and faithful
+baseline reproduction remain required. The prior SF10060M-row statement is wrong
+for the audited raw lineitem:600,037,902rows. No old paragraph should be copied
+into paper claims without the relevant current evidence and limitations.
+
+### 12.2 Data and actual runtime
+
+TPC-H SF1 lineitem provides6,001,215verified rows and controlled benchmark SQL.
+It is not an observed arrival trace. The prepared immutable source is
+`local.experiment.integrity_sf1_20261014_0024`, snapshot2963541948322332238.
+All eight raw SF1 tables matched source manifest bytes/rows on both computers.
+SF100all-eight typed/lexical scans and raw size/count/hash comparisons passed;
+generator/build provenance, relational integrity and clean readable large-table
+preparation still gate scale claims. Source-only verification is not a physical
+SF100 experiment. See dataset/resource readiness and typed-source review.
+
+Snowset's complete archive was validated and a training-only selected warehouse
+cohort independently audited:2,760,971actual arrivals, original identities/times,
+about13.34observed source days. It has no SQL text. Current replay explicitly maps
+arrivals to four custom SF1 lineitem SQL templates; it is not original Snowflake
+SQL reproduction or the official full TPC-H query suite. No duration/resource
+fields are used to infer missing SQL. Alibaba2017archive/task-arrival audits exist
+but are not database SQL replay; no verified Borg replay integration exists.
+Historical mathematical missing-trace fallbacks are retired/fail-closed.
+
+Actual execution is worker3, Spark3.3.4/Iceberg1.4.3/Java8, local[16],16GiB driver,
+i7-6950X10cores/20threads/~64GB RAM. This is one machine, not a distributed cluster.
+The warehouse path contains nfs-storage but observed backing storage is ext4.
+Live services were preserved. All validations/runs below used real artifacts or
+real SQL on worker3; newly launched jobs use nohup and retain logs/PIDs. Detached
+clients/observation threads finish naturally; no cancellation/table deletion.
+
+### 12.3 Measurement pipeline changes
+
+Replaced legacy fabricated/no-op-derived labels with exclusive durable JSONL
+physical events, actual execute/fetch monotonic clocks, UUID-tagged SQL and raw
+Spark REST job/stage/completed-task evidence. Intent/logging overhead is separate
+from measured client service; service is not pure CPU execution time. Measured
+host histories use exact60/300-second windows, available sample frontier,95%
+coverage and2-second gap/freshness gates. Cross-Python float reconstruction uses
+explicit ordered sums rather than weakening evidence tolerances.
+
+Queries bind available snapshot/file inventory to actual SQL and results. Actions
+bind fresh pre-action refresh/history/files and windows to the actual rewrite
+call, including2-second actual-call metadata age. Useful rewrite/file/row
+conservation, original/final bidirectional EXCEPT ALL and source results gate
+success. Completed task-lifetime overlap is not simultaneous CPU-use proof.
+Query-first/rewrite-first use dedicated sessions and actual submission/active-stage
+proof. No missing overlap is manufactured or clipped into a positive cost label.
+
+Offered/queued/dispatched/completed/failed events preserve original source spacing,
+scheduled/actual/durable clocks, source IDs, measurement UUIDs and exclusive client
+ownership. FIFO, complete source coverage, result/time/task binding and boundary
+state conservation are audited. No thinning/time compression, quiet-tail padding
+or completion-driven next-arrival scheduling. At horizon no further dispatch;
+in-flight work completes naturally, queued identities remain debt. Actual observer
+lateness and retrospective transition-clock census are reported separately.
+
+Common-horizon arms use fresh isolated clones, matched offered source windows and
+initial measured file row/byte signatures, verified original/final logical content
+and shared checkpoint schedule. Queries pin the latest available controller
+snapshot; post-commit publication/query-refresh lag and extra instrumentation are
+recorded limitations, not assumed zero. Own registered metadata/maintenance work
+is permitted; unrelated Spark work fails the gate. Controller/cohort pin code and
+configs, audit every episode before a dependent one, retain all failures and
+unattempted counts. Documentation-only commits may sync without changing run code.
+
+### 12.4 Completed current evidence, with limitations
+
+Four initial Q0–Q3 matched measurement pilots passed strengthened raw correctness
+exports. They are diagnostics, not a cost-training corpus. Earlier Q1 lacked
+pre-action context and Q0 used an immutable pre-warmup inventory; those omissions
+are retained, not retroactively upgraded. Repaired Q2/Q3 include fresh action state.
+
+Four real Q1 action-order episodes (query-first/rewrite-first, reverse-balanced)
+passed row/result/task/raw export gates,16files to1 with unchanged6,001,215rows.
+Signed during-minus-bracketed contrasts varied, and before/after control drift was
+on a similar scale. No stable variance/causal-cost/winning-order claim follows.
+Four no-maintenance controls subsequently audited showed middle-minus-bracketed
+contrasts−67.10,−73.47,−68.00,−31.27ms without rewrite, confirming that bracketed
+contrast alone is not a credible causal label. The first control runner failed
+at an auditor missing-summary-field bug; original failure preserved, corrected
+raw first-block audit passed, only three unattempted blocks then executed.
+
+The first real source-bin queue screen offered113arrivals;41completed inside its
+60-second horizon,1finished naturally afterward and71remained queued. Raw post-run
+audit and full package hash mirror passed. This measures overload of the declared
+single-client mapped workload, not the original warehouse or server generally.
+
+Six60-second common-horizon episodes compared no maintenance/now/later in reverse
+order,2per arm. All6passed raw/physical audits; initial164,550,027bytes/16files and
+6,001,215rows matched. Active arms ended at1file/163,892,210bytes. Now rewrites
+13.63/13.53seconds had zero overlapping query tasks; later14.89/14.57seconds
+exposed14/13queries. Within-horizon completed counts: none41/39, now41/37,
+later41/39. These do not show a robust throughput winner. Two episodes/arm,
+one minute, tiny scale, imposed mix and time/cache/instrumentation effects prevent
+publication-strength causal or calibrated-cost claims. Full review re-audited
+all6packages and identified37arrival-aligned completions common across arms.
+
+The longer registered cohort used three training-only5-minute windows with718/
+762/744actual arrivals and rotated arms,9planned. Mapping source audits passed.
+Only its first no-maintenance arm passed:718offered,245completed at horizon,
+1finished afterward,472queued. Second now arm stopped when durable observation
+logging crossed the horizon before dispatch;7episodes unattempted. This is a
+boundary bookkeeping failure, not a bad-compaction outcome. Failed arm/table/logs
+were not reclassified or discarded. Code now supports an explicit preregistered
+prepared-but-not-dispatched outcome that keeps the request queued, while requiring
+no SQL request/dispatch and actual crossing clock. Compilation and passed-arm
+regression passed; the new path still needs a real registered recovery run. No
+new physical work began after that cohort's18:30IST cutoff.
+
+### 12.5 Forecast/model state and paper claim boundaries
+
+One-warehouse Snowset arrival forecast diagnostic beat the daily seasonal MAE
+baseline by about17.75/25.41/24.45% at1/5/10minutes, independently reconstructed
+from saved predictions and source prefixes. This is a short, dependent diagnostic;
+not a CPU/load predictor, calibrated90% guarantee, deployed Model C or scheduler
+benefit. Three calibration source-days cannot justify the claimed daily-block
+conformal coverage. Preserve warehouse/observation limits and no future leakage.
+
+Strict separate A/B training code exists; an opt-in shared action-conditioned
+candidate uses the same splits/hyperparameters and per-regime/query gates.
+Successful fitting of the shared path remains unvalidated. No current cost model
+is trained/accepted from these diagnostics, no calibrated scheduler is deployed,
+and no arbitrary fixed defer penalty/intensity/small-file threshold/SLA is inserted.
+Legacy trainer schema is intentionally incompatible with diagnostic exports.
+
+Next end-to-end milestone is the raw-verified query/rewrite/episode cost-candidate
+export, reliable diverse collection, exploratory model comparison, independent
+chronological calibration/test and then physical temporal-policy evaluation.
+See `learned_cost_model_implementation_plan.md`. Exploratory fitting is distinct
+from acceptance; forecasts must ultimately improve held-out scheduling, not just
+arrival MAE. Missing experiments/labels stay missing; failed attempts stay in the
+inventory. A paper needs stronger workloads/scales, independent uncertainty,
+faithful baselines, primary-source novelty and explicit negative findings.
+
+### 12.6 Reproduction and append policy
+
+Evidence index: `daytime_review_2026-10-14.md`, `overnight_review_2026-10-14.md`,
+`common_horizon_cohort_review_2026-10-14.json`,
+`long_common_horizon_partial_review_2026-10-14.json`,
+`snowset_queue_diagnostic_review_2026-10-14.json`,
+`no_maintenance_partial_review_2026-10-14.json`,
+`no_maintenance_recovery_review_2026-10-14.json` and the raw results/packages
+referenced there. Phase implementations/configs live under phase6-live-evaluation
+and docs/experiment_protocols. SHA-pinned inputs/raw clock/result/task re-audits,
+not a prose status flag, determine accepted evidence.
+
+Major revisions: c7eeaf6order pilot;5f2a554null/shared candidate;04a57c4null audit
+repair;bb26eaenull review;2107004queue/mapping; b900c6bactual queue registration;
+9e47579queue evidence;b8e83fccommon horizon;842e4dfsix-arm review/window selection;
+5d25c00longer collection;f07c2d6boundary repair/failure review. Raw packages freeze
+actual execution code/HEAD, including documentation-only revisions. Initial
+seven-table physical byte fallback was verified; newer raw/code/result mirrors
+do not imply every newer warehouse data file has a local byte backup.
+
+Remote working-methodology had a dirty deletion of the final historical14-line
+Phase6paragraph. Exact remote file/diff preserved in
+`results/methodology_reconciliation_20261014/`; target-only stash reconciliation
+will preserve that edit before fast-forward. No unrelated dirty files/archive are
+staged or overwritten. Historic incorrect paragraph is retained locally as history
+and explicitly superseded above; this is not an endorsement of its thresholds.
+After each major job append current observations and limitations here. Never
+silently edit earlier outcomes to match a new model or retroactively approve runs.
+
+## 13. Cost-candidate data pipeline implementation —2026-10-14
+
+Major job: start the complete collection-to-model milestone rather than another
+standalone timing pilot. `export_physical_cost_candidates.py` and preregistered
+`physical_cost_candidate_export_20261014.json` re-audit7successful common-horizon
+arm packages, export observed query service, actual rewrite work/duration and
+whole-episode throughput/debt into separate tables, and retain failed/unattempted
+inventory. This entry records implementation; actual export completion/checks
+will be appended separately after the detached worker3 run.
+
+Prediction features are available pre-query measured host windows, actual query
+identity/table files/rows/bytes, controller maintenance client-request pending
+state and observed queue depth. Pending is known client intent/completion
+availability, not a claim of simultaneous engine execution. Completed task overlap,
+arm assignment, observed queue delays and boundary outcomes are diagnostic fields,
+excluded from the predictor allowlist. Targets are raw execute/fetch service ms
+and actual rewrite client duration/bytes; no synthetic interference penalty or
+unobserved alternative-action target is produced.
+
+Full offered-history60/300-second counts are absent when replay history is
+incomplete; coverage flags preserve this cold start rather than padding zeros or
+inventing normalized intensity. Whole raw/frozen verification dependencies and
+input/output SHA256s are bound. Repeated and overlapping source intervals are
+retained with exact source identities so future splits can group/purge them.
+No calibration or scheduler acceptance follows from exporting candidate data.
+These7episodes still lack diverse layouts/workloads and independent calibration.
+Model-development fitting and calibrated deployment are separate next gates in
+`learned_cost_model_implementation_plan.md`. All validation/export execution is
+on worker3 under nohup using actual recorded physical artifacts, no dummy data.
+
+Remote target-only methodology deletion was preserved before synchronization in
+stash84709ace32daa6c1af22e66522cf2c3e4e86a2e8, with exact local file/diff fallback
+under the reconciliation directory. Other remote dirty files and the unrelated
+archive were untouched. Both methodology updates add lines only; original local
+text remains as historical evidence, with corrections appended rather than removed.

@@ -1,0 +1,52 @@
+{
+  "schema_version": "physical_cost_candidate_export_v1",
+  "successful_arm_results": [
+    {
+      "path": "../../results/sf1_horizon_20261014_01/result.json",
+      "sha256": "f6b21f755a94d8a92e992988e6c1b3609cd5010a6f0313595e8997b71088b513"
+    },
+    {
+      "path": "../../results/sf1_horizon_20261014_02/result.json",
+      "sha256": "9e8c4f593671fc7a23b65770a61404c07c3d7b32bdc74d0afe06858d5d25eb56"
+    },
+    {
+      "path": "../../results/sf1_horizon_20261014_03/result.json",
+      "sha256": "03a02fe226141da01a3ccdff849b52429a539b6a430d7fa8577d44f4f52d331b"
+    },
+    {
+      "path": "../../results/sf1_horizon_20261014_04/result.json",
+      "sha256": "1fdf9342963ecf8454056163f4b4ae5676455637d7c8673b9958de12ca968526"
+    },
+    {
+      "path": "../../results/sf1_horizon_20261014_05/result.json",
+      "sha256": "f275eca3810e6cbc30c0ca5a3b916c55c65c8dc36f690a234a637eca35fca593"
+    },
+    {
+      "path": "../../results/sf1_horizon_20261014_06/result.json",
+      "sha256": "f6bbd1f11803e57567cad05c3bf30bfd345af1b0d953157a73d2152718935c58"
+    },
+    {
+      "path": "../../results/sf1_long_horizon_20261014_01/result.json",
+      "sha256": "8d9d64378fcec3d06a8a6c94bb176f4f6610d533f53bc12824a85fe2dec6103a"
+    }
+  ],
+  "attempt_inventories": [
+    {
+      "path": "../../results/sf1_common_horizon_cohort_20261014/result.json",
+      "sha256": "0440032e0ddcc0ed54bc4c9c47a80c2642a3a7ef007f32e20a58db92301aadb3"
+    },
+    {
+      "path": "../../results/sf1_long_common_horizon_cohort_20261014/result.json",
+      "sha256": "2012f59f1b2f0d2bf386d653d9afb20b02908218af7386f8550318ca100a2351"
+    }
+  ],
+  "output_directory": "../../results/physical_cost_candidates_20261014",
+  "limitations": [
+    "Diagnostic7episodes at one initial controlled SF1 layout and one client; not enough independent diversity/calibration or held-out model approval.",
+    "Six one-minute source intervals overlap the one accepted five-minute source interval; source-overlap families must be grouped/purged before train/test.",
+    "Actual task overlap/arm/horizon outcomes are diagnostic labels, not predictors or unobserved counterfactual penalty.",
+    "Incomplete offered-history counts are missing, not padded/normalized/imputed; no invented intensity or small-file threshold.",
+    "Service targets are observed client execute/fetch time, not pure CPU work or total deferred-schedule cost.",
+    "Failed second long arm and7unattempted retained in inventory; no labels taken from failed package."
+  ]
+}
