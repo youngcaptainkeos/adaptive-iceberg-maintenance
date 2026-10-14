@@ -1373,3 +1373,27 @@ only methodology, stops at06:00ISTOct15and leaves in-flight services/work runnin
 No heavy model fitting/backup alongside physical query windows; no trained or
 calibrated model claimed at launch. Morning review records precise completed/
 running/failed/unvalidated states and next scientific gates.
+
+## 20. Candidate-schema exploratory estimators implemented (2026-10-14 evening)
+
+Purpose: move from measured candidate labels to an auditable shared-versus-separate
+cost-model comparison without inventing legacy features. Added
+scripts/phase6-live-evaluation/train_candidate_cost_models.py. Requires SHA-bound
+raw export/independent verification, artifact integrity, complete chronological
+source-overlap-family partition and unique whole-episode family membership.
+Training-only scaling/SQL encoding and median baselines; fixed preregistered
+Ridge alpha1.0, no held-out optimization. Shared observed-client-pending feature,
+conditional separate latency estimators and distinct measured rewrite-duration
+regression. No counterfactual penalty, calibration or scheduler authorization.
+Complete demand-history mode excludes early missing60/300s histories with UUID
+inventory; no imputation. Negative predictions retained. Saved model bundle,
+held-out row predictions, per-episode/query/layout/pending-state errors, settings,
+versions/source hashes and not-fit states enable review.
+
+At14:44UTC collection PID1031940 still active in immutable60e15ba runtime; first
+of18episodes running. Main implementation does not change frozen collector code.
+No fitting/new physical episode started by this job, no new observed model result.
+Validation next: detached worker3 syntax check; successful end-to-end validation
+requires completed diverse raw export and registered actual hashes. Existing
+489query/4rewrite corpus has only one source family and cannot train/test this
+protocol. Three planned families still insufficient for calibration/generalization.

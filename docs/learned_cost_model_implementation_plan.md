@@ -136,3 +136,31 @@ blocks independent source-family train/test/calibration and demand-history input
 it does not erase the valid host windows/physical latency targets. Next collection
 must explicitly address those gaps and varied layouts, rather than counting more
 queries from the same source minute as independent trials. No model fit occurred.
+
+## Exploratory trainer preregistration —2026-10-14 evening
+
+`train_candidate_cost_models.py` implements candidate-schema shared latency,
+separate latency conditional on measured maintenance-client pending state, and
+rewrite client-duration Ridge regressions. Register alpha=1.0 for the first fit:
+unit-scaled predictors with modest L2 stabilization, no held-out search; it is an
+experimental model parameter, not a policy prediction. Training-only SQL one-hot
+encoding, feature scaling and per-SQL median latency baselines; rewrite baseline
+is training median. No clipping or missing-value imputation. Negative predictions
+are reported as a limitation. Separate/shared comparisons must use the same
+retained query set; do not infer exact engine-active state from client pending.
+
+Planned split: first two connected source-window families train, third test, all
+whole episodes and layouts within each family stay together. Exact export and
+verification SHA256, family indices, alpha, output and demand-history choice must
+be registered in a candidate_cost_fit_v1 JSON before execution. Full60/300s offered
+history is required for the primary demand-aware latency comparison; early rows
+are excluded with explicit UUID inventory. Rewrite regression uses measured
+pre-action host/layout fields only. One source family cannot produce this split.
+No calibration partition, confidence interval, fitted scheduler or winner claim
+with three source families. Report held-out predictions and per-episode/SQL/layout/
+pending-state MAE against training medians. Insufficient state rows remain not-fit.
+
+This is source implementation pending worker3 syntax validation and later actual
+end-to-end fitting. Run heavy verification/fitting only after physical collection
+is inactive. Bind future export/verification to actual completed raw evidence;
+never create placeholder hashes/labels to exercise a successful fit.

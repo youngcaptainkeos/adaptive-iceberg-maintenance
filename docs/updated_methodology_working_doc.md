@@ -273,3 +273,9 @@ PID1031940 at20:07:27IST, frozen detached code/config checkout, identical intend
 file hashes and canonical source/results links. First baseline running, outcomes
 unestablished. Fifteen-minute audit/repair automation continues to06:00ISTOct15;
 no simultaneous heavy fitting, fabricated labels or automatic calibration claims.
+
+2026-10-14 evening: canonical working methodology Section20 records new exploratory
+candidate-schema shared/separate latency and rewrite-duration trainer, chronological
+whole-source-family gates, training-only processing, missing-history exclusions
+and explicit no-promotion outputs. Preregistration appended to learned-cost plan.
+Implementation pending real fit; immutable18episode physical collection continues.

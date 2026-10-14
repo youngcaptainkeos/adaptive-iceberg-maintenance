@@ -93,3 +93,15 @@ If failed, inspect raw cause and immutable frozen code before a new registered
 repair; no occupied-table reuse or outcome-selected retries. No run past stated
 launch/SQL deadlines. Need laptop/app and campus/VPN available for heartbeat; SSH
 worker jobs survive disconnects. AutomationACTIVE verified in app.
+
+## Exploratory estimator source implementation
+
+Added train_candidate_cost_models.py and preregistered first-fit alpha1.0 and
+first-two-family train/third-family test design. SHA-bound independent candidate
+verification, complete whole-source-family partition, no imputation, training-only
+encoding/scaling/medians. Shared and pending-state conditional separate latency,
+rewrite-duration models; all explicitly exploratory/uncalibrated. Saves held-out
+predictions, group errors and missing-history inventory; absent regimes not fitted.
+No actual fit result. At14:44UTC frozen coordinator1031940 first episode running.
+Next: worker3 detached syntax check; later completed raw export and actual-hash fit
+registration when physical collector inactive. Existing one-family corpus blocked.
