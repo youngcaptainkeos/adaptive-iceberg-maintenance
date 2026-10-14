@@ -223,6 +223,25 @@ def run(config,revision):
                 guard();rec.execute(query,f'REFRESH TABLE {table}',role='query_session_state_refresh');query_snapshot=query_state['snapshot_id']
                 windows=[sampler.window(seconds=w,max_interval_seconds=t['max_interval_seconds'],max_age_seconds=t['max_age_seconds']) for w in t['window_seconds']]
             if time.monotonic_ns()>=hi:break
+            sql=query_templates(table)[qid].replace(f'FROM {table}',f"FROM {table} VERSION AS OF {query_state['snapshot_id']}")
+            if cfg.get('query_preparation_contract')=='serialized_durable_submission_v1':
+                def prepare_submission():
+                    fresh=[sampler.window(seconds=w,max_interval_seconds=t['max_interval_seconds'],max_age_seconds=t['max_age_seconds']) for w in t['window_seconds']]
+                    log.emit('query_observation',measurement_id=mid,query_id=qid,role='trace_query',windows=fresh,**query_state)
+                    checked=stamp()
+                    if checked['monotonic_ns']>=hi:
+                        require(cfg.get('boundary_preparation_contract')=='retain_queued_unsubmitted_observation_v1','Unregistered boundary preparation')
+                        log.emit('query_observation_not_dispatched',source_query_id=identity,measurement_id=mid,horizon_end_monotonic_ns=hi,checked_at=checked,reason='horizon_reached_before_dispatch')
+                        return False
+                    guard();ledger.transition(identity,'dispatched',measurement_id=mid,session_id='query_0')
+                    return True
+                try:
+                    probe=rec.execute(query,sql,role='trace_query',query_id=qid,measurement_id=mid,prepare_submission=prepare_submission)
+                    if probe is None:break
+                    ledger.transition(identity,'completed',measurement_id=mid,session_id='query_0');probes.append(probe)
+                except Exception:
+                    ledger.transition(identity,'failed',measurement_id=mid,session_id='query_0');raise
+                continue
             log.emit('query_observation',measurement_id=mid,query_id=qid,role='trace_query',windows=windows,**query_state)
             checked=stamp()
             if checked['monotonic_ns']>=hi:

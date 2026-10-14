@@ -9,6 +9,7 @@ import time
 from datetime import datetime, timezone
 import urllib.request
 import uuid
+from contextlib import nullcontext
 
 from experiment_validation import ValidationError, require
 
@@ -31,7 +32,7 @@ class EventLog:
     def __init__(self, path, experiment_id):
         require(bool(experiment_id), 'Experiment ID required')
         self.experiment_id = experiment_id
-        self.lock = threading.Lock()
+        self.lock = threading.RLock()
         self.stream = Path(path).open('x', encoding='utf-8')
 
     def emit(self, kind, **fields):
@@ -54,19 +55,23 @@ class StatementRecorder:
     def __init__(self, log):
         self.log = log
 
-    def execute(self, cursor, sql, *, role, query_id=None, measurement_id=None):
+    def execute(self, cursor, sql, *, role, query_id=None, measurement_id=None, prepare_submission=None):
         if measurement_id is None:
             measurement_id = uuid.uuid4().hex
         require(isinstance(measurement_id, str) and re.fullmatch(r'[0-9a-f]{32}', measurement_id),
                 'Explicit query observation ID must be a real UUID hex identity')
         marker = 'capstone_event_' + measurement_id
-        request_start = stamp()
-        self.log.emit('statement_requested', measurement_id=measurement_id,
-                      marker=marker, role=role, query_id=query_id, sql=sql,
-                      request_start=request_start, timing_contract='client_submission_v1')
-        # Durable intent logging precedes the RPC. Exclude its I/O from the
-        # measured client service interval, while retaining total request lifetime.
-        execute_start = stamp()
+        # Serialize only durable preparation/intent, never the RPC or fetch.
+        # This prevents archival writes interleaving between fresh features
+        # and actual submission; all original timestamps/age gates still apply.
+        with self.log.lock if prepare_submission is not None else nullcontext():
+            if prepare_submission is not None and prepare_submission() is False:
+                return None  # Registered boundary: no intent and no SQL call.
+            request_start = stamp()
+            self.log.emit('statement_requested', measurement_id=measurement_id,
+                          marker=marker, role=role, query_id=query_id, sql=sql,
+                          request_start=request_start, timing_contract='client_submission_v1')
+            execute_start = stamp()
         try:
             cursor.execute(f'/* {marker} */\n{sql}')
             execute_return = stamp()

@@ -311,3 +311,7 @@ Saved-evidence check is not live-path/model approval; real collection gate next.
 
 Recovery2actual launchPID1130786, immutabledd4ebf5runtime;23registeredfileSHA match.
 Saved real query+maintenance checkpoint passed; live collection/fitting pending.
+
+Section27 recovery2failed actual2s freshness (2.179098077s sample age);0/1/17retained.
+Opt-in serialized durable pre-submission preparation implemented without relaxing
+raw gates; validation/new protocol needed. Logging contention suspected, not proved.

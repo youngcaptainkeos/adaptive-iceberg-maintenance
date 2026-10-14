@@ -106,3 +106,7 @@ No active collector; do not fit one-family dataset or upgrade failed arm.
 Recovery2fresh18matrix registered; actual saved compaction checkpoint validation
 then immutable launch. No physical/Spark activity16:10UTC. Keep all original
 failed inventories; live midpoint maintenance path must pass actual raw audit.
+
+16:40UTC priority freshness repair: recovery2failed0/1/17. Actual sampleage2.179s
+versus strict2s. Validate serialized preparation path/error accounting and register
+fresh cohort before any restart; no weakened age gate or failed labels.

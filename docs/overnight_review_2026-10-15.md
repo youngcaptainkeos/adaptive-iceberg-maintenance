@@ -174,3 +174,10 @@ All23registrationfileSHA match; actual saved query+maintenance checkpoint passed
 Log results/sf1_overnight_recovery2_cohort_20261015_launch.log; firstcheck22:00IST,
 fullmatrixestimate02:15–03:15IST. No acceptednewarm/model at launch. Inspect active
 progress first nextwake; preserve all previous failed/table/unattempted records.
+
+Recovery2failed16:28:42UTC,0passed/1failed/17unattempted. Oneactualquery sampleage
+2.179098077s, observation-to-call1.392276840s, intentIO0.041765266s.494completed
+queries remain diagnostic excluded labels. Added opt-in serialized preparation
+using fresh actual windows plus durable observation/dispatch/intent, release lock
+beforeRPC. Gates unchanged; new livepath pending. No activeSpark16:40UTC. Raw
+freshness diagnosis results/recovery2_freshness_diagnosis_20261015.json.

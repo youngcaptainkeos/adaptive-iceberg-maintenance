@@ -1519,3 +1519,23 @@ progress/audits matching cohort directory, arms sf1_overnight_recovery2_20261015
 Saved real checkpoint query+maintenance validation passed, not livepath approval.
 First check approximately22:00IST; full matrix02:15–03:15IST if healthy. No
 recovery2episode accepted yet, no learned model fit. Inspect nextwake before work.
+
+## 27. Recovery2 telemetry freshness failure and serialized preparation repair
+
+Recovery2 exited16:28:42UTC,0passed/1failed/17unattempted; no activeSpark16:40UTC.
+Actual saved diagnostic results/recovery2_freshness_diagnosis_20261015.json:
+494completed queries, one query's60/300s samples age2.179098077s atsubmission,
+observation-to-call1.392276840s versus intent-only I/O0.041765266s. Strict2s gate
+correctly rejected run. Archive/log interleaving is a suspected contributor, not
+proved causal; no retrospective timestamp correction or max-age relaxation.
+
+Implemented opt-in serialized_durable_submission_v1 preparation: reentrant event
+log lock covers refreshed actual telemetry windows, durable observation, dispatch,
+intent and actual execute-start stamp only; releases before SQL RPC/fetch so offered
+arrivals/archive/telemetry aren't blocked for service duration. Same raw chronology,
+2s freshness, FIFO/cutoff and all physical/task gates still required. Registered
+boundary abandonment leaves queued/no intent/noSQL as before. New physical path
+requires fresh protocol/live validation; original frozen runtimes unchanged.
+Next detached server syntax/raw regression, inspect preparation error accounting,
+register fresh identifiers before launch. All prior failed counts unchanged;
+no model fit/labels from failed package. Avoid blind repeat without causal repair.
