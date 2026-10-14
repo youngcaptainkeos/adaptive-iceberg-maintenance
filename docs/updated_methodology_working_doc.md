@@ -319,3 +319,6 @@ raw gates; validation/new protocol needed. Logging contention suspected, not pro
 Section28 fixes submission/ledger lock inversion before physical use, preserves
 pre-dispatch failure states, registers fresh recovery3same strict matrix/gates.
 Instrumentation scheduling change remains explicit limitation; live validation next.
+
+Recovery3nohupPID1177256 confirmed, immutablec93f13f/all26unitSHA agree. Historical
+raw regression passed; firstlive serialized path validation still pending.

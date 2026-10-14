@@ -186,3 +186,10 @@ Submission audit caught log/ledger inversion before launch; sharedRLock fixes it
 pre-dispatch failures stayqueued. Recovery3fresh18identities register serialized
 preparation, same source/layout/order/cutoffs/gates. No activeSpark16:55UTC.
 Next server syntax/rawregression, immutable launch. No fit/model acceptance yet.
+
+Recovery3launched16:57UTC/22:27IST, PID1177256 alive, frozen
+/tmp/capstone_overnight_recovery3_runtime_20261015 atc93f13ffb77de1114fb6bcbeaa60d9faf0a6acfb.
+All26unitSHA256 agree; actual recovery01raw regression passed. Log
+results/sf1_overnight_recovery3_cohort_20261015_launch.log; firstcheck22:45IST,
+fullestimate03:00–04:00IST subject strict gates. No new arm/model accepted yet.
+Nextwake activeinspection/rawaudit first; no concurrent physical run/heavyfit.

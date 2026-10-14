@@ -1552,3 +1552,13 @@ Prior frozen runs/counts unchanged. Server detached syntax/historical actual raw
 baseline regression next, then frozen runtime launch if checks pass. This lock
 change alters instrumentation scheduling; actual generator lateness/backlog remain
 reported, not assumed original SQL replay or timing-neutral causal measurement.
+
+Recovery3actual launch16:57UTC (22:27IST), nohup PID1177256 confirmed alive,
+frozen /tmp/capstone_overnight_recovery3_runtime_20261015 at
+c93f13ffb77de1114fb6bcbeaa60d9faf0a6acfb; all26unitSHA256 agree bothhosts.
+Historical actual recovery01raw regression passed
+results/serialized_preparation_raw_regression_20261015.json. Live serialized
+submission behavior not yet validated. Log
+results/sf1_overnight_recovery3_cohort_20261015_launch.log, matching cohort progress/
+audits and raw arms sf1_overnight_recovery3_20261015_01..18. Firstcheck22:45IST,
+fullestimate03:00–04:00IST if healthy; cutoffs unchanged. No learned-model fit.
