@@ -338,3 +338,5 @@ and fitting gates pending.03result/audit receipts mirrored with matchingSHA.
 Section32 recovery3stopped3passed/1failed/14unattempted on missingfreshtelemetry.
 Successful3arm export registered with all failure inventories; no32file acceptance
 or independent fit/calibration claim. Sampler diagnosis/availability repair next.
+
+Real3arm candidate export nohupPID1261960 launched; nextcheck5min/rawroundtrip.

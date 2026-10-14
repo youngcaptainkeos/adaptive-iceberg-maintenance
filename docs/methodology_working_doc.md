@@ -1632,3 +1632,8 @@ protocols. This is real end-to-end candidate export progress, not independent
 train/test evidence: one sourcefamily,16file original layout, no32file accepted.
 Detached worker3 export/rawaudit next; independent roundtrip before any model use.
 Original failures/tablebytes kept; fitting/calibration remains blocked by diversity.
+
+Candidate export launched worker3nohupPID1261960 at18:19UTC; log
+results/physical_cost_candidates_recovery3_20261015_launch.log. Estimated check
+within5minutes/nextheartbeat.63f025bHEAD/5intendedSHA matched hosts. No physical
+collector active; no accepted export result yet, independent roundtrip next.

@@ -233,3 +233,7 @@ window beforequerycall, failedpackage excluded. No activeSpark18:15UTC. Register
 physical_cost_candidate_export_recovery3_20261015.json for01/02/03only, sixattempt
 inventories SHA-bound. Onefamily/16file layout only; independentfit blocked. Next
 export/rawroundtrip and sampler availability diagnosis before physical restart.
+
+ExportPID1261960nohup launched18:19UTC; log
+results/physical_cost_candidates_recovery3_20261015_launch.log. Checkwithin5min or
+nextwake, then independent rawroundtrip.63f025bHEAD/5intendedSHA matched hosts.
