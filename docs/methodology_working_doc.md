@@ -2079,3 +2079,15 @@ operational bound, not policy/data constant. HTTP/localdelivery failures getrece
 andcannotupgradeoriginalrun. No activefrozenruntime modified/restarted; oldfailed
 job remains1passed/1failed/16unattempted. Verifydeliverywith actualfailedcohortalert,
 not dummytest/data, undernohupworker3; saveexactresponse/PID receipt. NoSQL/refit.
+
+## 56. Actual failure notification delivered and notification code checked
+
+Worker3nohupPID1986995 parsed3changedPythonmodules andsentactualpreservedcollection
+failure (not dummytest). ntfyreturnedHTTP200, eventIDoqZkPibiuhmG at06:05:10UTC;
+receipt results/ntfy_actual_collection_failure_20261015.json, matchinglog. NoSQL/
+physicalexperiment/modeljob started. Future standalone tests/jobs must use failure
+wrapper; detachedrunnerchild/orchestrationfailuresalsoalert, failednotification
+receipt cannotalter experimentstatus. 7bc00f6HEAD/all7unitSHA agreehosts. Userstatus:
+no currentprojecttests/experiments/fitting/Sparkjobs; services preserved. Oldfrozen
+runtimesnotretroactivelychanged. Externaldelivery requires worker3internet/topic
+availability; failuregets localreceipt/no silentclaimof deliverednotification.
