@@ -432,3 +432,7 @@ Section51 new userauthorized detached18episode consistentcoveragepilot registere
 newsource3/4development/5futuretest, realmappingaudits/frozenruntime/strictgates/
 stoponfailure/candidateexport/handover, no automaticmodel fit. New boundeddaytime
 cutoffs, pilotnotpowerclaim. Modelcomparisonprospectivelyregistered forlaterreview.
+
+Section52 actualdetachedPID1804667/PPID1launch08:33IST, frozenea2b6e6/8SHAagree,
+sourcepreparationrunning. Estimated5–6h/gated, laptopcancloseaftersuccessfulsetup.
+Handover/checkcommand saved; no automaticfit or offline-localmirrorpromise.

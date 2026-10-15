@@ -2017,3 +2017,21 @@ Prospective collection/modelcomparison preregistration saved
 consistent_collection_model_protocol_2026-10-15.md; source3/4development,5futuretest,
 trainingonlycandidate comparison pending datagate. Localclosuredoesnotaffectfrozen
 nohupserverjob; futuremirror/actualresultsreview waitsforreconnection.
+
+## 52. Actual detached consistent collection launch within30minute setup window
+
+All8registration/code/docfileSHA agree local/worker3; frozen Gitworktree
+/tmp/capstone_consistent_runtime_20261015 at
+ea2b6e69eeeeb34d6a41c8212f544334dba046d0, canonicaldatasets/results symlinked.
+CoordinatornohupPID1804667 launched03:03:16UTC/08:33IST, PPID1confirmed afterSSH
+sessionexit; initialsource_preparationrunning (no dummytest/SQL). Log
+results/consistent_collection_20261015_launch.log, progress/result/finalhandover
+under matchingjobdirectory; childsource/rawlogs persistedserver-side. Estimated
+5–6hours,13:30–14:30ISTsubjectgates; named16:00/16:30ISTlaunch/SQLcutoffs.
+Usercancloselaptop: serverorchestratorneedsnoCodexheartbeat/networkconnection to
+continue serialgatedsteps. Appautomationremainspaused. No automaticmodelrefit.
+
+Saved detached_collection_handover_2026-10-15.md withcheckcommand/paths/guardrails.
+Firstpreparation/execution healthcheck stillrequiredbeforesetupcompletionclaim;
+no passednewdata/modelresultatlaunch. Alloldnegativefit/failures/dirt/archivekept.
+Newresults onremote mustmirrorafterlaptopreconnect; cannotpromiseoffline localsync.
