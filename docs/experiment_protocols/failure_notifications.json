@@ -1,0 +1,5 @@
+{
+  "topic_url": "https://ntfy.sh/shashank_capstone_alerts",
+  "timeout_seconds": 10,
+  "rationale": "Explicit user-authorized failure alerts for every future test/run. One bounded HTTP attempt; notification errors preserve original failure and a local receipt. No dummy execution required."
+}

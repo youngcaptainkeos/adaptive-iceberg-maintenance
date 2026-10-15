@@ -2067,3 +2067,15 @@ Failedarm remains excluded; don'tretroactively relabel/retry forfavorableoutcome
 Terminalresult/handover/diagnosticmirrored forreview. Nextnecessaryrepair is actual
 call-start cutoff plus explicitdurableunsubmitted-intent/queue accounting before
 freshregisteredcollection; no physicalrestartperformedbythisreview.
+
+## 55. User-authorized ntfy failure alerts for future tests/runs
+
+User explicitlyauthorizes https://ntfy.sh/shashank_capstone_alerts andrequestsstatus
+within4minutes. Worker3check:no activeprojectexperiment/fittingprocess orSparkjob.
+Added configuredHTTPfailure notifier, standalone actual-command wrapper preserving
+exitstatus/no retries, detachedrunner failedchild/orchestrationhooks, standing
+AGENTS workflow for everyfuturetest/job.10s oneattemptnotificationdeadline is
+operational bound, not policy/data constant. HTTP/localdelivery failures getreceipt
+andcannotupgradeoriginalrun. No activefrozenruntime modified/restarted; oldfailed
+job remains1passed/1failed/16unattempted. Verifydeliverywith actualfailedcohortalert,
+not dummytest/data, undernohupworker3; saveexactresponse/PID receipt. NoSQL/refit.

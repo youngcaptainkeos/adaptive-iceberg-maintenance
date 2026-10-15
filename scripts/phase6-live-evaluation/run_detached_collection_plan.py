@@ -4,6 +4,7 @@ import argparse,csv,json,os,shutil,subprocess,sys,traceback
 from datetime import datetime,timezone
 from pathlib import Path
 from experiment_validation import load_json,verified_file,require,sha256
+from failure_notifications import notify_failure
 
 def now():return datetime.now(timezone.utc).isoformat()
 
@@ -26,6 +27,8 @@ def run(protocol,revision):
         require(all(sha256(module/n)==h for n,h in hashes.items()),'Frozen runtime code changed')
         with (out/logname).open('x') as stream:
             result=subprocess.run([sys.executable,'-u',str(module/script),*map(str,args)],cwd=repo,stdout=stream,stderr=subprocess.STDOUT)
+        if result.returncode:
+            notify_failure(script,f'Exit status {result.returncode}. Log: {out/logname}. No retry.',out/(logname+'.failure_notification.json'))
         return result.returncode
     def write(name,value):
         path=protocols/name
@@ -100,6 +103,7 @@ def run(protocol,revision):
         report['status']='completed_candidate_collection_no_models' if rc==0 else 'stopped_failed_physical_gate_preserved_no_retry'
     except Exception as exc:
         report.update(status='failed_preserved_no_retry',error_type=type(exc).__name__,error=str(exc),traceback=traceback.format_exc())
+        notify_failure('Detached collection orchestration',str(exc)+'; evidence: '+str(out),out/'orchestrator_failure_notification.json')
     finally:
         report['ended_utc']=now();report['phase']='finished';save()
         (out/'result.json').write_text(json.dumps(report,indent=2)+'\n')

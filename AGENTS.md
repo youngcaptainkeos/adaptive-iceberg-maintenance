@@ -1,5 +1,13 @@
 # Project workflow
 
+- Send failure notifications for every future test/run to the user-authorized
+  `https://ntfy.sh/shashank_capstone_alerts`. Launch standalone tests/jobs through
+  `scripts/phase6-live-evaluation/run_with_failure_alert.py` under nohup on worker3
+  with an explicit label, unique receipt path and actual command after `--`.
+  The detached collection runner also alerts failed child stages/orchestration.
+  Preserve original exit status, logs and failures even if notification delivery
+  fails. No dummy run is needed to test alerts; use actual failed-run evidence.
+
 These are the user's standing project requirements. Later explicit user instructions
 and applicable higher-priority instructions take precedence.
 

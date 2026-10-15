@@ -444,3 +444,7 @@ mirrored/SHAverified; no acceptednewrawepisode/modelclaim. Reviewserverhandoverl
 Section54 latestdetachedreview:1passed/1failed/16unattempted, stopped09:07IST.
 Actualcall67.927msafterhorizon despitepre-horizondispatch; failedarmpreserved/export
 skipped. Detachedorchestratorworkedbutcollectionfailed; no automaticrestart/modelchange.
+
+Section55 userauthorizedntfyfailurealerts implemented/defaultfuturetestwrapper and
+runnerhooks, no retries/statusweakening. Worker3idle. Verifyonactualexistingfailure,
+not dummyexecution; persist HTTPresponse andsync intendedfiles.
