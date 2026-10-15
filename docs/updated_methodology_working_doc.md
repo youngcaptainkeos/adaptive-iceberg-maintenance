@@ -436,3 +436,7 @@ cutoffs, pilotnotpowerclaim. Modelcomparisonprospectivelyregistered forlaterrevi
 Section52 actualdetachedPID1804667/PPID1launch08:33IST, frozenea2b6e6/8SHAagree,
 sourcepreparationrunning. Estimated5–6h/gated, laptopcancloseaftersuccessfulsetup.
 Handover/checkcommand saved; no automaticfit or offline-localmirrorpromise.
+
+Section53 server sourceaudits/disjointness/18actualhashregistrationspassed beforeSQL;
+physicalcollectionrunningnohupPID1804667/PPID1, laptopcanclose. Executionmanifest
+mirrored/SHAverified; no acceptednewrawepisode/modelclaim. Reviewserverhandoverlater.

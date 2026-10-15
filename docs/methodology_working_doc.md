@@ -2035,3 +2035,16 @@ Saved detached_collection_handover_2026-10-15.md withcheckcommand/paths/guardrai
 Firstpreparation/execution healthcheck stillrequiredbeforesetupcompletionclaim;
 no passednewdata/modelresultatlaunch. Alloldnegativefit/failures/dirt/archivekept.
 Newresults onremote mustmirrorafterlaptopreconnect; cannotpromiseoffline localsync.
+
+## 53. Detached setup health gates passed before laptop closure
+
+All3fresh source mappings independentlyaudited; runner advanced physical_collection
+onlyafterold/newsourceintervaldisjoint checks, actualmapping/auditSHA binding, all18
+protocolgeneration andsavedexecutionmanifest. Existing strictcohortstarted with
+frozenea2b6e6 revision, firstepisodelog exists/no reportedfailure athealthcheck.
+ExecutionmanifestSHA0ed30bb68f8a8ccec8849828fa2e256fb7b0e33c3ed57043ce0dc18910064c10;
+immutablemanifestmirroredlocally/hashmatches. No newphysicalepisodeclaimpassed yet.
+CoordinatorPID1804667PPID1running independently ofSSH/laptop, allchildlogs/progress/
+terminalstatus persist onserver; noCodexheartbeatrequired. Setupcompletedwellwithin
+user30minuteavailability. Actualnewrawresults/data/possiblefailedgates mustbereviewed
+andmirroredafterreconnection; no automaticfitting/promotion. No service/tabledeleted.

@@ -53,3 +53,14 @@ ssh ccbd@10.10.3.232 'cat /mnt/nfs-storage/shashank_prafullathta/implementation/
 Read the serverhandover before resuming. Mirror raw/results/hash manifests once
 connected; newresults cannot be mirrored onto a closed laptop. Re-audit failures
 before any new dependent collection/fit. Do not reuse occupied tableidentities.
+
+## Setup health check completed before laptop closure
+
+Allthree source mapping/audits passed, intervals disjoint from earlierfamilies,
+and18actualSHA-bound episodeconfigs saved beforephysicalwork. Coordinator advanced
+tophysical_collection, strictcohort/firstepisode started without reportedfailure at
+setupcheck. Executionmanifest mirroredlocally, SHA
+`0ed30bb68f8a8ccec8849828fa2e256fb7b0e33c3ed57043ce0dc18910064c10`.
+This validates launch/setup, not completedphysicalepisodes or statisticalmodels.
+Laptopmayclose now; no appheartbeat needed. Serverjob willsaveactualfinished/failure
+status andpreserve allpartialevidence; reconnect toreview/mirror before furtherwork.
