@@ -64,3 +64,14 @@ setupcheck. Executionmanifest mirroredlocally, SHA
 This validates launch/setup, not completedphysicalepisodes or statisticalmodels.
 Laptopmayclose now; no appheartbeat needed. Serverjob willsaveactualfinished/failure
 status andpreserve allpartialevidence; reconnect toreview/mirror before furtherwork.
+
+## Terminal review — 15 October,11:17IST
+
+Stopped09:07IST:1passed/1failed/16unattempted. Secondarmfailedrawactualcall boundary:
+onecallstarted67.927321msafterhorizon, dispatched15.683719msbeforehorizon. Durable
+intentlogging41.8676ms contributedtothepreparationinterval. No failedlabelaccepted;
+no successfulrewritecorpus, so exportskipped. No activeSparkjobsatreview. Final
+result/handover/timingdiagnostic mirroredlocally; originalraw/tabledata preserved.
+Do not restartbeforeactualsubmission-cutoff/unsubmitted-intent accounting repair
+andnewfreshregistration. The jobranindependentlyoflaptop andstoppedasregistered;
+thatdoesnotmeanphysicalcollectioncompleted successfully.

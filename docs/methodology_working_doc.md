@@ -2048,3 +2048,22 @@ CoordinatorPID1804667PPID1running independently ofSSH/laptop, allchildlogs/progr
 terminalstatus persist onserver; noCodexheartbeatrequired. Setupcompletedwellwithin
 user30minuteavailability. Actualnewrawresults/data/possiblefailedgates mustbereviewed
 andmirroredafterreconnection; no automaticfitting/promotion. No service/tabledeleted.
+
+## 54. User-requested detached health review finds preserved boundary failure
+
+User asksreviewstillgoingwell. At05:47UTC/11:17IST coordinator1804667alreadyexited
+naturally; terminalstatusstopped_failed_physical_gate_preserved_no_retry. Cohort
+ended03:37:29UTC/09:07IST:1passedbaseline/1failedcompact_now/16unattempted. Export
+correctlyskipped:no successfulrewritecorpus. No activeSparkjobs; no service/process
+killed/restarted. Laptop-independent orchestration/stop/handover worked, collection
+nothealthy/complete. Currentmodel/earlierfailedcountsunchanged.
+
+Actualrawfailure Call/outcome boundary differs. Worker3nohupdiagnosticPID1969785
+saved boundary_failure_diagnostic.json: onecall dispatched15.683719msbeforehorizon,
+actualexecute-start67.927321msafterhorizon; intentlogging41.867600ms. Fetch-end still
+precededcompletedtransition50.777903ms. Thusrealdeadlinecrossing duringdurable
+submissionpreparation, not a modelprediction failure or grounds to shift horizon.
+Failedarm remains excluded; don'tretroactively relabel/retry forfavorableoutcome.
+Terminalresult/handover/diagnosticmirrored forreview. Nextnecessaryrepair is actual
+call-start cutoff plus explicitdurableunsubmitted-intent/queue accounting before
+freshregisteredcollection; no physicalrestartperformedbythisreview.
