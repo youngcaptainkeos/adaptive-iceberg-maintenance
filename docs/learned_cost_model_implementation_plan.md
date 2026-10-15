@@ -198,3 +198,14 @@ Next gate priorities:
    calibration/power protocol. No accepted cost model, scheduler or publication-level
    temporal maintenance benefit exists yet. Strong median baselines must stay in
    future evaluation; completing the pipeline is not scientific acceptance.
+
+## Detached failure audit registered —2026-10-15 daytime
+
+User requested worker3 background audit surviving laptop closure. Registered
+cost_failure_background_audit_20261015.json: independently reconstruct saved
+predictions/medians/scaling on real frozen inputs, diagnose training coverage,
+constant/redundant features and existing heldout extrapolation, inventory actual
+measurement revisions. No refit or new baseline selection against the used test.
+This read-only job cannot validate synchronization branch execution or choose a
+scientifically justified collection sample size by itself. Preserve diagnostic
+findings then preregister a consistent independent collection/power protocol.

@@ -418,3 +418,7 @@ No portablecatalogclaim; finalhashreceiptsrequiredbeforebackupapproval.
 Section48 all9successful tablebytes516files/2.486GB copiedandunchangedsourcesSHA
 verified; final32evidence117filesverified. Concisemorningsummary saved
 morning_review_2026-10-15.md, no calibratedmodel/policyclaim. Pauseautomationat06:00.
+
+Section49 new user-authorized detachedread-only failure/scaling/coverage/pipeline
+versionauditregistered; realSHA-bound negativefit, no refit/SQL/promotion. Freeze
+worker3runtime/nohup, actualreceiptandfindings next; unexercisedbranchstillunvalidated.

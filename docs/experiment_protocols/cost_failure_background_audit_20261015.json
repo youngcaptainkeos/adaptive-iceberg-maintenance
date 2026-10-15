@@ -1,0 +1,15 @@
+{
+  "schema_version": "cost_failure_background_audit_v1",
+  "fit_record": {
+    "path": "../../results/candidate_cost_fit_three_family_20261015/fit_record.json",
+    "sha256": "45b6b56c374046f74dc71bd9d7fbdb8f9903c91421ce26ac35e10bb45a26f1a6"
+  },
+  "export_record": {
+    "path": "../../results/physical_cost_candidates_three_family_20261015/export_record.json",
+    "sha256": "306c9844453174951abf262fd22b607ce3e6c341ad340f08c6e650cf2a0e0712"
+  },
+  "numeric_rtol": 1e-10,
+  "numeric_atol": 1e-10,
+  "output_directory": "../../results/cost_failure_background_audit_20261015",
+  "rationale": "User-authorized detached read-only failure/pipeline audit, no SQL/refitting/policy tuning. Reconstruct saved training-only scaler mean/variance with1e-10 floating-point roundoff tolerance; not a prediction acceptance threshold. Diagnose constants/rank/coverage/coefficients and existing heldout errors without selecting new hyperparameters. Inventory frozen measurement revisions and actual registered regimes. Real SHA-bound verified inputs only."
+}

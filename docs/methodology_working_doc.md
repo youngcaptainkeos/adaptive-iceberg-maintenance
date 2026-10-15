@@ -1959,3 +1959,19 @@ No newphysicaloperations aftercutoffs. Automationstillactiveuntil06:00IST; pause
 cutoffwithoutcancelinganyservice. Allfuturemodelsneednewuntouchedtestblocks;
 tonight's heldoutnegativefitnotrefitted. Targetedpush/sync/hashcheckscontinuefor
 finaldocs; unrelateddirty/stashes/archivepreserved.
+
+## 49. User-authorized detached cost failure and pipeline audit setup
+
+User requests background worker3 audit before laptop closes in20minutes. SSHworks,
+no activecollector/fitter/Sparkjobs atsetup. Added run_cost_failure_audit.py and
+SHA-bound protocol cost_failure_background_audit_20261015.json using actual frozen
+3103query/4rewrite/6episode export and negative exploratoryfit. No SQL, maintenance,
+modelrefitting, test-outcome hyperparameter selection or fabricateddata. Independent
+savedprediction/CSV/median roundtrip plus train-only scaler mean/variance reconstruction
+(registered1e-10roundoff tolerance, not modelaccuracygate), designrank/constants,
+trainingcoverage/correlations, existingheldouterror/contributiondiagnostics and actual
+frozen measurementversion/registeredtelemetry inventory. Coefficients/range/error
+patterns cannot establish causality. No physical branch can be validated read-only.
+Freeze runtime code onworker3, nohup log/PID/resultJSON/Markdown; output/failures
+preserved. Nextgate inspect actualaudit afterdisconnect, appendfindings, designfresh
+consistent independentcollection/newuntouchedtestblocks. Oldautomationremainspaused.
