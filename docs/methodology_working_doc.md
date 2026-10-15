@@ -1995,3 +1995,25 @@ physicalbranchvalidation/modelpromotion performed. User's20minute setup requirem
 met; alreadyfinishedbeforelaptopclosure. No backgroundjoblefttoawait/no automatic
 newcollection. Next consistentinstrumentation/independentmatchedblocks, training-only
 modeldevelopment/newuntouchedtestfamilies. Existingovernightautomationstaypaused.
+
+## 51. New detached consistent measurement/coverage collection authorization
+
+User authorizes next steps onworker3 with laptop unavailable after30minutes.
+Connectivityworks; no activephysical/fitter/Sparkjobs. FirstSSHcheckautoapproval
+review timedout beforeexecution; narrowedretry succeeded. Added immutable bounded
+run_detached_collection_plan.py andregistered newactual source-day3/4/5 mappings,
+18episode ×16/32layouts ×three arms withsame frozeninstrumentation/rotatedorder.
+Oneepisode/cell is reliability/coveragepilot, notprecision/power/calibrationproof.
+Newcutoffs15Oct10:30UTCepisode/11:00UTCSQL; oldovernightcutoffs supersededonlyfor
+this newuserauthorizedunit. Allinflight finishnaturally, no services/data stopped.
+
+Runnerprepares+independentlyaudits realSHA-boundmappings, checksdisjointoldwindows,
+materializes all18fresh configs/source hashes beforeSQL, freezes code, launches
+existing strict serialcohort, stops anyfailure/no retry, retains allunattempted.
+Afterterminalcohort only rawpassedsuccesses mayexport whenrealrewritelabels exist;
+independentroundtrip andfinalhandover/resultsaved evenifpartial/failure. No dummy
+warmup/SQL/labels, no modelrefit/promotion, no relaxedgates. Existingnegativefitkept.
+Prospective collection/modelcomparison preregistration saved
+consistent_collection_model_protocol_2026-10-15.md; source3/4development,5futuretest,
+trainingonlycandidate comparison pending datagate. Localclosuredoesnotaffectfrozen
+nohupserverjob; futuremirror/actualresultsreview waitsforreconnection.
