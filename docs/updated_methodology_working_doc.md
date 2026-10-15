@@ -422,3 +422,8 @@ morning_review_2026-10-15.md, no calibratedmodel/policyclaim. Pauseautomationat0
 Section49 new user-authorized detachedread-only failure/scaling/coverage/pipeline
 versionauditregistered; realSHA-bound negativefit, no refit/SQL/promotion. Freeze
 worker3runtime/nohup, actualreceiptandfindings next; unexercisedbranchstillunvalidated.
+
+Section50 detachedfailure/pipelineauditcompleted onworker3, training-onlyscalers
+reconstruct,3instrumentationversions/sparseconditional-rewriteblocks documented.
+7reportfiles mirroredSHA-identical; concise cost_failure_audit_summary_2026-10-15.md.
+No SQL/refit/promotion, alreadyfinished beforelaptopclosure; automationstaypaused.
