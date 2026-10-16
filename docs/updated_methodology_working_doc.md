@@ -458,3 +458,5 @@ worker3nohup, no dummytest. Futurewrapper/hooks configured; no projectrunsactive
 2026-10-16: Conditional fresh guarded18cell collection registered with preserved failures/source-family overlap and16:30/17:00IST cutoffs; no automatic fits. See detached_consistent_collection_20261016.json.
 
 2026-10-16: Real archive regression passed4accepted/1correct rejection; resultSHA 90c74f1a447ae349aad6da5182311a64251e6e0e7f8d582ba5c48043032bf7a8. New live branch pending.
+
+2026-10-16 09:43IST: Guarded18episode collection launched detached, wrapper3213486/PPID1 coordinator3213487, frozen3fa7e52; source preparation running. See canonical methodology; firstcheck20–30min, total5–6h estimate, no automatic fits.

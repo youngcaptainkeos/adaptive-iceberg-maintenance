@@ -1,0 +1,9 @@
+# Guarded collection handover
+
+
+
+### Guarded detached collection launched — 2026-10-16
+
+Started04:13:49UTC (09:43:49IST), wrapperPID3213486 verified PPID1 after SSH disconnect; coordinatorPID3213487. Frozen runtime /tmp/capstone_consistent_runtime_20261016 at3fa7e52f30a885364adf1bca7cb75401068cac3b. Canonical repository was fast-forwarded and all six intended Python files, all six Oct16 protocol files and completed regression receipt SHA256 match local/server. Regression receiptSHA90c74f1a447ae349aad6da5182311a64251e6e0e7f8d582ba5c48043032bf7a8. Prelaunch Spark runningjobs empty; process inspection excluded inspection shells. Initial launch guard matched its own inspection shell and prevented launch; corrected read-only process check confirmed no competing Python jobs before single launch. No physical attempt occurred from that prevented launch.
+
+Actual phase at first check: source_preparation, running; not yet physical success. Log results/consistent_collection_20261016_launch.log; durable queue/results results/consistent_collection_20261016/{progress.json,result.json,handover.md,execution_manifest.json}; terminal files appear only on completion. Wrapper failure receipt results/consistent_collection_20261016_failure_alert.json; child stage alerts saved beside their logs. First physical-arm estimate20–30minutes from launch, whole batch roughly5–6hours if all gates pass. Server coordinator serially advances without laptop and exports independently verified candidates when sufficient passed real arms exist; it does not fit models or promote a scheduler. Old overnight Codex heartbeat remains paused. Runtime source is frozen; later documentation commits do not alter it. Next gate: inspect source receipts/all episode registration then first raw physical audit; new branch occurrence remains pending.
