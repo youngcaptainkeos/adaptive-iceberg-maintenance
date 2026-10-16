@@ -2091,3 +2091,10 @@ receipt cannotalter experimentstatus. 7bc00f6HEAD/all7unitSHA agreehosts. Userst
 no currentprojecttests/experiments/fitting/Sparkjobs; services preserved. Oldfrozen
 runtimesnotretroactivelychanged. Externaldelivery requires worker3internet/topic
 availability; failuregets localreceipt/no silentclaimof deliverednotification.
+
+
+## Actual RPC deadline guard registration — 2026-10-16
+
+Purpose: repair durable intent logging crossing the query admission horizon before actual SQL submission. Prior consistent collection remains 1 passed / 1 failed / 16 unattempted. Register guarded_rpc_start_requeue_v1: after durable intent and log-lock release, check monotonic client-call boundary; if horizon reached, emit statement_not_submitted, issue no SQL, release admission slot and retain source arrival as queued debt. No fabricated execution labels. Raw audit requires matching intent/observation, exact cutoff, chronological requeue, final FIFO admission and no observed Spark jobs for the marker. Existing executed-query deadline gate is unchanged.
+
+Protocol docs/experiment_protocols/rpc_guard_regression_20261016.json binds four accepted real raw archives and the failed late-RPC archive by server SHA256. Worker3 detached audit must preserve accepted results and original failure rejection. Read-only regression cannot verify the new live branch. Code/protocol revision is the commit containing this entry. Fresh physical identities/cutoffs required before collection; old Oct15 cutoffs expired. No model acceptance or fitting claim. Unrelated local files preserved.

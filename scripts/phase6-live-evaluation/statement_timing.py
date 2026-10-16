@@ -37,14 +37,14 @@ def check_completed_statement(record):
 
 
 def completed_statements(paths):
-    requested, completed, failed = {}, {}, set()
+    requested, completed, failed, not_submitted = {}, {}, set(), {}
     for path in paths:
         require(Path(path).suffix == '.jsonl', 'Raw physical event JSONL required for statement binding')
         with Path(path).open() as stream:
             for line in stream:
                 record = json.loads(line)
                 kind = record.get('kind')
-                if kind not in ('statement_requested', 'statement_completed', 'statement_failed'):
+                if kind not in ('statement_requested', 'statement_completed', 'statement_failed', 'statement_not_submitted'):
                     continue
                 require(record.get('schema_version') == 'physical_event_v1', 'Unknown physical event schema')
                 key = (record['experiment_id'], record['measurement_id'])
@@ -52,11 +52,21 @@ def completed_statements(paths):
                     require(key not in requested, 'Duplicate statement request identity')
                     requested[key] = record
                 elif kind == 'statement_completed':
-                    require(key not in completed and key not in failed, 'Duplicate/conflicting statement outcome')
+                    require(key not in completed and key not in failed and key not in not_submitted, 'Duplicate/conflicting statement outcome')
                     completed[key] = check_completed_statement(record)
-                else:
-                    require(key not in failed and key not in completed, 'Duplicate/conflicting statement outcome')
+                elif kind=='statement_failed':
+                    require(key not in failed and key not in completed and key not in not_submitted, 'Duplicate/conflicting statement outcome')
                     failed.add(key)
+                else:
+                    require(key not in failed and key not in completed and key not in not_submitted,'Conflicting unsubmitted outcome')
+                    require(record.get('timing_contract')=='client_submission_v1' and record['role']=='trace_query'
+                            and record['reason']=='horizon_reached_before_rpc','Unsupported unsubmitted statement')
+                    for field in ('request_start','checked_at','recorded'):integer_ns(record[field]['monotonic_ns'],field)
+                    integer_ns(record['latest_start_monotonic_ns'],'latest_start_monotonic_ns')
+                    require(not any(field in record for field in ('client_elapsed_ns','execute_return','fetch_end','rows')),'Unsubmitted intent cannot have fabricated execution labels')
+                    require(record['request_start']['monotonic_ns']<=record['checked_at']['monotonic_ns']<=record['recorded']['monotonic_ns']
+                            and record['checked_at']['monotonic_ns']>=record['latest_start_monotonic_ns'],'Unsubmitted clock/cutoff differs')
+                    not_submitted[key]=record
     for key, result in completed.items():
         require(key in requested, 'Completed statement has no durable request evidence')
         intent = requested[key]
@@ -64,7 +74,10 @@ def completed_statements(paths):
         for field in ('request_start', 'marker', 'query_id', 'role'):
             require(intent.get(field) == result.get(field), 'Statement request/result identity differs: ' + field)
     require(failed <= requested.keys(), 'Failed statement has no durable request evidence')
-    require(requested.keys() == completed.keys() | failed, 'Incomplete statement ledger cannot validate training')
+    for key,record in not_submitted.items():
+        require(key in requested,'Unsubmitted statement has no durable intent')
+        require(all(record[k]==requested[key][k] for k in ('marker','role','query_id','request_start')),'Unsubmitted intent identity differs')
+    require(requested.keys() == completed.keys() | failed | not_submitted.keys(), 'Incomplete statement ledger cannot validate training')
     require(bool(completed), 'No completed physical statement evidence')
     return completed
 

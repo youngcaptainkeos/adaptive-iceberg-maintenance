@@ -28,12 +28,17 @@ def audit(directory):
     require(sha256(directory/'mapping_record.json')==cfg['mapping_record']['sha256'] and sha256(directory/'mapping_audit.json')==cfg['mapping_audit']['sha256'],'Mapping receipt/audit differs')
     start=[r for r in rows if r['kind']=='replay_clock'];require(len(start)==1,'Missing/duplicate clock')
     start=start[0];lo=start['start_monotonic_ns'];hi=start['end_monotonic_ns'];require(hi-lo==mapping['horizon_ns'],'Horizon changed')
+    not_sent=[r for r in rows if r['kind']=='statement_not_submitted'];not_sent_by_id={r['measurement_id']:r for r in not_sent}
+    require(len(not_sent)==len(not_sent_by_id)<=1,'Duplicate/multiple terminal unsubmitted intents')
+    if not_sent:require(cfg.get('rpc_boundary_contract')=='guarded_rpc_start_requeue_v1','Unregistered unsubmitted RPC boundary')
     transitions=[r for r in rows if r['kind']=='queue_transition'];states={};slots={};expected={r['source_query_id']:r for r in mapped};identities={};times={}
     for r in transitions:
         identity=r['source']['source_query_id'];state=r['state'];previous=states.get(identity)
         require(identity in expected and r['source']==expected[identity] and r['previous_state']==previous,'Source/state chain differs')
-        require((previous,state) in ((None,'offered'),('offered','queued'),('queued','dispatched'),('dispatched','completed'),('dispatched','failed')),'Illegal actual queue chain')
         ns=r['actual_transition']['monotonic_ns'];require(ns<=r['recorded']['monotonic_ns'],'Future transition stamp')
+        requeued=(previous,state)==('dispatched','queued') and r['measurement_id'] in not_sent_by_id
+        if requeued:require(r.get('reason')=='horizon_before_rpc' and ns>=not_sent_by_id[r['measurement_id']]['recorded']['monotonic_ns']>=hi,'Unsubmitted requeue differs')
+        require(requeued or (previous,state) in ((None,'offered'),('offered','queued'),('queued','dispatched'),('dispatched','completed'),('dispatched','failed')),'Illegal actual queue chain')
         require(r['scheduled_monotonic_ns']==lo+int(expected[identity]['offset_ns']),'Retimed source arrival')
         if state=='offered':
             require(ns>=r['scheduled_monotonic_ns'],'Offered before source arrival');identities[identity]=r['measurement_id'];times[identity]={}
@@ -42,7 +47,7 @@ def audit(directory):
         times[identity][state]=ns
         if state=='dispatched':
             require(r['session_id']=='query_0' and r['session_id'] not in slots and ns<hi,'Busy/late dispatch');slots[r['session_id']]=identity
-        if state in ('completed','failed'):
+        if state in ('completed','failed') or requeued:
             require(slots.get(r['session_id'])==identity,'Outcome session differs');del slots[r['session_id']]
         states[identity]=state
     require(set(states)==set(expected) and len(set(identities.values()))==len(expected),'Missing offered arrivals or reused measurement UUID')
@@ -50,7 +55,19 @@ def audit(directory):
     offered=[r['source']['source_query_id'] for r in transitions if r['state']=='offered']
     dispatched=[r['source']['source_query_id'] for r in transitions if r['state']=='dispatched']
     require(offered==[r['source_query_id'] for r in mapped] and dispatched==offered[:len(dispatched)],'FIFO order differs')
+    dispatch_attempt_count=len(dispatched)
     measured=completed_statements([directory/'events.jsonl']);requests={r['measurement_id']:r for r in rows if r['kind']=='statement_requested'}
+    for mid,event in not_sent_by_id.items():
+        matches=[identity for identity,identity_mid in identities.items() if identity_mid==mid]
+        require(len(matches)==1 and states[matches[0]]=='queued' and matches[0]==dispatched[-1],'Unsubmitted request must be final FIFO admission retained queued')
+        require(event['latest_start_monotonic_ns']==hi and hi<=event['checked_at']['monotonic_ns']<=event['recorded']['monotonic_ns'],'RPC cutoff/clock differs')
+        require((cfg['experiment_id'],mid) not in measured and mid in requests,'Unsubmitted query has a completed call or no intent')
+        require(sum(r['previous_state']=='dispatched' and r['state']=='queued' and r['measurement_id']==mid for r in transitions)==1,'Missing unique unsubmitted requeue')
+        observations=[r for r in rows if r['kind']=='query_observation' and r['measurement_id']==mid]
+        require(len(observations)==1 and observations[0]['recorded']['monotonic_ns']<=requests[mid]['request_start']['monotonic_ns'],'Unsubmitted observation chronology differs')
+        require(requests[mid]['query_id']==int(expected[matches[0]]['query_id']),'Unsubmitted source/query identity differs')
+    dispatched=[identity for identity in dispatched if identities[identity] not in not_sent_by_id]
+    require(dispatched==offered[:len(dispatched)],'Executed FIFO prefix differs')
     for event in (r for r in rows if r['kind']=='query_preparation_deferred'):
         require(cfg.get('submission_availability_contract')=='release_and_wait_for_real_sample_v1','Unregistered submission deferral')
         mid=event['measurement_id'];checked=event['checked_at']['monotonic_ns'];last=event['last_available_sample_end_ns']
@@ -67,7 +84,7 @@ def audit(directory):
             require(identity in expected and identities[identity]==mid and states[identity]=='queued' and mid not in requests,'Abandoned query was unknown/dispatched/submitted')
             require(len(observations)==1 and observations[0]['query_id']==int(expected[identity]['query_id']),'Abandoned observation identity differs')
             require(abandon['horizon_end_monotonic_ns']==hi and abandon['reason']=='horizon_reached_before_dispatch' and hi<=abandon['checked_at']['monotonic_ns']<=abandon['recorded']['monotonic_ns'] and observations[0]['recorded']['monotonic_ns']<=abandon['checked_at']['monotonic_ns'],'Abandonment not bound to actual boundary crossing')
-    bound_rows=[r for r in rows if not(r['kind']=='query_observation' and r['measurement_id'] in abandoned_ids)]
+    bound_rows=[r for r in rows if not(r['kind']=='query_observation' and r['measurement_id'] in (abandoned_ids|not_sent_by_id.keys()))]
     observed=[r for r in bound_rows if r['kind']=='query_observation'];require(len(observed)==len(dispatched)>0,'Missing actual query evidence')
     verify_observations(bound_rows,cfg)
     if cfg.get('expected_spark_master'):
@@ -85,6 +102,8 @@ def audit(directory):
     table=cfg['destination_table'] if arm else source['table']
     allowed_markers=[r['marker'] for r in requests.values()]
     latencies=[];rests=[r for r in rows if r['kind']=='spark_rest'];jobs,stages=merged_engine_frames(rows)
+    for mid in not_sent_by_id:
+        require(not any(requests[mid]['marker'] in str(j.get('description','')) for j in jobs),'Unsubmitted query has actual Spark jobs')
     def RecordedREST():return ArchivedTaskEvidence(rows)
     for identity in dispatched:
         mid=identities[identity];r=measured[(cfg['experiment_id'],mid)];qid=int(expected[identity]['query_id'])
@@ -117,12 +136,17 @@ def audit(directory):
     summary={'common_horizon_arm':arm_evidence,'horizon_actual_transition_counts':dict(Counter(horizon_states.values())), 'horizon_not_yet_offered_ids':[k for k in expected if k not in horizon_states], 'status':'audited_real_arrival_queue_diagnostic_only','offered':len(mapped),'dispatched':len(dispatched),'final_states':dict(Counter(states.values())),'unfinished_queued_ids':[k for k,v in states.items() if v=='queued'],'boundary_observed_counts':boundary['observed_counts'],'boundary_observation_lateness_ms':(boundary['recorded']['monotonic_ns']-hi)/1e6,'queries':latencies,'events_sha256':sha256(directory/'events.jsonl'),'cost_training_accepted':False,'limitations':cfg['limitations']}
 
     if cfg.get('boundary_preparation_contract')=='retain_queued_unsubmitted_observation_v1':summary['prepared_but_not_dispatched_measurement_ids']=sorted(abandoned_ids)
+    if cfg.get('rpc_boundary_contract')=='guarded_rpc_start_requeue_v1':
+        summary.update(queue_admission_attempts=dispatch_attempt_count,unsubmitted_intent_measurement_ids=sorted(not_sent_by_id),
+                       horizon_dispatch_census_meaning='Raw client admissions include preparing intents; unsubmitted intent IDs remain explicit queue debt, never executed query labels')
     return summary
 
 
 def run(config,revision):
     cfg,base=load_json(config);repo=Path(__file__).resolve().parents[2]
     arm=cfg['schema_version']=='common_horizon_arm_pilot_v1'
+    require(cfg.get('rpc_boundary_contract') in (None,'guarded_rpc_start_requeue_v1'),'Unknown RPC boundary contract')
+    require(cfg.get('rpc_boundary_contract') is None or cfg.get('query_preparation_contract')=='serialized_durable_submission_v1','RPC cutoff requires serialized durable preparation')
     require(cfg['schema_version'] in ('trace_queue_diagnostic_v1','common_horizon_arm_pilot_v1') and cfg['client_count']==1 and cfg['boundary_rule']=='no_dispatch_after_horizon_natural_inflight_completion','Unregistered diagnostic')
     require(subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip()==revision,'HEAD mismatch')
     require(subprocess.run(['git','diff','--exit-code','HEAD','--','scripts/phase6-live-evaluation/*.py'],cwd=repo,capture_output=True).returncode==0,'Dirty experiment code')
@@ -174,7 +198,7 @@ def run(config,revision):
         if arm:log.emit('common_horizon_initial_state',**state)
         sampler.start();time.sleep(cfg['telemetry']['warmup_seconds']);guard()
         lo=time.monotonic_ns();hi=lo+mapping['horizon_ns'];log.emit('replay_clock',start_monotonic_ns=lo,end_monotonic_ns=hi,source_interval_start_utc=mapping['source_interval_start_utc'],source_interval_end_utc=mapping['source_interval_end_utc'])
-        ledger=OfferedQueueLedger(log,mapped,lo,hi);pending=queue.Queue();identities={r['source_query_id']:uuid.uuid4().hex for r in mapped}
+        ledger=OfferedQueueLedger(log,mapped,lo,hi,allow_unsubmitted_requeue=cfg.get('rpc_boundary_contract')=='guarded_rpc_start_requeue_v1');pending=queue.Queue();identities={r['source_query_id']:uuid.uuid4().hex for r in mapped}
         def wait_until(ns):time.sleep(max(0,(ns-time.monotonic_ns())/1e9))
         def offer():
             try:
@@ -261,7 +285,8 @@ def run(config,revision):
                     probe=None
                     while time.monotonic_ns()<hi:
                         try:
-                            probe=rec.execute(query,sql,role='trace_query',query_id=qid,measurement_id=mid,prepare_submission=prepare_submission)
+                            probe=rec.execute(query,sql,role='trace_query',query_id=qid,measurement_id=mid,prepare_submission=prepare_submission,
+                                              latest_start_ns=hi if cfg.get('rpc_boundary_contract')=='guarded_rpc_start_requeue_v1' else None)
                             break
                         except PreparationSampleUnavailable as unavailable:
                             log.emit('query_preparation_deferred',measurement_id=mid,source_query_id=identity,
@@ -269,6 +294,10 @@ def run(config,revision):
                                      reason='expired_durable_sample_after_lock_acquisition_no_sql_intent')
                             if not sampler.wait_for_available_sample(deadline_ns=hi,max_age_seconds=t['max_age_seconds'],measurement_id=mid):break
                     if probe is None:break
+                    if probe.get('submitted') is False:
+                        ledger.transition(identity,'queued',measurement_id=mid,session_id='query_0',reason='horizon_before_rpc')
+                        dispatched_preparation=False
+                        break
                     ledger.transition(identity,'completed',measurement_id=mid,session_id='query_0');probes.append(probe)
                 except Exception:
                     if dispatched_preparation:ledger.transition(identity,'failed',measurement_id=mid,session_id='query_0')

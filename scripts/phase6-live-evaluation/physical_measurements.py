@@ -56,7 +56,10 @@ class StatementRecorder:
     def __init__(self, log):
         self.log = log
 
-    def execute(self, cursor, sql, *, role, query_id=None, measurement_id=None, prepare_submission=None):
+    def execute(self, cursor, sql, *, role, query_id=None, measurement_id=None, prepare_submission=None, latest_start_ns=None):
+        require(latest_start_ns is None or (role=='trace_query' and isinstance(latest_start_ns,int)
+                and not isinstance(latest_start_ns,bool) and latest_start_ns>0
+                and isinstance(query_id,int) and not isinstance(query_id,bool)),'Guarded actual query cutoff required')
         if measurement_id is None:
             measurement_id = uuid.uuid4().hex
         require(isinstance(measurement_id, str) and re.fullmatch(r'[0-9a-f]{32}', measurement_id),
@@ -72,7 +75,15 @@ class StatementRecorder:
             self.log.emit('statement_requested', measurement_id=measurement_id,
                           marker=marker, role=role, query_id=query_id, sql=sql,
                           request_start=request_start, timing_contract='client_submission_v1')
-            execute_start = stamp()
+        # Check AFTER durable intent logging and lock release, at the actual
+        # client call boundary. A queued/admitted request is not an RPC.
+        execute_start = stamp()
+        if latest_start_ns is not None and execute_start['monotonic_ns']>=latest_start_ns:
+            self.log.emit('statement_not_submitted',measurement_id=measurement_id,marker=marker,
+                          role=role,query_id=query_id,request_start=request_start,
+                          checked_at=execute_start,latest_start_monotonic_ns=latest_start_ns,
+                          reason='horizon_reached_before_rpc',timing_contract='client_submission_v1')
+            return {'submitted':False,'measurement_id':measurement_id}
         try:
             cursor.execute(f'/* {marker} */\n{sql}')
             execute_return = stamp()

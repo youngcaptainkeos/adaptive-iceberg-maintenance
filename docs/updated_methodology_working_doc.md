@@ -451,3 +451,6 @@ not dummyexecution; persist HTTPresponse andsync intendedfiles.
 
 Section56 actualfailedrunalert deliveredntfyHTTP200/eventoqZkPibiuhmG; codeparsedon
 worker3nohup, no dummytest. Futurewrapper/hooks configured; no projectrunsactive.
+
+
+2026-10-16: Actual RPC deadline guard and real-evidence regression registered; see canonical methodology and rpc_guard_regression_20261016.json. Historical batch remains 1/1/16; validation and live branch pending.

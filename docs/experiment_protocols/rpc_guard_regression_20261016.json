@@ -1,0 +1,43 @@
+{
+  "schema_version": "real_rpc_boundary_regression_v1",
+  "output_directory": "../../results/rpc_guard_regression_20261016",
+  "cases": [
+    {
+      "events": {
+        "path": "../../results/consistent_collection_20261015/arms/sf1_consistent_20261015_01/events.jsonl",
+        "sha256": "e63de5cc7ef6dac9c3abefbffc2fbbba3c4df626e37470e8dbb1a001b19e3aa4"
+      },
+      "expected": "pass"
+    },
+    {
+      "events": {
+        "path": "../../results/sf1_layout32_validation_20261015_01/events.jsonl",
+        "sha256": "80e5d44e1367c3c96d931c0d015464270615ed4f870f6a08522ced8c692f4196"
+      },
+      "expected": "pass"
+    },
+    {
+      "events": {
+        "path": "../../results/sf1_layout32_validation_20261015_02/events.jsonl",
+        "sha256": "e4042b4265315de20fda94e3cce6c22706e7ad3d336fa2cf719b69733c245595"
+      },
+      "expected": "pass"
+    },
+    {
+      "events": {
+        "path": "../../results/sf1_layout32_validation_20261015_03/events.jsonl",
+        "sha256": "ee541cee820e948291b2c935477741e3873b2636fe626d83dcdf633109115ac4"
+      },
+      "expected": "pass"
+    },
+    {
+      "events": {
+        "path": "../../results/consistent_collection_20261015/arms/sf1_consistent_20261015_02/events.jsonl",
+        "sha256": "a6b5b66eef7ae7ede23c15a3c1b56ceaca61198d3c3f550ffa24cd06b0dd98a6"
+      },
+      "expected": "reject",
+      "expected_error": "Call/outcome boundary differs"
+    }
+  ],
+  "rationale": "Read-only real accepted and failed raw archives; no generated timestamps or SQL. New live guard branch remains pending."
+}

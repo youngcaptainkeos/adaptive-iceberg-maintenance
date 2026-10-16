@@ -6,25 +6,28 @@ from experiment_validation import require
 
 
 class OfferedQueueLedger:
-    def __init__(self,log,scheduled,start_ns,end_ns):
+    def __init__(self,log,scheduled,start_ns,end_ns,*,allow_unsubmitted_requeue=False):
         self.log=log;self.scheduled={r['source_query_id']:r for r in scheduled}
         require(len(self.scheduled)==len(scheduled),'Duplicate arrivals')
         # One reentrant durable-log/queue lock prevents ledger->log versus
         # serialized submission log->ledger inversion. No RPC holds this lock.
         self.start_ns=start_ns;self.end_ns=end_ns;self.states={};self.slots={};self.lock=log.lock
+        self.allow_unsubmitted_requeue=allow_unsubmitted_requeue
 
-    def transition(self,identity,state,*,measurement_id,session_id=None):
+    def transition(self,identity,state,*,measurement_id,session_id=None,reason=None):
         with self.lock:
             require(identity in self.scheduled,'Unknown offered source')
             previous=self.states.get(identity)
-            require((previous,state) in ((None,'offered'),('offered','queued'),('queued','dispatched'),('dispatched','completed'),('dispatched','failed')),'Illegal queue transition')
             actual=stamp()
+            unsubmitted=(previous,state)==('dispatched','queued') and self.allow_unsubmitted_requeue and reason=='horizon_before_rpc' and actual['monotonic_ns']>=self.end_ns
+            require(unsubmitted or (previous,state) in ((None,'offered'),('offered','queued'),('queued','dispatched'),('dispatched','completed'),('dispatched','failed')),'Illegal queue transition')
             if state=='dispatched':
                 require(session_id is not None and session_id not in self.slots and actual['monotonic_ns']<self.end_ns,'Busy session or dispatch beyond horizon')
                 self.slots[session_id]=identity
-            if state in ('completed','failed'):
+            if state in ('completed','failed') or unsubmitted:
                 require(self.slots.get(session_id)==identity,'Outcome without its session dispatch');del self.slots[session_id]
-            record=self.log.emit('queue_transition',source=self.scheduled[identity],state=state,previous_state=previous,actual_transition=actual,measurement_id=measurement_id,session_id=session_id,scheduled_monotonic_ns=self.start_ns+int(self.scheduled[identity]['offset_ns']))
+            fields={'reason':reason} if reason is not None else {}
+            record=self.log.emit('queue_transition',source=self.scheduled[identity],state=state,previous_state=previous,actual_transition=actual,measurement_id=measurement_id,session_id=session_id,scheduled_monotonic_ns=self.start_ns+int(self.scheduled[identity]['offset_ns']),**fields)
             self.states[identity]=state
             return record
 
