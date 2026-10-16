@@ -1,0 +1,157 @@
+{
+  "schema_version": "detached_consistent_collection_v1",
+  "output_directory": "../../results/consistent_collection_20261016",
+  "experiment_prefix": "sf1_consistent_20261016",
+  "table_prefix": "integrity_horizon_consistent_20261016",
+  "mapping_protocols": [
+    {
+      "protocol": {
+        "path": "snowset_consistent_day3_20261016.json",
+        "sha256": "ab60e528686302214d2852e04523d8ce69b72db7e1c578c4119ba8ea96b9da86"
+      },
+      "training_day_index": 3,
+      "role": "training_development",
+      "layout_order": [
+        16,
+        32
+      ]
+    },
+    {
+      "protocol": {
+        "path": "snowset_consistent_day4_20261016.json",
+        "sha256": "472ca067f0891ffb52ecc7877c3387b489565120989472d43ef30af3955a163d"
+      },
+      "training_day_index": 4,
+      "role": "training_development",
+      "layout_order": [
+        32,
+        16
+      ]
+    },
+    {
+      "protocol": {
+        "path": "snowset_consistent_day5_20261016.json",
+        "sha256": "7d30aa82ab8c86533e44561a2f5a93575f2e92abff0355882da212c718715c8e"
+      },
+      "training_day_index": 5,
+      "role": "future_cost_model_test",
+      "layout_order": [
+        16,
+        32
+      ]
+    }
+  ],
+  "previous_export_record": {
+    "path": "../../results/physical_cost_candidates_three_family_20261015/export_record.json",
+    "sha256": "306c9844453174951abf262fd22b607ce3e6c341ad340f08c6e650cf2a0e0712"
+  },
+  "episode_template": {
+    "path": "rpc_guard_episode_template_20261016.json",
+    "sha256": "e7bd2f89d2ce0fd5481ecf6a6c2973d6855d3cfb912bafb42277734e04507efc"
+  },
+  "cohort_template": {
+    "path": "sf1_layout32_validation_cohort_20261015.json",
+    "sha256": "8882d325ac81303b4761f1def01b0563b0ae0f888c2fb597c6f7b38dd7902ae3"
+  },
+  "historical_inventories": [
+    {
+      "path": "../../results/sf1_common_horizon_cohort_20261014/result.json",
+      "sha256": "0440032e0ddcc0ed54bc4c9c47a80c2642a3a7ef007f32e20a58db92301aadb3"
+    },
+    {
+      "path": "../../results/sf1_long_common_horizon_cohort_20261014/result.json",
+      "sha256": "2012f59f1b2f0d2bf386d653d9afb20b02908218af7386f8550318ca100a2351"
+    },
+    {
+      "path": "../../results/sf1_overnight_cost_cohort_20261015/result.json",
+      "sha256": "22febe94069f18a1e00c7ad77cf942df9c2f8c7aeb576502e47e1ed1c7b7d7db"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery_cohort_20261015/result.json",
+      "sha256": "be778c35974fb836892c599f29dba6feb1ab89bba927c6dd7f563f44468ee613"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery2_cohort_20261015/result.json",
+      "sha256": "df200ec8ff7c02dc760c23eb213c22e4be2c3a6a9af9cb0c8b4272d847c84508"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery3_cohort_20261015/result.json",
+      "sha256": "73cb1b166f5d9fac08f0be2525c886f8bb06f1469bb2f2b55e2b898f2b12fd75"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery4_cohort_20261015/result.json",
+      "sha256": "18dc83169d9790563f88fa6bb4e4af001c47bf19d7e49bbb84e6dfd838851c67"
+    },
+    {
+      "path": "../../results/sf1_overnight_recovery5_cohort_20261015/result.json",
+      "sha256": "3af70b3f3afb95329ea281ce0ed7123f85282b7efa8242cb6c35983de2ade25a"
+    },
+    {
+      "path": "../../results/sf1_layout32_validation_cohort_20261015/result.json",
+      "sha256": "d13bbc70743d8ecaedddfebaec83c9bf746e0abbf17808c70b46cfc00c8b6258"
+    },
+    {
+      "path": "../../results/consistent_collection_20261015/cohort/result.json",
+      "sha256": "a6342c5dc1a4ea3bc4fa6cbf58c40dafd750766101959b10a7bfcfd114c64845"
+    }
+  ],
+  "initial_file_counts": [
+    16,
+    32
+  ],
+  "window_bin_count": 10,
+  "arms": [
+    "no_maintenance",
+    "compact_now",
+    "compact_later"
+  ],
+  "registered_group_orders": [
+    [
+      "no_maintenance",
+      "compact_now",
+      "compact_later"
+    ],
+    [
+      "compact_now",
+      "compact_later",
+      "no_maintenance"
+    ],
+    [
+      "compact_later",
+      "no_maintenance",
+      "compact_now"
+    ],
+    [
+      "no_maintenance",
+      "compact_now",
+      "compact_later"
+    ],
+    [
+      "compact_now",
+      "compact_later",
+      "no_maintenance"
+    ],
+    [
+      "compact_later",
+      "no_maintenance",
+      "compact_now"
+    ]
+  ],
+  "action_offsets_ns": {
+    "compact_now": 0,
+    "compact_later": 300000000000
+  },
+  "no_new_episode_after_utc": "2026-10-16T11:00:00+00:00",
+  "no_new_operation_after_utc": "2026-10-16T11:30:00+00:00",
+  "rationale": "Fresh isolated 18-cell engineering collection after actual-RPC cutoff repair, conditional on registered real archive regression passing. Same day3/4/5 real arrivals and registered layouts/actions as prior failed batch; these are repeated source families, not new independent test blocks. Prior 1/1/16 inventory retained. All hashes/identities registered before physical SQL. New episode cutoff16:30IST and newSQL17:00IST permit about6.5hours bounded serial collection; inflight finishes naturally. No retries on failure, no changed freshness/coverage/task/correctness gates. Aborted durable intents remain queue debt without execution labels. No automatic fitting/promotion.",
+  "limitations": [
+    "Engineering reliability/coverage pilot only, oneepisode/arm/layout/sourcecell; not power/precision/calibration approval.",
+    "Three source families only; repeated mapped IDs across layouts/arms remain one source-overlap family, never row-random split.",
+    "Controlled SF1 six-million-row source/four customlineitemqueries/oneclient/onewarehouse/oneengine; not naturalingestion/fullTPC-H/originalSnowflakeSQL.",
+    "Uniform real instrumentation/archives/logging remain part of measured workload; rotated order does not eliminate cache/time confounding.",
+    "Fresh day5 prospectively futuretest; no automatic fitting/tuning using its outcomes. Current priornegativefit is preserved.",
+    "If collection fails, stop physicalwork; export only rawverified successes and retainfailed/unattempted inventory, no inventedmissingrewrite rows.",
+    "Gap/age thresholds unchanged; unsubmitteddeferral branch may remain unexercised if actualcondition never occurs.",
+    "New actual-RPC-abort branch requires naturally observed execution; absent branch occurrence is explicitly unverified. Reusing source days does not add independent source families. Earlier failed batch remains failed."
+  ]
+}
