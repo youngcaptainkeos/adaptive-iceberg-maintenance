@@ -1,0 +1,17 @@
+{
+  "schema_version": "consistent_cost_development_v1",
+  "export_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_collection_20261016/candidates",
+  "export_record_sha256": "36052bd626032644e14764accab9c2c9694dd8ff75ff3e04f1e9a0dd27c659fe",
+  "verification": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_collection_20261016/candidate_independent_verification.json",
+    "sha256": "55aaabcfd7c8e79e3059ef0876a1b72e286984f235e38edb6e53a2e22468895d"
+  },
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_cost_development_20261017",
+  "train_family_index": 0,
+  "validation_family_index": 1,
+  "reserved_test_family_index": 2,
+  "ridge_alpha": 1.0,
+  "tree_max_depth": 3,
+  "seed": 20261015,
+  "rationale": "Prospective compact query comparison registered Oct15: training-only onehot/scaling, alpha1 stabilizes logtarget regression, depth3 bounds8leaves, absolute-error tree, fixed seed. Complete real60/300s offered history required for identical latency comparison rows. Query/layout median fallback uses training SQL median. Development family0 train,1 validation equal episode MAE; third source reserved and never evaluated. Rewrite extension registered before fitting: same alpha1 logridge/depth3 tree with only preaction filecount vs trainingmedian,4train/4validation/4reserved expected, exploratory only; no postaction file counts, action outcomes or target proxies. No automatic winner, refit, test or scheduler promotion."
+}

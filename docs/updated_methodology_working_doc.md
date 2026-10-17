@@ -460,3 +460,8 @@ worker3nohup, no dummytest. Futurewrapper/hooks configured; no projectrunsactive
 2026-10-16: Real archive regression passed4accepted/1correct rejection; resultSHA 90c74f1a447ae349aad6da5182311a64251e6e0e7f8d582ba5c48043032bf7a8. New live branch pending.
 
 2026-10-16 09:43IST: Guarded18episode collection launched detached, wrapper3213486/PPID1 coordinator3213487, frozen3fa7e52; source preparation running. See canonical methodology; firstcheck20–30min, total5–6h estimate, no automatic fits.
+
+
+## Consistent cost development fit registration — 2026-10-17
+
+Completed Oct16 corpus18/18passed,9923query/12rewrite labels, independent raw roundtrip verified. Register consistent_cost_development_20261017.json before fitting: source families0train/1validation/2reserved untouched; wholeepisodes, complete60/300s demand history for query comparison. Four latency candidates: querymedian,query/layoutmedian with learned SQL fallback, compact logRidge alpha1 and depth3 absolute-error tree seed20261015. Predecision features only SQL/filecount/clientpending. Rewrite extension uses filecount only with trainingmedian/logRidge/tree; only4train/4validation labels anticipated, insufficient for accuracy claims. Training-only transforms and same validation rows. Save models, predictions, excluded UUIDs and row/equalepisode/sliced MAE. No automatic winner/refit/test/promotion, all negative outcomes preserved. Script/protocol committed before server nohup fitting; raw input hashes verified at runtime. Laptop repository mount unavailable, temporary checkout cloning; authoritative code change made on server preserving unrelated dirty files. New unsubmitted live-guard branch did not occur in18episodes and remains unverified.
