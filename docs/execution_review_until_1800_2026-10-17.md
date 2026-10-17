@@ -1,0 +1,5 @@
+# Execution review through 18:00 IST — 17 October 2026
+
+## Initial state, 15:47 IST
+
+Completed18/18physical collection,9923query/12rewrite candidate labels,3source families. Development fits complete: query1591train/1672validation, family2reserved; rewrite4train/4validation/4reserved. Query/layoutmedian19.0400ms equalepisode MAE, tree20.1904, SQLmedian20.3197, logridge21.1091. Rewrite median440.6151/tree383.9604/logridge387.3421ms on4validation labels only. Saved prediction audit passed6700predictions, zero reserved test predictions; full independent transform/fitting audit pending. No accepted/calibrated model or scheduler. Fit artifacts results/consistent_cost_development_20261017 on worker3 and temporary client checkout, matching SHA256. Fit receipt e00e08ca3938e4668b9dfd897d532e43d49d7af4247da077992f871566e01de0. Last code/docs HEAD4d09911e82acbc099b8dae164a42c6b4598a4e7f. No active model job at last completion. Queue A ready; B–E gated. Automation setup pending confirmation.
