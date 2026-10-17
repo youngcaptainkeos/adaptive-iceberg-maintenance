@@ -24,7 +24,7 @@ Pending-True eligible development support is22train/25validation queries, fewer 
 
 ## Resources: available versus missing
 
-Available: Spark/Iceberg worker3, real SF1table6001215rows, original16/32file layout interventions, Snowset timestamp/identity cohort2760971complete-bin arrivals, four custom SQL templates, audited raw instrumentation/export and saved model pipeline. Snapshot resource inspection2026-10-17:62GiB RAM/44GiB available,445GiB filesystem available on/dev/sdb, not an NFS performance measurement. Capacity snapshot is not a guarantee of future throughput. No Python project job active at inspection.
+Available: Spark/Iceberg worker3, real SF1table6001215rows, original16/32file layout interventions, Snowset timestamp/identity cohort2760971total arrivals (2760925in complete bins;46partial-tail exclusions), four custom SQL templates, audited raw instrumentation/export and saved model pipeline. Snapshot resource inspection2026-10-17:62GiB RAM/44GiB available,445GiB filesystem available on/dev/sdb, not an NFS performance measurement. Capacity snapshot is not a guarantee of future throughput. No Python project job active at inspection.
 
 Missing/unverified: original Snowset SQL (mapping remains trace-driven benchmark, not original-SQL replay); integrated Alibaba/Borg SQL replay; independent calibration blocks; sufficiently diverse rewrite/overlap labels; verified large-scale table and second engine/resource regime; measured temporal scheduling objective and benefit. Current datasets support controlled follow-up engineering, not yet the full journal claim. Acquire an anonymized real SQL/fingerprint workload for stronger workload-validity claims if available; otherwise keep mapping limitations explicit.
 
