@@ -1,0 +1,25 @@
+{
+  "schema_version": "consistent_development_audit_v1",
+  "fit_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_cost_development_20261017",
+  "fit_protocol": "/mnt/nfs-storage/shashank_prafullathta/implementation/docs/experiment_protocols/consistent_cost_development_20261017.json",
+  "inputs": [
+    {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_cost_development_20261017/result.json",
+      "sha256": "e00e08ca3938e4668b9dfd897d532e43d49d7af4247da077992f871566e01de0"
+    },
+    {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_cost_development_20261017/development_models.joblib",
+      "sha256": "2dd1ebcda27c79a5aab175043fb0507286a6facfdfa5c9977cdd5958cc21ce78"
+    },
+    {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_cost_development_20261017/validation_predictions.csv",
+      "sha256": "6d22c83a4be532fcc4c17ffb161b7d045fa015ce807efda0dc67af60e503d633"
+    },
+    {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/docs/experiment_protocols/consistent_cost_development_20261017.json",
+      "sha256": "961ae64968ffdbf24e8e0c781513b143859e663be384daee563becbb667706eb"
+    }
+  ],
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_development_audit_20261017",
+  "rationale": "Real development-only independent NumPy logRidge normal-equation reconstruction, training mean/variance/encoding and empirical medians, reconstructed shallow tree and saved predictions/metrics; reserved family excluded from fitting/scoring, no hyperparameter search."
+}
