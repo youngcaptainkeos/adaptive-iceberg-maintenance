@@ -2144,3 +2144,6 @@ Next gate: inspect training/validation regime support and freeze development cho
 
 
 2026-10-17 Queue B freeze: consistent_reserved_evaluation_20261017.json SHA-binds original family0trained model bundle, fit receipt, passed independent audit, source export and evaluation code before test. Primary query/layoutmedian selected by development equalepisodeMAE; all preregistered candidates reported, rewrite primary median with sparse evidence. Same complete60/300s histories, one family2evaluation, no refit/search/winner selection after test. Output results/consistent_reserved_evaluation_20261017 exclusive; code saves protocol/source/predictions/metrics/eligibility and preserves failures. Queue C permitted only after protocol published/synced.
+
+
+2026-10-17 Queue C one-time evaluation executed under frozenedec1a6, wrapper3672206, no refit.1663eligible reserved queries (3351total),4rewrites. Equalepisode MAEms query/layoutmedian20.3430, SQLmedian21.2335, tree20.9283, logRidge21.5426; simple primary still best. Rewrite median274.8958/logRidge258.2338/tree263.5033 on4labels only. No learned-query win or established rewrite accuracy. Test family now consumed; no posttest tuning. Registered read-only independent audit of saved target/model/metric binding before advancing C. Raw result/predictions/code/protocol mirrored locally. Audit outcome pending.

@@ -1,0 +1,11 @@
+{
+  "evaluation_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_reserved_evaluation_20261017",
+  "output": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_reserved_evaluation_20261017/independent_audit.json",
+  "inputs": [
+    {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_reserved_evaluation_20261017/result.json",
+      "sha256": "c0fbd8cbda0d509e5f41bb6711693850a1911a80e0b4cc341ae26496efc009a4"
+    }
+  ],
+  "rationale": "Read-only independent raw family/eligibility/target binding, empirical baseline reconstruction, saved model coefficient inference, query/layout fallback and row/equalepisode/slice metrics. No refit or second test evaluation; audit existing saved one-time predictions only."
+}
