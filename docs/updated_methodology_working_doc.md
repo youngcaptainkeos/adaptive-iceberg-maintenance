@@ -480,3 +480,6 @@ Next gate: inspect training/validation regime support and freeze development cho
 
 
 2026-10-17 15:59IST Queue A: register independent reconstruction audit before worker3 execution, consistent_development_audit_20261017.json. SHA-bound real saved fit/models/predictions/protocol; independent design/scaling and NumPy logRidge solve, empiricalmedians, deterministic tree reconstruction, targets/metrics/eligibility. Inventory development-only slices including zero pending states. Tree uses same sklearn implementation, not independent algorithm. No reserved-family evaluation or new physical operations. Outcome pending.
+
+
+2026-10-17 Queue A first reconstruction passed all6700predictions and raw training/scaling/closed-form Ridge/medians/tree/metrics checks. Actual pending-True support22eligible train/25validation, not zero. Found an erroneous fixed limitation sentence claiming zero support; first receipt retained, explicitly superseded by measured coverage. Register v2 output/report with corrected limitation only; no gate/input/model changes or fitting. This is a reporting repair, not retrying a failed model. Excluded3309development queries due incomplete histories. Auditwrapper3669334. Gate A waits corrected report; reserved family still untouched.

@@ -69,7 +69,7 @@ def run(protocol):
    result['coverage'][task]=coverage;result['checks'].append(task+'_training_transforms_models_targets_predictions_metrics_reconstructed')
   require(set(excluded)=={(r['experiment_id'],r['measurement_id']) for r in fit['excluded_queries']} and len(excluded)==len(fit['excluded_queries']),'Excluded eligibility inventory differs')
   require(all(family[r['experiment_id']]==1 for r in saved),'Reserved family prediction leakage')
-  result.update(status='passed_independent_development_reconstruction',prediction_rows=len(saved),excluded_development_queries=len(excluded),limitations=['One train and one validation family; no calibration or causal/scheduler acceptance.','Tree reconstruction uses same sklearn implementation with independently rebuilt training rows.','Zero complete-history pending support prevents assessing that regime with these eligible rows.'])
+  result.update(status='passed_independent_development_reconstruction',prediction_rows=len(saved),excluded_development_queries=len(excluded),limitations=['One train and one validation family; no calibration or causal/scheduler acceptance.','Tree reconstruction uses same sklearn implementation with independently rebuilt training rows.','Pending-regime support counts are reported explicitly; dependent query rows are not independent experimental blocks.'])
  except Exception as e:result.update(status='failed_preserved',error=str(e),traceback=traceback.format_exc());raise
  finally:
   result['protocol_sha256']=digest(protocol);result['audit_code_sha256']=digest(__file__);(out/'result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
