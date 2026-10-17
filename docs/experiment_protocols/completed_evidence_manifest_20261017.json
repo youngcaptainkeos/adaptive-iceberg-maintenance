@@ -1,0 +1,15 @@
+{
+  "repository": "/mnt/nfs-storage/shashank_prafullathta/implementation",
+  "output": "results/completed_evidence_manifest_20261017.json",
+  "roots": [
+    "results/consistent_collection_20261016",
+    "results/consistent_cost_development_20261017",
+    "results/consistent_development_audit_20261017",
+    "results/consistent_development_audit_20261017_v2",
+    "results/consistent_reserved_evaluation_20261017",
+    "results/snowset_consistent_day3_20261016",
+    "results/snowset_consistent_day4_20261016",
+    "results/snowset_consistent_day5_20261016"
+  ],
+  "rationale": "Hash completed real raw18episodes, source mappings, exported labels, saved models and independent audits before mirroring. Includes code/receipts. Does not include external physical Iceberg data/catalog, so no full restoration claim. Fail if symlink, duplicate root or file changes while hashing."
+}
