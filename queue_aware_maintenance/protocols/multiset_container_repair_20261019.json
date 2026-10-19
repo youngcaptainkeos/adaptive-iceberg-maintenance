@@ -1,0 +1,13 @@
+{
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/multiset_container_repair",
+  "failed_events": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/cohort/episodes/queueaware_20261019_01/events.jsonl",
+    "sha256": "6e73850c42d19ad0266afb56bcc29db9cd19c2a40f8152a4e5623be9616f33ce"
+  },
+  "engine": {
+    "host": "127.0.0.1",
+    "port": 10000,
+    "username": "ccbd"
+  },
+  "rationale": "Rerun only the recorded read-only snapshot equality SQL against the preserved failed table. Validate actual Python client container semantics without changing zero-difference acceptance or replaying workload. Original cohort remains 0 passed,1 failed,7 unattempted."
+}

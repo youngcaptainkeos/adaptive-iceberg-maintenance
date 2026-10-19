@@ -13,6 +13,9 @@ from forecast import SeasonalArrivalForecast
 from policy import MaintenancePolicy
 from engine_evidence import EngineArchive
 
+def zero_difference_rows(rows):
+ return len(rows)==1 and len(rows[0])==1 and rows[0][0]==0
+
 class FreshSampleRequired(Exception):pass
 
 def run(protocol,revision):
@@ -47,7 +50,7 @@ def run(protocol,revision):
    snap=call(cursor,f'SELECT snapshot_id FROM {table}.history ORDER BY made_current_at DESC LIMIT 1');files=call(cursor,f'SELECT file_path, record_count, file_size_in_bytes FROM {table}.files');return {'table':table,'snapshot_id':snap['rows'][0][0],'snapshot_measurement_id':snap['measurement_id'],'file_inventory_measurement_id':files['measurement_id'],'inventory_available_monotonic_ns':files['fetch_end']['monotonic_ns'],'layout_signature':sorted([[r[1],r[2]] for r in files['rows']]),'file_state':{'file_count':len(files['rows']),'record_count':sum(r[1] for r in files['rows']),'total_bytes':sum(r[2] for r in files['rows'])}}
   state=inventory(meta);initial_state=state;require(state['file_state']['file_count']==cfg['initial_file_count'] and state['file_state']['record_count']==source['record_count'],'Initial table state differs');log.emit('cohort_initial_state',**state)
   def multiset(cursor,check_state):
-   snapshot=check_state['snapshot_id'];r=call(cursor,f"SELECT count(*) FROM ((SELECT * FROM {source['table']} VERSION AS OF {source['snapshot_id']} EXCEPT ALL SELECT * FROM {table} VERSION AS OF {snapshot}) UNION ALL (SELECT * FROM {table} VERSION AS OF {snapshot} EXCEPT ALL SELECT * FROM {source['table']} VERSION AS OF {source['snapshot_id']})) AS differences");require(r['rows']==[[0]],'Logical multiset changed');log.emit('cohort_multiset_validation',snapshot_id=snapshot,measurement_id=r['measurement_id'])
+   snapshot=check_state['snapshot_id'];r=call(cursor,f"SELECT count(*) FROM ((SELECT * FROM {source['table']} VERSION AS OF {source['snapshot_id']} EXCEPT ALL SELECT * FROM {table} VERSION AS OF {snapshot}) UNION ALL (SELECT * FROM {table} VERSION AS OF {snapshot} EXCEPT ALL SELECT * FROM {source['table']} VERSION AS OF {source['snapshot_id']})) AS differences");require(zero_difference_rows(r['rows']),'Logical multiset changed');log.emit('cohort_multiset_validation',snapshot_id=snapshot,measurement_id=r['measurement_id'])
   multiset(meta,initial_state);sampler.start();time.sleep(cfg['telemetry']['warmup_seconds']);guard();lo=time.monotonic_ns();hi=lo+int(cfg['horizon_seconds']*1e9);cutoff_ns=lo+int((deadline-datetime.now(timezone.utc)).total_seconds()*1e9);log.emit('cohort_clock',start_monotonic_ns=lo,arrival_end_monotonic_ns=hi,operational_end_monotonic_ns=cutoff_ns,source_start_utc=cfg['source_start_utc'],source_end_utc=cfg['source_end_utc']);ledger=CohortLedger(log,arrivals,lo);pending=queue.Queue();offering_done=threading.Event();identities={r['source_query_id']:uuid.uuid4().hex for r in arrivals}
   def offer():
    try:

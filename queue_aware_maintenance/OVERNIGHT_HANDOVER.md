@@ -1,0 +1,3 @@
+# Queue-aware feasibility handover
+
+2026-10-19 13:32 UTC. Goal incomplete. Original cohort terminal: 0 passed,1 failed,7 unattempted; wrapper200947/coordinator200948 no longer live. No workload replay occurred. Frozen runtime /tmp/capstone_queue_aware_20261019 at8f8c3ee preserved. Read-only real-table container repair validation registered; recovery launch pending. See STUDY_PLAN.md and append-only methodology. Deadline20Oct00:30UTC; no new episode after19Oct22:15UTC; no new SQL after23:45UTC. Never kill/restart/delete. New study output must use fresh table IDs and preserve original failed inventory. Full physical comparison, independent analysis and raw mirroring remain incomplete.
