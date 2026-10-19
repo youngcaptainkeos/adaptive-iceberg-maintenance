@@ -6,6 +6,9 @@ from common import checked,require,write_json,sha,now
 from costs import EmpiricalCosts
 from forecast import SeasonalArrivalForecast
 from controller_factory import build_policy
+from sampler_factory import build_sampler
+from publication_sampler import PublicationTelemetrySampler
+from physical_measurements import EventLog,TelemetrySampler
 
 def run(protocol):
  cfg=json.loads(Path(protocol).read_text());out=Path(cfg['output_directory']);out.mkdir(parents=True,exist_ok=False);report={'status':'running','started_utc':now(),'physical_validation_passed':False}
@@ -24,6 +27,11 @@ def run(protocol):
      if policy=='immediate':require(d['execute_now'],'Immediate control waits')
      decisions.append({'window_index':w['window_index'],'version':version,'policy':policy,'decision':d})
   require(run_episode.build_policy is build_policy,'Physical runner not wired to versioned factory')
+  if 'telemetry_publication_validation' in cfg:
+   log=EventLog(out/'factory_configuration.jsonl','future_runner_factory_configuration')
+   try:
+    actual=build_sampler(cfg,log);require(type(actual) is PublicationTelemetrySampler,'Future observer factory selects old polling');legacy=build_sampler(dict(cfg,telemetry_wait_contract='interval_poll_v1'),log);require(type(legacy) is TelemetrySampler,'Old observer version silently upgraded');require(run_episode.build_sampler is build_sampler,'Physical runner bypasses observer factory');log.emit('factory_configuration_validated',telemetry_wait_contract=cfg['telemetry_wait_contract'],actual_validation=cfg['telemetry_publication_validation'],independent_audit=cfg['telemetry_publication_audit'],real_counters_sampled_in_this_configuration_check=False)
+   finally:log.close()
   report.update(status='passed_actual_source_versioned_controller_wiring_only',decisions=decisions,checks=['All sources parse and final analysis/registration modules import','Sixteen actual-source policy/window/version constructions execute','Legacy choices preserve original core decisions; snapshot choices preserve repaired proof','Physical runner imports the same versioned factory'],limitations=['No new physical episode run; frozen active study still fluid_v1.','New snapshot controller needs fresh physical registration and real validation.'])
  except Exception as e:report.update(status='failed_preserved',error=str(e));raise
  finally:report.update(ended_utc=now(),protocol_sha256=sha(protocol),code_sha256=sha(__file__),factory_sha256=sha(Path(__file__).parent/'controller_factory.py'),runner_sha256=sha(Path(__file__).parent/'run_episode.py'));write_json(out/'result.json',report);print(json.dumps({k:v for k,v in report.items() if k!='decisions'}),flush=True)
