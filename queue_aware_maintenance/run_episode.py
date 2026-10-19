@@ -11,6 +11,7 @@ from ledger import CohortLedger
 from costs import EmpiricalCosts
 from forecast import SeasonalArrivalForecast
 from controller_factory import build_policy
+from sampler_factory import build_sampler
 from engine_evidence import EngineArchive
 
 def zero_difference_rows(rows):
@@ -33,7 +34,7 @@ def run(protocol,revision):
  require(set(expected)==set(cfg['query_ids']),'Incomplete SQL references')
  costs=EmpiricalCosts.load(checked(cfg['model']));forecast=SeasonalArrivalForecast(cfg['arrivals'],origin=cfg['observation_origin_utc'],history_days=cfg['forecast_history_days'],bin_seconds=cfg['decision_interval_seconds'],freeze_source_time=cfg['forecast_history_freeze_utc']);policy=build_policy(cfg,costs,forecast)
  table=cfg['destination_table'];require(re.fullmatch(r'local\.experiment\.queueaware_[a-z0-9_]+',table),'Fresh isolated table identity required')
- log=EventLog(out/'events.jsonl',cfg['experiment_id']);rec=StatementRecorder(log);rest=SparkEvidence(cfg['spark_rest_url'],cfg['spark_app_id'],cfg['rest_timeout_seconds'],log);sampler=TelemetrySampler(log,cfg['telemetry']['interval_seconds'],asynchronous_persistence=True);connections=[];threads=[];errors=[];probes=[];actions=[];known_markers=[];state_lock=threading.RLock();action_started=False;safe=False;ledger=None;lo=None
+ log=EventLog(out/'events.jsonl',cfg['experiment_id']);rec=StatementRecorder(log);rest=SparkEvidence(cfg['spark_rest_url'],cfg['spark_app_id'],cfg['rest_timeout_seconds'],log);sampler=build_sampler(cfg,log);connections=[];threads=[];errors=[];probes=[];actions=[];known_markers=[];state_lock=threading.RLock();action_started=False;safe=False;ledger=None;lo=None
  code_hashes={str(p.relative_to(code)):sha(p) for p in code.rglob('*') if p.is_file()};log.emit('queue_aware_protocol',configuration=cfg,revision=revision,code_sha256=code_hashes)
  def call(cursor,sql,role='metadata',**kwargs):
   guard();mid=kwargs.pop('measurement_id',uuid.uuid4().hex);known_markers.append('capstone_event_'+mid);return rec.execute(cursor,sql,role=role,measurement_id=mid,**kwargs)
