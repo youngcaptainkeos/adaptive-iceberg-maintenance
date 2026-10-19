@@ -629,3 +629,7 @@ Detached schedule audit222191 confirmed actual coordinator203578 runtime, seven 
 
 ## 2026-10-19 14:33UTC — authorized interruption and corrected launch
 Original study stopped only under explicit human authorization:0passed/1aborted/7unattempted,3067offered777completed; all raw evidence retained. Spark/current table integrity passed (symmetric difference0/6001215rows). Corrected full8arm frozen d5e7c40 started14:32:49UTC, coordinator226240, resource admission passed; snapshot model+durable observer,25128queries planned. Model-only finish22:57:55UTC excludes overhead. See full methodology entry and queue_aware_maintenance/OVERNIGHT_HANDOVER.md; completion/calibration/benefit remain unproven.
+
+
+## 2026-10-19 14:40UTC — corrected physical controller exercised
+Actual first arm waited~60s then executed one real rewrite;65queries completed at observed235-arrival prefix. Live raw events, no terminal/benefit claim. Full methodology and OVERNIGHT_HANDOVER contain evidence pointers; full8arm audits pending.
