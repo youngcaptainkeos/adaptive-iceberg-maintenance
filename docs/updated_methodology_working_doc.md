@@ -573,3 +573,7 @@ Detached wrapper208043 at15cc930 passed131838actual-source query/candidate recur
 
 ### 2026-10-19: operational resource-budget prefix audit registered
 Live first-arm counters showed90completed queries at410.85s with queued980; source/core8.4h estimate may understate instrumentation/driver delays. Registered runtime_budget_prefix_20261019.json to preserve a complete raw-log prefix and account actual completed service, between-call gaps, REST response lifetimes and a clearly nonstationary linear completion diagnostic. No partial-prefix physical success, model refit or policy comparison allowed. New audit does not submit SQL or compete with physical workloads.
+
+
+### 2026-10-19: explicit controller-version integration registered
+Added controller_factory.py and future-runner selection of policy_model_version. Missing version retains legacyfluid_v1 for existing protocols; snapshot_whole_call_v2 requires SHA-bound passed reconstruction and exact simulator/base/subclass hashes. No automatic upgrade of old data or frozen runtime. Registered controller_wiring_20261019.json for16actual-source policy/window/version checks, saved model-choice preservation and physical-runner import wiring; no SQL or new fitted outcomes. Updated comparison modules import/parse included so model-failure reporting cannot silently break analysis source. Fresh physical v2 validation still required.

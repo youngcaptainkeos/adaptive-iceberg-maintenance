@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+"""Actual-source integration checks for explicit legacy/repaired controller versions."""
+import argparse,ast,json
+from pathlib import Path
+from common import checked,require,write_json,sha,now
+from costs import EmpiricalCosts
+from forecast import SeasonalArrivalForecast
+from controller_factory import build_policy
+
+def run(protocol):
+ cfg=json.loads(Path(protocol).read_text());out=Path(cfg['output_directory']);out.mkdir(parents=True,exist_ok=False);report={'status':'running','started_utc':now(),'physical_validation_passed':False}
+ try:
+  for p in Path(__file__).parent.rglob('*.py'):ast.parse(p.read_text())
+  import run_episode,compare_study,register_comparison
+  prepared=json.loads(checked(cfg['core_preparation']).read_text());proof=json.loads(checked(cfg['snapshot_model_verification']).read_text());costs=EmpiricalCosts.load(checked(prepared['model']));diagnostics=json.loads((Path(cfg['core_preparation']['path']).parent/'model_diagnostics.json').read_text());decisions=[]
+  forecast=SeasonalArrivalForecast(cfg['arrivals'],origin=cfg['observation_origin_utc'],history_days=cfg['forecast_history_days'],bin_seconds=cfg['decision_interval_seconds'],freeze_source_time=prepared['workloads'][0]['start'])
+  for w in prepared['workloads']:
+   for version in ('fluid_v1','snapshot_whole_call_v2'):
+    for policy in cfg['policies']:
+     episode=dict(cfg,policy_model_version=version,policy=policy,source_start_utc=w['start'],source_end_utc=w['end']);controller=build_policy(episode,costs,forecast);d=controller.decide(elapsed_seconds=0,queued=[],last_offered_query_id=None,files=cfg['initial_file_count'])
+     if policy=='queue_aware':
+      reference=diagnostics[w['window_index']]['forecast_decision'] if version=='fluid_v1' else proof['diagnostics'][w['window_index']]['past_only_forecast_decision'];require(d['chosen']==reference['chosen'] and d['candidates']==reference['candidates'],'Controller wiring changes registered model decisions')
+     if policy=='no_maintenance':require(not d['execute_now'],'Null control rewrites')
+     if policy=='immediate':require(d['execute_now'],'Immediate control waits')
+     decisions.append({'window_index':w['window_index'],'version':version,'policy':policy,'decision':d})
+  require(run_episode.build_policy is build_policy,'Physical runner not wired to versioned factory')
+  report.update(status='passed_actual_source_versioned_controller_wiring_only',decisions=decisions,checks=['All sources parse and final analysis/registration modules import','Sixteen actual-source policy/window/version constructions execute','Legacy choices preserve original core decisions; snapshot choices preserve repaired proof','Physical runner imports the same versioned factory'],limitations=['No new physical episode run; frozen active study still fluid_v1.','New snapshot controller needs fresh physical registration and real validation.'])
+ except Exception as e:report.update(status='failed_preserved',error=str(e));raise
+ finally:report.update(ended_utc=now(),protocol_sha256=sha(protocol),code_sha256=sha(__file__),factory_sha256=sha(Path(__file__).parent/'controller_factory.py'),runner_sha256=sha(Path(__file__).parent/'run_episode.py'));write_json(out/'result.json',report);print(json.dumps({k:v for k,v in report.items() if k!='decisions'}),flush=True)
+if __name__=='__main__':
+ p=argparse.ArgumentParser();p.add_argument('--protocol',required=True);run(p.parse_args().protocol)

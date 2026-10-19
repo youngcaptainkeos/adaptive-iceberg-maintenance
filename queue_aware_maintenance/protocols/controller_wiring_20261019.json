@@ -1,0 +1,36 @@
+{
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/controller_wiring",
+  "core_preparation": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/core_preparation/result.json",
+    "sha256": "0837a1e8b01ae18e23c11c593c3947ba2f87ca8411b4a4c1f4b8e3b9aef12b4d"
+  },
+  "arrivals": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/datasets/snowset/arrival_cohort_export_repair_20261014/observed_arrivals.csv",
+    "sha256": "f058f9b99de4989b75941934f185db562cab5e482e700757821e163ddf514d20"
+  },
+  "observation_origin_utc": "2018-02-21T20:00:00.286000+00:00",
+  "forecast_history_days": 6,
+  "decision_interval_seconds": 60,
+  "query_ids": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "initial_file_count": 16,
+  "policies": [
+    "no_maintenance",
+    "immediate",
+    "forecast_quiet",
+    "queue_aware"
+  ],
+  "rationale": "Wire separately versioned corrected candidate into future physical runner; exact prior legacy behavior remains default for old configs. Actual-source integration reconstructs both saved model versions before future fresh registration. No edits to frozen live runtime and no physical validation claim.",
+  "snapshot_model_verification": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/snapshot_model_reconstruction/result.json",
+    "sha256": "b4e062876b3025d572e0faaccfce0ea9080884e55fa9098d8d4b89b1f984ced6"
+  },
+  "snapshot_policy_code_sha256": {
+    "policy.py": "474b83fe1976e925dd283e2aa61a65dcbbdd8cd60afe7b91ecc879246a0cf11a",
+    "snapshot_policy.py": "8a7597552ab5a878a26874ec7c5cd7597be24357b1e48dcb0c6ae2b1a84e6fe5"
+  }
+}
