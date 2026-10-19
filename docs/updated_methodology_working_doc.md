@@ -633,3 +633,7 @@ Original study stopped only under explicit human authorization:0passed/1aborted/
 
 ## 2026-10-19 14:40UTC — corrected physical controller exercised
 Actual first arm waited~60s then executed one real rewrite;65queries completed at observed235-arrival prefix. Live raw events, no terminal/benefit claim. Full methodology and OVERNIGHT_HANDOVER contain evidence pointers; full8arm audits pending.
+
+
+## 2026-10-19 14:42UTC — terminal-analysis readiness
+Source-reviewed raw/terminal comparison gates; appended exact corrected-cohort worker3 analysis commands to queue_aware_maintenance/README.md. No runtime test or acceptance claim; full8arm terminal evidence still pending.

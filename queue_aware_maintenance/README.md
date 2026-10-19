@@ -139,3 +139,39 @@ registering the comparison. The comparison code verifies the model version
 against frozen source. Continue to preserve original failed-model outcomes and
 all unattempted counts. See `FEASIBILITY_REVIEW.md` for unresolved research and
 physical-validation requirements.
+
+## Active corrected study and terminal analysis (supersedes original live handles)
+
+As of19October14:40UTC the original study was intentionally aborted under
+explicit human authorization; its partial evidence remains preserved. The active
+corrected study is `cohort_snapshot_publication`, frozen at
+`d5e7c4002f49c409ae0b1e01863ceea40368d39a`; coordinator226240. See the append-only
+handover for newer authoritative observations. The original comparison example
+above is historical and cannot analyze the aborted original cohort.
+
+After the corrected study actually terminates with eight passed arms, zero
+failed and zero unattempted, use the following on worker3. These paths are new;
+never overwrite existing failed analysis output or refit from these results.
+Registration rejects partial cohorts. Run the comparison only within the
+remaining authorized deadline, after inspecting actual active work.
+
+```bash
+cd /mnt/nfs-storage/shashank_prafullathta/implementation
+python3 -B queue_aware_maintenance/register_comparison.py \
+  --cohort-result results/queue_aware_maintenance_20261019/cohort_snapshot_publication/result.json \
+  --semantics-audit results/queue_aware_maintenance_20261019/snapshot_model_reconstruction/result.json \
+  --protocol results/queue_aware_maintenance_20261019/snapshot_comparison_protocol.json \
+  --output-directory results/queue_aware_maintenance_20261019/snapshot_comparison
+nohup python3 -B -u scripts/phase6-live-evaluation/run_with_failure_alert.py \
+  --label queue_snapshot_independent_comparison_20261019 \
+  --receipt results/queue_aware_maintenance_20261019/snapshot_comparison_failure_notification.json \
+  -- python3 -B -u queue_aware_maintenance/compare_study.py \
+  --protocol results/queue_aware_maintenance_20261019/snapshot_comparison_protocol.json \
+  > results/queue_snapshot_comparison_20261019.log 2>&1 < /dev/null &
+```
+
+Record the actual PID, log and receipt. A terminal comparison pass proves the
+registered physical feasibility and reconstruction scope only. Final acceptance
+also requires a candid report, full requirements audit and completed-evidence
+mirror with server/client hashes. Any incomplete or failed cohort remains
+incomplete; do not substitute a surviving-arm contrast.
