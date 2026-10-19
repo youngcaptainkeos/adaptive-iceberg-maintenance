@@ -657,3 +657,7 @@ Actualworker3posthocdiagnostic completed0.81s, noSQL/refit/changes. Firstforecas
 
 ## 2026-10-19 16:20UTC — novelty boundary strengthened
 PrimaryArceKVmethodreview added to novelty_comparison_2026-10-17.md; transition-aware simulation is priorart, not a standalone noveltyclaim. PTOmaintextstillunresolved/403; unknowncapabilitiesremainunknown. No runtime/model/protocolchange.
+
+
+## 2026-10-19 16:27UTC — completed base evidence checksum check
+Refreshed completedbaseevidence and verifiedserver→client with itemizedchecksumdryrun(exit0,nodifferences), excludingactivecohort/follower. Supersedesweakersilentdryrunclaim; physicalwarehouseandactiveoutputsremainexcluded. Arm01fullmirror separatelyverified.
