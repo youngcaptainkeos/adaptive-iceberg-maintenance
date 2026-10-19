@@ -1,0 +1,17 @@
+{
+  "candidate_export": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_collection_20261016/candidates/export_record.json",
+    "sha256": "36052bd626032644e14764accab9c2c9694dd8ff75ff3e04f1e9a0dd27c659fe"
+  },
+  "decision_interval_seconds": 60,
+  "initial_file_count": 16,
+  "numeric_relative_tolerance": 1e-12,
+  "numeric_absolute_tolerance_seconds": 1e-09,
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/simulator_semantics_audit",
+  "core_preparation": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/core_preparation/result.json",
+    "sha256": "0837a1e8b01ae18e23c11c593c3947ba2f87ca8411b4a4c1f4b8e3b9aef12b4d"
+  },
+  "maximum_report_examples": 12,
+  "rationale": "Audit only old development labels/raw SQL plus already prepared actual source arrivals. Twelve examples bound report size; all boundary cases count. Do not alter frozen live runtime or tune from prospective physical outcomes. Test the whole-call target and pinned-snapshot contract rather than asserting calibrated throughput from service medians."
+}
