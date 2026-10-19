@@ -641,3 +641,7 @@ Source-reviewed raw/terminal comparison gates; appended exact corrected-cohort w
 
 ## 2026-10-19 15:20UTC — connection blocker
 Two SSH timeouts; current remote state unknown, no restart. Last verified live14:47:53UTC. Optional completion-follower is local unvalidated/undeployed draft only; actual PID-start binding absent. See full methodology/handover; restoreVPN before rechecking existing job.
+
+
+## 2026-10-19 15:48UTC — restored connection and complete corrected arm
+Arm01PASSED all3094queries/raw audit, one rewrite, exactresponse-area accounting. Arm02baseline active;6unattempted. New server-only identity-bound terminal follower248364 waiting, automatically launches full comparison only after8/0/0beforedeadline. No measuredbenefit/calibrationclaim; runtimeoverhead threatenscompletionbudget. Full details/provenance/failures in methodology/handover.
