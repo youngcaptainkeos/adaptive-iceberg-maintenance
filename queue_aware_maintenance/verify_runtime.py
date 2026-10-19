@@ -12,7 +12,7 @@ def run(protocol):
  try:
   preparation=json.loads(checked(cfg['core_preparation']).read_text());require(preparation['status']=='passed_real_evidence_core_preparation_and_reconstruction','Core tests not passed');model=checked(preparation['model']);costs=EmpiricalCosts.load(model)
   for p in Path(__file__).parent.rglob('*.py'):ast.parse(p.read_text())
-  import run_episode,audit_episode,engine_evidence,ledger
+  import run_episode,audit_episode,engine_evidence,ledger,compare_study
   from pyhive import hive
   import psutil
   report['checks'].append('all_new_and_frozen_runtime_sources_parse_and_required_server_imports_available')
