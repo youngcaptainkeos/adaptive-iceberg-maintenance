@@ -1,0 +1,8 @@
+{
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/arm01_posthoc_diagnostic",
+  "episode_result": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/cohort_snapshot_publication/episodes/queueaware_20261019_snapshot_01/result.json",
+    "sha256": "277ae8367117a442d42e20243f7ae0e85f2b04c84f7ab9010aa781060367d8e2"
+  },
+  "registration_rationale": "Post-hoc descriptive error and response decomposition after first completed arm was observed; no model/policy changes, no new SQL, no training, no independent-day/calibration/superiority claim. Stream until first decision only; actual saved full-cohort result supplies accounting."
+}
