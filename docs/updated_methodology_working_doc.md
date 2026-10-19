@@ -649,3 +649,7 @@ Arm01PASSED all3094queries/raw audit, one rewrite, exactresponse-area accounting
 
 ## 2026-10-19 15:54UTC — first corrected arm mirror verified
 Full completedarm01dir copied; itemized checksumdryrun no differences and explicit events/resultSHAs match worker3. Future/finalmirrors requireitemization; silentplainrsyncdryrun is insufficient evidence. Activearm02 remains excludedfromimmutablemirrorclaim.
+
+
+## 2026-10-19 16:10UTC — descriptive forecast/queue diagnostic
+Actualworker3posthocdiagnostic completed0.81s, noSQL/refit/changes. Firstforecast2585vs3094actual(16.45%under), meanresponse1349.35s dominatedby1348.47swait versus0.878scall. One-windowdescription, not calibration/benefit. Fullmethodology/FEASIBILITY_REVIEW include hashes/provenance and limitations;8armcomparisonpending.
