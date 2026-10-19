@@ -645,3 +645,7 @@ Two SSH timeouts; current remote state unknown, no restart. Last verified live14
 
 ## 2026-10-19 15:48UTC — restored connection and complete corrected arm
 Arm01PASSED all3094queries/raw audit, one rewrite, exactresponse-area accounting. Arm02baseline active;6unattempted. New server-only identity-bound terminal follower248364 waiting, automatically launches full comparison only after8/0/0beforedeadline. No measuredbenefit/calibrationclaim; runtimeoverhead threatenscompletionbudget. Full details/provenance/failures in methodology/handover.
+
+
+## 2026-10-19 15:54UTC — first corrected arm mirror verified
+Full completedarm01dir copied; itemized checksumdryrun no differences and explicit events/resultSHAs match worker3. Future/finalmirrors requireitemization; silentplainrsyncdryrun is insufficient evidence. Activearm02 remains excludedfromimmutablemirrorclaim.
