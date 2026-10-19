@@ -139,3 +139,19 @@ submission freshness passed. ReceiptSHA d17964d7b8b233b82c66ed93057899d2ab8fe573
 Independent raw-counter audit is registered and remains the next gate. This
 supersedes only the observer-test running status above; physical corrected
 controller validation remains incomplete.
+
+
+## Update19October14:13UTC: corrected full pipeline ready, physical admission blocked
+Actual-source preparation on the next chronological windows passed all7checks
+for6282real arrivals; immutable historical model bytes and all action-query
+recurrences were verified. All8corrected policy/window preflight choices passed.
+Actual observer validation and independent58-window reconstruction both passed.
+A complete fresh eight-arm protocol and separate frozen runtime atd5e7c40 are
+prepared. No corrected physical job has started.
+
+Admission at14:09UTC observed both exclusive locks held by the original-model
+study. The model-only latest feasible launch is14:53:53UTC, excluding additional
+overhead. Therefore six-am completion of the corrected physical comparison is
+unproven and at risk. Preserve the original live study and report unattempted
+corrected scope if resources/cutoffs prevent it. Ready executable code and
+passing source/observer tests do not supersede the outstanding physical gate.

@@ -78,3 +78,64 @@ queries. This small model margin is not measured evidence of a policy benefit.
 No new physical run may silently substitute the repaired model into the frozen
 original cohort. Future use requires fresh registration, model receipt/hash
 binding, actual controller integration and a complete physical comparison.
+
+## Corrected full-study deliverable (prepared, not physically validated)
+
+Both repairs are integrated explicitly for future episodes:
+`policy_model_version=snapshot_whole_call_v2` and
+`telemetry_wait_contract=durable_publication_v2`. Old protocols retain their old
+implementations. The corrected eight-arm protocol is
+`protocols/physical_study_snapshot_publication_20261019.json`, using the next
+chronological windows (3,094 / 3,188 arrivals). Model bytes remain identical to
+the historical model; no prospective physical labels were fitted.
+
+Prepared worker3 runtime:
+`/tmp/capstone_queue_aware_20261019_snapshot_publication`, frozen revision
+`d5e7c4002f49c409ae0b1e01863ceea40368d39a`. Its actual provenance is saved in
+`results/queue_aware_maintenance_20261019/prepared_snapshot_runtime.json`.
+Preparing this checkout did not launch an experiment.
+
+First inspect actual running handles and the resource-admission decision. This
+command is a real operational diagnostic; it submits no SQL. Use a new output
+path for a later recheck, preserving previous decisions.
+
+```bash
+cd /tmp/capstone_queue_aware_20261019_snapshot_publication
+nohup python3 -B -u scripts/phase6-live-evaluation/run_with_failure_alert.py \
+  --label queue_snapshot_publication_admission_before_launch \
+  --receipt results/queue_aware_maintenance_20261019/admission_before_launch_failure.json \
+  -- python3 -B -u queue_aware_maintenance/resource_admission.py \
+  --study-protocol queue_aware_maintenance/protocols/physical_study_snapshot_publication_20261019.json \
+  --output results/queue_aware_maintenance_20261019/admission_before_launch.json \
+  > results/queue_snapshot_publication_admission_before_launch.log 2>&1 < /dev/null &
+```
+
+Only if resources are genuinely free and full admission passes, the registered
+coordinator can be launched as follows. It rechecks admission before any SQL.
+Do not run this while the original coordinator is live. Noclobber prevents
+silently replacing an existing log.
+
+```bash
+cd /tmp/capstone_queue_aware_20261019_snapshot_publication
+set -o noclobber
+nohup python3 -B -u scripts/phase6-live-evaluation/run_with_failure_alert.py \
+  --label queue_snapshot_publication_study_20261019 \
+  --receipt results/queue_aware_maintenance_20261019/cohort_snapshot_publication_failure_notification.json \
+  -- python3 -B -u queue_aware_maintenance/run_study.py \
+  --protocol queue_aware_maintenance/protocols/physical_study_snapshot_publication_20261019.json \
+  --expected-revision d5e7c4002f49c409ae0b1e01863ceea40368d39a \
+  > results/queue_snapshot_publication_20261019_launch.log 2>&1 < /dev/null &
+```
+
+Initial admission at14:09UTC was rejected because both real execution locks were
+held. Its model-only latest feasible launch was14:53:53UTC (20:23:53IST),
+excluding additional initialization/audit overhead. This is not a permission to
+cancel running work, extend cutoffs, shrink the cohort or promise completion.
+If admission cannot pass, the corrected physical study remains unattempted.
+
+For corrected-cohort comparison, use its actual terminal `result.json` and the
+SHA-bound `snapshot_model_reconstruction/result.json` semantics receipt when
+registering the comparison. The comparison code verifies the model version
+against frozen source. Continue to preserve original failed-model outcomes and
+all unattempted counts. See `FEASIBILITY_REVIEW.md` for unresolved research and
+physical-validation requirements.
