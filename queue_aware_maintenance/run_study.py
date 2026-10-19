@@ -11,6 +11,9 @@ def run(protocol,revision):
  if 'repair_validation' in cfg:
   repair=json.loads(checked(cfg['repair_validation']).read_text());require(repair['status']=='passed_real_readonly_multiset_container_repair' and repair['runner_sha256']==sha(root/'run_episode.py'),'Recovery requires actual-table repair proof for this runner');prior=json.loads(checked(cfg['preserved_failed_cohort']).read_text());require((prior['passed'],prior['failed'],prior['unattempted'])==(0,1,7),'Original failed inventory changed')
  version=cfg.get('policy_model_version','fluid_v1');require(prepared.get('policy_model_version','fluid_v1')==preflight.get('policy_model_version','fluid_v1')==cfg['episode_template'].get('policy_model_version','fluid_v1')==version,'Study/preparation/preflight/episode model versions differ')
+ if 'resource_admission' in cfg:
+  from resource_admission import evaluate
+  admission=evaluate(cfg,prepared,repo);write_json(cfg['resource_admission']['receipt_path'],admission);require(admission['admitted_at_check'],'Resource/time admission rejected before any SQL or table creation')
  model=prepared['model'];checked(model);out=Path(cfg['output_directory']);out.mkdir(parents=True,exist_ok=False);shutil.copyfile(protocol,out/'registration.json');protocols=out/'protocols';protocols.mkdir();lock=(repo/'results'/'.queue_aware_study.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);code_hashes={str(p.relative_to(root)):sha(p) for p in root.rglob('*.py')};report={'status':'running','started_utc':now(),'pid':os.getpid(),'revision':revision,'protocol_sha256':sha(protocol),'planned_episodes':sum(len(x) for x in cfg['registered_orders']),'attempts':[],'unattempted':sum(len(x) for x in cfg['registered_orders']),'code_sha256':code_hashes,'model_accepted':False,'scheduler_research_claim_accepted':False};signatures={}
  def save():
   temp=out/'progress.tmp';temp.write_text(json.dumps(report,indent=2)+'\n');temp.replace(out/'progress.json')
