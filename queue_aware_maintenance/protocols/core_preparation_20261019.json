@@ -1,0 +1,46 @@
+{
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/core_preparation",
+  "candidate_export": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_collection_20261016/candidates/export_record.json",
+    "sha256": "36052bd626032644e14764accab9c2c9694dd8ff75ff3e04f1e9a0dd27c659fe"
+  },
+  "candidate_verification": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_collection_20261016/candidate_independent_verification.json",
+    "sha256": "55aaabcfd7c8e79e3059ef0876a1b72e286984f235e38edb6e53a2e22468895d"
+  },
+  "cohort": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/datasets/snowset/arrival_cohort_export_repair_20261014/cohort_record.json",
+    "sha256": "ca64577fcf057210b7ef390be204ea6746068e024f27a412ede6fa0ee47266d2"
+  },
+  "arrivals": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/datasets/snowset/arrival_cohort_export_repair_20261014/observed_arrivals.csv",
+    "sha256": "f058f9b99de4989b75941934f185db562cab5e482e700757821e163ddf514d20"
+  },
+  "prospective_day_index": 6,
+  "prospective_window_seconds": 1200,
+  "prospective_windows": 2,
+  "rationale": "Real6278future physical requests from two1200s chronological windows, registered four-query round robin. Empirical medians use all raw-verified prior rows since compact feature set requires no incomplete demand counts; this changes eligibility for this new exploratory model, not old acceptance gates/results. Busy-client turnaround from measured already-offered consecutive actualcalls; mode physical post-layout with smaller outcome only deterministic tie. Six previousdays seasonal mean counts,60s matches verified sourcebins/controlgranularity, nearestinteger count and evenly spaced model forecast events explicitly estimates, never replaylabels. Existing16layout and305s instrumentationwarmup. Compare independent FIFOrecurrence at1e-12relative/1e-9seconds arithmetic tolerances, not physicalclockgate relaxation. Allrealarrivalcandidates complete in model, physicalproofpending.",
+  "input_audit": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/input_audit_utc_repair/result.json",
+    "sha256": "5fbd2fb4295377b83a2a2e7038dac8cd4cd6d89831390e9d8f91854933d09862"
+  },
+  "turnaround_events": [
+    {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_collection_20261016/arms/sf1_consistent_20261016_01/events.jsonl",
+      "sha256": "8a2f61fb5bd2a1ce647bdd0ba1ca7a845b35f430b946e1118f543b79192684e2"
+    }
+  ],
+  "query_ids": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "initial_file_count": 16,
+  "forecast_history_days": 6,
+  "decision_interval_seconds": 60,
+  "physical_warmup_seconds": 305,
+  "planned_policy_count": 4,
+  "numeric_relative_tolerance": 1e-12,
+  "numeric_absolute_tolerance_seconds": 1e-09
+}

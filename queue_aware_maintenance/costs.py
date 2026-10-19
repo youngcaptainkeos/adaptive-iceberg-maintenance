@@ -42,3 +42,10 @@ class EmpiricalCosts:
   if int(files) not in self.rewrites:raise UnsupportedEvidence('No measured rewrite duration '+str(files))
   return self.rewrites[int(files)]
  def summary(self):return {'query_cells':[dict(query_id=k[0],files=k[1],pending=k[2],**{n:v for n,v in c.items() if n!='samples_seconds'}) for k,c in sorted(self.query_cells.items())],'rewrites':self.rewrites,'client_turnaround_seconds':self.turnaround,'provenance':self.provenance,'status':'uncalibrated_observational_empirical_estimates_no_causal_labels'}
+
+ def save(self,path):
+  from common import write_json
+  write_json(path,self.summary())
+ @classmethod
+ def load(cls,path):
+  v=json.loads(Path(path).read_text());cells={(int(r['query_id']),int(r['files']),bool(r['pending'])):{k:x for k,x in r.items() if k not in ('query_id','files','pending')} for r in v['query_cells']};return cls(cells,{int(k):x for k,x in v['rewrites'].items()},v['client_turnaround_seconds'],v['provenance'])
