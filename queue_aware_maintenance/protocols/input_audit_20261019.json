@@ -1,0 +1,23 @@
+{
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/input_audit",
+  "candidate_export": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_collection_20261016/candidates/export_record.json",
+    "sha256": "36052bd626032644e14764accab9c2c9694dd8ff75ff3e04f1e9a0dd27c659fe"
+  },
+  "candidate_verification": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/consistent_collection_20261016/candidate_independent_verification.json",
+    "sha256": "55aaabcfd7c8e79e3059ef0876a1b72e286984f235e38edb6e53a2e22468895d"
+  },
+  "cohort": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/datasets/snowset/arrival_cohort_export_repair_20261014/cohort_record.json",
+    "sha256": "ca64577fcf057210b7ef390be204ea6746068e024f27a412ede6fa0ee47266d2"
+  },
+  "arrivals": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/datasets/snowset/arrival_cohort_export_repair_20261014/observed_arrivals.csv",
+    "sha256": "f058f9b99de4989b75941934f185db562cab5e482e700757821e163ddf514d20"
+  },
+  "prospective_day_index": 6,
+  "prospective_window_seconds": 1200,
+  "prospective_windows": 2,
+  "rationale": "First two contiguous20minwindows on previously unexecuted source day6, selected by chronology before physical outcome. Existing16filelayout and four real custom SQLs; raw real arrivals preserved. Need capacity counts and conditional support before collection budget approval."
+}

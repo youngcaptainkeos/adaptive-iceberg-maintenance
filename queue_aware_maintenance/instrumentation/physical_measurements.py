@@ -1,0 +1,304 @@
+"""Append-only physical evidence primitives; no workload or policy generation."""
+import json
+import math
+import os
+import re
+from pathlib import Path
+import threading
+import time
+from datetime import datetime, timezone
+import urllib.request
+import uuid
+import queue
+from contextlib import nullcontext
+
+from experiment_validation import ValidationError, require
+
+
+def ordered_sum(values):
+    # Specify left-to-right IEEE additions across Python versions. Built-in sum
+    # changed its float algorithm in Python 3.12; do not loosen exact evidence gates.
+    result = 0.0
+    for value in values:
+        result += value
+    return result
+
+
+def stamp():
+    return {'utc': datetime.now(timezone.utc).isoformat(), 'monotonic_ns': time.monotonic_ns()}
+
+
+class EventLog:
+    """Exclusive new log; persist each record before returning to its caller."""
+    def __init__(self, path, experiment_id):
+        require(bool(experiment_id), 'Experiment ID required')
+        self.experiment_id = experiment_id
+        self.lock = threading.RLock()
+        self.stream = Path(path).open('x', encoding='utf-8')
+
+    def emit(self, kind, **fields):
+        record = dict(fields, schema_version='physical_event_v1',
+                      experiment_id=self.experiment_id, kind=kind, recorded=stamp())
+        encoded = json.dumps(record, allow_nan=False, default=str)
+        with self.lock:
+            self.stream.write(encoded + '\n')
+            self.stream.flush()
+            os.fsync(self.stream.fileno())
+        return record
+
+    def close(self):
+        with self.lock:
+            self.stream.close()
+
+
+class StatementRecorder:
+    """Request lifetime is not Spark execution time; retain the distinction."""
+    def __init__(self, log):
+        self.log = log
+
+    def execute(self, cursor, sql, *, role, query_id=None, measurement_id=None, prepare_submission=None, latest_start_ns=None):
+        require(latest_start_ns is None or (role=='trace_query' and isinstance(latest_start_ns,int)
+                and not isinstance(latest_start_ns,bool) and latest_start_ns>0
+                and isinstance(query_id,int) and not isinstance(query_id,bool)),'Guarded actual query cutoff required')
+        if measurement_id is None:
+            measurement_id = uuid.uuid4().hex
+        require(isinstance(measurement_id, str) and re.fullmatch(r'[0-9a-f]{32}', measurement_id),
+                'Explicit query observation ID must be a real UUID hex identity')
+        marker = 'capstone_event_' + measurement_id
+        # Serialize only durable preparation/intent, never the RPC or fetch.
+        # This prevents archival writes interleaving between fresh features
+        # and actual submission; all original timestamps/age gates still apply.
+        with self.log.lock if prepare_submission is not None else nullcontext():
+            if prepare_submission is not None and prepare_submission() is False:
+                return None  # Registered boundary: no intent and no SQL call.
+            request_start = stamp()
+            self.log.emit('statement_requested', measurement_id=measurement_id,
+                          marker=marker, role=role, query_id=query_id, sql=sql,
+                          request_start=request_start, timing_contract='client_submission_v1')
+        # Check AFTER durable intent logging and lock release, at the actual
+        # client call boundary. A queued/admitted request is not an RPC.
+        execute_start = stamp()
+        if latest_start_ns is not None and execute_start['monotonic_ns']>=latest_start_ns:
+            self.log.emit('statement_not_submitted',measurement_id=measurement_id,marker=marker,
+                          role=role,query_id=query_id,request_start=request_start,
+                          checked_at=execute_start,latest_start_monotonic_ns=latest_start_ns,
+                          reason='horizon_reached_before_rpc',timing_contract='client_submission_v1')
+            return {'submitted':False,'measurement_id':measurement_id}
+        try:
+            cursor.execute(f'/* {marker} */\n{sql}')
+            execute_return = stamp()
+            columns = [column[0] for column in cursor.description] if cursor.description else []
+            rows = cursor.fetchall() if cursor.description else []
+            fetch_end = stamp()
+            self.log.emit('statement_completed', measurement_id=measurement_id,
+                          marker=marker, role=role, query_id=query_id,
+                          request_start=request_start, execute_return=execute_return,
+                          client_execute_start=execute_start, timing_contract='client_submission_v1',
+                          fetch_end=fetch_end, columns=columns, rows=rows,
+                          client_elapsed_ns=fetch_end['monotonic_ns'] - execute_start['monotonic_ns'],
+                          request_to_result_ns=fetch_end['monotonic_ns'] - request_start['monotonic_ns'],
+                          instrumentation_before_execute_ns=execute_start['monotonic_ns'] - request_start['monotonic_ns'])
+            return {'measurement_id': measurement_id, 'marker': marker,
+                    'columns': columns, 'rows': rows, 'request_start': request_start,
+                    'client_execute_start': execute_start,
+                    'execute_return': execute_return, 'fetch_end': fetch_end}
+        except Exception as exc:
+            self.log.emit('statement_failed', measurement_id=measurement_id,
+                          marker=marker, role=role, query_id=query_id,
+                          request_start=request_start, failure_time=stamp(),
+                          client_execute_start=execute_start, timing_contract='client_submission_v1',
+                          error_type=type(exc).__name__, error=str(exc))
+            raise
+
+
+class SparkEvidence:
+    """Capture raw REST responses. Matching markers is evidence, not overlap proof."""
+    def __init__(self, base_url, app_id, timeout_seconds, log):
+        require(base_url.startswith('http://127.0.0.1:') or base_url.startswith('https://'),
+                'Use local REST or HTTPS')
+        require('/' not in app_id and bool(app_id), 'Invalid app ID')
+        require(math.isfinite(timeout_seconds) and timeout_seconds > 0, 'Positive REST timeout required')
+        self.app_id = app_id
+        self.url = base_url.rstrip('/') + '/api/v1/applications/' + app_id
+        self.timeout = timeout_seconds
+        self.log = log
+
+    def capture(self, resource):
+        require(resource in ('jobs', 'stages', 'environment'), 'Unsupported REST resource')
+        return self._capture(resource)
+
+    def capture_tasks(self, stage_id, attempt_id, task_count):
+        require(all(isinstance(v, int) and not isinstance(v, bool) and v >= 0
+                    for v in (stage_id, attempt_id, task_count)) and task_count > 0,
+                'Declare valid stage attempt and positive task count')
+        payload = self._capture(f'stages/{stage_id}/{attempt_id}/taskList?length={task_count}')
+        require(isinstance(payload, list) and len(payload) == task_count,
+                'Incomplete task-attempt REST evidence')
+        return payload
+
+    def _capture(self, resource):
+        started = stamp()
+        try:
+            with urllib.request.urlopen(self.url + '/' + resource, timeout=self.timeout) as response:
+                payload = json.load(response)
+            self.log.emit('spark_rest', resource=resource, app_id=self.app_id, endpoint=self.url, request_start=started,
+                          response_end=stamp(), payload=payload)
+            return payload
+        except Exception as exc:
+            self.log.emit('spark_rest_failed', resource=resource, request_start=started,
+                          error_type=type(exc).__name__, error=str(exc))
+            raise
+
+
+class TelemetrySampler:
+    """Independent counter samples with actual monotonic intervals and gap evidence."""
+    def __init__(self, log, interval_seconds, *, asynchronous_persistence=False):
+        require(math.isfinite(interval_seconds) and interval_seconds > 0,
+                'Positive telemetry interval required')
+        self.log = log
+        self.interval = interval_seconds
+        self.stop_event = threading.Event()
+        self.failure = None
+        self.samples = []
+        self.lock = threading.Lock()
+        self.asynchronous_persistence=asynchronous_persistence
+        self.persistence_queue=queue.Queue()
+
+    def start(self):
+        require(not hasattr(self, 'thread'), 'Sampler already started')
+        if self.asynchronous_persistence:
+            self.writer=threading.Thread(target=self._persist,daemon=True)
+            self.writer.start()
+        self.thread = threading.Thread(target=self._run, daemon=True)
+        self.thread.start()
+
+    def _publish(self,kind,fields):
+        if self.asynchronous_persistence:self.persistence_queue.put((kind,fields))
+        else:
+            self.log.emit(kind,**fields)
+            if kind=='telemetry_interval':
+                with self.lock:self.samples.append(fields)
+
+    def _persist(self):
+        try:
+            while True:
+                item=self.persistence_queue.get()
+                if item is None:return
+                kind,fields=item
+                self.log.emit(kind,**fields)
+                if kind=='telemetry_interval':
+                    with self.lock:self.samples.append(fields)
+        except Exception as exc:
+            self.failure=exc
+            self.log.emit('telemetry_failed',error_type=type(exc).__name__,error=str(exc))
+
+    def _read(self):
+        import psutil
+        timestamp = stamp()
+        cpu = psutil.cpu_times()
+        # Linux guest times are already contained in user/nice; avoid double counting.
+        total = sum(value for name, value in cpu._asdict().items() if name not in ('guest', 'guest_nice'))
+        idle = cpu.idle + getattr(cpu, 'iowait', 0)
+        io = psutil.disk_io_counters()
+        memory = psutil.virtual_memory()
+        require(io is not None, 'Disk I/O counters unavailable')
+        return dict(timestamp=timestamp, cpu_total_s=total, cpu_idle_s=idle,
+                    read_bytes=io.read_bytes, write_bytes=io.write_bytes,
+                    available_memory_bytes=memory.available, total_memory_bytes=memory.total)
+
+    def _run(self):
+        try:
+            previous = self._read()
+            self._publish('telemetry_origin',{'counters':previous})
+            deadline = time.monotonic() + self.interval
+            while not self.stop_event.wait(max(0, deadline - time.monotonic())):
+                current = self._read()
+                elapsed = (current['timestamp']['monotonic_ns'] - previous['timestamp']['monotonic_ns']) / 1e9
+                total = current['cpu_total_s'] - previous['cpu_total_s']
+                idle = current['cpu_idle_s'] - previous['cpu_idle_s']
+                read = current['read_bytes'] - previous['read_bytes']
+                write = current['write_bytes'] - previous['write_bytes']
+                require(elapsed > 0 and total > 0 and 0 <= idle <= total and read >= 0 and write >= 0,
+                        'Counter reset or invalid telemetry interval')
+                sample = dict(start=previous['timestamp'], end=current['timestamp'],
+                              elapsed_seconds=elapsed, cpu_busy_fraction=(total-idle)/total,
+                              read_bytes_per_second=read/elapsed, write_bytes_per_second=write/elapsed,
+                              available_memory_bytes=current['available_memory_bytes'],
+                              total_memory_bytes=current['total_memory_bytes'], counters=current)
+                self._publish('telemetry_interval',sample)
+                previous = current
+                deadline += self.interval
+                # Do not emit catch-up pseudo-samples after scheduler delay.
+                if deadline <= time.monotonic():
+                    deadline = time.monotonic() + self.interval
+        except Exception as exc:
+            self.failure = exc
+            self.log.emit('telemetry_failed', error_type=type(exc).__name__, error=str(exc))
+        finally:
+            if self.asynchronous_persistence:self.persistence_queue.put(None)
+
+    def window(self, *, seconds, max_interval_seconds, max_age_seconds):
+        require(all(math.isfinite(x) and x > 0 for x in (seconds, max_interval_seconds, max_age_seconds)),
+                'Declare positive window, interval and age limits')
+        if self.failure:
+            raise ValidationError(f'Telemetry failed: {self.failure}')
+        now = time.monotonic_ns()
+        cutoff = now - int(seconds * 1e9)
+        with self.lock:
+            samples = [s for s in self.samples if cutoff < s['end']['monotonic_ns'] <= now]
+        require(bool(samples), 'Telemetry warmup: no completed intervals')
+        require(samples[0]['start']['monotonic_ns'] <= cutoff, 'Telemetry warmup: incomplete window')
+        age = (now - samples[-1]['end']['monotonic_ns']) / 1e9
+        require(0 <= age <= max_age_seconds, 'Stale or future telemetry')
+        require(all(s['elapsed_seconds'] <= max_interval_seconds for s in samples), 'Telemetry sampling gap')
+        weights = [max(0, (min(now, s['end']['monotonic_ns']) - max(cutoff, s['start']['monotonic_ns'])) / 1e9)
+                   for s in samples]
+        covered = ordered_sum(weights)
+        require(covered > 0, 'No covered telemetry time')
+        return dict(window_contract='completed_counter_window_v1',
+                    window_start_monotonic_ns=cutoff, window_end_monotonic_ns=now,
+                    last_available_sample_end_monotonic_ns=samples[-1]['end']['monotonic_ns'],
+                    feature_timestamp=samples[-1]['end']['utc'], measured_at=stamp(),
+                    window_seconds=seconds, covered_seconds=covered, freshness_seconds=age,
+                    cpu_busy_fraction=ordered_sum(w*s['cpu_busy_fraction'] for w,s in zip(weights,samples))/covered,
+                    read_bytes_per_second=ordered_sum(w*s['read_bytes_per_second'] for w,s in zip(weights,samples))/covered,
+                    write_bytes_per_second=ordered_sum(w*s['write_bytes_per_second'] for w,s in zip(weights,samples))/covered,
+                    memory_used_fraction=ordered_sum(w*(s['total_memory_bytes']-s['available_memory_bytes'])/s['total_memory_bytes']
+                                             for w,s in zip(weights,samples))/covered)
+
+    def wait_for_available_sample(self, *, deadline_ns, max_age_seconds, measurement_id):
+        """Wait for a real durable fresh sample; preserve elapsed wait and debt.
+
+        No synthetic sample, history repair, SQL retry, or relaxed gap gate.
+        Caller must not hold the log lock: sampler publishes only after fsync.
+        """
+        started=stamp();waited=False;initial_end=None
+        while time.monotonic_ns()<deadline_ns:
+            if self.failure:raise ValidationError(f'Telemetry failed: {self.failure}')
+            with self.lock:last=self.samples[-1]['end']['monotonic_ns'] if self.samples else None
+            if initial_end is None:initial_end=last
+            now=time.monotonic_ns()
+            if last is not None and 0<=(now-last)/1e9<=max_age_seconds:
+                if waited:self.log.emit('query_telemetry_availability_wait',measurement_id=measurement_id,
+                                        started=started,ended=stamp(),initial_available_sample_end_ns=initial_end,
+                                        actual_available_sample_end_ns=last,deadline_monotonic_ns=deadline_ns,
+                                        outcome='actual_fresh_durable_sample_available')
+                return True
+            waited=True
+            self.stop_event.wait(min(self.interval,max(0,(deadline_ns-now)/1e9)))
+        self.log.emit('query_telemetry_availability_wait',measurement_id=measurement_id,
+                      started=started,ended=stamp(),initial_available_sample_end_ns=initial_end,
+                      deadline_monotonic_ns=deadline_ns,outcome='horizon_reached_request_retained_queued')
+        return False
+
+    def available_sample_end_ns(self):
+        with self.lock:return self.samples[-1]['end']['monotonic_ns'] if self.samples else None
+
+    def stop(self):
+        # Stops only our observer thread, never a database operation/service.
+        self.stop_event.set()
+        if hasattr(self, 'thread'):
+            self.thread.join()
+        if hasattr(self,'writer'):self.writer.join()
+        if self.failure:
+            raise ValidationError(f'Telemetry failed: {self.failure}')

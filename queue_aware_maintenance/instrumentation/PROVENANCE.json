@@ -1,0 +1,14 @@
+{
+  "source_revision": "f0f506e7e1bd3cc47ad7c01f080f84d9717d8c47",
+  "purpose": "Frozen copies of existing measured-evidence primitives; old source untouched. New controller and drain logic live outside this directory.",
+  "files": {
+    "experiment_validation.py": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4",
+    "physical_measurements.py": "ced25f2b27a84176636b3159e0ee018225e07562b440498c69cf715aa2d51b8d",
+    "statement_timing.py": "36bb31ff8f6fefde40df9d2368fa283c46b8df7107801e53d270932718105559",
+    "telemetry_binding.py": "81b943944f021f0d50dd9d0b1274d1c9f9851e7760160f7b7e025aeb4d73dfea",
+    "query_observation_binding.py": "e344b9f949cf7860566aa6c8fa9d6614349204b6c882c5fda08fa37a2f48fe6b",
+    "engine_overlap.py": "ce2d8d9ccb0c1cf486e7ff86b39d2a737450747ebdee9b70297a07d8cd475109",
+    "engine_archive.py": "c267be72e53da8074bcfe0312a037285f2cf9d6f768df369a59dfc6374189fc9",
+    "run_correctness_pilot.py": "de622efc4df5f4955440a81d8bc2c2b0d2a898d1ae740549f35a5901e23e74c7"
+  }
+}
