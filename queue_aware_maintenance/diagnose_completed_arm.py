@@ -10,6 +10,7 @@ def run(protocol):
  try:
   result_path=checked(cfg['episode_result']);result=json.loads(result_path.read_text());require(result['status']=='audited_complete_real_full_drain_episode_only' and result['completed']==result['arrival_count'] and result['failed']==result['unfinished']==0,'Complete audited arm required')
   d=result_path.parent;ecfg=json.loads((d/'config.json').read_text());mapping=d/'mapped_arrivals.csv';require(sha(mapping)==ecfg['mapping']['sha256'],'Changed actual arrivals');arrivals=list(csv.DictReader(mapping.open()));require(len(arrivals)==result['arrival_count'],'Changed population')
+  require(sha(d/'events.jsonl')==result['events_sha256'],'Changed terminal event ledger')
   first=None
   # Stream the actual ledger; parse only the first decision, no all-event memory copy.
   with (d/'events.jsonl').open('rb') as stream:
@@ -18,7 +19,7 @@ def run(protocol):
      event=json.loads(line)
      if event.get('kind')=='controller_decision':first=event;break
   require(first is not None and 'forecast' in first['decision'],'No initial forecast decision')
-  forecast=first['decision']['forecast'];require(utc(forecast['maximum_history_timestamp'])<utc(ecfg['forecast_history_freeze_utc'])<=utc(forecast['decision_source_time']),'Forecast used future history')
+  forecast=first['decision']['forecast'];require(forecast['source_sha256']==ecfg['arrivals']['sha256'],'Forecast source changed');require(utc(forecast['maximum_history_timestamp'])<utc(ecfg['forecast_history_freeze_utc'])<=utc(forecast['decision_source_time']),'Forecast used future history')
   rows=[]
   for b in forecast['bins']:
    lo,hi=utc(b['start']),utc(b['end']);actual=sum(lo<=utc(a['source_arrival_utc'])<hi for a in arrivals);predicted=b['forecast_count'];rows.append({'start':b['start'],'end':b['end'],'forecast_count':predicted,'actual_count':actual,'signed_error_forecast_minus_actual':predicted-actual,'absolute_error':abs(predicted-actual)})
