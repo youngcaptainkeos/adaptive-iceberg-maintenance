@@ -669,3 +669,7 @@ Saved26pageimage-onlymainPDFvisuallyreviewedwithPDFskill; explicitmethod/evaluat
 
 ## 2026-10-19 16:36UTC — follow-up operating instructions
 README documents deployedwaiter/read-onlymonitoring/study-specificidentity/no-duplicatecomparison rule. No runtime/test/modelchange; baselineandwaiterconfirmedlive.
+
+
+## 2026-10-19 16:59UTC — second corrected arm passed
+Baselinearm02PASSED3094/3094queries/rawaudit,norewrite;matchinginitiallayout. Arm03forecast_quietnowrunning271593,2passed/1running/5unattempted. Noearlypolicycontrast/benefitclaim; whole8armgateandcutoffsunchanged. Rawmirrorarm02inprogress.
