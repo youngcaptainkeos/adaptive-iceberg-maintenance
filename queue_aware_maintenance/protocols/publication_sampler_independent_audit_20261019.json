@@ -1,0 +1,8 @@
+{
+  "validation_result": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/publication_sampler_validation/result.json",
+    "sha256": "d17964d7b8b233b82c66ed93057899d2ab8fe573f04f00203058c97b05820371"
+  },
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/publication_sampler_independent_audit",
+  "rationale": "Reconstruct all29actual publication observations and all60/300second windows from unchanged raw counters and original strict gates. No SQL or simulated telemetry. Proof is observer-only; does not upgrade frozen physical candidate or repaired controller."
+}

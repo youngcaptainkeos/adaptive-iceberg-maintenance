@@ -130,3 +130,12 @@ artifacts and matching source/evidence hashes. A negative scientific result is
 valid; a missing or failed implementation gate is not a positive feasibility
 result. The active goal remains incomplete until its full requirements are
 audited against actual terminal evidence.
+
+
+## Update19October13:58UTC: actual observer validation passed
+Real-host validation completed29publications after305s warmup; maximum observed
+sample age onwakeup0.08134365s. Both original60/300s window gates and1s
+submission freshness passed. ReceiptSHA d17964d7b8b233b82c66ed93057899d2ab8fe573f04f00203058c97b05820371.
+Independent raw-counter audit is registered and remains the next gate. This
+supersedes only the observer-test running status above; physical corrected
+controller validation remains incomplete.
