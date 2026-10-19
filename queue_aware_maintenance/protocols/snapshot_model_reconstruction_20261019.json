@@ -1,0 +1,29 @@
+{
+  "arrivals": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/datasets/snowset/arrival_cohort_export_repair_20261014/observed_arrivals.csv",
+    "sha256": "f058f9b99de4989b75941934f185db562cab5e482e700757821e163ddf514d20"
+  },
+  "forecast_history_days": 6,
+  "decision_interval_seconds": 60,
+  "query_ids": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "initial_file_count": 16,
+  "numeric_relative_tolerance": 1e-12,
+  "numeric_absolute_tolerance_seconds": 1e-09,
+  "observation_origin_utc": "2018-02-21T20:00:00.286000+00:00",
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/snapshot_model_reconstruction",
+  "core_preparation": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/core_preparation/result.json",
+    "sha256": "0837a1e8b01ae18e23c11c593c3947ba2f87ca8411b4a4c1f4b8e3b9aef12b4d"
+  },
+  "semantics_audit": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/simulator_semantics_audit/result.json",
+    "sha256": "0f3d42c6f8a95e32b336b265f22a125622491d90380566b51a14583207ac3431"
+  },
+  "historical_query_rows": 9923,
+  "rationale": "Correct proven label/SQL contract mismatch without fitting prospective physical data. Whole measured median duration chosen at dispatch using pinned layout and pending state; no unobserved subquery work rates. Check every actual source arrival across all registered candidate starts and independent FIFO recurrence, plus actual past-only forecast/controller integration. No live runtime edits or physical validation claim."
+}

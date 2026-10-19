@@ -4,6 +4,7 @@ from common import require,utc
 from simulator import choose
 
 class MaintenancePolicy:
+ _choose=staticmethod(choose)
  def __init__(self,name,costs,forecast,source_start,source_end,query_ids,interval_seconds):
   require(name in ('no_maintenance','immediate','forecast_quiet','queue_aware'),'Unknown registered policy');self.name=name;self.costs=costs;self.forecast=forecast;self.start=utc(source_start);self.end=utc(source_end);self.query_ids=query_ids;self.interval=interval_seconds;self.quiet_target=None
  def decide(self,*,elapsed_seconds,queued,last_offered_query_id,files):
@@ -21,5 +22,5 @@ class MaintenancePolicy:
   # Current client is idle at each decision. Candidate future starts are actual
   # registered source-bin opportunities; no ongoing query residual is invented.
   starts=[elapsed_seconds]+[float(i) for i in range(self.interval,int(end),self.interval) if i>elapsed_seconds]
-  decision=choose(arrivals,now=elapsed_seconds,files=files,costs=self.costs,candidate_starts=starts)
+  decision=self._choose(arrivals,now=elapsed_seconds,files=files,costs=self.costs,candidate_starts=starts)
   return dict(base,**decision,reason='minimum_predicted_total_response_over_current_debt_and_past_only_forecast')
