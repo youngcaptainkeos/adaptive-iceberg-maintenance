@@ -1,0 +1,28 @@
+{
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/terminal_followup",
+  "coordinator_pid": 226240,
+  "coordinator_start_ticks": 135998028,
+  "coordinator_command_contains": "/tmp/capstone_queue_aware_20261019_snapshot_publication/queue_aware_maintenance/run_study.py",
+  "analysis_runtime": "/tmp/capstone_queue_aware_20261019_snapshot_publication",
+  "analysis_revision": "d5e7c4002f49c409ae0b1e01863ceea40368d39a",
+  "analysis_source_sha256": {
+    "register_comparison.py": "45c3e38ba43cb4ed71ca569e899df1b2eb93cd04767642c1eff2280b813bbab0",
+    "compare_study.py": "0ef543c76c2857fa3eb51274c9a5952bf34a2085cd6d42d272b6d76107b23f7a",
+    "audit_episode.py": "0b9c7437e7bb1acd580bc75b5534c620fa385acda807c6935933bee75440b988",
+    "controller_factory.py": "f81322e41c396baf3a5026e23b84cd53796c46e5ea92a2a27bc47e3da02114d9",
+    "snapshot_simulator.py": "226c80b20fb9e593d3b5827dacaf1bfc537adb7b7049266a11103dbb002cce46"
+  },
+  "cohort_result": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/cohort_snapshot_publication/result.json",
+  "semantics_audit": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/snapshot_model_reconstruction/result.json",
+    "sha256": "b4e062876b3025d572e0faaccfce0ea9080884e55fa9098d8d4b89b1f984ced6"
+  },
+  "comparison_protocol": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/snapshot_comparison_protocol.json",
+  "comparison_output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/snapshot_comparison",
+  "comparison_label": "queue_snapshot_independent_comparison_20261019",
+  "comparison_failure_receipt": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/snapshot_comparison_failure_notification.json",
+  "comparison_log": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_snapshot_comparison_20261019.log",
+  "no_new_analysis_after_utc": "2026-10-20T00:30:00+00:00",
+  "poll_seconds": 60,
+  "parameter_rationale": "60second polling keeps the follower idle during physical work. PID226240/startticks135998028 were observed live on worker3 at2026-10-19T15:46UTC; they are process identities, not predictions. No physical SQL or fitting. Human6amIST deadline gates new analysis; active analysis finishes naturally."
+}
