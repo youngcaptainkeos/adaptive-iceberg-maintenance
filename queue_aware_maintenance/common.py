@@ -24,3 +24,6 @@ def notify(label,message,receipt,config):
   with urllib.request.urlopen(request,timeout=c['timeout_seconds']) as r:record.update(status='delivered',http_status=r.status,response=json.load(r))
  except Exception as e:record.update(status='notification_failed_preserved',error=str(e))
  write_json(receipt,record);return record
+
+def utc(value):
+ dt=datetime.fromisoformat(value.replace("Z","+00:00"));require(dt.utcoffset() is not None and dt.utcoffset().total_seconds()==0,"Expected actual UTC timestamp");return dt

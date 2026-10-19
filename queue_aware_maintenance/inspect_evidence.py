@@ -3,7 +3,7 @@
 import argparse,json,csv,statistics,collections
 from pathlib import Path
 from datetime import datetime,timedelta
-from common import checked,sha,write_json,require,now
+from common import checked,sha,write_json,require,now,utc
 
 def run(protocol):
  cfg=json.loads(Path(protocol).read_text());out=Path(cfg['output_directory']);out.mkdir(parents=True,exist_ok=False)
@@ -19,12 +19,12 @@ def run(protocol):
   with (export.parent/'rewrites.csv').open() as f:rewrites=list(csv.DictReader(f))
   report['rewrites']=[{'experiment_id':r['experiment_id'],'initial_files':int(r['file_count']),'added_files':int(r['actual_added_files_target']),'duration_ms':float(r['rewrite_service_target_ms'])} for r in rewrites]
   ep=list(csv.DictReader((export.parent/'episodes.csv').open()));report['previous_episode_intervals']=sorted({(r['source_interval_start_utc'],r['source_interval_end_utc']) for r in ep})
-  cohort=json.loads(checked(cfg['cohort']).read_text());arrivals=checked(cfg['arrivals']);origin=datetime.fromisoformat(cohort['observation_origin_utc']);start=origin+timedelta(days=cfg['prospective_day_index']);end=start+timedelta(seconds=cfg['prospective_window_seconds']*cfg['prospective_windows'])
-  require(end<=datetime.fromisoformat(cohort['training_end_utc']),'Prospective physical windows cross existing forecast training partition');require(all(not(start<datetime.fromisoformat(b) and datetime.fromisoformat(a)<end) for a,b in report['previous_episode_intervals']),'Reuses known cost windows')
+  cohort=json.loads(checked(cfg['cohort']).read_text());arrivals=checked(cfg['arrivals']);origin=utc(cohort['observation_origin_utc']);start=origin+timedelta(days=cfg['prospective_day_index']);end=start+timedelta(seconds=cfg['prospective_window_seconds']*cfg['prospective_windows'])
+  require(end<=utc(cohort['training_end_utc']),'Prospective physical windows cross existing forecast training partition');require(all(not(start<utc(b) and utc(a)<end) for a,b in report['previous_episode_intervals']),'Reuses known cost windows')
   counts=[0]*cfg['prospective_windows'];total=0;previous=None;selected=[]
   with arrivals.open() as f:
    for r in csv.DictReader(f):
-    t=datetime.fromisoformat(r['arrival_utc']);require(previous is None or t>=previous,'Unsorted real arrivals');previous=t;total+=1
+    t=utc(r['arrival_utc']);require(previous is None or t>=previous,'Unsorted real arrivals');previous=t;total+=1
     if start<=t<end:
      i=int((t-start).total_seconds())//cfg['prospective_window_seconds'];counts[i]+=1
   require(total==cohort['selected_total_arrivals'] and all(counts),'Incomplete/no actual arrival source')
