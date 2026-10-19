@@ -637,3 +637,7 @@ Actual first arm waited~60s then executed one real rewrite;65queries completed a
 
 ## 2026-10-19 14:42UTC — terminal-analysis readiness
 Source-reviewed raw/terminal comparison gates; appended exact corrected-cohort worker3 analysis commands to queue_aware_maintenance/README.md. No runtime test or acceptance claim; full8arm terminal evidence still pending.
+
+
+## 2026-10-19 15:20UTC — connection blocker
+Two SSH timeouts; current remote state unknown, no restart. Last verified live14:47:53UTC. Optional completion-follower is local unvalidated/undeployed draft only; actual PID-start binding absent. See full methodology/handover; restoreVPN before rechecking existing job.
