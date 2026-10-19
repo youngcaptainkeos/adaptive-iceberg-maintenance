@@ -1,0 +1,21 @@
+{
+  "experiment_id": "queue_publication_sampler_20261019",
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/publication_sampler_validation",
+  "telemetry": {
+    "interval_seconds": 1,
+    "window_seconds": [
+      60,
+      300
+    ],
+    "warmup_seconds": 305,
+    "max_interval_seconds": 2,
+    "max_age_seconds": 2,
+    "minimum_coverage_fraction": 0.95,
+    "rationale": "One-second real host counter cadence, five-minute warmup plus five-second margin; retain existing 95% coverage and two-second gap/freshness gates. Exact bounds/available frontier and actual submission freshness are independently checked. No normalized demand assumed."
+  },
+  "submission_max_age_seconds": 1,
+  "observation_seconds": 30,
+  "minimum_observed_publications": 20,
+  "no_new_operation_after_utc": "2026-10-19T23:45:00+00:00",
+  "rationale": "Real host telemetry observer correctness test while existing physical run remains frozen. Preserve305s warmup,60/300s original windows,95percent coverage,2s maximum gap/age and1s pre-submission freshness. After warmup observe actual durable-publication notifications for30s; at least20 complete publications required, allowing only incomplete observation edges/ordinary scheduling. No fake clock/samples, no SQL, no weakened physical acceptance gates. Test is instrumentation validation, not substantial physical PoC."
+}
