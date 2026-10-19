@@ -68,3 +68,38 @@ Our inference: delayed layout effects, simulation, dynamic compaction decisions 
 PTO main text remains unresolved. The [author's publication page](https://vamsikrishna1902.github.io/publication/SIGMOD-2026) links DOI10.1145/3786681; its publisher redirect returned403 in this review. Existing local PTO PDFs produced no text with pdftotext, and no local OCR executable was available. Do not interpret that extraction/access limitation as evidence that PTO lacks timing or interference features. Earlier abstract/appendix conclusions remain qualified; a full main-text comparison is still an open requirement before novelty claims.
 
 This literature follow-up changed no physical protocol, policy, model or ongoing run. It is analysis of primary sources, not a runtime validation job.
+
+## 19 October correction: PTO main text visually reviewed
+
+This supersedes the earlier main-text access limitation for the saved version.
+The publisher redirect still returned403, but the repository already contains
+all26pages of the main paper as an image-only PDF. Using the PDF skill, rendered
+and visually inspected pages1–26; methods, evaluation and discussion were read
+from those page images. No OCR output was assumed. Source:
+[saved PTO main paper](<literature survey related to autocomp citeations/PTO.pdf>),
+SHA256 `73066a4750e01236ea194464f28b08452ec1c9542b79e98ec2c83152bd6029c3`,
+DOI [10.1145/3786681](https://doi.org/10.1145/3786681). Page numbers below are
+printed article pages67:1–67:26, not a website excerpt. Numerical tables14/21
+were inspected as rendered; this note does not transcribe every configuration.
+
+| Question | Main-paper evidence | Defensible comparison |
+|---|---|---|
+| What is predicted/optimized? | Section2.2 p4 maximizes skipped rows over input workload/tables. Sections3.3.1–3.3.2 pp10–11 define layout features and skipping-benefit targets for per-table gradient boosting. | Its predictor concerns layout skipping, rather than our measured whole-query-call and rewrite-duration components. This does not make our empirical models novel. |
+| Is maintenance execution cost part of layout scoring? | Section3.2.3 p7 footnote1 explicitly excludes final compaction time from sort-strategy scoring and suggests adding estimated compaction latency to skipping benefit as an extension. | We can state this specific omission for the presented scoring method. We cannot claim the authors overlooked maintenance cost entirely or that PTO cannot be extended. |
+| Does it consider optimization overhead? | Section4.2.2 pp15–16/Table3 reports component/application times and treats discovery as an offline background step. Section5 item2 p22 permits stopping table optimization under a latency budget. | PTO does account for optimization effort operationally; “PTO ignores all costs/budgets” would be false. Our response-time objective and separate maintenance reporting differ from that budget. |
+| What about online operation and drift? | Introduction contribution7 p3 says evaluation is offline and envisages periodic background use. Section5 item4 p23 describes periodic batched reruns, no automatic workload-drift detection, and redesign needed for concurrent real-time ingestion. | A forecast-driven FIFO start-time controller is not the evaluated mechanism described here. Do not generalize this into a claim that all dynamic behavior is absent: periodic adaptation and updated workloads are discussed. |
+| Is full query workload evaluated? | Section4.1.1 p11 uses22TPC-H/103TPC-DSqueries atSF10,000; Section4.2.1 p13 evaluates workload execution on optimized tables; Section4.5 pp20–22 separately uses scan fragments on selectedSF30,000tables. | Our SF1/four-template study cannot claim comparable scale or workload breadth. No head-to-head execution was performed. |
+
+Our inference from the reviewed methods: the exact arrival-time/backlog/full-drain
+start/wait objective is a different evaluated problem from PTO's layout selection.
+That establishes a comparison boundary, not an open-field or first-of-kind
+claim. NoisePage/SOPHIA/ArceKV still overlap anticipatory planning, interference
+and transition reasoning. A sound paper should compare timing over fixed,
+justified layouts, or evaluate a faithful layout-selection integration under
+common resources; it must not relabel an immediate-binpack baseline as PTO.
+Neither experiment has been added or implied by this literature review.
+
+PTO access is no longer the outstanding uncertainty for this saved version.
+The outstanding gates are our actual complete physical comparison, independent
+source blocks, a distinct validated mechanism, and a broader prior-art search.
+The active frozen physical study and all predictions remain unchanged.

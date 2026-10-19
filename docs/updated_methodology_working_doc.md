@@ -661,3 +661,7 @@ PrimaryArceKVmethodreview added to novelty_comparison_2026-10-17.md; transition-
 
 ## 2026-10-19 16:27UTC — completed base evidence checksum check
 Refreshed completedbaseevidence and verifiedserver→client with itemizedchecksumdryrun(exit0,nodifferences), excludingactivecohort/follower. Supersedesweakersilentdryrunclaim; physicalwarehouseandactiveoutputsremainexcluded. Arm01fullmirror separatelyverified.
+
+
+## 2026-10-19 16:32UTC — PTOmainreviewresolved
+Saved26pageimage-onlymainPDFvisuallyreviewedwithPDFskill; explicitmethod/evaluation/discussionlocators addedtonoveltyreview. SupersedesPTOmainUNKNOWNaccessgapforthisversion; detailedcost/dynamicsclaimsqualified. Noexperiment/modelchanges;noveltyandfullphysicalresultstillunproven.
