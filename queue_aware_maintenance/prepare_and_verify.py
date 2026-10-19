@@ -5,14 +5,17 @@ from pathlib import Path
 from common import checked,sha,write_json,require,now,utc
 from costs import EmpiricalCosts
 from forecast import SeasonalArrivalForecast
-from simulator import simulate,choose
+from simulator import simulate as fluid_simulate,choose as fluid_choose
+from snapshot_simulator import simulate as snapshot_simulate,choose as snapshot_choose
 
 def run(protocol):
- cfg=json.loads(Path(protocol).read_text());out=Path(cfg['output_directory']);out.mkdir(parents=True,exist_ok=False);report={'status':'running','started_utc':now(),'physical_queries_executed':0,'new_physical_outcomes_used_for_model':False,'tests':[]}
+ cfg=json.loads(Path(protocol).read_text());version=cfg.get('policy_model_version','fluid_v1');require(version in ('fluid_v1','snapshot_whole_call_v2'),'Unknown prepared model version');simulate,choose=(snapshot_simulate,snapshot_choose) if version=='snapshot_whole_call_v2' else (fluid_simulate,fluid_choose);out=Path(cfg['output_directory']);out.mkdir(parents=True,exist_ok=False);report={'status':'running','started_utc':now(),'physical_queries_executed':0,'new_physical_outcomes_used_for_model':False,'tests':[]}
  try:
   audit=json.loads(checked(cfg['input_audit']).read_text());require(audit['status']=='audited_actual_cost_support_and_new_source_capacity','Input gate failed')
   for p in Path(__file__).parent.glob('*.py'):ast.parse(p.read_text());shutil.copy2(p,out/p.name)
-  costs=EmpiricalCosts.from_protocol(cfg);costs.save(out/'empirical_costs.json');loaded=EmpiricalCosts.load(out/'empirical_costs.json');require(loaded.summary()==costs.summary(),'Saved model roundtrip differs')
+  costs=EmpiricalCosts.from_protocol(cfg);costs.save(out/'empirical_costs.json');
+  if 'frozen_cost_model' in cfg:checked(cfg['frozen_cost_model']);require(sha(out/'empirical_costs.json')==cfg['frozen_cost_model']['sha256'],'Historical cost model changed during source preparation')
+  loaded=EmpiricalCosts.load(out/'empirical_costs.json');require(loaded.summary()==costs.summary(),'Saved model roundtrip differs')
   # Independently reconstruct every training cell from actual CSV labels.
   from collections import defaultdict
   values=defaultdict(list);export=checked(cfg['candidate_export'])
@@ -53,10 +56,17 @@ def run(protocol):
     observed=[actual_counts.get(j,0) for j in b['history_bin_indices']];require(observed==b['actual_historical_counts'],'Historical predictor source differs');expected=statistics.mean(observed)*(utc(b['end'])-utc(b['start'])).total_seconds()/cfg['decision_interval_seconds'];require(expected==b['expected_count'] and round(expected)==b['forecast_count'],'Forecast not reconstructed')
    forecast_events=[dict(r,arrival_seconds=r['arrival_seconds']) for r in pred['events']];candidate_starts=list(range(0,int(horizon),cfg['decision_interval_seconds']));forecast_decision=choose(forecast_events,now=0,files=cfg['initial_file_count'],costs=costs,candidate_starts=candidate_starts);oracle=choose(events,now=0,files=cfg['initial_file_count'],costs=costs,candidate_starts=candidate_starts)
    require(all(simulate(events,now=0,files=cfg['initial_file_count'],costs=costs,rewrite_start=s)['completed']==len(events) for s in candidate_starts),'Maintenance simulator loses actual demands')
+   if version=='snapshot_whole_call_v2':
+    for action_start in candidate_starts:
+     simulated=simulate(events,now=0,files=cfg['initial_file_count'],costs=costs,rewrite_start=action_start);clock=0;end=simulated['rewrite_end_seconds'];total=0
+     for event,q in zip(events,simulated['queries']):
+      begin=max(clock,event['arrival_seconds']);layout=simulated['final_layout_files'] if begin>=end else cfg['initial_file_count'];pending=action_start<=begin<end;finish=begin+costs.query_cells[(event['query_id'],layout,pending)]['median_seconds'];require(q['source_query_id']==event['source_query_id'] and q['start_seconds']==begin and q['finish_seconds']==finish and q['dispatch_layout_files']==layout,'Independent snapshot whole-call recurrence differs');total+=finish-event['arrival_seconds'];clock=finish+costs.turnaround
+     require(total==simulated['sum_response_seconds'],'Independent snapshot response sum differs')
+    report['tests'].append(f'window_{i}_all_action_pinned_whole_call_recurrences_reconstructed')
    diagnostics.append({'window_index':i,'source_interval':interval,'forecast':pred,'forecast_decision':forecast_decision,'perfect_arrival_diagnostic_only':oracle,'noaction_model_drain_seconds':base['estimated_drain_seconds'],'all_model_outputs_are_estimates_not_measured_counterfactuals':True});report['tests'].append(f'window_{i}_strict_past_forecast_reconstruction_all_action_candidates_complete')
    model_artifacts.append({'window_index':i,'mapping':{'path':str(path),'sha256':sha(path)},'start':interval['start'],'end':interval['end'],'horizon_seconds':horizon,'arrivals':len(events)})
   write_json(out/'model_diagnostics.json',diagnostics);write_json(out/'workloads.json',model_artifacts)
-  report.update(status='passed_real_evidence_core_preparation_and_reconstruction',workloads=model_artifacts,model={'path':str(out/'empirical_costs.json'),'sha256':sha(out/'empirical_costs.json')},estimated_eight_arm_seconds=sum(d['noaction_model_drain_seconds']+cfg['physical_warmup_seconds'] for d in diagnostics)*cfg['planned_policy_count'],limitations=['Only real-source-based model estimates tested; physical controller comparison pending.','Two windows same day; no independent-day calibration.','Perfect-arrival diagnostic is retrospective, not used as deployable predictor.','One rewrite allowance; model has no continuing-ingestion transition or novelty guarantee.'])
+  report.update(status='passed_real_evidence_core_preparation_and_reconstruction',policy_model_version=version,workloads=model_artifacts,model={'path':str(out/'empirical_costs.json'),'sha256':sha(out/'empirical_costs.json')},estimated_eight_arm_seconds=sum(d['noaction_model_drain_seconds']+cfg['physical_warmup_seconds'] for d in diagnostics)*cfg['planned_policy_count'],limitations=['Only real-source-based model estimates tested; physical controller comparison pending.','Two windows same day; no independent-day calibration.','Perfect-arrival diagnostic is retrospective, not used as deployable predictor.','One rewrite allowance; model has no continuing-ingestion transition or novelty guarantee.'])
  except Exception as e:report.update(status='failed_preserved',error=str(e));raise
  finally:report.update(ended_utc=now(),protocol_sha256=sha(protocol));write_json(out/'result.json',report);print(json.dumps(report),flush=True)
 if __name__=='__main__':

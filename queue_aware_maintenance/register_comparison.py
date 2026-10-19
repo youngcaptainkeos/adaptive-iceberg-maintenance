@@ -6,7 +6,7 @@ from common import require,sha,write_json,now
 
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--cohort-result',required=True);p.add_argument('--semantics-audit',required=True);p.add_argument('--protocol',required=True);p.add_argument('--output-directory',required=True);a=p.parse_args()
- semantics=Path(a.semantics_audit).resolve();semantic_result=json.loads(semantics.read_text());require(semantic_result['status'] in ('failed_model_semantics_gate','passed_snapshot_pinned_whole_call_semantics'),'Missing completed model semantics audit')
+ semantics=Path(a.semantics_audit).resolve();semantic_result=json.loads(semantics.read_text());require(semantic_result['status'] in ('failed_model_semantics_gate','passed_snapshot_pinned_whole_call_semantics','passed_real_source_snapshot_model_reconstruction_only'),'Missing completed model semantics audit')
  source=Path(a.cohort_result).resolve();r=json.loads(source.read_text());registration=json.loads((source.parent/'registration.json').read_text())
  planned=sum(len(order) for order in registration['registered_orders'])
  require(r['status']=='completed_full_physical_feasibility_pending_independent_comparison' and r['passed']==planned==8 and r['failed']==r['unattempted']==0,'Whole preregistered cohort must complete before comparison')

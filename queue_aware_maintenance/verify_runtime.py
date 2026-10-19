@@ -6,6 +6,7 @@ from common import checked,require,write_json,sha,now,utc
 from costs import EmpiricalCosts
 from forecast import SeasonalArrivalForecast
 from policy import MaintenancePolicy
+from controller_factory import build_policy
 
 def run(protocol):
  cfg=json.loads(Path(protocol).read_text());out=Path(cfg['output_directory']);out.mkdir(parents=True,exist_ok=False);report={'status':'running','started_utc':now(),'new_SQL_executed':False,'checks':[]}
@@ -20,7 +21,7 @@ def run(protocol):
   for workload in preparation['workloads']:
    checked(workload['mapping'])
    for name in cfg['policies']:
-    policy=MaintenancePolicy(name,costs,forecast,workload['start'],workload['end'],cfg['query_ids'],cfg['decision_interval_seconds']);decision=policy.decide(elapsed_seconds=0,queued=[],last_offered_query_id=None,files=cfg['initial_file_count'])
+    policy=build_policy(dict(cfg,policy=name,source_start_utc=workload['start'],source_end_utc=workload['end']),costs,forecast);decision=policy.decide(elapsed_seconds=0,queued=[],last_offered_query_id=None,files=cfg['initial_file_count'])
     require(decision['policy']==name,'Wrong actual policy')
     if name=='no_maintenance':require(not decision['execute_now'],'Null control starts maintenance')
     if name=='immediate':require(decision['execute_now'],'Immediate control fails to act')
@@ -33,7 +34,7 @@ def run(protocol):
    actual=[r for r in policies if r['window']==d['window_index'] and r['policy']=='queue_aware'][0]['initial_decision'];require(actual['chosen']==d['forecast_decision']['chosen'],'Controller integration changes initial objective/ranking')
    require(len(actual['candidates'])==1+math.ceil(preparation['workloads'][d['window_index']]['horizon_seconds']/cfg['decision_interval_seconds']),'Missing model action candidate')
   require('queued' in inspect.signature(MaintenancePolicy.decide).parameters and 'mapped_arrivals' not in inspect.signature(MaintenancePolicy.decide).parameters,'Policy must not receive future physical source schedule')
-  report.update(status='passed_actual_source_controller_runtime_preflight',policies=policies,model_sha256=sha(model),estimated_eight_arm_seconds=preparation['estimated_eight_arm_seconds'],limitations=['No actual SQL in preflight; all physical table/task/drain proofs remain pending.','Model-only initial decisions choose immediate on both windows; this is not observed temporal headroom.','Two windows from one source day; no power/calibration/novelty claim.'])
+  report.update(status='passed_actual_source_controller_runtime_preflight',policy_model_version=cfg.get('policy_model_version','fluid_v1'),policies=policies,model_sha256=sha(model),estimated_eight_arm_seconds=preparation['estimated_eight_arm_seconds'],limitations=['No actual SQL in preflight; all physical table/task/drain proofs remain pending.','Model-only initial decisions choose immediate on both windows; this is not observed temporal headroom.','Two windows from one source day; no power/calibration/novelty claim.'])
  except Exception as e:report.update(status='failed_preserved',error=str(e));raise
  finally:report.update(ended_utc=now(),protocol_sha256=sha(protocol),code_sha256=sha(__file__));write_json(out/'result.json',report);print(json.dumps({k:v for k,v in report.items() if k!='policies'}),flush=True)
 if __name__=='__main__':
