@@ -32,6 +32,7 @@ hashes rather than accepting a placeholder hash.
 cd /mnt/nfs-storage/shashank_prafullathta/implementation
 python3 -B queue_aware_maintenance/register_comparison.py \
   --cohort-result results/queue_aware_maintenance_20261019/cohort_container_repair/result.json \
+  --semantics-audit results/queue_aware_maintenance_20261019/simulator_semantics_audit/result.json \
   --protocol results/queue_aware_maintenance_20261019/comparison_protocol.json \
   --output-directory results/queue_aware_maintenance_20261019/comparison
 nohup python3 -B -u scripts/phase6-live-evaluation/run_with_failure_alert.py \
@@ -61,3 +62,19 @@ intervals, calibration, broad superiority or publication novelty. Real Snowset
 arrival timing is mapped to four benchmark SQL templates, not original Snowflake
 SQL. Physical table bytes remain on worker3 unless separately backed up;
 mirrored raw receipts are not a physical warehouse backup.
+
+
+## Superseding model audit (19 October13:42UTC)
+
+The original fluid model failed its query/snapshot semantics gate:61 actual-source
+boundary cases, with9923 historical whole-call targets independently checked.
+Its ongoing physical cohort must retain that limitation even if all raw physical
+audits pass. `snapshot_simulator.py` and `snapshot_policy.py` are separate repaired
+candidates. Detached real-source reconstruction passed131838query/candidate checks
+and61boundary cases; it is not physical validation. Both repaired initial model
+choices are60seconds, versus immediate for the original model, with only about
+22seconds predicted total-response advantage over immediate across thousands of
+queries. This small model margin is not measured evidence of a policy benefit.
+No new physical run may silently substitute the repaired model into the frozen
+original cohort. Future use requires fresh registration, model receipt/hash
+binding, actual controller integration and a complete physical comparison.

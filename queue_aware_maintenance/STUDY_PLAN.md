@@ -15,3 +15,5 @@ Deadline20Oct2026 06:00IST (00:30UTC). No new physical episode after19Oct22:15UT
 Dynamic repair rule: audit last unit before dependency; prioritize broken causal/accounting contracts over adding policies. Missing labels/support remain missing. Do not clip negative predictions, fabricate counterfactual labels or relax raw gates. Prior18episodes and first fit outcomes remain unchanged.
 
 Status19Oct13:36UTC: first five engineering/registration gates evidenced in core_preparation, actual-source preflights, original-drive restoration receipt and fresh physical registration. These checks do not mark physical feasibility complete. Recovery warmup live; original0/1/7failure retained. Final independent comparison and full raw mirrors remain pending. See OVERNIGHT_HANDOVER.md.
+
+Superseding audit13:42UTC: original fluid action-transition semantics failed despite source/FIFO conservation passing. New snapshot-pinned candidate passed131838real-source checks, but repaired-controller physical validation remains unproven. Original active cohort must report failed model-semantics gate; do not mark final feasibility complete just because raw audits pass.
