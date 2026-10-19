@@ -38,8 +38,9 @@ def run(protocol):
  try:
   cohort_path=checked(cfg['cohort_result']);cohort=json.loads(cohort_path.read_text())
   require(cohort['status']=='completed_full_physical_feasibility_pending_independent_comparison','Collection incomplete; do not infer comparisons from survivors')
+  require(sha(cohort_path.parent/'registration.json')==cfg['physical_registration_sha256']==cohort['protocol_sha256'],'Physical registration hash differs')
   require(cohort['passed']==8 and cohort['failed']==0 and cohort['unattempted']==0,'Incomplete eight-arm cohort')
-  manifest=json.loads((cohort_path.parent/'execution_manifest.json').read_text());require(len(manifest['all_episodes'])==8,'Missing registered population')
+  manifest=json.loads((cohort_path.parent/'execution_manifest.json').read_text());require(len(manifest['all_episodes'])==8 and manifest['revision']==cohort['revision'],'Missing registered population/revision')
   rows=[];matched={}
   for item in manifest['all_episodes']:
    checked(item['protocol']);d=cohort_path.parent/'episodes'/item['experiment_id'];saved=json.loads((d/'result.json').read_text());attempt=next(a for a in cohort['attempts'] if a['experiment_id']==item['experiment_id'])
