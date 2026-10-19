@@ -1,0 +1,9 @@
+{
+  "episode_protocol": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/cohort_container_repair/protocols/queueaware_20261019_repair_01.json",
+    "sha256": "1b981615beef51b3953118cad075aeba7aae5d12cc563c887c875906fec57651"
+  },
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/runtime_budget_prefix",
+  "maximum_report_gaps": 10,
+  "rationale": "Operational budget audit of exact complete live raw-log prefix; no SQL, no refit, no terminal or improvement claim. Retain actual raw prefix and ten largest gaps for bounded diagnosis; all gaps contribute to totals. Compare measured completed call time with between-call delays and REST activity to understand whether current run can finish before registered cutoffs."
+}
