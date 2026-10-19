@@ -1,0 +1,112 @@
+{
+  "schema_version": "queue_aware_full_drain_study_v1",
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/cohort",
+  "experiment_prefix": "queueaware_20261019",
+  "table_prefix": "queueaware_20261019",
+  "runtime_preflight": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/runtime_preflight/result.json",
+    "sha256": "52fea0d3c47e63861bc7a2dbe135b00a06e3fadf0fe1d3792ad3a8019a0b5d3d"
+  },
+  "core_preparation": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/core_preparation/result.json",
+    "sha256": "0837a1e8b01ae18e23c11c593c3947ba2f87ca8411b4a4c1f4b8e3b9aef12b4d"
+  },
+  "episode_template": {
+    "engine": {
+      "host": "127.0.0.1",
+      "port": 10000,
+      "username": "ccbd",
+      "expected_version": "3.3.4"
+    },
+    "spark_rest_url": "http://127.0.0.1:4040",
+    "spark_app_id": "local-1791896695889",
+    "rest_timeout_seconds": 5,
+    "telemetry": {
+      "interval_seconds": 1,
+      "window_seconds": [
+        60,
+        300
+      ],
+      "warmup_seconds": 305,
+      "max_interval_seconds": 2,
+      "max_age_seconds": 2,
+      "minimum_coverage_fraction": 0.95,
+      "rationale": "One-second real host counter cadence, five-minute warmup plus five-second margin; retain existing 95% coverage and two-second gap/freshness gates. Exact bounds/available frontier and actual submission freshness are independently checked. No normalized demand assumed."
+    },
+    "preparation_result": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_source_integrity_20261014_0024/result.json",
+      "sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57"
+    },
+    "expected_query_ledgers": [
+      {
+        "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_matched_q0_20261014/events.jsonl",
+        "sha256": "5529f2a83ffc6fdb6afdfd2a348f037c0919195d599de2da433fd6dab4c5ea40"
+      },
+      {
+        "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_matched_measurement_20261014/events.jsonl",
+        "sha256": "ebcaaaaa752e56c4752cba9f7f49c3c4cef06427dcb78ab26253ba3cdf217510"
+      },
+      {
+        "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_matched_q2_20261014/events.jsonl",
+        "sha256": "fcba244ac5901557bb17395b0b841f241e8ed05a2c881e4188aa7e54a867594f"
+      },
+      {
+        "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_matched_q3_20261014/events.jsonl",
+        "sha256": "26847ce0ac1ec9f89cdf0bd4c4ab27c9eb6e5f324c7138069e4e5712e671d87b"
+      }
+    ],
+    "expected_spark_master": "local[16]",
+    "initial_file_count": 16,
+    "connection_count": 3,
+    "archive_interval_seconds": 60,
+    "idle_poll_seconds": 1,
+    "metadata_max_age_seconds": 2,
+    "decision_state_contract": "fresh_current_original_snapshot_v1",
+    "numeric_absolute_tolerance_seconds": 1e-09
+  },
+  "policies": [
+    "no_maintenance",
+    "immediate",
+    "forecast_quiet",
+    "queue_aware"
+  ],
+  "registered_orders": [
+    [
+      "queue_aware",
+      "no_maintenance",
+      "forecast_quiet",
+      "immediate"
+    ],
+    [
+      "immediate",
+      "forecast_quiet",
+      "no_maintenance",
+      "queue_aware"
+    ]
+  ],
+  "arrivals": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/datasets/snowset/arrival_cohort_export_repair_20261014/observed_arrivals.csv",
+    "sha256": "f058f9b99de4989b75941934f185db562cab5e482e700757821e163ddf514d20"
+  },
+  "observation_origin_utc": "2018-02-21T20:00:00.286000+00:00",
+  "query_ids": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "forecast_history_days": 6,
+  "decision_interval_seconds": 60,
+  "no_new_episode_after_utc": "2026-10-19T22:15:00+00:00",
+  "no_new_operation_after_utc": "2026-10-19T23:45:00+00:00",
+  "notification_configuration": "/mnt/nfs-storage/shashank_prafullathta/implementation/docs/experiment_protocols/failure_notifications.json",
+  "rationale": "User authorizes substantial overnightPoC not5mintrial. Two chronological previously unexecuted20minsourcewindows3067/3211queries, fourpolicieseach, completeofferedcohortdrain. Firstqueueaware validatesactualcontroller, oppositeordersecondwindowlimitsorderbias but doesnotremoveit. Oneverified16fileSF1layout, actualsource6001215rows, onequeryclient, maxonerewrite; noactionvalid. Primarysumactualresponse scheduledarrival-to-result includingposthorizonwaiting; reportmaintenancebytes/duration separately, no SLA/scalarprice. Experimentalparameters1200swindow matchesrequestsubstantialrun/budget;60sforecast/decision/archive cadence matchesverifiedtracebinsandUIretention;1sidlepoll matchescountercadence;3connections separatemetadata/query/maintenanceRPCs;305swarmup/2sactualfreshness/95pctcoverage unchanged. Modelbudget30283.85s plusauditsfitsremainingnight; stopnewarms03:45IST,newSQL05:15IST, preserveactiveops. Fullphysicalgatefirst, cohortfailfast no automaticphysicalretry. Everyactualchildthroughfailurewrapper. All8SHAprotocols andfreshidentitiespersistbeforefirstSQL. Controller modelinitialchoiceimmediateknown; no timingbenefitassumed.",
+  "limitations": [
+    "Two nonoverlapping windows shareonewarehouse/day; no independent-day power/calibration/generalization claim.",
+    "FourcustomSF1SQLs mappedroundrobin ontoactualSnowsetarrivals, no originalSQLreplay/naturalquerymix.",
+    "Originaltablelayoutdoesnotevolvewithingestion; feasibilityscopeonebinpackrewrite.",
+    "Pastclientpendingconditionalmedians are observational, not causalinterference labels; model forecastsnotcounterfactualmeasurements.",
+    "Singleclientoverload andcache/order/loggingeffectsremain; reportallwaitinganddrain, nocensoringsuccess.",
+    "No calibratedmodel, forecastimprovement, publicationnovelty or strongerpolicyperformance claimwithoutactualcomparison."
+  ]
+}
