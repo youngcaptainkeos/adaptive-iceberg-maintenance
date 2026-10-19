@@ -677,3 +677,5 @@ Baselinearm02PASSED3094/3094queries/rawaudit,norewrite;matchinginitiallayout. Ar
 
 ## 2026-10-19 17:01UTC — baseline evidence mirror verified
 Completedarm02full-dircopy/itemizedchecksum/explicitraw+resultSHAsmatchworker3. Fixedcohortregistration/manifest/8protocolsalsoverified, excludingactive/mutableoutputs. Fullcomparisonpending;activearm03unchanged.
+
+Timestamp clarification for the preceding mirror entry:17:01UTC was a draft heading, not an independently recorded completion timestamp. The actual UTC clock check for recording this verification was2026-10-19T17:04:19UTC; copy/checks had completed before that observation. File hashes and exit statuses above are actual observed evidence.
