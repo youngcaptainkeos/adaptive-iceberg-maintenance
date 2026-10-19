@@ -175,3 +175,36 @@ registered physical feasibility and reconstruction scope only. Final acceptance
 also requires a candid report, full requirements audit and completed-evidence
 mirror with server/client hashes. Any incomplete or failed cohort remains
 incomplete; do not substitute a surviving-arm contrast.
+
+## Deployed detached terminal follow-up
+
+The current study has a server-side follower, `follow_terminal_study.py`, launched
+under the failure-alert wrapper. It performs no SQL or model fitting. It waits
+for the identity-bound coordinator (PID plus Linux process start ticks), then
+requires the full eight-arm passed result, unchanged frozen analysis sources,
+and the authorized analysis launch deadline. Only then does it register actual
+terminal hashes and launch one detached comparison. Failure and incomplete
+cohorts remain failures; existing analysis paths are never overwritten. At the
+deadline it preserves active work and records unattempted analysis.
+
+Current registration: `protocols/terminal_followup_20261019.json`. This is a
+study-specific process identity, not a reusable template for another PID/run.
+Any future study needs a newly observed process identity and fresh output paths,
+registered before launch. The deployed invocation and exact source hash are in
+`results/queue_aware_maintenance_20261019/terminal_followup_launch.json`.
+
+Read-only checks on worker3:
+
+```bash
+cat results/queue_aware_maintenance_20261019/terminal_followup/progress.json
+cat results/queue_aware_maintenance_20261019/cohort_snapshot_publication/progress.json
+tail -n 20 results/queue_aware_maintenance_20261019/terminal_followup.log
+```
+
+While that follower or its analysis child is live, **do not execute the manual
+comparison example above**. Inspect its actual process handles and receipt first;
+a missing/late monitoring response is not proof that it stopped. A completed
+`terminal_followup/result.json` still does not certify the full project: inspect
+`snapshot_comparison/result.json`, the generated feasibility report, the final
+requirements audit and synchronized raw evidence. No successful deployment or
+single completed arm establishes calibration, novelty or policy superiority.

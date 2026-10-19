@@ -665,3 +665,7 @@ Refreshed completedbaseevidence and verifiedserver→client with itemizedchecksu
 
 ## 2026-10-19 16:32UTC — PTOmainreviewresolved
 Saved26pageimage-onlymainPDFvisuallyreviewedwithPDFskill; explicitmethod/evaluation/discussionlocators addedtonoveltyreview. SupersedesPTOmainUNKNOWNaccessgapforthisversion; detailedcost/dynamicsclaimsqualified. Noexperiment/modelchanges;noveltyandfullphysicalresultstillunproven.
+
+
+## 2026-10-19 16:36UTC — follow-up operating instructions
+README documents deployedwaiter/read-onlymonitoring/study-specificidentity/no-duplicatecomparison rule. No runtime/test/modelchange; baselineandwaiterconfirmedlive.
