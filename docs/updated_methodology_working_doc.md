@@ -673,3 +673,7 @@ README documents deployedwaiter/read-onlymonitoring/study-specificidentity/no-du
 
 ## 2026-10-19 16:59UTC — second corrected arm passed
 Baselinearm02PASSED3094/3094queries/rawaudit,norewrite;matchinginitiallayout. Arm03forecast_quietnowrunning271593,2passed/1running/5unattempted. Noearlypolicycontrast/benefitclaim; whole8armgateandcutoffsunchanged. Rawmirrorarm02inprogress.
+
+
+## 2026-10-19 17:01UTC — baseline evidence mirror verified
+Completedarm02full-dircopy/itemizedchecksum/explicitraw+resultSHAsmatchworker3. Fixedcohortregistration/manifest/8protocolsalsoverified, excludingactive/mutableoutputs. Fullcomparisonpending;activearm03unchanged.
