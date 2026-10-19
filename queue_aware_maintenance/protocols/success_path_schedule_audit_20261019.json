@@ -1,0 +1,13 @@
+{
+  "prior_registration": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/cohort_container_repair/registration.json",
+    "sha256": "57a00d643553ad37f1493f218dcc849d4a91e8bb5b3310fa5e4553be30499b5b"
+  },
+  "corrected_registration": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/queue_aware_maintenance/protocols/physical_study_snapshot_publication_20261019.json",
+    "sha256": "ae7da3e0724b65462b7e48583e64dd2bcf7ad620c0ae794c7a81b251466fb7ce"
+  },
+  "expected_prior_runtime": "/tmp/capstone_queue_aware_20261019_container_repair",
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/success_path_schedule_audit",
+  "rationale": "Check the actual serial registered queue, not optimistic completion forecasts. Sum only warmup plus arrival horizons of genuinely unattempted arms for a strict lower bound on successful prior completion; compare to unchanged corrected model-based admission latest launch. Snapshot actual progress and inspect actual coordinator handle. No SQL, invented timings, service cancellation or performance-outcome selection."
+}
