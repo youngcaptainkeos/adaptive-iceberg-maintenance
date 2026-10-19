@@ -653,3 +653,7 @@ Full completedarm01dir copied; itemized checksumdryrun no differences and explic
 
 ## 2026-10-19 16:10UTC — descriptive forecast/queue diagnostic
 Actualworker3posthocdiagnostic completed0.81s, noSQL/refit/changes. Firstforecast2585vs3094actual(16.45%under), meanresponse1349.35s dominatedby1348.47swait versus0.878scall. One-windowdescription, not calibration/benefit. Fullmethodology/FEASIBILITY_REVIEW include hashes/provenance and limitations;8armcomparisonpending.
+
+
+## 2026-10-19 16:20UTC — novelty boundary strengthened
+PrimaryArceKVmethodreview added to novelty_comparison_2026-10-17.md; transition-aware simulation is priorart, not a standalone noveltyclaim. PTOmaintextstillunresolved/403; unknowncapabilitiesremainunknown. No runtime/model/protocolchange.
