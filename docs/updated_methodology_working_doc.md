@@ -682,3 +682,6 @@ Timestamp clarification for the preceding mirror entry:17:01UTC was a draft head
 
 
 20Oct post-deadline audit authorized: true corrected inventory7/0/1 and21940queries; evidence backup checksum-verified, physicalwarehouseexcluded. New detached raw audit511313 active (first arm reconstructed); no survivor comparisons or refits. See methodology latest append and queue_aware_maintenance/AUDIT_REPORT_2026-10-20.md. Full claims remain unproven.
+
+
+20Oct terminal audit: all7completedarms/21940queries reconstructed exactly; originalcohort7/0/1 preserved, no policycomparison. AuditSHA401c6832e2e4bdf1a7735bf0018821709a0e22f3c91d149f3f9341bab061d084. Raw evidence+forecasthistory+9physicaltable directories backedup/checksummatched (420physicalfiles/2483873977bytes); restorationuntested. See methodology latest append and queue_aware_maintenance/AUDIT_REPORT_2026-10-20.md. Working PoC supported narrowly; benefit/calibration/generalization/novelty unproven. Audit unit finished; research goal incomplete, automationpaused.
