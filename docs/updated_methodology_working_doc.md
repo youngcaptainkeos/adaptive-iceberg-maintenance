@@ -679,3 +679,6 @@ Baselinearm02PASSED3094/3094queries/rawaudit,norewrite;matchinginitiallayout. Ar
 Completedarm02full-dircopy/itemizedchecksum/explicitraw+resultSHAsmatchworker3. Fixedcohortregistration/manifest/8protocolsalsoverified, excludingactive/mutableoutputs. Fullcomparisonpending;activearm03unchanged.
 
 Timestamp clarification for the preceding mirror entry:17:01UTC was a draft heading, not an independently recorded completion timestamp. The actual UTC clock check for recording this verification was2026-10-19T17:04:19UTC; copy/checks had completed before that observation. File hashes and exit statuses above are actual observed evidence.
+
+
+20Oct post-deadline audit authorized: true corrected inventory7/0/1 and21940queries; evidence backup checksum-verified, physicalwarehouseexcluded. New detached raw audit511313 active (first arm reconstructed); no survivor comparisons or refits. See methodology latest append and queue_aware_maintenance/AUDIT_REPORT_2026-10-20.md. Full claims remain unproven.
