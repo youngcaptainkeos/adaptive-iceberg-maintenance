@@ -688,3 +688,6 @@ Timestamp clarification for the preceding mirror entry:17:01UTC was a draft head
 
 
 20Oct autonomous continuation registered: see CONTINUATION_PLAN_2026-10-20.md / continuation_evidence_first_20261020.json. New read-only overhead/headroom/real-source-ablation stages, no fit/physical run; zero-headroom blocks long campaign. Actual detached validation/receipts pending.
+
+
+20Oct firstremotecontinuation terminal: real-sourceablationchecks4, overhead7arms; perfect-arrival model headroom0 vsimmediate inbothdevelopmentwindows, fullbenefitcampaignblocked (notexecutionfailure). ntfyterminaldelivered. New independentlyregistered68-real-query ABBA strict/minimal-submission diagnostic prepared; source/pinnedresults/tasks+strictfulltelemetry retained, minimalnottrainingeligible; launchpending. See latestmethodology/CONTINUATION_PLAN.
