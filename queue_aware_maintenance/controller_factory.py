@@ -17,4 +17,9 @@ def build_policy(cfg,costs,forecast):
   require(set(cfg['snapshot_policy_code_sha256'])=={'policy.py','snapshot_policy.py'},'Incomplete snapshot policy source binding')
   cls=SnapshotMaintenancePolicy
  else:cls=MaintenancePolicy
+ if cfg['policy'] in ('queue_only','forecast_planner'):
+  require(version=='snapshot_whole_call_v2' and cfg.get('ablation_contract')=='information_removal_v1','Unregistered ablation')
+  require(sha(Path(__file__).parent/'ablation_policy.py')==cfg['ablation_code_sha256'],'Changed ablation source')
+  from ablation_policy import AblationPolicy
+  cls=AblationPolicy
  return cls(cfg['policy'],costs,forecast,cfg['source_start_utc'],cfg['source_end_utc'],cfg['query_ids'],cfg['decision_interval_seconds'])
