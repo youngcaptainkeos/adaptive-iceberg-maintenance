@@ -30,7 +30,12 @@ def run(protocol,output):
    checks.append({'action':action['name'],'actual_frontiers_checked':len(events),'physical_execution':False})
   require(len(cfg['orders'])==2 and cfg['orders'][1]==list(reversed(cfg['orders'][0])),'Unbalanced repeated order')
   require(all(sorted(o)==sorted(a['name'] for a in cfg['actions']) for o in cfg['orders']),'Missing intervention in repeat')
-  subprocess.run(['git','push','--dry-run','origin','main'],cwd=cfg['canonical_repository'],check=True)
+  delivery=cfg.get('documentation_delivery','immediate_push')
+  if delivery=='immediate_push':subprocess.run(['git','push','--dry-run','origin','main'],cwd=cfg['canonical_repository'],check=True)
+  else:require(delivery=='worker_commits_deferred_push_v1' and cfg.get('deferred_push_user_authorization')=='Proceed; defer documentation pushes','Deferred publication requires explicit user authorization')
+  subprocess.run(['git','var','GIT_AUTHOR_IDENT'],cwd=cfg['canonical_repository'],check=True,stdout=subprocess.DEVNULL)
+  subprocess.run(['git','var','GIT_COMMITTER_IDENT'],cwd=cfg['canonical_repository'],check=True,stdout=subprocess.DEVNULL)
+  report['documentation_delivery']=delivery
   report.update(status='passed_actual_frontier_timing_preflight_only',checks=checks,source_events_sha256=saved['events_sha256'],limitations=['Real previous elapsed times/queue IDs exercise intervention behavior, not physical timing benefit.','No generated data or SQL. Forecast and cost model remain unchanged; fixed intervention does not use predictions.'])
  except Exception as e:report.update(status='failed_preserved',error=str(e));raise
  finally:report['ended_utc']=now();write_json(out/'result.json',report)

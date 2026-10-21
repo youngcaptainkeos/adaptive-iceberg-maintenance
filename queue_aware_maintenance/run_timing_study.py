@@ -18,15 +18,18 @@ def append_docs(cfg,heading,body):
  # Avoid staging unrelated user edits into this unit. Frozen experiment source
  # is elsewhere and never changed by these documentation-only commits.
  require(not subprocess.check_output(['git','status','--porcelain','--',*names],cwd=repo,text=True).strip(),'Methodology has concurrent changes; preserve rather than stage unrelated text')
- subprocess.run(['git','pull','--ff-only','origin','main'],cwd=repo,check=True)
+ delivery=cfg.get('documentation_delivery','immediate_push')
+ require(delivery in ('immediate_push','worker_commits_deferred_push_v1'),'Unknown documentation delivery')
+ if delivery=='immediate_push':subprocess.run(['git','pull','--ff-only','origin','main'],cwd=repo,check=True)
+ else:require(cfg.get('deferred_push_user_authorization')=='Proceed; defer documentation pushes','Deferred publication not authorized')
  text='\n\n## '+heading+' — '+now()+'\n'+body+'\n'
  for name in names:
   with (repo/name).open('a') as f:f.write(text);f.flush();os.fsync(f.fileno())
  subprocess.run(['git','diff','--check','--',*names],cwd=repo,check=True)
  subprocess.run(['git','add','--',*names],cwd=repo,check=True)
  subprocess.run(['git','commit','-m',heading],cwd=repo,check=True)
- subprocess.run(['git','push','origin','main'],cwd=repo,check=True)
- return {'canonical_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip(),'files_sha256':{n:sha(repo/n) for n in names},'local_client_sync':'deferred_until_client_reconnects; no current client agreement claimed'}
+ if delivery=='immediate_push':subprocess.run(['git','push','origin','main'],cwd=repo,check=True)
+ return {'github_publication_pending':delivery!='immediate_push','canonical_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip(),'files_sha256':{n:sha(repo/n) for n in names},'local_client_sync':'deferred_until_client_reconnects; no current client agreement claimed'}
 
 def run(protocol,revision,preflight_path):
  cfg=json.loads(Path(protocol).read_text());runtime=Path(__file__).resolve().parent.parent;root=Path(cfg['output_directory']);root.mkdir(parents=True,exist_ok=False)
@@ -53,7 +56,7 @@ def run(protocol,revision,preflight_path):
     if action['policy']=='fixed_start':episode['fixed_start_seconds']=action['seconds']
     p=root/'protocols'/(eid+'.json');write_json(p,episode);manifest.append({'experiment_id':eid,'repeat':repeat,'action':name,'protocol':{'path':str(p),'sha256':sha(p)},'table':episode['destination_table']})
   write_json(root/'manifest.json',{'episodes':manifest,'runtime_revision':revision,'protocol_sha256':sha(protocol)});report['status']='running';save()
-  report['initial_doc_sync']=append_docs(cfg,'Physical timing study started',f"Registered8arms, two reversed-order repeats on one development source window. Fixed0/60/600s experimental opportunities plus noaction, all original3094arrivals/full drain, fresh16file tables. CoordinatorPID{os.getpid()}, preflightSHA{sha(preflight_path)}, ProtocolSHA{sha(protocol)}, runtime{revision}, estimatedwholewall{admission['estimated_total_seconds']/3600:.2f}h including observed setup/audit. No fitting/independent-day/novelty claim. Output{root}; source manifest fixed before physical work. Local client mirror deferred while offline; server/GitHub documentation committed after units.")
+  report['initial_doc_sync']=append_docs(cfg,'Physical timing study started',f"Registered8arms, two reversed-order repeats on one development source window. Fixed0/60/600s experimental opportunities plus noaction, all original3094arrivals/full drain, fresh16file tables. CoordinatorPID{os.getpid()}, preflightSHA{sha(preflight_path)}, ProtocolSHA{sha(protocol)}, runtime{revision}, estimatedwholewall{admission['estimated_total_seconds']/3600:.2f}h including observed setup/audit. No fitting/independent-day/novelty claim. Output{root}; source manifest fixed before physical work. Local client mirror deferred while offline; server documentation committed after units; GitHub delivery follows registered mode.")
   announce('Started8-arm fixed-timing development experiment; full drain, fresh tables, no model fitting. Estimated~'+str(round(admission['estimated_total_seconds']/3600,1))+'h. Methodology updated after each arm.','start_notification.json')
   matched=None
   for item in manifest:
@@ -71,7 +74,7 @@ def run(protocol,revision,preflight_path):
    else:require(signature==matched,'Repeated policies lack matched original source/layout/model')
    attempt.update(status='passed',result_sha256=sha(p),completed=result['completed'],sum_response_ns=result['sum_response_ns'],mean_response_seconds=result['mean_response_seconds'],drain_seconds=result['drain_end_after_start_seconds'],**timing_details(p.parent));report['passed']+=1;save()
    attempt['documentation']=append_docs(cfg,'Timing study completed '+item['experiment_id'],f"Action{item['action']}, repeat{item['repeat']}, raw/full-drain PASSED {result['completed']}queries. ResultSHA{sha(p)}, eventsSHA{result['events_sha256']}; sumresponse{result['sum_response_ns']}ns = rawoutstandingarea; mean{result['mean_response_seconds']:.6f}s, drain{result['drain_end_after_start_seconds']:.6f}s. Actualtiming{json.dumps(timing_details(p.parent))}. Frozen{revision}; sourcewindow reused intentionally as development, no newfit or calibratedmodel. No policy contrasts before full8armgate. Output{p.parent}. Preserve all failed/unattempted scope. Local raw mirror pending client reconnect.")
-   save();announce(f"Arm{report['passed']}/8 passed: {item['action']}, repeat{item['repeat']}, {result['completed']}queries. Both methodology docs saved/pushed. No benefit claim yet.",item['experiment_id']+'.notification.json')
+   save();announce(f"Arm{report['passed']}/8 passed: {item['action']}, repeat{item['repeat']}, {result['completed']}queries. Both methodology docs saved/committed; publication follows registered mode. No benefit claim yet.",item['experiment_id']+'.notification.json')
   report['status']='collected_all_arms_pending_reconstruction';save()
   # Post-collection replay is a distinct failure-alerted job. No hidden refitting.
   compare_out=root/'analysis';command=['nohup',sys.executable,'-B','-u',str(runtime/'scripts/phase6-live-evaluation/run_with_failure_alert.py'),'--label',cfg['experiment_prefix']+'_raw_comparison','--receipt',str(root/'analysis_failure_notification.json'),'--',sys.executable,'-B','-u',str(runtime/'queue_aware_maintenance/compare_timing_study.py'),'--study',str(root),'--output',str(compare_out)]

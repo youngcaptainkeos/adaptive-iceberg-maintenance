@@ -15,10 +15,10 @@ This is a controlled experiment on a known development workload. Fixed times are
 | File | What it does |
 |---|---|
 | `fixed_start_policy.py` | A small timer-based intervention. Its `decide()` function checks the real elapsed time and says start/wait. It never predicts future query costs. |
-| `preflight_timing_study.py` | Checks the new timing rules against real decision times and queue identities recorded in an earlier run. It checks source hashes, balanced orders, imports and whether worker3 can push the methodology updates. No SQL is submitted here. |
+| `preflight_timing_study.py` | Checks the new timing rules against real decision times and queue identities recorded in an earlier run. It checks source hashes, balanced orders, imports and whether worker3 can commit the methodology updates under the explicitly authorized deferred-push mode. No SQL is submitted here. |
 | `run_timing_study.py` | The coordinator: registers all eight runs, checks available resources/time, starts one run at a time, records progress, stops dependent work on failure, updates both methodology documents and sends ntfy messages. |
 | `compare_timing_study.py` | After all eight runs finish, rebuilds their results from raw evidence and produces the complete comparison. It refuses to compare only successful survivors from an incomplete study. |
-| `protocols/timing_headroom_development_20261021.json` | The experiment's settings and evidence references: exact arrivals, intervention order, new table names, source hashes, time cutoffs and reasons for the choices. |
+| `protocols/timing_headroom_development_deferred_push_20261021.json` | The experiment's settings and evidence references: exact arrivals, intervention order, new table names, source hashes, time cutoffs and reasons for the choices. |
 | `TIMING_STUDY_PLAN_2026-10-21.md` | Human-readable study design, limits and execution/recovery instructions. |
 | This guide | A map from your research question to the actual code. |
 
@@ -48,7 +48,7 @@ This is a controlled experiment on a known development workload. Fixed times are
 - `run()`: the overall checklist and sequence controller.
 - `save()`: writes durable progress so disconnecting the laptop does not lose the last known state.
 - `timing_details()`: reads actual recorded maintenance submission/completion clocks; it does not substitute the requested start time for what really happened.
-- `append_docs()`: appends actual evidence to both methodology files, commits only those files and pushes them. If they already contain unrelated concurrent edits, it preserves them and reports a documentation blocker rather than staging someone else's work.
+- `append_docs()`: appends actual evidence to both methodology files, commits only those files. For this run, your explicit authorization defers GitHub publication until the next laptop check. If they already contain unrelated concurrent edits, it preserves them and reports a documentation blocker rather than staging someone else's work.
 - `announce()`: sends ntfy start/progress/completion messages and keeps delivery receipts.
 
 ## How this differs from the three-model idea
@@ -69,4 +69,4 @@ The new fixed-time controls are not a new intelligent controller and do not esta
 
 A repeated physical result here is development evidence from one source window, one static SF1 table, four SQL templates and a serial client. It does not establish independent-day performance, calibrated causal interference estimates, production scalability or novelty. If delayed maintenance consistently helps, the next evaluation needs untouched workloads and strong queue/forecast/planning baselines. If it does not, the report must say so.
 
-The remote process does not depend on your laptop. Worker3 saves raw evidence and pushes methodology updates after completed units. A laptop that is offline cannot have its local files updated immediately; the next check must pull the committed documents and mirror/checksum completed raw artifacts. No local synchronization is claimed while it is disconnected.
+The remote process does not depend on your laptop. Worker3 saves raw evidence and commits methodology updates after completed units. Your explicit authorization allows GitHub publication to wait until the next check. A laptop that is offline cannot have its local files updated immediately; the next check must pull the committed documents and mirror/checksum completed raw artifacts. No local synchronization is claimed while it is disconnected.
