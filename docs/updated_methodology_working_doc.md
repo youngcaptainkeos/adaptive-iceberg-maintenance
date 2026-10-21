@@ -700,3 +700,6 @@ Timestamp clarification for the preceding mirror entry:17:01UTC was a draft head
 
 
 21Oct13:27UTC actualfailed-recordread-onlyaudit passed: corrected447985102ns matchesrawexactly; noSQL/restart. Failedprobe1warmup/0measured,64measuredunattempted; nooverheadcomparisonresult. Newaudit/rawfailure mirrored/checksumverified. Allphysicalprocessesfinished; futurefreshrecoveryregistrationneeded. See latestmethodology/continuationhandover.
+
+
+21Oct freshrecoveryauthorized/registered: newprobe02table/output, same68queries/strictgates; timingfixrealrecordvalidated, priorfailurepreserved; noSQLafter15:30UTC. Frozenremote detachedlaunchpending. See latestmethodology/continuationhandover.
