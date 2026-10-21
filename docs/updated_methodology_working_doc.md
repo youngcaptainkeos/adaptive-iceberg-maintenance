@@ -703,3 +703,6 @@ Timestamp clarification for the preceding mirror entry:17:01UTC was a draft head
 
 
 21Oct freshrecoveryauthorized/registered: newprobe02table/output, same68queries/strictgates; timingfixrealrecordvalidated, priorfailurepreserved; noSQLafter15:30UTC. Frozenremote detachedlaunchpending. See latestmethodology/continuationhandover.
+
+
+21OctrecoveryPASSED13:38UTC:68realqueries/32strictfullobservations, exactresults/snapshot/tasks; full-minus-minimalmedianendtoend+34.03/+1.31/+48.09/+42.96ms bytemplate (descriptive, notpureoverhead). ntfycompletionqKRo1t0Lci8H delivered. Raw+bothphysicaltables backedup/checksummatched; noactiveprobe. ResultSHA19de6bfb02e693fbffd8eacd85850efba51fb6e82087719db18f4a637038caee. Nottraining/policybenefiteligible; priorfailedattemptpreserved; see SUBMISSION_PROBE_RESULTS_2026-10-21.md andmethodologylatestappend.
