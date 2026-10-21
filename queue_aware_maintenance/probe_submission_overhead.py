@@ -13,6 +13,12 @@ from engine_evidence import EngineArchive
 
 class FreshSampleRequired(Exception):pass
 
+def actual_call_ns(probe):
+ # StatementRecorder returns clocks; elapsed_ns exists only in its raw event.
+ start=probe['client_execute_start']['monotonic_ns'];end=probe['fetch_end']['monotonic_ns']
+ require(isinstance(start,int) and isinstance(end,int) and end>start,'Invalid actual call clocks')
+ return end-start
+
 def run(protocol):
  cfg=json.loads(Path(protocol).read_text());out=Path(cfg['output_directory']);out.mkdir(parents=True,exist_ok=False);report={'status':'running','started_utc':now(),'protocol_sha256':sha(protocol),'code_sha256':sha(__file__),'eligible_for_cost_training':False,'eligible_for_policy_benefit_comparison':False};locks=[];connections=[];sampler=None;log=None
  try:
@@ -64,7 +70,7 @@ def run(protocol):
       sql=query_templates(table)[qid].replace(f'FROM {table}',f"FROM {table} VERSION AS OF {state['snapshot_id']}")
       try:probe=call(sql,role=role,query_id=qid,measurement_id=mid,prepare_submission=prepare if mode=='full' else None);break
       except FreshSampleRequired:log.emit('observer_probe_preparation_deferred',measurement_id=mid,reason='fresh_durable_sample_required_before_SQL_intent')
-     require(canonical(probe['rows'])==expected[qid],'Actual query result differs');probes.append(probe);ended=stamp();row={'measurement_id':mid,'phase':phase,'mode':mode,'cycle':cycle,'query_id':qid,'preparation_to_result_ns':probe['fetch_end']['monotonic_ns']-began['monotonic_ns'],'actual_call_ns':probe['client_elapsed_ns'],'post_result_correctness_check_ns':ended['monotonic_ns']-probe['fetch_end']['monotonic_ns']};results.append(row);log.emit('observer_probe_query_complete',**row)
+     require(canonical(probe['rows'])==expected[qid],'Actual query result differs');probes.append(probe);ended=stamp();row={'measurement_id':mid,'phase':phase,'mode':mode,'cycle':cycle,'query_id':qid,'preparation_to_result_ns':probe['fetch_end']['monotonic_ns']-began['monotonic_ns'],'actual_call_ns':actual_call_ns(probe),'post_result_correctness_check_ns':ended['monotonic_ns']-probe['fetch_end']['monotonic_ns']};results.append(row);log.emit('observer_probe_query_complete',**row)
    archive.checkpoint(probes,[],markers);log.emit('observer_probe_phase_complete',phase=phase,mode=mode,started=phase_start,ended=stamp());print(f'phase {phase} {mode} complete',flush=True)
   require(call(f'SELECT snapshot_id FROM {table}.history ORDER BY made_current_at DESC LIMIT 1')['rows'][0][0]==state['snapshot_id'],'Table snapshot changed');equality();archive.checkpoint(probes,[],markers,final=True);sampler.stop();sampler=None;log.close();log=None
   events=[json.loads(line) for line in (out/'events.jsonl').open()];checks=verify_observations(events,cfg);require(len(checks)==sum(r['mode']=='full' for r in results),'Missing strict observation proof')

@@ -694,3 +694,6 @@ Timestamp clarification for the preceding mirror entry:17:01UTC was a draft head
 
 
 20Oct09:38UTC remoteprobeACTIVE: fresh16file/6001215row initialization+logicalequality passed, strict305swarmup underway, nohupwrapper530928/child530929 (PPID1/newSID), frozen07eb97f. ntfystartJYubnoP6SgUN delivered. Canoutlive laptop. Check~09:45UTC; ownfailure/terminalalerts, noSQLafter11:30UTC. Firststagecompleted/mirrorverified; fullbenefitcampaignblockedby0modelheadroom. See latestmethodology and CONTINUATION_PLAN.
+
+
+21Octcheck: actualoverheadprobeFAILED20Oct09:42:43UTC atfirstwarmup due diagnostichelperreturn-field KeyError client_elapsed_ns;0measuredcalls, nooverheadresult. ntfyXte5ofDtZqcFdelivered, processesabsent. Failedrawmirrored/checksummatched. Exactclock-differencecodefix+realfailed-recordread-onlyauditregistered; norestart/newSQL, terminalauditpending. See latestmethodology/continuationhandover.
