@@ -697,3 +697,6 @@ Timestamp clarification for the preceding mirror entry:17:01UTC was a draft head
 
 
 21Octcheck: actualoverheadprobeFAILED20Oct09:42:43UTC atfirstwarmup due diagnostichelperreturn-field KeyError client_elapsed_ns;0measuredcalls, nooverheadresult. ntfyXte5ofDtZqcFdelivered, processesabsent. Failedrawmirrored/checksummatched. Exactclock-differencecodefix+realfailed-recordread-onlyauditregistered; norestart/newSQL, terminalauditpending. See latestmethodology/continuationhandover.
+
+
+21Oct13:27UTC actualfailed-recordread-onlyaudit passed: corrected447985102ns matchesrawexactly; noSQL/restart. Failedprobe1warmup/0measured,64measuredunattempted; nooverheadcomparisonresult. Newaudit/rawfailure mirrored/checksumverified. Allphysicalprocessesfinished; futurefreshrecoveryregistrationneeded. See latestmethodology/continuationhandover.
