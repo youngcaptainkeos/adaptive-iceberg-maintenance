@@ -52,6 +52,7 @@ def audit(directory):
  actions=[r for r in measured.values() if r['role']=='maintenance'];require(len(actions)<=1 and len(actions)==len(maint_obs),'More than registered one rewrite allowance')
  require((cfg['policy']=='no_maintenance' and not actions) or cfg['policy']!='no_maintenance','Maintenance in null control')
  if cfg['policy'] in ('immediate','forecast_quiet'):require(len(actions)==1,'Registered compaction control did not execute')
+ if cfg['policy']=='fixed_start':require(len(actions)==1,'Registered fixed-time intervention did not execute')
  action_tasks=[]
  for r in actions:
   require(lo<=r['client_execute_start']['monotonic_ns']<hi and utc(r['client_execute_start']['utc'])<utc(cfg['no_new_operation_after_utc']),'Maintenance outside registered window');action_tasks+=task_intervals(jobs,stages,tasks,rewrite_table=cfg['destination_table'],request=r)
@@ -79,6 +80,12 @@ def audit(directory):
   if 'forecast' in decision:
    f=decision['forecast'];require(utc(f['maximum_history_timestamp'])<utc(cfg['forecast_history_freeze_utc'])<=utc(f['decision_source_time']) and f['source_sha256']==cfg['arrivals']['sha256'],'Future/missing forecast input')
    require(all(utc(b['end'])<=utc(cfg['source_end_utc']) for b in f['bins']),'Forecast extends offered cohort')
+ if cfg['policy']=='fixed_start':
+  require(cfg.get('fixed_start_contract')=='first_controller_opportunity_v1','Missing timing intervention contract')
+  target=cfg['fixed_start_seconds'];require(0<=target<cfg['horizon_seconds'],'Invalid timing target')
+  for event in decisions:
+   decision=event['decision'];require(decision['registered_start_seconds']==target and decision['execute_now']==(target<=decision['elapsed_seconds']<cfg['horizon_seconds']),'Fixed start differs from registered opportunity')
+  require((actions[0]['client_execute_start']['monotonic_ns']-lo)/1e9>=target,'Physical rewrite submitted before registered time')
  if starts:require(starts[0]['recorded']['monotonic_ns']<=actions[0]['request_start']['monotonic_ns'],'Action before recorded decision')
  return {'status':'audited_complete_real_full_drain_episode_only','policy':cfg['policy'],'experiment_id':cfg['experiment_id'],'arrival_count':len(mapped),'completed':len(result_queries),'failed':0,'unfinished':0,'sum_response_ns':response_sum,'sum_wait_before_call_ns':wait_sum,'sum_service_ns':service_sum,'independent_outstanding_area_ns':area,'mean_response_seconds':response_sum/len(mapped)/1e9,'drain_end_after_start_seconds':(max(measured[mids[i]]['fetch_end']['monotonic_ns'] for i in dispatch)-lo)/1e9,'completed_before_arrival_end':sum(r['completed_before_arrival_end'] for r in result_queries),'maintenance_count':len(actions),'maintenance_service_seconds':[r['client_elapsed_ns']/1e9 for r in actions],'initial_file_state':initial[0]['file_state'],'initial_layout_signature':initial[0]['layout_signature'],'final_file_state':final[0]['file_state'],'controller_decisions':len(decisions),'events_sha256':sha(d/'events.jsonl'),'queries':result_queries,'model_accepted':False,'novelty_or_performance_improvement_established':False,'limitations':cfg['limitations']}
 if __name__=='__main__':

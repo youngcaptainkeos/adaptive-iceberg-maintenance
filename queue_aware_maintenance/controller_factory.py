@@ -17,6 +17,11 @@ def build_policy(cfg,costs,forecast):
   require(set(cfg['snapshot_policy_code_sha256'])=={'policy.py','snapshot_policy.py'},'Incomplete snapshot policy source binding')
   cls=SnapshotMaintenancePolicy
  else:cls=MaintenancePolicy
+ if cfg['policy']=='fixed_start':
+  require(version=='snapshot_whole_call_v2' and cfg.get('fixed_start_contract')=='first_controller_opportunity_v1','Unregistered experimental intervention')
+  require(sha(Path(__file__).parent/'fixed_start_policy.py')==cfg['fixed_start_code_sha256'],'Changed experimental timing source')
+  from fixed_start_policy import FixedStartPolicy
+  return FixedStartPolicy(cfg['fixed_start_seconds'],cfg['source_start_utc'],cfg['source_end_utc'])
  if cfg['policy'] in ('queue_only','forecast_planner'):
   require(version=='snapshot_whole_call_v2' and cfg.get('ablation_contract')=='information_removal_v1','Unregistered ablation')
   require(sha(Path(__file__).parent/'ablation_policy.py')==cfg['ablation_code_sha256'],'Changed ablation source')
