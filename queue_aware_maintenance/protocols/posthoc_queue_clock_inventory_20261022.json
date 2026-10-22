@@ -1,0 +1,17 @@
+{
+  "schema_version": "posthoc_queue_clock_inventory_v1",
+  "study_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_timing_20261021/repeated_window0",
+  "completed_comparison": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_timing_20261021/repeated_window0/analysis/result.json",
+    "sha256": "2502ecf5a65961700bad880d43d47677c71c41c148582fa46c53904ff2d52ba3"
+  },
+  "arrivals": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/datasets/snowset/arrival_cohort_export_repair_20261014/observed_arrivals.csv",
+    "sha256": "f058f9b99de4989b75941934f185db562cab5e482e700757821e163ddf514d20"
+  },
+  "expected_arrivals_per_episode": 3094,
+  "source_inventory_origin_utc": "2018-02-21T20:00:00.286000+00:00",
+  "source_inventory_window_seconds": 1200,
+  "analysis_code_sha256": "16d50afe241bf51a216b1e99ee0d9281944437b2fadce8f7e0a1a5716dffb677",
+  "rationale": "Post-hoc descriptive accounting of already consumed complete eight-arm development evidence, not another evaluation or tuning step. Integer SQL-call/gap walltime partition and separate accumulated response/waiting; per-template actual call summaries and within-action repeat differences. Source inventory retains original unscaled 20-minute clock bins and minute counts to describe candidate demand patterns only; no untouched-window or host-idle claim, no missing/empty bins imputed and no launch/threshold/fit selected. No new SQL or maintenance."
+}
