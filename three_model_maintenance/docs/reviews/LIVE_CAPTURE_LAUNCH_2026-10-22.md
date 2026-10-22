@@ -92,3 +92,8 @@ acceptance, a fresh held-out test, a full-drain policy comparison or an A* novel
 result. Next inspect actual terminal gates, preserve failures/unattempted work, then
 independently export and admit eligible new publication-bound measurements before
 any model fitting. Extra fsync/archival overhead remains measured workload cost.
+
+
+## First new live publication-bound queries observed — 22 October 2026
+
+Read-only worker3 checkpoint08:17:27UTC (13:47:27IST): physicalcollector1234754 running5m29s, five actual three_model_query_binding events present after registered warmup. This confirms first real SQL completions linked to new publication receipts, not merely process startup/source-only constructor checks. No failure shown in physical log at checkpoint. Midpoint compaction and terminal legacy/direct-state audits remain pending; A-condition, final integrity, useful rewrite and accepted training eligibility not yet established. Running source/configs unchanged. No new test/SQL launched by checkpoint and no terminal success claimed.
