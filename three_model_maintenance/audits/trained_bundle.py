@@ -29,7 +29,7 @@ def audit(cfg,protocol,out):
         groups={n:defaultdict(list) for n in ('query_median','query_layout_median','query_layout_state_median')}
         for row in rows:
             q,f,s=cell(row);target=float(row['service_target_ms'])
-            for n,key in (('query_median',(q,)),('query_layout_median',(q,f)),('query_layout_state_median',(q,f,s)):
+            for n,key in (('query_median',(q,)),('query_layout_median',(q,f)),('query_layout_state_median',(q,f,s))):
                 groups[n][key].append(target)
         require(bundle.medians=={n:{key:median(v) for key,v in g.items()} for n,g in groups.items()},'Empirical baseline differs from actual labels')
         for model_name,condition in (('shared',None),('A',True),('B',False)):

@@ -73,3 +73,10 @@ Estimated2–5minutes after launch, depending on real source rehash/audit time.
 No new physical workload. Next gate after all four pass: diverse whole-episode
 collection for independent comparisons, much more A support, and a separately
 registered calibration/validation/test plan; one episode is not enough.
+
+
+## Firstfit04 initial source-check failure and repair01 registration — 22 October 2026
+
+Committed df7d52ab91aef083d03972f76ee8d5f22f71ebb1 pushed/worker3fastforwarded with all10intended fileSHA agreement. Actual parentwrapper1334777 launched14:31:05UTC20:01IST. Initial check_registration AST parse failed14:31:06UTC: audits/trained_bundle.py median reconstruction loop missing closing parenthesis. Failure occurs before output-root creation, any verify/freeze/fit/audit stage and any estimatorfit; allfourstages unattempted. NoSQL/newlabels/modelcreation, no fitted-success claim. Parentntfyfailure deliveredHTTP200 idq1OQhCJgIMnn; original exit1/runlog/receipt retained and mirrored results/three_model_first_development_fit04_20261022_launch. LogSHA8701adb3997bd1dc4cd78b7349bb74911b70772579c01368a2f8e4cb160f2c29; alertreceiptSHA3f7722ff8ef7fbeae72ec7e1780f176449470ab22acf1186c519964fdcf0a7f5.
+
+Corrected syntax only, reviewed remaining loop/branch code. New protocols/first_development_fit04_repair01_20261022.json freezes corrected auditor/source SHA, identical real04inputs/14features/parameters/wholefamilytraining-onlygates and fresh output results/three_model_first_development_fit04_20261022_repair01, distinct labels/receipts. Originalfailed protocol/source revision preserved in Git and original launchfiles untouched. This is an identified engineering repair, not repeated model tuning or physical retry. Newattemptplanned detachedworker3 with original sourcechecks/allfourstages/ntfy; ETA2–5minutes, launch/outcome follow. No runtimeaccepted flags modified.
