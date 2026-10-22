@@ -1,7 +1,8 @@
 """Separate A/B, shared conditional, and standalone empirical candidates.
 
-No training CLI: a future orchestrator must supply independently verified training
-permission and raw-eligible rows. Old consumed history has no such permission.
+The registered offline pipeline supplies hash-bound development-data admission.
+Live predictions still require accepted runtime evidence; consumed test history
+has no new training permission.
 """
 import math
 import hashlib
@@ -36,15 +37,13 @@ def cell(row):
     return tuple(values)
 
 
-def admission(row, evidence):
+def _binding_admission(row, evidence):
     """Historical captures are not promoted by turning an eligibility flag on."""
     reasons = []
     if evidence.get('schema_version') != 'three_model_live_feature_receipt_v1':
         reasons.append('no_live_feature_publication_receipt')
     if evidence.get('measurement_id') != row.get('measurement_id'):
         reasons.append('measurement_identity_mismatch')
-    if evidence.get('runtime_adapter_accepted') is not True:
-        reasons.append('runtime_evidence_not_accepted')
     if evidence.get('candidate_binding_issues'):
         reasons.extend(evidence['candidate_binding_issues'])
     for seconds in (60, 300):
@@ -60,6 +59,36 @@ def admission(row, evidence):
         if feature_vector(row, published_names) != feature_vector(evidence['feature_values'], published_names):
             reasons.append('published_feature_values_differ')
     return reasons
+
+
+def admission(row, evidence):
+    """Live prediction still requires independent runtime acceptance."""
+    reasons = _binding_admission(row, evidence)
+    if evidence.get('runtime_adapter_accepted') is not True:
+        reasons.append('runtime_evidence_not_accepted')
+    return reasons
+
+
+def verified_training_admission(row, evidence, receipt):
+    """An audited offline row is not an accepted live predictor/runtime."""
+    require(receipt.get('status') == 'verified_development_training_inputs_only' and
+            receipt.get('scope') == 'exploratory_development_only' and
+            receipt.get('runtime_adapter_accepted') is False and
+            receipt.get('scheduler_authorized') is False, 'Missing offline data audit')
+    key = row['experiment_id'] + '/' + row['measurement_id']
+    bound = receipt['eligible_row_binding'].get(key)
+    require(bound is not None and bound['row_sha256'] == content_sha256(row) and
+            bound['evidence_sha256'] == content_sha256(evidence), 'Row/evidence outside audited training set')
+    return _binding_admission(row, evidence)
+
+
+def load_training_receipt(authorization):
+    from pathlib import Path
+    spec = authorization['offline_data_audit']
+    path = Path(spec['path'])
+    require(path.is_absolute() and hashlib.sha256(path.read_bytes()).hexdigest() == spec['sha256'],
+            'Changed offline data authorization receipt')
+    return json.loads(path.read_text())
 
 
 def content_sha256(value):
@@ -127,6 +156,16 @@ class LatencyCandidates:
         require(rows and set(authorization['training_episode_ids']) == {r['experiment_id'] for r in rows}, 'Training episode binding differs')
         require(authorization['feature_names'] == list(self.feature_names) and authorization['estimator_spec'] == self.spec,
                 'Training specification differs from authorization')
+        offline = authorization.get('training_scope') == 'exploratory_development_only'
+        training_receipt = load_training_receipt(authorization) if offline else None
+        if offline:
+            require(training_receipt['protocol_sha256'] == authorization['protocol_sha256'] and
+                    training_receipt['training_rows_sha256'] == authorization['training_rows_sha256'] and
+                    training_receipt['training_evidence_sha256'] == authorization['training_evidence_sha256'],
+                    'Offline audit belongs to different registration/data')
+            require(authorization['validation_or_test_scored'] is False and
+                    authorization['runtime_adapter_accepted'] is False and
+                    authorization['scheduler_authorized'] is False, 'Exploratory scope cannot promote live use')
         parsed = []
         ids = set()
         for row in rows:
@@ -134,7 +173,9 @@ class LatencyCandidates:
             require(key not in ids, 'Duplicate training observation')
             ids.add(key)
             require(set(self.feature_names) <= set(evidence_by_id[key].get('feature_values', {})), 'Unpublished training predictor')
-            require(not admission(row, evidence_by_id[key]), 'Ineligible training evidence')
+            reasons = (verified_training_admission(row, evidence_by_id[key], training_receipt) if offline
+                       else admission(row, evidence_by_id[key]))
+            require(not reasons, 'Ineligible training evidence')
             target = float(row['service_target_ms'])
             require(math.isfinite(target) and target > 0, 'Invalid actual service label')
             parsed.append((row, feature_vector(row, self.feature_names), target))
@@ -154,6 +195,7 @@ class LatencyCandidates:
                 groups[name][key].append(target)
         self.models, self.support, self.bounds = models, support, bounds
         self.medians = {name: {key: median(values) for key, values in entries.items()} for name, entries in groups.items()}
+        self.training_authorization_sha256 = content_sha256(authorization)
         self.fitted = True
         return self
 
@@ -167,6 +209,20 @@ class LatencyCandidates:
             return {'support_status': 'unsupported', 'value_ms': None, 'reasons': why, 'uncertainty_status': 'not_calibrated'}
         if reasons:
             return {name: unsupported(reasons) for name in names}
+        return self._predict_bound(row)
+
+    def predict_training_diagnostic(self, row, evidence, *, authorization):
+        require(self.fitted and authorization.get('training_scope') == 'exploratory_development_only',
+                'Offline training diagnostic requires fitted exploratory artifact')
+        require(content_sha256(authorization) == self.training_authorization_sha256, 'Different fitted authorization')
+        receipt = load_training_receipt(authorization)
+        require(not verified_training_admission(row, evidence, receipt), 'Unaudited training diagnostic input')
+        return self._predict_bound(row)
+
+    def _predict_bound(self, row):
+        # Shared numerical support checks; no substitute predictor on refusal.
+        def unsupported(why):
+            return {'support_status': 'unsupported', 'value_ms': None, 'reasons': why, 'uncertainty_status': 'not_calibrated'}
         x = feature_vector(row, self.feature_names); q, f, s = key = cell(row)
         answers = {}
         for output_name, model_name in [('shared', 'shared'), ('separate_A_B', 'A' if s else 'B')]:

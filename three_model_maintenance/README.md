@@ -71,3 +71,8 @@ Sample-frontier repair and running recovery: [registered plan](docs/plans/FRONTI
 Attempt03 failed inventory freshness before compaction. Attempt04 evidence placement/
 terminal archive integration is registered in [the plan](docs/plans/FAST_EVIDENCE_COLLECTION_2026-10-22.md);
 inspect actual server receipts for execution status. No fitted A/B bundle is implied.
+
+The [four-stage exploratory fit04](docs/plans/FIRST_DEVELOPMENT_FIT04_2026-10-22.md)
+now has a registered training pipeline in `training/` and saved-artifact audit in
+`audits/trained_bundle.py`. Its actual server result determines whether artifacts
+were fitted/audited. Offline training permission never flips live runtime acceptance.
