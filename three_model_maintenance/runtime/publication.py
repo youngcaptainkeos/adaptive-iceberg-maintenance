@@ -83,12 +83,13 @@ class PublicationJournal:
             self.pending.remove(measurement_id)
             self.version += 1
 
-    def queue_transition(self, source_query_id, state):
+    def queue_transition(self, source_query_id, state, *, unsubmitted_measurement_id=None):
         with self.lock:
             previous = self.queue.get(source_query_id)
             allowed = {None: ('offered',), 'offered': ('queued', 'dispatched', 'failed'),
                        'queued': ('dispatched', 'failed'), 'dispatched': ('completed', 'failed')}
-            require(source_query_id and state in allowed.get(previous, ()), 'Invalid/duplicate queue transition')
+            requeue = previous == 'dispatched' and state == 'queued' and bool(unsubmitted_measurement_id)
+            require(source_query_id and (state in allowed.get(previous, ()) or requeue), 'Invalid/duplicate queue transition')
             self._append('client_queue_transition', source_query_id=source_query_id, state=state, next_state_version=self.version + 1)
             self.queue[source_query_id] = state
             self.version += 1

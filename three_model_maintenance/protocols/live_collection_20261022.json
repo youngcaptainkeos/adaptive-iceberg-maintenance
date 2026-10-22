@@ -1,0 +1,237 @@
+{
+  "schema_version": "three_model_live_collection_v1",
+  "label": "three_model_live_publication_20261022",
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_live_collection_20261022",
+  "notification_topic": "https://ntfy.sh/shashank_capstone_alerts",
+  "no_new_episode_after_utc": "2026-10-22T10:30:00+00:00",
+  "source_history_seconds": 300,
+  "mapping_config": {
+    "path": "three_model_maintenance/protocols/live_day6_mapping_20261022.json",
+    "sha256": "65d7c747bacf509a099a60c63b4549718c51df895f7772675f28fd12c64fa40a"
+  },
+  "consumed_registry": {
+    "path": "results/three_model_consumed_inventory_20261022/consumed_registry.json",
+    "sha256": "e7918bdb77440e2e041572414432d54990c42f3edb1fed8317983a3035308495"
+  },
+  "source_files": [
+    {
+      "path": "scripts/phase6-live-evaluation/audit_trace_benchmark_mapping.py",
+      "sha256": "97e5919f0bdcf4d13a3835f67f7dfacfbc9532f4ec0001286cd914c86b1bfc95"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/common_horizon_binding.py",
+      "sha256": "4cb9a41f78b24567a845cb21fdd105827b5c0db1dadb6cf4f0cfd0d3b6b8f303"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/engine_archive.py",
+      "sha256": "c267be72e53da8074bcfe0312a037285f2cf9d6f768df369a59dfc6374189fc9"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/engine_overlap.py",
+      "sha256": "ce2d8d9ccb0c1cf486e7ff86b39d2a737450747ebdee9b70297a07d8cd475109"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/experiment_validation.py",
+      "sha256": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/failure_notifications.py",
+      "sha256": "5d1e072246410c78287373c76e0d962913880deb248fdcfc70ddbeb173642f2c"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/offered_queue_ledger.py",
+      "sha256": "02577cb5dd9585ccc7a902cbdf5edd170cf687799edfd1d2539db39e5dce995f"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/physical_measurements.py",
+      "sha256": "ced25f2b27a84176636b3159e0ee018225e07562b440498c69cf715aa2d51b8d"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/prepare_trace_benchmark_mapping.py",
+      "sha256": "1b3170ca8126c2926dd4398a639b4ba48723ccda18dc03ef5708b9598a01ff9c"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/query_observation_binding.py",
+      "sha256": "e344b9f949cf7860566aa6c8fa9d6614349204b6c882c5fda08fa37a2f48fe6b"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/run_correctness_pilot.py",
+      "sha256": "de622efc4df5f4955440a81d8bc2c2b0d2a898d1ae740549f35a5901e23e74c7"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/run_trace_queue_diagnostic.py",
+      "sha256": "2b8d7010be3ab333c387c265ef2b76cf9f34dcfb2b5a23586e4984c57606121b"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/run_with_failure_alert.py",
+      "sha256": "6676a7940610e3521cab6e01f5f0064b0f6261fa1d6c2b7e286d43a7dda25b50"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/statement_timing.py",
+      "sha256": "36bb31ff8f6fefde40df9d2368fa283c46b8df7107801e53d270932718105559"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/telemetry_binding.py",
+      "sha256": "81b943944f021f0d50dd9d0b1274d1c9f9851e7760160f7b7e025aeb4d73dfea"
+    },
+    {
+      "path": "three_model_maintenance/__init__.py",
+      "sha256": "01dcd9b2dfdffbc9b33e92edc3f862bffbf900c81878e98ba626c9c2dae25e4e"
+    },
+    {
+      "path": "three_model_maintenance/audits/__init__.py",
+      "sha256": "d9dd307e4f020bca5feb11c3d1fe3565cb674d74fbb4040d997862960e3eaa64"
+    },
+    {
+      "path": "three_model_maintenance/audits/model_measurement.py",
+      "sha256": "2f5dce144d358469a3efc47daab672fbecccecdcc600ff95c3044e1e9e559c21"
+    },
+    {
+      "path": "three_model_maintenance/audits/readiness.py",
+      "sha256": "36e22a53a37ae8903ed7d072e2508c533f6a43de09244c0ea6a0a17c8c97c653"
+    },
+    {
+      "path": "three_model_maintenance/audits/source_integrity.py",
+      "sha256": "f37bfead61771b5548aa9a8cc20009dc819d7da580d6725ac7cb2bc72e448041"
+    },
+    {
+      "path": "three_model_maintenance/contracts.py",
+      "sha256": "25142e1aaad374549e874260a630cffdb41115f02e53918901e86cc7de0927b8"
+    },
+    {
+      "path": "three_model_maintenance/evaluation/__init__.py",
+      "sha256": "278dbf594d97e0cf6d60a08db05db5267203304b7a5aa4aeebbac13db12fa936"
+    },
+    {
+      "path": "three_model_maintenance/evaluation/paired.py",
+      "sha256": "b5800ae025b580bc77f7621906f7c355d3813814a820ebf3685b5337d81dff25"
+    },
+    {
+      "path": "three_model_maintenance/models/__init__.py",
+      "sha256": "1ab554cb817a09d3c6e0a3a021f6ad9a0031465d5cff1d9a5a72a417ceacd496"
+    },
+    {
+      "path": "three_model_maintenance/models/latency.py",
+      "sha256": "d837fb9306288331efab9e000fc6624df8d83de30dba64dd0c28fdc12c12292d"
+    },
+    {
+      "path": "three_model_maintenance/preparation/__init__.py",
+      "sha256": "9067b38287230580fd9b02d04d1f907587538a0ebca5d6766469b7ab89a87c85"
+    },
+    {
+      "path": "three_model_maintenance/preparation/bind_raw_features.py",
+      "sha256": "ecfdd4809ac1b2260a291f0e84998d2fe9eacc4119e3f9fbf096b70e6536a6e8"
+    },
+    {
+      "path": "three_model_maintenance/preparation/fit_registration.py",
+      "sha256": "431251d3d3509388c851195f11daba9222e840b40e9783b7fca6fd56520e0949"
+    },
+    {
+      "path": "three_model_maintenance/runtime/__init__.py",
+      "sha256": "cdc542c9e60f289783b4a9664dc5f3acedece24566833be7f7c20d0d56afa805"
+    },
+    {
+      "path": "three_model_maintenance/runtime/collect.py",
+      "sha256": "0e3dacc51c43b697684464bb265ce60cdf2f087bed223bc1a7af555036cd9b67"
+    },
+    {
+      "path": "three_model_maintenance/runtime/collector_bridge.py",
+      "sha256": "5cfb71aad47c5890566c0553585a0877079c8d05d0da744990ae5db5a530eb98"
+    },
+    {
+      "path": "three_model_maintenance/runtime/publication.py",
+      "sha256": "be94a0b4e1d335c2f4926ed328760a4f860941a3745ea94aef7e9f7487fdc6d5"
+    },
+    {
+      "path": "three_model_maintenance/runtime/run_registered_collection.py",
+      "sha256": "c27ea4351960dcea44b3120ad2a76837461710d0bdc36d4d27023163e990f04c"
+    }
+  ],
+  "episode_template": {
+    "engine": {
+      "host": "127.0.0.1",
+      "port": 10000,
+      "username": "ccbd",
+      "expected_version": "3.3.4"
+    },
+    "spark_rest_url": "http://127.0.0.1:4040",
+    "spark_app_id": "local-1791896695889",
+    "rest_timeout_seconds": 5,
+    "telemetry": {
+      "interval_seconds": 1,
+      "window_seconds": [
+        60,
+        300
+      ],
+      "warmup_seconds": 305,
+      "max_interval_seconds": 2,
+      "max_age_seconds": 2,
+      "minimum_coverage_fraction": 0.95,
+      "rationale": "One-second real host counter cadence, five-minute warmup plus five-second margin; retain existing 95% coverage and two-second gap/freshness gates. Exact bounds/available frontier and actual submission freshness are independently checked. No normalized demand assumed."
+    },
+    "preparation_result": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_source_integrity_20261014_0024/result.json",
+      "sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57"
+    },
+    "schema_version": "common_horizon_arm_pilot_v1",
+    "experiment_id": "sf1_three_model_publication_20261022_01",
+    "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_three_model_publication_20261022_01",
+    "client_count": 1,
+    "boundary_rule": "no_dispatch_after_horizon_natural_inflight_completion",
+    "no_new_operation_after_utc": "2026-10-22T11:30:00+00:00",
+    "expected_query_ledgers": [
+      {
+        "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_matched_q0_20261014/events.jsonl",
+        "sha256": "5529f2a83ffc6fdb6afdfd2a348f037c0919195d599de2da433fd6dab4c5ea40"
+      },
+      {
+        "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_matched_measurement_20261014/events.jsonl",
+        "sha256": "ebcaaaaa752e56c4752cba9f7f49c3c4cef06427dcb78ab26253ba3cdf217510"
+      },
+      {
+        "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_matched_q2_20261014/events.jsonl",
+        "sha256": "fcba244ac5901557bb17395b0b841f241e8ed05a2c881e4188aa7e54a867594f"
+      },
+      {
+        "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_matched_q3_20261014/events.jsonl",
+        "sha256": "26847ce0ac1ec9f89cdf0bd4c4ab27c9eb6e5f324c7138069e4e5712e671d87b"
+      }
+    ],
+    "configuration_rationale": "One newly registered development measurement on source day6 with fresh isolated16-file SF1 table. Delayed real rewrite at300s allows offered-history completeness before pending-state observations. Preserve600s real arrival spacing/all offered IDs, natural in-flight completion and every existing correctness/telemetry/engine/boundary gate. No new fitting/calibration/test or repeated retry. No new episode after10:30UTC; no SQL after11:30UTC; active operations finish naturally.",
+    "limitations": [
+      "Engineering measurement validation only: one source window, layout and client; no causal/independent test/accuracy claims.",
+      "Cached metadata is tied to explicit snapshot SQL, not independently fresh latest-table metadata at every query.",
+      "No new physical run retried on failure. Refused/failed/queued records preserved. Runtime acceptance remains false pending independent review.",
+      "No workload thinning/compression. Residual backlog retained by registered common-horizon boundary; this is not a full-drain policy comparison."
+    ],
+    "destination_table": "local.experiment.integrity_horizon_three_model_pub_20261022_01",
+    "action_arm": "compact_later",
+    "action_offset_ns": 300000000000,
+    "metadata_checkpoint_offsets_ns": [
+      0,
+      300000000000
+    ],
+    "decision_state_contract": "fresh_current_original_snapshot_v1",
+    "metadata_max_age_seconds": 2,
+    "comparison_group": "three_model_day6_development",
+    "layout_signature_group": "three_model_development_files16",
+    "initial_file_count": 16,
+    "expected_spark_master": "local[16]",
+    "engine_archive_offsets_ns": [
+      300000000000
+    ],
+    "boundary_preparation_contract": "retain_queued_unsubmitted_observation_v1",
+    "query_preparation_contract": "serialized_durable_submission_v1",
+    "telemetry_availability_contract": "wait_for_real_durable_sample_v1",
+    "telemetry_persistence_contract": "independent_counter_sampling_durable_publish_v1",
+    "submission_availability_contract": "release_and_wait_for_real_sample_v1",
+    "rpc_boundary_contract": "guarded_rpc_start_requeue_v1",
+    "three_model_capture": {
+      "contract": "direct_locked_client_state_after_fsync_bounds_v1",
+      "max_feature_age_ns": 2000000000,
+      "rationale": "Preserve existing two-second actual host-feature age gate. Layout timestamps denote observed cached explicit-snapshot metadata; raw inventory references preserved. Extra publication persistence overhead is measured, not removed. No retrospective pending inference."
+    }
+  },
+  "role": "engineering_development_only",
+  "rationale": "Real mapping and independent mapping audit before one actual physical measurement, then legacy raw audit plus direct-state/publication reconstruction. Role frozen before new physical cost outcomes. All child stages through ntfy failure wrapper, no retries.15\u201330minute estimate includes305s warmup600s horizon and measured preparation/archival overhead; not a guarantee. Check initially after2minutes for stage errors and around25minutes for terminal audit."
+}
