@@ -209,3 +209,8 @@ measurement revisions. No refit or new baseline selection against the used test.
 This read-only job cannot validate synchronization branch execution or choose a
 scientifically justified collection sample size by itself. Preserve diagnostic
 findings then preregister a consistent independent collection/power protocol.
+
+
+## Three-model ownership and current readiness — 22 October 2026
+
+Main owns three_model_maintenance/; queue planner remains separately owned. First registered read-only audit complete with A70/B4856complete-history queries across3consumedfamilies and12rewrites; no newfit/testscore. Contract/schema groundwork is implemented, fitted A/B/C pipeline not yet complete or accepted. See package docs/READINESS_REVIEW_2026-10-22.md and docs/IMPLEMENTATION_PLAN_2026-10-22.md; next gates raw feature availability adapter and genuinely fresh source/fit registration before candidate fitting. Prior negative test results remain unchanged.
