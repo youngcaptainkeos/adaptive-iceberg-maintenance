@@ -1,0 +1,23 @@
+{
+  "schema_version": "three_model_readiness_v1",
+  "inputs": {
+    "export": {
+      "path": "../../results/consistent_collection_20261016/candidates/export_record.json",
+      "sha256": "36052bd626032644e14764accab9c2c9694dd8ff75ff3e04f1e9a0dd27c659fe"
+    },
+    "verification": {
+      "path": "../../results/consistent_collection_20261016/candidate_independent_verification.json",
+      "sha256": "55aaabcfd7c8e79e3059ef0876a1b72e286984f235e38edb6e53a2e22468895d"
+    },
+    "consumed_test": {
+      "path": "../../results/consistent_reserved_evaluation_20261017/result.json",
+      "sha256": "c0fbd8cbda0d509e5f41bb6711693850a1911a80e0b4cc341ae26496efc009a4"
+    },
+    "forecast_diagnostic": {
+      "path": "../../results/arrival_forecast_diagnostic_20261014/result.json",
+      "sha256": "2a16fa39e636c22d3768942b9efdd6dac9b7f42398b7a1edf3eb3e37a7bebb71"
+    }
+  },
+  "output_directory": "../../results/three_model_readiness_20261022",
+  "rationale": "Read-only support/schema/time/provenance audit of actual recorded evidence. No model loading/fitting or used-test scoring. Full60/300s history criterion kept identical to previous development comparison; retain all-row census. Explicit consumed-family ledger prevents claiming fresh holdout. Source and module syntax audit only, not end-to-end runtime predictor acceptance."
+}

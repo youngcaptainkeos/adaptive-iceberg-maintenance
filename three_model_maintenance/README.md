@@ -1,0 +1,40 @@
+# Three-model maintenance candidates
+
+Main owns this package. Queue-aware implementation belongs to the other chat in
+`queue_aware_maintenance/`; it is read-only to this package. Neither architecture
+is accepted and this package does not launch SQL or select a maintenance action.
+
+- **A:** query service milliseconds conditional on observed client maintenance
+  pending. This is not proof of active Spark overlap or a causal slowdown.
+- **B:** query service milliseconds without client maintenance pending, conditional
+  on actual layout. No invented fragmentation growth or counterfactual label.
+- **C:** offered query arrivals from past-only observations. Original Snowset SQL
+  mix and ingestion are unavailable; a round-robin benchmark mix is imposed, not
+  recovered from source. Counts are not CPU utilization.
+- Rewrite duration and layout transition need separately evidenced estimates;
+  they are not output of a query-service A-minus-B subtraction.
+
+## Current implementation
+
+`contracts.py` specifies candidate-only model cards/prediction records: explicit
+units, source-family roles, actual feature availability, model/evidence hashes,
+condition, support and no fabricated uncertainty. Unsupported predictions have no
+value. The contract rejects implicit scheduler/calibration promotion and unknown
+query predictors. It does not load any legacy joblib or provide a fitted predictor.
+
+`audits/readiness.py` verifies SHA-bound existing candidate CSVs and independent
+receipt, source-family membership, pre-feature telemetry frontier, numeric fields,
+completeness and joint query/layout/client-state support. It records consumed test
+history and forecast scope. Success means the audit completed; its report can and
+currently must withhold new fitting. This is not another raw Spark reconstruction.
+
+Registered job (worker3 only, detached failure wrapper; use unique attempt paths):
+
+```bash
+python3 -B -m three_model_maintenance.audits.readiness \
+  --config three_model_maintenance/protocols/readiness_20261022.json
+```
+
+A/B/shared training, future C inference and model-card runtime validation are
+pending the gates in `docs/IMPLEMENTATION_PLAN_2026-10-22.md`. No runnable scheduler
+or trained candidate bundle is claimed by adding this package.
