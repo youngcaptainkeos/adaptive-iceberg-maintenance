@@ -1,0 +1,25 @@
+{
+  "schema_version": "three_model_consumed_inventory_v1",
+  "inputs": {
+    "readiness": {
+      "path": "../../results/three_model_readiness_20261022_v2/result.json",
+      "sha256": "764dacc28c7cc8104f759c496500359a3270d575d6cf853ba0293866eb16e5e3"
+    },
+    "raw_binding": {
+      "path": "../../results/three_model_raw_features_20261022/result.json",
+      "sha256": "7ea62756ce2d4dd2cd5453633a8ad20bd8ba9b30a43a231fb7cd46834415606e"
+    },
+    "export": {
+      "path": "../../results/consistent_collection_20261016/candidates/export_record.json",
+      "sha256": "36052bd626032644e14764accab9c2c9694dd8ff75ff3e04f1e9a0dd27c659fe"
+    },
+    "consumed_test": {
+      "path": "../../results/consistent_reserved_evaluation_20261017/result.json",
+      "sha256": "c0fbd8cbda0d509e5f41bb6711693850a1911a80e0b4cc341ae26496efc009a4"
+    }
+  },
+  "output_directory": "../../results/three_model_consumed_inventory_20261022",
+  "source_namespace": "snowset_consistent_collection_20261016_registered_cohort",
+  "source_namespace_rationale": "Conservative shared namespace for all sources in this verified historical cohort. It is not a verified global warehouse identity. Any future source must independently resolve identity against original source manifests; a new name cannot establish independence.",
+  "rationale": "Bind already consumed real episodes to prior raw/readiness/test receipts, preserve ambiguous measurement quarantine and exercise dependency guard on those actual consumed families. No new prospective registration, model fit, old-test scoring, physical work or fabricated clean source."
+}

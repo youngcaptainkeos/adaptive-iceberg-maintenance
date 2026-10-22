@@ -38,3 +38,8 @@ python3 -B -m three_model_maintenance.audits.readiness \
 A/B/shared training, future C inference and model-card runtime validation are
 pending the gates in `docs/IMPLEMENTATION_PLAN_2026-10-22.md`. No runnable scheduler
 or trained candidate bundle is claimed by adding this package.
+
+`preparation/fit_registration.py` inventories consumed sources and exposes a
+structural candidate-registration check. It cannot authorize fitting: independently
+verified source identity, expanded bounds and immutable pre-outcome registration
+remain mandatory. No prospective end-to-end validation is claimed without real new sources.
