@@ -1,0 +1,57 @@
+{
+  "schema_version": "three_model_exploratory_development_fit_v1",
+  "fit_scope": "exploratory_development_only",
+  "physical_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_three_model_publication_20261022_03",
+  "parent_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_live_collection_notify_20261022",
+  "candidate_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_live_collection_notify_20261022/candidates",
+  "expected_physical_registration_sha256": "b138fa2bc7744f70297db36c80b30e1d86faf996a91dcdd3450c02400bfe9637",
+  "expected_collection_protocol_sha256": "9c6d026df6b0f07b9b06a16aa37ec8b7bbcb540911d18dc67dffd4dd36de5238",
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_first_development_fit_20261022",
+  "feature_names": [
+    "query_id",
+    "file_count",
+    "record_count",
+    "total_bytes",
+    "maintenance_client_pending_at_feature_time",
+    "queue_depth_at_feature_time",
+    "cpu_busy_fraction_60s",
+    "memory_used_fraction_60s",
+    "read_bytes_per_second_60s",
+    "write_bytes_per_second_60s",
+    "cpu_busy_fraction_300s",
+    "memory_used_fraction_300s",
+    "read_bytes_per_second_300s",
+    "write_bytes_per_second_300s"
+  ],
+  "estimator_specs": [
+    {
+      "kind": "log_ridge",
+      "alpha": 1.0,
+      "tol": 0.0001,
+      "max_iter": 1000
+    },
+    {
+      "kind": "positive_leaf_tree",
+      "max_depth": 3,
+      "min_samples_leaf": 1,
+      "random_state": 20261015
+    }
+  ],
+  "support_policy": "observed_joint_cell_and_training_numeric_box",
+  "source_roles": {
+    "train": [
+      "known_day6_engineering_development_only"
+    ],
+    "validation": [],
+    "calibration": [],
+    "test": []
+  },
+  "eligibility": "all_real_completed_rows_with_verified_publication_and_complete_60s_300s_offered_history",
+  "missing_prediction_policy": "unsupported_no_substitution",
+  "validation_or_test_scored": false,
+  "candidate_selection_performed": false,
+  "runtime_adapter_accepted": false,
+  "calibration_accepted": false,
+  "scheduler_authorized": false,
+  "rationale": "Explicit exploratory first A/B/shared fit, not independent comparison or model acceptance. Uses only attempt03 audited development rows, never consumed family2 test or prior failed labels. Parameter specifications inherited unchanged from precollection model_measurement registration; no tuning, refit search or metrics. Whole one source family is training, no row split or pretend validation. Freeze before fitting only: not a preregistered confirmatory cost-outcome study. Offline verified training data is distinct from unaccepted live predictor runtime; preserve original runtime flags and full comparison/calibration/test gates. Require both observed eligible conditions; no fabricated A rows if absent."
+}
