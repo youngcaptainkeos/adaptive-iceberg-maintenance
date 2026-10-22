@@ -64,3 +64,5 @@ new physical collector is implied. No current source inventory grants fitting.
 Actual scoped validation outcome and remaining gates: [model/capture review](docs/reviews/MODELS_AND_CAPTURE_2026-10-22.md).
 
 Real detached collection registration and code explanation: [live capture launch](docs/reviews/LIVE_CAPTURE_LAUNCH_2026-10-22.md). Its saved launch review is not a terminal success receipt; inspect server progress/result for current state.
+
+Sample-frontier repair and running recovery: [registered plan](docs/plans/FRONTIER_REPAIR_2026-10-22.md), [actual regression/launch](docs/reviews/FRONTIER_REPAIR_LAUNCH_2026-10-22.md). Use the terminal server receipt for final status.
