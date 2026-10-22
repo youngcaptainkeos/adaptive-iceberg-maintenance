@@ -76,3 +76,7 @@ The [four-stage exploratory fit04](docs/plans/FIRST_DEVELOPMENT_FIT04_2026-10-22
 now has a registered training pipeline in `training/` and saved-artifact audit in
 `audits/trained_bundle.py`. Its actual server result determines whether artifacts
 were fitted/audited. Offline training permission never flips live runtime acceptance.
+
+Actual22October repair01 completed all four stages: A/B/shared exploratory bundles
+and median comparators now exist; [saved result and limitations](docs/reviews/FIRST_DEVELOPMENT_FIT04_2026-10-22.md).
+Runtime/calibration/scheduler remain unaccepted. Eligible A/B layout support is confounded.
