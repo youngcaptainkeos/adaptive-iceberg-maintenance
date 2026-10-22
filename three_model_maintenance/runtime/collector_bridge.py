@@ -22,6 +22,10 @@ def build_classes(cfg):
             self.unsubmitted = set()
 
         def emit(self, kind, **fields):
+            if kind not in ('queue_transition','query_observation','statement_not_submitted'):
+                # Base logger serializes large REST payloads before taking its
+                # write/fsync lock. Keep only actual state hooks in the outer lock.
+                return super().emit(kind, **fields)
             with self.lock:
                 event = super().emit(kind, **fields)
                 if kind == 'queue_transition':

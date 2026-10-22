@@ -2,7 +2,8 @@
 
 Main owns this package. Queue-aware implementation belongs to the other chat in
 `queue_aware_maintenance/`; it is read-only to this package. Neither architecture
-is accepted and this package does not launch SQL or select a maintenance action.
+is accepted. The opt-in registered collection runtime launches real SQL for
+engineering evidence; it does not implement a learned maintenance scheduler.
 
 - **A:** query service milliseconds conditional on observed client maintenance
   pending. This is not proof of active Spark overlap or a causal slowdown.
@@ -66,3 +67,7 @@ Actual scoped validation outcome and remaining gates: [model/capture review](doc
 Real detached collection registration and code explanation: [live capture launch](docs/reviews/LIVE_CAPTURE_LAUNCH_2026-10-22.md). Its saved launch review is not a terminal success receipt; inspect server progress/result for current state.
 
 Sample-frontier repair and running recovery: [registered plan](docs/plans/FRONTIER_REPAIR_2026-10-22.md), [actual regression/launch](docs/reviews/FRONTIER_REPAIR_LAUNCH_2026-10-22.md). Use the terminal server receipt for final status.
+
+Attempt03 failed inventory freshness before compaction. Attempt04 evidence placement/
+terminal archive integration is registered in [the plan](docs/plans/FAST_EVIDENCE_COLLECTION_2026-10-22.md);
+inspect actual server receipts for execution status. No fitted A/B bundle is implied.

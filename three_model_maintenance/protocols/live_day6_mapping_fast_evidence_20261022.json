@@ -1,0 +1,35 @@
+{
+  "schema_version": "trace_benchmark_mapping_v1",
+  "selection": "first_nonempty_complete_window_in_registered_training_day",
+  "sql_mapping": "arrival_order_round_robin_registered_templates",
+  "query_ids": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "cohort_record": {
+    "path": "../../datasets/snowset/arrival_cohort_export_repair_20261014/cohort_record.json",
+    "sha256": "ca64577fcf057210b7ef390be204ea6746068e024f27a412ede6fa0ee47266d2"
+  },
+  "arrivals": {
+    "path": "../../datasets/snowset/arrival_cohort_export_repair_20261014/observed_arrivals.csv",
+    "sha256": "f058f9b99de4989b75941934f185db562cab5e482e700757821e163ddf514d20"
+  },
+  "bins": {
+    "path": "../../datasets/snowset/arrival_cohort_export_repair_20261014/observed_bin_counts.csv",
+    "sha256": "d75d3c32e3b22a50739052f77bbbe6dd744fd14c8d8803e07e579d19bb6106da"
+  },
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_live_day6_fast_evidence_20261022",
+  "rationale": "Same1554 known day6 engineering-development arrivals for registered attempt04 evidence-storage integration. No fresh statistical family, thinning, compression or source SQL inference. Prior failed03 remains failed; metadata freshness2s unchanged.",
+  "limitations": [
+    "Snowset real arrivals mapped to four registered real SF1 queries, not originalSQLreplay.",
+    "One real window per source family, controlled layout interventions, not calibrated statistical sample."
+  ],
+  "sql_template_code": {
+    "path": "../../scripts/phase6-live-evaluation/run_correctness_pilot.py",
+    "sha256": "de622efc4df5f4955440a81d8bc2c2b0d2a898d1ae740549f35a5901e23e74c7"
+  },
+  "training_day_index": 6,
+  "window_bin_count": 10
+}

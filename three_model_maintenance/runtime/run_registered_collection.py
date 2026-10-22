@@ -50,8 +50,24 @@ def run(protocol):
         for spec in cfg['source_files']:
             path = REPO / spec['path']; require(sha(path) == spec['sha256'], 'Changed frozen implementation')
             if path.suffix == '.py':ast.parse(path.read_text(), filename=str(path))
+        for spec in cfg.get('external_evidence', []):
+            require(sha(REPO/spec['path'])==spec['sha256'], 'Registered supporting evidence changed')
         # Imports/constructors already validated in previous real-evidence audit;
         # parse all registered sources before physical work, with no fake cursor.
+        if 'evidence_workspace' in cfg:
+            from three_model_maintenance.observability.evidence_workspace import admit_workspace
+            spec=cfg['evidence_workspace']
+            report['evidence_workspace_admission']=admit_workspace(Path(cfg['episode_template']['output_directory']),
+                device_id=spec['device_id'],required_bytes=spec['required_bytes']);save()
+        if 'archive_validation' in cfg:
+            spec=cfg['archive_validation'];registration=REPO/spec['path']
+            require(sha(registration)==spec['sha256'],'Archive validation registration changed')
+            stage('archive_validation',[sys.executable,'-B','-m','three_model_maintenance.audits.evidence_workspace','--config',str(registration)])
+            validation_cfg=json.loads(registration.read_text())
+            validation_receipt=Path(validation_cfg['output_directory'])/'result.json'
+            require(json.loads(validation_receipt.read_text())['status']=='passed_actual_terminal_package_roundtrip_only',
+                    'Terminal archive validation missing')
+            report['archive_validation_sha256']=sha(validation_receipt);save()
         if 'frontier_regression' in cfg:
             spec = cfg['frontier_regression']; registration = REPO / spec['path']
             require(sha(registration) == spec['sha256'], 'Regression registration changed')
@@ -62,6 +78,12 @@ def run(protocol):
             require(result['status'] == 'passed_real_failed_frontier_regression_only' and
                     result['guard_source_sha256'] == sha(REPO / 'three_model_maintenance/runtime/submission.py'), 'Guard regression missing or stale')
             report['frontier_regression_sha256'] = sha(result_path); save()
+        if 'prior_candidate_receipt' in cfg:
+            spec=cfg['prior_candidate_receipt'];receipt=REPO/spec['path']
+            require(sha(receipt)==spec['sha256'],'Prior candidate receipt changed')
+            previous=json.loads(receipt.read_text())
+            for name,digest in previous['artifact_sha256'].items():require(sha(receipt.parent/name)==digest,'Prior candidate bytes changed')
+            report['prior_candidate_export_sha256']=sha(receipt);save()
         if 'prior_verified_export' in cfg:
             spec = cfg['prior_verified_export']; prior = Path(spec['directory'])
             require(sha(prior / 'result.json') == spec['result_sha256'] and sha(prior / 'events.jsonl') == spec['events_sha256'], 'Prior terminal evidence changed')
@@ -115,6 +137,27 @@ def run(protocol):
         report.update(status='failed_preserved_no_retry', error_type=type(exc).__name__, error=str(exc))
         raise
     finally:
+        if 'evidence_workspace' in cfg:
+            work=Path(cfg['episode_template']['output_directory'])
+            physical=next((s for s in report['stages'] if s['label']=='physical'),None)
+            if work.exists() and physical is not None and 'returncode' in physical:
+                from three_model_maintenance.observability.evidence_workspace import publish_terminal
+                rc=physical['returncode'];terminal='result.json' if rc==0 else 'failure.json'
+                try:
+                    publication=publish_terminal(work,Path(cfg['evidence_workspace']['archive_directory']),
+                        terminal_name=terminal,terminal_sha256=sha(work/terminal),producer_returncode=rc,
+                        required_bytes=cfg['evidence_workspace']['required_bytes'])
+                    (out/'raw_archive_manifest.json').write_text(json.dumps(publication,indent=2)+'\n')
+                    report['raw_archive_manifest_sha256']=sha(out/'raw_archive_manifest.json')
+                    report['canonical_raw_archive']=cfg['evidence_workspace']['archive_directory']
+                except Exception as archive_error:
+                    report['archive_error']=str(archive_error)
+                    if report['status']=='completed_one_real_development_measurement_only':
+                        report['status']='failed_archive_preserve_working'
+                        report['ended_utc']=datetime.now(timezone.utc).isoformat();save()
+                        (out/'result.json').write_text(json.dumps(report,indent=2)+'\n')
+                        for lock in locks:lock.close()
+                        raise
         report['ended_utc'] = datetime.now(timezone.utc).isoformat(); save()
         (out / 'result.json').write_text(json.dumps(report, indent=2) + '\n')
         for lock in locks:lock.close()

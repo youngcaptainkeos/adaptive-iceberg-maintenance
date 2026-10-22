@@ -1,0 +1,299 @@
+{
+  "schema_version": "three_model_live_collection_v1",
+  "label": "three_model_live_publication_fast_evidence_20261022",
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_live_collection_fast_evidence_20261022",
+  "notification_topic": "https://ntfy.sh/shashank_capstone_alerts",
+  "no_new_episode_after_utc": "2026-10-22T13:00:00+00:00",
+  "source_history_seconds": 300,
+  "mapping_config": {
+    "path": "three_model_maintenance/protocols/live_day6_mapping_fast_evidence_20261022.json",
+    "sha256": "2fd60cf66298e050b8c363bd85b3ab9e3265715531032c6d0ebd63979d5d0924"
+  },
+  "consumed_registry": {
+    "path": "results/three_model_consumed_inventory_20261022/consumed_registry.json",
+    "sha256": "e7918bdb77440e2e041572414432d54990c42f3edb1fed8317983a3035308495"
+  },
+  "source_files": [
+    {
+      "path": "scripts/phase6-live-evaluation/audit_trace_benchmark_mapping.py",
+      "sha256": "97e5919f0bdcf4d13a3835f67f7dfacfbc9532f4ec0001286cd914c86b1bfc95"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/common_horizon_binding.py",
+      "sha256": "4cb9a41f78b24567a845cb21fdd105827b5c0db1dadb6cf4f0cfd0d3b6b8f303"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/engine_archive.py",
+      "sha256": "c267be72e53da8074bcfe0312a037285f2cf9d6f768df369a59dfc6374189fc9"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/engine_overlap.py",
+      "sha256": "ce2d8d9ccb0c1cf486e7ff86b39d2a737450747ebdee9b70297a07d8cd475109"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/experiment_validation.py",
+      "sha256": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/failure_notifications.py",
+      "sha256": "5d1e072246410c78287373c76e0d962913880deb248fdcfc70ddbeb173642f2c"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/offered_queue_ledger.py",
+      "sha256": "02577cb5dd9585ccc7a902cbdf5edd170cf687799edfd1d2539db39e5dce995f"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/physical_measurements.py",
+      "sha256": "ced25f2b27a84176636b3159e0ee018225e07562b440498c69cf715aa2d51b8d"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/prepare_trace_benchmark_mapping.py",
+      "sha256": "1b3170ca8126c2926dd4398a639b4ba48723ccda18dc03ef5708b9598a01ff9c"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/query_observation_binding.py",
+      "sha256": "e344b9f949cf7860566aa6c8fa9d6614349204b6c882c5fda08fa37a2f48fe6b"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/run_correctness_pilot.py",
+      "sha256": "de622efc4df5f4955440a81d8bc2c2b0d2a898d1ae740549f35a5901e23e74c7"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/run_trace_queue_diagnostic.py",
+      "sha256": "2b8d7010be3ab333c387c265ef2b76cf9f34dcfb2b5a23586e4984c57606121b"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/run_with_failure_alert.py",
+      "sha256": "6676a7940610e3521cab6e01f5f0064b0f6261fa1d6c2b7e286d43a7dda25b50"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/statement_timing.py",
+      "sha256": "36bb31ff8f6fefde40df9d2368fa283c46b8df7107801e53d270932718105559"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/telemetry_binding.py",
+      "sha256": "81b943944f021f0d50dd9d0b1274d1c9f9851e7760160f7b7e025aeb4d73dfea"
+    },
+    {
+      "path": "three_model_maintenance/__init__.py",
+      "sha256": "01dcd9b2dfdffbc9b33e92edc3f862bffbf900c81878e98ba626c9c2dae25e4e"
+    },
+    {
+      "path": "three_model_maintenance/audits/__init__.py",
+      "sha256": "d9dd307e4f020bca5feb11c3d1fe3565cb674d74fbb4040d997862960e3eaa64"
+    },
+    {
+      "path": "three_model_maintenance/audits/evidence_workspace.py",
+      "sha256": "44c342abd17369e46714b68023f2d6d4b3317eee0cf9bbb33f5eeb311641d40f"
+    },
+    {
+      "path": "three_model_maintenance/audits/frontier_guard.py",
+      "sha256": "6ec9d34129eac2339f69f3c78842f6d1e58758f71056a28f1d388ddc9eaf9e20"
+    },
+    {
+      "path": "three_model_maintenance/audits/model_measurement.py",
+      "sha256": "2f5dce144d358469a3efc47daab672fbecccecdcc600ff95c3044e1e9e559c21"
+    },
+    {
+      "path": "three_model_maintenance/audits/readiness.py",
+      "sha256": "36e22a53a37ae8903ed7d072e2508c533f6a43de09244c0ea6a0a17c8c97c653"
+    },
+    {
+      "path": "three_model_maintenance/audits/source_integrity.py",
+      "sha256": "f37bfead61771b5548aa9a8cc20009dc819d7da580d6725ac7cb2bc72e448041"
+    },
+    {
+      "path": "three_model_maintenance/contracts.py",
+      "sha256": "25142e1aaad374549e874260a630cffdb41115f02e53918901e86cc7de0927b8"
+    },
+    {
+      "path": "three_model_maintenance/evaluation/__init__.py",
+      "sha256": "278dbf594d97e0cf6d60a08db05db5267203304b7a5aa4aeebbac13db12fa936"
+    },
+    {
+      "path": "three_model_maintenance/evaluation/paired.py",
+      "sha256": "b5800ae025b580bc77f7621906f7c355d3813814a820ebf3685b5337d81dff25"
+    },
+    {
+      "path": "three_model_maintenance/models/__init__.py",
+      "sha256": "1ab554cb817a09d3c6e0a3a021f6ad9a0031465d5cff1d9a5a72a417ceacd496"
+    },
+    {
+      "path": "three_model_maintenance/models/latency.py",
+      "sha256": "d837fb9306288331efab9e000fc6624df8d83de30dba64dd0c28fdc12c12292d"
+    },
+    {
+      "path": "three_model_maintenance/observability/__init__.py",
+      "sha256": "a8b31d36649bc2999525ff5196029474baa8d305756cea7f8d030ab9cd8d5cd2"
+    },
+    {
+      "path": "three_model_maintenance/observability/evidence_workspace.py",
+      "sha256": "e26722877468054149c510aead811630633edc990bc93706476415e0cae751b9"
+    },
+    {
+      "path": "three_model_maintenance/preparation/__init__.py",
+      "sha256": "9067b38287230580fd9b02d04d1f907587538a0ebca5d6766469b7ab89a87c85"
+    },
+    {
+      "path": "three_model_maintenance/preparation/bind_raw_features.py",
+      "sha256": "ecfdd4809ac1b2260a291f0e84998d2fe9eacc4119e3f9fbf096b70e6536a6e8"
+    },
+    {
+      "path": "three_model_maintenance/preparation/export_live_candidates.py",
+      "sha256": "d9a8c5fa44b41e33bb7030485cbf86bc11c8f91aa1a4a71bb3f2a4c7b929f033"
+    },
+    {
+      "path": "three_model_maintenance/preparation/fit_registration.py",
+      "sha256": "431251d3d3509388c851195f11daba9222e840b40e9783b7fca6fd56520e0949"
+    },
+    {
+      "path": "three_model_maintenance/runtime/__init__.py",
+      "sha256": "cdc542c9e60f289783b4a9664dc5f3acedece24566833be7f7c20d0d56afa805"
+    },
+    {
+      "path": "three_model_maintenance/runtime/collect.py",
+      "sha256": "f80ae5445de7dc127e1f4050b9c737c8846c35af0475db073671abd05dcfa780"
+    },
+    {
+      "path": "three_model_maintenance/runtime/collector_bridge.py",
+      "sha256": "c809ffb690f7bafa116bb6aae35c30735a7a5fe237c4bd1db1354c10ef55a802"
+    },
+    {
+      "path": "three_model_maintenance/runtime/notifying_sampler.py",
+      "sha256": "c2bd5e38bba69822656e93b7769526ba6b1ef67580404a8c512d1a3b9758c4ca"
+    },
+    {
+      "path": "three_model_maintenance/runtime/publication.py",
+      "sha256": "be94a0b4e1d335c2f4926ed328760a4f860941a3745ea94aef7e9f7487fdc6d5"
+    },
+    {
+      "path": "three_model_maintenance/runtime/queue_ledger.py",
+      "sha256": "fbf24552c1e2471171ae71743737a0174775b82a47cfc97d8b1c2bae2e85e29a"
+    },
+    {
+      "path": "three_model_maintenance/runtime/run_registered_collection.py",
+      "sha256": "981dc3c105819d7033d60251b9cb89b3001bc68cca2e7b2ad8d7748f749e4242"
+    },
+    {
+      "path": "three_model_maintenance/runtime/submission.py",
+      "sha256": "2a9f2719de35407d6464522a73c409857f89594516570fcb393ca58a3d7f2b00"
+    }
+  ],
+  "episode_template": {
+    "engine": {
+      "host": "127.0.0.1",
+      "port": 10000,
+      "username": "ccbd",
+      "expected_version": "3.3.4"
+    },
+    "spark_rest_url": "http://127.0.0.1:4040",
+    "spark_app_id": "local-1791896695889",
+    "rest_timeout_seconds": 5,
+    "telemetry": {
+      "interval_seconds": 1,
+      "window_seconds": [
+        60,
+        300
+      ],
+      "warmup_seconds": 305,
+      "max_interval_seconds": 2,
+      "max_age_seconds": 2,
+      "minimum_coverage_fraction": 0.95,
+      "rationale": "One-second real host counter cadence, five-minute warmup plus five-second margin; retain existing 95% coverage and two-second gap/freshness gates. Exact bounds/available frontier and actual submission freshness are independently checked. No normalized demand assumed."
+    },
+    "preparation_result": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_source_integrity_20261014_0024/result.json",
+      "sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57"
+    },
+    "schema_version": "common_horizon_arm_pilot_v1",
+    "experiment_id": "sf1_three_model_publication_20261022_04",
+    "output_directory": "/home/ccbd/capstone_three_model_evidence/sf1_three_model_publication_20261022_04",
+    "client_count": 1,
+    "boundary_rule": "no_dispatch_after_horizon_natural_inflight_completion",
+    "no_new_operation_after_utc": "2026-10-22T14:00:00+00:00",
+    "expected_query_ledgers": [
+      {
+        "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_matched_q0_20261014/events.jsonl",
+        "sha256": "5529f2a83ffc6fdb6afdfd2a348f037c0919195d599de2da433fd6dab4c5ea40"
+      },
+      {
+        "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_matched_measurement_20261014/events.jsonl",
+        "sha256": "ebcaaaaa752e56c4752cba9f7f49c3c4cef06427dcb78ab26253ba3cdf217510"
+      },
+      {
+        "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_matched_q2_20261014/events.jsonl",
+        "sha256": "fcba244ac5901557bb17395b0b841f241e8ed05a2c881e4188aa7e54a867594f"
+      },
+      {
+        "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_matched_q3_20261014/events.jsonl",
+        "sha256": "26847ce0ac1ec9f89cdf0bd4c4ab27c9eb6e5f324c7138069e4e5712e671d87b"
+      }
+    ],
+    "configuration_rationale": "Attempt03 failed Fresh action inventory expired before maintenance SQL and terminal audits; do not fit it. Attempt04 changes evidence persistence to persistent system ext4 device2083 (home), retaining all per-record fsync and canonical SHA-verified terminal archive; also serializes non-state REST JSON outside state-hook outer log lock. Actual prior write probe supports engineering placement choice, not SQL speedup or unique causal attribution. Keep16files,1554 real arrivals,600s horizon,300s rewrite/archive offset,305s warmup,1s admission,2s host gap/age and2s inventory age,95%coverage, direct pending state and every offered/residual ID. Known day6 development only, no independence/performance/calibration claim. Fresh04 identity; no newepisode after13:00UTC/noSQLafter14:00UTC, active calls finish naturally. No automatic physical retry.",
+    "limitations": [
+      "Engineering measurement validation only: one source window, layout and client; no causal/independent test/accuracy claims.",
+      "Cached metadata is tied to explicit snapshot SQL, not independently fresh latest-table metadata at every query.",
+      "No new physical run retried on failure. Refused/failed/queued records preserved. Runtime acceptance remains false pending independent review.",
+      "No workload thinning/compression. Residual backlog retained by registered common-horizon boundary; this is not a full-drain policy comparison.",
+      "A/B training support must be checked after raw acceptance; terminal stale refusal can leave no pending-state labels and does not establish fit readiness.",
+      "Condition-based notification removes cadence polling but does not guarantee workload, A support, model acceptance or observer-free execution.",
+      "Faster evidence disk and lock-scope change are engineering integrations, not a matched causal storage comparison. Underlying hardware failures and concurrent noncooperating writers are not covered by file manifests; original/partial copies remain."
+    ],
+    "destination_table": "local.experiment.integrity_horizon_three_model_pub_20261022_04",
+    "action_arm": "compact_later",
+    "action_offset_ns": 300000000000,
+    "metadata_checkpoint_offsets_ns": [
+      0,
+      300000000000
+    ],
+    "decision_state_contract": "fresh_current_original_snapshot_v1",
+    "metadata_max_age_seconds": 2,
+    "comparison_group": "three_model_day6_development",
+    "layout_signature_group": "three_model_development_files16",
+    "initial_file_count": 16,
+    "expected_spark_master": "local[16]",
+    "engine_archive_offsets_ns": [
+      300000000000
+    ],
+    "boundary_preparation_contract": "retain_queued_unsubmitted_observation_v1",
+    "query_preparation_contract": "serialized_durable_submission_v1",
+    "telemetry_availability_contract": "wait_for_real_durable_sample_v1",
+    "telemetry_persistence_contract": "independent_counter_sampling_durable_publish_v1",
+    "submission_availability_contract": "release_and_wait_for_real_sample_v1",
+    "rpc_boundary_contract": "guarded_rpc_start_requeue_v1",
+    "three_model_capture": {
+      "contract": "direct_locked_client_state_after_fsync_bounds_v1",
+      "max_feature_age_ns": 2000000000,
+      "rationale": "Preserve existing two-second actual host-feature age gate. Layout timestamps denote observed cached explicit-snapshot metadata; raw inventory references preserved. Extra publication persistence overhead is measured, not removed. No retrospective pending inference. Stricter1s admission leaves1s headroom for measured0.32\u20130.41s preparation/persistence delay; not a guarantee. Final guard keeps exact2s underlying-sample age. A terminal refusal preserves current/rest queued and stops further SQL dispatch rather than dropping or recapturing attempts. It is a visible truncated offered-work observation, not a complete benchmark or accepted policy comparison.",
+      "submission_contract": "sample_frontier_guard_terminal_requeue_v2",
+      "admission_max_sample_age_seconds": 1.0,
+      "sample_wait_contract": "condition_notify_after_durable_sample_publish_v1"
+    }
+  },
+  "role": "engineering_development_only",
+  "rationale": "Attempt03 failed Fresh action inventory expired before maintenance SQL and terminal audits; do not fit it. Attempt04 changes evidence persistence to persistent system ext4 device2083 (home), retaining all per-record fsync and canonical SHA-verified terminal archive; also serializes non-state REST JSON outside state-hook outer log lock. Actual prior write probe supports engineering placement choice, not SQL speedup or unique causal attribution. Keep16files,1554 real arrivals,600s horizon,300s rewrite/archive offset,305s warmup,1s admission,2s host gap/age and2s inventory age,95%coverage, direct pending state and every offered/residual ID. Known day6 development only, no independence/performance/calibration claim. Fresh04 identity; no newepisode after13:00UTC/noSQLafter14:00UTC, active calls finish naturally. No automatic physical retry. Validate complete real02 archive roundtrip first; reuse existing SHA-bound B-only export without overwriting/re-export. Export04 only after raw/publication audits, retain runtime/fit false. Terminal failed or successful physical package is copied only after child exited; all working originals retained. First-development-fit03 stays blocked and is not repointed.",
+  "frontier_regression": {
+    "path": "three_model_maintenance/protocols/fast_evidence_regression_20261022.json",
+    "sha256": "c5057312e41af7dbdbb6586bd7446113c34906aa31e0356abe851b6a0b5a0f8c"
+  },
+  "export_candidates_after_raw_audit": true,
+  "archive_validation": {
+    "path": "three_model_maintenance/protocols/evidence_archive_validation_20261022.json",
+    "sha256": "d8608965a8a91c1bf84a82f7cdaa4ad2b55922e0471b82820fbc32e23f5fcd3b"
+  },
+  "evidence_workspace": {
+    "device_id": 2083,
+    "required_bytes": 662256384,
+    "archive_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_three_model_publication_20261022_04"
+  },
+  "external_evidence": [
+    {
+      "path": "results/queue_evidence_storage_20261022/result.json",
+      "sha256": "429ad52c6017bacabe861c247b18f2648814e66641cb7eecb64f2f9a7877127e"
+    }
+  ],
+  "prior_candidate_receipt": {
+    "path": "results/three_model_verified_B_candidates_20261022/result.json",
+    "sha256": "5b5b7b708d2e93b7437238882aab0dfcde6155477af4bd9535f27f217aea3743"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "source": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_three_model_publication_20261022_02",
+  "parent_result": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_live_collection_repair_20261022/result.json",
+  "parent_sha256": "abd365aa2193d8dd14c7fdd7b7dece6f4de6546fae2b83ebfb5da11fba850158",
+  "result_sha256": "504053d7b18a319df9ece1805b65a259290b4bb03cc35ed3ad34d55ecca5e846",
+  "workspace": "/home/ccbd/capstone_three_model_evidence/actual02_archive_validation_20261022",
+  "archive": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_archive_validation_20261022/copied_terminal_02",
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_archive_validation_20261022/audit",
+  "device_id": 2083,
+  "required_bytes": 662256384,
+  "rationale": "Roundtrip the whole real terminal attempt02 package, preserve original and work copies. Registered budget16x largest observed prior package41391024bytes; 1554 offered/109 completed approximately14.26, ceiling15 plus one headroom unit16. Operational estimate not guaranteed footprint or performance. No SQL or new labels."
+}
