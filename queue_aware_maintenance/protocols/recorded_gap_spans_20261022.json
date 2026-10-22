@@ -1,0 +1,12 @@
+{
+  "schema_version": "recorded_queue_gap_spans_v1",
+  "study_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_timing_20261021/repeated_window0",
+  "clock_receipt": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_repeatability_clock_20261022/analysis/result.json",
+    "sha256": "8d8ffdcddb288d266f37316d0348d25b0ba9491460b418777e82bd86f33e0e9f"
+  },
+  "expected_arrivals_per_episode": 3094,
+  "largest_gap_count": 8,
+  "code_sha256": "37359bed401fcffa511a9aad76ce59a24e1d53f32060962514a7e941464a6738",
+  "rationale": "Post-hoc temporal overlap inventory of previously consumed complete8arm data. All raw event/result hashes and integer total gaps retained. Union/intersection prevents double counting; categories intentionally nonexclusive, no causal removal estimate. Eight largest gaps per run are display-only examples, not selection of analyzed data or acceptance threshold. No fits, physicalSQL, changed freshness/correctness gate or launch of new workloads."
+}
