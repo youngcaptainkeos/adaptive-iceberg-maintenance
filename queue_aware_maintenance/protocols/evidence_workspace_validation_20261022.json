@@ -1,0 +1,21 @@
+{
+  "schema_version": "real_artifact_evidence_workspace_v1",
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_evidence_workspace_validation_20261022",
+  "workspace": "/home/ccbd/capstone_evidence/workspace_validation_20261022",
+  "device_reference": "/home/ccbd",
+  "terminal_source_result": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_evidence_storage_20261022/result.json",
+    "sha256": "429ad52c6017bacabe861c247b18f2648814e66641cb7eecb64f2f9a7877127e"
+  },
+  "sources": {
+    "0": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/queue_aware_maintenance/observability/evidence_workspace.py",
+      "sha256": "efc7da0b0abfc2036d647275b1d30e937b5b0f45dd75a7b9df82622ddc47e95d"
+    },
+    "1": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/queue_aware_maintenance/audits/validate_evidence_workspace.py",
+      "sha256": "f302d98a91bf590ced46be0318d5dae6c877bd875af2d6dc9d08ded46af374e4"
+    }
+  },
+  "rationale": "Validate an opt-in persistent faster-disk working directory and staged/checksummed/fsynced canonical publication using real completed storage-diagnostic artifacts. Reserve2times measured input bytes conservatively for working data and metadata, no synthetic size/labels. Original retained; old/partial destinations never reused; no physicalcollector moved, noSQL, freshness/durability gates unmodified. Producer storageprobe naturally completed before validation. Single registered owner, new paths; no host-failure/concurrency safety claim."
+}
