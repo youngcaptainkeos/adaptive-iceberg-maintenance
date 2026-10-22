@@ -16,7 +16,8 @@ import argparse,csv,fcntl,json,queue,shutil,subprocess,threading,time,uuid
 from datetime import datetime,timezone
 from pathlib import Path
 from experiment_validation import load_json,verified_file,require,sha256
-from physical_measurements import EventLog,StatementRecorder,SparkEvidence,TelemetrySampler,stamp
+from physical_measurements import EventLog,StatementRecorder,SparkEvidence,stamp
+from three_model_maintenance.runtime.notifying_sampler import NotifyingTelemetrySampler as TelemetrySampler
 from three_model_maintenance.runtime.queue_ledger import OfferedQueueLedger
 from run_correctness_pilot import query_templates,canonical
 from query_observation_binding import verify_observations
@@ -189,7 +190,7 @@ def run(config,revision):
     for src,name in ((Path(config),'config.json'),(source_path,'preparation_result.json'),(record_path,'mapping_record.json'),(mapping_audit_path,'mapping_audit.json'),(mapped_path,'mapped_arrivals.csv')):shutil.copy2(src,out/name)
     for i,spec in enumerate(cfg['expected_query_ledgers']):shutil.copy2(verified_file(spec,base),out/f'expected_ledger_{i}.jsonl')
     (out/'expected_query_results.json').write_text(json.dumps(expected,indent=2)+'\n')
-    for frozen_source in (Path(__file__), Path(__file__).with_name('publication.py'), Path(__file__).with_name('collector_bridge.py'), Path(__file__).with_name('submission.py'), Path(__file__).with_name('queue_ledger.py')):shutil.copy2(frozen_source,code/frozen_source.name)
+    for frozen_source in (Path(__file__), Path(__file__).with_name('publication.py'), Path(__file__).with_name('collector_bridge.py'), Path(__file__).with_name('submission.py'), Path(__file__).with_name('queue_ledger.py'), Path(__file__).with_name('notifying_sampler.py')):shutil.copy2(frozen_source,code/frozen_source.name)
     EventLog,StatementRecorder=build_classes(dict(cfg,_protocol_sha256=sha256(Path(config))))
     log=EventLog(out/'events.jsonl',cfg['experiment_id']);rec=StatementRecorder(log);rest=SparkEvidence(cfg['spark_rest_url'],cfg['spark_app_id'],cfg['rest_timeout_seconds'],log);sampler=TelemetrySampler(log,cfg['telemetry']['interval_seconds'],asynchronous_persistence=cfg.get('telemetry_persistence_contract')=='independent_counter_sampling_durable_publish_v1');connections=[];errors=[];threads=[];safe_to_close=False
     log.emit('trace_queue_protocol',configuration=cfg,code_revision=revision,code_sha256={p.name:sha256(p) for p in code.iterdir()})

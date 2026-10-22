@@ -62,6 +62,12 @@ def run(protocol):
             require(result['status'] == 'passed_real_failed_frontier_regression_only' and
                     result['guard_source_sha256'] == sha(REPO / 'three_model_maintenance/runtime/submission.py'), 'Guard regression missing or stale')
             report['frontier_regression_sha256'] = sha(result_path); save()
+        if 'prior_verified_export' in cfg:
+            spec = cfg['prior_verified_export']; prior = Path(spec['directory'])
+            require(sha(prior / 'result.json') == spec['result_sha256'] and sha(prior / 'events.jsonl') == spec['events_sha256'], 'Prior terminal evidence changed')
+            stage('prior_live_export', [sys.executable, '-B', '-m', 'three_model_maintenance.preparation.export_live_candidates',
+                                        '--directory', str(prior), '--output', spec['output_directory']])
+            report['prior_candidate_export_sha256'] = sha(Path(spec['output_directory']) / 'result.json'); save()
         mapping_config = REPO / cfg['mapping_config']['path']
         require(sha(mapping_config) == cfg['mapping_config']['sha256'], 'Mapping registration changed')
         stage('mapping', [sys.executable, '-B', str(LEGACY / 'prepare_trace_benchmark_mapping.py'), '--config', str(mapping_config)])
@@ -91,8 +97,20 @@ def run(protocol):
         stage('physical', [sys.executable, '-B', '-m', 'three_model_maintenance.runtime.collect', '--config', str(path), '--expected-revision', revision])
         raw = Path(episode['output_directory']); result = json.loads((raw / 'result.json').read_text())
         require(result['three_model_publication_audit']['status'] == 'verified_live_publication_and_direct_client_state_only', 'Missing real publication audit')
-        report.update(status='completed_one_real_development_measurement_only', physical_result_sha256=sha(raw / 'result.json'),
+        report.update(status='physical_passed_export_pending', physical_result_sha256=sha(raw / 'result.json'),
                       live_publication=result['three_model_publication_audit'], physical_output_directory=str(raw))
+        if cfg.get('export_candidates_after_raw_audit') is True:
+            candidate_out = out / 'candidates'
+            stage('candidate_export', [sys.executable, '-B', '-m', 'three_model_maintenance.preparation.export_live_candidates',
+                                       '--directory', str(raw), '--output', str(candidate_out)])
+            candidate_receipt = json.loads((candidate_out / 'result.json').read_text())
+            require(candidate_receipt['status'] == 'verified_live_candidate_export_not_fit_authorized', 'Unverified candidate export')
+            report['candidate_export_sha256'] = sha(candidate_out / 'result.json')
+            report['complete_history_condition_counts'] = candidate_receipt['complete_history_condition_counts']
+        observed = report.get('complete_history_condition_counts', report['live_publication']['observed_conditions'])
+        report['A_B_support_status'] = ('both_conditions_observed_not_fit_approval' if all(observed.values())
+                                        else 'blocked_missing_observed_condition')
+        report['status'] = 'completed_one_real_development_measurement_only'
     except Exception as exc:
         report.update(status='failed_preserved_no_retry', error_type=type(exc).__name__, error=str(exc))
         raise
@@ -104,7 +122,7 @@ def run(protocol):
     # delivery failure is retained without changing experiment status.
     notice = {'topic': cfg['notification_topic'], 'experiment_status': report['status']}
     try:
-        request = urllib.request.Request(cfg['notification_topic'], data=(cfg['label'] + ': completed real development measurement. Review raw audit before training.').encode(),
+        request = urllib.request.Request(cfg['notification_topic'], data=(cfg['label'] + ': completed real development measurement. Observed conditions=' + str(report.get('complete_history_condition_counts', report['live_publication']['observed_conditions'])) + '; ' + report['A_B_support_status'] + '. No models trained.').encode(),
                                          headers={'Title': 'Capstone measurement completed'}, method='POST')
         with urllib.request.urlopen(request, timeout=10) as response:notice.update(delivered=True, http_status=response.status)
     except Exception as exc:notice.update(delivered=False, error=str(exc))
