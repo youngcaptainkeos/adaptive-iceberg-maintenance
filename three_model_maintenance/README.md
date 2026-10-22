@@ -62,3 +62,5 @@ Estimator and new publication source exists; no accepted fitted bundle or valida
 new physical collector is implied. No current source inventory grants fitting.
 
 Actual scoped validation outcome and remaining gates: [model/capture review](docs/reviews/MODELS_AND_CAPTURE_2026-10-22.md).
+
+Real detached collection registration and code explanation: [live capture launch](docs/reviews/LIVE_CAPTURE_LAUNCH_2026-10-22.md). Its saved launch review is not a terminal success receipt; inspect server progress/result for current state.
