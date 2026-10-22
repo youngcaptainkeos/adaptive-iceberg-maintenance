@@ -106,3 +106,8 @@ Source scope passed; raw binding completed9923queries with one explicit pending-
 ## Unit 2 partial completion — consumed inventory
 
 Historical inventory and dependency guard implemented and exercised on actual3families; none can be fresh independent evidence. Full prospective registration awaits genuine new manifests, expanded bounds and independently verified freeze. No fitter attached or training authorized. Next estimator source plus fresh-source inventory; see integrity review for actual receipt/hashes.
+
+
+## Steps 1/2 candidate and capture source — 22 October 2026
+
+Models/runtime/evaluation source implemented under343e344; actual worker3 audit passed scoped historical admission/source checks, not fitting or physical collector acceptance. All9923 historical receipts rejected as newlive evidence; one mismatch preserved. Full details docs/reviews/MODELS_AND_CAPTURE_2026-10-22.md. Next: register fresh source identity/expanded bounds/freeze/resource conditions, integrate new journal into a separately registered collector and validate real capture/state/call evidence before training. No unregistered physical job or current fit launched.

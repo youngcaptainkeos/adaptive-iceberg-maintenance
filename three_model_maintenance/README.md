@@ -60,3 +60,5 @@ Earlier flat documents/protocols retain their exact paths for historical referen
 See [model/capture plan](docs/plans/MODELS_AND_CAPTURE_2026-10-22.md).
 Estimator and new publication source exists; no accepted fitted bundle or validated
 new physical collector is implied. No current source inventory grants fitting.
+
+Actual scoped validation outcome and remaining gates: [model/capture review](docs/reviews/MODELS_AND_CAPTURE_2026-10-22.md).
