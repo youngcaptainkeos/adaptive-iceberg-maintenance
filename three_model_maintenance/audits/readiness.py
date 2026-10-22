@@ -6,6 +6,7 @@ import hashlib
 import json
 import math
 import traceback
+from itertools import product
 from collections import Counter,defaultdict
 from datetime import datetime,timezone
 from pathlib import Path
@@ -77,7 +78,8 @@ def audit(config):
             key=(r['query_id'],r['file_count'],r['maintenance_client_pending_at_feature_time'])
             item=census[assignment[eid]];item['all'][key]+=1;item['episodes'][key].add(eid)
             if eligible:item['eligible'][key]+=1;item['eligible_episodes'][key].add(eid)
-        cells=sorted({key for item in census.values() for key in item['all']})
+        observed={key for item in census.values() for key in item['all']}
+        cells=list(product(sorted({k[0] for k in observed}),sorted({k[1] for k in observed}),('False','True')))
         report['families']=[{'index':i,'source_start_utc':a.isoformat(),'source_end_utc':b.isoformat(),
             'future_role':'consumed_history_only','was_previous_test':i in consumed_families,
             'support':[{'query_id':q,'file_count':f,'client_pending':p,
