@@ -56,23 +56,42 @@ def run(protocol, output):
             require(sha(root/'result.json') == old['result_sha256'], 'Changed audited result')
             categories = {k: [] for k in ['spark_REST_request_to_response', 'recorded_telemetry_wait',
                 'nonforeground_nonmaintenance_SQL_call', 'maintenance_SQL_call',
-                'query_observation_capture_to_request_capture', 'request_capture_to_actual_execute']}
-            observations, calls, clock, digest = {}, [], None, hashlib.sha256()
+                'query_observation_capture_to_request_capture', 'request_capture_to_actual_execute',
+                'archive_first_REST_to_checkpoint_capture', 'checkpoint_capture_to_next_query_observation',
+                'foreground_completion_capture_to_ledger_completion_capture']}
+            observations, calls, completions, clock, digest = {}, [], {}, None, hashlib.sha256()
+            archive_requests, last_checkpoint = [], None
             with (root/'events.jsonl').open('rb') as stream:
                 for line in stream:
                     digest.update(line)
                     relevant = any(('"kind": "'+kind+'"').encode() in line for kind in
-                        ['cohort_clock', 'statement_completed', 'query_observation', 'spark_rest', 'query_telemetry_availability_wait'])
+                        ['cohort_clock', 'statement_completed', 'query_observation', 'spark_rest', 'query_telemetry_availability_wait',
+                         'cohort_engine_checkpoint', 'cohort_queue_transition'])
                     if not relevant:
                         continue
                     r = json.loads(line)
                     kind = r['kind']
-                    if kind == 'cohort_clock': clock = r['start_monotonic_ns']
+                    if kind == 'cohort_clock':
+                        clock = r['start_monotonic_ns']
+                        archive_requests = []
                     elif kind == 'query_observation':
                         require(r['measurement_id'] not in observations, 'Duplicate query feature observation')
                         observations[r['measurement_id']] = r['recorded']['monotonic_ns']
+                        if last_checkpoint is not None:
+                            categories['checkpoint_capture_to_next_query_observation'].append((last_checkpoint, r['recorded']['monotonic_ns']))
+                            last_checkpoint = None
                     elif kind == 'spark_rest':
                         categories['spark_REST_request_to_response'].append((r['request_start']['monotonic_ns'], r['response_end']['monotonic_ns']))
+                        if clock is not None: archive_requests.append(r['request_start']['monotonic_ns'])
+                    elif kind == 'cohort_engine_checkpoint':
+                        if clock is not None:
+                            require(archive_requests, 'Checkpoint without recorded REST requests')
+                            last_checkpoint = r['recorded']['monotonic_ns']
+                            categories['archive_first_REST_to_checkpoint_capture'].append((min(archive_requests), last_checkpoint))
+                            archive_requests = []
+                    elif kind == 'cohort_queue_transition' and r['state'] == 'completed':
+                        require(r['measurement_id'] not in completions, 'Duplicate ledger completion')
+                        completions[r['measurement_id']] = r['recorded']['monotonic_ns']
                     elif kind == 'query_telemetry_availability_wait':
                         categories['recorded_telemetry_wait'].append((r['started']['monotonic_ns'], r['ended']['monotonic_ns']))
                     elif kind == 'statement_completed':
@@ -93,6 +112,7 @@ def run(protocol, output):
                                     'start': previous, 'end': start, 'duration_seconds': (start-previous)/1e9})
                 categories['query_observation_capture_to_request_capture'].append((observation, request))
                 categories['request_capture_to_actual_execute'].append((request, start))
+                categories['foreground_completion_capture_to_ledger_completion_capture'].append((call['recorded']['monotonic_ns'], completions[call['measurement_id']]))
                 previous = end
             gaps = union(gaps)
             total = sum(b-a for a,b in gaps)
@@ -113,14 +133,16 @@ def run(protocol, output):
             limitations=['Tags are temporal overlaps, not exclusive or causal components; category totals must not be summed.',
                          'Event capture timestamps precede durable writes. Capture-to-request/execute spans include bookkeeping, locking and persistence; exact fsync duration is not measured.',
                          'REST response end precedes durable payload logging; archival CPU/serialization/post-response persistence remain partly untagged.',
+                         'Archive span is first observed REST request to checkpoint capture, not an explicit function-entry/return timer. It includes more than HTTP latency and excludes final checkpoint durability.',
+                         'Completion/checkpoint capture-to-next-capture intervals include persistence and intervening code, not individually measured fsync calls.',
                          'Telemetry waits from different threads may overlap gaps; a matching interval alone does not prove foreground blocking.',
                          'No old result is corrected by subtracting a tag; no gate, policy, threshold or physical runtime is changed.'])
         lines = ['# Recorded spans inside foreground SQL gaps', '', 'Descriptive overlap, not causal overhead or removable time.', '',
-                 '| Run | Outside SQL(s) | REST(s) | Telemetry wait(s) | Observation→request(s) | Request→execute(s) | Untagged(s) |',
-                 '|---|---:|---:|---:|---:|---:|---:|']
+                 '| Run | Outside SQL(s) | REST(s) | Telemetry wait(s) | Observation→request(s) | Request→execute(s) | Archive span(s) | Completion→ledger(s) | Untagged(s) |',
+                 '|---|---:|---:|---:|---:|---:|---:|---:|---:|']
         for row in rows:
             c = row['nonexclusive_category_overlap_seconds']
-            lines.append(f"| {row['experiment_id']} | {row['outside_call_seconds']:.2f} | {c['spark_REST_request_to_response']:.2f} | {c['recorded_telemetry_wait']:.2f} | {c['query_observation_capture_to_request_capture']:.2f} | {c['request_capture_to_actual_execute']:.2f} | {row['seconds_without_recorded_tags']:.2f} |")
+            lines.append(f"| {row['experiment_id']} | {row['outside_call_seconds']:.2f} | {c['spark_REST_request_to_response']:.2f} | {c['recorded_telemetry_wait']:.2f} | {c['query_observation_capture_to_request_capture']:.2f} | {c['request_capture_to_actual_execute']:.2f} | {c['archive_first_REST_to_checkpoint_capture']:.2f} | {c['foreground_completion_capture_to_ledger_completion_capture']:.2f} | {row['seconds_without_recorded_tags']:.2f} |")
         lines += ['', '## Limits']+['- '+v for v in report['limitations']]
         (out/'report.md').write_text('\n'.join(lines)+'\n')
     except Exception as exc:
