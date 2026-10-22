@@ -1,0 +1,72 @@
+{
+  "sources": [
+    {
+      "path": "../../three_model_maintenance/__init__.py",
+      "sha256": "01dcd9b2dfdffbc9b33e92edc3f862bffbf900c81878e98ba626c9c2dae25e4e",
+      "review_class": "new_three_model_path"
+    },
+    {
+      "path": "../../three_model_maintenance/audits/__init__.py",
+      "sha256": "d9dd307e4f020bca5feb11c3d1fe3565cb674d74fbb4040d997862960e3eaa64",
+      "review_class": "new_three_model_path"
+    },
+    {
+      "path": "../../three_model_maintenance/audits/readiness.py",
+      "sha256": "36e22a53a37ae8903ed7d072e2508c533f6a43de09244c0ea6a0a17c8c97c653",
+      "review_class": "new_three_model_path"
+    },
+    {
+      "path": "../../three_model_maintenance/audits/source_integrity.py",
+      "sha256": "f37bfead61771b5548aa9a8cc20009dc819d7da580d6725ac7cb2bc72e448041",
+      "review_class": "new_three_model_path"
+    },
+    {
+      "path": "../../three_model_maintenance/contracts.py",
+      "sha256": "25142e1aaad374549e874260a630cffdb41115f02e53918901e86cc7de0927b8",
+      "review_class": "new_three_model_path"
+    },
+    {
+      "path": "../../three_model_maintenance/preparation/__init__.py",
+      "sha256": "9067b38287230580fd9b02d04d1f907587538a0ebca5d6766469b7ab89a87c85",
+      "review_class": "new_three_model_path"
+    },
+    {
+      "path": "../../three_model_maintenance/preparation/bind_raw_features.py",
+      "sha256": "ecfdd4809ac1b2260a291f0e84998d2fe9eacc4119e3f9fbf096b70e6536a6e8",
+      "review_class": "new_three_model_path"
+    },
+    {
+      "path": "../../scripts/phase6-live-evaluation/run_live_agent.py",
+      "sha256": "21f426ccac432ab8a42cb79fbb4304800cbbfe5584eda48b05747017bd298418",
+      "review_class": "retired_live_entrypoint"
+    },
+    {
+      "path": "../../scripts/phase6-live-evaluation/run_cost_benefit_agent.py",
+      "sha256": "ae1b3ad703ba1d76761ee828adcb21c5e84cba05933e7f01359e7bd6ce0dc95a",
+      "review_class": "retired_policy_decision"
+    },
+    {
+      "path": "../../scripts/phase6-live-evaluation/google_trace_mapper.py",
+      "sha256": "93265fb8d18039522c36c85c94f7eb8a7282de3b57507948f15f8b3ef69d2009",
+      "review_class": "verified_legacy_trace_adapter_not_C"
+    },
+    {
+      "path": "../../scripts/phase6-live-evaluation/train_cost_benefit_models.py",
+      "sha256": "d759768b84a6756772a1ffed057149bbb823e3b2570b1f1e3fbee39e2f0ce554",
+      "review_class": "incompatible_legacy_physical_schema"
+    },
+    {
+      "path": "../../scripts/phase6-live-evaluation/train_candidate_cost_models.py",
+      "sha256": "ac2ca3ccfb4e70e649c1fad2977578061bfa1adda5ef15dac7a9d0d00afac171",
+      "review_class": "historical_candidate_trainer_not_invoked"
+    },
+    {
+      "path": "../../scripts/evaluate_arrival_forecast_diagnostic.py",
+      "sha256": "7fd3b8dd49cf76c7109f22b4966f451b11097e55d7c75ba97aa5ad95f18a840c",
+      "review_class": "historical_aggregate_forecast_diagnostic"
+    }
+  ],
+  "legacy_metadata_path": "../../scripts/phase6-live-evaluation/models/model_metadata.json",
+  "output_directory": "../../results/three_model_source_integrity_20261022",
+  "rationale": "Real source/metadata audit; no generated records, inference or fitting. Hash-pinned manual classifications with executable AST checks for retired/live boundary, no legacy loader/queue imports on new path, explicit reraised exception handlers. Legacy metadata hashed/inventoried at runtime because unrelated server metadata dirty bytes may differ, never loaded as weights or accepted."
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": "three_model_raw_feature_binding_v1",
+  "export": {
+    "path": "../../results/consistent_collection_20261016/candidates/export_record.json",
+    "sha256": "36052bd626032644e14764accab9c2c9694dd8ff75ff3e04f1e9a0dd27c659fe"
+  },
+  "independent_export_verification": {
+    "path": "../../results/consistent_collection_20261016/candidate_independent_verification.json",
+    "sha256": "55aaabcfd7c8e79e3059ef0876a1b72e286984f235e38edb6e53a2e22468895d"
+  },
+  "output_directory": "../../results/three_model_raw_features_20261022",
+  "rationale": "Bind all real9923historical candidates to18immutable raw event ledgers; no score/refit/SQL. Check actual feature/call/target, metadata references, host calculation clocks and prior-log queue/maintenance/history state. Capture is not fsync completion: retain actual capture and call bound with exact availability absent. Keep any ambiguity IDs explicit without changing oldCSV or silently relabeling. No dummy records or fallback prediction."
+}
