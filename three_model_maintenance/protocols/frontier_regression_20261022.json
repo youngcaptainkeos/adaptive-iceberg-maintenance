@@ -1,0 +1,43 @@
+{
+  "schema_version": "real_frontier_regression_v1",
+  "events": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_three_model_publication_20261022_01/events.jsonl",
+    "sha256": "2d96a7ff8f28bb7b71036237b9bc27d8dafc5e8ece4f0be80ccc4f45a3487a22"
+  },
+  "prior_diagnosis": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_freshness_failure_20261022/result.json",
+    "sha256": "148b82cb12ea6bcc3eae966dc32b96eb0c7a72fab91368576440fe641b25a323"
+  },
+  "physical_config": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_live_collection_20261022/physical_registration.json",
+    "sha256": "ea1942f2da0757167b182b7abc8c1b7a4b878241c5f395e0e2af32304d040ef5"
+  },
+  "sources": [
+    {
+      "path": "../../three_model_maintenance/runtime/submission.py",
+      "sha256": "2a9f2719de35407d6464522a73c409857f89594516570fcb393ca58a3d7f2b00"
+    },
+    {
+      "path": "../../three_model_maintenance/runtime/queue_ledger.py",
+      "sha256": "fbf24552c1e2471171ae71743737a0174775b82a47cfc97d8b1c2bae2e85e29a"
+    },
+    {
+      "path": "../../three_model_maintenance/runtime/collect.py",
+      "sha256": "daeb760f523aec662658d4aa5fc082879ab5b5cbe8c73b3be7635afe256cd4ac"
+    },
+    {
+      "path": "../../three_model_maintenance/runtime/collector_bridge.py",
+      "sha256": "acfc2317c215b08eb36197860285fdf2a4b5588e4126425acfc863d2d6178d51"
+    },
+    {
+      "path": "../../three_model_maintenance/runtime/run_registered_collection.py",
+      "sha256": "51371a145750acb0146722546604a80a2d9664a8b088b14cdb46c6643fcff89d"
+    },
+    {
+      "path": "../../three_model_maintenance/audits/frontier_guard.py",
+      "sha256": "6ec9d34129eac2339f69f3c78842f6d1e58758f71056a28f1d388ddc9eaf9e20"
+    }
+  ],
+  "output_directory": "../../results/three_model_frontier_regression_20261022",
+  "rationale": "Pure repaired submission predicate on all297 real failed-run query clocks; match exact7 stale IDs from prior diagnosis. No synthetic boundary cases or counterfactual execution times. Import/parse current collector before new physical operation."
+}

@@ -6,7 +6,8 @@ from three_model_maintenance.contracts import require
 
 
 def build_classes(cfg):
-    from physical_measurements import EventLog as PhysicalLog, StatementRecorder as PhysicalRecorder
+    from physical_measurements import EventLog as PhysicalLog
+    from three_model_maintenance.runtime.submission import SubmissionRecorder as PhysicalRecorder
     from experiment_validation import sha256
 
     class BoundLog(PhysicalLog):
@@ -66,6 +67,7 @@ def build_classes(cfg):
                         field = name + '_' + str(window['window_seconds']) + 's'
                         values[field] = window[name]; clocks[field] = window['measured_at']
                 context = {name: observed[name] for name in ('table', 'snapshot_id', 'snapshot_measurement_id', 'file_inventory_measurement_id')}
+                context['host_sample_end_monotonic_ns'] = [w['last_available_sample_end_monotonic_ns'] for w in observed['windows']]
                 context['metadata_semantics'] = 'observed_cached_metadata_for_explicit_query_snapshot_not_fresh_inventory_RPC'
                 receipt = self.log.journal.publish(measurement_id=measurement_id, feature_values=values,
                                                    feature_capture_at=clocks, source_context=context)
@@ -74,13 +76,15 @@ def build_classes(cfg):
                 return True
 
             result = super().execute(cursor, sql, role=role, query_id=query_id, measurement_id=measurement_id,
-                                     prepare_submission=prepare_bound, latest_start_ns=latest_start_ns)
+                                     prepare_submission=prepare_bound, latest_start_ns=latest_start_ns,
+                                     sample_frontiers=lambda: [w['last_available_sample_end_monotonic_ns'] for w in self.log.observations[measurement_id]['windows']],
+                                     max_sample_age_ns=cfg['three_model_capture']['max_feature_age_ns'])
             if result is not None and result.get('submitted') is not False:
                 receipt = self.log.publications[measurement_id]
                 validate_publication(receipt)
                 clock_order(receipt['receipt_persisted_observed_at'], result['client_execute_start'], result['fetch_end'])
-                require(all(result['client_execute_start']['monotonic_ns'] - p['monotonic_ns'] <=
-                            cfg['three_model_capture']['max_feature_age_ns'] for p in receipt['feature_capture_at'].values()),
+                require(all(0 <= result['client_execute_start']['monotonic_ns'] - w['last_available_sample_end_monotonic_ns'] <=
+                            cfg['three_model_capture']['max_feature_age_ns'] for w in self.log.observations[measurement_id]['windows']),
                         'Actual query began with expired captured feature; preserve failed physical evidence')
                 self.log.emit('three_model_query_binding', measurement_id=measurement_id, publication=receipt,
                               client_execute_start=result['client_execute_start'], fetch_end=result['fetch_end'])
@@ -117,6 +121,8 @@ def audit_publications(directory):
     bindings = [e for e in events if e['kind'] == 'three_model_query_binding']
     completed = {e['measurement_id']: e for e in events if e['kind'] == 'statement_completed' and e['role'] == 'trace_query'}
     require(len(bindings) == len(completed) > 0, 'Missing/duplicate actual query binding')
+    configuration = json.loads((directory / 'config.json').read_text())
+    observations = {e['measurement_id']: e for e in events if e['kind'] == 'query_observation'}
     seen = set(); counts = {'client_pending': 0, 'client_not_pending': 0}
     for event in bindings:
         mid = event['measurement_id']; receipt = event['publication']; validate_publication(receipt)
@@ -126,6 +132,10 @@ def audit_publications(directory):
         result = completed[mid]
         require(event['client_execute_start'] == result['client_execute_start'] and event['fetch_end'] == result['fetch_end'], 'Call binding differs')
         clock_order(receipt['receipt_persisted_observed_at'], result['client_execute_start'], result['fetch_end'])
+        frontiers = [w['last_available_sample_end_monotonic_ns'] for w in observations[mid]['windows']]
+        require(receipt['source_context']['host_sample_end_monotonic_ns'] == frontiers, 'Publication/sample frontier differs')
+        require(all(0 <= result['client_execute_start']['monotonic_ns'] - v <= int(configuration['telemetry']['max_age_seconds'] * 1e9)
+                    for v in frontiers), 'Actual submission used stale/future source sample')
         counts['client_pending' if receipt['client_pending'] else 'client_not_pending'] += 1
     return {'status': 'verified_live_publication_and_direct_client_state_only', 'completed_queries': len(bindings),
             'published_features': len(captures), 'observed_conditions': counts, 'runtime_adapter_accepted': False,

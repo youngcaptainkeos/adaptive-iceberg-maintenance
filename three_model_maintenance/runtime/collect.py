@@ -17,7 +17,7 @@ from datetime import datetime,timezone
 from pathlib import Path
 from experiment_validation import load_json,verified_file,require,sha256
 from physical_measurements import EventLog,StatementRecorder,SparkEvidence,TelemetrySampler,stamp
-from offered_queue_ledger import OfferedQueueLedger
+from three_model_maintenance.runtime.queue_ledger import OfferedQueueLedger
 from run_correctness_pilot import query_templates,canonical
 from query_observation_binding import verify_observations
 from statement_timing import completed_statements
@@ -49,7 +49,15 @@ def audit(directory):
         require(identity in expected and r['source']==expected[identity] and r['previous_state']==previous,'Source/state chain differs')
         ns=r['actual_transition']['monotonic_ns'];require(ns<=r['recorded']['monotonic_ns'],'Future transition stamp')
         requeued=(previous,state)==('dispatched','queued') and r['measurement_id'] in not_sent_by_id
-        if requeued:require(r.get('reason')=='horizon_before_rpc' and ns>=not_sent_by_id[r['measurement_id']]['recorded']['monotonic_ns']>=hi,'Unsubmitted requeue differs')
+        if requeued:
+            refusal=not_sent_by_id[r['measurement_id']]
+            require(ns>=refusal['recorded']['monotonic_ns'],'Unsubmitted requeue chronology differs')
+            if refusal['reason']=='stale_sample_before_rpc':
+                require(cfg['three_model_capture']['submission_contract']=='sample_frontier_guard_terminal_requeue_v2' and r.get('reason')=='stale_sample_before_rpc','Unregistered stale refusal')
+                require(refusal['checked_at']['monotonic_ns']<hi and refusal['max_sample_age_ns']==int(cfg['telemetry']['max_age_seconds']*1e9),'Changed stale/cutoff gate')
+                require(any(refusal['checked_at']['monotonic_ns']-v>refusal['max_sample_age_ns'] for v in refusal['sample_end_monotonic_ns']),'No actual stale sample at refused call')
+            else:
+                require(r.get('reason')=='horizon_before_rpc' and refusal['recorded']['monotonic_ns']>=hi,'Unsubmitted horizon requeue differs')
         require(requeued or (previous,state) in ((None,'offered'),('offered','queued'),('queued','dispatched'),('dispatched','completed'),('dispatched','failed')),'Illegal actual queue chain')
         require(r['scheduled_monotonic_ns']==lo+int(expected[identity]['offset_ns']),'Retimed source arrival')
         if state=='offered':
@@ -72,7 +80,11 @@ def audit(directory):
     for mid,event in not_sent_by_id.items():
         matches=[identity for identity,identity_mid in identities.items() if identity_mid==mid]
         require(len(matches)==1 and states[matches[0]]=='queued' and matches[0]==dispatched[-1],'Unsubmitted request must be final FIFO admission retained queued')
-        require(event['latest_start_monotonic_ns']==hi and hi<=event['checked_at']['monotonic_ns']<=event['recorded']['monotonic_ns'],'RPC cutoff/clock differs')
+        require(event['latest_start_monotonic_ns']==hi and event['checked_at']['monotonic_ns']<=event['recorded']['monotonic_ns'],'RPC clock differs')
+        if event['reason']=='stale_sample_before_rpc':
+            observation=next(o for o in rows if o['kind']=='query_observation' and o['measurement_id']==mid)
+            require(event['sample_end_monotonic_ns']==[w['last_available_sample_end_monotonic_ns'] for w in observation['windows']],'Refusal sample frontier differs')
+        else:require(hi<=event['checked_at']['monotonic_ns'],'Horizon refusal before boundary')
         require((cfg['experiment_id'],mid) not in measured and mid in requests,'Unsubmitted query has a completed call or no intent')
         require(sum(r['previous_state']=='dispatched' and r['state']=='queued' and r['measurement_id']==mid for r in transitions)==1,'Missing unique unsubmitted requeue')
         observations=[r for r in rows if r['kind']=='query_observation' and r['measurement_id']==mid]
@@ -84,7 +96,7 @@ def audit(directory):
         require(cfg.get('submission_availability_contract')=='release_and_wait_for_real_sample_v1','Unregistered submission deferral')
         mid=event['measurement_id'];checked=event['checked_at']['monotonic_ns'];last=event['last_available_sample_end_ns']
         require(identities.get(event['source_query_id'])==mid and checked<=event['recorded']['monotonic_ns'],'Unknown/deferred clock identity')
-        require(last is None or (checked-last)/1e9>cfg['telemetry']['max_age_seconds'],'Deferral did not observe expired sample')
+        require(last is None or (checked-last)/1e9>cfg['three_model_capture']['admission_max_sample_age_seconds'],'Deferral did not observe expired sample')
         require(mid not in requests or checked<requests[mid]['request_start']['monotonic_ns'],'Deferral after SQL intent')
     abandoned=[r for r in rows if r['kind']=='query_observation_not_dispatched']
     abandoned_ids={r['measurement_id'] for r in abandoned}
@@ -177,7 +189,7 @@ def run(config,revision):
     for src,name in ((Path(config),'config.json'),(source_path,'preparation_result.json'),(record_path,'mapping_record.json'),(mapping_audit_path,'mapping_audit.json'),(mapped_path,'mapped_arrivals.csv')):shutil.copy2(src,out/name)
     for i,spec in enumerate(cfg['expected_query_ledgers']):shutil.copy2(verified_file(spec,base),out/f'expected_ledger_{i}.jsonl')
     (out/'expected_query_results.json').write_text(json.dumps(expected,indent=2)+'\n')
-    for frozen_source in (Path(__file__), Path(__file__).with_name('publication.py'), Path(__file__).with_name('collector_bridge.py')):shutil.copy2(frozen_source,code/frozen_source.name)
+    for frozen_source in (Path(__file__), Path(__file__).with_name('publication.py'), Path(__file__).with_name('collector_bridge.py'), Path(__file__).with_name('submission.py'), Path(__file__).with_name('queue_ledger.py')):shutil.copy2(frozen_source,code/frozen_source.name)
     EventLog,StatementRecorder=build_classes(dict(cfg,_protocol_sha256=sha256(Path(config))))
     log=EventLog(out/'events.jsonl',cfg['experiment_id']);rec=StatementRecorder(log);rest=SparkEvidence(cfg['spark_rest_url'],cfg['spark_app_id'],cfg['rest_timeout_seconds'],log);sampler=TelemetrySampler(log,cfg['telemetry']['interval_seconds'],asynchronous_persistence=cfg.get('telemetry_persistence_contract')=='independent_counter_sampling_durable_publish_v1');connections=[];errors=[];threads=[];safe_to_close=False
     log.emit('trace_queue_protocol',configuration=cfg,code_revision=revision,code_sha256={p.name:sha256(p) for p in code.iterdir()})
@@ -267,13 +279,13 @@ def run(config,revision):
             if time.monotonic_ns()>=hi:break
             guard();identity=r['source_query_id'];mid=identities[identity];qid=int(r['query_id']);t=cfg['telemetry']
             if cfg.get('telemetry_availability_contract')=='wait_for_real_durable_sample_v1':
-                if not sampler.wait_for_available_sample(deadline_ns=hi,max_age_seconds=t['max_age_seconds'],measurement_id=mid):break
+                if not sampler.wait_for_available_sample(deadline_ns=hi,max_age_seconds=cfg['three_model_capture']['admission_max_sample_age_seconds'],measurement_id=mid):break
             windows=[sampler.window(seconds=w,max_interval_seconds=t['max_interval_seconds'],max_age_seconds=t['max_age_seconds']) for w in t['window_seconds']]
             with state_lock:query_state=state
             if arm and query_snapshot!=query_state['snapshot_id']:
                 guard();rec.execute(query,f'REFRESH TABLE {table}',role='query_session_state_refresh');query_snapshot=query_state['snapshot_id']
                 if cfg.get('telemetry_availability_contract')=='wait_for_real_durable_sample_v1':
-                    if not sampler.wait_for_available_sample(deadline_ns=hi,max_age_seconds=t['max_age_seconds'],measurement_id=mid):break
+                    if not sampler.wait_for_available_sample(deadline_ns=hi,max_age_seconds=cfg['three_model_capture']['admission_max_sample_age_seconds'],measurement_id=mid):break
                 windows=[sampler.window(seconds=w,max_interval_seconds=t['max_interval_seconds'],max_age_seconds=t['max_age_seconds']) for w in t['window_seconds']]
             if time.monotonic_ns()>=hi:break
             sql=query_templates(table)[qid].replace(f'FROM {table}',f"FROM {table} VERSION AS OF {query_state['snapshot_id']}")
@@ -283,7 +295,7 @@ def run(config,revision):
                     nonlocal dispatched_preparation
                     if cfg.get('submission_availability_contract')=='release_and_wait_for_real_sample_v1':
                         checked=stamp();last=sampler.available_sample_end_ns()
-                        if last is None or (checked['monotonic_ns']-last)/1e9>t['max_age_seconds']:
+                        if last is None or (checked['monotonic_ns']-last)/1e9>cfg['three_model_capture']['admission_max_sample_age_seconds']:
                             raise PreparationSampleUnavailable(checked,last)
                     fresh=[sampler.window(seconds=w,max_interval_seconds=t['max_interval_seconds'],max_age_seconds=t['max_age_seconds']) for w in t['window_seconds']]
                     log.emit('query_observation',measurement_id=mid,query_id=qid,role='trace_query',windows=fresh,**query_state)
@@ -306,10 +318,10 @@ def run(config,revision):
                             log.emit('query_preparation_deferred',measurement_id=mid,source_query_id=identity,
                                      checked_at=unavailable.checked,last_available_sample_end_ns=unavailable.last,
                                      reason='expired_durable_sample_after_lock_acquisition_no_sql_intent')
-                            if not sampler.wait_for_available_sample(deadline_ns=hi,max_age_seconds=t['max_age_seconds'],measurement_id=mid):break
+                            if not sampler.wait_for_available_sample(deadline_ns=hi,max_age_seconds=cfg['three_model_capture']['admission_max_sample_age_seconds'],measurement_id=mid):break
                     if probe is None:break
                     if probe.get('submitted') is False:
-                        ledger.transition(identity,'queued',measurement_id=mid,session_id='query_0',reason='horizon_before_rpc')
+                        ledger.transition(identity,'queued',measurement_id=mid,session_id='query_0',reason=probe.get('refusal_reason','horizon_before_rpc'))
                         dispatched_preparation=False
                         break
                     ledger.transition(identity,'completed',measurement_id=mid,session_id='query_0');probes.append(probe)

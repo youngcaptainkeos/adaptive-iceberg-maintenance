@@ -52,6 +52,16 @@ def run(protocol):
             if path.suffix == '.py':ast.parse(path.read_text(), filename=str(path))
         # Imports/constructors already validated in previous real-evidence audit;
         # parse all registered sources before physical work, with no fake cursor.
+        if 'frontier_regression' in cfg:
+            spec = cfg['frontier_regression']; registration = REPO / spec['path']
+            require(sha(registration) == spec['sha256'], 'Regression registration changed')
+            stage('frontier_regression', [sys.executable, '-B', '-m', 'three_model_maintenance.audits.frontier_guard', '--config', str(registration)])
+            reg_cfg = json.loads(registration.read_text())
+            result_path = (registration.parent / reg_cfg['output_directory']).resolve() / 'result.json'
+            result = json.loads(result_path.read_text())
+            require(result['status'] == 'passed_real_failed_frontier_regression_only' and
+                    result['guard_source_sha256'] == sha(REPO / 'three_model_maintenance/runtime/submission.py'), 'Guard regression missing or stale')
+            report['frontier_regression_sha256'] = sha(result_path); save()
         mapping_config = REPO / cfg['mapping_config']['path']
         require(sha(mapping_config) == cfg['mapping_config']['sha256'], 'Mapping registration changed')
         stage('mapping', [sys.executable, '-B', str(LEGACY / 'prepare_trace_benchmark_mapping.py'), '--config', str(mapping_config)])
