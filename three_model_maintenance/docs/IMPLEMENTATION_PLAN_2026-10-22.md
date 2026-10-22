@@ -101,3 +101,8 @@ scope and independently audit every generated feature, split, prediction and cla
 ## Unit 1 actual completion — 22 October 2026
 
 Source scope passed; raw binding completed9923queries with one explicit pending-state ambiguity. Exact availability and runtime acceptance remain unresolved; no fresh fitting authorized. Metadata8features statement above refers to local file only; server preserved13feature metadata also lacks required schema/validation. See INTEGRITY_REVIEW_2026-10-22.md for hashes, mismatch ID, limitations and next gate. Unit2 source registry and fit registration is next; no fitted A/B/C or scheduler claimed.
+
+
+## Unit 2 partial completion — consumed inventory
+
+Historical inventory and dependency guard implemented and exercised on actual3families; none can be fresh independent evidence. Full prospective registration awaits genuine new manifests, expanded bounds and independently verified freeze. No fitter attached or training authorized. Next estimator source plus fresh-source inventory; see integrity review for actual receipt/hashes.

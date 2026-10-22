@@ -63,3 +63,20 @@ a completed diagnostic containing a mismatch is not an all-clear certificate.
 Current deliverable is verified historical provenance plus explicit unresolved
 boundaries. A/B/C fitting, semantic predictor validation, calibration, independent
 policy benefit and publication readiness remain unestablished.
+
+
+## Subsequent consumed-source gate completion
+
+Implementation `3efc02ea7052c9f46151e574775064464f9edc37` added
+`preparation/fit_registration.py`. Detached worker3 actual inventory completed
+05:24:32.984–05:24:32.997 UTC with all18episodes/9923queries and3families
+reconciled. Each actual consumed family was detected by the same dependency helper
+used by the prospective validator; one quarantined measurement preserved.
+Launcher shell PID1194025; wrapper/client PIDs not separately retained.
+Report `results/three_model_consumed_inventory_20261022/result.json` SHA256
+`25d810b5c62a2f5e0fc82adedb39fe98330ab702d811236a74d3656cac7416d7`;
+registry SHA256 `e7918bdb77440e2e041572414432d54990c42f3edb1fed8317983a3035308495`.
+Mirrored and hashes matched. No execution failure, fit, scoring or SQL.
+Full prospective path not exercised without a genuine new registration; independently
+verified identities, expanded source bounds and pre-outcome protocol freeze remain
+required. `fit_authorized:false` even for a structural registration pass.
