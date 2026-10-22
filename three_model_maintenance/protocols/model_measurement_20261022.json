@@ -1,0 +1,89 @@
+{
+  "schema_version": "three_model_implementation_audit_v1",
+  "inputs": {
+    "export": {
+      "path": "../../results/consistent_collection_20261016/candidates/export_record.json",
+      "sha256": "36052bd626032644e14764accab9c2c9694dd8ff75ff3e04f1e9a0dd27c659fe"
+    },
+    "raw_binding": {
+      "path": "../../results/three_model_raw_features_20261022/result.json",
+      "sha256": "7ea62756ce2d4dd2cd5453633a8ad20bd8ba9b30a43a231fb7cd46834415606e"
+    },
+    "bound_features": {
+      "path": "../../results/three_model_raw_features_20261022/bound_features.jsonl",
+      "sha256": "95bd3748b7734dc66c9cc07c441eda26de2269e95b4370064ebee8fbf1323db3"
+    },
+    "consumed_inventory": {
+      "path": "../../results/three_model_consumed_inventory_20261022/result.json",
+      "sha256": "25d810b5c62a2f5e0fc82adedb39fe98330ab702d811236a74d3656cac7416d7"
+    }
+  },
+  "sources": [
+    {
+      "path": "../../three_model_maintenance/models/__init__.py",
+      "sha256": "1ab554cb817a09d3c6e0a3a021f6ad9a0031465d5cff1d9a5a72a417ceacd496"
+    },
+    {
+      "path": "../../three_model_maintenance/models/latency.py",
+      "sha256": "d837fb9306288331efab9e000fc6624df8d83de30dba64dd0c28fdc12c12292d"
+    },
+    {
+      "path": "../../three_model_maintenance/runtime/__init__.py",
+      "sha256": "cdc542c9e60f289783b4a9664dc5f3acedece24566833be7f7c20d0d56afa805"
+    },
+    {
+      "path": "../../three_model_maintenance/runtime/publication.py",
+      "sha256": "7c1848ba623c5e71c0398f7a8757689b79e27ddd1145c6c27b41fb18145589f1"
+    },
+    {
+      "path": "../../three_model_maintenance/evaluation/__init__.py",
+      "sha256": "278dbf594d97e0cf6d60a08db05db5267203304b7a5aa4aeebbac13db12fa936"
+    },
+    {
+      "path": "../../three_model_maintenance/evaluation/paired.py",
+      "sha256": "b5800ae025b580bc77f7621906f7c355d3813814a820ebf3685b5337d81dff25"
+    },
+    {
+      "path": "../../three_model_maintenance/audits/model_measurement.py",
+      "sha256": "2f5dce144d358469a3efc47daab672fbecccecdcc600ff95c3044e1e9e559c21"
+    }
+  ],
+  "import_modules": [
+    "three_model_maintenance.models.latency",
+    "three_model_maintenance.runtime.publication",
+    "three_model_maintenance.evaluation.paired"
+  ],
+  "feature_names": [
+    "query_id",
+    "file_count",
+    "record_count",
+    "total_bytes",
+    "maintenance_client_pending_at_feature_time",
+    "queue_depth_at_feature_time",
+    "cpu_busy_fraction_60s",
+    "memory_used_fraction_60s",
+    "read_bytes_per_second_60s",
+    "write_bytes_per_second_60s",
+    "cpu_busy_fraction_300s",
+    "memory_used_fraction_300s",
+    "read_bytes_per_second_300s",
+    "write_bytes_per_second_300s"
+  ],
+  "support_policy": "observed_joint_cell_and_training_numeric_box",
+  "estimator_specs": [
+    {
+      "kind": "log_ridge",
+      "alpha": 1.0,
+      "tol": 0.0001,
+      "max_iter": 1000
+    },
+    {
+      "kind": "positive_leaf_tree",
+      "max_depth": 3,
+      "min_samples_leaf": 1,
+      "random_state": 20261015
+    }
+  ],
+  "output_directory": "../../results/three_model_model_measurement_20261022",
+  "rationale": "Read-only real historical admission checks; no fit, old-test prediction/score, new publication or SQL. Estimator parameters instantiate known compact candidate families only; no claimed numerical acceptance. Full rationale in docs/plans/MODELS_AND_CAPTURE_2026-10-22.md. Preserve absent availability and single mismatch."
+}

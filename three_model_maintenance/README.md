@@ -43,3 +43,20 @@ or trained candidate bundle is claimed by adding this package.
 structural candidate-registration check. It cannot authorize fitting: independently
 verified source identity, expanded bounds and immutable pre-outcome registration
 remain mandatory. No prospective end-to-end validation is claimed without real new sources.
+
+## Package map
+
+| Folder | Contents |
+|---|---|
+|`models/`|Separate A/B, shared conditional and independent empirical candidates.|
+|`runtime/`|Opt-in future client-state and durable feature-publication journal.|
+|`evaluation/`|All-ID coverage and paired equal-episode error reporting.|
+|`preparation/`|Raw evidence binding and source/fit-registration guards.|
+|`audits/`|Read-only actual-evidence validation commands.|
+|`protocols/`|Registered hashes, parameters, input/output paths and rationale.|
+|`docs/plans/`, `docs/reviews/`|New implementation plans and actual validation reviews.|
+
+Earlier flat documents/protocols retain their exact paths for historical references.
+See [model/capture plan](docs/plans/MODELS_AND_CAPTURE_2026-10-22.md).
+Estimator and new publication source exists; no accepted fitted bundle or validated
+new physical collector is implied. No current source inventory grants fitting.
