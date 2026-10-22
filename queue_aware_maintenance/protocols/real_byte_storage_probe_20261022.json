@@ -1,0 +1,15 @@
+{
+  "schema_version": "real_byte_storage_probe_v1",
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_evidence_storage_20261022",
+  "source_events": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_timing_20261021/repeated_window0/episodes/queueaware_20261021_timing_01/events.jsonl",
+    "sha256": "a5d9443194c07d278ed3e779d07bf6942f6f796a93ea2bab6c83559768dca887"
+  },
+  "source_group_count": 32,
+  "locations": {
+    "evidence_disk": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_evidence_storage_20261022/evidence_disk",
+    "system_disk": "/var/tmp/capstone_evidence_storage_20261022"
+  },
+  "code_sha256": "84d0183fd809d4c7e15f67a26897237722c06ad8061033313e24860650aaff99",
+  "rationale": "Bounded filesystem diagnostic using first32actual consecutive submission triples from already consumed development ledger, no invented records or query labels. Compare identical pre-encoded original bytes, three separate flush/fsync per group at both locations; first16groups evidence-disk first, next16 system-disk first. Small32pair scope bounds writes while describing latency, not a precision/power or physical-benefit acceptance criterion. Both actualmounts checked: evidence path localext4/dev/sdb, systemlocalext4/dev/sdc3; directory name nfs is not proof of network filesystem. New directories/replay-onlyfiles, original source unchanged, noSQL/model/gate/active-experiment relocation."
+}
