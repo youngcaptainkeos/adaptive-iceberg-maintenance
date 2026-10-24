@@ -2724,3 +2724,7 @@ Locationsystem_disk, all3094queries/full-drain/raw gates passed, zero rewrite. R
 
 ## Queue storage arm completed queueaware_storage_20261024_03 — 2026-10-24T17:33:29.894449+00:00
 Locationsystem_disk, all3094queries/full-drain/raw gates passed, zero rewrite. ResultSHA18b6eadfcbe59020813d45e0db1dc2c96fd621afb33a6acfba0b3fceae722a7d, eventsSHAe0bfbe02a6da16cb9d5e13446e4a340a0d8c5117fdb07a0183e628adfc55fc1b, response2561740580784024ns, drain2867.743902386s. Verified retained working→canonical archive/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_storage_sql_20261024/episodes/queueaware_storage_20261024_03, manifest051b534f6bbc7039a0d861d4f5350a8c92947802e08b5d2cca8813b75d91d2d0. No survivor comparison. Original working evidence retained; full client mirror pending.
+
+
+## Queue storage arm completed queueaware_storage_20261024_04 — 2026-10-24T18:41:51.924956+00:00
+Locationevidence_disk, all3094queries/full-drain/raw gates passed, zero rewrite. ResultSHA4e29d727455c659472e7782f3c7d344487acf38f2b8b43c7b9040878260d3e4a, eventsSHA1d93be4579516a4c284c49a24b4956b64a6b98b8f9520aa257a09beedda524d7, response3717892984900330ns, drain3567.895028777s. Verified retained working→canonical archive/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_storage_sql_20261024/episodes/queueaware_storage_20261024_04, manifest01767b38bd56ced6f231c15b8b14c5fd3a828545ce15fa2c77f9addca09a2cd0. No survivor comparison. Original working evidence retained; full client mirror pending.
