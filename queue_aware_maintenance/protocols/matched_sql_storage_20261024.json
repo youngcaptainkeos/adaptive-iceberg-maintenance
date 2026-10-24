@@ -1,0 +1,227 @@
+{
+  "episode_template": {
+    "engine": {
+      "host": "127.0.0.1",
+      "port": 10000,
+      "username": "ccbd",
+      "expected_version": "3.3.4"
+    },
+    "spark_rest_url": "http://127.0.0.1:4040",
+    "spark_app_id": "local-1791896695889",
+    "rest_timeout_seconds": 5,
+    "telemetry": {
+      "interval_seconds": 1,
+      "window_seconds": [
+        60,
+        300
+      ],
+      "warmup_seconds": 305,
+      "max_interval_seconds": 2,
+      "max_age_seconds": 2,
+      "minimum_coverage_fraction": 0.95,
+      "rationale": "One-second real host counter cadence, five-minute warmup plus five-second margin; retain existing 95% coverage and two-second gap/freshness gates. Exact bounds/available frontier and actual submission freshness are independently checked. No normalized demand assumed."
+    },
+    "preparation_result": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_source_integrity_20261014_0024/result.json",
+      "sha256": "7915b7ac93347b1830c7d27291575faa557d75202a24a27d269a8e85b2656c57"
+    },
+    "expected_query_ledgers": [
+      {
+        "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_matched_q0_20261014/events.jsonl",
+        "sha256": "5529f2a83ffc6fdb6afdfd2a348f037c0919195d599de2da433fd6dab4c5ea40"
+      },
+      {
+        "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_matched_measurement_20261014/events.jsonl",
+        "sha256": "ebcaaaaa752e56c4752cba9f7f49c3c4cef06427dcb78ab26253ba3cdf217510"
+      },
+      {
+        "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_matched_q2_20261014/events.jsonl",
+        "sha256": "fcba244ac5901557bb17395b0b841f241e8ed05a2c881e4188aa7e54a867594f"
+      },
+      {
+        "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf1_matched_q3_20261014/events.jsonl",
+        "sha256": "26847ce0ac1ec9f89cdf0bd4c4ab27c9eb6e5f324c7138069e4e5712e671d87b"
+      }
+    ],
+    "expected_spark_master": "local[16]",
+    "initial_file_count": 16,
+    "connection_count": 3,
+    "archive_interval_seconds": 60,
+    "idle_poll_seconds": 1,
+    "metadata_max_age_seconds": 2,
+    "decision_state_contract": "fresh_current_original_snapshot_v1",
+    "numeric_absolute_tolerance_seconds": 1e-09,
+    "snapshot_model_verification": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/snapshot_model_reconstruction/result.json",
+      "sha256": "b4e062876b3025d572e0faaccfce0ea9080884e55fa9098d8d4b89b1f984ced6"
+    },
+    "snapshot_policy_code_sha256": {
+      "policy.py": "474b83fe1976e925dd283e2aa61a65dcbbdd8cd60afe7b91ecc879246a0cf11a",
+      "snapshot_policy.py": "8a7597552ab5a878a26874ec7c5cd7597be24357b1e48dcb0c6ae2b1a84e6fe5"
+    },
+    "telemetry_wait_contract": "durable_publication_v2",
+    "telemetry_publication_validation": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/publication_sampler_validation/result.json",
+      "sha256": "d17964d7b8b233b82c66ed93057899d2ab8fe573f04f00203058c97b05820371"
+    },
+    "telemetry_publication_audit": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/publication_sampler_independent_audit/result.json",
+      "sha256": "88f8d4dd1e6ecc41fb7262b5ded460e53ebea8be46bff502264633d8a140a882"
+    },
+    "policy_model_version": "snapshot_whole_call_v2",
+    "schema_version": "queue_aware_full_drain_episode_v1",
+    "experiment_id": "queueaware_20261021_timing_04",
+    "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_timing_20261021/repeated_window0/episodes/queueaware_20261021_timing_04",
+    "destination_table": "local.experiment.queueaware_20261021_timing_04",
+    "policy": "no_maintenance",
+    "mapping": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/snapshot_fresh_core_preparation/mapped_arrivals_0.csv",
+      "sha256": "b83a6b4abfe87c24e0c6596be095d4c3f70b05cad4cb6088e6f25ca7bbf31133"
+    },
+    "arrival_count": 3094,
+    "horizon_seconds": 1200.0,
+    "source_start_utc": "2018-02-27T20:40:00.286000+00:00",
+    "source_end_utc": "2018-02-27T21:00:00.286000+00:00",
+    "forecast_history_freeze_utc": "2018-02-27T20:40:00.286000+00:00",
+    "model": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_maintenance_20261019/snapshot_fresh_core_preparation/empirical_costs.json",
+      "sha256": "a6fb2274b6adebe4f23aaaae608567aaacfd054376cb0158fa4f29b40e912d39"
+    },
+    "observation_origin_utc": "2018-02-21T20:00:00.286000+00:00",
+    "arrivals": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/datasets/snowset/arrival_cohort_export_repair_20261014/observed_arrivals.csv",
+      "sha256": "f058f9b99de4989b75941934f185db562cab5e482e700757821e163ddf514d20"
+    },
+    "query_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "forecast_history_days": 6,
+    "decision_interval_seconds": 60,
+    "no_new_operation_after_utc": "2026-10-22T18:30:00+00:00",
+    "limitations": [
+      "Repeated known development window, not independent-family evaluation.",
+      "Forward/reverse order does not eliminate cache/time drift.",
+      "Fixed times mean first controller opportunity; actual submission lag retained.",
+      "Single-client staticSF1/four-template, one rewrite maximum, no ongoing ingestion.",
+      "No calibrated costs, learned policy benefit, generalization or publication novelty accepted.",
+      "No-action ends with different physical layout; observed cohort objective does not invent future benefit."
+    ],
+    "fixed_start_contract": "first_controller_opportunity_v1",
+    "fixed_start_code_sha256": "23b8040d813a66f47e87ea1215029ece6d73f05b4083103379f25b34964fc894"
+  },
+  "baseline_study": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_timing_20261021/repeated_window0/result.json",
+    "sha256": "d3dc5c7446ebf8f57e4ded111779eb613edeee5c007feafadce9b4d99701236c"
+  },
+  "baseline_episode_result": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_aware_timing_20261021/repeated_window0/episodes/queueaware_20261021_timing_04/result.json",
+    "sha256": "f31d9a87ee58362df04971f2bf24378ab3f288a076cae0c9026bfbc00a93ca53"
+  },
+  "physical_code_sha256": {
+    "prepare_and_verify.py": "89d05d8bf346ef1d4fad34176d3c76e528cca585801eb5dcc982b9baeafe62f5",
+    "fixed_start_policy.py": "23b8040d813a66f47e87ea1215029ece6d73f05b4083103379f25b34964fc894",
+    "run_timing_study.py": "7d6d6903367efb857fe1c4e2cf33849ed893aea930a0cbd57a51950cb67ca478",
+    "verify_runtime.py": "228eb8efd17116483e2001c32019e1e5839ad4c0509f1d08d40d30b33fd36030",
+    "simulator.py": "f048d1bee20f7546e9fe9d4ff88c19795d171e16d91f5c10344a308df0f93372",
+    "snapshot_policy.py": "8a7597552ab5a878a26874ec7c5cd7597be24357b1e48dcb0c6ae2b1a84e6fe5",
+    "compare_timing_study.py": "ecb70dda5f2b6dab588ff602de6355d68de4a5fa41526ab5e5358c20d265110d",
+    "register_comparison.py": "45c3e38ba43cb4ed71ca569e899df1b2eb93cd04767642c1eff2280b813bbab0",
+    "inspect_evidence.py": "8089651370e3188e01beb1cbbc05e39f9a5aeeefec60f27fd36b60eb412bc025",
+    "controller_factory.py": "5dc7c753ca00445e85cbe3ee431c4d86371668213d3499547f92c98c40024020",
+    "policy.py": "474b83fe1976e925dd283e2aa61a65dcbbdd8cd60afe7b91ecc879246a0cf11a",
+    "ablation_policy.py": "45304165302f085bada7bfd785070eed4bdb6fba758b6f3daf2d5715d714ac96",
+    "audit_failed_submission_probe.py": "35ff462a43b619702d0a81e52a1614b496a59de9f8a859a4328bee7575f598c0",
+    "compare_study.py": "0ef543c76c2857fa3eb51274c9a5952bf34a2085cd6d42d272b6d76107b23f7a",
+    "verify_controller_wiring.py": "077ca3d4d775b146723e225502e8756b54ed9f365903e5db471f299f86d46f1c",
+    "continue_research.py": "7cec0295b02953dc7268c1edc448c4e7ad131a82a2055e93f3b9e583f70a1a3c",
+    "inspect_runtime_budget.py": "6136c0a3267b3471b2190db0ea83d0232cdd772a355ec7e448b56c9ea3b19d63",
+    "audit_simulator_semantics.py": "6b431055ac76c383734b867c131029dd03560de1818d6afa03fc97d2222b72af",
+    "common.py": "93135bb13c812814cd968c524b71eca418c3579cb4784f029dde1ed086a40187",
+    "ledger.py": "a675e9c77b9432aec36ef50618b60d85f2c2ac95dce28076a884a84c6ea51df7",
+    "snapshot_simulator.py": "226c80b20fb9e593d3b5827dacaf1bfc537adb7b7049266a11103dbb002cce46",
+    "audit_episode.py": "fc80c3b8c046117c1cce8f8952c1b9d56d87f6bb365aba0ea72a53ac10d641d7",
+    "run_study.py": "ebf82bd57badf7ce7f935e3f31aca3fbeb7444e38b2fc876b09adc1c904f8c04",
+    "engine_evidence.py": "854848b67cb551f95dcb1feca45c5acaf6c137d40f4d62abdb8661dd67273fe4",
+    "audit_publication_sampler.py": "bfb6c9ceb8a7ef2f688497ea52c1710e36d990c03779cc9e9195969e4542dbd2",
+    "publication_sampler.py": "37021bc74dde98d76c8192e2c77662029a71214bfacd0658b0007d62456b1968",
+    "verify_publication_sampler.py": "ee284d27057b1c8c13ab71310ef38fe1ff5fdce86fcfe6bafe81c8882e4678ec",
+    "costs.py": "2afe95eedac7876845b1a4859b9b88756710ac6e89d8ccea203b4766622cf127",
+    "resource_admission.py": "1bb9ca5533b25cce7476601cace0e2b899aa6cd902df02fcf1855a522a29b94a",
+    "audit_preserved_cohort.py": "d093311b5a0ab0c1395ceb04db4e1431eb5bc37bf5b297d431df29787fe89c71",
+    "verify_snapshot_model.py": "fdc6f14f9a656357f18607cb9b8ab4857178d08778ca76c5aa76a26c00f33710",
+    "run_episode.py": "10b98d73503bbfa253b0fd79ec2f02fea3681aafd87accbc58e583ca9de3cd70",
+    "audit_schedule_constraints.py": "64cb9df22db24f33a0c00653a16bf7cbea38b351561799f31df9d8fc3d54fcd5",
+    "preflight_timing_study.py": "9400f3118a0be0aecb38eae0dce3ef75b0ed85e7e94e1b9619233b85b72341c6",
+    "follow_terminal_study.py": "3653d387a33097f94a38fa8bc2d931ffdad364a24c245f1f74ce8f0ece50917e",
+    "forecast.py": "5421a4e0b50c6645fcf82cf8921e899150a8dc025be750a74ec4363b989e8cb3",
+    "sampler_factory.py": "6dfdbad4fb54fc78abcdd22b141542e5b392109dbf723af1bbe5ff5af987696c",
+    "probe_submission_overhead.py": "ac8cba2b5e00bf2c2893694bb582811c703cad9c14d4fce75f5ce5e4f4922aca",
+    "diagnose_completed_arm.py": "190d306f95b0182b60901818765dba48dea846dd9e3379df2ebd0b2536ff1890",
+    "verify_multiset_repair.py": "f6652c5cb637fda11744e19bdb1fc5c86472677e71d66c248394f7644bd7cce2",
+    "instrumentation/engine_archive.py": "c267be72e53da8074bcfe0312a037285f2cf9d6f768df369a59dfc6374189fc9",
+    "instrumentation/run_correctness_pilot.py": "de622efc4df5f4955440a81d8bc2c2b0d2a898d1ae740549f35a5901e23e74c7",
+    "instrumentation/statement_timing.py": "36bb31ff8f6fefde40df9d2368fa283c46b8df7107801e53d270932718105559",
+    "instrumentation/engine_overlap.py": "ce2d8d9ccb0c1cf486e7ff86b39d2a737450747ebdee9b70297a07d8cd475109",
+    "instrumentation/experiment_validation.py": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4",
+    "instrumentation/telemetry_binding.py": "81b943944f021f0d50dd9d0b1274d1c9f9851e7760160f7b7e025aeb4d73dfea",
+    "instrumentation/physical_measurements.py": "ced25f2b27a84176636b3159e0ee018225e07562b440498c69cf715aa2d51b8d",
+    "instrumentation/query_observation_binding.py": "e344b9f949cf7860566aa6c8fa9d6614349204b6c882c5fda08fa37a2f48fe6b"
+  },
+  "schema_version": "matched_sql_evidence_storage_abba_v1",
+  "canonical_repository": "/mnt/nfs-storage/shashank_prafullathta/implementation",
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_storage_sql_20261024",
+  "experiment_prefix": "queueaware_storage_20261024",
+  "physical_runtime": "/tmp/capstone_timing_20261021_v2",
+  "physical_revision": "790f4f89d1d8cbe821903af79392134bfb1c6bbb",
+  "order": [
+    "evidence_disk",
+    "system_disk",
+    "system_disk",
+    "evidence_disk"
+  ],
+  "locations": {
+    "evidence_disk": {
+      "working_root": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_storage_sql_20261024/working_evidence",
+      "device_reference": "/mnt/nfs-storage"
+    },
+    "system_disk": {
+      "working_root": "/home/ccbd/capstone_evidence/queue_storage_sql_20261024",
+      "device_reference": "/home/ccbd"
+    }
+  },
+  "per_arm_byte_budget": 1357964312,
+  "final_reaudit_budget_seconds": 1200,
+  "no_new_episode_after_utc": "2026-10-25T00:00:00+00:00",
+  "no_new_SQL_after_utc": "2026-10-25T03:00:00+00:00",
+  "documentation_delivery": "worker_commits_deferred_push_v1",
+  "deferred_push_user_authorization": "Proceed; defer documentation pushes",
+  "notification_configuration": "/mnt/nfs-storage/shashank_prafullathta/implementation/docs/experiment_protocols/failure_notifications.json",
+  "limitations": [
+    "Four runs/two reversed-order pairs of one previously consumed development source window; no independent-day generalization or significance.",
+    "Serial-client static SF1/four custom SQL templates, not the official TPC-H query suite or source Snowset SQL.",
+    "Storage device is the only intended experimental change; ABBA cannot remove all cache/time drift or host interference.",
+    "No compaction/model fitting or scheduling decisions compared; no policy, calibration or novelty acceptance.",
+    "Full durable logging/archive cadence/strict freshness and whole-cohort audits unchanged, not SQL-only timing.",
+    "Persistent work and canonical copies retained; full laptop mirror pending explicit checksum verification."
+  ],
+  "parameter_rationale": {
+    "four_runs": "Two per device in ABBA order balances early/late placement without an outcome-selected extra repeat. Engineering comparison only, no power claim.",
+    "per_arm_byte_budget": "4 x maximum actual eight-arm footprint339491078bytes; conservative retained-growth headroom, not a performance gate. Require4 x per-arm budget free before physical arms, preserve all copies.",
+    "cutoffs": "Newly authorized24Oct sequence. Observed maximum whole-arm wall+305s margin each+1200s final reaudit ~5.5h. No episode after25Oct00UTC or new SQL after03UTC, later reserve for setup/drift/full drain; never kill active calls.",
+    "no_maintenance": "Isolate evidence path; unchanged16file layout throughout, no confounding physical rewrite or prospective model decision.",
+    "final_reaudit_budget_seconds": "Four x300s planning margin over earlier measured ~193s per-arm reaudit, not a hard timeout.",
+    "source": "Exact3094arrival/1200s known development mapping used before, never thin/retime/remap; all24,752old labels remain consumed."
+  },
+  "coordinator_code_sha256": {
+    "queue_aware_maintenance/runtime/run_storage_comparison.py": "0d8eec426999fcede86dced98f33e6aa9bbee8f093ec4edf58c82951e05746ee",
+    "queue_aware_maintenance/observability/evidence_workspace.py": "efc7da0b0abfc2036d647275b1d30e937b5b0f45dd75a7b9df82622ddc47e95d",
+    "queue_aware_maintenance/core/common.py": "27850bdf61388f1ff1e8181fb6d71b9dd65e75f54626171769b2d9fa4c808e60",
+    "queue_aware_maintenance/runtime/run_timing_study.py": "7661292bcae94ec8c6377bbf8b2da4c83226cda13af1b10bb055776d65c204df",
+    "queue_aware_maintenance/paths.py": "7610120dc4f6d0ed4ace2584ef34a1d8b2cd1b6e12ba17e24a6659935bb9467c",
+    "scripts/phase6-live-evaluation/run_with_failure_alert.py": "6676a7940610e3521cab6e01f5f0064b0f6261fa1d6c2b7e286d43a7dda25b50",
+    "scripts/phase6-live-evaluation/failure_notifications.py": "5d1e072246410c78287373c76e0d962913880deb248fdcfc70ddbeb173642f2c"
+  }
+}
