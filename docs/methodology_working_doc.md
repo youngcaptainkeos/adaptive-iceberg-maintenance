@@ -2716,3 +2716,7 @@ Waitroot /home/ccbd/capstone_three_model_evidence/sf10_deferred_20261024_02; lau
 
 ## Queue storage arm completed queueaware_storage_20261024_01 — 2026-10-24T15:40:30.914971+00:00
 Locationevidence_disk, all3094queries/full-drain/raw gates passed, zero rewrite. ResultSHA743a5935a7205dc3b874c0a4a77b5179349f7f90238aa291c43b487ec9d16a30, eventsSHA452b03314f1bd763b48bea18276149b2d90e43089ab6766796c9047461eefab8, response4443071570950058ns, drain3993.059247732s. Verified retained working→canonical archive/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_storage_sql_20261024/episodes/queueaware_storage_20261024_01, manifest0f35f89bf7e4b942f420881242eaa9706ca78ea510a2ef54000859d7d344c5b1. No survivor comparison. Original working evidence retained; full client mirror pending.
+
+
+## Queue storage arm completed queueaware_storage_20261024_02 — 2026-10-24T16:37:08.455185+00:00
+Locationsystem_disk, all3094queries/full-drain/raw gates passed, zero rewrite. ResultSHA37cac388303d1f5bef681608ebb8ff5114e65dd77473bc32955c6083fa989864, eventsSHA5b0a2d808da86bf97574db4e935f7411b1f5adc9ec0a118af978d45e23e82d74, response2581326524665968ns, drain2879.327683174s. Verified retained working→canonical archive/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_storage_sql_20261024/episodes/queueaware_storage_20261024_02, manifest6b5e16a37a69e93c99faa837752f6607bef8c00043b68c00d941b63d422b7d2f. No survivor comparison. Original working evidence retained; full client mirror pending.
