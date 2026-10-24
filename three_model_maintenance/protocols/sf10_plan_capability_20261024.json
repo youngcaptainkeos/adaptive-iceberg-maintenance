@@ -1,0 +1,512 @@
+{
+  "schema_version": "sf10_query_plan_capability_v1",
+  "experiment_id": "sf10_plan_capability_20261024_01",
+  "scale_factor": 10,
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_sf10_plan_capability_20261024_01",
+  "dataset_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/datasets/tpch/sf10_generated_20261024_01",
+  "table_prefix": "integrity_sf10_20261024_01",
+  "no_new_operation_after_utc": "2026-10-24T18:30:00+00:00",
+  "notification_topic": "https://ntfy.sh/shashank_capstone_alerts",
+  "required_free_bytes": 107374182400,
+  "minimum_available_memory_bytes": 17179869184,
+  "duckdb_memory_limit": "8GB",
+  "duckdb_threads": 4,
+  "lineitem_file_count": 64,
+  "engine": {
+    "host": "127.0.0.1",
+    "port": 10000,
+    "username": "ccbd",
+    "expected_version": "3.3.4"
+  },
+  "expected_spark_master": "local[16]",
+  "rest_url": "http://127.0.0.1:4040",
+  "spark_app_id": "local-1791896695889",
+  "rest_timeout_seconds": 5,
+  "generator": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/datasets/tpch/TPC-H-Tool/TPC-H V3.0.1/dbgen/dbgen",
+    "sha256": "03b46c1f9196fe4f24fdc3ba4bf47dad104cca75a0b4de4d2aec7950985d29f2"
+  },
+  "distributions": {
+    "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/datasets/tpch/TPC-H-Tool/TPC-H V3.0.1/dbgen/dists.dss",
+    "sha256": "4dc56300de1e5ac5e1900519794538e2b5d1b6caf5cd55703bf53000dd748876"
+  },
+  "schema_origin": {
+    "path": "docs/experiment_protocols/sf100_typed_source_audit_20261014.json",
+    "sha256": "1717dc890faf59644e8106d62e228ac50f462cf97cfd914c7b0415e21eadd298"
+  },
+  "schemas": {
+    "customer": [
+      {
+        "name": "C_CUSTKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "C_NAME",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "C_ADDRESS",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "C_NATIONKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "C_PHONE",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "C_ACCTBAL",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "C_MKTSEGMENT",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "C_COMMENT",
+        "type": "VARCHAR"
+      }
+    ],
+    "orders": [
+      {
+        "name": "O_ORDERKEY",
+        "type": "BIGINT"
+      },
+      {
+        "name": "O_CUSTKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "O_ORDERSTATUS",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "O_TOTALPRICE",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "O_ORDERDATE",
+        "type": "DATE"
+      },
+      {
+        "name": "O_ORDERPRIORITY",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "O_CLERK",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "O_SHIPPRIORITY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "O_COMMENT",
+        "type": "VARCHAR"
+      }
+    ],
+    "lineitem": [
+      {
+        "name": "L_ORDERKEY",
+        "type": "BIGINT"
+      },
+      {
+        "name": "L_PARTKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "L_SUPPKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "L_LINENUMBER",
+        "type": "INTEGER"
+      },
+      {
+        "name": "L_QUANTITY",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "L_EXTENDEDPRICE",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "L_DISCOUNT",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "L_TAX",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "L_RETURNFLAG",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "L_LINESTATUS",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "L_SHIPDATE",
+        "type": "DATE"
+      },
+      {
+        "name": "L_COMMITDATE",
+        "type": "DATE"
+      },
+      {
+        "name": "L_RECEIPTDATE",
+        "type": "DATE"
+      },
+      {
+        "name": "L_SHIPINSTRUCT",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "L_SHIPMODE",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "L_COMMENT",
+        "type": "VARCHAR"
+      }
+    ],
+    "part": [
+      {
+        "name": "P_PARTKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "P_NAME",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "P_MFGR",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "P_BRAND",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "P_TYPE",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "P_SIZE",
+        "type": "INTEGER"
+      },
+      {
+        "name": "P_CONTAINER",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "P_RETAILPRICE",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "P_COMMENT",
+        "type": "VARCHAR"
+      }
+    ],
+    "partsupp": [
+      {
+        "name": "PS_PARTKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "PS_SUPPKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "PS_AVAILQTY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "PS_SUPPLYCOST",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "PS_COMMENT",
+        "type": "VARCHAR"
+      }
+    ],
+    "supplier": [
+      {
+        "name": "S_SUPPKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "S_NAME",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "S_ADDRESS",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "S_NATIONKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "S_PHONE",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "S_ACCTBAL",
+        "type": "DECIMAL(15,2)"
+      },
+      {
+        "name": "S_COMMENT",
+        "type": "VARCHAR"
+      }
+    ],
+    "nation": [
+      {
+        "name": "N_NATIONKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "N_NAME",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "N_REGIONKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "N_COMMENT",
+        "type": "VARCHAR"
+      }
+    ],
+    "region": [
+      {
+        "name": "R_REGIONKEY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "R_NAME",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "R_COMMENT",
+        "type": "VARCHAR"
+      }
+    ]
+  },
+  "table_order": [
+    "region",
+    "nation",
+    "supplier",
+    "customer",
+    "part",
+    "partsupp",
+    "orders",
+    "lineitem"
+  ],
+  "expected_rows": {
+    "region": 5,
+    "nation": 25,
+    "supplier": 100000,
+    "customer": 1500000,
+    "part": 2000000,
+    "partsupp": 8000000,
+    "orders": 15000000
+  },
+  "primary_keys": {
+    "region": [
+      "R_REGIONKEY"
+    ],
+    "nation": [
+      "N_NATIONKEY"
+    ],
+    "supplier": [
+      "S_SUPPKEY"
+    ],
+    "customer": [
+      "C_CUSTKEY"
+    ],
+    "part": [
+      "P_PARTKEY"
+    ],
+    "partsupp": [
+      "PS_PARTKEY",
+      "PS_SUPPKEY"
+    ],
+    "orders": [
+      "O_ORDERKEY"
+    ],
+    "lineitem": [
+      "L_ORDERKEY",
+      "L_LINENUMBER"
+    ]
+  },
+  "foreign_keys": [
+    {
+      "table": "nation",
+      "columns": [
+        "N_REGIONKEY"
+      ],
+      "parent": "region",
+      "parent_columns": [
+        "R_REGIONKEY"
+      ]
+    },
+    {
+      "table": "supplier",
+      "columns": [
+        "S_NATIONKEY"
+      ],
+      "parent": "nation",
+      "parent_columns": [
+        "N_NATIONKEY"
+      ]
+    },
+    {
+      "table": "customer",
+      "columns": [
+        "C_NATIONKEY"
+      ],
+      "parent": "nation",
+      "parent_columns": [
+        "N_NATIONKEY"
+      ]
+    },
+    {
+      "table": "partsupp",
+      "columns": [
+        "PS_PARTKEY"
+      ],
+      "parent": "part",
+      "parent_columns": [
+        "P_PARTKEY"
+      ]
+    },
+    {
+      "table": "partsupp",
+      "columns": [
+        "PS_SUPPKEY"
+      ],
+      "parent": "supplier",
+      "parent_columns": [
+        "S_SUPPKEY"
+      ]
+    },
+    {
+      "table": "orders",
+      "columns": [
+        "O_CUSTKEY"
+      ],
+      "parent": "customer",
+      "parent_columns": [
+        "C_CUSTKEY"
+      ]
+    },
+    {
+      "table": "lineitem",
+      "columns": [
+        "L_ORDERKEY"
+      ],
+      "parent": "orders",
+      "parent_columns": [
+        "O_ORDERKEY"
+      ]
+    },
+    {
+      "table": "lineitem",
+      "columns": [
+        "L_PARTKEY",
+        "L_SUPPKEY"
+      ],
+      "parent": "partsupp",
+      "parent_columns": [
+        "PS_PARTKEY",
+        "PS_SUPPKEY"
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "query_id": 0,
+      "name": "filtered_revenue",
+      "sql": "SELECT count(*),sum(L_EXTENDEDPRICE*(1-L_DISCOUNT)) FROM {lineitem} WHERE L_SHIPDATE>=DATE '1995-01-01' AND L_SHIPDATE<DATE '1995-04-01'"
+    },
+    {
+      "query_id": 1,
+      "name": "grouped_lineitem",
+      "sql": "SELECT L_RETURNFLAG,L_LINESTATUS,count(*),sum(L_QUANTITY) FROM {lineitem} GROUP BY L_RETURNFLAG,L_LINESTATUS"
+    },
+    {
+      "query_id": 2,
+      "name": "orders_lineitem_join",
+      "sql": "SELECT o.O_ORDERPRIORITY,count(*),sum(l.L_EXTENDEDPRICE*(1-l.L_DISCOUNT)) FROM {orders} o JOIN {lineitem} l ON o.O_ORDERKEY=l.L_ORDERKEY WHERE o.O_ORDERDATE>=DATE '1995-01-01' AND o.O_ORDERDATE<DATE '1995-02-01' GROUP BY o.O_ORDERPRIORITY"
+    },
+    {
+      "query_id": 3,
+      "name": "customer_orders_lineitem_join",
+      "sql": "SELECT c.C_MKTSEGMENT,count(*),sum(l.L_QUANTITY) FROM {customer} c JOIN {orders} o ON c.C_CUSTKEY=o.O_CUSTKEY JOIN {lineitem} l ON o.O_ORDERKEY=l.L_ORDERKEY WHERE o.O_ORDERDATE>=DATE '1995-01-01' AND o.O_ORDERDATE<DATE '1995-04-01' GROUP BY c.C_MKTSEGMENT"
+    },
+    {
+      "query_id": 4,
+      "name": "group_sort_top_parts",
+      "sql": "SELECT L_PARTKEY,count(*) AS n FROM {lineitem} WHERE L_SHIPDATE>=DATE '1996-01-01' GROUP BY L_PARTKEY ORDER BY n DESC,L_PARTKEY LIMIT 20"
+    },
+    {
+      "query_id": 5,
+      "name": "five_table_supply_join",
+      "sql": "SELECT r.R_NAME,count(*),sum(ps.PS_SUPPLYCOST) FROM {partsupp} ps JOIN {part} p ON ps.PS_PARTKEY=p.P_PARTKEY JOIN {supplier} s ON ps.PS_SUPPKEY=s.S_SUPPKEY JOIN {nation} n ON s.S_NATIONKEY=n.N_NATIONKEY JOIN {region} r ON n.N_REGIONKEY=r.R_REGIONKEY WHERE p.P_SIZE<25 GROUP BY r.R_NAME"
+    }
+  ],
+  "sources": [
+    {
+      "path": "three_model_maintenance/experiments/__init__.py",
+      "sha256": "c23ed45688d5a96c97706f462f34106b3b0038920e05f4e0261b917aad96f0ec"
+    },
+    {
+      "path": "three_model_maintenance/experiments/scale_query.py",
+      "sha256": "9349c2346e058e22fc12d9611b97bcc012b9dd17eed74d72db4e1f1525db0258"
+    },
+    {
+      "path": "three_model_maintenance/preparation/query_plan.py",
+      "sha256": "eabdd2d415c9cd61074d9814a8a419f1d2d1010ae3d4d58f2247b5153b019949"
+    },
+    {
+      "path": "three_model_maintenance/contracts.py",
+      "sha256": "25142e1aaad374549e874260a630cffdb41115f02e53918901e86cc7de0927b8"
+    },
+    {
+      "path": "three_model_maintenance/training/data.py",
+      "sha256": "4cfd37c0b8f12b7f37ec56d78ea5f211a91c6238e5a4c89ac1374b7a538a9ded"
+    },
+    {
+      "path": "three_model_maintenance/models/latency.py",
+      "sha256": "2490800fd6fdd1964cbfee7c06d0e6be0307d4b548baea93b3d0b759b2b34ffa"
+    },
+    {
+      "path": "three_model_maintenance/runtime/publication.py",
+      "sha256": "be94a0b4e1d335c2f4926ed328760a4f860941a3745ea94aef7e9f7487fdc6d5"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/physical_measurements.py",
+      "sha256": "ced25f2b27a84176636b3159e0ee018225e07562b440498c69cf715aa2d51b8d"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/experiment_validation.py",
+      "sha256": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/run_with_failure_alert.py",
+      "sha256": "6676a7940610e3521cab6e01f5f0064b0f6261fa1d6c2b7e286d43a7dda25b50"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/failure_notifications.py",
+      "sha256": "5d1e072246410c78287373c76e0d962913880deb248fdcfc70ddbeb173642f2c"
+    }
+  ],
+  "cost_training_accepted": false,
+  "matched_pending_state_corpus": false,
+  "sf100_ready": false,
+  "rationale": "Fresh proper generator SF10 (not sampledSF100), all8tables typed/lexical/PK/FK validation, independently measured DuckDB query references, Spark full-row multiset validation and real6customquery preexecution plans before/after useful rewrite. No new cost labels or old-model promotion. Operational100GiBdisk budget covers approximately11GBraw, typedreference, Iceberg and conservative external-spill headroom; not guaranteed peak.16GiBavailable floor=2x8GBofflineparserbudget;4threads limit competing CPU, no serviceconfig/restarts.64lineitemfiles is named fragmentation intervention to test larger-scale rewrite eligibility, not natural ingestion or hardcodedpolicy. Exactstandardcardinalities fixedtables verifySF10; variablelineitem count measured, no approximate count accepted. Querydates/filter/limit are frozen workload semantics; sixcustomqueries cover filters, aggregates,2/3/5tablejoins and sort, notofficialTPC-Hscore. Generation/fileSHA plus before/after correctness gates required; no request thinning/retry. No newoperation after18:30UTC00:00IST25Oct, activecallsfinishnaturally. COST numeric statistics remain missing/unvalidated, no fallback zero or postquery outcome predictors. Closedloopcapabilityonly: noSnowsetreplay/host-history/pendingA/B/cost-model-trainingclaims; existinglive2s/95percent/historygates unchanged."
+}

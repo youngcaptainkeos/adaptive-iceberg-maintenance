@@ -214,3 +214,12 @@ findings then preregister a consistent independent collection/power protocol.
 ## Three-model ownership and current readiness — 22 October 2026
 
 Main owns three_model_maintenance/; queue planner remains separately owned. First registered read-only audit complete with A70/B4856complete-history queries across3consumedfamilies and12rewrites; no newfit/testscore. Contract/schema groundwork is implemented, fitted A/B/C pipeline not yet complete or accepted. See package docs/READINESS_REVIEW_2026-10-22.md and docs/IMPLEMENTATION_PLAN_2026-10-22.md; next gates raw feature availability adapter and genuinely fresh source/fit registration before candidate fitting. Prior negative test results remain unchanged.
+
+
+## Scale and query-aware extension — 24 October 2026
+
+User-authorized SF10 capability first, SF100 target, matched-layout real-trace
+collection and query-plan-aware comparisons. The staged queue and non-promotion
+gates are in three_model_maintenance/docs/plans/SCALE_QUERY_AND_EVIDENCE_2026-10-24.md.
+The first SF10 pilot is closed-loop capability/correctness only, not a new A/B
+training corpus or proof that prior confounding/generalization is resolved.

@@ -80,3 +80,8 @@ were fitted/audited. Offline training permission never flips live runtime accept
 Actual22October repair01 completed all four stages: A/B/shared exploratory bundles
 and median comparators now exist; [saved result and limitations](docs/reviews/FIRST_DEVELOPMENT_FIT04_2026-10-22.md).
 Runtime/calibration/scheduler remain unaccepted. Eligible A/B layout support is confounded.
+
+The [scale/query-aware roadmap](docs/plans/SCALE_QUERY_AND_EVIDENCE_2026-10-24.md)
+registers a separate SF10 capability pipeline in `experiments/scale_query.py` and
+pre-execution plan parser in `preparation/query_plan.py`. Terminal receipts govern
+actual success; this unit does not retrain old models or authorize SF100/scheduling.
