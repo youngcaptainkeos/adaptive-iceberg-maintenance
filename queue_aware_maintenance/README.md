@@ -56,3 +56,5 @@ This organization changes source locations and imports. It does **not** modify h
 ## Registered storage comparison — 24 October 2026
 
 See [matched real-SQL storage plan](docs/plans/MATCHED_SQL_STORAGE_2026-10-24.md) and `protocols/matched_sql_storage_20261024.json`. It uses four full-drain null-maintenance arms with unchanged proven physical runtime and ABBA evidence-device order. Real-source preflight passed; VPN dropped before confirmed physical launch. Inspect actual remote progress before any launch. Current status and limitations remain in the two methodology documents.
+
+Launch update: VPN restored; the registered four-arm comparison started24October2026 at19:54IST. Initial process/durable-warmup evidence verified, no completed arm yet. The earlier disconnected launch note is superseded. See `results/queue_storage_sql_20261024/progress.json` on worker3 and the plan/methodology for actual stage status; do not start a duplicate.
