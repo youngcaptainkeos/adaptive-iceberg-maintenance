@@ -51,3 +51,8 @@ Actual tests and jobs must run detached on worker3 through `scripts/phase6-live-
 This organization changes source locations and imports. It does **not** modify historical protocol JSON, raw results, frozen worktrees, tables or datasets. Old commands and source hashes in historical documents remain evidence of their original revision; use that frozen revision to reproduce them. Do not rewrite an old registration to fit this tree. A future physical study requires newly reviewed code hashes, paths and proofs.
 
 `paths.source_file()` supports explicit grouped source names and lookup of older flat names. It does not bypass hash checks or make old proofs valid for changed code. New cohort manifests record grouped relative paths and preserve the full package in evidence archives.
+
+
+## Registered storage comparison — 24 October 2026
+
+See [matched real-SQL storage plan](docs/plans/MATCHED_SQL_STORAGE_2026-10-24.md) and `protocols/matched_sql_storage_20261024.json`. It uses four full-drain null-maintenance arms with unchanged proven physical runtime and ABBA evidence-device order. Real-source preflight passed; VPN dropped before confirmed physical launch. Inspect actual remote progress before any launch. Current status and limitations remain in the two methodology documents.
