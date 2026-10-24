@@ -145,3 +145,38 @@ Primary implementation references: Spark3.3.4 EXPLAIN and CSV documentation,
 https://archive.apache.org/dist/spark/docs/3.3.4/sql-ref-syntax-qry-explain.html
 https://archive.apache.org/dist/spark/docs/3.3.4/sql-data-sources-csv.html
 Existing generator README/DSS_PATH/DSS_CONFIG semantics frozen in provenance.
+
+## Resource coordination supersession before any SF10 launch
+
+VPN dropped during intended worker3 sync; SSH exit255 before remote shell, noSF10
+run or data generated. User confirmed restoredVPN. Actual24Oct14:26UTCqueue
+parent2017935/firstphysical2018081 active, four-arm ABBA storage study running under
+shared locks. CanonicalHEAD8d504a0; no01SF10output directory. The other chat's
+published documentation included this plan's original methodology section once;
+retain it without duplicate append. No messaging authorization inferred from its
+coordination messages; read actual server processes/status instead.
+
+Register fresh02prospective source/table/output paths in
+`sf10_plan_capability_after_queue_20261024.json`; original01 remains unattempted.
+New `experiments/deferred_scale.py` and
+`sf10_deferred_after_queue_20261024.json` wait on server without experiment locks,
+SQL, generation, dataset scans or fitting. Startup only checks real committed code
+AST/source/generator/config digests. Poll prerequisite terminal metadata every60s
+on persistenthome; no periodic notifications or physical-operation polling.
+
+Require exact queueprotocolSHA, terminalstatuscompleted,4passed/0failed/0unattempted
+and unchanged independentrawaudit result. Negative performance contrasts do NOT
+block SF10: this gate concerns experiment integrity/resource release, not favourable
+results. Probe sharedlocks, then let SF10parent acquire them independently. A race
+fails before physicalwork rather than competing. Queue failure/auditmissing or
+latestlaunch00:30UTC25Oct (06:00IST) stops with ntfy and SF10unattempted. SF10no-new-
+operation cutoff03:00UTC25Oct (08:30IST); active operations finish naturally. These
+new prospective cutoffs do not extend any running SF10operation. Queue's expected
+end~19:55UTC24Oct01:25IST25Oct is an estimate only, not a launch timer.
+
+Waitreceipt/progress `/home/ccbd/capstone_three_model_evidence/sf10_deferred_20261024_02/`;
+SF10terminal root `results/three_model_sf10_plan_capability_20261024_02/` and fresh
+`datasets/tpch/sf10_generated_20261024_02/`. Parent/child failure wrappers retain
+original status/logs and unique ntfy receipts. Capability completion notification
+comes from the SF10pipeline after all six stages, not from mere waiting/startup.
+No existing service/process/table, activequeuecode/protocol or SF1fit is modified.

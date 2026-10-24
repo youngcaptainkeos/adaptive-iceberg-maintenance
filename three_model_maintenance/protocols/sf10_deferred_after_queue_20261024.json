@@ -1,0 +1,14 @@
+{
+  "schema_version": "deferred_sf10_after_queue_v1",
+  "label": "sf10_deferred_20261024_02",
+  "output_directory": "/home/ccbd/capstone_three_model_evidence/sf10_deferred_20261024_02",
+  "target_protocol": {
+    "path": "three_model_maintenance/protocols/sf10_plan_capability_after_queue_20261024.json",
+    "sha256": "8d412b50799f6620178602c5dd01070145a46b6474a6c9f5ecf80193bb47421a"
+  },
+  "prerequisite_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_storage_sql_20261024",
+  "prerequisite_protocol_sha256": "9d49a6e05bfed4952982bb29bb8ddc3883db773923f6216c6ab2f9d326d63546",
+  "latest_launch_utc": "2026-10-25T00:30:00+00:00",
+  "poll_seconds": 60,
+  "rationale": "One-minute terminal metadata polling only on persistenthome, no resource locks/SQL/generation/training while queue campaign runs. Require all4integritypassed arms and independentrawaudit, regardless negativeperformancecontrast, then probe releasedlocks and let SF10parent independently acquire them. No cooperation messages, killing, reduced queue scope, workload changes or scientific retries. Latestlaunch00:30UTC leaves150minutes before SF10newoperationcutoff03:00UTC; expected duration is not guaranteed. Prerequisite failure/missing audit/deadline alerts and leaves SF10unattempted. Original01registration preserved unattempted; fresh02paths neveroverwrite."
+}
