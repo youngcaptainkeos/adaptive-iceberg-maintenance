@@ -98,3 +98,42 @@ executable digest (`68e380b6a96f0032786f90ff89cc76bd25cd2ceeffe063a9400c89a734a8
 sets JAVA_HOME only in the new process, and requires REST java.home to match.
 An SSH shell had no JAVA_HOME; relying on `/usr/bin/java` could silently change
 runtime. Existing Spark/Java/configuration remains untouched.
+
+### Actual detached launch — 25Oct01:43UTC /07:13IST
+
+Recovery launched on worker3 under nohup/failure wrapper **2195115**, controller
+**2195117**, revision `6fbf0916a6dffd3cd2414dac01bae1fb21b3fa60`.
+Frozen controller SHA
+`3b20f0399e46dc33e44647b426e5f3d6f23c23052d01ddf012f878636ddb9554`;
+protocol SHA
+`0e7965fbae5c9352e2fe027d8b527ccd1a46e06fe1c4aa125d3c0d77aa368378`.
+Client/server HEAD and all five intended code/protocol/review/methodology file
+SHA256s agreed before launch. Concurrent remote queue documentation had caused a
+safe ff-only refusal; merge462997c preserved both histories, then canonical
+worker3 fast-forwarded without resetting dirty files or frozen running code.
+
+At01:43:37UTC the controller was alive, `waiting_for_shared_resources`, zero
+physical stages attempted, no source-data rehash or new Spark service yet. Root
+registration/progress exist only after the frozen source/AST/schema/generator/
+backend/Java digest and committed-protocol checks pass. Thus those startup checks
+passed; they do not validate the new service or physical plans. The prior source
+preflight log is retained rather than overwritten.
+
+Actual other unit2193437 was running its first control episode. Its estimated
+terminal04:37UTC/10:07IST is an estimate, not a launch trigger. Recovery waits
+for its exact terminal receipt and released locks, even if that unit fails.
+If no admission by05:00UTC/10:30IST, stop unattempted and alert. After admission,
+allow roughly30–120minutes for exact ingestion/plan/rewrite checks; next useful
+check around04:45UTC/10:15IST for admission, then11:00–12:30IST for results.
+No new operation after07:00UTC/12:30IST; running calls finish naturally.
+
+Launch log:
+`results/three_model_sf10_scratch_recovery_20261025_03_launch/recovery.log`.
+Progress/terminal:
+`results/three_model_sf10_scratch_recovery_20261025_03/{progress,result}.json`.
+Future persistent backend log:
+`results/three_model_sf10_backend_20261025_03/service.log` (not yet created).
+Launch files/immutable registration and a timestamped waiting-progress snapshot
+are mirrored locally. Live/future raw evidence is not claimed completely mirrored.
+Failure and final capability notifications use the authorized ntfy topic. No03
+SQL, model training, calibrated acceptance or SF100 readiness is claimed here.
