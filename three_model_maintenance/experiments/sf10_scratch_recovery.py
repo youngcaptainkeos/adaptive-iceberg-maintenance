@@ -50,6 +50,15 @@ def frozen(cfg):
 def acquire(cfg, update):
     """No data scans, SQL or service launch while another owner holds locks."""
     while datetime.now(timezone.utc) < datetime.fromisoformat(cfg['latest_start_utc']):
+        predecessor = Path(cfg['resource_predecessor']['result'])
+        if not predecessor.exists():
+            update()
+            time.sleep(cfg['poll_seconds'])
+            continue
+        previous = read(predecessor)
+        require(previous['protocol_sha256'] == cfg['resource_predecessor']['protocol_sha256'] and
+                previous['status'] in cfg['resource_predecessor']['terminal_statuses'] and previous.get('ended_utc'),
+                'Resource predecessor identity/terminal state differs')
         held = []
         try:
             for name in LOCKS:
@@ -159,6 +168,7 @@ def run(protocol):
         temp = root / 'progress.next.json'; temp.write_text(json.dumps(state, indent=2) + '\n'); temp.replace(root / 'progress.json')
     try:
         progress(); held = acquire(cfg, progress); frozen(cfg)
+        state['resource_predecessor_result_sha256'] = sha(Path(cfg['resource_predecessor']['result']))
         # The old terminal failure is an input, not upgraded or hidden.
         original = Path(cfg['original_output_directory'])
         for name, digest in cfg['reused_receipts'].items():

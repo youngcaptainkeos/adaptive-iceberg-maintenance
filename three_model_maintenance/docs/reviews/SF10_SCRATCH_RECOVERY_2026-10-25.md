@@ -79,3 +79,16 @@ resource admission and scheduling-benefit evaluation remain separate gates.
 
 Pending source preflight, targeted commit/synchronization and actual detached
 launch. No fresh03service, SQL or successful capability is claimed by this entry.
+
+25Oct01:42UTC coordination refinement before launch: the newly registered queue
+complexity unit is starting and may wait for a backup before holding its locks.
+The SF10 waiter now requires that exact unit's terminal receipt
+(`results/queue_complexity_maintenance_20261025/result.json`, protocol
+`ade885ec56edb671466828cbc36e648272b550efdd17d7f8e7b473dbfc1ae3a2`)
+**and** resource-lock release. Both successful and failed terminal outcomes allow
+this independent capability repair; there is no favorable-science outcome gate.
+This avoids racing a parent that has not yet acquired locks. Original source-only
+preflight at01:39UTC logged frozen AST/source/schema/generator/backend-digest PASS;
+no SQL/data scans/service startup. Its wrapper2192932 was observed ended; the
+failure-only wrapper emits no success receipt, so no recorded exit-status claim
+is inferred. The added metadata wait requires a new frozen-source check.

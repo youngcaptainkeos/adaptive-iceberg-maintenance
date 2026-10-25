@@ -82,7 +82,7 @@
     },
     {
       "path": "three_model_maintenance/experiments/sf10_scratch_recovery.py",
-      "sha256": "5437e0eb87303db6674b3f271c834908f0c590331df363b07371d00846932f0d"
+      "sha256": "f8e71b0f8add6d4f2c0e74087cfc3e786a7461e3cefbebd8a703a01420f86b79"
     }
   ],
   "binaries": [
@@ -113,6 +113,15 @@
     "Reuse successful original generation/typed lexical PK/FK and independent six query references only after exact receipt and all8 actual source file size/SHA rechecks. Do not copy or reuse failed ingestion. Reused receipts retain original identities/times with explicit reuse manifest; generation/reference stages are not counted as rerun.",
     "Four shared locks held across source rehash/service/SQL/audit.15s metadata-only lock poll; latest lock admission05:00UTC10:30IST; no new stage/SQL after07:00UTC12:30IST; active operations finish naturally. New exclusive03output/backend/tables, no retry/occupied table reuse.",
     "Fresh full eight-table ingestion/count/full bidirectional EXCEPT ALL, twelve real query references and raw pre-execution plan reconstruction, useful lineitem rewrite and full-row preservation unchanged. No sampling, fabricated labels, imputation, tracing or model training.",
-    "180s service readiness budget and5s HTTP/TCP timeout detect startup/configuration failures before SQL. Backend left persistent, with actual launch PID/log/ntfy failure wrapper; no performance success assumed from startup."
-  ]
+    "180s service readiness budget and5s HTTP/TCP timeout detect startup/configuration failures before SQL. Backend left persistent, with actual launch PID/log/ntfy failure wrapper; no performance success assumed from startup.",
+    "Resource reservation: wait for exact newly registered queue complexity unit terminal receipt (success or failure both release this independent capability unit), then acquire all shared locks. This prevents a startup race while that parent waits for its preceding backup. No dependency on favorable scientific outcomes; no source scans/SQL/backend startup while waiting."
+  ],
+  "resource_predecessor": {
+    "result": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_complexity_maintenance_20261025/result.json",
+    "protocol_sha256": "ade885ec56edb671466828cbc36e648272b550efdd17d7f8e7b473dbfc1ae3a2",
+    "terminal_statuses": [
+      "completed_bounded_plan_collection_and_maintenance_validation_only",
+      "failed_preserved_no_retry"
+    ]
+  }
 }
