@@ -1,0 +1,118 @@
+{
+  "schema_version": "sf10_scratch_recovery_v1",
+  "experiment_id": "sf10_scratch_recovery_20261025_03",
+  "original_protocol": {
+    "path": "three_model_maintenance/protocols/sf10_plan_capability_after_queue_20261024.json",
+    "sha256": "8d412b50799f6620178602c5dd01070145a46b6474a6c9f5ecf80193bb47421a"
+  },
+  "original_output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_sf10_plan_capability_20261024_02",
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_sf10_scratch_recovery_20261025_03",
+  "backend_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_sf10_backend_20261025_03",
+  "table_prefix": "integrity_sf10_20261025_03",
+  "latest_start_utc": "2026-10-25T05:00:00+00:00",
+  "no_new_operation_after_utc": "2026-10-25T07:00:00+00:00",
+  "poll_seconds": 15,
+  "backend_startup_timeout_seconds": 180,
+  "rest_timeout_seconds": 5,
+  "required_free_bytes": 107374182400,
+  "minimum_available_memory_bytes": 34359738368,
+  "minimum_system_free_bytes": 5368709120,
+  "spark_home": "/mnt/nfs-storage/shashank_prafullathta/implementation/software/spark-3.3.4",
+  "iceberg_jar": "/mnt/nfs-storage/shashank_prafullathta/implementation/software/spark-3.3.4/jars/iceberg-spark-runtime-3.3_2.12-1.4.3.jar",
+  "warehouse": "/mnt/nfs-storage/shashank_prafullathta/implementation/warehouse",
+  "thrift_port": 10001,
+  "ui_port": 4050,
+  "driver_memory": "16g",
+  "expected_spark_master": "local[16]",
+  "notification_topic": "https://ntfy.sh/shashank_capstone_alerts",
+  "reused_receipts": {
+    "result.json": "45ea9f3d9cce5dc0ecc9802646e406d4abab61777ec6e82eb5d7b05dab61ef05",
+    "generate/result.json": "f48e3b77273aff8dd98e372310ba60f1b89b1c391cde1f366c8f2249d98feeea",
+    "source_reference/result.json": "967cf2b62b715755e870c88fc312bb31f02c62959082f89e934ec4dcfcfc29d4",
+    "source_reference/query_references.json": "fd5d97376cf12dc4de354893c70a1bc53916daf9450512523760ae378393bd59"
+  },
+  "sources": [
+    {
+      "path": "three_model_maintenance/experiments/__init__.py",
+      "sha256": "c23ed45688d5a96c97706f462f34106b3b0038920e05f4e0261b917aad96f0ec"
+    },
+    {
+      "path": "three_model_maintenance/experiments/scale_query.py",
+      "sha256": "9349c2346e058e22fc12d9611b97bcc012b9dd17eed74d72db4e1f1525db0258"
+    },
+    {
+      "path": "three_model_maintenance/preparation/query_plan.py",
+      "sha256": "eabdd2d415c9cd61074d9814a8a419f1d2d1010ae3d4d58f2247b5153b019949"
+    },
+    {
+      "path": "three_model_maintenance/contracts.py",
+      "sha256": "25142e1aaad374549e874260a630cffdb41115f02e53918901e86cc7de0927b8"
+    },
+    {
+      "path": "three_model_maintenance/training/data.py",
+      "sha256": "4cfd37c0b8f12b7f37ec56d78ea5f211a91c6238e5a4c89ac1374b7a538a9ded"
+    },
+    {
+      "path": "three_model_maintenance/models/latency.py",
+      "sha256": "2490800fd6fdd1964cbfee7c06d0e6be0307d4b548baea93b3d0b759b2b34ffa"
+    },
+    {
+      "path": "three_model_maintenance/runtime/publication.py",
+      "sha256": "be94a0b4e1d335c2f4926ed328760a4f860941a3745ea94aef7e9f7487fdc6d5"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/physical_measurements.py",
+      "sha256": "ced25f2b27a84176636b3159e0ee018225e07562b440498c69cf715aa2d51b8d"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/experiment_validation.py",
+      "sha256": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/run_with_failure_alert.py",
+      "sha256": "6676a7940610e3521cab6e01f5f0064b0f6261fa1d6c2b7e286d43a7dda25b50"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/failure_notifications.py",
+      "sha256": "5d1e072246410c78287373c76e0d962913880deb248fdcfc70ddbeb173642f2c"
+    },
+    {
+      "path": "three_model_maintenance/experiments/deferred_scale.py",
+      "sha256": "720e43e09acebdaeb5aeefba9542e68369a1eca8218075cab5c1a64169643cfc"
+    },
+    {
+      "path": "three_model_maintenance/experiments/sf10_scratch_recovery.py",
+      "sha256": "5437e0eb87303db6674b3f271c834908f0c590331df363b07371d00846932f0d"
+    }
+  ],
+  "binaries": [
+    {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/software/spark-3.3.4/bin/spark-submit",
+      "sha256": "98e6f3b89b9092938a0b163a656c2b9051099821966fc7ab5ef9888fa9f62c6a"
+    },
+    {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/software/spark-3.3.4/sbin/start-thriftserver.sh",
+      "sha256": "131ea3793649bae0ab43721ff8bc48af6ef6e095affeede7575187ea56537b66"
+    },
+    {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/software/spark-3.3.4/sbin/spark-daemon.sh",
+      "sha256": "f5ab1f11d9aedfd3f148d5ea08dee73b479a28e339d79d40762fa70dfee078a8"
+    },
+    {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/software/spark-3.3.4/jars/iceberg-spark-runtime-3.3_2.12-1.4.3.jar",
+      "sha256": "00f28bd3e0d06e109ce4e0544d084edfdaed3a102793d4315c56e8876b90bf70"
+    }
+  ],
+  "cost_training_accepted": false,
+  "matched_pending_state_corpus": false,
+  "sf100_ready": false,
+  "rationale": [
+    "Repair engineering cause of failed02 exact lineitem multiset gate: /tmp spill filled. No favorable-outcome retry or relaxed comparison.",
+    "Preserve original service10000/UI4040, all failed02 tables and source. Start distinct persistent service10001/UI4050 with same Spark3.3.4/local16/16g and same Iceberg1.4.3 jar, dedicated Derby/catalog support files and data-disk scratch/java tmp. No stops/restarts/deletes on any exit.",
+    "32GiB available RAM floor before additional16g heap leaves16GiB for offheap/OS/unchanged service; 100GiB data-disk free is minimum spill/warehouse budget, not guaranteed peak; 5GiB system free protects remaining non-scratch system writes. Runtime environment must report requested scratch and Java tmp paths. New process timings are a changed resource configuration, not comparable to old service performance.",
+    "Reuse successful original generation/typed lexical PK/FK and independent six query references only after exact receipt and all8 actual source file size/SHA rechecks. Do not copy or reuse failed ingestion. Reused receipts retain original identities/times with explicit reuse manifest; generation/reference stages are not counted as rerun.",
+    "Four shared locks held across source rehash/service/SQL/audit.15s metadata-only lock poll; latest lock admission05:00UTC10:30IST; no new stage/SQL after07:00UTC12:30IST; active operations finish naturally. New exclusive03output/backend/tables, no retry/occupied table reuse.",
+    "Fresh full eight-table ingestion/count/full bidirectional EXCEPT ALL, twelve real query references and raw pre-execution plan reconstruction, useful lineitem rewrite and full-row preservation unchanged. No sampling, fabricated labels, imputation, tracing or model training.",
+    "180s service readiness budget and5s HTTP/TCP timeout detect startup/configuration failures before SQL. Backend left persistent, with actual launch PID/log/ntfy failure wrapper; no performance success assumed from startup."
+  ]
+}
