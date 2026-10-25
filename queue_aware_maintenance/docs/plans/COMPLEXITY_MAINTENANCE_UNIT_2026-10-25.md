@@ -1,0 +1,49 @@
+# Queue plan features and maintenance-enabled measurement boundary
+
+User authorized this next bounded execution on25October2026 and requires full documentation. The preceding matched storage campaign passed4/4arms,12,376queries and independent raw audits; it did not perform maintenance or establish a scheduler benefit. This unit adds actual pre-execution query-plan features and checks real maintenance under faster evidence storage. It does not train/promote a plan-aware predictor yet.
+
+## Two registered full-cohort episodes
+
+Both use persistent system-disk working evidence with verified canonical terminal archival copies. Same3,094 real arrivals over1,200seconds, four original custom single-table SQL templates, SF1 source6,001,215rows,16initialfiles, three sessions and strict original305second warmup/60-300second host windows. Existing one-second sampling/preparation, two-second gap/age/action-metadata bounds,95%coverage, every-record fsync,60second engine archive, snapshot-pinned answers/actualtasks/FIFO/full-drain response-area gates remain. Fresh two table/output identities; no thinning, fabricated labels, retries or occupied-table reuse.
+
+First arm has no maintenance. Second starts its one allowed real rewrite at the first original controller opportunity at/after600seconds, the midpoint of the original horizon. This records queries on the fragmented layout before and potentially during maintenance; counts are observed, never guaranteed or synthesized. Same-layout support does not equal randomized causal interference evidence. Report actual rewrite time/snapshot/file transition, per-query pending state and complete-history support by query/layout/state. First offered-history windows are explicitly missing; zero is valid only after a full actual monitored window with no offers.
+
+One consumed source family/two episodes, sequential order: this is a bounded engineering/candidate-data unit, not an independent accuracy test, power calculation or policy-benefit trial. No further campaign starts automatically. Original models stay frozen; no scalar objective/SLA or made-up counterfactual is introduced.
+
+## New versioned measurement adapter
+
+The original physical runner at `/tmp/capstone_timing_20261021_v2`, revision790f4f89d1d8cbe821903af79392134bfb1c6bbb, retains its exact original source and sampler/model proofs. New `observability/complexity_adapter.py` explicitly substitutes only the runner module's statement recorder and archive wrapper in the child process; it never patches original files. Original SQL generation, demand, policy, telemetry, fresh-preparation callback and core raw auditor stay unchanged. Adapter source hashes are registered in each raw configuration, copied into `complexity_code/` and independently checked; old raw acceptance alone does not certify the new features.
+
+The recorder calls actual `EXPLAIN FORMATTED` and `EXPLAIN COST` before the first execution of each exact SQL/snapshot pair. It durably records both actual outputs and a structure-only receipt/publication, then binds its real UUID/snapshot/SQL digest and feature availability to the original query UUID before the original telemetry preparation/dispatch/SQL. If preparation must wait again, it retains the same pinned query plan instead of changing the query or emitting duplicate bindings. Plan capture may add latency; its actual overhead remains in the response objective. No claim of comparison to old runs with a different observer boundary.
+
+Static plan reuse is explicitly limited to exact SQL including immutable snapshot, frozen source/session configuration and unchanged Spark environment. No SET/config rewrite is introduced. These are initial pre-execution plans, not post-execution adaptive plans or task statistics. Unknown optimizer rows/bytes areNone and raw COST strings remain diagnostic. Missing/unparseable plans fail admission; no invented complexity score, imputed statistic or unknown-operator zero substitution. Parsed counts cover scans,joins,aggregates,exchanges,sorts,filters/windows and overall operator count; these four single-table templates cannot validate join diversity or unseen-template generalization.
+
+`PlanArchive` adds the exact auxiliary EXPLAIN markers to the unchanged original engine archive's known-request set. It removes no foreign-job/task checks and original actual queries/maintenance still require complete task evidence. Every added plan request is separately identifiable from query-cost labels.
+
+The parser comes read-only from the separate three-model track's frozen `preparation/query_plan.py` and contracts; that track's SF10_02 stopped in prepare, before plan validation. Its generated/reference artifacts and failed/unattempted stages remain unchanged. This unit does not claim that failed SF10 pilot established plan capability.
+
+## Preflight, collection, independent reconstruction
+
+1. Detached worker3 preflight with real-source hashes/sharedlocks, original sampler/model source binding and real EXPLAIN of all four queries against one previously verified immutable terminal snapshot. This is read-only capability evidence, no new query-latency label or reuse of an old physical table for a new performance arm. Independently parse the recorded actual output, IDs and publication chronology. No dummy text or synthetic test cases.
+2. Only if this passes: new frozen coordinator creates both fresh physical configurations and runs the two full cohorts serially. It waits for any prior raw backup sender before physical work, retains all sharedlocks, uses per-stage nohup failure wrappers and ntfy. Both actual old raw and new feature audits must pass before terminal archival publication or the next arm. No failed-stage retry, survivor contrast or favorable support gate.
+3. `audits/audit_complexity_episode.py` independently reconstructs original full-cohort audit/decisions plus every plan output/count/SQL/snapshot/UUID/durable availability binding. It exports host/layout/pending/plan features and actual measured service/response targets, with real60/300second actual-offered counts only when complete past history exists. No future scheduled-but-not-yet-offered event may enter a feature. Client pending is derived only from durable request/completion records available before observation, not post-query task overlap.
+4. After both arms, independently rebuild each complete archived candidate export and original raw result, require byte-identical candidate/support reconstruction, and save every observed contrast/support/missingness. Count fragmented pending/nonpending per query and complete-history subsets; absence remains missing. Both methodology docs append actual source/protocol hashes, log/PID, failures/results/limits and next gate after major units. Worker documentation commits use the earlier explicit deferred-push authorization; laptop/GitHub synchronization happens at the next check.
+
+No fitted-plan model or live queue complexity prediction is claimed. Next gate after successful collection is multiple independent whole-episode/source blocks with sufficient matched layout/state/query support, a versioned plan-aware cost candidate and frozen comparison against query-ID/layout medians. Runtime model integration must wait for genuine predictive validation and honest uncertainty/support gates. Query-plan features alone do not establish novelty.
+
+## Resources, budgets and prospective cutoffs
+
+Worker3 was idle at25Oct01:31UTC, systemdisk21.8GBfree/evidencedisk445.7GBfree; recheck real locks/space/Spark before work. Main notified to avoid competing SF10 scans/fits/SQL. Never cancel or restart processes/services or delete/overwrite tables/data. Reserve1,425,212,104bytes perarm (4xactual maximum previous storage episode356,303,026bytes), require2budgets free before each arm, retain both originals and verified canonical copies. This is admission/growth margin, not an OSquota or performance threshold.
+
+Whole-unit planning uses maximum actually observed four-arm wall duration plus305seconds perarm and900seconds final independent audit allowance, around3hours rather than model-only drain. No new episode after25Oct10:00UTC (15:30IST); no new SQL after13:00UTC (18:30IST). Actual in-flight work finishes naturally; failure/cutoff keeps honest failed/unattempted counts. The old24Oct physical cutoffs are not reused or extended in place.
+
+## Files and functions in plain language
+
+- `runtime/run_complexity_unit.py`: `load` verifies the frozen data/code contract; `preflight` checks real plans; `episode` runs the original engine pipeline through the explicit adapter; `run` schedules and documents both fresh episodes; `analysis` independently rebuilds all results/support without fitting.
+- `observability/complexity_adapter.py`: `capture` obtains/publishes real plans; `install` wires plan binding and auxiliary markers into the existing runner for this new version only. It does not assign a cheap/expensive score or change policy choices.
+- `audits/audit_complexity_episode.py`: `plan_records` rebuilds every feature from actual recorded EXPLAIN output; `audit` proves pre-execution identity/availability and exports actual candidate rows/support with missing-history masks.
+- `protocols/complexity_maintenance_unit_20261025.json`: exact inputs/source hashes/identities/parameters/rationale, immutable after launch.
+
+## Backup scope carried forward
+
+The previous four-arm canonical storage evidence copy and its itemized checksum dry run completed with exit0/no differences during this implementation (prior transport session1935); this supersedes that copy's earlier pending status. It includes all four canonical episodes and analysis/receipts, excluding only duplicate original `working_evidence/` copies retained remotely. The separate older eight-arm backup is still not covered. No old evidence was deleted.
