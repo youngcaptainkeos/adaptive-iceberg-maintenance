@@ -55,7 +55,14 @@ def acquire(cfg, update):
             update()
             time.sleep(cfg['poll_seconds'])
             continue
-        previous = read(predecessor)
+        try:
+            previous = read(predecessor)
+        except json.JSONDecodeError:
+            # A terminal writer may have opened its new file before finishing.
+            # This is a metadata wait, not a physical-stage retry.
+            update()
+            time.sleep(cfg['poll_seconds'])
+            continue
         require(previous['protocol_sha256'] == cfg['resource_predecessor']['protocol_sha256'] and
                 previous['status'] in cfg['resource_predecessor']['terminal_statuses'] and previous.get('ended_utc'),
                 'Resource predecessor identity/terminal state differs')
