@@ -82,7 +82,7 @@
     },
     {
       "path": "three_model_maintenance/experiments/sf10_scratch_recovery.py",
-      "sha256": "ac41359c907bb537ed6ded51636617fade54068c122aa5aedb2edeb83a342b10"
+      "sha256": "3b20f0399e46dc33e44647b426e5f3d6f23c23052d01ddf012f878636ddb9554"
     }
   ],
   "binaries": [
@@ -101,6 +101,10 @@
     {
       "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/software/spark-3.3.4/jars/iceberg-spark-runtime-3.3_2.12-1.4.3.jar",
       "sha256": "00f28bd3e0d06e109ce4e0544d084edfdaed3a102793d4315c56e8876b90bf70"
+    },
+    {
+      "path": "/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java",
+      "sha256": "68e380b6a96f0032786f90ff89cc76bd25cd2ceeffe063a9400c89a734a8df37"
     }
   ],
   "cost_training_accepted": false,
@@ -114,7 +118,8 @@
     "Four shared locks held across source rehash/service/SQL/audit.15s metadata-only lock poll; latest lock admission05:00UTC10:30IST; no new stage/SQL after07:00UTC12:30IST; active operations finish naturally. New exclusive03output/backend/tables, no retry/occupied table reuse.",
     "Fresh full eight-table ingestion/count/full bidirectional EXCEPT ALL, twelve real query references and raw pre-execution plan reconstruction, useful lineitem rewrite and full-row preservation unchanged. No sampling, fabricated labels, imputation, tracing or model training.",
     "180s service readiness budget and5s HTTP/TCP timeout detect startup/configuration failures before SQL. Backend left persistent, with actual launch PID/log/ntfy failure wrapper; no performance success assumed from startup.",
-    "Resource reservation: wait for exact newly registered queue complexity unit terminal receipt (success or failure both release this independent capability unit), then acquire all shared locks. This prevents a startup race while that parent waits for its preceding backup. No dependency on favorable scientific outcomes; no source scans/SQL/backend startup while waiting."
+    "Resource reservation: wait for exact newly registered queue complexity unit terminal receipt (success or failure both release this independent capability unit), then acquire all shared locks. This prevents a startup race while that parent waits for its preceding backup. No dependency on favorable scientific outcomes; no source scans/SQL/backend startup while waiting.",
+    "Explicitly select the original backend Java8 installation rather than ambient SSH PATH; pin actual Java executable SHA and require actual REST java.home before SQL. New isolated conf directory avoids inherited Spark defaults; no original environment files modified."
   ],
   "resource_predecessor": {
     "result": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/queue_complexity_maintenance_20261025/result.json",
@@ -123,5 +128,6 @@
       "completed_bounded_plan_collection_and_maintenance_validation_only",
       "failed_preserved_no_retry"
     ]
-  }
+  },
+  "java_home": "/usr/lib/jvm/java-8-openjdk-amd64"
 }

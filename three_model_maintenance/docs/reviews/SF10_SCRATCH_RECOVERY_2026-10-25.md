@@ -92,3 +92,9 @@ preflight at01:39UTC logged frozen AST/source/schema/generator/backend-digest PA
 no SQL/data scans/service startup. Its wrapper2192932 was observed ended; the
 failure-only wrapper emits no success receipt, so no recorded exit-status claim
 is inferred. The added metadata wait requires a new frozen-source check.
+
+Prelaunch backend audit also pins the actual original Java8 installation and
+executable digest (`68e380b6a96f0032786f90ff89cc76bd25cd2ceeffe063a9400c89a734a8df37`),
+sets JAVA_HOME only in the new process, and requires REST java.home to match.
+An SSH shell had no JAVA_HOME; relying on `/usr/bin/java` could silently change
+runtime. Existing Spark/Java/configuration remains untouched.

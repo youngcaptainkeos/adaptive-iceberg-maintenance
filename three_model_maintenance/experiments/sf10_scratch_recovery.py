@@ -118,7 +118,7 @@ def backend(cfg, root):
                '--hiveconf', 'hive.server2.thrift.port=' + str(cfg['thrift_port']),
                '--hiveconf', 'hive.server2.thrift.bind.host=127.0.0.1',
                '--hiveconf', 'javax.jdo.option.ConnectionURL=jdbc:derby:;databaseName=' + str(directory / 'metastore_db') + ';create=true']
-    env = dict(os.environ, SPARK_HOME=home, SPARK_CONF_DIR=str(directory / 'conf'),
+    env = dict(os.environ, JAVA_HOME=cfg['java_home'], SPARK_HOME=home, SPARK_CONF_DIR=str(directory / 'conf'),
                SPARK_LOCAL_DIRS=str(directory / 'scratch'), SPARK_NO_DAEMONIZE='1',
                SPARK_PID_DIR=str(directory / 'pids'), SPARK_LOG_DIR=str(directory / 'logs'),
                SPARK_IDENT_STRING=cfg['experiment_id'])
@@ -146,7 +146,9 @@ def backend(cfg, root):
                     properties['spark.master'] == cfg['expected_spark_master'] and
                     properties['spark.driver.memory'] == cfg['driver_memory'] and
                     properties['spark.ui.port'] == str(cfg['ui_port']), 'Actual Spark resource profile differs')
-            require(dict(environment['systemProperties'])['java.io.tmpdir'] == str(directory / 'tmp'), 'Actual Java scratch differs')
+            system = dict(environment['systemProperties'])
+            require(system['java.io.tmpdir'] == str(directory / 'tmp') and
+                    system['java.home'] == cfg['java_home'] + '/jre', 'Actual Java scratch/runtime differs')
             require((directory / 'scratch').stat().st_dev == REPO.stat().st_dev, 'Scratch not on registered data filesystem')
             with socket.create_connection(('127.0.0.1', cfg['thrift_port']), timeout=cfg['rest_timeout_seconds']):
                 pass
