@@ -2818,3 +2818,7 @@ Preflightregisteredactualsaved12SF10contractreconstruction/AST/digests/estimator
 PrelaunchSF10campaignaudit: bindexportfamily/roleexplicitlytoactualphysicalmappingrecord, notcallerlabels. Preflight2745089/2745090onworker3 passed26Oct16:00:11UTC21:30:11IST: AST/source/inputdigests/estimatorconstructors and12actualsavedSF10SQL/resultreconstructions, noSQL/fit;0physicalattempts/6unattempted. Preflightoriginalprotocol3ccdbd5e76c541c5e181aa05ec0313ab79880d08c18af3232524dc1308157375, no newcollectoracceptancefromthis. Exportsourcebindingstrengthenedafterthatcheck; refreezebeforephysical, freshpreflightoutputratherthanoverwritingoldreceipt.
 
 Prelaunchbackground-recordingaudit: campaign nowappendsbothmethodologiesonactualarm+export/modelcompletion/failure, targetedworker3commit/pushbetweenphysicalunits; noforcestaging/reset. Unexpectedexistingstagedfiles/pusherrorstopdependentwork/retainraw/documentationerror. ClientHEAD/rawmirrorexplicitlypendingnextconnection, neverfalselycalledsyncedwhilelaptopabsent. Freshpreflight02registrationafterthissourcechange preservesfirstproof. Noactivephysicalcodechanged.
+
+
+## SF10 campaign failure or support blocker preserved — 2026-10-26T16:03:01.347374+00:00
+Error Incomplete/empty source; passed 0/failed 0/unattempted 6. Progress/raw /mnt/nfs-storage/shashank_prafullathta/implementation/results/sf10_models_20261026_01. No automatic physical retry or weakened gate. Fit attempted False; fit completed False. Partial artifacts retained; client mirror pending.

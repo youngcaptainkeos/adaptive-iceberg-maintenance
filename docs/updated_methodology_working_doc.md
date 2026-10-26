@@ -1097,3 +1097,7 @@ NewversionedSF10collector/exact6SQLtypedmultisnapshot+preexecutionplans/observer
 SF10preflight2745089passedactual12savedSQL/typedresults+sourceAST/digests/constructors26Oct21:30IST, noSQL/fit/physicalattempt. Additionalprelaunchauditbindscandidatefamily/role toactualphysicalmapping; refreezeandfreshpreflightbeforephysical, preserveoldproof/noprematurecollectoracceptance.
 
 PrelaunchSF10backgroundledger nowappends/targetedworker3commits/pushesactualarm+export/finalfit/failureevidence; clientHEAD/rawmirrorpendingreconnection. Unexpectedstagedfiles/pushfailurestopsdependencies/preservesraw. Sourcechangedbeforeanyphysicalrun; freshpreflight02required, oldproofretained.
+
+
+## SF10 campaign failure or support blocker preserved — 2026-10-26T16:03:01.347374+00:00
+Error Incomplete/empty source; passed 0/failed 0/unattempted 6. Progress/raw /mnt/nfs-storage/shashank_prafullathta/implementation/results/sf10_models_20261026_01. No automatic physical retry or weakened gate. Fit attempted False; fit completed False. Partial artifacts retained; client mirror pending.
