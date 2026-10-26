@@ -223,3 +223,21 @@ collection and query-plan-aware comparisons. The staged queue and non-promotion
 gates are in three_model_maintenance/docs/plans/SCALE_QUERY_AND_EVIDENCE_2026-10-24.md.
 The first SF10 pilot is closed-loop capability/correctness only, not a new A/B
 training corpus or proof that prior confounding/generalization is resolved.
+
+## SF10 capability gate update — 26 October 2026
+
+Saved SF10 capability evidence now passes the versioned exact typed auditor:
+`three_model_maintenance/audits/sf10_saved_capability.py`, registration
+`three_model_maintenance/protocols/sf10_saved_typed_audit_20261026.json`, result
+`results/three_model_sf10_typed_audit_20261026_01/result.json`, SHA256
+`9db75ebcc8fa23ad84e7831cfb9075913c2a4adae2b13efdf9614ac92c3c99ee`.
+Eight exact ingestions,12query/plan/result/time bindings and useful64→4rewrite
+passed. Historical parent/final v1 auditor failure remains preserved: JSON erased
+Decimal type, requiring explicitly registered SQL projection decoding. Future
+SF10 units must register/use typed result auditing; do not reuse the untyped v1
+auditor or infer numeric text from its contents. See26Oct typed-audit review.
+
+This completes a bounded capability gate only. Next register matched SF10
+trace-driven collection with complete offered history and real plan features;
+then evaluate data support and whole-source split eligibility before fitting.
+No SF10 cost-model/calibration/SF100 resource or scheduler acceptance yet.
