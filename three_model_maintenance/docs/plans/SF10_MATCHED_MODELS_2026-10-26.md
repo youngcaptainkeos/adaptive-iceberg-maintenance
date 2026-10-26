@@ -80,3 +80,30 @@ A completed comparison is exploratory: no calibration, causal maintenance penalt
 SF100 admission, scheduler deployment or publication-readiness claim. Subsequent
 research needs more independent training/calibration/test blocks, resource/scale
 variation and physically tested scheduling benefit against declared baselines.
+
+## Admission failure and prospective02 repair
+
+Original01 failed before any physical work: fixed origin+3600s windows were empty
+for the selected warehouse.0passed/0failed/6unattempted, ntfyHTTP200; original
+protocol/results retained. Real seven-day bin inventory is at
+results/sf10_source_window_inventory_20261026_01. Source day0 is sparse/starts late.
+New02 registers chronological source days1/2/3, **first nonempty starting bin**
+within each day with complete1200s coverage and300s purged consumed-interval
+exclusion. This is source-only admission selection, never latency/action-result
+selection or demand thinning. Preflight must now reconstruct all three full
+source schedules before physical launch, so empty windows fail admission early.
+Same source partitions/workload/SQL/freshness/physical/model gates remain.
+New protocols sf10_models_campaign02_20261026.json and
+sf10_models_preflight02_20261026.json supersede only unattempted01registration;
+they do not reclassify its failed admission as success.
+
+Worker3 HTTPS push lacks interactive credentials (actual128preserved). Do not
+copy tokens or create deploy keys. ops/sync_relay.py performs laptop **transport
+only**: between remote units, fast-forward client (no force/reset), checksum-copy
+canonical raw, verify HEAD/methodology hashes, upload actual mirror acknowledgement,
+then push with existing laptop authentication. Remote keeps scientific work under
+nohup, but waits between units for that acknowledgement and exact commit on GitHub.
+If the laptop sleeps/disconnects or conflicts, relay alerts/stops; remote retains
+all work and waits until the registered deadline, with no process cancellation.
+This dependency is explicit; disconnect safety does not mean unattended GitHub
+authentication magically exists. Scientific tests/fits/SQL never run locally.

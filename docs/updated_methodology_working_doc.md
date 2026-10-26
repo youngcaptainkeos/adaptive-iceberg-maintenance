@@ -1101,3 +1101,8 @@ PrelaunchSF10backgroundledger nowappends/targetedworker3commits/pushesactualarm+
 
 ## SF10 campaign failure or support blocker preserved — 2026-10-26T16:03:01.347374+00:00
 Error Incomplete/empty source; passed 0/failed 0/unattempted 6. Progress/raw /mnt/nfs-storage/shashank_prafullathta/implementation/results/sf10_models_20261026_01. No automatic physical retry or weakened gate. Fit attempted False; fit completed False. Partial artifacts retained; client mirror pending.
+
+
+## SF10 admission failed before physical work; fresh02 repair — 26 October 2026
+01wrapper2746053/2746055 failedemptyfixedsourcewindow:0passed/0failed/6unattempted/noSQL/fit, ntfyHTTP200. Failedserverpush128preserved; failurecommitb044979ff/pushedviaexistinglaptopauth. Actual7daybininventory2746467 noSQLshowslate/sparseday0. New02firstnonemptySTARTbin/complete1200s/purged300s/noconsumedoverlap ondays1/2/3, sourceonlyselection/no latency/actionoutcomes/thinning; fullschedulepreflightnowrequired. Fresh02identities/oldfailurepreserved. No changephysical/statisticalgates/modelbudgets.
+Newlocaltransport-onlysync_relay.py keepsscienceonworker3, ff/checksumraw/HEAD+methodologySHA/actualack/GitHubpushusingexistinglaptopauth/no credentialcopy. Remote pausesbetweenunitsuntilack+GitHubcommit,20spoll/deadline; laptopoff/conflictstopsrelay+alerts/currentphysicalfinishesnaturally. Explicittransportdependency, notautonomouspushclaim. Newpreflight/relay/physicalPIDpending. Detailedplanappend SF10_MATCHED_MODELS_2026-10-26.md.

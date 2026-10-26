@@ -3,7 +3,7 @@
 Fresh tables, original arrival spacing, common-horizon residual ledger. No retry,
 service changes, source-table writes or prediction/calibration promotion.
 """
-import argparse,ast,copy,csv,fcntl,json,os,shutil,subprocess,sys,traceback
+import argparse,ast,copy,csv,fcntl,json,os,shutil,subprocess,sys,time,traceback
 from datetime import datetime,timedelta,timezone
 from pathlib import Path
 import urllib.request
@@ -30,7 +30,20 @@ def document(cfg,title,detail):
         paths=['docs/methodology_working_doc.md','docs/updated_methodology_working_doc.md']
         subprocess.run(['git','add','--',*paths],cwd=REPO,check=True)
         subprocess.run(['git','commit','-m',title,'--',*paths],cwd=REPO,check=True,stdout=subprocess.DEVNULL)
-        subprocess.run(['git','push','origin','main'],cwd=REPO,check=True,stdout=subprocess.DEVNULL)
+        pushed=subprocess.run(['git','push','origin','main'],cwd=REPO,capture_output=True,text=True)
+        # Direct server credentials may be absent. Preserve its actual failure;
+        # a laptop transport relay can publish this exact commit and raw mirror.
+        commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=REPO,text=True).strip()
+        sync=Path(cfg['output_directory'])/('sync_'+commit+'.json')
+        save(sync,dict(commit=commit,direct_push_returncode=pushed.returncode,direct_push_stderr=pushed.stderr,
+                       client_relay_required=pushed.returncode!=0,client_mirror_pending=True))
+        while True:
+            fetched=subprocess.run(['git','fetch','origin','main'],cwd=REPO,capture_output=True,text=True)
+            ack=Path(cfg['output_directory'])/('client_sync_'+commit+'.json')
+            mirrored=ack.exists() and read(ack).get('head')==commit and read(ack).get('raw_checksum_verified') is True and read(ack).get('methodology_SHA256_verified') is True
+            if mirrored and fetched.returncode==0 and subprocess.run(['git','merge-base','--is-ancestor',commit,'origin/main'],cwd=REPO).returncode==0:break
+            require(datetime.now(timezone.utc)<datetime.fromisoformat(cfg['no_new_episode_after_utc']),'GitHub synchronization deadline reached; no dependent work')
+            time.sleep(cfg['sync_poll_seconds'])
     finally:lock.close()
 
 
@@ -43,10 +56,20 @@ def frozen(cfg):
 
 def window(cfg,family):
     cohort=read(Path(cfg['inputs']['cohort']['path']));origin=datetime.fromisoformat(cohort['observation_origin_utc'])
-    start=origin+timedelta(days=family['day_index'],seconds=cfg['source_offset_seconds']);end=start+timedelta(seconds=cfg['horizon_seconds'])
+    require(cfg['selection_rule']=='first_nonempty_start_bin_unconsumed_complete_window','Unregistered source selection')
+    bins=list(csv.DictReader(Path(cfg['inputs']['bins']['path']).open()))
+    registry=read(Path(cfg['inputs']['consumed_registry']['path']))
+    lower=family['day_index']*86400;upper=(family['day_index']+1)*86400
+    choices=[]
+    for r in bins:
+        offset=int(r['elapsed_seconds'])
+        if not (lower<=offset and offset+cfg['horizon_seconds']<=upper and int(r['observed_arrivals'])>0):continue
+        bounds={'start_utc':(origin+timedelta(seconds=offset-cfg['source_history_seconds'])).isoformat(),'end_utc':(origin+timedelta(seconds=offset+cfg['horizon_seconds'])).isoformat()}
+        if not any(intervals_overlap(bounds,p) for p in registry['consumed_families']):choices.append(offset)
+    require(choices,'No nonempty unconsumed starting bin in registered day')
+    start=origin+timedelta(seconds=choices[0]);end=start+timedelta(seconds=cfg['horizon_seconds'])
     require(end<=datetime.fromisoformat(cohort['training_end_utc']),'Window outside original training-arrival partition')
     expanded={'start_utc':(start-timedelta(seconds=cfg['source_history_seconds'])).isoformat(),'end_utc':end.isoformat()}
-    registry=read(Path(cfg['inputs']['consumed_registry']['path']))
     require(all(not intervals_overlap(expanded,r) for r in registry['consumed_families']),'Consumed source interval overlaps new dependency bounds')
     selected=[];total=0;previous=None;ids=set()
     with Path(cfg['inputs']['arrivals']['path']).open() as stream:
@@ -60,7 +83,6 @@ def window(cfg,family):
     require(total==cohort['selected_total_arrivals'] and selected,'Incomplete/empty source')
     selected.sort(key=lambda r:(int(r['offset_ns']),int(r['source_query_id'])))
     for i,r in enumerate(selected):r['query_id']=str(cfg['query_suite'][i%len(cfg['query_suite'])]['query_id'])
-    bins=list(csv.DictReader(Path(cfg['inputs']['bins']['path']).open()))
     base=int((start-origin).total_seconds());included=[r for r in bins if base<=int(r['elapsed_seconds'])<base+cfg['horizon_seconds']]
     require(len(included)==cfg['horizon_seconds']//cohort['configuration']['bin_seconds'] and sum(int(r['observed_arrivals']) for r in included)==len(selected),'Incomplete exact source-bin coverage')
     return start,end,expanded,selected
@@ -89,7 +111,7 @@ def run(protocol,phase='campaign',episode_config=None):
         collect(episode_config,subprocess.check_output(['git','rev-parse','HEAD'],cwd=REPO,text=True).strip());return
     if phase=='export':
         item=read(Path(episode_config));export(item['directory'],item['output'],item['family'],item['role']);return
-    require(cfg['schema_version']=='sf10_matched_comparison_campaign_v1','Unknown campaign registration')
+    require(cfg['schema_version']=='sf10_matched_comparison_campaign_v2','Unknown campaign registration')
     require(subprocess.check_output(['git','show','HEAD:'+str(protocol.relative_to(REPO))],cwd=REPO)==protocol.read_bytes(),'Uncommitted registration')
     root=Path(cfg['output_directory']);root.mkdir(parents=True,exist_ok=False);save(root/'registration.json',cfg)
     state=dict(status='starting',pid=os.getpid(),started_utc=now(),protocol_sha256=sha(protocol),stages=[],passed_episodes=0,failed_episodes=0,unattempted_episodes=2*len(cfg['families']),model_fit_performed=False)
@@ -114,6 +136,10 @@ def run(protocol,phase='campaign',episode_config=None):
             # Actual-source inspection plus estimator constructor checks only; no SQL/fitting.
             from three_model_maintenance.training.sf10_comparison import estimator
             for kind,spec in cfg['comparison']['estimators'].items():estimator(kind,cfg['comparison']['feature_names'],spec)
+            actual_windows=[]
+            for family in cfg['families']:
+                start,end,expanded,arrivals=window(cfg,family)
+                actual_windows.append(dict(family=family,start_utc=start.isoformat(),end_utc=end.isoformat(),expanded_interval=expanded,arrivals=len(arrivals)))
             from three_model_maintenance.runtime.sf10_contract import canonical_result,pin_query
             cap=Path(cfg['capability_directory']);tables={r['table']:r for r in read(cap/'prepare/result.json')['tables']}
             proto=dict(cfg['episode_template'],sf10_tables=tables,query_suite=cfg['query_suite'])
@@ -125,7 +151,7 @@ def run(protocol,phase='campaign',episode_config=None):
             for r in observations:
                 receipt=read(cap/'plan_query'/r['receipt']);mid=r['measurement_id'];qid=r['query_id']
                 require(canonical_result(calls[mid]['rows'],qid,proto)==refs[qid] and requests[mid]['sql']==pin_query(proto,tables['lineitem']['iceberg_table'],qid,receipt['snapshots']['lineitem']),'New contract differs on actual saved SF10 query/result')
-            save(root/'preflight_result.json',dict(status='passed_source_and_twelve_actual_SF10_contract_reconstructions_only',SQL_executed=False,model_fitted=False,actual_saved_query_checks=len(observations),protocol_sha256=sha(protocol)))
+            save(root/'preflight_result.json',dict(status='passed_source_and_twelve_actual_SF10_contract_reconstructions_only',SQL_executed=False,model_fitted=False,actual_saved_query_checks=len(observations),actual_windows=actual_windows,protocol_sha256=sha(protocol)))
             state['status']='completed_preflight_only';return
         caproot=Path(cfg['capability_directory']);prepared=read(caproot/'prepare/result.json');maintenance=read(caproot/'plan_query/maintenance.json')
         tables={r['table']:r for r in prepared['tables']};tables['lineitem'].update(snapshot_id=maintenance['after_snapshot'],file_count=maintenance['after_files'],data_bytes=maintenance['after_bytes'])
