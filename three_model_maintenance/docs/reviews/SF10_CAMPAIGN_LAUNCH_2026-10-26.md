@@ -79,3 +79,11 @@ results/sf10_models_20261026_02_relay_launch and
 results/sf10_models_20261026_02_sync_relay. PID to be read from actual launch JSON;
 relay not claimed alive before its launch. Old source/preflight/failure and fresh
 preflight/launch small evidence mirrored; live/future raw is not fully mirrored yet.
+
+Actual transport relay started16:12:15UTC21:42:15IST, local PID85134, nohup log
+results/sf10_models_20261026_02_relay_launch/relay.log and launch.json. This is
+transport only, not a local scientific run. At16:12UTC the remote first arm had
+completed CTAS and was persisting real1s host counters during305s warmup. No query
+outcome, completed episode, A/B support or trained model is claimed yet. Relay
+actual first Git/raw synchronization remains to be observed; its launch is not
+proof of future credential availability or a complete future raw mirror.
