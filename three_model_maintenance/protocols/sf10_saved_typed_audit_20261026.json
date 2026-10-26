@@ -1,0 +1,173 @@
+{
+  "schema_version": "sf10_saved_typed_audit_v2",
+  "input_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_sf10_scratch_recovery_20261025_03",
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_sf10_typed_audit_20261026_01",
+  "input_files": {
+    "admission/events.jsonl": "af4ede48542ebafeafa387142deb95ab4ce4ab631f4607b7a74b659a1f81a9d8",
+    "admission/result.json": "4d74e5725fb7e05f6ec9e4de63a9c281937444ea50b9718de527cf6047f576ce",
+    "admission.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "audit/failure.json": "c056e77117c13e62af951619455d90239558e2635d6e905e7235886487c34c92",
+    "audit.log": "78c0ec08f553421a11405ce694e087f719a154cd9711f2308c2cd658427864bf",
+    "audit_failure_alert.json": "c753d426b7fc27589dc93982f3cb3b5255ebae182e07b5867d7db1d7be47544b",
+    "backend_environment.json": "84ca9a921dd30b5f8eb41033b52a8ea1012018ea130d8da90213adcf99087146",
+    "backend_launch.json": "9be9b73f5ebf76f3260f817ba0e8f55a48f861789faa4e03c52d76aabd8ac88a",
+    "capacity.json": "14980e3d0545992689142250275a21d9795bb8ce019dc649859463c32ec13d20",
+    "execution_registration.json": "4003129f8ec4aa6b4af900e03eec94dda6341d304c4efcb249a9467ba31eff82",
+    "generate/result.json": "f48e3b77273aff8dd98e372310ba60f1b89b1c391cde1f366c8f2249d98feeea",
+    "plan_query/compacted_0_COST.txt": "aab59a2847839ef7bf5e079304eebf898c1202b9732cb1d57e07405208f4d808",
+    "plan_query/compacted_0_FORMATTED.txt": "0aeeeb91782e28675216c86c091845bab953c2619f97a13d3cbcc8452b3baca2",
+    "plan_query/compacted_0_receipt.json": "59a169e9ce2b8959370a48e6cf3f3b1e09a85dd2a9a2cbf6e8fff78896c8013f",
+    "plan_query/compacted_1_COST.txt": "bcd4e594e17e21ff105e41dcb400de21a721145002d8e1a56f51e57ce32fa82b",
+    "plan_query/compacted_1_FORMATTED.txt": "09b131a5f76aac9b66cbfbf1cb8ef4d6556d6894549ee011c0c48e309166fde7",
+    "plan_query/compacted_1_receipt.json": "8ac832fa85b4f61c318b9ccdd325bd19d6d58cd146b6ed92481f645a1078513e",
+    "plan_query/compacted_2_COST.txt": "a72da2863887a98391f7ff04b281af1d5376527d25352160b61234a9595b4ca6",
+    "plan_query/compacted_2_FORMATTED.txt": "62b3af823c8ed207db730e52748bbef68f6e63ad6b29ee47b351b823fff37dae",
+    "plan_query/compacted_2_receipt.json": "cf8e69e3d774c62112f5c4872943778c7fde18ad7cc0ee3c26a600668e784718",
+    "plan_query/compacted_3_COST.txt": "7c69c62ab34911a7fbce186ba3ee977fdaccf5ab4d803754b3de821da9561401",
+    "plan_query/compacted_3_FORMATTED.txt": "a833b803b1e3edf834163b01de8f4a6f2a8fc04bd5d5f10ab8d2d934f8f01456",
+    "plan_query/compacted_3_receipt.json": "654fb3737f34a920f16ad13516fafe141a90e7e5f25427753979c0035bce27c9",
+    "plan_query/compacted_4_COST.txt": "9b0d002ae15dd7eef48f9400a7f066e80c9517934a2244b5e8cbf4319999e448",
+    "plan_query/compacted_4_FORMATTED.txt": "140df9ccd84c4b2a99f39a555d7f2cb2bdac8b8e9cde32a76c7e4a781ce236e8",
+    "plan_query/compacted_4_receipt.json": "606218fe01ebfbe57c4618b3cf8b034ca54c1092cb1ac926081f35cb645e37c0",
+    "plan_query/compacted_5_COST.txt": "1eddceb86808533f063dacb16dd19078ae8ffb8073a05e7877148c22f1c043ed",
+    "plan_query/compacted_5_FORMATTED.txt": "2409cdc278d1ae23822e7d9a2b3bea67975c02e214b03f6df4da6fc96c4df496",
+    "plan_query/compacted_5_receipt.json": "779a1a554629cd99bfcf130a8dc1b67e4ecc31264e6ce649137ad6d8d80536e5",
+    "plan_query/events.jsonl": "6af0d10d34ee231b2ae1cecdbdb07070463af9bbce37a58dfcf5f88090dba22a",
+    "plan_query/fragmented_0_COST.txt": "d75660c0badc313a307d86e3fa5138fc0dc980255fbaecaddb1ea584900a4f27",
+    "plan_query/fragmented_0_FORMATTED.txt": "96aec5ab46b7419c3e373cc4c2a87684d5e7d3885337286288b19bebeed5d1e1",
+    "plan_query/fragmented_0_receipt.json": "3c40982907962c65dd089a79c4091407986cfd42840a1148297ff6b8e4fe3e66",
+    "plan_query/fragmented_1_COST.txt": "ac54baf32e078c2b0eef458c1135a6ca35850a7eb600042160f847b121520049",
+    "plan_query/fragmented_1_FORMATTED.txt": "3eeda65ce8cb95b1f2f8f076d5d9cd96e5b78c43a9d09393b16221c6b6987f72",
+    "plan_query/fragmented_1_receipt.json": "9ea3172197023cae1d03c55c91db7d0621e101211f8f9c9bad9ee8c48c34a61f",
+    "plan_query/fragmented_2_COST.txt": "d75c5287f3dd5c95baeea19e72c0ba9dc690514a31455bd989394c943e64b28c",
+    "plan_query/fragmented_2_FORMATTED.txt": "ddab7d7faf2ff5df06e43ce46ed9433f7f5c471a8cd4fa4d722e98267d4fa598",
+    "plan_query/fragmented_2_receipt.json": "73603a29ea41f1333a70de391d7ca6307d3f491a02827141597266a5abb9e5bc",
+    "plan_query/fragmented_3_COST.txt": "777fcae6c992803e2fea4f4d2aebbfb5b8d26ae9ca35e3b9ecebb50df3b36aa4",
+    "plan_query/fragmented_3_FORMATTED.txt": "2381d5985703ea1b2a65461472d6b29307e6fcb1a69a404ca99347cf141fc498",
+    "plan_query/fragmented_3_receipt.json": "b43cf599600f7b38cc82acc246056a5f202a1c3f47c6d5ee63377a0ea3fac0e2",
+    "plan_query/fragmented_4_COST.txt": "8e283333d035eb1500ab2ed0732502ac8099af748495226da8d8c15737522eec",
+    "plan_query/fragmented_4_FORMATTED.txt": "185e81050b0d42a274b2151e80691a1f6d9a2e8dad05ae38efa1d931cf17444a",
+    "plan_query/fragmented_4_receipt.json": "1c2d863f15ff45f1e89a555512b19aeedf6c61465cddbb855b302c3be07d465e",
+    "plan_query/fragmented_5_COST.txt": "81ade6448c25c0134ad71248ce0f23952a110c99d64435b587cffb382ce0f6a4",
+    "plan_query/fragmented_5_FORMATTED.txt": "53d581116c7eafbfb6d42836b07f7e22cf021d4f0eab4d51138ea8a8cc79870d",
+    "plan_query/fragmented_5_receipt.json": "3f8c8fd22c99bfcd7cecdce41220f3f36ddb21ef4d610ee518162bc40bd07718",
+    "plan_query/maintenance.json": "3dbed60559ee4d66f4498ba591005b46a778ee8fd15cd08251fae9e6ae2b22dc",
+    "plan_query/observations.json": "f1b80f96df6418a6f8964d86bf9d62187f609573dc76bdadbefd719a453ce692",
+    "plan_query/result.json": "1317f538d9fb62ac785f205cd94ee38ac93f26c942fac7729ef94b3afd2bfa8d",
+    "plan_query.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "prepare/customer_loaded.json": "1fe08c29025e1d4ff5066ba5981b72ba224152e5c072e5c4cf2b5bd61cd9502f",
+    "prepare/events.jsonl": "26d8d7d64b5e3e5d64d9d613f637b3da793d75a237dad36c6ab77d2da20b4100",
+    "prepare/lineitem_loaded.json": "f4797e776ff98cdb958d69f66257244025dbc57fdf2da920e02bd62e265f54cd",
+    "prepare/nation_loaded.json": "2b23759e9560158122713dcee5bb62bf925e5235a1e59a9c276597f72dbc2206",
+    "prepare/orders_loaded.json": "9dddc97378da38ee54ba317329ffaccad5956c2d8ec22ed0010fa159ccf7c73d",
+    "prepare/part_loaded.json": "f1d0a13b60d17234ec4c854e799bdef93d17fe1dfa4afd25adf7daca4aef07d5",
+    "prepare/partsupp_loaded.json": "4948acdef861e4c0dd7fb1433f15c0eeccb6491ba147824681b1309f37e4331d",
+    "prepare/region_loaded.json": "c64fa4e89ff3b7a3f702507c410edafda3960318dad82f46fbf546611bd3d0c2",
+    "prepare/result.json": "66a5d888548e1fa64c49f4bb2f45db7da1477c6e46433dd6cf720d3c8a51d4ba",
+    "prepare/supplier_loaded.json": "95d1849854be604135c79b87f4aa0bb94cccea96c7cedad0391a93b46c086dbc",
+    "prepare.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "progress.json": "684e22d3e44662b0a3c2bef7a34ecaa782063ee1a504113a6ff0d196038fdf99",
+    "registration.json": "0e7965fbae5c9352e2fe027d8b527ccd1a46e06fe1c4aa125d3c0d77aa368378",
+    "result.json": "684e22d3e44662b0a3c2bef7a34ecaa782063ee1a504113a6ff0d196038fdf99",
+    "reuse_manifest.json": "f05aeea190262b1770468259b38922658ba1c8ed42ae6fdc42cb540bc96183f2",
+    "source_reference/query_references.json": "fd5d97376cf12dc4de354893c70a1bc53916daf9450512523760ae378393bd59",
+    "source_reference/result.json": "967cf2b62b715755e870c88fc312bb31f02c62959082f89e934ec4dcfcfc29d4"
+  },
+  "sources": [
+    {
+      "path": "three_model_maintenance/audits/sf10_saved_capability.py",
+      "sha256": "3b31acd68d66936b498e5aca9e0da31fad4c92efcc914b52abb71ae9cd5e62a9"
+    },
+    {
+      "path": "three_model_maintenance/experiments/scale_query.py",
+      "sha256": "9349c2346e058e22fc12d9611b97bcc012b9dd17eed74d72db4e1f1525db0258"
+    },
+    {
+      "path": "three_model_maintenance/preparation/query_plan.py",
+      "sha256": "eabdd2d415c9cd61074d9814a8a419f1d2d1010ae3d4d58f2247b5153b019949"
+    },
+    {
+      "path": "three_model_maintenance/training/data.py",
+      "sha256": "4cfd37c0b8f12b7f37ec56d78ea5f211a91c6238e5a4c89ac1374b7a538a9ded"
+    },
+    {
+      "path": "three_model_maintenance/contracts.py",
+      "sha256": "25142e1aaad374549e874260a630cffdb41115f02e53918901e86cc7de0927b8"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/run_with_failure_alert.py",
+      "sha256": "6676a7940610e3521cab6e01f5f0064b0f6261fa1d6c2b7e286d43a7dda25b50"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/failure_notifications.py",
+      "sha256": "5d1e072246410c78287373c76e0d962913880deb248fdcfc70ddbeb173642f2c"
+    }
+  ],
+  "queries": [
+    {
+      "query_id": 0,
+      "name": "filtered_revenue",
+      "sql": "SELECT count(*),sum(L_EXTENDEDPRICE*(1-L_DISCOUNT)) FROM {lineitem} WHERE L_SHIPDATE>=DATE '1995-01-01' AND L_SHIPDATE<DATE '1995-04-01'",
+      "result_types": [
+        "integer",
+        "decimal"
+      ]
+    },
+    {
+      "query_id": 1,
+      "name": "grouped_lineitem",
+      "sql": "SELECT L_RETURNFLAG,L_LINESTATUS,count(*),sum(L_QUANTITY) FROM {lineitem} GROUP BY L_RETURNFLAG,L_LINESTATUS",
+      "result_types": [
+        "text",
+        "text",
+        "integer",
+        "decimal"
+      ]
+    },
+    {
+      "query_id": 2,
+      "name": "orders_lineitem_join",
+      "sql": "SELECT o.O_ORDERPRIORITY,count(*),sum(l.L_EXTENDEDPRICE*(1-l.L_DISCOUNT)) FROM {orders} o JOIN {lineitem} l ON o.O_ORDERKEY=l.L_ORDERKEY WHERE o.O_ORDERDATE>=DATE '1995-01-01' AND o.O_ORDERDATE<DATE '1995-02-01' GROUP BY o.O_ORDERPRIORITY",
+      "result_types": [
+        "text",
+        "integer",
+        "decimal"
+      ]
+    },
+    {
+      "query_id": 3,
+      "name": "customer_orders_lineitem_join",
+      "sql": "SELECT c.C_MKTSEGMENT,count(*),sum(l.L_QUANTITY) FROM {customer} c JOIN {orders} o ON c.C_CUSTKEY=o.O_CUSTKEY JOIN {lineitem} l ON o.O_ORDERKEY=l.L_ORDERKEY WHERE o.O_ORDERDATE>=DATE '1995-01-01' AND o.O_ORDERDATE<DATE '1995-04-01' GROUP BY c.C_MKTSEGMENT",
+      "result_types": [
+        "text",
+        "integer",
+        "decimal"
+      ]
+    },
+    {
+      "query_id": 4,
+      "name": "group_sort_top_parts",
+      "sql": "SELECT L_PARTKEY,count(*) AS n FROM {lineitem} WHERE L_SHIPDATE>=DATE '1996-01-01' GROUP BY L_PARTKEY ORDER BY n DESC,L_PARTKEY LIMIT 20",
+      "result_types": [
+        "integer",
+        "integer"
+      ]
+    },
+    {
+      "query_id": 5,
+      "name": "five_table_supply_join",
+      "sql": "SELECT r.R_NAME,count(*),sum(ps.PS_SUPPLYCOST) FROM {partsupp} ps JOIN {part} p ON ps.PS_PARTKEY=p.P_PARTKEY JOIN {supplier} s ON ps.PS_SUPPKEY=s.S_SUPPKEY JOIN {nation} n ON s.S_NATIONKEY=n.N_NATIONKEY JOIN {region} r ON n.N_REGIONKEY=r.R_REGIONKEY WHERE p.P_SIZE<25 GROUP BY r.R_NAME",
+      "result_types": [
+        "text",
+        "integer",
+        "decimal"
+      ]
+    }
+  ],
+  "rationale": [
+    "This is a versioned post-failure auditor repair, not a new physical attempt or change to data/SQL/results/timing thresholds. Preserve historical failed v1 audit and terminal receipt; separate successful typed re-audit may supersede only the serialization interpretation.",
+    "Types derive from fixed SQL projections: count/key integer; marketsegment/flags/priorities/region names literal text; exact DECIMAL sums/revenues decimal. JSON default=str erased Decimal type, not its exact digits. Never guess numeric strings, coerce text, use floats/tolerances or impute null. Decimal digit bound28 matches original canonical context and rejects unsupported precision.",
+    "Pin every original package file and all auditor sources; verify raw SQL pairing, all8 exact full-row ingestion comparisons,12phase/query pairs, raw FORMATTED/COST and receipt availability, actual snapshot SQL, exact crossengine results and nanosecond-derived timing, actual useful rewrite and exact multiset preservation. Additional completeness checks strengthen historical gates.",
+    "No source data regeneration, table edits, Spark calls, physical/query rerun, model fitting/promotion, SF100 or scheduling-benefit claims. All execution on worker3 detached with ntfy failure wrapper; no scientific acceptance until complete typed audit passes."
+  ]
+}
