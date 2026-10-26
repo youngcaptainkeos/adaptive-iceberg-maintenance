@@ -2840,3 +2840,7 @@ ActualtransportrelayPID85134 started26Oct16:12:15UTC21:42IST underlocalnohup, lo
 SF10relayactualfirstroundtrip16:13:33UTC21:43IST:85134alive/statussynced, HEADf932ee57121b4fc1b6397304d82128263cd07a2a/client-servermethodologySHA/rawchecksum nodifferences, actualremoteclient_sync_f932ee57121b4fc1b6397304d82128263cd07a2a.json present. Supersedesunobservedlaunchonlyforthissnapshot; activehomeworking/futurecompletedrawstillpending, no scientificacceptance. Parent2748173/control2748516alive/warmup/0passed0failed5unattempted/modelFalse. Frozenphysicalcode/configunchanged.
 
 SF10actualfirstreplayclock26Oct16:16:47.533279UTC21:46:47IST after305srealhosthistory. Observedrawstatement_completed forall6queryIDs0–5(includingmulti-tablejoins) andadditionalcycles; firstq0UUIDeb38c47b48e848ada980dcbbb28e10e4/firstq5UUIDd4cdfa6571ab405c91c278b627d04e4b. Actualclientexecution/liveplan-captureintegrationobserved, notterminaltyped/rawaudit/usableA/B/fitaccuracyacceptance. First300sofferedhistoriesstillmissing/ineligible; completeepisode/raw/export/matchedsupportgatespending. No frozenphysicalcode/configchanged.
+
+
+## SF10 campaign failure or support blocker preserved — 2026-10-26T17:09:16.812666+00:00
+Error Failed sf10_models_20261026_02_day1_window_no_maintenance; preserve all attempts, no retry; passed 0/failed 1/unattempted 5. Progress/raw /mnt/nfs-storage/shashank_prafullathta/implementation/results/sf10_models_20261026_02. No automatic physical retry or weakened gate. Fit attempted False; fit completed False. Partial artifacts retained; client mirror pending.

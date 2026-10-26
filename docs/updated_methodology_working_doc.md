@@ -1116,3 +1116,7 @@ Actuallocaltransportrelay85134/nohupstarted21:42IST26Oct, metadata/logresults/sf
 Relayactual21:43ISTroundtripsyncedHEADf932ee5/checksums+methodologySHA/remoteack,85134alive. Currentcanonicalmetadatasnapshotonly, notactivehome/futurerawacceptance. Parent/controlalivein305swarmup,0passed0failed5unattempted/no modelfit; source/configfrozen.
 
 Actualreplaystarted21:46:47IST26Octafterrealwarmup; first6querytypes0–5clientcallscompleted(includingjoins), morecyclesrunning. Thisisactualexecutiononly; terminalraw/typedresultaudit/eligibleA/Bsupport/fittingstillpending. First300sofferedhistoryineligible; source/configfrozen.
+
+
+## SF10 campaign failure or support blocker preserved — 2026-10-26T17:09:16.812666+00:00
+Error Failed sf10_models_20261026_02_day1_window_no_maintenance; preserve all attempts, no retry; passed 0/failed 1/unattempted 5. Progress/raw /mnt/nfs-storage/shashank_prafullathta/implementation/results/sf10_models_20261026_02. No automatic physical retry or weakened gate. Fit attempted False; fit completed False. Partial artifacts retained; client mirror pending.
