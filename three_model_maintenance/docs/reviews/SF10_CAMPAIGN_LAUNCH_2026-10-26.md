@@ -96,3 +96,13 @@ canonical metadata is mirrored; active home working evidence and future complete
 packages remain pending. No scientific acceptance follows from transport success.
 Parent2748173/child2748516 alive,0passed/0failed/5unattempted, modelFalse; real
 305s host warmup in progress. No new code/config edits while physical work runs.
+
+First actual replay clock recorded16:16:47.533279UTC21:46:47IST after real host
+warmup. Raw statement_completed records observed for all six query IDs0–5,
+including2/3/5table joins, followed by further cycles. Example first query UUID
+ eb38c47b48e848ada980dcbbb28e10e4 and first supply-join UUID
+ d4cdfa6571ab405c91c278b627d04e4b. This confirms actual client execution and live
+plan/capture integration, not yet exact terminal raw/result acceptance, usable
+A/B support or fitted-model accuracy. First300s offered-history records remain
+ineligible for fitting. Complete episode audit/export and matched support gates
+remain pending; no frozen source/config changed during this observation.
