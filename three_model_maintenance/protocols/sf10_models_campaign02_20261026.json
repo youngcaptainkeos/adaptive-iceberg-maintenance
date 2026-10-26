@@ -194,7 +194,7 @@
     },
     {
       "path": "three_model_maintenance/experiments/sf10_campaign.py",
-      "sha256": "a570f5753d47ea20ef31b4b3322b70e15212d7911c937abde0a33753a3ee121a"
+      "sha256": "ed2b6fc063599befe69fcfb793709c101a583050d6e19c6bfc6c2461919ddbf2"
     },
     {
       "path": "three_model_maintenance/experiments/sf10_scratch_recovery.py",

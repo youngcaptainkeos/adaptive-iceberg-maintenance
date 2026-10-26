@@ -211,10 +211,11 @@ def run(protocol,phase='campaign',episode_config=None):
             ' All attempted and unsupported outcomes retained; no test refit/tuning/calibration/scheduler claim. Client mirror pending next connection.')
     except Exception as exc:
         state.update(status='failed_or_blocked_preserved_no_retry',error=str(exc),traceback=traceback.format_exc())
-        try:document(cfg,'SF10 campaign failure or support blocker preserved',
-            'Error '+str(exc)+'; passed '+str(state['passed_episodes'])+'/failed '+str(state['failed_episodes'])+'/unattempted '+str(state['unattempted_episodes'])+
-            '. Progress/raw '+str(root)+'. No automatic physical retry or weakened gate. Fit attempted '+str(state.get('model_fit_attempted',False))+
-            '; fit completed '+str(state['model_fit_performed'])+'. Partial artifacts retained; client mirror pending.')
+        try:
+            if phase!='preflight':document(cfg,'SF10 campaign failure or support blocker preserved',
+                'Error '+str(exc)+'; passed '+str(state['passed_episodes'])+'/failed '+str(state['failed_episodes'])+'/unattempted '+str(state['unattempted_episodes'])+
+                '. Progress/raw '+str(root)+'. No automatic physical retry or weakened gate. Fit attempted '+str(state.get('model_fit_attempted',False))+
+                '; fit completed '+str(state['model_fit_performed'])+'. Partial artifacts retained; client mirror pending.')
         except Exception as error:state['documentation_error']=str(error)
         raise
     finally:
