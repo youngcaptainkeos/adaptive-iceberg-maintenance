@@ -87,3 +87,12 @@ completed CTAS and was persisting real1s host counters during305s warmup. No que
 outcome, completed episode, A/B support or trained model is claimed yet. Relay
 actual first Git/raw synchronization remains to be observed; its launch is not
 proof of future credential availability or a complete future raw mirror.
+
+First actual transport roundtrip observed16:13:33UTC21:43:33IST: PID85134 alive,
+statussynced, HEADf932ee57121b4fc1b6397304d82128263cd07a2a, checksum differencesFalse;
+remote client_sync_f932ee57121b4fc1b6397304d82128263cd07a2a.json exists. This
+supersedes the earlier unobserved-launch note for this snapshot only. Current
+canonical metadata is mirrored; active home working evidence and future completed
+packages remain pending. No scientific acceptance follows from transport success.
+Parent2748173/child2748516 alive,0passed/0failed/5unattempted, modelFalse; real
+305s host warmup in progress. No new code/config edits while physical work runs.
