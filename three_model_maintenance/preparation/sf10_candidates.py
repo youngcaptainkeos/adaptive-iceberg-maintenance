@@ -10,6 +10,8 @@ from three_model_maintenance.contracts import require
 
 def export(directory,out,family,role):
     directory=Path(directory);out=Path(out);cfg=read(directory/'config.json')
+    source_family=read(directory/'mapping_record.json')['source_family']
+    require(source_family['id']==family and source_family['role']==role,'Candidate role differs from physical source registration')
     raw=audit(directory);pub=audit_publications(directory)
     terminal=read(directory/'result.json')
     require(raw['events_sha256']==terminal['events_sha256'] and pub==terminal['three_model_publication_audit'],'Raw/publication audit differs')
