@@ -1,0 +1,497 @@
+{
+  "schema_version": "sf10_matched_comparison_campaign_v1",
+  "label": "sf10_models_20261026_01preflight",
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf10_models_20261026_01_preflight",
+  "working_directory": "/home/ccbd/capstone_three_model_evidence/sf10_models_20261026_01",
+  "capability_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_sf10_scratch_recovery_20261025_03",
+  "horizon_seconds": 1200,
+  "source_history_seconds": 300,
+  "source_offset_seconds": 3600,
+  "arms": [
+    "no_maintenance",
+    "compact_later"
+  ],
+  "families": [
+    {
+      "id": "day0_2100",
+      "day_index": 0,
+      "role": "train"
+    },
+    {
+      "id": "day1_2100",
+      "day_index": 1,
+      "role": "validation"
+    },
+    {
+      "id": "day2_2100",
+      "day_index": 2,
+      "role": "test"
+    }
+  ],
+  "no_new_episode_after_utc": "2026-10-27T02:00:00+00:00",
+  "no_new_SQL_after_utc": "2026-10-27T04:00:00+00:00",
+  "minimum_data_free_bytes": 107374182400,
+  "minimum_evidence_free_bytes": 8589934592,
+  "per_episode_evidence_budget_bytes": 2147483648,
+  "idle_rest_endpoints": [
+    "http://127.0.0.1:4040/api/v1/applications/local-1791896695889/jobs?status=running",
+    "http://127.0.0.1:4050/api/v1/applications/local-1792900113343/jobs?status=running"
+  ],
+  "inputs": {
+    "cohort": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/datasets/snowset/arrival_cohort_export_repair_20261014/cohort_record.json",
+      "sha256": "ca64577fcf057210b7ef390be204ea6746068e024f27a412ede6fa0ee47266d2"
+    },
+    "arrivals": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/datasets/snowset/arrival_cohort_export_repair_20261014/observed_arrivals.csv",
+      "sha256": "f058f9b99de4989b75941934f185db562cab5e482e700757821e163ddf514d20"
+    },
+    "bins": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/datasets/snowset/arrival_cohort_export_repair_20261014/observed_bin_counts.csv",
+      "sha256": "d75d3c32e3b22a50739052f77bbbe6dd744fd14c8d8803e07e579d19bb6106da"
+    },
+    "consumed_registry": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_consumed_inventory_20261022/consumed_registry.json",
+      "sha256": "e7918bdb77440e2e041572414432d54990c42f3edb1fed8317983a3035308495"
+    },
+    "capability_audit": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_sf10_typed_audit_20261026_01/result.json",
+      "sha256": "9db75ebcc8fa23ad84e7831cfb9075913c2a4adae2b13efdf9614ac92c3c99ee"
+    },
+    "query_references": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_sf10_scratch_recovery_20261025_03/source_reference/query_references.json",
+      "sha256": "fd5d97376cf12dc4de354893c70a1bc53916daf9450512523760ae378393bd59"
+    },
+    "prepared": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_sf10_scratch_recovery_20261025_03/prepare/result.json",
+      "sha256": "66a5d888548e1fa64c49f4bb2f45db7da1477c6e46433dd6cf720d3c8a51d4ba"
+    },
+    "maintenance": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_sf10_scratch_recovery_20261025_03/plan_query/maintenance.json",
+      "sha256": "3dbed60559ee4d66f4498ba591005b46a778ee8fd15cd08251fae9e6ae2b22dc"
+    }
+  },
+  "sources": [
+    {
+      "path": "scripts/phase6-live-evaluation/audit_trace_benchmark_mapping.py",
+      "sha256": "97e5919f0bdcf4d13a3835f67f7dfacfbc9532f4ec0001286cd914c86b1bfc95"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/common_horizon_binding.py",
+      "sha256": "4cb9a41f78b24567a845cb21fdd105827b5c0db1dadb6cf4f0cfd0d3b6b8f303"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/engine_archive.py",
+      "sha256": "c267be72e53da8074bcfe0312a037285f2cf9d6f768df369a59dfc6374189fc9"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/engine_overlap.py",
+      "sha256": "ce2d8d9ccb0c1cf486e7ff86b39d2a737450747ebdee9b70297a07d8cd475109"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/experiment_validation.py",
+      "sha256": "4ed5b446b4d2797ed184a9fcb29d78e825be389300e1936906c5cc613be2c6e4"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/failure_notifications.py",
+      "sha256": "5d1e072246410c78287373c76e0d962913880deb248fdcfc70ddbeb173642f2c"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/offered_queue_ledger.py",
+      "sha256": "02577cb5dd9585ccc7a902cbdf5edd170cf687799edfd1d2539db39e5dce995f"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/physical_measurements.py",
+      "sha256": "ced25f2b27a84176636b3159e0ee018225e07562b440498c69cf715aa2d51b8d"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/prepare_trace_benchmark_mapping.py",
+      "sha256": "1b3170ca8126c2926dd4398a639b4ba48723ccda18dc03ef5708b9598a01ff9c"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/query_observation_binding.py",
+      "sha256": "e344b9f949cf7860566aa6c8fa9d6614349204b6c882c5fda08fa37a2f48fe6b"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/run_correctness_pilot.py",
+      "sha256": "de622efc4df5f4955440a81d8bc2c2b0d2a898d1ae740549f35a5901e23e74c7"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/run_trace_queue_diagnostic.py",
+      "sha256": "2b8d7010be3ab333c387c265ef2b76cf9f34dcfb2b5a23586e4984c57606121b"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/run_with_failure_alert.py",
+      "sha256": "6676a7940610e3521cab6e01f5f0064b0f6261fa1d6c2b7e286d43a7dda25b50"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/statement_timing.py",
+      "sha256": "36bb31ff8f6fefde40df9d2368fa283c46b8df7107801e53d270932718105559"
+    },
+    {
+      "path": "scripts/phase6-live-evaluation/telemetry_binding.py",
+      "sha256": "81b943944f021f0d50dd9d0b1274d1c9f9851e7760160f7b7e025aeb4d73dfea"
+    },
+    {
+      "path": "three_model_maintenance/__init__.py",
+      "sha256": "01dcd9b2dfdffbc9b33e92edc3f862bffbf900c81878e98ba626c9c2dae25e4e"
+    },
+    {
+      "path": "three_model_maintenance/audits/__init__.py",
+      "sha256": "d9dd307e4f020bca5feb11c3d1fe3565cb674d74fbb4040d997862960e3eaa64"
+    },
+    {
+      "path": "three_model_maintenance/audits/evidence_workspace.py",
+      "sha256": "44c342abd17369e46714b68023f2d6d4b3317eee0cf9bbb33f5eeb311641d40f"
+    },
+    {
+      "path": "three_model_maintenance/audits/frontier_guard.py",
+      "sha256": "6ec9d34129eac2339f69f3c78842f6d1e58758f71056a28f1d388ddc9eaf9e20"
+    },
+    {
+      "path": "three_model_maintenance/audits/model_measurement.py",
+      "sha256": "2f5dce144d358469a3efc47daab672fbecccecdcc600ff95c3044e1e9e559c21"
+    },
+    {
+      "path": "three_model_maintenance/audits/readiness.py",
+      "sha256": "36e22a53a37ae8903ed7d072e2508c533f6a43de09244c0ea6a0a17c8c97c653"
+    },
+    {
+      "path": "three_model_maintenance/audits/sf10_saved_capability.py",
+      "sha256": "3b31acd68d66936b498e5aca9e0da31fad4c92efcc914b52abb71ae9cd5e62a9"
+    },
+    {
+      "path": "three_model_maintenance/audits/source_integrity.py",
+      "sha256": "f37bfead61771b5548aa9a8cc20009dc819d7da580d6725ac7cb2bc72e448041"
+    },
+    {
+      "path": "three_model_maintenance/audits/trained_bundle.py",
+      "sha256": "6fa9859e4a1af9e7c117cc8a4d59c25aa0fbe7736508ed6f1bee1f7f49fdd3fa"
+    },
+    {
+      "path": "three_model_maintenance/contracts.py",
+      "sha256": "25142e1aaad374549e874260a630cffdb41115f02e53918901e86cc7de0927b8"
+    },
+    {
+      "path": "three_model_maintenance/evaluation/__init__.py",
+      "sha256": "278dbf594d97e0cf6d60a08db05db5267203304b7a5aa4aeebbac13db12fa936"
+    },
+    {
+      "path": "three_model_maintenance/evaluation/paired.py",
+      "sha256": "b5800ae025b580bc77f7621906f7c355d3813814a820ebf3685b5337d81dff25"
+    },
+    {
+      "path": "three_model_maintenance/experiments/__init__.py",
+      "sha256": "c23ed45688d5a96c97706f462f34106b3b0038920e05f4e0261b917aad96f0ec"
+    },
+    {
+      "path": "three_model_maintenance/experiments/deferred_scale.py",
+      "sha256": "720e43e09acebdaeb5aeefba9542e68369a1eca8218075cab5c1a64169643cfc"
+    },
+    {
+      "path": "three_model_maintenance/experiments/scale_query.py",
+      "sha256": "9349c2346e058e22fc12d9611b97bcc012b9dd17eed74d72db4e1f1525db0258"
+    },
+    {
+      "path": "three_model_maintenance/experiments/sf10_campaign.py",
+      "sha256": "8c1770dca858eed68a2985d5a8c70d8bd171fe995ca5eaa648927ce10d8c1c83"
+    },
+    {
+      "path": "three_model_maintenance/experiments/sf10_scratch_recovery.py",
+      "sha256": "3b20f0399e46dc33e44647b426e5f3d6f23c23052d01ddf012f878636ddb9554"
+    },
+    {
+      "path": "three_model_maintenance/models/__init__.py",
+      "sha256": "1ab554cb817a09d3c6e0a3a021f6ad9a0031465d5cff1d9a5a72a417ceacd496"
+    },
+    {
+      "path": "three_model_maintenance/models/latency.py",
+      "sha256": "2490800fd6fdd1964cbfee7c06d0e6be0307d4b548baea93b3d0b759b2b34ffa"
+    },
+    {
+      "path": "three_model_maintenance/observability/__init__.py",
+      "sha256": "a8b31d36649bc2999525ff5196029474baa8d305756cea7f8d030ab9cd8d5cd2"
+    },
+    {
+      "path": "three_model_maintenance/observability/evidence_workspace.py",
+      "sha256": "e26722877468054149c510aead811630633edc990bc93706476415e0cae751b9"
+    },
+    {
+      "path": "three_model_maintenance/preparation/__init__.py",
+      "sha256": "9067b38287230580fd9b02d04d1f907587538a0ebca5d6766469b7ab89a87c85"
+    },
+    {
+      "path": "three_model_maintenance/preparation/bind_raw_features.py",
+      "sha256": "ecfdd4809ac1b2260a291f0e84998d2fe9eacc4119e3f9fbf096b70e6536a6e8"
+    },
+    {
+      "path": "three_model_maintenance/preparation/export_live_candidates.py",
+      "sha256": "d9a8c5fa44b41e33bb7030485cbf86bc11c8f91aa1a4a71bb3f2a4c7b929f033"
+    },
+    {
+      "path": "three_model_maintenance/preparation/fit_registration.py",
+      "sha256": "431251d3d3509388c851195f11daba9222e840b40e9783b7fca6fd56520e0949"
+    },
+    {
+      "path": "three_model_maintenance/preparation/query_plan.py",
+      "sha256": "eabdd2d415c9cd61074d9814a8a419f1d2d1010ae3d4d58f2247b5153b019949"
+    },
+    {
+      "path": "three_model_maintenance/preparation/sf10_candidates.py",
+      "sha256": "79c378061f84ac65baa0eebd84e500fc7199668fad37d8d620b246c9ee2053c8"
+    },
+    {
+      "path": "three_model_maintenance/runtime/__init__.py",
+      "sha256": "cdc542c9e60f289783b4a9664dc5f3acedece24566833be7f7c20d0d56afa805"
+    },
+    {
+      "path": "three_model_maintenance/runtime/collect.py",
+      "sha256": "f80ae5445de7dc127e1f4050b9c737c8846c35af0475db073671abd05dcfa780"
+    },
+    {
+      "path": "three_model_maintenance/runtime/collector_bridge.py",
+      "sha256": "c809ffb690f7bafa116bb6aae35c30735a7a5fe237c4bd1db1354c10ef55a802"
+    },
+    {
+      "path": "three_model_maintenance/runtime/notifying_sampler.py",
+      "sha256": "c2bd5e38bba69822656e93b7769526ba6b1ef67580404a8c512d1a3b9758c4ca"
+    },
+    {
+      "path": "three_model_maintenance/runtime/publication.py",
+      "sha256": "be94a0b4e1d335c2f4926ed328760a4f860941a3745ea94aef7e9f7487fdc6d5"
+    },
+    {
+      "path": "three_model_maintenance/runtime/queue_ledger.py",
+      "sha256": "fbf24552c1e2471171ae71743737a0174775b82a47cfc97d8b1c2bae2e85e29a"
+    },
+    {
+      "path": "three_model_maintenance/runtime/run_registered_collection.py",
+      "sha256": "981dc3c105819d7033d60251b9cb89b3001bc68cca2e7b2ad8d7748f749e4242"
+    },
+    {
+      "path": "three_model_maintenance/runtime/sf10_collect.py",
+      "sha256": "bcc9236f50bcb57ccb5b98a62662148910c31a2a6a838c6e7f59bf7719b850bc"
+    },
+    {
+      "path": "three_model_maintenance/runtime/sf10_contract.py",
+      "sha256": "8079d67f97d310318a3c3f95dbba43ecbf9caab45057794a99393ac24791cafe"
+    },
+    {
+      "path": "three_model_maintenance/runtime/sf10_observation.py",
+      "sha256": "d6eb9b6219d704d21c1b4db44d5c7cbacdfcb8c91d20d4271746ba325b707716"
+    },
+    {
+      "path": "three_model_maintenance/runtime/submission.py",
+      "sha256": "2a9f2719de35407d6464522a73c409857f89594516570fcb393ca58a3d7f2b00"
+    },
+    {
+      "path": "three_model_maintenance/training/__init__.py",
+      "sha256": "b61b2df6200b8dfd3bfb5d2547fd103f895383d1fca132606d62dad54be805a5"
+    },
+    {
+      "path": "three_model_maintenance/training/data.py",
+      "sha256": "4cfd37c0b8f12b7f37ec56d78ea5f211a91c6238e5a4c89ac1374b7a538a9ded"
+    },
+    {
+      "path": "three_model_maintenance/training/pipeline.py",
+      "sha256": "db718699311fc93c531cd5a1a775c598ebf4a527662654a902f05dd13c20ac22"
+    },
+    {
+      "path": "three_model_maintenance/training/sf10_comparison.py",
+      "sha256": "5c5003d765bf93c8839806dbbda3e28dc01f5b1a518d07d1b86f6c60b91fd8c6"
+    }
+  ],
+  "query_suite": [
+    {
+      "query_id": 0,
+      "name": "filtered_revenue",
+      "sql": "SELECT count(*),sum(L_EXTENDEDPRICE*(1-L_DISCOUNT)) FROM {lineitem} WHERE L_SHIPDATE>=DATE '1995-01-01' AND L_SHIPDATE<DATE '1995-04-01'",
+      "result_types": [
+        "integer",
+        "decimal"
+      ]
+    },
+    {
+      "query_id": 1,
+      "name": "grouped_lineitem",
+      "sql": "SELECT L_RETURNFLAG,L_LINESTATUS,count(*),sum(L_QUANTITY) FROM {lineitem} GROUP BY L_RETURNFLAG,L_LINESTATUS",
+      "result_types": [
+        "text",
+        "text",
+        "integer",
+        "decimal"
+      ]
+    },
+    {
+      "query_id": 2,
+      "name": "orders_lineitem_join",
+      "sql": "SELECT o.O_ORDERPRIORITY,count(*),sum(l.L_EXTENDEDPRICE*(1-l.L_DISCOUNT)) FROM {orders} o JOIN {lineitem} l ON o.O_ORDERKEY=l.L_ORDERKEY WHERE o.O_ORDERDATE>=DATE '1995-01-01' AND o.O_ORDERDATE<DATE '1995-02-01' GROUP BY o.O_ORDERPRIORITY",
+      "result_types": [
+        "text",
+        "integer",
+        "decimal"
+      ]
+    },
+    {
+      "query_id": 3,
+      "name": "customer_orders_lineitem_join",
+      "sql": "SELECT c.C_MKTSEGMENT,count(*),sum(l.L_QUANTITY) FROM {customer} c JOIN {orders} o ON c.C_CUSTKEY=o.O_CUSTKEY JOIN {lineitem} l ON o.O_ORDERKEY=l.L_ORDERKEY WHERE o.O_ORDERDATE>=DATE '1995-01-01' AND o.O_ORDERDATE<DATE '1995-04-01' GROUP BY c.C_MKTSEGMENT",
+      "result_types": [
+        "text",
+        "integer",
+        "decimal"
+      ]
+    },
+    {
+      "query_id": 4,
+      "name": "group_sort_top_parts",
+      "sql": "SELECT L_PARTKEY,count(*) AS n FROM {lineitem} WHERE L_SHIPDATE>=DATE '1996-01-01' GROUP BY L_PARTKEY ORDER BY n DESC,L_PARTKEY LIMIT 20",
+      "result_types": [
+        "integer",
+        "integer"
+      ]
+    },
+    {
+      "query_id": 5,
+      "name": "five_table_supply_join",
+      "sql": "SELECT r.R_NAME,count(*),sum(ps.PS_SUPPLYCOST) FROM {partsupp} ps JOIN {part} p ON ps.PS_PARTKEY=p.P_PARTKEY JOIN {supplier} s ON ps.PS_SUPPKEY=s.S_SUPPKEY JOIN {nation} n ON s.S_NATIONKEY=n.N_NATIONKEY JOIN {region} r ON n.N_REGIONKEY=r.R_REGIONKEY WHERE p.P_SIZE<25 GROUP BY r.R_NAME",
+      "result_types": [
+        "text",
+        "integer",
+        "decimal"
+      ]
+    }
+  ],
+  "episode_template": {
+    "engine": {
+      "host": "127.0.0.1",
+      "port": 10001,
+      "username": "ccbd",
+      "expected_version": "3.3.4"
+    },
+    "spark_rest_url": "http://127.0.0.1:4050",
+    "spark_app_id": "local-1792900113343",
+    "rest_timeout_seconds": 5,
+    "telemetry": {
+      "interval_seconds": 1,
+      "window_seconds": [
+        60,
+        300
+      ],
+      "warmup_seconds": 305,
+      "max_interval_seconds": 2,
+      "max_age_seconds": 2,
+      "minimum_coverage_fraction": 0.95,
+      "rationale": "One-second real host counter cadence, five-minute warmup plus five-second margin; retain existing 95% coverage and two-second gap/freshness gates. Exact bounds/available frontier and actual submission freshness are independently checked. No normalized demand assumed."
+    },
+    "schema_version": "common_horizon_arm_pilot_v1",
+    "experiment_id": "sf1_three_model_publication_20261022_04",
+    "output_directory": "/home/ccbd/capstone_three_model_evidence/sf1_three_model_publication_20261022_04",
+    "client_count": 1,
+    "boundary_rule": "no_dispatch_after_horizon_natural_inflight_completion",
+    "no_new_operation_after_utc": "2026-10-22T14:00:00+00:00",
+    "limitations": [
+      "Engineering measurement validation only: one source window, layout and client; no causal/independent test/accuracy claims.",
+      "Cached metadata is tied to explicit snapshot SQL, not independently fresh latest-table metadata at every query.",
+      "No new physical run retried on failure. Refused/failed/queued records preserved. Runtime acceptance remains false pending independent review.",
+      "No workload thinning/compression. Residual backlog retained by registered common-horizon boundary; this is not a full-drain policy comparison.",
+      "A/B training support must be checked after raw acceptance; terminal stale refusal can leave no pending-state labels and does not establish fit readiness.",
+      "Condition-based notification removes cadence polling but does not guarantee workload, A support, model acceptance or observer-free execution.",
+      "Faster evidence disk and lock-scope change are engineering integrations, not a matched causal storage comparison. Underlying hardware failures and concurrent noncooperating writers are not covered by file manifests; original/partial copies remain."
+    ],
+    "destination_table": "local.experiment.integrity_horizon_three_model_pub_20261022_04",
+    "action_arm": "compact_later",
+    "action_offset_ns": 300000000000,
+    "metadata_checkpoint_offsets_ns": [
+      0,
+      300000000000
+    ],
+    "decision_state_contract": "fresh_current_original_snapshot_v1",
+    "metadata_max_age_seconds": 2,
+    "initial_file_count": 64,
+    "expected_spark_master": "local[16]",
+    "engine_archive_offsets_ns": [
+      300000000000
+    ],
+    "boundary_preparation_contract": "retain_queued_unsubmitted_observation_v1",
+    "query_preparation_contract": "serialized_durable_submission_v1",
+    "telemetry_availability_contract": "wait_for_real_durable_sample_v1",
+    "telemetry_persistence_contract": "independent_counter_sampling_durable_publish_v1",
+    "submission_availability_contract": "release_and_wait_for_real_sample_v1",
+    "rpc_boundary_contract": "guarded_rpc_start_requeue_v1",
+    "three_model_capture": {
+      "contract": "direct_locked_client_state_after_fsync_bounds_v1",
+      "max_feature_age_ns": 2000000000,
+      "rationale": "Preserve existing two-second actual host-feature age gate. Layout timestamps denote observed cached explicit-snapshot metadata; raw inventory references preserved. Extra publication persistence overhead is measured, not removed. No retrospective pending inference. Stricter1s admission leaves1s headroom for measured0.32\u20130.41s preparation/persistence delay; not a guarantee. Final guard keeps exact2s underlying-sample age. A terminal refusal preserves current/rest queued and stops further SQL dispatch rather than dropping or recapturing attempts. It is a visible truncated offered-work observation, not a complete benchmark or accepted policy comparison.",
+      "submission_contract": "sample_frontier_guard_terminal_requeue_v2",
+      "admission_max_sample_age_seconds": 1.0,
+      "sample_wait_contract": "condition_notify_after_durable_sample_publish_v1"
+    },
+    "sf10_contract_version": "six_query_typed_snapshot_v1",
+    "comparison_group": "sf10_shared_separate_20261026",
+    "layout_signature_group": "sf10_controlled64",
+    "configuration_rationale": "SF10 six-query matched collection, same genuine typed source, exact full-row initial/final comparisons,64-file controlled fragmentation, real trace horizon1200s/action600s, all original strict telemetry/availability/boundary/publication/engine gates retained. Intervention layout is lineitem context; supply-only query does not scan lineitem. Not original Snowflake SQL or full-drain scheduler evaluation."
+  },
+  "comparison": {
+    "feature_names": [
+      "query_id",
+      "file_count",
+      "record_count",
+      "total_bytes",
+      "maintenance_client_pending_at_feature_time",
+      "queue_depth_at_feature_time",
+      "cpu_busy_fraction_60s",
+      "memory_used_fraction_60s",
+      "read_bytes_per_second_60s",
+      "write_bytes_per_second_60s",
+      "cpu_busy_fraction_300s",
+      "memory_used_fraction_300s",
+      "read_bytes_per_second_300s",
+      "write_bytes_per_second_300s",
+      "plan_operator_count",
+      "plan_scan_count",
+      "plan_join_count",
+      "plan_aggregate_count",
+      "plan_exchange_count",
+      "plan_sort_count",
+      "plan_filter_count",
+      "plan_window_count"
+    ],
+    "minimum_state_rows": 10,
+    "estimators": {
+      "ridge": {
+        "alpha": 1.0,
+        "solver": "svd",
+        "tol": 0.0001,
+        "max_iter": 1000
+      },
+      "boosted_tree": {
+        "loss": "squared_error",
+        "learning_rate": 0.05,
+        "max_iter": 100,
+        "max_leaf_nodes": 7,
+        "max_depth": 3,
+        "min_samples_leaf": 5,
+        "l2_regularization": 1.0,
+        "early_stopping": false,
+        "random_state": 20261026
+      }
+    }
+  },
+  "fit_threads": 4,
+  "calibration_accepted": false,
+  "scheduler_authorized": false,
+  "rationale": [
+    "User-authorized shared/separate boosted-tree comparison plus Ridge/median baselines. New SF10 collector explicit fork preserving proven underlying queue,real windows,metadata,publication,strict 2s sample/gap,95percent coverage, actual engine-task and multiset gates; six original typed SQL templates and real plans, no synthetic trace/fallback.",
+    "Controlled64-file initial fragmentation and actual postrewrite layout; exact matched initial file row/byte distributions required within each pair. Source original8tables proven by typed capability audit; fresh lineitem perarm, seven other tables immutable pinned snapshots. One supply-only template measures host interference without scanning intervention table, explicitly represented.",
+    "Real warehouse4521920227430629158 source from verified original Snowset export; no SQL text exists. Deterministic round-robin six benchmark mappings, no thinning/compression/duration-based SQL inference. All1200s arrivals/FIFO/outcomes/residual IDs retained; dispatch stops at common horizon and inflight completes naturally. This is not full-drain policy superiority.",
+    "Source origin+3600s on original training days0/1/2, expanded300s lookback, no overlap with consumed historical windows; same warehouse and one family per chronological split remain exploratory, not independent-source population proof. All family roles fixed prospectively; no heldout labels seen before collection. Calibration partition untouched; no test retuning/refit/retry.",
+    "305s real host warmup,1s cadence, original95percent/2s interval/freshness,1s admission frontier and actual2s RPC gate unchanged. First300s offered history remains missing and excluded, never padded. Action600s allows300s complete B history beforemaintenance. Snapshot-cached layout semantics unchanged, plan structure not optimizer numeric cost.",
+    "Train-family pair first, then exact raw/publication/plan export. At least10 real complete-history rows per A/B condition is an engineering fit floor=2xminleaf5, not statistical sufficiency; unsupported cells stay unsupported. If insufficient stop remaining4arms/fitting with actual counts/ntfy, no favorable retry.",
+    "Same frozen per-estimator budget shared/separate; train-only onehot/standardization/log-target models. Histogram boosting100iterations,0.05rate,7leaves/depth3/minleaf5/L2=1 are conservative fixed candidates, not tuned winners; early_stoppingFalse forbids random internal validation splits. Ridgealpha1 inherited, no search. Equal-episode MAE on common supported validation rows selects only before frozen test scoring. Greater separate total capacity acknowledged.",
+    "Four model methods and query/querylayout/querylayoutstate medians all preregistered. Joint query-layout-state cell plus train numeric bounding box support; unseen/OOD no prediction, no substitute. Report all coverage/common support and missing scores. One-time whole-family test only; no calibration/causal penalty/scheduler authorization.",
+    "Shared locks serialize physical work, persistent working evidence on systemdisk with8GiB initial/2GiB perarm capacity floor; data/scratch100GiB free floor. Preserve original working+canonical checksum copies; do not claim full laptop raw mirror until copied/verified. Four computational fit threads are operational, not policy. New episode cutoff27Oct02UTC07:30IST, newSQL04UTC09:30IST, activeoperationsnaturalfinish; sixepisodes estimated4\u20136h, notguaranteed. No services restart/delete/cancel.",
+    "8GiB observed MemAvailable floor admits full raw-source ID verification, event audits and small tabular fits; not a guaranteed peak. Preflight independently reconstructs all12actual saved SF10 SQL/results through new multi-table contract and constructs registered estimators; no SQL/fit or dummy rows."
+  ],
+  "minimum_available_memory_bytes": 8589934592
+}
