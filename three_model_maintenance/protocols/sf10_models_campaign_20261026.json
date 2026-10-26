@@ -194,7 +194,7 @@
     },
     {
       "path": "three_model_maintenance/experiments/sf10_campaign.py",
-      "sha256": "8c1770dca858eed68a2985d5a8c70d8bd171fe995ca5eaa648927ce10d8c1c83"
+      "sha256": "02cb4769b50e5f3c84560f2d4192d82f556d273ee43191bf04f3ce57b2bd5c98"
     },
     {
       "path": "three_model_maintenance/experiments/sf10_scratch_recovery.py",
@@ -491,7 +491,8 @@
     "Same frozen per-estimator budget shared/separate; train-only onehot/standardization/log-target models. Histogram boosting100iterations,0.05rate,7leaves/depth3/minleaf5/L2=1 are conservative fixed candidates, not tuned winners; early_stoppingFalse forbids random internal validation splits. Ridgealpha1 inherited, no search. Equal-episode MAE on common supported validation rows selects only before frozen test scoring. Greater separate total capacity acknowledged.",
     "Four model methods and query/querylayout/querylayoutstate medians all preregistered. Joint query-layout-state cell plus train numeric bounding box support; unseen/OOD no prediction, no substitute. Report all coverage/common support and missing scores. One-time whole-family test only; no calibration/causal penalty/scheduler authorization.",
     "Shared locks serialize physical work, persistent working evidence on systemdisk with8GiB initial/2GiB perarm capacity floor; data/scratch100GiB free floor. Preserve original working+canonical checksum copies; do not claim full laptop raw mirror until copied/verified. Four computational fit threads are operational, not policy. New episode cutoff27Oct02UTC07:30IST, newSQL04UTC09:30IST, activeoperationsnaturalfinish; sixepisodes estimated4\u20136h, notguaranteed. No services restart/delete/cancel.",
-    "8GiB observed MemAvailable floor admits full raw-source ID verification, event audits and small tabular fits; not a guaranteed peak. Preflight independently reconstructs all12actual saved SF10 SQL/results through new multi-table contract and constructs registered estimators; no SQL/fit or dummy rows."
+    "8GiB observed MemAvailable floor admits full raw-source ID verification, event audits and small tabular fits; not a guaranteed peak. Preflight independently reconstructs all12actual saved SF10 SQL/results through new multi-table contract and constructs registered estimators; no SQL/fit or dummy rows.",
+    "Major actual arm/export/model completion or failure appends both methodologies and targeted worker3 commit/push between episodes, never changes running physical code. Client HEAD/raw mirror marked pending until laptop reconnects. Unexpected staged files or push failure stop dependent work and preserve raw/doc failure; no force/reset. Preflight02 is fresh after source-role/documentation audit changes, retains first proof."
   ],
   "minimum_available_memory_bytes": 8589934592
 }

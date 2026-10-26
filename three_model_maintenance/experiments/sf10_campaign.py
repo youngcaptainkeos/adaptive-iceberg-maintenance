@@ -18,6 +18,22 @@ from three_model_maintenance.training.sf10_comparison import run as compare
 def now():return datetime.now(timezone.utc).isoformat()
 
 
+def document(cfg,title,detail):
+    """Append actual stage evidence; preserve existing history and dirty files."""
+    text='\n\n## '+title+' — '+now()+'\n'+detail+'\n'
+    lock=(REPO/'results/.sf10_methodology_append.lock').open('a')
+    try:
+        fcntl.flock(lock,fcntl.LOCK_EX)
+        for name in ('methodology_working_doc.md','updated_methodology_working_doc.md'):
+            with (REPO/'docs'/name).open('a') as stream:stream.write(text);stream.flush();os.fsync(stream.fileno())
+        require(not subprocess.check_output(['git','diff','--cached','--name-only'],cwd=REPO).strip(),'Existing staged files; do not commit another unit')
+        paths=['docs/methodology_working_doc.md','docs/updated_methodology_working_doc.md']
+        subprocess.run(['git','add','--',*paths],cwd=REPO,check=True)
+        subprocess.run(['git','commit','-m',title,'--',*paths],cwd=REPO,check=True,stdout=subprocess.DEVNULL)
+        subprocess.run(['git','push','origin','main'],cwd=REPO,check=True,stdout=subprocess.DEVNULL)
+    finally:lock.close()
+
+
 def frozen(cfg):
     for s in cfg['sources']:
         p=REPO/s['path'];require(sha(p)==s['sha256'],'Changed campaign source '+s['path'])
@@ -152,6 +168,11 @@ def run(protocol,phase='campaign',episode_config=None):
                 x=root/(eid+'_export.json');save(x,item)
                 stage(eid+'_export',[sys.executable,'-B','-m','three_model_maintenance.experiments.sf10_campaign','--protocol',str(protocol),'--phase','export','--episode-config',str(x)])
                 collections.append(dict(directory=str(candidate),family=family['id'],role=family['role']))
+                document(cfg,'SF10 matched arm and candidate audit completed '+eid,
+                    'Actual physical/raw/publication/typed-plan export passed. Family '+family['id']+' role '+family['role']+'. ResultSHA '+sha(archive/'result.json')+
+                    ', eventsSHA '+sha(archive/'events.jsonl')+', candidateSHA '+sha(candidate/'result.json')+'. Raw '+str(archive)+', candidate '+str(candidate)+
+                    '. Original working files retained; canonical checksum matched. Actual counts '+json.dumps(read(candidate/'result.json'))+
+                    '. Client raw/HEAD mirror pending next connection; worker3 commit/push attempted. No calibration/causal penalty/SF100/scheduler acceptance.')
             if family['role']=='train':
                 counts={s:sum(read(Path(c['directory'])/'result.json')['eligible_counts'][s] for c in collections if c['role']=='train') for s in ('A','B')}
                 save(root/'pilot_support.json',dict(actual_eligible_counts=counts,minimum_per_state=cfg['comparison']['minimum_state_rows'],statistical_sufficiency_claimed=False))
@@ -159,8 +180,17 @@ def run(protocol,phase='campaign',episode_config=None):
         state.update(status='comparing_frozen_training_models',model_fit_attempted=True,model_fit_performed=None);progress()
         compare(cfg['comparison'],collections,root/'comparison');state['model_fit_performed']=True
         state['status']='completed_exploratory_sf10_collection_and_comparison_only'
+        document(cfg,'SF10 shared-separate exploratory comparison completed',
+            'Actual result '+str(root/'comparison/result.json')+' SHA '+sha(root/'comparison/result.json')+'. '+json.dumps(read(root/'comparison/result.json'))+
+            ' All attempted and unsupported outcomes retained; no test refit/tuning/calibration/scheduler claim. Client mirror pending next connection.')
     except Exception as exc:
-        state.update(status='failed_or_blocked_preserved_no_retry',error=str(exc),traceback=traceback.format_exc());raise
+        state.update(status='failed_or_blocked_preserved_no_retry',error=str(exc),traceback=traceback.format_exc())
+        try:document(cfg,'SF10 campaign failure or support blocker preserved',
+            'Error '+str(exc)+'; passed '+str(state['passed_episodes'])+'/failed '+str(state['failed_episodes'])+'/unattempted '+str(state['unattempted_episodes'])+
+            '. Progress/raw '+str(root)+'. No automatic physical retry or weakened gate. Fit attempted '+str(state.get('model_fit_attempted',False))+
+            '; fit completed '+str(state['model_fit_performed'])+'. Partial artifacts retained; client mirror pending.')
+        except Exception as error:state['documentation_error']=str(error)
+        raise
     finally:
         state['ended_utc']=now();progress();save(root/'result.json',state)
         for stream in held:stream.close()
