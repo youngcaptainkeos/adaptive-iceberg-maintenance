@@ -241,3 +241,19 @@ This completes a bounded capability gate only. Next register matched SF10
 trace-driven collection with complete offered history and real plan features;
 then evaluate data support and whole-source split eligibility before fitting.
 No SF10 cost-model/calibration/SF100 resource or scheduler acceptance yet.
+
+## Registered SF10 matched comparison implementation — 26 October 2026
+
+Implemented versioned six-query SF10 capture, typed result and real plan binding,
+strict raw/publication export and shared/separate Ridge/boosted-tree versus median
+comparison. Source-only preflight passed; fresh02first null arm is running, not a
+completed model fit. Original01empty-window admission failure preserved with all
+six arms unattempted. Current plan/review:
+`three_model_maintenance/docs/plans/SF10_MATCHED_MODELS_2026-10-26.md` and
+`three_model_maintenance/docs/reviews/SF10_CAMPAIGN_LAUNCH_2026-10-26.md`.
+
+First matched pair's raw acceptance and actual pending/nonpending support gate
+precede dependent collection/fitting. Chronological whole families, training-only
+preprocessing, frozen validation selection before one-time test, explicit support
+and no prediction fallback. Source/host/layout/correctness/engine gates retained.
+New data/model results, calibration, SF100 and scheduler acceptance remain pending.
