@@ -1156,3 +1156,7 @@ Actual3131arrivals/12savedSQL/774taskframes7004records passed withoutSQLfit. Wra
 ## 2026-11-01 — Frozen-code review and extra acceptance check
 
 Independentread-onlyreview of actuald912671 confirms terminalresult/relayfix, no reviewedcodediff. Require actualjob/stagecounterpresence audit before GateAcomplete: absent counters cannot becomezero despite helperdefaults. Use raw-audit/checksum/episodesreceipts, not passed_episodes alone. REST-only observedjobscope remains explicit. Control/relaylive, firstperiodicarchivesobserved; no terminalpassyet/frozenedit/newrun.
+
+## 2026-11-01 — Post-block supplemental auditor ready, unexecuted
+
+New audits/explicit_engine_counters.py verifies actualexplicitjob/stagecounters plus12casecapabilityfileprovenance after completedtwoarmreceipts. Missingisnotzero; no neverobservedjobclaim. Separatefromfrozenliveimports, no local/concurrenttest/passclaim. Run onworker3afterbotharms viawrapper/freshresultsf10_explicit_counter_audit_20261101_02; exactcommand inGateAplan. Operationaltransportraces noted/no frozenpatch. Currentphysicalworkcontinues.
