@@ -1132,3 +1132,7 @@ See recovery_and_feasibility_plan_2026-11-01.md and full methodology append. Act
 ## 2026-11-01 — Terminal evidence gap localized
 
 Saved chronology diagnostic completed, SHA4a3485f5de17e3b344b02ab3774542a7309ebf71adc5cbfa3acee388beef78df. Job1080 onlyRUNNING/stage2080ACTIVE/no tasks; later finaljobs omit1080 after expensive multiset scans. Evidence capture gap, not proven taskfailure; oldfailed SF10 unchanged. Prospective archiving repair proposed only. exploring novelty review complete/read-only: CPUcoreseconds and I/O conditional on equal completed work/maintenance debt, full-cohort response retained,48–72h viability proposal next. See recovery plan/full methodology for exact times, limitations and artifacts. No source/policy/model changes or newphysical work.
+
+## 2026-11-01 — Overhead measured; ready recovery tasks complete
+
+Actual diagnostic425909 completed335genuine historical development rows/23450timedcalls/no fit. ResultSHA99ee5c8bc7ca6c09c6af3f547e853a0351d0eba66e8c430240499396cdc540c2. Warmsharedpipeline~1.16msRidge/~1.01msTree vs~0.012msstatemedianlookup; preprocessingdominatescore. Import/load distinct; no fullcontroller/observerCPU/netbenefit claim. FailedSF10archive gap preserved, no physicalrerun/sourcechange. See recovery_overhead_and_feasibility_review_2026-11-01.md and feasibility_decision_proposal_2026-11-01.md. Ready20minschedule tasks finishedearly; pauseafterfinalsync, awaitingprospectiveprimarymetric/guardrails/physicalrepairreview. Recoverygoalcompletiondoesnotacceptscheduler/calibration/paperfeasibility.
