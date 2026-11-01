@@ -12,6 +12,19 @@ from three_model_maintenance.runtime.counter_process import CONTRACT, boot_id, e
 from three_model_maintenance.runtime.notifying_sampler import NotifyingTelemetrySampler
 
 
+def validate_acquisition(cfg):
+    contract = cfg.get('telemetry_acquisition_contract')
+    require(contract in (None, CONTRACT), 'Unknown telemetry acquisition contract')
+    if contract is not None:
+        require(cfg.get('telemetry_persistence_contract') == 'independent_counter_sampling_durable_publish_v1'
+                and cfg.get('telemetry_availability_contract') == 'wait_for_real_durable_sample_v1',
+                'Independent acquisition requires original durable availability contracts')
+        require(cfg.get('telemetry_lifecycle_contract') == 'workload_and_terminal_archive_then_cooperative_finish_v1'
+                and cfg.get('terminal_engine_archive_contract') == 'completed_calls_before_final_validation_v1',
+                'Register counter acquisition through workload/terminal archive before validation-only SQL')
+    return contract is not None
+
+
 class ProcessTelemetrySampler(NotifyingTelemetrySampler):
     def __init__(self, log, interval_seconds, *, journal, until):
         super().__init__(log, interval_seconds, asynchronous_persistence=False)

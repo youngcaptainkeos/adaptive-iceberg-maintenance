@@ -27,6 +27,8 @@ from engine_overlap import task_intervals,engine_time
 from common_horizon_binding import audit_arm
 from engine_archive import merged_engine_frames,capture_completed_query_tasks,ArchivedTaskEvidence
 from three_model_maintenance.runtime.terminal_archive import TerminalArchive, validate_contract, audit_terminal_archive
+from three_model_maintenance.runtime.process_sampler import ProcessTelemetrySampler, validate_acquisition
+from three_model_maintenance.audits.counter_acquisition import audit as audit_acquisition
 
 
 class PreparationSampleUnavailable(Exception):
@@ -37,6 +39,10 @@ class PreparationSampleUnavailable(Exception):
 def audit(directory):
     directory=Path(directory);cfg=json.loads((directory/'config.json').read_text());rows=[json.loads(s) for s in (directory/'events.jsonl').open()]
     terminal_archive_evidence=audit_terminal_archive(rows,cfg)
+    acquisition_evidence=audit_acquisition(directory,cfg['telemetry'],
+        expected_until=cfg['no_new_operation_after_utc'],
+        expected_journal=Path(cfg['output_directory'])/'telemetry_acquisition.jsonl',
+        expected_lifecycle=cfg['telemetry_lifecycle_contract']) if validate_acquisition(cfg) else None
     mapped=list(csv.DictReader((directory/'mapped_arrivals.csv').open()));mapping=json.loads((directory/'mapping_record.json').read_text())
     require(sha256(directory/'mapped_arrivals.csv')==mapping['mapped_arrivals_sha256'] and len(mapped)==mapping['arrival_count'],'Mapped input changed')
     protocols=[r for r in rows if r['kind']=='trace_queue_protocol'];require(len(protocols)==1 and protocols[0]['configuration']==cfg,'Raw protocol differs')
@@ -160,6 +166,7 @@ def audit(directory):
     summary={'common_horizon_arm':arm_evidence,'horizon_actual_transition_counts':dict(Counter(horizon_states.values())), 'horizon_not_yet_offered_ids':[k for k in expected if k not in horizon_states], 'status':'audited_real_arrival_queue_diagnostic_only','offered':len(mapped),'dispatched':len(dispatched),'final_states':dict(Counter(states.values())),'unfinished_queued_ids':[k for k,v in states.items() if v=='queued'],'boundary_observed_counts':boundary['observed_counts'],'boundary_observation_lateness_ms':(boundary['recorded']['monotonic_ns']-hi)/1e6,'queries':latencies,'events_sha256':sha256(directory/'events.jsonl'),'cost_training_accepted':False,'limitations':cfg['limitations']}
 
     if terminal_archive_evidence is not None:summary['terminal_engine_archive_audit']=terminal_archive_evidence
+    if acquisition_evidence is not None:summary['counter_acquisition_audit']=acquisition_evidence
     if cfg.get('boundary_preparation_contract')=='retain_queued_unsubmitted_observation_v1':summary['prepared_but_not_dispatched_measurement_ids']=sorted(abandoned_ids)
     if cfg.get('rpc_boundary_contract')=='guarded_rpc_start_requeue_v1':
         summary.update(queue_admission_attempts=dispatch_attempt_count,unsubmitted_intent_measurement_ids=sorted(not_sent_by_id),
@@ -171,6 +178,7 @@ def run(config,revision):
     cfg,base=load_json(config);repo=Path(__file__).resolve().parents[2]
     arm=cfg['schema_version']=='common_horizon_arm_pilot_v1'
     terminal_archive_enabled=validate_contract(cfg)
+    process_acquisition_enabled=validate_acquisition(cfg)
     require(cfg.get('rpc_boundary_contract') in (None,'guarded_rpc_start_requeue_v1'),'Unknown RPC boundary contract')
     require(cfg.get('rpc_boundary_contract') is None or cfg.get('query_preparation_contract')=='serialized_durable_submission_v1','RPC cutoff requires serialized durable preparation')
     require(cfg['schema_version'] in ('trace_queue_diagnostic_v1','common_horizon_arm_pilot_v1') and cfg['client_count']==1 and cfg['boundary_rule']=='no_dispatch_after_horizon_natural_inflight_completion','Unregistered diagnostic')
@@ -189,9 +197,19 @@ def run(config,revision):
     for src,name in ((Path(config),'config.json'),(source_path,'preparation_result.json'),(record_path,'mapping_record.json'),(mapping_audit_path,'mapping_audit.json'),(mapped_path,'mapped_arrivals.csv')):shutil.copy2(src,out/name)
     (out/'expected_query_results.json').write_text(json.dumps(expected,indent=2)+'\n')
     for frozen_source in (Path(__file__), Path(__file__).with_name('publication.py'), Path(__file__).with_name('collector_bridge.py'), Path(__file__).with_name('submission.py'), Path(__file__).with_name('queue_ledger.py'), Path(__file__).with_name('notifying_sampler.py'), Path(__file__).with_name('sf10_contract.py'), Path(__file__).with_name('sf10_observation.py'), Path(__file__).with_name('terminal_archive.py')):shutil.copy2(frozen_source,code/frozen_source.name)
+    if process_acquisition_enabled:
+        for frozen_source in (Path(__file__).with_name('counter_process.py'), Path(__file__).with_name('process_sampler.py'),
+                              REPOSITORY/'three_model_maintenance/audits/counter_acquisition.py'):
+            shutil.copy2(frozen_source,code/frozen_source.name)
     EventLog,StatementRecorder=build_classes(dict(cfg,_protocol_sha256=sha256(Path(config))))
     StatementRecorder=plan_recorder(StatementRecorder,cfg)
-    log=EventLog(out/'events.jsonl',cfg['experiment_id']);rec=StatementRecorder(log);rest=SparkEvidence(cfg['spark_rest_url'],cfg['spark_app_id'],cfg['rest_timeout_seconds'],log);sampler=TelemetrySampler(log,cfg['telemetry']['interval_seconds'],asynchronous_persistence=cfg.get('telemetry_persistence_contract')=='independent_counter_sampling_durable_publish_v1');connections=[];errors=[];threads=[];safe_to_close=False
+    log=EventLog(out/'events.jsonl',cfg['experiment_id']);rec=StatementRecorder(log);rest=SparkEvidence(cfg['spark_rest_url'],cfg['spark_app_id'],cfg['rest_timeout_seconds'],log)
+    if process_acquisition_enabled:
+        sampler=ProcessTelemetrySampler(log,cfg['telemetry']['interval_seconds'],
+            journal=out/'telemetry_acquisition.jsonl',until=cfg['no_new_operation_after_utc'])
+    else:
+        sampler=TelemetrySampler(log,cfg['telemetry']['interval_seconds'],asynchronous_persistence=cfg.get('telemetry_persistence_contract')=='independent_counter_sampling_durable_publish_v1')
+    connections=[];errors=[];threads=[];safe_to_close=False
     log.emit('trace_queue_protocol',configuration=cfg,code_revision=revision,code_sha256={p.name:sha256(p) for p in code.iterdir()})
     from pyhive import hive
     try:
@@ -354,6 +372,9 @@ def run(config,revision):
         for thread in threads:thread.join()
         if errors:raise errors[0]
         if terminal_archive is not None:terminal_archive.capture(terminal=True)
+        if process_acquisition_enabled:
+            sampler.stop()
+            log.emit('telemetry_acquisition_phase_complete', contract=cfg['telemetry_lifecycle_contract'])
         final_state=inventory()
         if arm:
             log.emit('common_horizon_final_state',**final_state)

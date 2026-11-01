@@ -54,6 +54,32 @@ def actual_preflight(cfg,out):
     from three_model_maintenance.runtime.sf10_contract import canonical_result,pin_query
     from three_model_maintenance.runtime.terminal_archive import validate_contract
     validate_contract(cfg['episode_template'])
+    from three_model_maintenance.runtime.process_sampler import validate_acquisition
+    acquisition_proof=None
+    if validate_acquisition(cfg['episode_template']):
+        # Reconstruct the saved real engineering check with the prospective
+        # auditor; do not rerun acquisition or upgrade it to a physical pass.
+        from three_model_maintenance.audits.counter_acquisition import audit as audit_counters
+        proof_path=Path(cfg['inputs']['acquisition_validation']['path']);proof=read(proof_path)
+        require(proof['status']=='passed_real_counter_acquisition_with_saved_archive_processing_only'
+                and proof['SQL_executed'] is False and proof['models_fitted'] is False
+                and proof['physical_episode_accepted'] is False
+                and proof['protocol_sha256']==sha(Path(cfg['inputs']['acquisition_validation_protocol']['path'])),
+                'Missing limited real acquisition validation proof')
+        saved=read(Path(cfg['inputs']['acquisition_validation_protocol']['path']))
+        original_config=Path(cfg['inputs']['acquisition_original_episode_config']['path'])
+        original_spec=next(s for s in saved['inputs'] if s['path']==str(original_config))
+        require(str(original_config)==saved['original_episode_config'] and sha(original_config)==original_spec['sha256']
+                and read(original_config)['telemetry']==cfg['episode_template']['telemetry'],
+                'Acquisition validation telemetry configuration differs')
+        require(Path(cfg['inputs']['acquisition_validation_events']['path'])==proof_path.parent/'events.jsonl'
+                and Path(cfg['inputs']['acquisition_validation_journal']['path'])==proof_path.parent/'telemetry_acquisition.jsonl'
+                and read(proof_path.parent/'registration.json')==saved, 'Saved acquisition identities differ')
+        acquisition_proof=audit_counters(proof_path.parent,cfg['episode_template']['telemetry'],validation_windows=True,
+            expected_until=saved['acquisition_deadline_utc'],
+            expected_journal=Path(saved['output_directory'])/'telemetry_acquisition.jsonl')
+        require(all(acquisition_proof.get(k)==v for k,v in proof['counter_audit'].items()),
+                'Saved acquisition reconstruction differs from actual completed result')
     cap=Path(cfg['capability_directory']);tables={r['table']:r for r in read(cap/'prepare/result.json')['tables']}
     proto=dict(cfg['episode_template'],sf10_tables=tables,query_suite=cfg['query_suite'])
     events=[json.loads(s) for s in (cap/'plan_query/events.jsonl').open()]
@@ -82,7 +108,8 @@ def actual_preflight(cfg,out):
     require(task_frames>0 and task_records>0,'No actual saved task frames to validate new archive schema')
     save(out/'preflight_result.json',dict(status='passed_actual_source_and_twelve_saved_sql_reconstructions_only',
         source_window=[start.isoformat(),end.isoformat()],expanded_interval=expanded,arrivals=len(arrivals),
-        saved_sql_checks=len(observations),actual_retained_task_frames_checked=task_frames,actual_retained_task_records_checked=task_records,SQL_executed=False,model_fitted=False,independent_evidence=False))
+        saved_sql_checks=len(observations),actual_retained_task_frames_checked=task_frames,actual_retained_task_records_checked=task_records,
+        saved_real_acquisition_reconstruction=acquisition_proof,SQL_executed=False,model_fitted=False,independent_evidence=False))
 
 
 def run(protocol,phase='campaign',episode_config=None,directory=None,output=None):
