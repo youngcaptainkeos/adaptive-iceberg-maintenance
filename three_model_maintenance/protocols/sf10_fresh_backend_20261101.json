@@ -1,0 +1,61 @@
+{
+  "spark_home": "/mnt/nfs-storage/shashank_prafullathta/implementation/software/spark-3.3.4",
+  "iceberg_jar": "/mnt/nfs-storage/shashank_prafullathta/implementation/software/spark-3.3.4/jars/iceberg-spark-runtime-3.3_2.12-1.4.3.jar",
+  "warehouse": "/mnt/nfs-storage/shashank_prafullathta/implementation/warehouse",
+  "driver_memory": "16g",
+  "expected_spark_master": "local[16]",
+  "java_home": "/usr/lib/jvm/java-8-openjdk-amd64",
+  "backend_startup_timeout_seconds": 180,
+  "rest_timeout_seconds": 5,
+  "poll_seconds": 15,
+  "required_free_bytes": 107374182400,
+  "minimum_available_memory_bytes": 34359738368,
+  "minimum_system_free_bytes": 5368709120,
+  "binaries": [
+    {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/software/spark-3.3.4/bin/spark-submit",
+      "sha256": "98e6f3b89b9092938a0b163a656c2b9051099821966fc7ab5ef9888fa9f62c6a"
+    },
+    {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/software/spark-3.3.4/sbin/start-thriftserver.sh",
+      "sha256": "131ea3793649bae0ab43721ff8bc48af6ef6e095affeede7575187ea56537b66"
+    },
+    {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/software/spark-3.3.4/sbin/spark-daemon.sh",
+      "sha256": "f5ab1f11d9aedfd3f148d5ea08dee73b479a28e339d79d40762fa70dfee078a8"
+    },
+    {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/software/spark-3.3.4/jars/iceberg-spark-runtime-3.3_2.12-1.4.3.jar",
+      "sha256": "00f28bd3e0d06e109ce4e0544d084edfdaed3a102793d4315c56e8876b90bf70"
+    },
+    {
+      "path": "/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java",
+      "sha256": "68e380b6a96f0032786f90ff89cc76bd25cd2ceeffe063a9400c89a734a8df37"
+    }
+  ],
+  "scope": "fresh_isolated_backend_only_no_SQL_no_restart",
+  "experiment_id": "sf10_fresh_backend_20261101_01",
+  "output_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf10_fresh_backend_20261101_01",
+  "backend_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf10_backend_20261101_01",
+  "thrift_port": 10002,
+  "ui_port": 4051,
+  "rationale": "Observed1Nov17:02UTC worker3uptime3days; no Java/Spark processes or listeners10000/10001/4040/4050 present. Prior25Octbackend no longer running; failednewpreflight retained0physicalattempts. Fresh ports/directories/metastore with same Spark3.3.4/Iceberg1.4.3/Java8/local16/16g and existing Hadoopwarehouse, not restart/replacement. Empty processinventory/ports and old32GiBRAM/100GiBdata/5GiBsystem floors required; preserve all priorservicefiles/data. No SQL/costlabels. Newenvironment explicitlynotpriorperformancecomparison.",
+  "sources": [
+    {
+      "path": "three_model_maintenance/ops/fresh_backend.py",
+      "sha256": "bd82c43c876cb9b2d658111c92daeb111f2a7dba3de255245c39c7ab48a42dea"
+    },
+    {
+      "path": "three_model_maintenance/experiments/sf10_scratch_recovery.py",
+      "sha256": "3b20f0399e46dc33e44647b426e5f3d6f23c23052d01ddf012f878636ddb9554"
+    },
+    {
+      "path": "three_model_maintenance/experiments/sf10_campaign.py",
+      "sha256": "ed2b6fc063599befe69fcfb793709c101a583050d6e19c6bfc6c2461919ddbf2"
+    },
+    {
+      "path": "three_model_maintenance/experiments/scale_query.py",
+      "sha256": "9349c2346e058e22fc12d9611b97bcc012b9dd17eed74d72db4e1f1525db0258"
+    }
+  ]
+}

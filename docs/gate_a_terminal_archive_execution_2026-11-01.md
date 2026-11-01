@@ -34,3 +34,9 @@ Newepisodecutoff2Nov03:00UTC08:30IST; noSQL05:00UTC10:30IST; activecallsfinishna
 ## Next gates
 
 A passed complete twoarmblock establishes engineeringrepair only. Then review actual observercost, support and invocation accounting for GateB, before registering independent action-sensitivity and strongsimplebaselinepolicy episodes under the feasibility proposal. Failedblock stopsdependencies and is retained; don't fit from its partialrows. No learned-superiority/SF100/calibration/publicationreadiness claim.
+
+## Admission blocker and fresh backend registration — 1Nov17:02UTC
+
+Preflight wrapper475549/client475550 failed before source/taskchecks at17:01:24UTC: old registered REST endpoint refused connection; ntfyfailure delivered.0physicalpassed/0physicalfailed/2unattempted/noSQLfit. This failedpreflight/output/protocol stays retained, not rerun. Actual ps/ss inspection found no Java/Spark processes or listeners on oldports; uptime3days is later than25Octbackendlaunch. Do not describe it as a query/model failure or pretend originalservicesremainlive.
+
+New fresh_backend.py/protocol sf10_fresh_backend_20261101.json registers **new** persistent10002/UI4051 identity, new scratch/tmp/conf/metastore/evidence directories, same actualbinaries/Hadoopwarehouse/local16/16g/Java8. It refuses existingSparkprocesses/occupiedports, requires original32GiBavailableRAM/100GiBdata/5GiBsystem floors, and never stops/restarts/deletes anything. Detached failurewrapped launch/readiness is required. This is changed service/session environment, not a repeatability/performance claim. No SQL inbootstrap. Once ready, register distinct02validation/preflight identities with actualappID/environment; do not silently edit failed01registration or remove a live-other-service guard.

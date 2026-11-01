@@ -1140,3 +1140,7 @@ Actual diagnostic425909 completed335genuine historical development rows/23450tim
 ## 2026-11-01 — Gate A implementation registered, validation pending
 
 User authorized execution/subagents. New30s+terminalbeforemultiset taskarchivalcontract, strictuniqueindex/attempt/job/task/rawprefixaudit; new twoarmengineeringvalidation/nofit coordinator. Protocols sf10_archive_validation_20261101.json/sf10_archive_preflight_20261101.json; plan gate_a_terminal_archive_execution_2026-11-01.md. SamefullSF10/real3131arrivalwindowexplicitreuse, freshcontrol/fixed600stables; allgatespreserved/oldfailed0/1/5unchanged. Subagentcode+independentrequirementsreview, Maincodereview afteradditionalagentusagelimit. No serverpreflight/livepassyet, noobjective/calibration/SF100/schedulerclaim. Cutoffs2Nov03/05UTC, transportrelaydependencyexplicit.
+
+## 2026-11-01 — Admission failed, fresh service identity pending
+
+Preflight475549 failedoldRESTconnectionbeforeSQL/physicalwork, ntfydelivered/0physicalattempts. OldSparkprocesses/listenersabsent, uptimepostdates25Octlaunch. Fresh10002/4051backendregistered with originalbinary/resourcefloors, newdirs/metastore, no restart/kill/delete. Actualreadinesspendingthen distinct02protocols; oldfailedpreflight preserved. Fullmethodology/GateAplan contain evidence/limits.
