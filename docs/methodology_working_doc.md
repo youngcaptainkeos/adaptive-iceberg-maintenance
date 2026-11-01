@@ -2884,3 +2884,7 @@ Read-only subagentreview verified d912671..HEAD diffs empty for terminal_archive
 ## 2026-11-01 — Separate post-block explicit-counter/provenance auditor prepared
 
 Implemented audits/explicit_engine_counters.py outside frozenlive imports. Requires completed2armparent+2episodeentries/independentauditSHA, registers/pins actualterminalfiles, verifies all observed attributed preterminaljob/stagefailure/attempt counters explicitlyintegerzero (missingnotzero), knownjobterminalsuccess and exact callcoverage. Supplements ratherthanreplaces raw/task/publication/fullmultiset gates. Verifies actual12phase/query savedcapability cases and preflightreferencedfileSHAs against originaltypedcapabilityprotocol/inputmanifest; large sourceDB/warehouse inventory rehash notclaimed. Newauditor notexecuted locally/concurrently; worker3postblock run pending throughntfywrapper. No frozencollector/coordinator/protocol edits; no pipelineobjective/model/physicalchange. Otherreview operational checksum/streamedack races are fail-stop; preserve any failure/manualverifiedtransportonly, neverpromote fromcounter. Fullcommand/nextgate appendedGateAplan.
+
+
+## SF10 terminal-evidence validation failure preserved — 2026-11-01T17:33:43.904777+00:00
+{"error": "Failed sf10_archive_validation_20261101_02_no_maintenance; preserve original and new failures, no retry", "passed_episodes": 0, "failed_episodes": 1, "unattempted_episodes": 1}. No automatic retry or downstream fit; raw retained.

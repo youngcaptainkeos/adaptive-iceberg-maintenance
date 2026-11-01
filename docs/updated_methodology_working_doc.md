@@ -1160,3 +1160,7 @@ Independentread-onlyreview of actuald912671 confirms terminalresult/relayfix, no
 ## 2026-11-01 — Post-block supplemental auditor ready, unexecuted
 
 New audits/explicit_engine_counters.py verifies actualexplicitjob/stagecounters plus12casecapabilityfileprovenance after completedtwoarmreceipts. Missingisnotzero; no neverobservedjobclaim. Separatefromfrozenliveimports, no local/concurrenttest/passclaim. Run onworker3afterbotharms viawrapper/freshresultsf10_explicit_counter_audit_20261101_02; exactcommand inGateAplan. Operationaltransportraces noted/no frozenpatch. Currentphysicalworkcontinues.
+
+
+## SF10 terminal-evidence validation failure preserved — 2026-11-01T17:33:43.904777+00:00
+{"error": "Failed sf10_archive_validation_20261101_02_no_maintenance; preserve original and new failures, no retry", "passed_episodes": 0, "failed_episodes": 1, "unattempted_episodes": 1}. No automatic retry or downstream fit; raw retained.
