@@ -32,8 +32,39 @@ def validate_contract(cfg):
 
 def digest_frames(rows):
     """Hash exact recorded REST events, including endpoints and response clocks."""
-    encoded = json.dumps(rows, sort_keys=True, separators=(',', ':'), allow_nan=False)
-    return hashlib.sha256(encoded.encode()).hexdigest()
+    digest = IncrementalFrameDigest()
+    for row in rows:
+        digest.append(row)
+    return digest.hexdigest()
+
+
+class IncrementalFrameDigest:
+    """Exact canonical JSON-array SHA, without reencoding historical frames.
+
+    iterencode yields JSON tokens rather than one complete payload string.
+    A copied hash adds the closing bracket, leaving the live prefix appendable.
+    This changes acquisition work, not the v1 digest bytes or acceptance gates.
+    Large REST decoding and other collector threads still share the Python GIL.
+    """
+    def __init__(self):
+        self.digest = hashlib.sha256(b'[')
+        self.count = 0
+        self.encode_wall_ns = 0
+        self.encoder = json.JSONEncoder(sort_keys=True, separators=(',', ':'), allow_nan=False)
+
+    def append(self, row):
+        started = time.perf_counter_ns()
+        if self.count:
+            self.digest.update(b',')
+        for token in self.encoder.iterencode(row):
+            self.digest.update(token.encode())
+        self.count += 1
+        self.encode_wall_ns += time.perf_counter_ns() - started
+
+    def hexdigest(self):
+        digest = self.digest.copy()
+        digest.update(b']')
+        return digest.hexdigest()
 
 
 class _CachedTasks:
@@ -97,6 +128,9 @@ class TerminalArchive:
         self.rest, self.log, self.event_path, self.table = rest, log, event_path, table
         self.offset = 0
         self.engine_rows = []
+        self.frame_digest = IncrementalFrameDigest()
+        self.event_decode_wall_ns = 0
+        self.max_event_decode_wall_ns = 0
         self.requests, self.completed, self.certified = {}, {}, set()
         self.tasks = _CachedTasks(rest)
         self.number = 0
@@ -108,9 +142,14 @@ class TerminalArchive:
                 lines = stream.readlines()
                 self.offset = stream.tell()
         for line in lines:
+            started = time.perf_counter_ns()
             event = json.loads(line)
+            elapsed = time.perf_counter_ns() - started
+            self.event_decode_wall_ns += elapsed
+            self.max_event_decode_wall_ns = max(self.max_event_decode_wall_ns, elapsed)
             if event['kind'] == 'spark_rest':
                 self.engine_rows.append(event)
+                self.frame_digest.append(event)
             elif event['kind'] == 'statement_requested':
                 require(event['measurement_id'] not in self.requests, 'Duplicate statement request')
                 self.requests[event['measurement_id']] = event
@@ -158,7 +197,8 @@ class TerminalArchive:
         action_ids = sorted(mid for mid in self.certified if expected[mid]['role'] == 'maintenance')
         require(not terminal or self.certified == set(expected), 'Terminal archive has omitted completed calls')
         self.number += 1
-        source_digest=digest_frames(self.engine_rows)
+        require(self.frame_digest.count == len(self.engine_rows), 'Archive hash frame count differs')
+        source_digest=self.frame_digest.hexdigest()
         observed_jobs=sorted({j['jobId'] for e in self.engine_rows if e['resource']=='jobs' for j in e['payload']})
         self.log.emit('terminal_engine_archive_checkpoint', contract=CONTRACT,
                       checkpoint_number=self.number, terminal=terminal, capture_started=started,
@@ -169,6 +209,10 @@ class TerminalArchive:
                       observer_timing_scope='checkpoint body before own event serialization/fsync; process CPU includes concurrent collector threads',
                       observed_job_ids=observed_jobs,
                       source_rest_event_count=len(self.engine_rows),
+                      source_digest_encoding_wall_ns_cumulative=self.frame_digest.encode_wall_ns,
+                      source_digest_encoding_contract='incremental_canonical_json_array_v1',
+                      event_decode_wall_ns_cumulative=self.event_decode_wall_ns,
+                      max_event_decode_wall_ns=self.max_event_decode_wall_ns,
                       source_rest_events_sha256=source_digest,
                       meaning='Actual completed job/stage/task REST evidence; observer timings are not query or maintenance resource totals')
 
