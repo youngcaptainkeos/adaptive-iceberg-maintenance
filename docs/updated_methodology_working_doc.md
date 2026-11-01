@@ -1128,3 +1128,7 @@ See `docs/project_models_datasets_and_research_rundown_2026-11-01.md`: models/se
 ## 2026-11-01 — Recovery and feasibility queue
 
 See recovery_and_feasibility_plan_2026-11-01.md and full methodology append. Actual detached diagnostic423255 completed, resultSHAb9f999366497cfb7cd01ab393ce66f375778c20f8b2b64da4b36de7f5f5a4478. SF10 stays0passed1failed5unattempted/no fit; job1080 archivedRUNNING/0failed tasks is unresolved terminal evidence, not proven retry. Queue2passed6188queries gives no demonstrated latency gain,14pending observations only. No model/policy source changes/SQL/fit/retry. Main scheduled20min recovery diagnostics; exploring novelty read-only parallel metric/literature review. Checkpoint2Nov19:00IST or earlier ready-work completion. Metrics remain proposals with equal-work/debt guardrails.
+
+## 2026-11-01 — Terminal evidence gap localized
+
+Saved chronology diagnostic completed, SHA4a3485f5de17e3b344b02ab3774542a7309ebf71adc5cbfa3acee388beef78df. Job1080 onlyRUNNING/stage2080ACTIVE/no tasks; later finaljobs omit1080 after expensive multiset scans. Evidence capture gap, not proven taskfailure; oldfailed SF10 unchanged. Prospective archiving repair proposed only. exploring novelty review complete/read-only: CPUcoreseconds and I/O conditional on equal completed work/maintenance debt, full-cohort response retained,48–72h viability proposal next. See recovery plan/full methodology for exact times, limitations and artifacts. No source/policy/model changes or newphysical work.
