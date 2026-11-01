@@ -1164,3 +1164,10 @@ New audits/explicit_engine_counters.py verifies actualexplicitjob/stagecounters 
 
 ## SF10 terminal-evidence validation failure preserved — 2026-11-01T17:33:43.904777+00:00
 {"error": "Failed sf10_archive_validation_20261101_02_no_maintenance; preserve original and new failures, no retry", "passed_episodes": 0, "failed_episodes": 1, "unattempted_episodes": 1}. No automatic retry or downstream fit; raw retained.
+
+
+## 2026-11-01 17:47 UTC — Gate A02 telemetry failure and registered diagnostic
+
+Actual coordinator terminated17:34:05UTC:0passed/1failed/1unattempted/no fit. Control exited17:33:43UTC with `Telemetry sampling gap` at sf10_collect.py292/sampler.window, before mandatory terminal archive and full final checks. Dependent maintenance arm never launched. ntfy deliveredHTTP200; SparkJava476447 remains alive. Original failures retained. Transportrelay121120 naturally ended after terminal checksum mirror/GitHub sync, HEAD1224047; no process was cancelled. Canonical campaign metadata mirrored; failed working-directory raw still needs explicit mirror.
+
+Register separate read-only telemetry_gap_diagnostic.py on retained actual control events/config/failure, unique output results/sf10_archive_gap_diagnostic_20261101_02. Threshold comes from actual config, no new threshold or missing-sample imputation. Report actual interval lengths, completed calls, checkpoint overlap and source SHA before/after. Correlation cannot prove cause. Independent code review identifies repeated large JSON decode/encode/full-history digest in same Python process as plausible GIL/scheduling contention; asynchronous telemetry persistence means logfsync alone is not proven acquisition-gap cause. No physical retry or gate relaxation. Post-two-arm explicit-counter auditor blocked by failed parent; do not run it on this partial evidence. Next gate actual detached forensic result, preserve/mirror raw, then design isolated telemetry/archive acquisition if supported; no downstream fit.
