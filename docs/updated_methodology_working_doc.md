@@ -1152,3 +1152,7 @@ Actual17:05UTC readiness: wrapper476440/Java476447,new10002/4051/app local-17935
 ## 2026-11-01 —02 preflight passed; campaign live
 
 Actual3131arrivals/12savedSQL/774taskframes7004records passed withoutSQLfit. Wrapper477693/coordinator477694 started22:36:58IST; firstcontrol477877,0passed0failed1unattempted. Transport-onlyrelay121120, freshSpark476447/app local-1793552665721. Sourcesd912671 frozen, docsadvanceonly.15minchecksactive, expectedpair2–3huncertain, no physicalpass/fit claim. Root results/sf10_archive_validation_20261101_02. GateAplan/fullmethodology preserve oldfailures/transportdependency/liveworkingrawmirrorlimits.
+
+## 2026-11-01 — Frozen-code review and extra acceptance check
+
+Independentread-onlyreview of actuald912671 confirms terminalresult/relayfix, no reviewedcodediff. Require actualjob/stagecounterpresence audit before GateAcomplete: absent counters cannot becomezero despite helperdefaults. Use raw-audit/checksum/episodesreceipts, not passed_episodes alone. REST-only observedjobscope remains explicit. Control/relaylive, firstperiodicarchivesobserved; no terminalpassyet/frozenedit/newrun.
