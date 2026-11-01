@@ -104,3 +104,8 @@ Two independent read-onlyreviews found no deterministicnormal/errorpathdeadlock,
 ## 2026-11-01 18:13 UTC — Actual process-acquisition validation launched
 
 Commit3839cd9 source/protocol syncedGitHub/local/worker3 with intendedSHA agreement. Worker3detachedfailurewrapper502866, harnesschild502867, realacquisitionchild502870; actualjournal31frames at first31scheck, stderr empty, nofailure/resultyet. Label sf10_process_sampling_validation_20261101_01, root results/sf10_process_sampling_validation_20261101_01, log/launch/ntfyreceipt sibling*_launch (launchmetadata mirrored). Expectedcheck18:18UTC23:48IST after305srealobservation and actualsavedarchiveprocessing; noSQL/physicalepisode/model fitting. No activeSF10collector; freshSpark476447preserved.67sourcefiles and originalrealfailedinput hashes frozenwhilevalidationruns; do not edit them or launchcompetingtests. Laterdocs-onlyHEADmayadvance. Bothreviewers' requested independentwindow/frontier/input/lifecyclechecks implemented beforelaunch. Actualpassunprovenuntilterminalreceipt/rawaudit; counts02physical0/1/1retained. Next ifpassintegrateexplicitnewacquisitioncontract incollectorwithfrozenaudit/sourcejournal, thenfreshregisteredphysicalblockonlyafterindependentreview/admission. Ifvalidationfails retain failure/no favorableautomaticrepeat or relaxedgates.
+
+
+### PID correction from actual process inspection
+
+Actual ps/PPID chain at18:13UTC is wrapper502866 -> harness502868 -> acquisitionchild502870. Earlier launchparagraph's harness502867 was a transcription error and is superseded; wrapper/childjournalPIDs were correct. No processrestart or newattempt occurred. Source/protocol remainfrozen3839cd9 whilevalidationruns.
