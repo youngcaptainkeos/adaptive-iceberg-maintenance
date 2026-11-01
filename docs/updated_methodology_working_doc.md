@@ -1209,3 +1209,10 @@ Commit3839cd9 source/protocol syncedGitHub/local/worker3 with intendedSHA agreem
 ### PID correction from actual process inspection
 
 Actual ps/PPID chain at18:13UTC is wrapper502866 -> harness502868 -> acquisitionchild502870. Earlier launchparagraph's harness502867 was a transcription error and is superseded; wrapper/childjournalPIDs were correct. No processrestart or newattempt occurred. Source/protocol remainfrozen3839cd9 whilevalidationruns.
+
+
+## 2026-11-01 18:18 UTC — Real isolated-acquisition validation passed
+
+Actualwrapper502866/harness502868/child502870 completednaturally around18:17:31UTC; nofailure, noSQL, nofit. Result results/sf10_process_sampling_validation_20261101_01/result.json SHA 0a0c8abcf49b8086dbeb0cd9565342e7f3a2bb597fed8bd41c7662225f4b94ff, protocolSHA6cb0f1daf01c3ba8a0e42de8efebf8d5315f32a03ead302e0577048b0cd69eac, source3839cd9 plusdocs-onlyHEADc72ad24.305actualcounterintervals, maximum1.04416108s, rawjournalSHA b2d942d5b8fa5204690db2bd769bfa45e42a7c68c8670c85a7c65b9bb2da30f7. Original60swindow59.034104838scoverage/freshness0.965895162s;300swindow299.033645533scoverage/freshness0.966354467s. Both independently reconstructed with original2s/95%/freshness gates and durablefrontier checks. All38realcheckpointdigestchecks completed inparent. Fullharnessraw/journal/stderr/protocol/result/launch mirrored; checksumcomparison found no contentdifferences.
+
+This establishes engineering counterhandoff under savedarchiveprocessing, not a physicalSF10pass, causalmechanismproof or calibratedmodel. Original02physical0/1/1stillfailed; processharnessno fabricatedqueries/labels. ChildCPU snapshot0.533986user/0.445787systemseconds excludesterminalwrite/fsync/exit and isnotwholeobserverCPU. Nextunit integrateexplicit subprocess_counter_journal_v1 selection/rawaudit/frozenfiles intoSF10collector aftertestterminal, review, thenfresh03protocol/preflight/admission. Do not rerunpassedharness or fitpartialdata. Spark476447remainslive.
