@@ -1148,3 +1148,7 @@ Preflight475549 failedoldRESTconnectionbeforeSQL/physicalwork, ntfydelivered/0ph
 ## 2026-11-01 — Fresh backend ready /02 protocols
 
 Actual17:05UTC readiness: wrapper476440/Java476447,new10002/4051/app local-1793552665721. Protocols sf10_archive_validation02_20261101.json and sf10_archive_preflight02_20261101.json pin actualserviceenvironment, distinct02root. Old01preflight0physicalattemptsfailed preserved. No oldprocessrestart, no physicalpass/fit yet; next actual02source/taskpreflight thenfresh2arms.
+
+## 2026-11-01 —02 preflight passed; campaign live
+
+Actual3131arrivals/12savedSQL/774taskframes7004records passed withoutSQLfit. Wrapper477693/coordinator477694 started22:36:58IST; firstcontrol477877,0passed0failed1unattempted. Transport-onlyrelay121120, freshSpark476447/app local-1793552665721. Sourcesd912671 frozen, docsadvanceonly.15minchecksactive, expectedpair2–3huncertain, no physicalpass/fit claim. Root results/sf10_archive_validation_20261101_02. GateAplan/fullmethodology preserve oldfailures/transportdependency/liveworkingrawmirrorlimits.
