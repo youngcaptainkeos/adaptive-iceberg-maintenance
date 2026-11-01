@@ -1116,3 +1116,7 @@ Actuallocaltransportrelay85134/nohupstarted21:42IST26Oct, metadata/logresults/sf
 Relayactual21:43ISTroundtripsyncedHEADf932ee5/checksums+methodologySHA/remoteack,85134alive. Currentcanonicalmetadatasnapshotonly, notactivehome/futurerawacceptance. Parent/controlalivein305swarmup,0passed0failed5unattempted/no modelfit; source/configfrozen.
 
 Actualreplaystarted21:46:47IST26Octafterrealwarmup; first6querytypes0–5clientcallscompleted(includingjoins), morecyclesrunning. Thisisactualexecutiononly; terminalraw/typedresultaudit/eligibleA/Bsupport/fittingstillpending. First300sofferedhistoryineligible; source/configfrozen.
+
+## 2026-11-01 — Team-readable project rundown saved
+
+See `docs/project_models_datasets_and_research_rundown_2026-11-01.md`: models/settings/code, TPC-H structure, Snowset replay/provenance, storage alternatives and prioritized research branches. Historical evidence through the 27 October local inspection; no new run or acceptance. Full documentation-unit provenance appended to methodology_working_doc.md. Remote terminal evidence remains the next gate.
