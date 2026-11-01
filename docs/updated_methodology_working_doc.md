@@ -1117,6 +1117,14 @@ Relayactual21:43ISTroundtripsyncedHEADf932ee5/checksums+methodologySHA/remoteack
 
 Actualreplaystarted21:46:47IST26Octafterrealwarmup; first6querytypes0–5clientcallscompleted(includingjoins), morecyclesrunning. Thisisactualexecutiononly; terminalraw/typedresultaudit/eligibleA/Bsupport/fittingstillpending. First300sofferedhistoryineligible; source/configfrozen.
 
+
+## SF10 campaign failure or support blocker preserved — 2026-10-26T17:09:16.812666+00:00
+Error Failed sf10_models_20261026_02_day1_window_no_maintenance; preserve all attempts, no retry; passed 0/failed 1/unattempted 5. Progress/raw /mnt/nfs-storage/shashank_prafullathta/implementation/results/sf10_models_20261026_02. No automatic physical retry or weakened gate. Fit attempted False; fit completed False. Partial artifacts retained; client mirror pending.
+
 ## 2026-11-01 — Team-readable project rundown saved
 
 See `docs/project_models_datasets_and_research_rundown_2026-11-01.md`: models/settings/code, TPC-H structure, Snowset replay/provenance, storage alternatives and prioritized research branches. Historical evidence through the 27 October local inspection; no new run or acceptance. Full documentation-unit provenance appended to methodology_working_doc.md. Remote terminal evidence remains the next gate.
+
+## 2026-11-01 — Recovery and feasibility queue
+
+See recovery_and_feasibility_plan_2026-11-01.md and full methodology append. Actual detached diagnostic423255 completed, resultSHAb9f999366497cfb7cd01ab393ce66f375778c20f8b2b64da4b36de7f5f5a4478. SF10 stays0passed1failed5unattempted/no fit; job1080 archivedRUNNING/0failed tasks is unresolved terminal evidence, not proven retry. Queue2passed6188queries gives no demonstrated latency gain,14pending observations only. No model/policy source changes/SQL/fit/retry. Main scheduled20min recovery diagnostics; exploring novelty read-only parallel metric/literature review. Checkpoint2Nov19:00IST or earlier ready-work completion. Metrics remain proposals with equal-work/debt guardrails.
