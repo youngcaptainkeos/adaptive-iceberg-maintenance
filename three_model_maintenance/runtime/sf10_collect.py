@@ -26,6 +26,7 @@ from statement_timing import completed_statements
 from engine_overlap import task_intervals,engine_time
 from common_horizon_binding import audit_arm
 from engine_archive import merged_engine_frames,capture_completed_query_tasks,ArchivedTaskEvidence
+from three_model_maintenance.runtime.terminal_archive import TerminalArchive, validate_contract, audit_terminal_archive
 
 
 class PreparationSampleUnavailable(Exception):
@@ -35,6 +36,7 @@ class PreparationSampleUnavailable(Exception):
 
 def audit(directory):
     directory=Path(directory);cfg=json.loads((directory/'config.json').read_text());rows=[json.loads(s) for s in (directory/'events.jsonl').open()]
+    terminal_archive_evidence=audit_terminal_archive(rows,cfg)
     mapped=list(csv.DictReader((directory/'mapped_arrivals.csv').open()));mapping=json.loads((directory/'mapping_record.json').read_text())
     require(sha256(directory/'mapped_arrivals.csv')==mapping['mapped_arrivals_sha256'] and len(mapped)==mapping['arrival_count'],'Mapped input changed')
     protocols=[r for r in rows if r['kind']=='trace_queue_protocol'];require(len(protocols)==1 and protocols[0]['configuration']==cfg,'Raw protocol differs')
@@ -157,6 +159,7 @@ def audit(directory):
     require(sha256(directory/'code'/'sf10_contract.py')==mapping['source_sha256']['sql_template_code'], 'Executed SQL vocabulary differs from mapped template source')
     summary={'common_horizon_arm':arm_evidence,'horizon_actual_transition_counts':dict(Counter(horizon_states.values())), 'horizon_not_yet_offered_ids':[k for k in expected if k not in horizon_states], 'status':'audited_real_arrival_queue_diagnostic_only','offered':len(mapped),'dispatched':len(dispatched),'final_states':dict(Counter(states.values())),'unfinished_queued_ids':[k for k,v in states.items() if v=='queued'],'boundary_observed_counts':boundary['observed_counts'],'boundary_observation_lateness_ms':(boundary['recorded']['monotonic_ns']-hi)/1e6,'queries':latencies,'events_sha256':sha256(directory/'events.jsonl'),'cost_training_accepted':False,'limitations':cfg['limitations']}
 
+    if terminal_archive_evidence is not None:summary['terminal_engine_archive_audit']=terminal_archive_evidence
     if cfg.get('boundary_preparation_contract')=='retain_queued_unsubmitted_observation_v1':summary['prepared_but_not_dispatched_measurement_ids']=sorted(abandoned_ids)
     if cfg.get('rpc_boundary_contract')=='guarded_rpc_start_requeue_v1':
         summary.update(queue_admission_attempts=dispatch_attempt_count,unsubmitted_intent_measurement_ids=sorted(not_sent_by_id),
@@ -167,6 +170,7 @@ def audit(directory):
 def run(config,revision):
     cfg,base=load_json(config);repo=Path(__file__).resolve().parents[2]
     arm=cfg['schema_version']=='common_horizon_arm_pilot_v1'
+    terminal_archive_enabled=validate_contract(cfg)
     require(cfg.get('rpc_boundary_contract') in (None,'guarded_rpc_start_requeue_v1'),'Unknown RPC boundary contract')
     require(cfg.get('rpc_boundary_contract') is None or cfg.get('query_preparation_contract')=='serialized_durable_submission_v1','RPC cutoff requires serialized durable preparation')
     require(cfg['schema_version'] in ('trace_queue_diagnostic_v1','common_horizon_arm_pilot_v1') and cfg['client_count']==1 and cfg['boundary_rule']=='no_dispatch_after_horizon_natural_inflight_completion','Unregistered diagnostic')
@@ -184,7 +188,7 @@ def run(config,revision):
     for name in ('run_trace_queue_diagnostic.py','offered_queue_ledger.py','prepare_trace_benchmark_mapping.py','physical_measurements.py','experiment_validation.py','statement_timing.py','query_observation_binding.py','telemetry_binding.py','run_correctness_pilot.py','engine_overlap.py','common_horizon_binding.py','engine_archive.py'):shutil.copy2(LEGACY/name,code/name)
     for src,name in ((Path(config),'config.json'),(source_path,'preparation_result.json'),(record_path,'mapping_record.json'),(mapping_audit_path,'mapping_audit.json'),(mapped_path,'mapped_arrivals.csv')):shutil.copy2(src,out/name)
     (out/'expected_query_results.json').write_text(json.dumps(expected,indent=2)+'\n')
-    for frozen_source in (Path(__file__), Path(__file__).with_name('publication.py'), Path(__file__).with_name('collector_bridge.py'), Path(__file__).with_name('submission.py'), Path(__file__).with_name('queue_ledger.py'), Path(__file__).with_name('notifying_sampler.py'), Path(__file__).with_name('sf10_contract.py'), Path(__file__).with_name('sf10_observation.py')):shutil.copy2(frozen_source,code/frozen_source.name)
+    for frozen_source in (Path(__file__), Path(__file__).with_name('publication.py'), Path(__file__).with_name('collector_bridge.py'), Path(__file__).with_name('submission.py'), Path(__file__).with_name('queue_ledger.py'), Path(__file__).with_name('notifying_sampler.py'), Path(__file__).with_name('sf10_contract.py'), Path(__file__).with_name('sf10_observation.py'), Path(__file__).with_name('terminal_archive.py')):shutil.copy2(frozen_source,code/frozen_source.name)
     EventLog,StatementRecorder=build_classes(dict(cfg,_protocol_sha256=sha256(Path(config))))
     StatementRecorder=plan_recorder(StatementRecorder,cfg)
     log=EventLog(out/'events.jsonl',cfg['experiment_id']);rec=StatementRecorder(log);rest=SparkEvidence(cfg['spark_rest_url'],cfg['spark_app_id'],cfg['rest_timeout_seconds'],log);sampler=TelemetrySampler(log,cfg['telemetry']['interval_seconds'],asynchronous_persistence=cfg.get('telemetry_persistence_contract')=='independent_counter_sampling_durable_publish_v1');connections=[];errors=[];threads=[];safe_to_close=False
@@ -259,14 +263,23 @@ def run(config,revision):
                 errors.append(e);log.emit('trace_queue_thread_failed',error_type=type(e).__name__,error=str(e))
         if arm:
             thread=threading.Thread(target=action_schedule);threads.append(thread);thread.start()
+        terminal_archive=TerminalArchive(rest,log,out/'events.jsonl',table) if terminal_archive_enabled else None
         def archive_engine():
             try:
-                for offset in cfg.get('engine_archive_offsets_ns',[]):
-                    wait_until(lo+offset);capture_completed_query_tasks(rest,log,out/'events.jsonl')
+                if terminal_archive is not None:
+                    interval_ns=int(cfg['engine_archive_interval_seconds']*1e9)
+                    offset=interval_ns
+                    while offset<mapping['horizon_ns']:
+                        wait_until(lo+offset);terminal_archive.capture()
+                        # A slow checkpoint never triggers a burst of catch-up REST calls.
+                        offset=max(offset+interval_ns,time.monotonic_ns()-lo+interval_ns)
+                else:
+                    for offset in cfg.get('engine_archive_offsets_ns',[]):
+                        wait_until(lo+offset);capture_completed_query_tasks(rest,log,out/'events.jsonl')
             except Exception as e:
                 errors.append(e);log.emit('trace_queue_thread_failed',error_type=type(e).__name__,error=str(e))
-        if cfg.get('engine_archive_offsets_ns'):
-            require(all(0<x<mapping['horizon_ns'] for x in cfg['engine_archive_offsets_ns']),'Register within-horizon engine archive checkpoints')
+        if terminal_archive is not None or cfg.get('engine_archive_offsets_ns'):
+            require(all(0<x<mapping['horizon_ns'] for x in cfg.get('engine_archive_offsets_ns',[])),'Register within-horizon engine archive checkpoints')
             thread=threading.Thread(target=archive_engine);threads.append(thread);thread.start()
         probes=[];query_snapshot=None
         while time.monotonic_ns()<hi:
@@ -340,6 +353,7 @@ def run(config,revision):
                 ledger.transition(identity,'failed',measurement_id=mid,session_id='query_0');raise
         for thread in threads:thread.join()
         if errors:raise errors[0]
+        if terminal_archive is not None:terminal_archive.capture(terminal=True)
         final_state=inventory()
         if arm:
             log.emit('common_horizon_final_state',**final_state)
@@ -351,7 +365,7 @@ def run(config,revision):
         rest.capture('jobs');rest.capture('stages')
         with log.lock:engine_rows=[json.loads(line) for line in (out/'events.jsonl').open()]
         jobs,stages=merged_engine_frames(engine_rows)
-        retained=ArchivedTaskEvidence(engine_rows,live=rest)
+        retained=ArchivedTaskEvidence(engine_rows,live=None if terminal_archive_enabled else rest)
         for probe in probes:task_intervals(jobs,stages,retained,marker=probe['marker'])
         for action in actions:task_intervals(jobs,stages,retained,rewrite_table=table,request=action)
         sampler.stop();result=audit(out);result['three_model_publication_audit']=audit_publications(out);safe_to_close=True;result['code_revision']=revision;(out/'result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
