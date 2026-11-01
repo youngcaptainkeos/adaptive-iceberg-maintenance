@@ -34,6 +34,12 @@ def registration(protocol):
             'Prospective terminal-evidence contract required')
     require(subprocess.check_output(['git','show','HEAD:'+str(protocol.relative_to(REPO))],cwd=REPO)==protocol.read_bytes(),
             'Registration must be committed unchanged')
+    if 'fresh_backend_result' in cfg['inputs']:
+        service=read(Path(cfg['inputs']['fresh_backend_result']['path']))
+        require(service['status']=='ready_fresh_isolated_backend_only' and
+                service['base_url']==cfg['episode_template']['spark_rest_url'] and
+                service['spark_app_id']==cfg['episode_template']['spark_app_id'],
+                'Fresh backend identity differs from registered service proof')
     return cfg
 
 
