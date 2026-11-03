@@ -2976,3 +2976,8 @@ Novelty boundary: a quiet-window forecast, a three-model composition, or queue a
 Artifacts: `docs/capstone_presentation_explainer_2026-11-03.docx` and editable one-slide replacement `docs/capstone_research_status_slide_2026-11-03_revamped_v2.pptx`. The guide was rendered to 12 page images for visual review; the replacement slide was rendered and visually inspected. Package/layout validators passed for the one-slide deck. Temporary QA renders and builder files are under `.codex_build/capstone_slide_20261103/` and are not evidence or final deliverables.
 
 Limitations and next gate: the guide reflects saved evidence reviewed on 2026-11-03, not a live SF10 status check; it intentionally avoids treating unobserved remote state as known. Before any model or policy claim, complete a valid SF10 evidence audit and establish repeatable timing differences on matched layouts and independent workload/source blocks. Then compare queue-aware decisions with preregistered simple policies on full offered cohorts, reporting waiting, service, arrival-to-result response, completed work, maintenance cost, residual queue, and terminal layout separately. Preserve all failed and unattempted counts.
+
+
+## 2026-11-03 — Review 2 presentation artifact organization
+
+The review-preparation deliverables were moved into the existing `docs/Review/Review 2/` folder so review materials stay together: `capstone_presentation_explainer_2026-11-03.docx`, `capstone_research_status_slide_2026-11-03.pptx`, and `project_scope_rundown_2026-11-03.docx`. Their content is unchanged; this is a file-organization update only. The source screenshots and presentation build/render QA files remain in their original locations. No experiment or measurement was performed.

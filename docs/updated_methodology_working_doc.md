@@ -1239,3 +1239,7 @@ Firstquery/archivecheck~18:39UTC00:09IST; terminalarchive~18:59UTC00:29IST, firs
 ## 2026-11-03 — Presentation evidence reconciliation
 
 Added a detailed source-to-slide audit and presentation guide in `docs/methodology_working_doc.md`. Deliverables: `docs/capstone_presentation_explainer_2026-11-03.docx` and `docs/capstone_research_status_slide_2026-11-03_revamped_v2.pptx`. The guide explains A/B service-time candidates, C arrival-count forecasts, the separate rewrite outcomes, and the queue-aware decision/evaluation path. It retains the SF1 baseline result as descriptive only, treats C as a diagnostic, records the saved SF10 telemetry sampling-gap failure and one unattempted episode, and makes no model, scheduler, live-campaign, or novelty claim. No run or new measurement was made. See the working-doc entry for reviewed sources, validation, artifact paths, limitations, and next evidence gate.
+
+## 2026-11-03 — Review 2 artifact paths
+
+The presentation guide, replacement status slide, and friend-facing scope rundown are stored in `docs/Review/Review 2/`. The earlier presentation-evidence entry in the working doc records their content and validation; this later note records their final review-folder locations.
