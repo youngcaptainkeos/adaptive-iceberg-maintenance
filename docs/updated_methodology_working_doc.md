@@ -1250,3 +1250,12 @@ The presentation guide, replacement status slide, and friend-facing scope rundow
 
 ## SF10 terminal-evidence validation failure preserved — 2026-11-01T19:08:23.466854+00:00
 {"error": "Failed sf10_archive_validation_20261101_03_no_maintenance; preserve original and new failures, no retry", "passed_episodes": 0, "failed_episodes": 1, "unattempted_episodes": 1}. No automatic retry or downstream fit; raw retained.
+
+
+## 2026-11-11 — ESA recovery, real dashboard and automatic screenshot unit
+
+SSHrestored; actualSpark476447stillalive, no activeprojectscience. Recovered03terminalfailed0passed1failed1unattempted/no fit: `Foreign Spark work` atsf10_collect.audit146 afterfinalchecks; actualchildfailed1Nov19:08:23UTC, ntfydeliveredHTTP200; orchestrationlaterdocsyncdeadline03UTC retained. Old12343daremoteappend recovered and mergedwithlocalNov3presentationhistory usingappend-onlysuffix preservation (5a30edf); GitHub/client/workerHEAD+bothmethodologySHAverified. Completed03campaignmetadata/logs and failedworkingraw mirrored; full checksumclosingpending. Originalstatusunknownincident now superseded byactualfailedreceipt, notpassed.
+
+Staticindependentreview: one assertion conflatesemptyactiveinventory and unmarkedoverlappingjobs; latestRESTmerge canretainstaleRUNNINGstate. Neitherprovescausewithoutactualhistories. Register worker3detached foreign_work_diagnostic.py on immutable03events/config, unique results/sf10_foreign_work_diagnostic_20261111_01. It enumeratesexactlegacygate breaches/histories withoutacceptance/gaterelaxation/fit/physicalretry.
+
+Implemented read-only review_server.py (worker3realprocess/REST/saved-events) and localdisplay-only capture_review.py (actualChrome browser screenshots, sourceJSON+SHAmanifest, state-change capture every60s). Output docs/Review/ESA review 26/{screenshots,observations}; LIVE/HISTORICAL/MIXED filenames and onpage labels. Registered ports8765/SSH18765+14051,5sRESTtimeout and firstdisplaydeadline11Nov18:30UTC00:00IST are operationalcapturechoices, not policythresholds. Browser/laptop mustremainconnected forautomaticimages; scientificjobsdetachedworker3. ImagescaptureactualUI, no syntheticterminal/results. Historical64-to4capabilityshownseparatelyfromfailed03layout. No newexperiment/model/schedulerclaim. Next actualforensicresult/UIcaptureinspection, thenregisterdefensiblerepair/newphysicalwindowonlyifrequiredgatesjustified.

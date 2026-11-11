@@ -1,0 +1,19 @@
+{
+  "label": "esa_review_recovery_20261111_01",
+  "campaign_id": "sf10_archive_validation_20261101_03",
+  "campaign_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf10_archive_validation_20261101_03",
+  "episode_directory": "/home/ccbd/capstone_three_model_evidence/sf10_archive_validation_20261101_03/sf10_archive_validation_20261101_03_no_maintenance",
+  "evidence_directory": "/mnt/nfs-storage/shashank_prafullathta/implementation/docs/Review/ESA review 26/observations",
+  "historical_compaction_file": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/three_model_sf10_scratch_recovery_20261025_03/plan_query/maintenance.json",
+  "spark_jobs_url": "http://127.0.0.1:4051/api/v1/applications/local-1793552665721/jobs?status=running",
+  "dashboard_port": 8765,
+  "local_dashboard_url": "http://127.0.0.1:18765",
+  "local_spark_url": "http://127.0.0.1:14051",
+  "local_screenshot_directory": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/screenshots",
+  "chrome_executable": "/usr/bin/google-chrome",
+  "chrome_profile_directory": "/media/shashank/Data1/PDocuments/Capstone/implementation/results/esa_review_recovery_20261111_01_capture/chrome-profile",
+  "screenshot_interval_seconds": 60,
+  "rest_timeout_seconds": 5,
+  "display_until_utc": "2026-11-11T18:30:00+00:00",
+  "rationale": "First review-preparation display session ends at midnightIST naturally; no physical/SQL cutoff extended. Read-only dashboard and existing SparkUI screenshots on state change checked every60s to avoid duplicate images; local browser is display/transport only. Historical failed observations never become accepted labels. All scientific diagnosis runs worker3 detached with alerts."
+}
