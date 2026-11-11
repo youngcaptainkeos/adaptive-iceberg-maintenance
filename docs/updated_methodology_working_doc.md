@@ -1243,3 +1243,10 @@ Added a detailed source-to-slide audit and presentation guide in `docs/methodolo
 ## 2026-11-03 — Review 2 artifact paths
 
 The presentation guide, replacement status slide, and friend-facing scope rundown are stored in `docs/Review/Review 2/`. The earlier presentation-evidence entry in the working doc records their content and validation; this later note records their final review-folder locations.
+
+
+<!-- Recovered remote append; original recorded entry preserved below. -->
+
+
+## SF10 terminal-evidence validation failure preserved — 2026-11-01T19:08:23.466854+00:00
+{"error": "Failed sf10_archive_validation_20261101_03_no_maintenance; preserve original and new failures, no retry", "passed_episodes": 0, "failed_episodes": 1, "unattempted_episodes": 1}. No automatic retry or downstream fit; raw retained.

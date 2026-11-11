@@ -2981,3 +2981,10 @@ Limitations and next gate: the guide reflects saved evidence reviewed on 2026-11
 ## 2026-11-03 — Review 2 presentation artifact organization
 
 The review-preparation deliverables were moved into the existing `docs/Review/Review 2/` folder so review materials stay together: `capstone_presentation_explainer_2026-11-03.docx`, `capstone_research_status_slide_2026-11-03.pptx`, and `project_scope_rundown_2026-11-03.docx`. Their content is unchanged; this is a file-organization update only. The source screenshots and presentation build/render QA files remain in their original locations. No experiment or measurement was performed.
+
+
+<!-- Recovered remote append; original recorded entry preserved below. -->
+
+
+## SF10 terminal-evidence validation failure preserved — 2026-11-01T19:08:23.466854+00:00
+{"error": "Failed sf10_archive_validation_20261101_03_no_maintenance; preserve original and new failures, no retry", "passed_episodes": 0, "failed_episodes": 1, "unattempted_episodes": 1}. No automatic retry or downstream fit; raw retained.
