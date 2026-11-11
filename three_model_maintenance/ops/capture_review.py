@@ -10,8 +10,12 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import sys
 import time
 import urllib.request
+
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'scripts/phase6-live-evaluation'))
+from failure_notifications import notify_failure
 
 
 def run(protocol,once=False):
@@ -48,6 +52,7 @@ def run(protocol,once=False):
             last_signature=signature
         except Exception as exc:
             with manifest.open('a') as stream:stream.write(json.dumps(dict(captured_utc=stamp,error=str(exc),status='capture_failed_preserved'))+'\n')
+            notify_failure(cfg['label']+'_capture',str(exc),str(out/(stamp+'__failure_alert.json')))
             raise
         if once:return
         time.sleep(cfg['screenshot_interval_seconds'])
