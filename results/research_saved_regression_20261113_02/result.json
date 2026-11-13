@@ -1,0 +1,46 @@
+{
+  "status": "passed_supplementary_saved_evidence_regression_only",
+  "started_utc": "2026-11-13T17:50:51.870306+00:00",
+  "registration_sha256": "7914ef5c927d776fcfdb38d3e3467f1cb90754e09fd2780c4ff4d51bb36e54df",
+  "purpose": "supplementary code regression on pinned real saved evidence",
+  "new_SQL_executed": false,
+  "model_fit_performed": false,
+  "original_statuses_changed": false,
+  "execution_location": "local_by_explicit_user_instruction_2026-11-13_skip_ssh",
+  "checks": [
+    {
+      "check": "oversized_real_programme_plan_rejected_before_allocation",
+      "meaning": "Design guard only; no physical or simulated experiment"
+    },
+    {
+      "check": "source_syntax_and_design_registry",
+      "experiments": 34,
+      "meaning": "Plan generation only; no simulated or physical observations"
+    },
+    {
+      "check": "actual_raw_full_drain_accounting",
+      "episodes": 4,
+      "query_rows": 12376,
+      "exact_integer_response_and_area_reconstruction": true
+    },
+    {
+      "check": "historical_matched_engineering_contrasts",
+      "pairs": 2,
+      "overlap_components": 1,
+      "policy_benefit_established": false
+    },
+    {
+      "check": "preserved_failed_campaign",
+      "passed": 0,
+      "failed": 1,
+      "unattempted": 1
+    }
+  ],
+  "limitations": [
+    "No new physical experiment, model fit, attribution repair acceptance or scheduler validation.",
+    "Source-family independence is not established; four historical runs share one overlap component.",
+    "The new exact SQL binding function is syntax-reviewed only here: its original SQL inventory is not mirrored locally.",
+    "Concurrency, prospective physical launch, CPU/I/O reconstruction and confirmatory inference remain future implementation."
+  ],
+  "ended_utc": "2026-11-13T17:51:04.081645+00:00"
+}

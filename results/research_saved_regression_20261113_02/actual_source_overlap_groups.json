@@ -1,0 +1,12 @@
+{
+  "overlap_components": [
+    [
+      "queueaware_storage_20261024_01",
+      "queueaware_storage_20261024_02",
+      "queueaware_storage_20261024_03",
+      "queueaware_storage_20261024_04"
+    ]
+  ],
+  "independence_established": false,
+  "rule": "Same dataset/warehouse and intersecting half-open history-through-outcome ranges; transitive closure"
+}

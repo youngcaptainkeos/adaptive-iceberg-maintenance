@@ -85,3 +85,10 @@ The [scale/query-aware roadmap](docs/plans/SCALE_QUERY_AND_EVIDENCE_2026-10-24.m
 registers a separate SF10 capability pipeline in `experiments/scale_query.py` and
 pre-execution plan parser in `preparation/query_plan.py`. Terminal receipts govern
 actual success; this unit does not retrain old models or authorize SF100/scheduling.
+
+The [metric-focused research programme](../docs/research_program_2026-11-13/README.md)
+maps the next work to measured response/resource improvements, with 34 gated
+experiment cards and a next-agent handover. The new `research/` package provides
+bounded plans and supplementary real-ledger accounting; it does not launch a
+physical experiment or accept a trained scheduler. See the programme status for
+the actual local saved-evidence checks and deferred worker synchronization.

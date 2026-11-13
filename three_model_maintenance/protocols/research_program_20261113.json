@@ -1,0 +1,659 @@
+{
+  "schema": "capstone_research_program_v1",
+  "status": "prospective_not_physical_registration",
+  "created_utc": "2026-11-13T17:05:00+00:00",
+  "primary_metric": "full_cohort_mean_response_seconds",
+  "physical_registration_requirements": [
+    "Actual current worker3 process/idle/capacity inventory",
+    "Fresh unique label, tables, output and attempt identities",
+    "Source/model/code hashes; exact SQL/mapping/initial and final state rules",
+    "Unused chronological source-family roles including history/overlap purge",
+    "Explicit current UTC start/SQL/deadline cutoffs; no resurrection of expired protocols",
+    "Primary objective, practical margin, sample size/precision and guardrails justified from development",
+    "All original raw/publication/task/counter/correctness gates plus prospective SQL attribution",
+    "Failure wrapper, ntfy, detached ownership, logs/PID/check time; no duplicate executor",
+    "No run or model can be accepted from this programme or a generated design alone"
+  ],
+  "experiments": [
+    {
+      "id": "E00",
+      "title": "Recover and freeze the evidence inventory",
+      "requires": [],
+      "question": "Which results, processes, sources and tests actually exist, and which source windows are already consumed?",
+      "intervention": "Read current local and worker3 state when available. Inventory input hashes, snapshots, family use, frozen code and every failed/unattempted arm. No SQL or replay.",
+      "held_fixed": "All historical result statuses and raw bytes. The November 1 failed campaign remains 0 passed / 1 failed / 1 unattempted.",
+      "evidence": "Git/process inventory; signed source/consumption map; raw-copy SHA receipts; explicit unknowns.",
+      "continue_if": "Repository state, evidence paths and source roles agree; no competing physical executor.",
+      "stop_if": "Remote state is unknown, evidence is missing, or another scientific executor owns the server. Continue documentation only.",
+      "state": "planned"
+    },
+    {
+      "id": "E01",
+      "title": "Repair prospective SQL ownership and terminal evidence",
+      "requires": [
+        "E00"
+      ],
+      "question": "Can every completed marked SQL call be linked to its actual SQL execution, jobs, stages and successful task attempts without guessing?",
+      "intervention": "Add a versioned SQL REST archive to the prospective collector. Resolve exact marked SQL and explicit success/running/failed job lists; preserve all observed engine jobs for the foreign-work census. Capture before retention loss and before post-run validation SQL.",
+      "held_fixed": "Existing freshness, telemetry coverage, raw publication, terminal capture, task-attempt, correctness and multiset gates; old failed episodes; verified SF10 source and six SQL templates.",
+      "evidence": "Saved genuine 463-call diagnostic as regression evidence; terminal SQL/job/stage/task receipts for one fresh control and one fresh maintenance episode; independent counter-presence audit.",
+      "continue_if": "Both fresh episodes pass every original gate plus direct ownership coverage, input hashes and terminal raw mirroring.",
+      "stop_if": "Any missing or ambiguous link, adverse counter, incomplete task attempt, capture gap or audit failure. Diagnose and register a mechanism change before another physical attempt.",
+      "state": "planned"
+    },
+    {
+      "id": "E02",
+      "title": "Measure repeatability with null controls",
+      "requires": [
+        "E01"
+      ],
+      "question": "How much do response time and collection overhead drift without compaction or policy changes?",
+      "intervention": "Run two fresh-table no-maintenance replicas per development source block, alternating early/late position across a bounded four-block engineering pilot.",
+      "held_fixed": "Rows, mapped arrivals, SQL sequence, layouts, client concurrency, engine configuration, observer and warmup. No cache flush or service restart.",
+      "evidence": "Full-cohort response, service, generator lateness, queue area, CPU/I/O availability, wall time and host context for all eight episodes; paired null differences.",
+      "continue_if": "Complete auditable runs and a measured variance/drift estimate sufficient to choose later precision and meaningful-effect criteria.",
+      "stop_if": "Differences remain dominated by observer stalls or uncontrolled host changes. Fix measurement; do not use four blocks as a publication sample-size guarantee.",
+      "state": "planned"
+    },
+    {
+      "id": "E03",
+      "title": "Measure the static layout response curve",
+      "requires": [
+        "E02"
+      ],
+      "question": "Does changing file granularity improve the queries we actually execute, and where does reduced parallelism offset file-opening savings?",
+      "intervention": "Prepare the same verified SF10 rows into three preregistered physical layouts, provisionally 16/64/256 files, with actual file-size distributions recorded. Execute identical queries without concurrent maintenance.",
+      "held_fixed": "Data content and ordering recipe, compression, row-group settings, partition/sort rules, query parameters and resource configuration. Rotate layout order; use fresh tables.",
+      "evidence": "Per-query and full-cohort response, scan tasks/bytes, planning evidence where available, actual file distributions and logical equality. Record successful achieved counts; never pretend requested count equals actual count.",
+      "continue_if": "A reproducible useful region or a well-measured non-monotonic curve exists; select the layout range on development only.",
+      "stop_if": "No plausible query benefit beyond repeatability, or layouts cannot be matched except for the intended intervention. Avoid training a predictor of a nonexistent benefit.",
+      "state": "planned"
+    },
+    {
+      "id": "E04",
+      "title": "Isolate query sensitivity to layout",
+      "requires": [
+        "E03"
+      ],
+      "question": "Which query mechanisms are sensitive to file granularity: selective scans, full scans, joins or aggregations?",
+      "intervention": "First analyze the registered six real SQL templates separately on the same layout experiment. Add a separately registered richer query suite only after the initial mechanism is understood.",
+      "held_fixed": "Arrival counts/order within each comparison and exact query parameter sets. Do not simultaneously change data scale, selectivity, join count and concurrency.",
+      "evidence": "Query/plan identities; scan, exchange, join and aggregate counts; measured per-template effects and uncertainty across blocks; a workload-weighted effect using a declared mix.",
+      "continue_if": "Specific sensitive and insensitive query classes can be explained with physical evidence, including any slowdowns.",
+      "stop_if": "Only a selected favorable template improves and aggregate effects disappear. Restrict the claim or revise the workload question prospectively.",
+      "state": "planned"
+    },
+    {
+      "id": "E05",
+      "title": "Separate transient interference from permanent layout benefit",
+      "requires": [
+        "E02"
+      ],
+      "question": "Does maintenance execution overlap actually slow foreground work, separately from the new layout becoming visible?",
+      "intervention": "Use fresh matched tables and snapshot-pinned foreground reads of the original layout during control and rewrite episodes. Record actual overlapping task intervals. In a separate phase compare compacted reads without maintenance.",
+      "held_fixed": "Original read snapshot, query cohort, engine capacity, observer and arrival timing during the interference contrast. Snapshot pinning is diagnostic; production-like latest-snapshot semantics are evaluated separately.",
+      "evidence": "Query task overlap, client-pending state, rewrite job CPU/I/O, response decomposition and actual commit/snapshot timestamps. Both no-overlap and overlap observations retained.",
+      "continue_if": "A repeatable transient interference signal exists in a supported regime, or evidence establishes that it is too small to justify a separate interference model.",
+      "stop_if": "A-minus-B estimates merely combine layout/cache/time changes; no direct overlap proof; or observed slowdown is entirely dispatch/evidence overhead.",
+      "state": "planned"
+    },
+    {
+      "id": "E06",
+      "title": "Establish a useful start-time decision",
+      "requires": [
+        "E03",
+        "E05"
+      ],
+      "question": "Can choosing a different compaction start reduce full-cohort response while completing the same maintenance obligation?",
+      "intervention": "Compare fixed early, midpoint and post-arrival starts on identical offered cohorts; default proposed offsets 0, H/2 and H, with H=1200s only if a new registration justifies retaining it. All arms must complete one equivalent rewrite and all foreground queries.",
+      "held_fixed": "Initial physical layout, source window, SQL sequence, target layout rule, resources and observer. Include actual submission lag; intent time is not execution time.",
+      "evidence": "Three-way paired response, queue area, p95/p99, drain, CPU/I/O and final maintenance state. A no-maintenance arm may be a separate diagnostic, never an equal-obligation winner.",
+      "continue_if": "Start-time effects exceed development drift and the preregistered practical threshold; the sign/regime is interpretable across development blocks.",
+      "stop_if": "Timing has no resolvable effect, or all timings are equivalent within the stated margin. Stop the forecast/ML chain in this regime.",
+      "state": "planned"
+    },
+    {
+      "id": "E07",
+      "title": "Screen the interactions that can explain timing benefit",
+      "requires": [
+        "E06"
+      ],
+      "question": "Does the useful timing choice depend jointly on natural demand regime, fragmentation and query mechanism?",
+      "intervention": "Run a bounded 2x2x2x2 screen: lower/higher verified fragmentation, lower/higher natural-load source strata, lighter/heavier declared query mix and early/deferred start. Use intact real arrivals; select strata from development source descriptors, not observed winners.",
+      "held_fixed": "SF10, same engine/resources, one client and fixed target-file rule. Load is a sampled source regime, not a randomized manipulated factor; report its association and interactions accordingly.",
+      "evidence": "All 16 planned cells per replication set, actual source-family map and counterbalanced order, effect plots for timing-by-layout, timing-by-load and timing-by-query mix.",
+      "continue_if": "A small number of repeatable interactions support a narrow timing hypothesis and a restricted feature set.",
+      "stop_if": "Interactions are dominated by noise, incomplete cells or unrealistic saturation. Do not expand to an unrestricted Cartesian product.",
+      "state": "planned"
+    },
+    {
+      "id": "E08",
+      "title": "Account for the whole observer and controller overhead",
+      "requires": [
+        "E02"
+      ],
+      "question": "How much of measured response and CPU comes from feature acquisition, logging, durable publication, model inference and planning?",
+      "intervention": "Instrument non-overlapping controller spans and process counters; compare two semantically equivalent implementation paths only where every evidence guarantee is retained. Reuse the completed SF1 inference diagnostic as historical context, not a whole-controller estimate.",
+      "held_fixed": "Real queries, physical layout, logging durability and cadence, telemetry gates, model outputs and policy decisions in an implementation comparison.",
+      "evidence": "Cold load versus warm inference, cache hits/misses, EXPLAIN/metadata calls, serialization/fsync, CPU-core-seconds, bytes and total client/engine time. Report inclusive/exclusive boundaries explicitly.",
+      "continue_if": "End-to-end overhead is measured and small relative to the useful action effect, or an engineering optimization reduces it without changing semantics.",
+      "stop_if": "A claimed gain exists only after subtracting guessed overhead or weakening collection. Keep the gain as observer engineering if policy is unchanged.",
+      "state": "planned"
+    },
+    {
+      "id": "E09",
+      "title": "Build resource accounting before claiming efficiency",
+      "requires": [
+        "E01"
+      ],
+      "question": "Can total CPU and I/O for the same work be measured without double counting?",
+      "intervention": "Capture disjoint process/JVM CPU counters with process start identities, and scoped physical I/O where available, across collection, drain, maintenance and validation phases.",
+      "held_fixed": "Same hardware, completed requests and rewrite obligation. Task CPU is a breakdown inside JVM CPU, not another quantity to add.",
+      "evidence": "Counter availability/reset audit, accounting boundary, host interference log, summed CPU core-seconds, logical scan/rewrite bytes, physical I/O and observer costs in separate columns.",
+      "continue_if": "Counters cover all relevant processes/phases with explicit scope and unchanged workload completion.",
+      "stop_if": "Only CPU percent or unscoped host/device counters are available. Report those as diagnostics and do not infer CPU work, energy or cost savings.",
+      "state": "planned"
+    },
+    {
+      "id": "E10",
+      "title": "Establish strong cheap policies",
+      "requires": [
+        "E06",
+        "E08"
+      ],
+      "question": "How much can a simple current-state rule achieve without any learned prediction?",
+      "intervention": "Implement fixed early, fixed deadline and reactive queue/load threshold policies with bounded deferral, hysteresis and identical rewrite eligibility. Tune the reactive threshold on development only.",
+      "held_fixed": "Same trigger opportunity, action set, target layout, deadline, resource budget and measurement path; enforce natural completion and record misses.",
+      "evidence": "Physical paired full-cohort outcomes and overhead versus fixed starts. Report every threshold tried on development and freeze the chosen baseline before test.",
+      "continue_if": "The strongest cheap baseline is selected transparently and reproducibly.",
+      "stop_if": "A baseline is deliberately weak, misses its maintenance obligation, uses a different action set or is tuned on held-out data.",
+      "state": "planned"
+    },
+    {
+      "id": "E11",
+      "title": "Test whether forecast information changes useful decisions",
+      "requires": [
+        "E10"
+      ],
+      "question": "Does knowing near-future demand help beyond current queue/load state?",
+      "intervention": "Use one planner and empirical costs with reactive/no forecast, last-window persistence, historical seasonal rate and a separately labelled perfect-arrival-information diagnostic. The oracle may use only the benchmark arrival future, not unseen physical cost outcomes.",
+      "held_fixed": "Planner, action set, costs, cadence, overhead accounting and real offered arrivals. No retiming, thinning or stochastic synthetic demand substitution.",
+      "evidence": "Forecast count errors, exact decision disagreements, supported horizons, physical response/obligation outcomes and oracle scope.",
+      "continue_if": "Forecast information changes decisions and the physical outcomes improve beyond the cheap baseline; then justify learning C.",
+      "stop_if": "Good forecast scores do not change decisions, or even the diagnostic oracle has little useful action margin in the evaluated regime.",
+      "state": "planned"
+    },
+    {
+      "id": "E12",
+      "title": "Test learned costs against empirical costs",
+      "requires": [
+        "E10"
+      ],
+      "question": "Does a learned latency estimate improve decisions beyond query/layout medians?",
+      "intervention": "Compare train-only query median, query/layout median, conditional median, log Ridge and a small boosted-tree candidate under the same whole-family splits. Use the same planner to test the selected candidate against medians.",
+      "held_fixed": "Training population, feature availability, held-out queries, forecast, planner and per-candidate tuning budget. Saved October models/tests remain consumed.",
+      "evidence": "All-row coverage, common-support equal-episode errors, supported decision disagreements, warm/cold overhead and independent physical policy contrasts.",
+      "continue_if": "The candidate contributes a repeatable net policy benefit on fresh families beyond the best inexpensive estimator.",
+      "stop_if": "Prediction MAE improves but decisions or measured outcomes do not; unsupported states dominate; cost exceeds decision value. Retain the simpler estimator.",
+      "state": "planned"
+    },
+    {
+      "id": "E13",
+      "title": "Decide whether separate A/B models are necessary",
+      "requires": [
+        "E05",
+        "E12"
+      ],
+      "question": "Is separate conditional fitting more useful than a shared model with maintenance state?",
+      "intervention": "Compare a shared model plus state/interactions against separate A/B models; include shared-model and separate-model variants under matched total tuning/parameter budgets where possible.",
+      "held_fixed": "Same query/layout overlap support, complete history, source-family roles, outcome definition and cost model family.",
+      "evidence": "Counts of independent episodes and overlap exposure per state; conditional and common-support errors; capacity/training time; physical decision contribution.",
+      "continue_if": "Separate models add reproducible supported value, with enough independent maintenance episodes and matched layout support.",
+      "stop_if": "A has only sparse rows from a few episodes or differs systematically in layout. Do not interpret A-minus-B as a causal penalty.",
+      "state": "planned"
+    },
+    {
+      "id": "E14",
+      "title": "Estimate rewrite duration and layout transition",
+      "requires": [
+        "E03",
+        "E09"
+      ],
+      "question": "Can the controller estimate rewrite work and completion time from pre-action state?",
+      "intervention": "Collect real isolated rewrites over supported file-count/size layouts, then matched concurrent-load rewrites. Compare empirical medians, bytes/throughput regression and a small learned regressor.",
+      "held_fixed": "Rewrite algorithm/options, logical rows, hardware and pre-action feature boundary. Separate no-op/failed rewrites from successful useful transitions.",
+      "evidence": "Actual client duration, rewritten/added files and bytes, final layout, commit time, CPU/I/O and concurrent demand context.",
+      "continue_if": "Enough independent rewrites support the chosen model and useful duration/transition error bounds.",
+      "stop_if": "Only a handful of repeated rewrites exist or model predicts file reduction as if it were response benefit. Keep empirical support limited.",
+      "state": "planned"
+    },
+    {
+      "id": "E15",
+      "title": "Remove unnecessary features and tune within development",
+      "requires": [
+        "E12",
+        "E13",
+        "E14"
+      ],
+      "question": "Which features and model settings earn their acquisition and fitting cost?",
+      "intervention": "Nested development comparisons: SQL identity; plus layout; plus observed queue/state; plus plan operators; plus complete host windows. Compare small fixed hyperparameter grids, not unrestricted search.",
+      "held_fixed": "Whole source-family folds, targets, transformations, scoring/coverage rule and tuning budget. Expensive plan features must be timed/cached with snapshot binding.",
+      "evidence": "Per-feature-group incremental predictive and decision value, acquisition time, OOD rate and chosen hyperparameters with trial ledger.",
+      "continue_if": "Retain only groups whose net benefit survives development checks; freeze before final evaluation.",
+      "stop_if": "Feature availability leaks future outcomes; row-wise cross-validation; test-driven tuning; complexity without measurable decision value.",
+      "state": "planned"
+    },
+    {
+      "id": "E16",
+      "title": "Calibrate uncertainty only with adequate blocks",
+      "requires": [
+        "E12",
+        "E14"
+      ],
+      "question": "Do uncertainty estimates support safer timing decisions on genuinely separate calibration blocks?",
+      "intervention": "Freeze models; calibrate block-level residual scores on unused calibration families and evaluate once on separate test families. Define whether coverage concerns a block maximum, an episode aggregate or an individual query.",
+      "held_fixed": "Model fit, calibration definition, decision horizon, target units, source grouping and declared risk. Never apply an individual-query interval to whole-episode guarantees.",
+      "evidence": "Finite conformal rank, number of calibration blocks, empirical coverage/width, OOD refusals and dependence/shift limitations.",
+      "continue_if": "The mathematical rank is finite and the independently chosen statistical/precision requirements are met; physical benefit of the uncertainty rule is demonstrated.",
+      "stop_if": "Too few blocks, dependence, shifted support or calibration/test reuse. Keep outputs explicitly uncalibrated; nine blocks for 90% is a rank minimum, not adequate power.",
+      "state": "planned"
+    },
+    {
+      "id": "E17",
+      "title": "Isolate the value of C, learned costs and uncertainty",
+      "requires": [
+        "E11",
+        "E12"
+      ],
+      "question": "Which component causes the policy improvement?",
+      "intervention": "Use a fixed planner in a 2x2 ablation: persistence versus selected forecast, empirical versus selected learned costs. Add uncertainty on/off only after E16. Keep the strongest reactive policy outside this 2x2 as a required comparator.",
+      "held_fixed": "Action set, invocation cadence, training source, terminal obligation, physical layouts, workload and resource budget.",
+      "evidence": "Four-cell paired physical comparison on fresh development blocks; marginal and interaction effects; total overhead. Later optional eight-cell uncertainty extension.",
+      "continue_if": "At least one justified component adds useful outcome value with stable support and accounting.",
+      "stop_if": "A better result is attributable to a different planner/action set or ignored overhead. Simplify components that do not add value.",
+      "state": "planned"
+    },
+    {
+      "id": "E18",
+      "title": "Freeze and execute the one-time confirmatory comparison",
+      "requires": [
+        "E17"
+      ],
+      "question": "Does the frozen selected method beat the frozen strongest baseline in the declared target population?",
+      "intervention": "Preregister primary metric, practical effect, precision/sample size, family split/purge, arm order, failure policy and guardrails from development. Run complete matched physical blocks on untouched families once.",
+      "held_fixed": "All model artifacts, baseline thresholds, feature code, planner, hardware definition, action rule and analysis script. No test feedback into model choice.",
+      "evidence": "All attempts, full raw/audit manifests, equal-work contrasts, family-level intervals, raw distributions, response/resource/debt guardrails and sensitivity analyses marked secondary.",
+      "continue_if": "The preregistered superiority/equivalence criterion and all safety/correctness/obligation gates are satisfied.",
+      "stop_if": "Failure, imprecision, effect below practical threshold or guardrail violation. Report inconclusive/negative; consume test and design a genuinely new study if needed.",
+      "state": "planned"
+    },
+    {
+      "id": "E19",
+      "title": "Optional CPU or I/O objective study",
+      "requires": [
+        "E09",
+        "E10"
+      ],
+      "question": "Can maintenance reduce resource work for the same completed workload without an unacceptable response regression?",
+      "intervention": "Before new outcomes, register a distinct resource-first protocol: choose CPU core-seconds OR a well-scoped I/O metric as primary and a justified response constraint. Do not rename old response experiments.",
+      "held_fixed": "Same offered/cohort work, full drain, successful rewrite and final-state criterion; all observer/controller cost included.",
+      "evidence": "Resource-response Pareto plots with a fixed selected operating point, resource provenance and both positive and negative outcomes.",
+      "continue_if": "Net savings survive equal-work accounting and the response constraint on fresh data.",
+      "stop_if": "Savings arise from omitted requests/maintenance, lower quality, unmeasured processes or moving work outside the horizon.",
+      "state": "planned"
+    },
+    {
+      "id": "E20",
+      "title": "Validate scale transfer to SF100",
+      "requires": [
+        "E18"
+      ],
+      "question": "Does the mechanism survive a larger verified dataset?",
+      "intervention": "Audit the actual SF100 source/generator and capacity, then repeat the smallest decisive comparison at SF100. First test frozen SF10 models; report retraining as a different adaptation experiment.",
+      "held_fixed": "Query semantics, controlled layout treatment, policy interfaces and complete evidence gates. Do not change scale and engine/resources simultaneously.",
+      "evidence": "All-table row/type/provenance checks, actual data bytes, full correctness, support coverage, resource/admission receipts and physical outcomes.",
+      "continue_if": "Capacity and verification pass and the mechanism transfers or its failure is interpretable.",
+      "stop_if": "Insufficient RAM/disk/evidence budget or no supported predictions. SF100 is an external-validity branch, not a cure for broken SF10 evidence.",
+      "state": "planned"
+    },
+    {
+      "id": "E21",
+      "title": "Concurrency and query-mix transfer",
+      "requires": [
+        "E18"
+      ],
+      "question": "Does the result hold beyond one serial client and a narrow mapped query mix?",
+      "intervention": "Change client concurrency in one series (proposed 1 then 4); change query mix in a separate series. Use real mapped SQL and audit per-session queue/task ownership.",
+      "held_fixed": "Everything except the one named factor. Preserve intact real arrival timing and expose over/underload rather than compressing the trace.",
+      "evidence": "Aggregate and per-query response, per-session ledgers, engine overlap and logical results; policy support/refusals and utilization.",
+      "continue_if": "Mechanism persists or a clear saturation boundary can be reported.",
+      "stop_if": "Concurrent request ownership/accounting cannot be proved or experiment mixes multiple interventions.",
+      "state": "planned"
+    },
+    {
+      "id": "E22",
+      "title": "Add continuing fragmentation from real writes",
+      "requires": [
+        "E06"
+      ],
+      "question": "Does timing matter more when a real table continues accumulating small files?",
+      "intervention": "Register an actual write source with data lineage and ingestion timestamps. If using benchmark-generated inserts, label them explicitly as controlled benchmark writes, subject to user approval; they cannot be called production trace writes.",
+      "held_fixed": "Equal committed writes, queries and maintenance debt across arms; consistent snapshot/visibility semantics.",
+      "evidence": "Committed row/version history, write latency, query response, file/debt trajectory, rewrite work and conflict outcomes.",
+      "continue_if": "A real supported write source and complete correctness boundary exist; ongoing debt creates a useful timing tradeoff.",
+      "stop_if": "No authorized write provenance or missing data. Do not invent ingestion from Snowset arrival timestamps.",
+      "state": "planned"
+    },
+    {
+      "id": "E23",
+      "title": "Selective or incremental file-group compaction",
+      "requires": [
+        "E06",
+        "E14"
+      ],
+      "question": "Can bounded useful work reduce the disturbance of a monolithic rewrite?",
+      "intervention": "Compare whole eligible rewrite with a registered subset/file-group strategy through supported Iceberg options; preserve identical long-run obligation and record every commit.",
+      "held_fixed": "Same data, workload, final maintenance obligation and target size; no preemption/cancellation of active jobs.",
+      "evidence": "Per-action duration/work, interference episodes, accumulated debt, total CPU/I/O and final layout.",
+      "continue_if": "Smaller actions improve the declared objective after total-work accounting and repeated action overhead.",
+      "stop_if": "Partial compaction wins only by leaving debt, changing target quality or hiding extra commits/rewrite amplification.",
+      "state": "planned"
+    },
+    {
+      "id": "E24",
+      "title": "Partition prioritization",
+      "requires": [
+        "E22",
+        "E23"
+      ],
+      "question": "Which partition should receive a fixed maintenance budget first?",
+      "intervention": "Register multiple real partitions and measured query access frequencies; compare round-robin, file-count priority, workload-aware empirical priority and a supported learned ranking.",
+      "held_fixed": "Total budget, eligible partition set, action implementation and final obligation rule; isolate selection from timing.",
+      "evidence": "Partition-level response exposure, maintenance bytes, fairness/debt and end-to-end performance.",
+      "continue_if": "Selection causes useful effects beyond a strong cheap ranking with no starvation.",
+      "stop_if": "Only one unpartitioned table exists, missing access provenance or comparison conflates a larger budget with smarter selection.",
+      "state": "planned"
+    },
+    {
+      "id": "E25",
+      "title": "Delete-file maintenance and merge-on-read",
+      "requires": [
+        "E22"
+      ],
+      "question": "Does a different, real maintenance debt produce a stronger measurable read/write tradeoff?",
+      "intervention": "Register actual deletes/updates and supported Iceberg delete semantics in fresh isolated tables. Compare appropriate delete/data maintenance actions; this is a new hypothesis.",
+      "held_fixed": "Identical logical changes and snapshot correctness, action eligibility and final deletion semantics.",
+      "evidence": "Delete-file inventory, row/result equality, read amplification, commit/conflict work and response/resource accounting.",
+      "continue_if": "Debt and outcomes are directly evidenced with complete correctness.",
+      "stop_if": "Deletes are fabricated, semantics differ between arms or the implementation cannot attribute merge work.",
+      "state": "planned"
+    },
+    {
+      "id": "E26",
+      "title": "Second environment or engine",
+      "requires": [
+        "E18"
+      ],
+      "question": "How much of the result depends on one machine or Spark implementation?",
+      "intervention": "Replicate the minimal decisive experiment on a second available resource configuration or engine. Change one environment dimension per registered study.",
+      "held_fixed": "Logical dataset, query semantics, workload family selection and maintenance objective; disclose unavoidable engine semantic differences.",
+      "evidence": "Hardware/software configuration, version pins, compatibility/correctness checks and paired effects within each environment.",
+      "continue_if": "Result transfers, or a clear engine/resource limitation is established.",
+      "stop_if": "A new environment is unavailable or changes so many factors that the study cannot explain the difference.",
+      "state": "planned"
+    },
+    {
+      "id": "E27",
+      "title": "Delta Lake external-validity branch",
+      "requires": [
+        "E18"
+      ],
+      "question": "Does the same timing principle extend to another table format?",
+      "intervention": "Implement a separate Delta adapter for native bin-packing OPTIMIZE, using verified logical rows and equivalent queries; retain its format-specific snapshots and metrics.",
+      "held_fixed": "Within-format resource and workload comparison; same high-level question. Never treat OPTIMIZE and Iceberg rewrite as identical implementations.",
+      "evidence": "Correctness/provenance, adapter audit, native maintenance output and equal-obligation comparisons.",
+      "continue_if": "The mechanism is already credible on Iceberg and extra engineering can answer a specific transfer question.",
+      "stop_if": "Switching formats is only an attempt to find a favorable number or required native instrumentation is absent.",
+      "state": "planned"
+    },
+    {
+      "id": "E28",
+      "title": "Hudi merge-on-read branch",
+      "requires": [
+        "E22"
+      ],
+      "question": "Does the timing hypothesis apply to log-to-base-file merging under continuing updates?",
+      "intervention": "Build a separate Hudi MOR experiment with actual updates and read/write visibility checks. Hudi compaction merges log updates; it is not the same as file-size bin packing.",
+      "held_fixed": "Equal real update streams, read semantics, base/log debt and completed maintenance.",
+      "evidence": "Log/base inventories, read amplification, update latency, merge work and full workload outcomes.",
+      "continue_if": "A supported MOR workload and a distinct research question justify the larger adapter effort.",
+      "stop_if": "No update source or no equivalent work/semantics; this is a project pivot, not an immediate fallback.",
+      "state": "planned"
+    },
+    {
+      "id": "E29",
+      "title": "RocksDB/LSM pivot",
+      "requires": [
+        "E06"
+      ],
+      "question": "Is a fundamentally different maintenance architecture necessary for a new hypothesis?",
+      "intervention": "Only after an explicit project decision, move to a fresh LSM research problem and compare appropriate native baselines such as workload-aware compaction methods.",
+      "held_fixed": "New scope, actual supported key/value workload provenance and native latency/debt metrics; do not transfer lakehouse claims automatically.",
+      "evidence": "New literature review, workload, correctness/accounting adapter and baseline reproductions.",
+      "continue_if": "The new mechanism and available time justify a separate project trajectory.",
+      "stop_if": "The motivation is simply that Iceberg had a null result. Existing strong LSM literature makes this an expensive pivot.",
+      "state": "planned"
+    },
+    {
+      "id": "E30",
+      "title": "Robustness, drift and unsupported states",
+      "requires": [
+        "E18"
+      ],
+      "question": "When does the controller lose support, miss a deadline or make a harmful decision?",
+      "intervention": "Evaluate preregistered real workload shifts, unseen layouts and model age on separate data. Measure natural failures; do not deliberately corrupt evidence or kill jobs.",
+      "held_fixed": "Frozen model/decision policy and transparent refusal contract.",
+      "evidence": "Coverage/refusal rates, worst blocks, deadline/debt violations and a failure taxonomy with raw receipts.",
+      "continue_if": "Scope and operating limits are explicit; conclusions survive stated robustness checks.",
+      "stop_if": "Unsupported predictions silently fall back, metrics exclude failed arms or drift triggers test-set retuning.",
+      "state": "planned"
+    },
+    {
+      "id": "E31",
+      "title": "Write and release a reproducible paper artifact",
+      "requires": [
+        "E18",
+        "E30"
+      ],
+      "question": "Can a reader reconstruct every figure and verify the central claim?",
+      "intervention": "Freeze the claim ledger, source versions, all attempts, analysis commands and raw manifests; write methods/results/limitations and package a bounded reproducible artifact.",
+      "held_fixed": "Primary outcome and failure history; no selective removal of null or contradictory experiments.",
+      "evidence": "Paper tables/figures with source SHA links, environment/seed records, costs, data-license notes and next-agent instructions.",
+      "continue_if": "The central claim is supported, baseline comparison is fair, artifact reproduces and the team/guide review the venue fit.",
+      "stop_if": "Only screenshots, prediction accuracy or a single favorable run support the claim. Target acceptance is never guaranteed.",
+      "state": "planned"
+    },
+    {
+      "id": "E32",
+      "title": "Boundary or negative-result research branch",
+      "requires": [
+        "E03",
+        "E05",
+        "E06",
+        "E08"
+      ],
+      "question": "Under what conditions is compaction timing or a learned controller not worth its cost?",
+      "intervention": "Preregister a bounded regime map and equivalence/practical-effect analysis on fresh blocks, retaining layout/parallelism and overhead mechanisms.",
+      "held_fixed": "Fair baselines, equal completed work, sufficient precision and the same evidence quality as a positive claim.",
+      "evidence": "Timing-effect intervals, useful-region boundaries, overhead-to-effect ratios and independent reproduction.",
+      "continue_if": "A generalizable explanatory boundary with sufficiently precise evidence distinguishes the work from prior findings.",
+      "stop_if": "Failure to reject zero is presented as equivalence, or a failed measurement pipeline is presented as a negative scientific finding.",
+      "state": "planned"
+    },
+    {
+      "id": "E33",
+      "title": "Observer-efficiency engineering branch",
+      "requires": [
+        "E02",
+        "E08"
+      ],
+      "question": "Can durable evidence collection be made cheaper without changing the measured system contract?",
+      "intervention": "Study publication/serialization/storage placement through semantically equivalent implementations; quantify the effect on an external control loop and workload.",
+      "held_fixed": "Every required record, timestamp, durability, coverage, checksum and failure gate. Freeze policy outputs for implementation comparisons.",
+      "evidence": "Raw-equivalence proofs, latency/CPU/write costs, drift controls, end-to-end effects and independent workloads.",
+      "continue_if": "A distinct transferable mechanism and independent evidence support more than a one-machine storage-location observation.",
+      "stop_if": "Claims rely only on the historical 31\u201342% observer-path contrast, omitted durability or assumed GIL causality.",
+      "state": "planned"
+    }
+  ],
+  "designs": {
+    "null_repeatability": {
+      "experiment_id": "E02",
+      "factors": {
+        "replica": [
+          "A",
+          "B"
+        ]
+      },
+      "order_seed": 20261113,
+      "rationale": "Two identical fresh-table replicates per source block estimate drift. Four block slots are a bounded engineering pilot, not power."
+    },
+    "layout_curve": {
+      "experiment_id": "E03",
+      "factors": {
+        "requested_file_count": [
+          16,
+          64,
+          256
+        ]
+      },
+      "order_seed": 20261113,
+      "rationale": "Fourfold steps around the existing 64-file SF10 preparation expose granularity effects while holding logical bytes constant. Counts require capability validation."
+    },
+    "timing": {
+      "experiment_id": "E06",
+      "factors": {
+        "start_rule": [
+          "first_eligible",
+          "midpoint",
+          "arrival_horizon_end"
+        ]
+      },
+      "order_seed": 20261113,
+      "rationale": "Bracket early/transient/post-arrival choices; every arm completes the same rewrite and query cohort. Offsets bind to a separately registered horizon."
+    },
+    "interaction_screen": {
+      "experiment_id": "E07",
+      "factors": {
+        "layout": [
+          "lower_fragmentation",
+          "higher_fragmentation"
+        ],
+        "natural_source_load": [
+          "lower",
+          "higher"
+        ],
+        "query_mix": [
+          "lighter",
+          "heavier"
+        ],
+        "start_rule": [
+          "early",
+          "deferred"
+        ]
+      },
+      "order_seed": 20261113,
+      "rationale": "16-cell development screen for timing interactions. Natural load is source-stratified, not randomly assigned or synthetically scaled."
+    },
+    "policy_ablation": {
+      "experiment_id": "E17",
+      "factors": {
+        "forecast": [
+          "persistence",
+          "selected_development_forecast"
+        ],
+        "cost": [
+          "empirical",
+          "selected_development_learned"
+        ]
+      },
+      "order_seed": 20261113,
+      "rationale": "Four cells isolate forecast information and cost modeling under identical planner/actions. Strong reactive comparator is added separately."
+    },
+    "uncertainty_ablation": {
+      "experiment_id": "E17",
+      "factors": {
+        "forecast": [
+          "persistence",
+          "selected_development_forecast"
+        ],
+        "cost": [
+          "empirical",
+          "selected_development_learned"
+        ],
+        "uncertainty": [
+          "off",
+          "calibrated_block_rule"
+        ]
+      },
+      "order_seed": 20261113,
+      "rationale": "Optional eight cells only after E16; uncalibrated estimates cannot fill calibrated_block_rule."
+    },
+    "scope_cartesian_upper_bound": {
+      "experiment_id": "E07",
+      "factors": {
+        "scale": [
+          "SF1",
+          "SF10",
+          "SF100"
+        ],
+        "layout": [
+          16,
+          64,
+          256
+        ],
+        "load": [
+          "low",
+          "moderate",
+          "high"
+        ],
+        "query": [
+          "metadata",
+          "scan",
+          "join"
+        ],
+        "clients": [
+          1,
+          4
+        ],
+        "target_MiB": [
+          128,
+          512
+        ],
+        "policy": [
+          "early",
+          "deadline",
+          "reactive",
+          "forecast_median",
+          "forecast_learned"
+        ],
+        "forecast": [
+          "persistence",
+          "seasonal",
+          "learned"
+        ],
+        "cost": [
+          "median",
+          "ridge",
+          "tree"
+        ],
+        "environment": [
+          "worker3",
+          "second_environment"
+        ]
+      },
+      "order_seed": 20261113,
+      "rationale": "Explicit 29160-cell combinatorial cost illustration before repetitions. NOT a proposed campaign. Unsupported combinations remain plans and must not be launched."
+    }
+  }
+}

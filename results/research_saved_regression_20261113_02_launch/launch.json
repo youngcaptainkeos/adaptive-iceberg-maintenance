@@ -1,0 +1,30 @@
+{
+  "label": "research_saved_regression_20261113_02",
+  "pid": 43931,
+  "started_utc": "2026-11-13T17:50:51.747309+00:00",
+  "execution_location": "local_by_explicit_user_skip_ssh",
+  "reason": "Validate final source after preallocation bound and ownership identity hardening; includes actual programme cap and measured historical duration budget arithmetic",
+  "command": [
+    "nohup",
+    "python3",
+    "-B",
+    "scripts/phase6-live-evaluation/run_with_failure_alert.py",
+    "--label",
+    "research_saved_regression_20261113_02",
+    "--receipt",
+    "/media/shashank/Data1/PDocuments/Capstone/implementation/results/research_saved_regression_20261113_02_launch/failure_notification.json",
+    "--",
+    "python3",
+    "-B",
+    "-m",
+    "three_model_maintenance.research.validate_saved",
+    "--repository",
+    "/media/shashank/Data1/PDocuments/Capstone/implementation",
+    "--registration",
+    "/media/shashank/Data1/PDocuments/Capstone/implementation/three_model_maintenance/protocols/research_saved_regression_20261113.json",
+    "--output",
+    "/media/shashank/Data1/PDocuments/Capstone/implementation/results/research_saved_regression_20261113_02"
+  ],
+  "log": "/media/shashank/Data1/PDocuments/Capstone/implementation/results/research_saved_regression_20261113_02_launch/run.log",
+  "expected_check_seconds": 60
+}

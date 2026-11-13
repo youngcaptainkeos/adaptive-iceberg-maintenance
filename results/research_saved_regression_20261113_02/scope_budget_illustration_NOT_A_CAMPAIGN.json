@@ -1,0 +1,9 @@
+{
+  "planned_units": 29160,
+  "serial_hours": 26948.752370689723,
+  "episode_minutes_input": 55.45010775862083,
+  "setup_minutes_input": 0,
+  "meaning": "Arithmetic estimate from supplied durations; no completion-time guarantee; excludes failures/recovery",
+  "duration_basis": "mean actual cohort-through-last-query duration of four pinned historical episodes",
+  "setup_assumption": "zero counted: setup, maintenance, auditing and recovery are unmeasured here; this is an illustrative lower accounting boundary, not an SF10 forecast"
+}

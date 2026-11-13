@@ -1,0 +1,23 @@
+{
+  "pid": 45469,
+  "label": "research_documentation_integrity_20261113_01",
+  "command": [
+    "nohup",
+    "python3",
+    "-B",
+    "scripts/phase6-live-evaluation/run_with_failure_alert.py",
+    "--label",
+    "research_documentation_integrity_20261113_01",
+    "--receipt",
+    "/media/shashank/Data1/PDocuments/Capstone/implementation/results/research_documentation_integrity_20261113_01_launch/failure_notification.json",
+    "--",
+    "python3",
+    "-B",
+    "/tmp/capstone_research_doccheck_20261113.py"
+  ],
+  "script_sha256": "6c62e28807dd9d565bcbef410ba54338a26aeb56514b5a3f072e5880354a7c5d",
+  "started_utc": "2026-11-13T17:57:47.623779+00:00",
+  "log": "/media/shashank/Data1/PDocuments/Capstone/implementation/results/research_documentation_integrity_20261113_01_launch/run.log",
+  "estimated_check_seconds": 15,
+  "execution_location": "local_user_authorized_skip_ssh"
+}

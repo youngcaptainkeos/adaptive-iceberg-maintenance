@@ -1,0 +1,43 @@
+{
+  "status": "descriptive_matched_comparison_only",
+  "scope": "observer_engineering",
+  "changed_factor": "durable evidence storage device",
+  "contrasts": [
+    {
+      "baseline": "queueaware_storage_20261024_01",
+      "treatment": "queueaware_storage_20261024_02",
+      "source_family": "consumed_window0",
+      "source_start_utc": "2018-02-27T20:40:00.286000+00:00",
+      "source_end_utc": "2018-02-27T21:00:00.286000+00:00",
+      "baseline_mean_response_seconds": 1436.0283034744853,
+      "treatment_mean_response_seconds": 834.3007513464667,
+      "treatment_minus_baseline_seconds": -601.7275521280186,
+      "fraction_reduction": 0.419022069879913
+    },
+    {
+      "baseline": "queueaware_storage_20261024_04",
+      "treatment": "queueaware_storage_20261024_03",
+      "source_family": "consumed_window0",
+      "source_start_utc": "2018-02-27T20:40:00.286000+00:00",
+      "source_end_utc": "2018-02-27T21:00:00.286000+00:00",
+      "baseline_mean_response_seconds": 1201.6460843246057,
+      "treatment_mean_response_seconds": 827.9704527420893,
+      "treatment_minus_baseline_seconds": -373.6756315825164,
+      "fraction_reduction": 0.31096979090357013
+    }
+  ],
+  "per_family_mean_difference_seconds": {
+    "consumed_window0": -487.7015918552675
+  },
+  "equal_family_mean_difference_seconds": -487.7015918552675,
+  "source_family_count": 1,
+  "confidence_interval": null,
+  "p_value": null,
+  "policy_benefit_established": false,
+  "physical_acceptance_changed": false,
+  "limitations": [
+    "Families are registered dependence groups, not proof of statistical independence.",
+    "No precision design or confirmatory interval is inferred from descriptive pairs.",
+    "Historical engineering contrasts do not establish learned scheduling benefit."
+  ]
+}

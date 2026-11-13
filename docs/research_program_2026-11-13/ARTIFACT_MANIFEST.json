@@ -1,0 +1,139 @@
+{
+  "scope": "authored research plan/code and selected real-evidence receipts; not scientific acceptance",
+  "created_utc": "2026-11-13T17:57:47.605762+00:00",
+  "base_commit": "0dafd11023c60442a9f1eea87ecf2878d64a3a89",
+  "files": {
+    "docs/research_program_2026-11-13/01_research_strategy.md": {
+      "sha256": "32fac44718cdd9ab979271c0414a63857f156e477b451ebaab337808ddac85c2",
+      "bytes": 14770
+    },
+    "docs/research_program_2026-11-13/02_experiment_catalogue.md": {
+      "sha256": "30deec81c65e54fec313bb1931df00e50787b66b6c1534eb2d77964549247cc5",
+      "bytes": 47653
+    },
+    "docs/research_program_2026-11-13/03_variables_metrics_statistics.md": {
+      "sha256": "8c9bea199157fbe99d83cc0c5ed119539ebcb8eef6d40fc527e5e4ac05482922",
+      "bytes": 16218
+    },
+    "docs/research_program_2026-11-13/04_models_controller_and_branches.md": {
+      "sha256": "fbd3903b99014e75bc29ea718c8b96826c7881cb33d1b36ff127aa5369d8d927",
+      "bytes": 14032
+    },
+    "docs/research_program_2026-11-13/05_implementation_and_handover.md": {
+      "sha256": "2410c77d4c3d38a98cb8307a3ab9f283eb3447af71b6754503e8bd4d20b3209b",
+      "bytes": 15866
+    },
+    "docs/research_program_2026-11-13/06_literature_and_publication.md": {
+      "sha256": "14bf419a1cb1962dd31f8fc5a2e3a418d0b2da8b26661f6efcb6c5a5f595be03",
+      "bytes": 11137
+    },
+    "docs/research_program_2026-11-13/EXPERIMENT_RECORD_TEMPLATE.md": {
+      "sha256": "c79b8b96ca88b1681822e95f71ec0540c1b14684f2546c2b0b969fa5c716becf",
+      "bytes": 3362
+    },
+    "docs/research_program_2026-11-13/README.md": {
+      "sha256": "d4e9911e91f64fa72176b66243d9b684b02af487dbed370fcc722d519c84e8e5",
+      "bytes": 4575
+    },
+    "docs/research_program_2026-11-13/STATUS.md": {
+      "sha256": "88d4811f9032e0915dd9d6512e98ef2a9c2b7a7dcc4e76876321a770c581e53d",
+      "bytes": 5556
+    },
+    "results/research_saved_regression_20261113_01/registration.json": {
+      "sha256": "e58d80f4865a3b18105e6b4b9b66aae36409b9b3bab44a248ad20bc2026febf7",
+      "bytes": 5848
+    },
+    "results/research_saved_regression_20261113_01/result.json": {
+      "sha256": "0f07235af5e00f5b8eff7339c7545a12fa38728c135a02683ef9af3887025050",
+      "bytes": 1646
+    },
+    "results/research_saved_regression_20261113_01_launch/launch.json": {
+      "sha256": "4893cdcc084d44ccb2c04ee2f92df702f6b251ac0b135aa815c3fe8141749ab5",
+      "bytes": 1229
+    },
+    "results/research_saved_regression_20261113_01_launch/run.log": {
+      "sha256": "8e0ef49bfb5f37fdc6710c9d9839b851162a38bf12fbeaa0cedba2e84643dc06",
+      "bytes": 292
+    },
+    "results/research_saved_regression_20261113_02/actual_source_overlap_groups.json": {
+      "sha256": "4d0fc8490e47ad40c64af1144e3d7bfc69d62962beec403c645a97bca3c92fa2",
+      "bytes": 356
+    },
+    "results/research_saved_regression_20261113_02/historical_comparison_reconstruction.json": {
+      "sha256": "c0ac4c142305001bf217216c4cd68181261f997a6f2aeb2e2211dfcf69dcbd0f",
+      "bytes": 1783
+    },
+    "results/research_saved_regression_20261113_02/methodology_append_receipt.json": {
+      "sha256": "a6351507ce8ac29c7f76d0ba7389430febaaca1b923ccba5bd3860b80541d479",
+      "bytes": 571
+    },
+    "results/research_saved_regression_20261113_02/registration.json": {
+      "sha256": "50f255a7f8e366d66f34db8ca8013725d1f0fc01fb77a9ac9b9e81cf8b3afd9c",
+      "bytes": 5848
+    },
+    "results/research_saved_regression_20261113_02/result.json": {
+      "sha256": "aa47c3b80ea1405903c01c16db945cbc18c4b80540e77ce8fe05b54fa178f671",
+      "bytes": 1808
+    },
+    "results/research_saved_regression_20261113_02/scope_budget_illustration_NOT_A_CAMPAIGN.json": {
+      "sha256": "7b7e38c757bca8db3eacf7819bec458b89b94cdc1705f7d8ce0e792c7bb3c1a6",
+      "bytes": 538
+    },
+    "results/research_saved_regression_20261113_02_launch/launch.json": {
+      "sha256": "217a2f20819d5eade7dd78e60732fdcf7d39263ff01bc458d9e18f12042bf03f",
+      "bytes": 1334
+    },
+    "results/research_saved_regression_20261113_02_launch/run.log": {
+      "sha256": "8e0ef49bfb5f37fdc6710c9d9839b851162a38bf12fbeaa0cedba2e84643dc06",
+      "bytes": 292
+    },
+    "three_model_maintenance/README.md": {
+      "sha256": "bafceafd182e94ef2a6af3fa2a1d7cf2f2214cda3130e5cc37cf9a25702ecd81",
+      "bytes": 5903
+    },
+    "three_model_maintenance/protocols/research_program_20261113.json": {
+      "sha256": "b05828413f8f95faa333d2923c4ab7e28c3ed148c3ac521bdc2b966a9a42b35a",
+      "bytes": 42687
+    },
+    "three_model_maintenance/protocols/research_saved_regression_20261113.json": {
+      "sha256": "7914ef5c927d776fcfdb38d3e3467f1cb90754e09fd2780c4ff4d51bb36e54df",
+      "bytes": 4644
+    },
+    "three_model_maintenance/research/README.md": {
+      "sha256": "5c09c7fe3233a18549697be91d512935d11d4169fc353ee20c38bdc6124fead5",
+      "bytes": 1859
+    },
+    "three_model_maintenance/research/__init__.py": {
+      "sha256": "c47feb8082466f3332096eb66f0055bc3488cbc9055eeeee5338b8c13bc0cc1e",
+      "bytes": 166
+    },
+    "three_model_maintenance/research/__main__.py": {
+      "sha256": "8cf9d08b17e57e20f754fc8d355f2afc7237c4cc002ba93a2ae4a12fe52a504b",
+      "bytes": 2420
+    },
+    "three_model_maintenance/research/accounting.py": {
+      "sha256": "e72dbcff7329b76c0eff9950ff6201598e7821f23364fab775814f6aa880368e",
+      "bytes": 10400
+    },
+    "three_model_maintenance/research/common.py": {
+      "sha256": "aeb7e3e0fb1c7ce5f395e2f164a5ea34ea00cc64fdc01bdd27291a885799bea1",
+      "bytes": 1993
+    },
+    "three_model_maintenance/research/comparison.py": {
+      "sha256": "cb587a188886188d624ed8483f1e3ce19d1757b72db52d27543bc9a01a0891d6",
+      "bytes": 5211
+    },
+    "three_model_maintenance/research/design.py": {
+      "sha256": "7750d05bf5ef857c1e117e685a9f772d6e8fa6e264ba2c200c726a1fe10aaf03",
+      "bytes": 6332
+    },
+    "three_model_maintenance/research/ownership.py": {
+      "sha256": "bb0fee334e77c695782b69a81022f3b1de604701135268d54cd51c911df9b585",
+      "bytes": 2623
+    },
+    "three_model_maintenance/research/validate_saved.py": {
+      "sha256": "1eb0c0a39e7437fb3c0ecc540af5b9800825d0ccd12f7633cbfcab9b7775b1c9",
+      "bytes": 7660
+    }
+  }
+}

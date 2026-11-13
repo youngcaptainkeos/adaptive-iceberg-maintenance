@@ -1,0 +1,106 @@
+{
+  "input_registration": {
+    "schema": "research_saved_evidence_validation_v1",
+    "execution_location": "local_by_explicit_user_instruction_2026-11-13_skip_ssh",
+    "program": {
+      "path": "three_model_maintenance/protocols/research_program_20261113.json",
+      "sha256": "b05828413f8f95faa333d2923c4ab7e28c3ed148c3ac521bdc2b966a9a42b35a"
+    },
+    "planning_block_slots": 4,
+    "planning_block_slots_rationale": "Exercise balanced design construction only; these slots are plans, not observations or scientific replication.",
+    "dataset_id": "snowset_verified_cohort_2018",
+    "warehouse_id": "4521920227430629158",
+    "episodes": [
+      {
+        "experiment_id": "queueaware_storage_20261024_01",
+        "directory": "results/queue_storage_sql_20261024/episodes/queueaware_storage_20261024_01",
+        "files": {
+          "events.jsonl": "452b03314f1bd763b48bea18276149b2d90e43089ab6766796c9047461eefab8",
+          "mapped_arrivals.csv": "b83a6b4abfe87c24e0c6596be095d4c3f70b05cad4cb6088e6f25ca7bbf31133",
+          "config.json": "5e033dd2337ab8f2d29747fd6cf77af991da72e323161b29322e818746a37fa2",
+          "result.json": "743a5935a7205dc3b874c0a4a77b5179349f7f90238aa291c43b487ec9d16a30"
+        },
+        "history_start_utc": "2018-02-21T20:00:00.286000+00:00"
+      },
+      {
+        "experiment_id": "queueaware_storage_20261024_02",
+        "directory": "results/queue_storage_sql_20261024/episodes/queueaware_storage_20261024_02",
+        "files": {
+          "events.jsonl": "5b0a2d808da86bf97574db4e935f7411b1f5adc9ec0a118af978d45e23e82d74",
+          "mapped_arrivals.csv": "b83a6b4abfe87c24e0c6596be095d4c3f70b05cad4cb6088e6f25ca7bbf31133",
+          "config.json": "df872c4000335ccdec392fdb535549c624d59fd50e8a61085582d2f7f8f01ad4",
+          "result.json": "37cac388303d1f5bef681608ebb8ff5114e65dd77473bc32955c6083fa989864"
+        },
+        "history_start_utc": "2018-02-21T20:00:00.286000+00:00"
+      },
+      {
+        "experiment_id": "queueaware_storage_20261024_03",
+        "directory": "results/queue_storage_sql_20261024/episodes/queueaware_storage_20261024_03",
+        "files": {
+          "events.jsonl": "e0bfbe02a6da16cb9d5e13446e4a340a0d8c5117fdb07a0183e628adfc55fc1b",
+          "mapped_arrivals.csv": "b83a6b4abfe87c24e0c6596be095d4c3f70b05cad4cb6088e6f25ca7bbf31133",
+          "config.json": "aa3a13bbd374fece0bda73deab150387fb5637b3b3d8cf0733fcc13219c29835",
+          "result.json": "18b6eadfcbe59020813d45e0db1dc2c96fd621afb33a6acfba0b3fceae722a7d"
+        },
+        "history_start_utc": "2018-02-21T20:00:00.286000+00:00"
+      },
+      {
+        "experiment_id": "queueaware_storage_20261024_04",
+        "directory": "results/queue_storage_sql_20261024/episodes/queueaware_storage_20261024_04",
+        "files": {
+          "events.jsonl": "1d93be4579516a4c284c49a24b4956b64a6b98b8f9520aa257a09beedda524d7",
+          "mapped_arrivals.csv": "b83a6b4abfe87c24e0c6596be095d4c3f70b05cad4cb6088e6f25ca7bbf31133",
+          "config.json": "cbe495b3c9f1c2bbc183cc2386e262540cddf2d7f5fb519bd1d4b0efb673f987",
+          "result.json": "4e29d727455c659472e7782f3c7d344487acf38f2b8b43c7b9040878260d3e4a"
+        },
+        "history_start_utc": "2018-02-21T20:00:00.286000+00:00"
+      }
+    ],
+    "expected_overlap_components": 1,
+    "floating_absolute_tolerance": 1e-12,
+    "floating_tolerance_rationale": "Compare equivalent floating-point division of identical exact integer sums; tolerance is arithmetic only, never a performance/acceptance margin.",
+    "historical_comparison": {
+      "path": "results/queue_storage_sql_20261024/analysis/result.json",
+      "sha256": "9cf8ee70b1da33bcfbe4ce0e019676f80e3036b80e584a90b8cecd19ea50e276"
+    },
+    "failed_campaign": {
+      "path": "results/sf10_archive_validation_20261101_03/result.json",
+      "sha256": "bdcc3822d8bc8e493c0fcc65052835773b379150dae189abc1c9dfd4561cf768"
+    },
+    "comparison": {
+      "schema": "research_matched_comparison_v1",
+      "scope": "observer_engineering",
+      "primary_metric": "full_cohort_mean_response_seconds",
+      "changed_factor": "durable evidence storage device",
+      "family_basis": "All four actual source mappings and history intervals are identical, one consumed development family.",
+      "expected_episode_ids": [
+        "queueaware_storage_20261024_01",
+        "queueaware_storage_20261024_02",
+        "queueaware_storage_20261024_03",
+        "queueaware_storage_20261024_04"
+      ],
+      "pairs": [
+        {
+          "baseline": "queueaware_storage_20261024_01",
+          "treatment": "queueaware_storage_20261024_02",
+          "source_family": "consumed_window0"
+        },
+        {
+          "baseline": "queueaware_storage_20261024_04",
+          "treatment": "queueaware_storage_20261024_03",
+          "source_family": "consumed_window0"
+        }
+      ]
+    }
+  },
+  "code_sha256": {
+    "three_model_maintenance/research/accounting.py": "e72dbcff7329b76c0eff9950ff6201598e7821f23364fab775814f6aa880368e",
+    "three_model_maintenance/research/common.py": "aeb7e3e0fb1c7ce5f395e2f164a5ea34ea00cc64fdc01bdd27291a885799bea1",
+    "three_model_maintenance/research/comparison.py": "cb587a188886188d624ed8483f1e3ce19d1757b72db52d27543bc9a01a0891d6",
+    "three_model_maintenance/research/design.py": "89170a872d489043a9e984c506debb37f1de5e9253e31c1351e0cf6532068535",
+    "three_model_maintenance/research/ownership.py": "c78b73149f486219850343cf8f4355464e9d138668cc5881bf1bb177e1af14fd",
+    "three_model_maintenance/research/validate_saved.py": "cbb454b099dc9eb99e2d8a689041c3e60b1953ea1e41f87b22ba757abea36f81",
+    "three_model_maintenance/research/__init__.py": "c47feb8082466f3332096eb66f0055bc3488cbc9055eeeee5338b8c13bc0cc1e",
+    "three_model_maintenance/research/__main__.py": "8cf9d08b17e57e20f754fc8d355f2afc7237c4cc002ba93a2ae4a12fe52a504b"
+  }
+}

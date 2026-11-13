@@ -1,0 +1,29 @@
+{
+  "label": "research_saved_regression_20261113_01",
+  "pid": 40215,
+  "started_utc": "2026-11-13T17:37:37.064793+00:00",
+  "command": [
+    "nohup",
+    "/usr/bin/python3",
+    "-B",
+    "scripts/phase6-live-evaluation/run_with_failure_alert.py",
+    "--label",
+    "research_saved_regression_20261113_01",
+    "--receipt",
+    "/media/shashank/Data1/PDocuments/Capstone/implementation/results/research_saved_regression_20261113_01_launch/failure_notification.json",
+    "--",
+    "/usr/bin/python3",
+    "-B",
+    "-m",
+    "three_model_maintenance.research.validate_saved",
+    "--repository",
+    "/media/shashank/Data1/PDocuments/Capstone/implementation",
+    "--registration",
+    "/media/shashank/Data1/PDocuments/Capstone/implementation/three_model_maintenance/protocols/research_saved_regression_20261113.json",
+    "--output",
+    "/media/shashank/Data1/PDocuments/Capstone/implementation/results/research_saved_regression_20261113_01"
+  ],
+  "log": "/media/shashank/Data1/PDocuments/Capstone/implementation/results/research_saved_regression_20261113_01_launch/run.log",
+  "scope": "User-authorized LOCAL read-only saved-evidence regression; no new SQL/model fit/physical run",
+  "estimated_first_check_seconds": 60
+}

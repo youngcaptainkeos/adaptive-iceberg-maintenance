@@ -1,0 +1,14 @@
+{
+  "docs/methodology_working_doc.md": {
+    "original_bytes": 398798,
+    "original_sha256": "d9cc4f46dd6ea05dad5ce6116b42b947d0a8b89a492a5afaf5decd103b9c29ec",
+    "appended_bytes": 6488,
+    "final_sha256": "d50f8bfab56fb25cfff6cc69b43a007c3dd87d02d2a131937938e6056950a57a"
+  },
+  "docs/updated_methodology_working_doc.md": {
+    "original_bytes": 236579,
+    "original_sha256": "3ff1cd2237fe500f02e4607a0a8abdc16963f9c518d2897f231b5eb15f75def2",
+    "appended_bytes": 1942,
+    "final_sha256": "b428ca75cc9b737cd1ac50bf1ecc519bc39296bee12a7c34f5303532d5d232c9"
+  }
+}
