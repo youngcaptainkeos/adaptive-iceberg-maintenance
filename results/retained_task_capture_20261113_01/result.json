@@ -1,0 +1,14 @@
+{
+  "status": "failed_preserved",
+  "started_utc": "2026-11-13T18:18:19.024114+00:00",
+  "protocol_sha256": "137670d59eda87f895f619b6423753b3eaa0a4eaff5e0a82eab9a1076ad7404a",
+  "captured_stage_attempts": 0,
+  "captured_tasks": 0,
+  "SQL_executed": false,
+  "physical_episode_accepted": false,
+  "original_raw_modified": false,
+  "evidence_scope": "post_hoc_retained_REST_capability_only",
+  "error": "Incomplete task population",
+  "traceback": "Traceback (most recent call last):\n  File \"/mnt/nfs-storage/shashank_prafullathta/implementation/three_model_maintenance/research/capture_retained_tasks.py\", line 67, in run\n    validate_tasks(decode(body), count)\n  File \"/mnt/nfs-storage/shashank_prafullathta/implementation/three_model_maintenance/research/capture_retained_tasks.py\", line 12, in validate_tasks\n    require(type(payload) is list and len(payload) == count, 'Incomplete task population')\n  File \"/mnt/nfs-storage/shashank_prafullathta/implementation/three_model_maintenance/research/common.py\", line 11, in require\n    raise ValueError(message)\nValueError: Incomplete task population\n",
+  "ended_utc": "2026-11-13T18:18:19.040710+00:00"
+}

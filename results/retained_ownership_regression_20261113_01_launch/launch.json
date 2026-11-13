@@ -1,0 +1,29 @@
+{
+  "label": "retained_ownership_regression_20261113_01",
+  "pid": 441350,
+  "host": "worker3",
+  "head": "c6bffbf7e9418d25ad2795c4bf4181c3aaee0b38",
+  "started_utc": "2026-11-13T18:11:49.069589+00:00",
+  "command": [
+    "nohup",
+    "python3",
+    "-B",
+    "scripts/phase6-live-evaluation/run_with_failure_alert.py",
+    "--label",
+    "retained_ownership_regression_20261113_01",
+    "--receipt",
+    "/mnt/nfs-storage/shashank_prafullathta/implementation/results/retained_ownership_regression_20261113_01_launch/failure_notification.json",
+    "--",
+    "python3",
+    "-B",
+    "-m",
+    "three_model_maintenance.research.validate_ownership",
+    "--protocol",
+    "/mnt/nfs-storage/shashank_prafullathta/implementation/three_model_maintenance/protocols/retained_ownership_regression_20261113.json",
+    "--output",
+    "/mnt/nfs-storage/shashank_prafullathta/implementation/results/retained_ownership_regression_20261113_01"
+  ],
+  "log": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/retained_ownership_regression_20261113_01_launch/run.log",
+  "expected_check_seconds": 60,
+  "scope": "read-only retained evidence; no SQL/fit/physical acceptance"
+}

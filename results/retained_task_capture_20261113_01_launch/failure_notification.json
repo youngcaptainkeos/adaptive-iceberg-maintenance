@@ -1,0 +1,19 @@
+{
+  "label": "retained_task_capture_20261113_01",
+  "failure_detail": "Command failed with exit status 1. Inspect the registered run log; no automatic retry.",
+  "attempted_utc": "2026-11-13T18:18:19.086237+00:00",
+  "status": "notification_delivered",
+  "http_status": 200,
+  "response": {
+    "id": "KMeWhE0lOS84",
+    "time": 1794593899,
+    "expires": 1794637099,
+    "event": "message",
+    "topic": "shashank_capstone_alerts",
+    "title": "Capstone run failed",
+    "message": "retained_task_capture_20261113_01\nCommand failed with exit status 1. Inspect the registered run log; no automatic retry.",
+    "tags": [
+      "warning"
+    ]
+  }
+}

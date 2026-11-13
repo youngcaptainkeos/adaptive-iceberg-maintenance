@@ -1,0 +1,27 @@
+{
+  "status": "matched",
+  "files": {
+    "results/retained_task_capture_20261113_01/2441_0.raw.json": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+    "results/retained_task_capture_20261113_01/2441_0.receipt.json": "d255c35eb22967b026d33c23499a0e620693582af3046848a50211b4b81413e8",
+    "results/retained_task_capture_20261113_01/result.json": "245d233b95d2e1273aeeb4fc435b2d6bda4f88b30d3f20b564f6bb4a03d62923",
+    "results/retained_task_capture_20261113_01_launch/failure_notification.json": "7bce8d2526189041ece2f9d51292c0ec8c6df337c9448f0151071d28f16e8146",
+    "results/retained_task_capture_20261113_01_launch/launch.json": "bcfdf3d8b6034d13c9c792cfd606181b4ec5f1f2cb4a829212bc361ff1ef8ed6",
+    "results/retained_task_capture_20261113_01_launch/run.log": "63f5b569e6a1f0fce001ff8aa601695f5ebd75fd113e8cef482ebaadd37924d1",
+    "results/retained_ownership_regression_20261113_01/capture_gap_inventory.json": "cba9a5b5b161e1a2256c4a3a6df63c2bfc713167b280a87976f4fd8ce4e18310",
+    "results/retained_ownership_regression_20261113_01/exact_bindings.json": "6e27b6b1a466797c4d1fb27c8bef64d1af78014b5ede1e17483492a2182a23aa",
+    "results/retained_ownership_regression_20261113_01/result.json": "f9253de9770e89bf782e242ad85ecbf116cb76011f9ef2abe9aaa6744cb45f35",
+    "results/retained_ownership_regression_20261113_01_launch/launch.json": "94e7573557231ebe0becefb344924d6457bb791b05c7de7c96d38414886999b3",
+    "results/retained_ownership_regression_20261113_01_launch/run.log": "03d1016ffe00f27058201a49989ecb23c157e486c7a09625d08512b27ca04c00",
+    "results/sf10_sql_job_inventory_paged_20261111_01/page_0.json": "27f167bd48fb7f24fe036b1a42399fa4ef4fceb3776c827d2b433697581cc554",
+    "results/sf10_sql_job_inventory_paged_20261111_01/page_1.json": "eb53c529bad9a2f50ba2435aa54f990b8af80a5ca706497e0426ab5bec66f6b7",
+    "results/sf10_sql_job_inventory_paged_20261111_01/page_2.json": "4b0c7d90e47d38cef4ad05f86984a3dbee36b234e0ffa76f5720918dfdbd71dc",
+    "results/sf10_sql_job_inventory_paged_20261111_01/page_3.json": "9e08c4b16701e1da821b30c5d7520d4e54de4f9e2682b116343aa755fde4eded",
+    "results/sf10_sql_job_inventory_paged_20261111_01/page_4.json": "4e1bf9888c81d2d0c3f3d73b21198745b6935402e609486ac49843497e48a861",
+    "results/sf10_sql_job_inventory_paged_20261111_01/page_5.json": "bdb157b235065b66fdd88ca1382ec2ed90ab1eedcfdb02da5e869471e68863ed",
+    "results/sf10_sql_job_inventory_paged_20261111_01/page_6.json": "8c9b127bd0b75d97e900bab777010b65739a942ac7e5a78667ea4d3623453bf6",
+    "results/sf10_sql_job_inventory_paged_20261111_01/page_7.json": "3e1ed447075a250cfe7d50a38d6d1183f45ba15b2a962e0c4f7c8ffa969190a1",
+    "results/sf10_sql_job_inventory_paged_20261111_01/page_8.json": "48e02cf0b851b07a55ff830e865099ebbae8722f2dbe3f75d6e0761d3f424ef7",
+    "results/sf10_sql_job_inventory_paged_20261111_01/raw_sql_inventory.json": "bab3f029266f27b72dd3e809a3ab1cb8de3533dfe94916783aeddb54fd49b0af",
+    "results/sf10_sql_job_inventory_paged_20261111_01/result.json": "7526c4e9716b4e6f69c92a3dba05aa3eb53813fff9f82e9a5d172b7ea3e0bca7"
+  }
+}

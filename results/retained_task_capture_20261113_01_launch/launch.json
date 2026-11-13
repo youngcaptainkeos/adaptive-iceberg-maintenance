@@ -1,0 +1,34 @@
+{
+  "label": "retained_task_capture_20261113_01",
+  "pid": 443488,
+  "head": "3711a09da8ea9643ab25a79abdeacfcbfd7a937b",
+  "started_utc": "2026-11-13T18:18:18.900309+00:00",
+  "command": [
+    "nohup",
+    "python3",
+    "-B",
+    "scripts/phase6-live-evaluation/run_with_failure_alert.py",
+    "--label",
+    "retained_task_capture_20261113_01",
+    "--receipt",
+    "/mnt/nfs-storage/shashank_prafullathta/implementation/results/retained_task_capture_20261113_01_launch/failure_notification.json",
+    "--",
+    "python3",
+    "-B",
+    "-m",
+    "three_model_maintenance.research.capture_retained_tasks",
+    "--protocol",
+    "/mnt/nfs-storage/shashank_prafullathta/implementation/three_model_maintenance/protocols/retained_task_capture_20261113.json",
+    "--output",
+    "/mnt/nfs-storage/shashank_prafullathta/implementation/results/retained_task_capture_20261113_01"
+  ],
+  "log": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/retained_task_capture_20261113_01_launch/run.log",
+  "expected_check_seconds": 120,
+  "verified_sha256": {
+    "three_model_maintenance/research/capture_retained_tasks.py": "5b63db9713422eb80071036d0926c61f70585351b87f6a2324c0ca2cb9b80333",
+    "three_model_maintenance/research/common.py": "aeb7e3e0fb1c7ce5f395e2f164a5ea34ea00cc64fdc01bdd27291a885799bea1",
+    "three_model_maintenance/protocols/retained_task_capture_20261113.json": "137670d59eda87f895f619b6423753b3eaa0a4eaff5e0a82eab9a1076ad7404a",
+    "docs/methodology_working_doc.md": "6ac7321a562733ac2fe1d4b4ab4ffb930d8698b79264e8cce2b366fe53983bad",
+    "docs/updated_methodology_working_doc.md": "9bccd8ef5dd3c623b41d3c564e5332eaee419416e727f6a5607ca4c41a477013"
+  }
+}

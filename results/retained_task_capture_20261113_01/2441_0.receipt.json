@@ -1,0 +1,11 @@
+{
+  "resource": "stages/2441/0/taskList?length=2",
+  "request_start": "2026-11-13T18:18:19.027972+00:00",
+  "stage_id": 2441,
+  "attempt_id": 0,
+  "http_status": 200,
+  "response_end": "2026-11-13T18:18:19.040308+00:00",
+  "raw_sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+  "status": "failed_preserved",
+  "error": "Incomplete task population"
+}
