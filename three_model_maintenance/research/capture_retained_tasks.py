@@ -16,7 +16,9 @@ def validate_tasks(payload, count):
         require(type(task['attempt']) is int and task['attempt'] == 0, 'Task retry')
         require(task['status'] == 'SUCCESS', 'Unsuccessful task')
         require(number(task['duration'], 'duration') > 0, 'Nonpositive duration')
-        utc(task['launchTime'])
+        launched = task['launchTime']
+        require(type(launched) is str and launched.endswith('GMT'), 'Expected Spark UTC timestamp')
+        utc(launched[:-3] + '+00:00')
     require(len({t['taskId'] for t in payload}) == count, 'Duplicate task IDs')
     require({t['index'] for t in payload} == set(range(count)), 'Incomplete task indices')
 
