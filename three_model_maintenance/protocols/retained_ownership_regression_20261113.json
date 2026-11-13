@@ -1,0 +1,38 @@
+{
+  "schema": "retained_SQL_ownership_regression_v1",
+  "created_utc": "2026-11-13T18:11:22.814280+00:00",
+  "latest_start_utc": "2026-11-13T19:00:00+00:00",
+  "cutoff_rationale": "One-hour read-only evidence validation admission window; no physical or SQL authority",
+  "experiment_id": "sf10_archive_validation_20261101_03_no_maintenance",
+  "expected_completed_queries": 463,
+  "expected_rejected_links": 308,
+  "inputs": {
+    "events": {
+      "path": "/home/ccbd/capstone_three_model_evidence/sf10_archive_validation_20261101_03/sf10_archive_validation_20261101_03_no_maintenance/events.jsonl",
+      "sha256": "1243ef1b1810b995280725b555c41b478cdb3b5efa7d9e550d3a09949ef365a8"
+    },
+    "sql_inventory": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf10_sql_job_inventory_paged_20261111_01/raw_sql_inventory.json",
+      "sha256": "bab3f029266f27b72dd3e809a3ab1cb8de3533dfe94916783aeddb54fd49b0af"
+    },
+    "inventory_receipt": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf10_sql_job_inventory_paged_20261111_01/result.json",
+      "sha256": "7526c4e9716b4e6f69c92a3dba05aa3eb53813fff9f82e9a5d172b7ea3e0bca7"
+    },
+    "previous_ownership": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf10_sql_ownership_diagnostic_20261111_01/result.json",
+      "sha256": "140b1a382a48a89103f128f5a17766b40feb5455a4ce62a1df0209bced26dfea"
+    },
+    "failed_parent": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/sf10_archive_validation_20261101_03/result.json",
+      "sha256": "bdcc3822d8bc8e493c0fcc65052835773b379150dae189abc1c9dfd4561cf768"
+    }
+  },
+  "code_sha256": {
+    "three_model_maintenance/research/validate_ownership.py": "dfdb7cac92cb2d68d5c809a99f29b0b4988aaf94e26c0072d2e72374ec7bf5c5",
+    "three_model_maintenance/research/ownership.py": "bb0fee334e77c695782b69a81022f3b1de604701135268d54cd51c911df9b585",
+    "three_model_maintenance/research/common.py": "aeb7e3e0fb1c7ce5f395e2f164a5ea34ea00cc64fdc01bdd27291a885799bea1"
+  },
+  "purpose": "Validate new exact ownership kernel and inventory missing retained capture; preserve failed parent; no SQL or fit",
+  "expected_counts_basis": "Pinned November11 independent diagnostic, not synthetic target data"
+}
