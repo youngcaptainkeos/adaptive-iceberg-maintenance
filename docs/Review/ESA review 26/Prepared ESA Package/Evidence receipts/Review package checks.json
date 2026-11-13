@@ -1,0 +1,17 @@
+{
+  "scope": "Document, display and transport checks only; no new scientific test, model fit or physical experiment",
+  "report_pages": 34,
+  "slide_count": 34,
+  "screenshot_originals": 8,
+  "unique_screenshot_views": 4,
+  "architecture_options": 4,
+  "report_font": "Times New Roman, embedded in PDF",
+  "body_points": 12,
+  "line_spacing": 1.5,
+  "page": "A4",
+  "margins_cm": 2,
+  "native_Word_PowerPoint_execution_verified": false,
+  "historical_failure_retained": "0 passed / 1 failed / 1 unattempted",
+  "all_original_reference_and_screenshot_bytes_preserved": true,
+  "guide_designation_and_signatures": "human completion required"
+}

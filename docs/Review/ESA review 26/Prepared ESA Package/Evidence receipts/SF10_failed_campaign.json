@@ -1,0 +1,25 @@
+{
+  "status": "failed_or_blocked_preserved_no_retry",
+  "pid": 507354,
+  "started_utc": "2026-11-01T18:28:05.539640+00:00",
+  "protocol_sha256": "4e2a04fd33b89389e9752e11ae5e6e0e46f5a98b4f00cebd68bd4c56862905cc",
+  "stages": [
+    {
+      "label": "sf10_archive_validation_20261101_03_no_maintenance",
+      "started_utc": "2026-11-01T18:28:28.797380+00:00",
+      "wrapper_pid": 507589,
+      "returncode": 1,
+      "ended_utc": "2026-11-01T19:08:23.454250+00:00"
+    }
+  ],
+  "passed_episodes": 0,
+  "failed_episodes": 1,
+  "unattempted_episodes": 1,
+  "model_fit_performed": false,
+  "independent_evidence": false,
+  "scheduler_authorized": false,
+  "error": "Failed sf10_archive_validation_20261101_03_no_maintenance; preserve original and new failures, no retry",
+  "traceback": "Traceback (most recent call last):\n  File \"/mnt/nfs-storage/shashank_prafullathta/implementation/three_model_maintenance/experiments/sf10_evidence_validation.py\", line 179, in run\n    child(eid,[sys.executable,'-B','-m','three_model_maintenance.experiments.sf10_evidence_validation',\n  File \"/mnt/nfs-storage/shashank_prafullathta/implementation/three_model_maintenance/experiments/sf10_evidence_validation.py\", line 143, in child\n    s.update(returncode=rc,ended_utc=now());progress();require(rc==0,'Failed '+label+'; preserve original and new failures, no retry')\n  File \"/mnt/nfs-storage/shashank_prafullathta/implementation/three_model_maintenance/contracts.py\", line 14, in require\n    raise ValueError(message)\nValueError: Failed sf10_archive_validation_20261101_03_no_maintenance; preserve original and new failures, no retry\n",
+  "documentation_error": "GitHub synchronization deadline reached; no dependent work",
+  "ended_utc": "2026-11-02T03:00:01.437341+00:00"
+}

@@ -1,0 +1,72 @@
+{
+  "status": "verified_sf10_eight_table_ingestion_only",
+  "tables": [
+    {
+      "table": "region",
+      "iceberg_table": "local.experiment.integrity_sf10_20261025_03_region",
+      "snapshot_id": 4813445259285421088,
+      "rows": 5,
+      "file_count": 1,
+      "data_bytes": 1390
+    },
+    {
+      "table": "nation",
+      "iceberg_table": "local.experiment.integrity_sf10_20261025_03_nation",
+      "snapshot_id": 3359177075371348658,
+      "rows": 25,
+      "file_count": 1,
+      "data_bytes": 2458
+    },
+    {
+      "table": "supplier",
+      "iceberg_table": "local.experiment.integrity_sf10_20261025_03_supplier",
+      "snapshot_id": 9084548153341878038,
+      "rows": 100000,
+      "file_count": 4,
+      "data_bytes": 5269346
+    },
+    {
+      "table": "customer",
+      "iceberg_table": "local.experiment.integrity_sf10_20261025_03_customer",
+      "snapshot_id": 5005219479418955875,
+      "rows": 1500000,
+      "file_count": 16,
+      "data_bytes": 82845958
+    },
+    {
+      "table": "part",
+      "iceberg_table": "local.experiment.integrity_sf10_20261025_03_part",
+      "snapshot_id": 5364124150797892672,
+      "rows": 2000000,
+      "file_count": 16,
+      "data_bytes": 45279002
+    },
+    {
+      "table": "partsupp",
+      "iceberg_table": "local.experiment.integrity_sf10_20261025_03_partsupp",
+      "snapshot_id": 6149301176743661172,
+      "rows": 8000000,
+      "file_count": 16,
+      "data_bytes": 307919093
+    },
+    {
+      "table": "orders",
+      "iceberg_table": "local.experiment.integrity_sf10_20261025_03_orders",
+      "snapshot_id": 8946796540349301713,
+      "rows": 15000000,
+      "file_count": 16,
+      "data_bytes": 378024810
+    },
+    {
+      "table": "lineitem",
+      "iceberg_table": "local.experiment.integrity_sf10_20261025_03_lineitem",
+      "snapshot_id": 8347088278696450342,
+      "rows": 59986052,
+      "file_count": 64,
+      "data_bytes": 1714218564
+    }
+  ],
+  "events_sha256": "26d8d7d64b5e3e5d64d9d613f637b3da793d75a237dad36c6ab77d2da20b4100",
+  "cost_training_accepted": false,
+  "sf100_ready": false
+}

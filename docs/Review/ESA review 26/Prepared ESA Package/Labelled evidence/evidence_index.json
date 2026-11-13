@@ -1,0 +1,82 @@
+[
+  {
+    "id": "A01",
+    "title": "Remote Spark and monitoring processes",
+    "capture": "11 November 2026, 20:15 IST",
+    "scope": "Historical screenshot of observed service / saved results",
+    "explanation": "The process list shows the Spark launcher, Java execution process and our read-only review server on worker3. It establishes that the remote software stack was running when captured. It does not show an active training or compaction experiment.",
+    "original": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/screenshots/20261111T144523_775189Z__sf10_archive_validation_20261101_03__LIVE_processes.png",
+    "file": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/Prepared ESA Package/Labelled evidence/A01_LIVE_processes.png",
+    "sha256": "2d3fa3330e86f488481dc4bc62973e830f58f54d51281246025e55f23733f491"
+  },
+  {
+    "id": "A02",
+    "title": "Spark UI and completed execution history",
+    "capture": "11 November 2026, 20:15 IST",
+    "scope": "Historical screenshot of observed service / saved results",
+    "explanation": "The Spark UI lists completed jobs with SQL descriptions, submission times, durations and successful task counts. The application reports 3,113 completed jobs and only 913 displayed in its retained view. These are application-level totals, not counts of independent experiments or accepted training examples.",
+    "original": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/screenshots/20261111T144523_775189Z__sf10_archive_validation_20261101_03__LIVE_Spark_UI_historical_jobs.png",
+    "file": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/Prepared ESA Package/Labelled evidence/A02_LIVE_Spark_UI_historical_jobs.png",
+    "sha256": "6c2a574c647f7213053dd5414a5753f8a4656e2036b5cbaca3080688f2dbd371"
+  },
+  {
+    "id": "A03",
+    "title": "Recorded SF10 workload and table state",
+    "capture": "11 November 2026, 20:15 IST",
+    "scope": "Historical screenshot of observed service / saved results",
+    "explanation": "The dashboard combines a live service observation with explicitly historical experiment data. The failed control recorded 463 completed calls and 2,668 queued requests. Initial and final table state remained at 64 files and 59,986,052 rows. The graph shows the last 240 recorded service times; it is not a policy comparison.",
+    "original": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/screenshots/20261111T144523_775189Z__sf10_archive_validation_20261101_03__MIXED_live_service_historical_results.png",
+    "file": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/Prepared ESA Package/Labelled evidence/A03_MIXED_live_service_historical_results.png",
+    "sha256": "b0bd66aa9f36f1aca266bcea9269e7c4a99e299fb8f7bc9d69b52c33b5643ee7"
+  },
+  {
+    "id": "A04",
+    "title": "Preserved failed SF10 campaign",
+    "capture": "11 November 2026, 20:15 IST",
+    "scope": "Historical screenshot of historical audit",
+    "explanation": "The campaign ledger records zero passed episodes, one failed episode and one unattempted maintenance episode. Model fitting and scheduler authorization are false. A later ownership diagnostic identified the description-based attribution defect, but it did not retroactively pass this run.",
+    "original": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/screenshots/20261111T144523_775189Z__sf10_archive_validation_20261101_03__HISTORICAL_failed_audit.png",
+    "file": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/Prepared ESA Package/Labelled evidence/A04_HISTORICAL_failed_audit.png",
+    "sha256": "f97cfcb8b8a4a44a4941bfee97bc9052787209d8b888cb1b30b4646f1b081915"
+  },
+  {
+    "id": "B01",
+    "title": "Remote Spark and monitoring processes",
+    "capture": "11 November 2026, 22:26 IST",
+    "scope": "Historical screenshot of observed service / saved results",
+    "explanation": "The process list shows the Spark launcher, Java execution process and our read-only review server on worker3. It establishes that the remote software stack was running when captured. It does not show an active training or compaction experiment.",
+    "original": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/screenshots/20261111T165654_854006Z__sf10_archive_validation_20261101_03__LIVE_processes.png",
+    "file": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/Prepared ESA Package/Labelled evidence/B01_LIVE_processes.png",
+    "sha256": "66e31d4e6ba69dd2492741c051038b811394f2672b28ac7fba972e00a58e490e"
+  },
+  {
+    "id": "B02",
+    "title": "Spark UI and completed execution history",
+    "capture": "11 November 2026, 22:26 IST",
+    "scope": "Historical screenshot of observed service / saved results",
+    "explanation": "The Spark UI lists completed jobs with SQL descriptions, submission times, durations and successful task counts. The application reports 3,113 completed jobs and only 913 displayed in its retained view. These are application-level totals, not counts of independent experiments or accepted training examples.",
+    "original": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/screenshots/20261111T165654_854006Z__sf10_archive_validation_20261101_03__LIVE_Spark_UI_historical_jobs.png",
+    "file": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/Prepared ESA Package/Labelled evidence/B02_LIVE_Spark_UI_historical_jobs.png",
+    "sha256": "e303c7693f4daeb06a3e6d31253ef092229f31ec5d3ee7b583216649412a121e"
+  },
+  {
+    "id": "B03",
+    "title": "Recorded SF10 workload and table state",
+    "capture": "11 November 2026, 22:26 IST",
+    "scope": "Historical screenshot of observed service / saved results",
+    "explanation": "The dashboard combines a live service observation with explicitly historical experiment data. The failed control recorded 463 completed calls and 2,668 queued requests. Initial and final table state remained at 64 files and 59,986,052 rows. The graph shows the last 240 recorded service times; it is not a policy comparison.",
+    "original": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/screenshots/20261111T165654_854006Z__sf10_archive_validation_20261101_03__MIXED_live_service_historical_results.png",
+    "file": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/Prepared ESA Package/Labelled evidence/B03_MIXED_live_service_historical_results.png",
+    "sha256": "53a349f840a4d710eeb3c4ecd4c84f659480cc3d6a6702a405891998d37d3b49"
+  },
+  {
+    "id": "B04",
+    "title": "Preserved failed SF10 campaign",
+    "capture": "11 November 2026, 22:26 IST",
+    "scope": "Historical screenshot of historical audit",
+    "explanation": "The campaign ledger records zero passed episodes, one failed episode and one unattempted maintenance episode. Model fitting and scheduler authorization are false. A later ownership diagnostic identified the description-based attribution defect, but it did not retroactively pass this run.",
+    "original": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/screenshots/20261111T165654_854006Z__sf10_archive_validation_20261101_03__HISTORICAL_failed_audit.png",
+    "file": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/Prepared ESA Package/Labelled evidence/B04_HISTORICAL_failed_audit.png",
+    "sha256": "dbfd71bb92c4bd9657bc21de1ab4d0b9265560a87bd52edf5acf7ebab4fe1adc"
+  }
+]

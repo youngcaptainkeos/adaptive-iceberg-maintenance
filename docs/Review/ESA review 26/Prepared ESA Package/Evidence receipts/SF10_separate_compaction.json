@@ -1,0 +1,39 @@
+{
+  "statement": {
+    "measurement_id": "878d6bcd1427472fba73dc54bfb388a6",
+    "marker": "capstone_event_878d6bcd1427472fba73dc54bfb388a6",
+    "columns": [
+      "rewritten_data_files_count",
+      "added_data_files_count",
+      "rewritten_bytes_count"
+    ],
+    "rows": [
+      [
+        64,
+        4,
+        1714218564
+      ]
+    ],
+    "request_start": {
+      "utc": "2026-10-25T04:08:15.152369+00:00",
+      "monotonic_ns": 1840906457325041
+    },
+    "client_execute_start": {
+      "utc": "2026-10-25T04:08:15.193540+00:00",
+      "monotonic_ns": 1840906498504153
+    },
+    "execute_return": {
+      "utc": "2026-10-25T04:09:22.956846+00:00",
+      "monotonic_ns": 1840974261819886
+    },
+    "fetch_end": {
+      "utc": "2026-10-25T04:09:22.960699+00:00",
+      "monotonic_ns": 1840974265665418
+    }
+  },
+  "before_snapshot": 8347088278696450342,
+  "after_snapshot": 2768694495219485074,
+  "before_files": 64,
+  "after_files": 4,
+  "after_bytes": 1713414510
+}

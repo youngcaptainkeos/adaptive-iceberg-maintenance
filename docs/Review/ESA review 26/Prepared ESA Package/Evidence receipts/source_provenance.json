@@ -1,0 +1,47 @@
+[
+  {
+    "source": "/media/shashank/Data1/PDocuments/Capstone/implementation/results/consistent_reserved_evaluation_20261017/result.json",
+    "package_file": "SF1_reserved_evaluation.json",
+    "sha256": "c0fbd8cbda0d509e5f41bb6711693850a1911a80e0b4cc341ae26496efc009a4"
+  },
+  {
+    "source": "/media/shashank/Data1/PDocuments/Capstone/implementation/results/three_model_sf10_scratch_recovery_20261025_03/prepare/result.json",
+    "package_file": "SF10_verified_ingestion.json",
+    "sha256": "66a5d888548e1fa64c49f4bb2f45db7da1477c6e46433dd6cf720d3c8a51d4ba"
+  },
+  {
+    "source": "/media/shashank/Data1/PDocuments/Capstone/implementation/results/three_model_sf10_scratch_recovery_20261025_03/plan_query/maintenance.json",
+    "package_file": "SF10_separate_compaction.json",
+    "sha256": "3dbed60559ee4d66f4498ba591005b46a778ee8fd15cd08251fae9e6ae2b22dc"
+  },
+  {
+    "source": "/media/shashank/Data1/PDocuments/Capstone/implementation/results/sf10_archive_validation_20261101_03/result.json",
+    "package_file": "SF10_failed_campaign.json",
+    "sha256": "bdcc3822d8bc8e493c0fcc65052835773b379150dae189abc1c9dfd4561cf768"
+  },
+  {
+    "source": "/media/shashank/Data1/PDocuments/Capstone/implementation/results/sf10_sql_ownership_diagnostic_20261111_01/result.json",
+    "package_file": "SQL_ownership_diagnostic.json",
+    "sha256": "140b1a382a48a89103f128f5a17766b40feb5455a4ce62a1df0209bced26dfea"
+  },
+  {
+    "source": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/screenshots/capture_manifest.jsonl",
+    "package_file": "Original_capture_manifest.jsonl",
+    "sha256": "256464e013146b993641e7ff3c1e801579c6a228fb3414b5c25c3ac892acb432"
+  },
+  {
+    "source": "/home/shashank/Downloads/Review 2.pptx",
+    "role": "reference left unchanged",
+    "sha256": "200b31ab160e9bbca923ef977c565fec565d2ddee06ebc41ce0a183dcf20223b"
+  },
+  {
+    "source": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/ESA PPT.pptx",
+    "role": "reference left unchanged",
+    "sha256": "864c82d798682000e4d78cc435d69fe5f7504a0f1b8c55b22bde6636bb08ac41"
+  },
+  {
+    "source": "/media/shashank/Data1/PDocuments/Capstone/implementation/docs/Review/ESA review 26/ESA Report/Report/UE24CS320A-Capstone Project Phase - 1 - Report-  Guidelines.docx",
+    "role": "reference left unchanged",
+    "sha256": "c95e3e3960c11ce85d0a1ee51611e1c1a8eef362ea7169857fbabe8dd658a1b5"
+  }
+]
