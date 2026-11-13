@@ -1,0 +1,24 @@
+{
+  "schema": "retained_task_capture_capability_v1",
+  "latest_start_utc": "2026-11-13T19:00:00+00:00",
+  "latest_request_utc": "2026-11-13T19:15:00+00:00",
+  "expected_stage_attempts": 308,
+  "timeout_seconds": 15,
+  "base_url": "http://127.0.0.1:4051",
+  "app_id": "local-1793552665721",
+  "rationale": "One bounded request per actually missing completed stage, stop at first error, no retries; 15s per read and absolute cutoff bound diagnostic load; no SQL or original acceptance",
+  "inputs": {
+    "gaps": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/retained_ownership_regression_20261113_01/capture_gap_inventory.json",
+      "sha256": "cba9a5b5b161e1a2256c4a3a6df63c2bfc713167b280a87976f4fd8ce4e18310"
+    },
+    "receipt": {
+      "path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/retained_ownership_regression_20261113_01/result.json",
+      "sha256": "f9253de9770e89bf782e242ad85ecbf116cb76011f9ef2abe9aaa6744cb45f35"
+    }
+  },
+  "code_sha256": {
+    "three_model_maintenance/research/capture_retained_tasks.py": "864d736fc6bc6e7330f6dddaea68445220ff880b3f810081120f42f4e11415d0",
+    "three_model_maintenance/research/common.py": "aeb7e3e0fb1c7ce5f395e2f164a5ea34ea00cc64fdc01bdd27291a885799bea1"
+  }
+}
