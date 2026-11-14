@@ -1,0 +1,453 @@
+{
+  "status": "passed_executed_work_count_reconciliation_only",
+  "started_utc": "2026-11-14T04:55:06.495147+00:00",
+  "protocol_sha256": "86952113825319e0ed2fb3ee091575d19b45d3f52ca3a6fae192e01459ce9f56",
+  "SQL_executed": false,
+  "REST_requested": false,
+  "original_failure_accepted": false,
+  "job_proofs": [
+    {
+      "job_id": 3113,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6076,
+          "tasks": 13
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 0,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3114,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6078,
+          "tasks": 1
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 1,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [
+        {
+          "stage_id": 6077,
+          "observed_status": "SKIPPED"
+        }
+      ],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3115,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6079,
+          "tasks": 13
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 0,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3116,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6081,
+          "tasks": 1
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 1,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [
+        {
+          "stage_id": 6080,
+          "observed_status": "SKIPPED"
+        }
+      ],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3117,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6082,
+          "tasks": 4
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 0,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3118,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6083,
+          "tasks": 13
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 0,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3119,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6085,
+          "tasks": 2
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 1,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [
+        {
+          "stage_id": 6084,
+          "observed_status": "SKIPPED"
+        }
+      ],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3120,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6087,
+          "tasks": 13
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 1,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [
+        {
+          "stage_id": 6086,
+          "observed_status": "SKIPPED"
+        }
+      ],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3121,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6090,
+          "tasks": 1
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 2,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [
+        {
+          "stage_id": 6089,
+          "observed_status": "SKIPPED"
+        },
+        {
+          "stage_id": 6088,
+          "observed_status": "SKIPPED"
+        }
+      ],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3122,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6091,
+          "tasks": 1
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 0,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3123,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6092,
+          "tasks": 4
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 0,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3124,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6093,
+          "tasks": 13
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 0,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3125,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6096,
+          "tasks": 16
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 2,
+      "unobserved_reference_ids": [
+        6095,
+        6094
+      ],
+      "other_observed_references": [],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3126,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6101,
+          "tasks": 17
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 4,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [
+        {
+          "stage_id": 6098,
+          "observed_status": "SKIPPED"
+        },
+        {
+          "stage_id": 6099,
+          "observed_status": "SKIPPED"
+        },
+        {
+          "stage_id": 6100,
+          "observed_status": "SKIPPED"
+        },
+        {
+          "stage_id": 6097,
+          "observed_status": "SKIPPED"
+        }
+      ],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3127,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6107,
+          "tasks": 1
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 5,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [
+        {
+          "stage_id": 6103,
+          "observed_status": "SKIPPED"
+        },
+        {
+          "stage_id": 6104,
+          "observed_status": "SKIPPED"
+        },
+        {
+          "stage_id": 6105,
+          "observed_status": "SKIPPED"
+        },
+        {
+          "stage_id": 6102,
+          "observed_status": "SKIPPED"
+        },
+        {
+          "stage_id": 6106,
+          "observed_status": "SKIPPED"
+        }
+      ],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3128,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6108,
+          "tasks": 13
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 0,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3129,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6110,
+          "tasks": 17
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 1,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [
+        {
+          "stage_id": 6109,
+          "observed_status": "SKIPPED"
+        }
+      ],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3130,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6111,
+          "tasks": 3
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 0,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3131,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6112,
+          "tasks": 1
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 0,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3132,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6113,
+          "tasks": 1
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 0,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3133,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6114,
+          "tasks": 1
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 0,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3134,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6115,
+          "tasks": 1
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 0,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3135,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6118,
+          "tasks": 17
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 2,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [
+        {
+          "stage_id": 6117,
+          "observed_status": "SKIPPED"
+        },
+        {
+          "stage_id": 6116,
+          "observed_status": "SKIPPED"
+        }
+      ],
+      "missing_stage_states_imputed": false
+    },
+    {
+      "job_id": 3136,
+      "executed_stage_tasks": [
+        {
+          "stage_id": 6122,
+          "tasks": 1
+        }
+      ],
+      "explicit_completed_stages": 1,
+      "explicit_skipped_stages": 3,
+      "unobserved_reference_ids": [],
+      "other_observed_references": [
+        {
+          "stage_id": 6121,
+          "observed_status": "SKIPPED"
+        },
+        {
+          "stage_id": 6119,
+          "observed_status": "SKIPPED"
+        },
+        {
+          "stage_id": 6120,
+          "observed_status": "SKIPPED"
+        }
+      ],
+      "missing_stage_states_imputed": false
+    }
+  ],
+  "owned_jobs": 24,
+  "executed_stages": 24,
+  "executed_tasks": 168,
+  "absent_reference_occurrences": 2,
+  "limitations": [
+    "Direct stage membership plus interval and explicit count agreement; no per-query CPU attribution.",
+    "Missing dependency states remain unknown. Original terminal-inventory failure remains failed.",
+    "No maintenance/scheduler comparison; changing future acceptance requires explicit versioned contract."
+  ],
+  "ended_utc": "2026-11-14T04:55:08.274588+00:00"
+}

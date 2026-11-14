@@ -1,0 +1,19 @@
+{
+  "label": "stage_detail_probe_20261114_01",
+  "failure_detail": "Command failed with exit status 1. Inspect the registered run log; no automatic retry.",
+  "attempted_utc": "2026-11-14T04:52:57.249605+00:00",
+  "status": "notification_delivered",
+  "http_status": 200,
+  "response": {
+    "id": "izu0bcrp0WfC",
+    "time": 1794631977,
+    "expires": 1794675177,
+    "event": "message",
+    "topic": "shashank_capstone_alerts",
+    "title": "Capstone run failed",
+    "message": "stage_detail_probe_20261114_01\nCommand failed with exit status 1. Inspect the registered run log; no automatic retry.",
+    "tags": [
+      "warning"
+    ]
+  }
+}

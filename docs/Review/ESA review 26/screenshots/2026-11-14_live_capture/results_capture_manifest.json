@@ -1,0 +1,8 @@
+{
+  "captured_utc": "2026-11-14T05:00:18.470884+00:00",
+  "image": "HISTORICAL_RESULTS_AND_NEXT_GATE.png",
+  "image_sha256": "23fc7ca0b737bb108732fc01a4b9df6ab5f3a515035e7a12e54c2c168b9abca6",
+  "source_path": "/tmp/capstone_research_20261114/results/live_baseline_export_20261114_01/result.json",
+  "source_sha256": "3a58b9b73acc21b617870093e49db982da34c2ff1a1beea6149794ad88d47173",
+  "label": "HISTORICAL completed evidence, one observation per query, no improvement claim"
+}

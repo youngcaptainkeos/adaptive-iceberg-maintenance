@@ -1345,3 +1345,41 @@ Prior direct_retention_replay_20261113_01 finished successfully (PID446078,18:26
 New live_direct_capture_20261114_01 executes each of the six genuine original SF10 templates once against the independently referenced pinned source snapshots. It verifies result equality and immediately captures exact SQL-owned task records after each query, with final strict archive coverage. Existing tables are read only; no rewrite/data mutation, no arrival replay/model fit/telemetry claim. Snapshot reuse is explicit engineering validation. Inputs/source hashes, request limits,8GiB evidence floor and fresh06:00UTC SQL/06:10REST cutoffs are registered in protocols/live_direct_capture_20261114.json. First failure stops remaining queries, sends ntfy and preserves raw/failed/unattempted counts. This is not a retry of the old retained empty-task endpoint or old physical campaign.
 
 Failure decision: SQL/reference failure blocks data correctness; archive ownership failure isolates mapping; empty new task response isolates prospective capture; missing/skipped stage mismatch requires engine semantics review, not invented terminal states. If all six pass, next gate is independent raw reconstruction and completed/skipped per-job reconciliation before full-drain control/maintenance comparison. No performance or paper-readiness claims from these six timings. Source review: Spark3.3.4 AppStatusListener.onJobEnd explicitly transitions pending stages to SKIPPED; reused stages are possible. This explains why absent/pending records cannot simply be reclassified by our collector. https://raw.githubusercontent.com/apache/spark/v3.3.4/core/src/main/scala/org/apache/spark/status/AppStatusListener.scala
+
+
+## 14 November 2026: completed live capture and bounded diagnostics
+
+Six genuine queries against pinned SF10 source snapshots returned the independently expected answers. The integration outcome remains **5 passed / 1 failed / 0 unattempted**: the sixth query's final archive check found two missing dependency-stage records. Query correctness and complete archival coverage are separate claims. The earlier physical archive03 campaign remains **0 passed / 1 failed / 1 unattempted**, no fit.
+
+A single direct-stage diagnostic returned HTTP404 for stage6094 and stopped; its second planned lookup was unattempted. No retry was made. A separate saved-evidence reconciliation accounted for **24 owned jobs, 24 executed stages and 168 actual tasks** using explicit completed/skipped counts and job/stage intervals. The two absent references fit the remaining aggregate skipped-stage count, but their individual states remain unknown. This diagnostic uses collector-selected ownership and latest job/stage frames; it does not independently certify all ownership or adverse histories and cannot pass the original experiment.
+
+The baseline exporter independently reconstructs exact SQL/job bindings and verifies all six query results, then uses the reconciliation proofs for descriptive task costs. It rejects shared task identities across query rows. All 168 tasks supplied explicit CPU metrics. No missing metric was filled in.
+
+| Query | Client service seconds | Summed task CPU-seconds | Tasks |
+|---|---:|---:|---:|
+| Filtered revenue | 0.663 | 5.05 | 14 |
+| Grouped lineitem | 3.020 | 31.89 | 14 |
+| Orders/lineitem join | 3.726 | 38.41 | 33 |
+| Customer/orders/lineitem join | 6.152 | 58.06 | 52 |
+| Group/sort top parts | 2.224 | 24.67 | 30 |
+| Five-table supply join | 1.916 | 8.90 | 25 |
+
+These are single observations, not mean estimates or improvements. Task CPU sums parallel execution and is not whole-server CPU. Source snapshot reuse, a persistent shared engine, sequential execution and cache state prevent causal comparisons. There was no compaction, arrival replay, new training or independent-family collection.
+
+Immediate archive checkpoint bodies cost **0.57–0.73 seconds** each. They occur after the individual SQL service clock and delay the next call in this capability run. They exclude final checkpoint-result persistence. This is evidence-capture overhead, not model inference or complete controller overhead. It is large enough that future policy comparisons must include observation costs and avoid unnecessary synchronous captures in the query path.
+
+## Evidence and execution
+
+Worker3: ccbd@10.10.3.232, repository `/mnt/nfs-storage/shashank_prafullathta/implementation`. Every unit used detached nohup through `run_with_failure_alert.py`, distinct receipts/logs. Both failed units have HTTP200 ntfy delivery receipts. Launch and terminal evidence is under each `results/<label>` and `results/<label>_launch`. The four source commits were 9f31488 (live capability), cd2ce51 (detail probe), c07b839 (reconciliation), 1e1b389 (baseline export). Frozen registrations are `three_model_maintenance/protocols/{live_direct_capture,stage_detail_probe,executed_stage_reconciliation,live_baseline_export}_20261114.json`.
+
+| Unit | Wrapper PID | Actual terminal status | Result SHA256 |
+|---|---:|---|---|
+| `live_direct_capture_20261114_01` | 594211 | failed_preserved | `8b414e1a2fe43388729865dc63da405327c7b89e55a5b988e5582d825e350e95` |
+| `stage_detail_probe_20261114_01` | 595107 | failed_preserved | `2f56cf5c0b73a68dc475b924fc2d9ce8591173defdaff344a61d25eabe3b14df` |
+| `executed_stage_reconciliation_20261114_01` | 595928 | passed_executed_work_count_reconciliation_only | `c16fc216d848193af5b2a0ec16cb213c8dbde0011b1d68e71910d8d514f19a5e` |
+| `live_baseline_export_20261114_01` | 597238 | exported_descriptive_engineering_baseline_only | `3a58b9b73acc21b617870093e49db982da34c2ff1a1beea6149794ad88d47173` |
+
+Complete raw files were mirrored to `/tmp/capstone_research_20261114/results`; `results/research_progress_20261114/mirror_checksums.json` records byte-for-byte server/client agreement. The original Data1 mount is absent; the temporary checkout does not replace or remove its files. Compact receipts are versioned; the 112MB raw archive is retained outside Git. No services or tables were stopped or removed.
+
+
+Full analysis, screenshots and failure-contingent next gates: `docs/research_program_2026-11-13/ANALYSIS_2026-11-14.md`. Next requirement is independent raw ownership/adverse-history reconstruction before a versioned prospective contract and matched full-drain timing experiment. No physical acceptance, training, scheduler or resource-benefit claim.

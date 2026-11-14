@@ -1,0 +1,19 @@
+{
+  "status": "failed_preserved",
+  "started_utc": "2026-11-14T04:52:57.155810+00:00",
+  "SQL_executed": false,
+  "old_run_accepted": false,
+  "stages": [
+    {
+      "stage_id": 6094,
+      "url": "http://127.0.0.1:4051/api/v1/applications/local-1793552665721/stages/6094",
+      "started_utc": "2026-11-14T04:52:57.156021+00:00",
+      "http_status": 404,
+      "raw_sha256": "39f63d9f17794fcf47d36a66ff2ae2c91087081045b1ebda4fe6e9b4919b271f",
+      "ended_utc": "2026-11-14T04:52:57.206577+00:00"
+    }
+  ],
+  "error": "Missing stage detail HTTP404",
+  "traceback": "Traceback (most recent call last):\n  File \"/mnt/nfs-storage/shashank_prafullathta/implementation/three_model_maintenance/research/stage_detail_probe.py\", line 20, in main\n    assert rec['http_status']==200,'Missing stage detail HTTP'+str(rec['http_status'])\nAssertionError: Missing stage detail HTTP404\n",
+  "ended_utc": "2026-11-14T04:52:57.206777+00:00"
+}

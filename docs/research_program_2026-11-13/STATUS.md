@@ -53,3 +53,8 @@ No new model or policy is accepted. No independent benefit, calibration, CPU sav
 When remote work resumes: recover actual worker/Git/raw state; validate the exact retained SQL-to-job links; implement and review the prospective ownership archive; register a fresh physical control/maintenance verification with new identities and cutoffs. Then measure repeatability and useful start-time effects before adding model complexity. See [I01–I06](05_implementation_and_handover.md#6-exact-next-implementation-queue).
 
 GitHub synchronization is recorded separately after committing this unit. Worker fast-forward and client/worker SHA agreement are **deferred by the user's skip-SSH instruction**, not assumed successful. Preserve unrelated modified/untracked files and the local-only archive.
+
+
+## Update 14 November 2026
+
+Worker3 is reachable; four detached units completed. Live capability: 5 passed/1 failed/0 unattempted. Direct-stage probe failed HTTP404. Executed-work reconciliation passed diagnostically (24 jobs/24 stages/168 tasks); descriptive six-query export completed. Neither accepts the failed original physical campaign. See [actual analysis and next gates](ANALYSIS_2026-11-14.md). Source/evidence mirrors are in the temporary recovered checkout; original Data1 mount is absent. No model training or performance improvement established.
