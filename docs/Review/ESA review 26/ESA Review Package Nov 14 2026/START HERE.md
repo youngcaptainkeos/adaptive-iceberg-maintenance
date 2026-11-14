@@ -6,7 +6,9 @@ This dated package refreshes the short ESA presentation and Phase 1 report using
 
 ## Files
 
-- `ESA Review Presentation Short.pptx` — 25-slide short presentation, updated with six correct SF10 query outputs, raw-history audit/reconciliation, capture cost and explicit missing-stage caveats.
+- `ESA Review Presentation Short.pptx` — original 25-slide short presentation, retained as delivered.
+- `ESA Review Presentation Short - Architecture and Milestones.pptx` — separate 25-slide derivative with the editable end-to-end architecture diagram on slide 8 and gated research roadmap on slide 23.
+- `Diagrams/` — standalone PNG exports of both diagrams plus their scope and evidence notes.
 - `ESA Phase 1 Report.docx` — updated report with the latest execution/audit progress addendum; earlier results and failed-campaign status remain intact.
 - `ESA Phase 1 Report.pdf` — rendered reading copy of the updated report.
 - `Presenter Guide.md` — slide-by-slide speaking points and important interpretation boundaries.
