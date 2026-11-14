@@ -1,0 +1,10 @@
+{
+  "captured_utc": "20261114T045129Z",
+  "url": "http://127.0.0.1:18051/jobs/",
+  "image": "20261114T045129Z_LIVE_SPARK_UI.png",
+  "screenshot_exit_code": 0,
+  "actual_running_job_count": 2,
+  "scope": "Actual Spark UI screenshot through SSH. Jobs count is from separately timestamped nearby REST read; screenshot may observe later state. All completed jobs remain historical.",
+  "raw_sha256": "482cfca4359bea5d16aa251c9b0358128f851bb8c7975460612a32bcd0f0d06c",
+  "image_sha256": "6746904b11e92743c8e86e872053cf2af15e487b356dd4510d797ffcb644b8f5"
+}

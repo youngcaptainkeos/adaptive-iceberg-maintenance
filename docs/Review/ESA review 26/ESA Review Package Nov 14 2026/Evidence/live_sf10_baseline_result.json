@@ -1,0 +1,199 @@
+{
+  "status": "exported_descriptive_engineering_baseline_only",
+  "started_utc": "2026-11-14T04:58:29.820178+00:00",
+  "training_eligible": false,
+  "physical_campaign_accepted": false,
+  "SQL_executed": false,
+  "queries": [
+    {
+      "query_id": 0,
+      "name": "filtered_revenue",
+      "client_service_seconds": 0.662556775,
+      "directly_owned_jobs": 2,
+      "executed_stages": 2,
+      "executed_tasks": 14,
+      "task_metrics": {
+        "executorCpuTime": {
+          "value": 5049562726,
+          "observed_tasks": 14,
+          "total_tasks": 14,
+          "unit": "ns"
+        },
+        "executorRunTime": {
+          "value": 5082,
+          "observed_tasks": 14,
+          "total_tasks": 14,
+          "unit": "ms"
+        }
+      },
+      "correctness": "matches_pinned_reference",
+      "replicates": 1
+    },
+    {
+      "query_id": 1,
+      "name": "grouped_lineitem",
+      "client_service_seconds": 3.02013793,
+      "directly_owned_jobs": 2,
+      "executed_stages": 2,
+      "executed_tasks": 14,
+      "task_metrics": {
+        "executorCpuTime": {
+          "value": 31888722237,
+          "observed_tasks": 14,
+          "total_tasks": 14,
+          "unit": "ns"
+        },
+        "executorRunTime": {
+          "value": 34220,
+          "observed_tasks": 14,
+          "total_tasks": 14,
+          "unit": "ms"
+        }
+      },
+      "correctness": "matches_pinned_reference",
+      "replicates": 1
+    },
+    {
+      "query_id": 2,
+      "name": "orders_lineitem_join",
+      "client_service_seconds": 3.725514987,
+      "directly_owned_jobs": 5,
+      "executed_stages": 5,
+      "executed_tasks": 33,
+      "task_metrics": {
+        "executorCpuTime": {
+          "value": 38414461547,
+          "observed_tasks": 33,
+          "total_tasks": 33,
+          "unit": "ns"
+        },
+        "executorRunTime": {
+          "value": 40878,
+          "observed_tasks": 33,
+          "total_tasks": 33,
+          "unit": "ms"
+        }
+      },
+      "correctness": "matches_pinned_reference",
+      "replicates": 1
+    },
+    {
+      "query_id": 3,
+      "name": "customer_orders_lineitem_join",
+      "client_service_seconds": 6.152306532,
+      "directly_owned_jobs": 6,
+      "executed_stages": 6,
+      "executed_tasks": 52,
+      "task_metrics": {
+        "executorCpuTime": {
+          "value": 58056665341,
+          "observed_tasks": 52,
+          "total_tasks": 52,
+          "unit": "ns"
+        },
+        "executorRunTime": {
+          "value": 83079,
+          "observed_tasks": 52,
+          "total_tasks": 52,
+          "unit": "ms"
+        }
+      },
+      "correctness": "matches_pinned_reference",
+      "replicates": 1
+    },
+    {
+      "query_id": 4,
+      "name": "group_sort_top_parts",
+      "client_service_seconds": 2.223938334,
+      "directly_owned_jobs": 2,
+      "executed_stages": 2,
+      "executed_tasks": 30,
+      "task_metrics": {
+        "executorCpuTime": {
+          "value": 24670955312,
+          "observed_tasks": 30,
+          "total_tasks": 30,
+          "unit": "ns"
+        },
+        "executorRunTime": {
+          "value": 25788,
+          "observed_tasks": 30,
+          "total_tasks": 30,
+          "unit": "ms"
+        }
+      },
+      "correctness": "matches_pinned_reference",
+      "replicates": 1
+    },
+    {
+      "query_id": 5,
+      "name": "five_table_supply_join",
+      "client_service_seconds": 1.915903899,
+      "directly_owned_jobs": 7,
+      "executed_stages": 7,
+      "executed_tasks": 25,
+      "task_metrics": {
+        "executorCpuTime": {
+          "value": 8899441710,
+          "observed_tasks": 25,
+          "total_tasks": 25,
+          "unit": "ns"
+        },
+        "executorRunTime": {
+          "value": 10117,
+          "observed_tasks": 25,
+          "total_tasks": 25,
+          "unit": "ms"
+        }
+      },
+      "correctness": "matches_pinned_reference",
+      "replicates": 1
+    }
+  ],
+  "capture_checkpoints": [
+    {
+      "checkpoint": "checkpoint_00001",
+      "status": "captured_direct_referenced_tasks_only",
+      "requests": 13,
+      "body_wall_seconds": 0.650403
+    },
+    {
+      "checkpoint": "checkpoint_00002",
+      "status": "captured_direct_referenced_tasks_only",
+      "requests": 13,
+      "body_wall_seconds": 0.568257
+    },
+    {
+      "checkpoint": "checkpoint_00003",
+      "status": "captured_direct_referenced_tasks_only",
+      "requests": 16,
+      "body_wall_seconds": 0.728984
+    },
+    {
+      "checkpoint": "checkpoint_00004",
+      "status": "captured_direct_referenced_tasks_only",
+      "requests": 17,
+      "body_wall_seconds": 0.659054
+    },
+    {
+      "checkpoint": "checkpoint_00005",
+      "status": "captured_direct_referenced_tasks_only",
+      "requests": 13,
+      "body_wall_seconds": 0.674622
+    },
+    {
+      "checkpoint": "checkpoint_00006",
+      "status": "failed_preserved",
+      "requests": 18,
+      "body_wall_seconds": 0.650674
+    }
+  ],
+  "metric_scope": "Sequential single-client service time; summed owned-task CPU is not whole-server CPU or full controller cost.",
+  "limitations": [
+    "One observation per query, shared persistent server/cache, no uncertainty estimate.",
+    "No compaction, no arrival replay, no matched alternative, no improvement claim.",
+    "Original integration outcome stays 5 passed/1 failed/0 unattempted; query result correctness is separate.",
+    "Capture body timing excludes final result receipt persistence; not whole-controller overhead."
+  ],
+  "ended_utc": "2026-11-14T04:58:30.603640+00:00"
+}

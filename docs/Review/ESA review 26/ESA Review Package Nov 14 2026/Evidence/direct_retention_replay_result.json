@@ -1,0 +1,28 @@
+{
+  "status": "passed_real_saved_selection_regression_only",
+  "started_utc": "2026-11-13T18:26:31.083384+00:00",
+  "protocol_sha256": "e6057440c3b680b2a733964e0f6c5c50983b11061d2c74fc7d63c2638dd390a3",
+  "SQL_executed": false,
+  "live_REST_requested": false,
+  "physical_episode_accepted": false,
+  "completed_queries": 463,
+  "directly_owned_jobs": 1850,
+  "selected_complete_stage_attempts": 1850,
+  "selected_with_verified_saved_tasks": 1542,
+  "selected_missing_saved_tasks": 308,
+  "referenced_stage_ids_missing": 696,
+  "observed_skipped_stage_ids": 1021,
+  "nonterminal_stage_attempts": 55,
+  "verified_saved_tasks": 13954,
+  "original_campaign_counts": {
+    "passed": 0,
+    "failed": 1,
+    "unattempted": 1
+  },
+  "limitations": [
+    "Network adapter and prospective integration remain unvalidated.",
+    "No per-job completed/skipped reconciliation or resource attribution proof.",
+    "Historical task/stage gaps remain gaps; old physical failure unchanged."
+  ],
+  "ended_utc": "2026-11-13T18:26:34.858457+00:00"
+}

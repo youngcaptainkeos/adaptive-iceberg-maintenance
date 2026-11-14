@@ -1,0 +1,34 @@
+{
+  "status": "passed_exact_ownership_regression_capture_gaps_diagnostic_only",
+  "started_utc": "2026-11-13T18:11:49.176607+00:00",
+  "protocol_sha256": "15cfcb79f84dd4b7b3ee5214220b98f87f0a18f8c9805d2abc8fdd7c027bc9df",
+  "physical_episode_accepted": false,
+  "model_fit_performed": false,
+  "SQL_executed": false,
+  "live_REST_requested": false,
+  "exact_completed_query_bindings": 463,
+  "directly_owned_rejected_links": 308,
+  "distinct_owned_jobs": 1850,
+  "observed_owned_jobs": 1850,
+  "referenced_stage_ids": 3622,
+  "complete_stage_attempts_observed": 1850,
+  "complete_stage_attempts_missing_saved_tasks": 308,
+  "job_counter_issue_id_fields": 0,
+  "stage_counter_issue_id_fields": 0,
+  "raw_prefix_frame_counts": {
+    "owned_job_observations": 27844
+  },
+  "terminal_archive_present": true,
+  "original_counts": {
+    "passed": 0,
+    "failed": 1,
+    "unattempted": 1
+  },
+  "limitations": [
+    "Post-hoc SQL metadata does not provide prospective archive provenance.",
+    "Gap inventory is not stage completion/counter certification or exhaustive unknown-job coverage.",
+    "Skipped/reused stages need explicit execution semantics; no missing tasks are invented.",
+    "Original failed episode stays failed; no new physical data or metric improvement."
+  ],
+  "ended_utc": "2026-11-13T18:11:54.638270+00:00"
+}

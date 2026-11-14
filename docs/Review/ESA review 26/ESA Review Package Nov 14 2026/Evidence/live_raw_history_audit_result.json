@@ -1,0 +1,81 @@
+{
+  "status": "passed_saved_raw_ownership_history_diagnostic_only",
+  "started_utc": "2026-11-14T10:24:44.489481+00:00",
+  "SQL_executed": false,
+  "REST_requested": false,
+  "original_failure_accepted": false,
+  "training_eligible": false,
+  "protocol_sha256": "dacbbda3cd737ec61b98f41c63d943d500d9cf7affd739511d7703e98ea17777",
+  "calls": 6,
+  "directly_owned_jobs": 24,
+  "job_observations": 71,
+  "referenced_stage_ids": 47,
+  "stage_observations": 114,
+  "absent_reference_ids": [
+    6094,
+    6095
+  ],
+  "bindings": {
+    "6dcf1c8c767d4114b2fa8c6eb96bc46e": {
+      "sql_execution_id": 874,
+      "success_job_ids": [
+        3113,
+        3114
+      ]
+    },
+    "61a07e7c9ecf468395ca6576b481aa59": {
+      "sql_execution_id": 875,
+      "success_job_ids": [
+        3115,
+        3116
+      ]
+    },
+    "9ef9dba5087a4709a0de5effceb0aced": {
+      "sql_execution_id": 876,
+      "success_job_ids": [
+        3117,
+        3118,
+        3119,
+        3120,
+        3121
+      ]
+    },
+    "f244cc01a97e498bb2f6f71baf9acad5": {
+      "sql_execution_id": 877,
+      "success_job_ids": [
+        3122,
+        3123,
+        3124,
+        3125,
+        3126,
+        3127
+      ]
+    },
+    "1f881e58b3904882b1e40d29a0c5ad5b": {
+      "sql_execution_id": 878,
+      "success_job_ids": [
+        3128,
+        3129
+      ]
+    },
+    "12c670d3ee1446c3a2287523697f84af": {
+      "sql_execution_id": 879,
+      "success_job_ids": [
+        3130,
+        3131,
+        3132,
+        3133,
+        3134,
+        3135,
+        3136
+      ]
+    }
+  },
+  "limitations": [
+    "Only observed archived histories; no guarantee about unobserved intermediate engine events.",
+    "Missing dependency-stage states remain unknown; no original gate acceptance.",
+    "Prior task/count diagnostic is cross-checked for ownership, not independently reimplemented here.",
+    "No fresh runtime validation, compaction, policy benefit or training eligibility."
+  ],
+  "ended_utc": "2026-11-14T10:24:46.601544+00:00"
+}

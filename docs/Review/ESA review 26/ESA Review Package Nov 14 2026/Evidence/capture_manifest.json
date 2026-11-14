@@ -1,0 +1,54 @@
+{
+  "captures": [
+    {
+      "image": "01_CAPTURED_REMOTE_STATUS.png",
+      "label": "CAPTURED LIVE STATUS \u2014 becomes historical after capture",
+      "captured_utc": "2026-11-13T18:29:18.590508+00:00",
+      "page": "01_CAPTURED_REMOTE_STATUS.html",
+      "explanation": "Shows which selected registered processes existed at capture and the actual running-job REST response.",
+      "returncode": 0,
+      "image_sha256": "c09e2f19086024222aa95a1e0fcd8a71b05a67e0795b723369a247a05624f9ee"
+    },
+    {
+      "image": "02_HISTORICAL_VALIDATION_RESULTS.png",
+      "label": "HISTORICAL RESULTS \u2014 checks completed",
+      "captured_utc": "2026-11-13T18:29:18.590508+00:00",
+      "page": "02_HISTORICAL_VALIDATION_RESULTS.html",
+      "explanation": "Explains the completed code regression and its evidence gaps. Counts are read from saved worker3 results, not a performance benchmark.",
+      "returncode": 0,
+      "image_sha256": "878a675a419f14bd1cfa81148dadd729a57c7ebb40f648b790cbdea9035c54db"
+    },
+    {
+      "image": "03_HISTORICAL_RECOVERY_FAILURE.png",
+      "label": "HISTORICAL FAILURE \u2014 preserved, no retry",
+      "captured_utc": "2026-11-13T18:29:18.590508+00:00",
+      "page": "03_HISTORICAL_RECOVERY_FAILURE.html",
+      "explanation": "Shows a genuine preserved failure and why incomplete data were not accepted. Does not claim the research hypothesis failed.",
+      "returncode": 0,
+      "image_sha256": "125362885b372ab8d5124196805fd60bd2c288b73c84e99c34146cbb154883ae"
+    }
+  ],
+  "sources": {
+    "ownership": {
+      "original_path": "/media/shashank/Data1/PDocuments/Capstone/implementation/results/retained_ownership_regression_20261113_01/result.json",
+      "sha256": "f9253de9770e89bf782e242ad85ecbf116cb76011f9ef2abe9aaa6744cb45f35"
+    },
+    "selection": {
+      "original_path": "/media/shashank/Data1/PDocuments/Capstone/implementation/results/direct_retention_replay_20261113_01/result.json",
+      "sha256": "d1066f44bf31e43e9090f9d95077667da8939e75341fc56427891c9c5d5d5b9e"
+    },
+    "recovery_failure": {
+      "original_path": "/media/shashank/Data1/PDocuments/Capstone/implementation/results/retained_task_capture_20261113_01/result.json",
+      "sha256": "245d233b95d2e1273aeeb4fc435b2d6bda4f88b30d3f20b564f6bb4a03d62923"
+    },
+    "empty_response": {
+      "original_path": "/media/shashank/Data1/PDocuments/Capstone/implementation/results/retained_task_capture_20261113_01/2441_0.raw.json",
+      "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa"
+    },
+    "response_receipt": {
+      "original_path": "/media/shashank/Data1/PDocuments/Capstone/implementation/results/retained_task_capture_20261113_01/2441_0.receipt.json",
+      "sha256": "d255c35eb22967b026d33c23499a0e620693582af3046848a50211b4b81413e8"
+    }
+  },
+  "remote_status_sha256": "f576f1ae20416bd3f0685905fd9c43396df925f6abe14254bdb49cd4812a0043"
+}

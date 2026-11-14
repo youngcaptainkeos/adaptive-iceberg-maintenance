@@ -1,0 +1,58 @@
+{
+  "status": "failed_preserved",
+  "started_utc": "2026-11-14T04:51:18.167183+00:00",
+  "protocol_sha256": "02a5ad9d00614ba1ee520012ea440fab86e0f3d88cb5abb9bc871eda008844d8",
+  "passed_queries": 5,
+  "failed_queries": 1,
+  "unattempted_queries": 0,
+  "query_results": [
+    {
+      "query_id": 0,
+      "name": "filtered_revenue",
+      "measurement_id": "6dcf1c8c767d4114b2fa8c6eb96bc46e",
+      "client_elapsed_ns": 662556775,
+      "correctness": "matches_pinned_reference",
+      "archive_status": "captured_direct_referenced_tasks_only"
+    },
+    {
+      "query_id": 1,
+      "name": "grouped_lineitem",
+      "measurement_id": "61a07e7c9ecf468395ca6576b481aa59",
+      "client_elapsed_ns": 3020137930,
+      "correctness": "matches_pinned_reference",
+      "archive_status": "captured_direct_referenced_tasks_only"
+    },
+    {
+      "query_id": 2,
+      "name": "orders_lineitem_join",
+      "measurement_id": "9ef9dba5087a4709a0de5effceb0aced",
+      "client_elapsed_ns": 3725514987,
+      "correctness": "matches_pinned_reference",
+      "archive_status": "captured_direct_referenced_tasks_only"
+    },
+    {
+      "query_id": 3,
+      "name": "customer_orders_lineitem_join",
+      "measurement_id": "f244cc01a97e498bb2f6f71baf9acad5",
+      "client_elapsed_ns": 6152306532,
+      "correctness": "matches_pinned_reference",
+      "archive_status": "captured_direct_referenced_tasks_only"
+    },
+    {
+      "query_id": 4,
+      "name": "group_sort_top_parts",
+      "measurement_id": "1f881e58b3904882b1e40d29a0c5ad5b",
+      "client_elapsed_ns": 2223938334,
+      "correctness": "matches_pinned_reference",
+      "archive_status": "captured_direct_referenced_tasks_only"
+    }
+  ],
+  "physical_campaign_accepted": false,
+  "model_fit_performed": false,
+  "maintenance_executed": false,
+  "independent_performance_evidence": false,
+  "error": "Terminal direct archive has missing/nonterminal evidence",
+  "traceback": "Traceback (most recent call last):\n  File \"/mnt/nfs-storage/shashank_prafullathta/implementation/three_model_maintenance/research/live_capture_capability.py\", line 55, in run\n    checkpoint=archive.capture(requested,completed,terminal=index==5)\n  File \"/mnt/nfs-storage/shashank_prafullathta/implementation/three_model_maintenance/runtime/direct_task_retention.py\", line 174, in capture\n    require(not any(plan[k] for k in ('missing_owned_job_ids','nonterminal_owned_job_ids',\n  File \"/mnt/nfs-storage/shashank_prafullathta/implementation/three_model_maintenance/research/common.py\", line 11, in require\n    raise ValueError(message)\nValueError: Terminal direct archive has missing/nonterminal evidence\n",
+  "failed_query_id": 5,
+  "ended_utc": "2026-11-14T04:51:41.321422+00:00"
+}
