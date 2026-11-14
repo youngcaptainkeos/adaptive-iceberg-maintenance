@@ -58,3 +58,18 @@ GitHub synchronization is recorded separately after committing this unit. Worker
 ## Update 14 November 2026
 
 Worker3 is reachable; four detached units completed. Live capability: 5 passed/1 failed/0 unattempted. Direct-stage probe failed HTTP404. Executed-work reconciliation passed diagnostically (24 jobs/24 stages/168 tasks); descriptive six-query export completed. Neither accepts the failed original physical campaign. See [actual analysis and next gates](ANALYSIS_2026-11-14.md). Source/evidence mirrors are in the temporary recovered checkout; original Data1 mount is absent. No model training or performance improvement established.
+
+
+## 14 November 10:25 UTC: raw ownership/history follow-up
+
+Registered source552e923 added a separate saved-file diagnostic without modifying the live collector. Attempt `live_history_audit_20261114_01`, PID675625, failed at10:24:13UTC with Admission expired before inspecting evidence (registered06:00UTC start limit). ntfy delivered HTTP200. The clock was not refreshed immediately before launch; failure is preserved. A distinct02 protocol moved only the read-only admission window to12:00UTC; all input hashes and checks stayed unchanged. No SQL/REST or physical retry occurred.
+
+Source01b1455, `live_history_audit_20261114_02`, PID675918, ran10:24:44–46UTC and passed the saved-raw ownership/history diagnostic:6exact SQL bindings,24owned jobs,71job observations,47referenced stage IDs and114stage observations. No observed owned job/stage adverse counter or stage retry was found. Missing stage6094/6095 remain unknown. The final SQL inventory pagination was checked through its short terminal page. Ownership was reconstructed from exact marked SQL and raw job lists rather than collector selection, and matched the prior reconciliation's job population.
+
+Scope: all archived observations, not every intermediate engine event or unknown SQL job; task/count proof cross-checked for ownership, not independently reimplemented. No physical acceptance, training eligibility or benefit claim. Integration stays5/1/0; old physical archive03 stays0/1/1. Next: specify and review a prospective executed-work versus dependency-inventory contract, validate it on fresh execution, then implement matched full-drain immediate/delayed compaction comparisons. Stop identical retention retries.
+
+live_history_audit_20261114_01 result SHA256 `ebcd2544141fb213f7c547dae21cf8326f558b2aa014031602193133f7d84932`; launch/log in corresponding `_launch/`.
+
+live_history_audit_20261114_02 result SHA256 `7029e0c7477af8659046b44f72b2830231675bbbbf593b4126a3216524ac1bb0`; launch/log in corresponding `_launch/`.
+
+Both result/log folders mirrored with exact SHA agreement: `results/research_progress_20261114/history_mirror_checksums.json`.

@@ -11,3 +11,5 @@ HISTORICAL_RESULTS_AND_NEXT_GATE.png displays the six real service-time/task-CPU
 ## Storage
 
 The original Data1 project drive was unavailable. These new screenshots are saved here rather than overwriting the earlier ESA folder. A reviewable copy is also kept in the temporary repository checkout under docs/Review/ESA review26/screenshots/2026-11-14_live_capture (the actual folder name contains spaces). Earlier screenshots on Data1 have not been deleted. HTML pages are readable evidence displays, not synthetic terminal sessions.
+
+HISTORICAL_RAW_AUDIT.png shows the completed saved-record audit at10:24UTC, not live processes. Attempt01 expired admission; attempt02 passed a separate raw ownership/history diagnostic. Original integration remains failed. Source: results/live_history_audit_20261114_02/result.json; screenshot/source-page checksums in audit_capture_manifest.json.

@@ -1,0 +1,12 @@
+{
+  "status": "failed_preserved",
+  "started_utc": "2026-11-14T10:24:13.487403+00:00",
+  "SQL_executed": false,
+  "REST_requested": false,
+  "original_failure_accepted": false,
+  "training_eligible": false,
+  "protocol_sha256": "c84e66ce064330cee33c0292a518591197eafb6ad5dac9688367a8a83e4473f4",
+  "error": "Admission expired",
+  "traceback": "Traceback (most recent call last):\n  File \"/mnt/nfs-storage/shashank_prafullathta/implementation/three_model_maintenance/research/audit_live_histories.py\", line 24, in run\n    require(utc(now()) < utc(cfg['latest_start_utc']), 'Admission expired')\n  File \"/mnt/nfs-storage/shashank_prafullathta/implementation/three_model_maintenance/research/common.py\", line 11, in require\n    raise ValueError(message)\nValueError: Admission expired\n",
+  "ended_utc": "2026-11-14T10:24:13.487997+00:00"
+}

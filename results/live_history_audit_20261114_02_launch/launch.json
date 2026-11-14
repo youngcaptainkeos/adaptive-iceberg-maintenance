@@ -1,0 +1,24 @@
+{
+  "pid": 675918,
+  "command": [
+    "nohup",
+    "python3",
+    "-B",
+    "scripts/phase6-live-evaluation/run_with_failure_alert.py",
+    "--label",
+    "live_history_audit_20261114_02",
+    "--receipt",
+    "/mnt/nfs-storage/shashank_prafullathta/implementation/results/live_history_audit_20261114_02_launch/failure_notification.json",
+    "--",
+    "python3",
+    "-B",
+    "-m",
+    "three_model_maintenance.research.audit_live_histories",
+    "--protocol",
+    "/mnt/nfs-storage/shashank_prafullathta/implementation/three_model_maintenance/protocols/live_history_audit02_20261114.json",
+    "--output",
+    "/mnt/nfs-storage/shashank_prafullathta/implementation/results/live_history_audit_20261114_02"
+  ],
+  "started_utc": "2026-11-14T10:24:44.386943+00:00",
+  "head": "01b1455b88658f7b5e4711655e1279d2b36ed7b0"
+}

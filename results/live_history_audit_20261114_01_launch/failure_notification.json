@@ -1,0 +1,19 @@
+{
+  "label": "live_history_audit_20261114_01",
+  "failure_detail": "Command failed with exit status 1. Inspect the registered run log; no automatic retry.",
+  "attempted_utc": "2026-11-14T10:24:13.551932+00:00",
+  "status": "notification_delivered",
+  "http_status": 200,
+  "response": {
+    "id": "ATl9PzutH95J",
+    "time": 1794651854,
+    "expires": 1794695054,
+    "event": "message",
+    "topic": "shashank_capstone_alerts",
+    "title": "Capstone run failed",
+    "message": "live_history_audit_20261114_01\nCommand failed with exit status 1. Inspect the registered run log; no automatic retry.",
+    "tags": [
+      "warning"
+    ]
+  }
+}
