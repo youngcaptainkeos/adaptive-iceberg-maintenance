@@ -1,0 +1,8 @@
+{
+  "selection_path": "/mnt/nfs-storage/shashank_prafullathta/implementation/results/live_direct_capture_20261114_01/direct_archive/checkpoint_00006/selection.json",
+  "selection_sha256": "5402e2c2d14826c845670cce55b99beb201ca77ef34cecdf709b2201d328cb8b",
+  "base": "http://127.0.0.1:4051/api/v1/applications/local-1793552665721",
+  "deadline": "2026-11-14T06:00:00+00:00",
+  "purpose": "Read two actual missing stage references once via detail endpoint; no SQL, no physical acceptance, stop on first failure",
+  "code_sha256": "0a536abd874599b0840e0b2b1aeb98fa5037d69daf4f9309286949c7f72d4c54"
+}
