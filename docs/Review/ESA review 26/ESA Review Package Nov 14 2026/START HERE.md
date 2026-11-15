@@ -8,6 +8,7 @@ This dated package refreshes the short ESA presentation and Phase 1 report using
 
 - `ESA Review Presentation Short.pptx` — original 25-slide short presentation, retained as delivered.
 - `ESA Review Presentation Short - Architecture and Milestones.pptx` — separate 25-slide derivative with the editable end-to-end architecture diagram on slide 8 and gated research roadmap on slide 23.
+- `ESA Review Presentation Short 2.pptx` — separate 25-slide screenshot-expanded derivative. Slides 15–18 pair additional captured results, audit, Spark UI and dashboard evidence with plain-language explanations. Earlier decks remain unchanged.
 - `Diagrams/` — standalone PNG exports of both diagrams plus their scope and evidence notes.
 - `ESA Phase 1 Report.docx` — updated report with the latest execution/audit progress addendum; earlier results and failed-campaign status remain intact.
 - `ESA Phase 1 Report.pdf` — rendered reading copy of the updated report.

@@ -4,6 +4,7 @@
 b6ca52f061758e1cc8bd67bcadc4e2a55832b36cfe46847886e064c48287e6f6  ./ESA Phase 1 Report.docx
 9ce55745c97ca3ca7dd097074d8fbb9912bf6a8d7ab556bead12b114c25d1aeb  ./ESA Phase 1 Report.pdf
 47cc036386c413e5d2f3bfd73bbd62f68a2fbe2dd4bc6f230ff1eb69e34c5178  ./ESA Review Presentation Short - Architecture and Milestones.pptx
+8eb13df6fc55c6349a8663b4939ea2407d7cd1a135ef12acf22c168e88944861  ./ESA Review Presentation Short 2.pptx
 9c52fa1cd893caa3a844c923474619d268b2b9d6ba3e256439ed6b88bea42f92  ./ESA Review Presentation Short.pptx
 b3b204cb0971b5618a9cfde8a738d1c932fcbbcb5a35e26d21e28d03b35389f6  ./Evidence/audit_capture_manifest.json
 2e0f17325ae10ac60c47573ce4e79034f4b0300e80c2aa4879cbcbe748e9805a  ./Evidence/capture_manifest.json
@@ -22,5 +23,5 @@ f9253de9770e89bf782e242ad85ecbf116cb76011f9ef2abe9aaa6744cb45f35  ./Evidence/ret
 6746904b11e92743c8e86e872053cf2af15e487b356dd4510d797ffcb644b8f5  ./Evidence/spark_ui_capture_20261114.png
 529e42b88a0f12ef0924b3f9423f488142db13dcfb91fb86b0ada8a7e3958335  ./Evidence/spark_ui_capture_manifest_20261114.json
 6b0e903136c055098e3fc3824b4a2b96ecb2c0a0e90bbbf0e7d55984a08a878b  ./Presenter Guide.md
-109507e5ef5aed196ac39b3a7a53ec50bf19af3c9fe0f4e417ed89db8e58a676  ./START HERE.md
+6862b57e0f444ed084f2347d20f93147b6c828c2679dc10e0b6aa9bc0c740eb2  ./START HERE.md
 e306cc3a915da8c0ec246dad125a1f2d360124aac52478855f0a6268e8d28c8c  ./Teammate Slide by Slide Guide.docx
