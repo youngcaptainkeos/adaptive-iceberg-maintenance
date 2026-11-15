@@ -12,6 +12,7 @@ This dated package refreshes the short ESA presentation and Phase 1 report using
 - `ESA Phase 1 Report.docx` — updated report with the latest execution/audit progress addendum; earlier results and failed-campaign status remain intact.
 - `ESA Phase 1 Report.pdf` — rendered reading copy of the updated report.
 - `Presenter Guide.md` — slide-by-slide speaking points and important interpretation boundaries.
+- `Teammate Slide by Slide Guide.docx` — detailed learning and rehearsal guide for all 25 slides, including slide screenshots, plain-language explanations, technical inputs and metrics, sample speaking notes, likely panel questions, and evidence boundaries.
 - `Evidence/` — frozen Nov 13/14 result JSONs, the labelled Nov 14 results and audit screenshots, Spark UI capture, provenance manifests and preserved failures.
 - `SHA256SUMS.txt` — checksums for package deliverables and frozen evidence.
 
