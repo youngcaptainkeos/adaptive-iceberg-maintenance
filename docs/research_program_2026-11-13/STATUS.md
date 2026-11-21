@@ -78,3 +78,8 @@ Both result/log folders mirrored with exact SHA agreement: `results/research_pro
 ## Update21November2026 — local implementation only
 
 Separate executed-work raw auditor and guarded detached worker launcher prepared. Source syntax parsed locally without module execution; runtime validation, fresh registration and worker sync are pending while server is offline. No new experiment/result/training occurred. See `remote_validation/EXECUTED_WORK_AUDIT_V1.md` and `results/local_build_executed_work_20261121/build_record.json`. Original failure counts and missing dependency states unchanged.
+
+
+## Update21November2026 — validity review, no new execution
+
+Read-only source/saved-summary review finds usable real benchmark execution but only timestamp fidelity to Snowset, capacity mismatch risk, truncated SF10 boundary and unvalidated scheduling estimates. It also restores visibility of older complete8-arm SF1timing evidence: small/mixed contrasts, no independent generalization. This supersedes summaries implying no timing study ever ran. See `DATASET_PIPELINE_VALIDITY_REVIEW_2026-11-21.md`; source hashes in `results/dataset_pipeline_source_review_20261121/review_record.json`. Prior failures unchanged. Experiment-design correction precedes model expansion; no new test, training or remote run occurred.
