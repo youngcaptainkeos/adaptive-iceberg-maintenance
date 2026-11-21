@@ -1,0 +1,36 @@
+{
+  "status": "local_implementation_prepared_remote_validation_pending",
+  "recorded_utc": "2026-11-21T11:15:52.321578+00:00",
+  "base_commit": "2359c85a05ab57cc009192140e511dba31bf816c",
+  "files": [
+    {
+      "path": "three_model_maintenance/research/executed_work_audit.py",
+      "sha256": "61ce8616c70fd33f4c8176f7700027eb1fa6a3fc86b189064318a20fc1a84ae6",
+      "source_parse": "syntax_valid_no_module_import_or_execution"
+    },
+    {
+      "path": "scripts/launch_executed_work_audit.py",
+      "sha256": "fa0b2d89bdebb159da9e2779ad16ee0a100122ce687bdde5d7e444be9ea750b2",
+      "source_parse": "syntax_valid_no_module_import_or_execution"
+    }
+  ],
+  "reference_protocol_sha256": "dacbbda3cd737ec61b98f41c63d943d500d9cf7affd739511d7703e98ea17777",
+  "runtime_tests_executed": false,
+  "scientific_audits_executed": false,
+  "SQL_executed": false,
+  "model_fit_executed": false,
+  "remote_launch_attempted": false,
+  "PID": null,
+  "log": null,
+  "expected_remote_first_check_seconds": 60,
+  "original_integration_counts": {
+    "passed": 5,
+    "failed": 1,
+    "unattempted": 0
+  },
+  "limitations": [
+    "Source parsing and manual review only; no behavioural pass claimed.",
+    "Worker3 offline reported by user; no repeated SSH attempt in this unit.",
+    "Remote fast-forward and intended SHA verification deferred."
+  ]
+}

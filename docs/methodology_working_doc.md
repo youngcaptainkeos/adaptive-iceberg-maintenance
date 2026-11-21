@@ -3148,3 +3148,22 @@ live_history_audit_20261114_01 result SHA256 `ebcd2544141fb213f7c547dae21cf8326f
 live_history_audit_20261114_02 result SHA256 `7029e0c7477af8659046b44f72b2830231675bbbbf593b4126a3216524ac1bb0`; launch/log in corresponding `_launch/`.
 
 Both result/log folders mirrored with exact SHA agreement: `results/research_progress_20261114/history_mirror_checksums.json`.
+
+
+## 21 November 2026: local executed-work audit build; remote validation pending
+
+Purpose: remove the bounded attribution prerequisite for a matched maintenance-timing study, whose primary metric remains full-cohort arrival-to-result response. The user reported worker3 offline and authorized local building for later remote tests. A power-cut pause was respected; subsequent work resumed on explicit continue. No remote process state or outcome was inferred, and no further SSH probe was made in this unit.
+
+Implemented a separate `saved_raw_executed_work_audit_v1` module at `three_model_maintenance/research/executed_work_audit.py` and worker-only launcher at `scripts/launch_executed_work_audit.py`. The audit reconstructs exact marked SQL ownership from saved pages; inspects all observed owned job/stage histories and explicit adverse counters; joins stage intervals and raw HTTP task populations to completed job counters; checks raw receipts, hashes, complete final pagination, terminal checkpoint flag, task uniqueness and attempt/index coverage. It does not trust earlier collector selections or audit job proofs. Dependency inventory and observed executed-work coverage are distinct outputs; missing individual states are never classified from an aggregate skipped count.
+
+No existing collector, model, historical protocol or raw result was changed. Original SF10 live capture stays5passed/1failed/0unattempted; old archive03 stays0/1/1. Any new saved-file pass will keep physical acceptance/training eligibility false. Source is the six-query14November engineering archive, with original hashes copied unchanged from `three_model_maintenance/protocols/live_history_audit02_20261114.json`. Reuse is not fresh independent performance data.
+
+The launcher requires the intended committed code/config, matching full HEAD, a fresh caller-supplied saved-file admission cutoff, unique attempt paths and no detected competing known Python project executor. It leaves the persistent labelled Spark backend alone. Actual future child commands use nohup/start_new_session and the standing failure wrapper/ntfy config, with PID/log/receipt. A nonblocking audit lock prevents duplicate auditors; it does not replace server-wide process inspection. Estimated first check is60seconds, not a completion guarantee. No launch-ready dated registration was invented while offline.
+
+Build checks: parsed the two new Python source files with `ast.parse`, without importing/executing either module or auditing inputs. Manual source review covered explicit failures, missing evidence, path bounds, terminal changes, duplicate tasks, source provenance and launch-cutoff handling. This is static build evidence, not validation. No test, fit, physical episode, SQL or scientific audit ran; no PID/science log exists. Build record: `results/local_build_executed_work_20261121/build_record.json`. No dummy/modified/synthetic evidence was created.
+
+Code SHA256 `three_model_maintenance/research/executed_work_audit.py`: `61ce8616c70fd33f4c8176f7700027eb1fa6a3fc86b189064318a20fc1a84ae6`.
+
+Code SHA256 `scripts/launch_executed_work_audit.py`: `fa0b2d89bdebb159da9e2779ad16ee0a100122ce687bdde5d7e444be9ea750b2`.
+
+Full contract, remote command placeholders, failure decisions and bounded next performance study: `docs/research_program_2026-11-13/remote_validation/EXECUTED_WORK_AUDIT_V1.md`. Next gate: recover actual worker/Git/raw state, safe fast-forward and SHA checks, then one detached saved-raw audit under a fresh protocol. If it passes only executed-work coverage, missing dependencies still block old full-inventory acceptance. Review prospective integration before fresh runtime capability; then repeatability/layout/interference/timing comparisons. No model expansion without measurable action value. GitHub synchronization will be recorded separately; worker synchronization remains deferred by offline state.

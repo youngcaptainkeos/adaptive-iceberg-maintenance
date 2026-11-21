@@ -1,0 +1,11 @@
+{
+  "label": "LOCAL_IMPLEMENTATION_REMOTE_VALIDATION_PENDING",
+  "captured_utc": "2026-11-21T11:17:02.691009+00:00",
+  "source": "results/local_build_executed_work_20261121/build_record.json",
+  "source_sha256": "69f0f0025b1aa87ab13c85531c17eb40e71d64790e2f26319f67efdd67e759ef",
+  "files": {
+    "LOCAL_IMPLEMENTATION_STATUS.html": "fc8f383bf113b5872138fd50bbee41f6bed8858384144eca94979aa624a03de4",
+    "LOCAL_IMPLEMENTATION_STATUS.png": "08abbee8023272ae2244ce6c2afbb3ac08494fbc58fe33d9bc32a9a4463161ae",
+    "README.md": "99049ffd85dea3d00e3bf968adc08b0041370b20ae8601a2cdebba9a49f8108d"
+  }
+}
