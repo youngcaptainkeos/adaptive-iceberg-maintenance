@@ -1,0 +1,31 @@
+{
+  "recorded_utc": "2026-11-21T13:58:51.688861+00:00",
+  "source_commit": "88d0a58d99ebe8066883ab58cea5bcb90ef6b925",
+  "review_scope": "primary-source literature and saved source/configuration inspection only",
+  "report": "docs/research_program_2026-11-13/QUERY_DIVERSITY_AND_TRANSFER_REVIEW_2026-11-21.md",
+  "report_sha256": "c10877e73e4d02af5d4a27ec03ca750ebe90eb7e25abcb918499afc2511ec9a6",
+  "query_configuration": "results/sf10_archive_validation_20261101_03_recovered_raw/sf10_archive_validation_20261101_03_no_maintenance/config.json",
+  "query_configuration_sha256": "1acbe3b0dbd67d9d19ac6845b07f8835e46fa4a6953b4d55b8dc1585dab9b627",
+  "query_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "query_names": [
+    "filtered_revenue",
+    "grouped_lineitem",
+    "orders_lineitem_join",
+    "customer_orders_lineitem_join",
+    "group_sort_top_parts",
+    "five_table_supply_join"
+  ],
+  "scientific_tests": 0,
+  "experiments": 0,
+  "model_fits": 0,
+  "remote_contact": false,
+  "accepted_new_policy": false,
+  "novelty_established": false
+}
