@@ -1,0 +1,73 @@
+{
+  "schema": "local_full_drain_source_build_v1",
+  "recorded_utc": "2026-11-21T12:50:36.163717+00:00",
+  "source_base_commit": "df7b89faec493ab8921fc00af344520220daacac",
+  "status": "implemented_locally_remote_runtime_validation_pending",
+  "static_check": {
+    "method": "Python ast.parse of source text only; no imports or module execution",
+    "files_parsed": 14,
+    "syntax_errors": 0
+  },
+  "code_sha256": {
+    "three_model_maintenance/full_drain/__init__.py": "500c8b2a0ac19585c1b4e40a05aea4aa02216d00ebf8b1cabf51778e1e977d9c",
+    "three_model_maintenance/full_drain/accounting.py": "767b43dd47bfc58cd4cabec81c972bf4599f878cfbda0ed2c7cb5100344f6471",
+    "three_model_maintenance/full_drain/action_submission.py": "f771fea99e0d398e346ee425864a3988cb6434fcd2746d45d081faf153492f30",
+    "three_model_maintenance/full_drain/audit.py": "62b2b34f2837cd9eb72cb2849c5fc96def50f8c1bebc3e1d16544d041b558d8e",
+    "three_model_maintenance/full_drain/compare.py": "7a5ec82f64987bc201eef9d399e508c31ce63b3bcf1bcc8947eb8e8b1d90ddb7",
+    "three_model_maintenance/full_drain/contract.py": "e78246114477f11d31acb7b852a27f5937007876512a1e2df83eb60ef042bc30",
+    "three_model_maintenance/full_drain/engine_scope.py": "3ca5d33ffc08a3fef85bcc716b6891e1276861ad9c4318b37f737056893e5228",
+    "three_model_maintenance/full_drain/job.py": "a693776b6ddc245e0864486f55bc0c70a1abf6947696f37096f5d4ec60b3dd06",
+    "three_model_maintenance/full_drain/ledger.py": "3150d5cc100b4ce4db093216cf1ed0af410e9d91da8e9db14450efdd711239f6",
+    "three_model_maintenance/full_drain/registration.py": "5a20cdaa71ce14858f01aaf214e2afed96a7b2a2d9661f0f9e146a63cb0707b8",
+    "three_model_maintenance/full_drain/runner.py": "6c58e02180e9b47ac92ce7475ee11cda5dd468c0f4a15d801ec8242cd3ba24b1",
+    "three_model_maintenance/full_drain/study.py": "8b2bd91a1a2cd193a6479e73bb1ab1479cd6a033f8b77ac0ebbb665af9a2117c",
+    "scripts/launch_sf10_full_drain.py": "37002bc7ccc8f9a26c2cfa1a6ac3e7cf3d674306cfaafc3dc8aadf9e0043fdb2",
+    "three_model_maintenance/research/executed_work_audit.py": "c708eaae00e80ac151b7860b02ec2293404cf89d34c3ee2f10a378b4c5216af7"
+  },
+  "documentation_sha256": {
+    "three_model_maintenance/full_drain/README.md": "edbdeeaad5a3f6dd86bc82de599a690e36a802b17eff018b4685196d6b3e7235"
+  },
+  "scientific_tests_executed": 0,
+  "SQL_executed": false,
+  "model_fits": 0,
+  "new_physical_episodes": 0,
+  "science_pid": null,
+  "science_log": null,
+  "remote_state": "not_inspected_offline_user_constraint",
+  "worker_sync": "deferred_not_verified",
+  "static_review_topics": [
+    "full offered population and FIFO conservation",
+    "equal useful rewrite obligation",
+    "separate arrival and operational boundaries",
+    "actual-start action freshness and cutoffs",
+    "immutable results and failure preservation",
+    "prospective complete arm membership and order",
+    "actual child exit required for comparison",
+    "strict missing-dependency gates",
+    "no CPU/I/O benefit without attributable evidence"
+  ],
+  "integration_corrections_found_by_source_review": [
+    "Legacy SubmissionRecorder only permits guarded query cutoffs; new action-specific recorder added without editing legacy recorder.",
+    "Original raw executed-work audit assumes a query-only ledger; explicit separate mixed-ledger trace schema added; original standalone schema unchanged.",
+    "Retrospective manifest could omit failed arms; prospective study now binds every configuration and order."
+  ],
+  "blockers": [
+    "Worker3 source/runtime validation pending.",
+    "Complete real dependency-inventory prerequisite missing; earlier absent stages remain absent.",
+    "Legacy conservative description-based terminal ownership gate retained and may reject valid auxiliary jobs; separate capture repair required.",
+    "No development capacity characterization on intended 64-file SF10 workload.",
+    "No fresh launch-ready registration or arm-specific cutoff/table has been created."
+  ],
+  "next_gate": "Recover actual worker and Git state, safely synchronize exact source, then one fresh detached saved-raw audit under failure wrapper; review capture prerequisite before physical admission.",
+  "historical_states_preserved": {
+    "sf10_archive03": "0 passed / 1 failed / 1 unattempted; no fit",
+    "nov14_six_query_integration": "5 passed / 1 failed / 0 unattempted; missing dependency stages 6094 and 6095"
+  },
+  "acceptance": {
+    "physical": false,
+    "training": false,
+    "calibration": false,
+    "policy_benefit": false,
+    "publication_ready": false
+  }
+}

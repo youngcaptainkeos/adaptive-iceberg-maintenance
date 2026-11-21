@@ -1,0 +1,7 @@
+{
+  "label": "LOCAL_IMPLEMENTATION_REMOTE_VALIDATION_PENDING",
+  "source_record": "/media/shashank/Data1/PDocuments/Capstone/implementation/results/full_drain_local_build_20261121/build_record.json",
+  "source_sha256": "a59a34e6bb0f8704f7542c95458e5d0019e2d25b99ae4ed475d4ee3cd455f5b7",
+  "meaning": "Source implementation progress only; no runtime, process or performance evidence.",
+  "recorded_utc": "2026-11-21T12:51:11.194374+00:00"
+}

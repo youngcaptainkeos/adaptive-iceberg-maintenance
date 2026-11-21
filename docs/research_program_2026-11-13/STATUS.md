@@ -83,3 +83,8 @@ Separate executed-work raw auditor and guarded detached worker launcher prepared
 ## Update21November2026 — validity review, no new execution
 
 Read-only source/saved-summary review finds usable real benchmark execution but only timestamp fidelity to Snowset, capacity mismatch risk, truncated SF10 boundary and unvalidated scheduling estimates. It also restores visibility of older complete8-arm SF1timing evidence: small/mixed contrasts, no independent generalization. This supersedes summaries implying no timing study ever ran. See `DATASET_PIPELINE_VALIDITY_REVIEW_2026-11-21.md`; source hashes in `results/dataset_pipeline_source_review_20261121/review_record.json`. Prior failures unchanged. Experiment-design correction precedes model expansion; no new test, training or remote run occurred.
+
+
+## 21 November: full-drain equal-obligation local adapter
+
+Implemented a new, separate fixed-timing adapter with full query drain, one useful rewrite per arm, prospective study/order binding, actual child receipts and independent raw gates. Static AST parsing only; **zero new experiments/tests/fits, no runtime pass, no server synchronization**. Existing failures remain unchanged. Full implementation/remote validation handover: `three_model_maintenance/full_drain/README.md`. Source hashes and blockers: `results/full_drain_local_build_20261121/build_record.json`. Both methodologies contain the append-only rationale and exact source hashes. Next gate is actual remote capture validation and intended-layout development capacity, before a small matched timing study or more ML.

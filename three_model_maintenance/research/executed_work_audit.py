@@ -74,7 +74,8 @@ def prepare(reference_protocol, latest_start, output):
 
 
 def audit(cfg):
-    require(cfg['schema'] == CONTRACT, 'Unknown executed-work contract')
+    trace_scope = cfg['schema'] == 'saved_raw_full_drain_trace_work_audit_v1'
+    require(cfg['schema'] == CONTRACT or trace_scope, 'Unknown executed-work contract')
     require(cfg['SQL_allowed'] is False and cfg['REST_allowed'] is False
             and cfg['physical_acceptance_allowed'] is False, 'Wrong audit scope')
     episode = ROOT/cfg['episode']; archive = episode/'direct_archive'
@@ -95,6 +96,12 @@ def audit(cfg):
     events = [decode(line) for line in events_path.read_text().splitlines()]
     requested = [r for r in events if r['kind'] == 'statement_requested']
     completed = [r for r in events if r['kind'] == 'statement_completed']
+    # A separate schema explicitly scopes the new mixed-ledger adapter. The
+    # original saved-raw contract still requires its entire statement population.
+    if trace_scope:
+        require(cfg['call_population'] == 'all_trace_queries_in_full_drain_ledger', 'Wrong trace scope')
+        requested = [r for r in requested if r['role'] == 'trace_query']
+        completed = [r for r in completed if r['role'] == 'trace_query']
     expected = integer(cfg['expected_completed_calls'], 'expected calls', 1)
     require(len(requested) == len(completed) == expected, 'Incomplete offered call population')
     require({r['measurement_id'] for r in requested} ==
@@ -289,6 +296,7 @@ def run(protocol, output):
         lock_stream = (ROOT/'results'/'.executed_work_audit.lock').open('a')
         fcntl.flock(lock_stream, fcntl.LOCK_EX | fcntl.LOCK_NB)
         cfg = read(protocol)
+        require(cfg['schema'] == CONTRACT, 'Original standalone audit requires its original whole-ledger schema')
         require(cfg['status'] == 'registered_not_executed', 'Wrong registration state')
         require(utc(now()) < utc(cfg['latest_start_utc']), 'Audit admission expired')
         def verify():

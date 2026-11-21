@@ -1,0 +1,14 @@
+{
+  "captured_utc": "2026-11-21T12:52:19.810340+00:00",
+  "classification": "LOCAL_BUILD_REMOTE_VALIDATION_PENDING",
+  "screenshot": "LOCAL_BUILD_remote_validation_pending.png",
+  "screenshot_sha256": "84b65a720ea91a1e15295731cf613832de1adda5aab898b2355cb2e9503ffc8a",
+  "html_sha256": "b5de9719fcf4dd07124e85ffc71802e9f890da9a7465cd6fc8cbc1faee4b2bd9",
+  "source_metadata_sha256": "2780e9c7544606d1b42a1ae5c713a3e9014685706e1dda2a510049de85eb548c",
+  "visually_inspected": true,
+  "claims_excluded": [
+    "remote process running",
+    "runtime validation pass",
+    "new performance result"
+  ]
+}
